@@ -228,7 +228,10 @@ class EvidenceLoop:
             if diagnostic:
                 answer = diagnostic
                 result['card'] = None  # Only the requested diagnostic plus its complete bound original.
-                result['limitations'].append('Surface readability is a formula estimate, not a comprehension or quality test.')
+                result['limitations'] = [
+                    'Saved sample ballot; it may change. This is not your personal ballot.',
+                    'The counts cover only the selected English wording. Numbers and names can change these estimates.',
+                    'This is a wording check, not a full legal explanation.']
         return finish("answered", answer)
 
     def _candidate_gap(self, result, catalog, finish):

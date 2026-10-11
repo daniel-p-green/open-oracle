@@ -210,15 +210,24 @@ def diagnostic_answer(readability: dict) -> str | None:
     if not isinstance(reports, list) or len(reports) != 1 or not isinstance(reports[0], dict) or reports[0].get("status") != "estimated":
         return None
     try:
-        scores = reports[0]["scores"]
-        ease = f"{scores['flesch_reading_ease']:.2f}"
-        grade = f"{scores['flesch_kincaid_grade_level']:.2f}"
-    except (KeyError, TypeError, ValueError):
+        report = reports[0]
+        counts, scores = report['counts'], report['scores']
+        if any(type(counts[k]) is not int or counts[k] <= 0 for k in ('words', 'sentences', 'syllables')):
+            return None
+        target = {'question': 'selected question', 'fiscal_summary': 'selected cost summary'}.get(report['provenance']['span'])
+        if target is None:
+            return None
+        words, total_sentences = counts['words'], counts['sentences']
+        sentence_average = f"{words / total_sentences:.2f}".rstrip('0').rstrip('.')
+        word_average = f"{counts['syllables'] / words:.2f}"
+        score = f"{scores['flesch_kincaid_grade_level']:.2f}"
+    except (KeyError, TypeError, ValueError, ZeroDivisionError):
         return None
-    return (f"The wording scores {grade} on a scale based on school reading grades. Higher numbers mean harder wording. "
-            f"It scores {ease} on a separate reading-ease scale, where higher numbers mean easier wording. "
-            "These scores are estimates from counts of words, sentences and syllables—the parts of words you hear. "
-            "They do not tell us whether someone understands the wording or whether it is accurate.")
+    return (f"The {target} has {words} words in {total_sentences} sentences—{sentence_average} words per sentence on average. "
+            f"Words average {word_average} syllables, or spoken parts. "
+            "Flesch–Kincaid gives longer sentences and more spoken parts per word a higher difficulty score. "
+            f"Here the score is {score}, a formula estimate. "
+            "It does not test anyone’s education or understanding, or whether the wording is accurate.")
 
 
 def verify_diagnostic(response: dict, corpus=None) -> bool:

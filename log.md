@@ -340,3 +340,8 @@ DESIGN.md imported from its owner as authorized measured America.gov guidance. N
 ## October 11 — core source binding and reviewed research proof
 
 Repaired raw per-part citation IDs and a narrow source-bound COMBAT research release adapter. Actual rate+duration query passed (6 Strands+1 Decisions); unsupported crime prediction refused (4+1). Two actual readability trials recomputed correctly but failed clarity (.38/.28), so remain held at unchanged .95 threshold. Added explicit pinned offline source bootstrap, late-cancellation guards and regression cases. Shared reservations $10.40/$50; invoice unconfirmed. Local tests179pass+4optional skips,53offlinePromptfoo and8JS pass; both browser regressions pass. See docs/runtime-research-and-source-repair.md and evals/release-repair-20261011. No publication, push, capture or playback.
+
+
+## October11 — readability restore point
+
+Recomputed counts now explain the finite diagnostic; source/score binding retained. Actual live candidate failed clarity0.05/abstention0.79, so remained withheld. A separate fallible Decisions diagnosis suggested missing score meaning; no criterion/threshold change. See evals/clarity-repair-20261011. Targeted diagnostic and SDK checks passed, no speech/capture. Paused to prioritize browser research.

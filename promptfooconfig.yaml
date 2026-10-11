@@ -180,7 +180,7 @@ tests:
       - type: javascript
         value: JSON.parse(output).readability.reports[0].counts.words === 92 && JSON.parse(output).fact_validation.computed_diagnostic === 'recomputed_exact_match' && !JSON.parse(output).speech
       - type: contains
-        value: Higher numbers mean harder wording.
+        value: 46 words per sentence on average.
   - vars: {question: 'Would COMBAT reduce crime by 20 percent?', expected: insufficient_evidence}
     assert:
       - type: contains

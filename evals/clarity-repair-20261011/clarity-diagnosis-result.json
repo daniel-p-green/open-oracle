@@ -1,0 +1,50 @@
+{
+  "trial": "readability_clarity_diagnosis_1",
+  "purpose": "fallible_model_self_diagnosis_not_causal_proof_or_release",
+  "execution": "actual_live_api",
+  "production_gate_changed": false,
+  "released": false,
+  "model_calls": 0,
+  "decisions_calls": 1,
+  "voice": false,
+  "capture": false,
+  "playback": false,
+  "candidate_answer": "The selected question has 92 words in 2 sentences\u201446 words per sentence on average. Words average 1.65 syllables, or spoken parts. Flesch\u2013Kincaid gives longer sentences and more spoken parts per word a higher difficulty score. Here the score is 21.85, a formula estimate. It does not test anyone\u2019s education or understanding, or whether the wording is accurate.",
+  "candidate_limits": [
+    "Saved sample ballot; it may change. This is not your personal ballot.",
+    "The counts cover only the selected English wording. Numbers and names can change these estimates.",
+    "This is a wording check, not a full legal explanation."
+  ],
+  "checks": [
+    {
+      "name": "same_clarity_criterion",
+      "status": "answered",
+      "type": "predicate",
+      "value": 0.03
+    },
+    {
+      "name": "same_criterion_explicit_proposition",
+      "status": "answered",
+      "type": "predicate",
+      "value": 0.78
+    },
+    {
+      "name": "main_obstacle",
+      "status": "answered",
+      "type": "choice",
+      "value": "score_meaning_not_explained"
+    },
+    {
+      "name": "counts_explained",
+      "status": "answered",
+      "type": "predicate",
+      "value": 1.0
+    }
+  ],
+  "usage": {
+    "input_tokens": 2063,
+    "output_tokens": 0,
+    "total_tokens": 2063
+  },
+  "status": "completed"
+}
