@@ -1,0 +1,15 @@
+{
+  "source": "local_git_clone_no_remote_contact",
+  "commit": "381e2a2e9941adc6bb02aef47e784f1f7e121373",
+  "source_bootstrap": "25 pinned research files plus2 prepared files imported",
+  "dependency_environment": "existing_pinned_venv_reused_not_clean_install; local symlink excluded in clone only",
+  "python_passed": 179,
+  "optional_native_skipped": 4,
+  "tracked_checkout_clean": true,
+  "source_originals_modified": false,
+  "model_calls": 0,
+  "capture": false,
+  "playback": false,
+  "paid_calls": 0,
+  "git_tracked_source_archives": false
+}

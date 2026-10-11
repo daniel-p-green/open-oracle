@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "pid": 43508,
+  "origin": "http://127.0.0.1:8765",
+  "bind": "127.0.0.1",
+  "mode": "exact_source",
+  "voice": "not_connected",
+  "normal_evidence_and_final_receipt": true,
+  "readability_diagnostic_words": 92,
+  "readability_not_fidelity_approval": true,
+  "scores_not_speech": true,
+  "erased_locally": true,
+  "provider_calls": 0,
+  "capture": false,
+  "playback": false,
+  "network_settings_changed": false,
+  "tunnel_changed": false,
+  "git_commit": "381e2a2e9941adc6bb02aef47e784f1f7e121373"
+}

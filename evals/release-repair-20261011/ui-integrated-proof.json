@@ -1,0 +1,48 @@
+{
+  "checks": [
+    "Actual copied app 1280: reference CSS, original PDF hash, exact underlined clause, explanation underneath, progressive disclosure, static captions",
+    "Actual copied app 1920: reference CSS, original PDF hash, exact underlined clause, explanation underneath, progressive disclosure, static captions",
+    "320px reflow: no horizontal reading overflow, readable original and controls",
+    "200% text override: no horizontal overflow or hidden reading actions",
+    "Keyboard: visible reference focus ring and composer outline",
+    "Pure source view: code-point offsets preserve emoji, combining mark and newline; mismatched quote fails closed",
+    "Erase clears clause/answer and restores composer focus",
+    "Zero microphone, live API, external or paid requests; no browser errors"
+  ],
+  "errors": [],
+  "external": [],
+  "liveRequests": 0,
+  "captureCalls": 0,
+  "paidCalls": 0,
+  "speechAcceptance": "unverified",
+  "fontMatch": "reference stacks with explicit local Regular/Medium body alias; licensed font binaries absent",
+  "formalAccessibilityAudit": false,
+  "bodyFonts1280": [
+    {
+      "familyName": "Arial",
+      "postScriptName": "ArialMT",
+      "isCustomFont": false,
+      "glyphCount": 46
+    }
+  ],
+  "hero1280": {
+    "color": "rgb(0, 12, 31)",
+    "font": "\"Rhymes Text\", \"Rhymes Fallback\", \"Times New Roman\", Times, serif",
+    "size": "96px",
+    "tracking": "-5.76px"
+  },
+  "bodyFonts1920": [
+    {
+      "familyName": "Arial",
+      "postScriptName": "ArialMT",
+      "isCustomFont": false,
+      "glyphCount": 46
+    }
+  ],
+  "hero1920": {
+    "color": "rgb(0, 12, 31)",
+    "font": "\"Rhymes Text\", \"Rhymes Fallback\", \"Times New Roman\", Times, serif",
+    "size": "123.429px",
+    "tracking": "-7.40572px"
+  }
+}

@@ -58,3 +58,12 @@ Actual local import reconstructed 55 contests, 62 candidate names, 11 retention 
 The reviewed America.gov patch is integrated in `web/index.html`, `web/styles.css` and `web/app.js`. It preserves the entire original, marks one exact selected clause and places its explanation underneath. Accepted static speech text remains separate and unchanged by clause navigation. The explicit local body faces select HelveticaNowText-Regular/Medium, then Arial, avoiding this Mac’s installed Black-family collision. No font binary is copied, downloaded or hotlinked; exact reference webfont licensing is unresolved.
 
 Source/privacy/voice/input/orb/Copilot transport ownership is preserved. Physical Pi rendering, actual audibility, aligned captions, multilingual delivery and camera/wave accuracy remain unverified. Gesture research is separate staging; no new gesture implementation or device capture was enabled here.
+
+
+## Final committed checkout proof
+
+Local runtime/source commit `4bf39c4`; reviewed visual commit `381e2a2`. The exact-source process was safely refreshed to that committed build at `http://127.0.0.1:8765`, PID 43508, listener `127.0.0.1` only. GET/typed source, diagnostic and Erase checks passed with zero providers, capture or playback; no network/tunnel/security setting changed.
+
+A new **local Git clone** of `381e2a2` imported 25 research files and two prepared files, then passed 179 Python tests with four optional native-adapter skips and both actual headless browser routes. Dependencies reused the existing pinned environment; its temporary symlink is excluded in that clone only. No GitHub push or remote contact occurred. `fresh-clone-result.json` and `fresh-browser-current.json` record that scope.
+
+`ui-integrated-proof.json` validates the actual committed UI at 1280×720, 1920×1080, 320px reflow and 200% text; exact original/clause/Unicode/PDF hashes, explanation underneath, static accepted text, visible focus and Erase pass. Actual Chrome native body font was **ArialMT**, the intended regular fallback; no Black face rendered. No microphone, live API, external asset request or browser error occurred. This is a Mac headless viewport check, not a physical Pi or speech acceptance claim.
