@@ -1,0 +1,242 @@
+{
+  "execution": "actual_live_api",
+  "model": "gpt-6-luna",
+  "scope": {
+    "authority": "JCEB",
+    "election_date": "2026-11-03"
+  },
+  "retries": 0,
+  "voice_calls": 0,
+  "capture": false,
+  "playback": false,
+  "main_browser_mode_changed": false,
+  "invoice": "unconfirmed",
+  "readability": {
+    "status": "unavailable",
+    "elapsed_ms": 7148,
+    "readability_tool_executed": true,
+    "reports": 0,
+    "scores": null,
+    "source_support": "supported",
+    "review": {
+      "provider": "openai_decisions",
+      "model": "gpt-6-luna",
+      "execution": "real_api",
+      "threshold": 0.95,
+      "calibration": "not_validated",
+      "rubric_version": "civic-v2-separated",
+      "usage": {
+        "input_tokens": 2546,
+        "output_tokens": 0,
+        "total_tokens": 2546
+      },
+      "status": "rejected",
+      "probabilities": {
+        "source_support": 0.85,
+        "no_vote_recommendation": 1.0,
+        "viewpoint_neutrality": 1.0,
+        "jurisdiction": 0.99,
+        "clarity": 0.27,
+        "abstention": 0.33,
+        "translation_status": 0.99
+      }
+    },
+    "receipt": {
+      "version": 1,
+      "config_sha256": "dc3293a50a2a1a6a4bba75ae9029458715a7b5b23eddc5f1d1e4fcc3f94a30f4",
+      "execution": "real_api",
+      "sdk_version": "1.59.0",
+      "finalized": true,
+      "elapsed_ms": 7144.596,
+      "model_attempts_started": 5,
+      "model_events": [
+        {
+          "attempt": 1,
+          "duration_ms": 1925.396,
+          "status": "completed",
+          "error_category": null
+        },
+        {
+          "attempt": 2,
+          "duration_ms": 860.44,
+          "status": "completed",
+          "error_category": null
+        },
+        {
+          "attempt": 3,
+          "duration_ms": 1050.388,
+          "status": "completed",
+          "error_category": null
+        },
+        {
+          "attempt": 4,
+          "duration_ms": 1048.914,
+          "status": "completed",
+          "error_category": null
+        },
+        {
+          "attempt": 5,
+          "duration_ms": 1041.566,
+          "status": "completed",
+          "error_category": null
+        }
+      ],
+      "tool_events": [
+        {
+          "sequence": 1,
+          "name": "resolve_contest",
+          "status": "success",
+          "duration_ms": 0.299,
+          "error_category": null
+        },
+        {
+          "sequence": 2,
+          "name": "search_evidence",
+          "status": "success",
+          "duration_ms": 0.322,
+          "error_category": null
+        },
+        {
+          "sequence": 3,
+          "name": "read_evidence",
+          "status": "success",
+          "duration_ms": 0.192,
+          "error_category": null
+        },
+        {
+          "sequence": 4,
+          "name": "test_ballot_readability",
+          "status": "success",
+          "duration_ms": 309.391,
+          "error_category": null
+        },
+        {
+          "sequence": 5,
+          "name": "other_tool",
+          "status": "success",
+          "duration_ms": 0.07,
+          "error_category": null
+        }
+      ],
+      "dropped_event_count": 0,
+      "usage": {
+        "inputTokens": 4683,
+        "outputTokens": 108,
+        "totalTokens": 4791
+      },
+      "stop_reason": "tool_use",
+      "stages_ms": {
+        "strands": 6250.0,
+        "source_guards": 1.0,
+        "decisions": 894.0
+      },
+      "released_sources": [],
+      "release": {
+        "status": "unavailable",
+        "binding": "supported",
+        "review": "rejected",
+        "review_execution": "real_api"
+      },
+      "error_category": null
+    },
+    "public_speech_generated": false,
+    "passed": false
+  },
+  "private_research": {
+    "status": "clarification",
+    "elapsed_ms": 4981,
+    "provider_calls": 4,
+    "release_state": "awaiting_quality_review",
+    "public_display": false,
+    "speech": false,
+    "planned_parts": 0,
+    "claims": 0,
+    "gaps": 0,
+    "retrieval": null,
+    "receipt": {
+      "version": 1,
+      "config_sha256": "cc9f80b37d12c89a088dafc067feba3165be8611ffec9139c8e972b8d1de8605",
+      "execution": "real_api",
+      "sdk_version": "1.59.0",
+      "finalized": true,
+      "elapsed_ms": 4973.91,
+      "model_attempts_started": 4,
+      "model_events": [
+        {
+          "attempt": 1,
+          "duration_ms": 1297.641,
+          "status": "completed",
+          "error_category": null
+        },
+        {
+          "attempt": 2,
+          "duration_ms": 1409.254,
+          "status": "completed",
+          "error_category": null
+        },
+        {
+          "attempt": 3,
+          "duration_ms": 1132.059,
+          "status": "completed",
+          "error_category": null
+        },
+        {
+          "attempt": 4,
+          "duration_ms": 1123.94,
+          "status": "completed",
+          "error_category": null
+        }
+      ],
+      "tool_events": [
+        {
+          "sequence": 1,
+          "name": "plan_evidence",
+          "status": "error",
+          "duration_ms": 1.761,
+          "error_category": "contract_error"
+        },
+        {
+          "sequence": 2,
+          "name": "plan_evidence",
+          "status": "error",
+          "duration_ms": 0.393,
+          "error_category": "contract_error"
+        },
+        {
+          "sequence": 3,
+          "name": "request_clarification",
+          "status": "success",
+          "duration_ms": 0.297,
+          "error_category": null
+        },
+        {
+          "sequence": 4,
+          "name": "CitedAnswer",
+          "status": "success",
+          "duration_ms": 0.049,
+          "error_category": null
+        }
+      ],
+      "dropped_event_count": 0,
+      "usage": {
+        "inputTokens": 6039,
+        "outputTokens": 262,
+        "totalTokens": 6301
+      },
+      "stop_reason": "tool_use",
+      "stages_ms": {},
+      "released_sources": [],
+      "release": {
+        "status": "not_finalized",
+        "binding": "not_run",
+        "review": "not_run",
+        "review_execution": "not_run"
+      },
+      "error_category": null
+    },
+    "independent_claim_quality_review": "not_run",
+    "semantic_entailment_validated": false,
+    "passed": false
+  },
+  "passed": false
+}

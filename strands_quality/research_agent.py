@@ -76,7 +76,10 @@ election and source versions; tools cannot widen them.
 If the topic or a bare follow-up cannot be resolved, call request_clarification,
 then return only the matching clarification in CitedAnswer. Otherwise first call
 plan_evidence: choose the contest and up to four independent question
-parts, each with a focused lexical query and purpose. Do not drop an unsupported
+parts, each with a focused lexical query and purpose. Select contest_id only from
+the application-supplied available_contests catalog; its IDs are exact, not display
+names. Do not invent a contest ID or turn a tool contract error into evidence that
+the voter's otherwise explicit topic is ambiguous. Do not drop an unsupported
 part. A follow-up may use the supplied previous contest; explicit new topics win.
 Search the approved source registry per part, acquire chosen archive IDs, search
 their indexed chunks, then read selected chunks. These are archived snapshots,
@@ -345,7 +348,12 @@ class ResearchRequest:
         if not question.strip() or len(question) > 2000: raise ValueError('Invalid question length')
         self._question = question  # Ephemeral request only; never receipt/config/export.
         context = {'trusted_scope': asdict(self.scope),
-                   'previous_contest': self.followup.contest_id if self.followup else None}
+                   'previous_contest': self.followup.contest_id if self.followup else None,
+                   'available_contests': [
+                       {'contest_id': ident,
+                        'labels': sorted({c.section for c in self.registry.chunks.values()
+                                          if c.contest_id == ident})}
+                       for ident in sorted({c.contest_id for c in self.registry.chunks.values()})]}
         return json.dumps({'application_context': context, 'visitor_question': question})
 
     def finalize(self, result) -> dict:

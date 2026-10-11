@@ -50,3 +50,13 @@ Credentials, event access links, local environments, and generated cloud configu
 ## Current safe startup and acceptance
 
 Use the [startup and acceptance runbook](docs/startup-and-acceptance-2026-10-11.md) for the current exact-source defaults, GET-only health checks, reproducible isolated browser acceptance and explicit pending Pi/audio/gesture prerequisites. The current build does not enable paid providers, sensors or voice by default.
+
+## Integrated nonvisual checkpoint
+
+The exact-source browser remains the working local default. Explicit reading-level requests run deterministic English FRE/FKGL diagnostics on scoped original passages. Real Strands agent mode registers that tool only after same-contest evidence is read. Operational receipts describe execution and release, with content-free local aggregate counters. Scores and receipts are not quality approval. See [readability and receipt boundaries](docs/nonvisual-readability-receipts.md).
+
+Final local validation: 161 Python tests pass, four optional native-adapter tests skip, and all eight JavaScript suites plus both main/Copilot headless browser regressions pass. The real readability tool workflow ran, but its answer was rejected by Decisions. Private research live trials remain unsuccessful and disconnected from browser display and speech. Existing earlier typed-to-playable speech proof is separate; human audibility and synchronized captions remain unverified.
+
+A fresh checkout needs the supplied retained research archive at `research/HackMidwest2026_research/`, or its absolute directory supplied through `OPEN_ORACLE_RESEARCH`. The default snapshot is hash-pinned; missing or changed material is not silently replaced. Candidate comparison also needs the existing prepared `.local/sources` archive; `python -m open_oracle.prepare_sources` is an explicit, bounded publisher fetch that fails if passages changed. Neither archive is automatically fetched at startup.
+
+[AGENTS.md](AGENTS.md) records project and release guidance. [DESIGN.md](DESIGN.md) records the chosen America.gov CSS reference and font-license limits; its frontend preview remains isolated pending review. Local commits do not publish the implementation to the existing public repository.

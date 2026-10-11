@@ -1,0 +1,112 @@
+{
+  "local_commits": [
+    "5f0b00c",
+    "f0e1ba7",
+    "a47aa58"
+  ],
+  "python": {
+    "total": 165,
+    "passed": 161,
+    "skipped_optional_native": 4,
+    "test_log": "canonical-final-catalog-tests.log"
+  },
+  "javascript_suites": 8,
+  "browser_regression": {
+    "passed": true,
+    "execution": "actual_current_localhost_offline",
+    "url": "http://127.0.0.1:8765",
+    "voice": "off",
+    "paid_calls": 0,
+    "full_accessibility_audit": false,
+    "physical_pi": false,
+    "reports": [
+      {
+        "route": "/",
+        "keyboard_question_and_source_disclosure": true,
+        "exact_source_text_preserved": true,
+        "pdf_sha256_matches": true,
+        "candidate_attribution_preserved": true,
+        "reset_blocks_actual_delayed_response": true,
+        "viewports": [
+          "800x480",
+          "320x700"
+        ],
+        "targets_at_least_48px": true,
+        "reduced_motion": true,
+        "secure_context": true,
+        "capture_calls": 0,
+        "live_requests": 0,
+        "external_requests": [],
+        "page_errors": []
+      },
+      {
+        "route": "/copilot",
+        "keyboard_question_and_source_disclosure": true,
+        "exact_source_text_preserved": true,
+        "pdf_sha256_matches": true,
+        "candidate_attribution_preserved": true,
+        "reset_blocks_actual_delayed_response": true,
+        "viewports": [
+          "800x480",
+          "320x700"
+        ],
+        "targets_at_least_48px": true,
+        "reduced_motion": true,
+        "secure_context": true,
+        "capture_calls": 0,
+        "live_requests": 0,
+        "external_requests": [],
+        "page_errors": []
+      }
+    ]
+  },
+  "runtime": {
+    "passed": true,
+    "pid": 92007,
+    "origin": "http://127.0.0.1:8765",
+    "bind": "127.0.0.1",
+    "mode": "exact_source",
+    "voice": "not_connected",
+    "normal_evidence_and_final_receipt": true,
+    "readability_diagnostic_words": 92,
+    "readability_not_fidelity_approval": true,
+    "scores_not_speech": true,
+    "erased_locally": true,
+    "provider_calls": 0,
+    "capture": false,
+    "playback": false,
+    "network_settings_changed": false,
+    "tunnel_changed": false,
+    "git_commit": "a47aa58e26dd627f92c93ca8d551e715aa5cc1b3"
+  },
+  "live_validation": {
+    "readability_workflow_real_model_calls": 5,
+    "readability_tool_executed": true,
+    "decisions_calls": 1,
+    "decisions_status": "rejected",
+    "readability_release": "withheld",
+    "initial_private_research_model_calls": 4,
+    "initial_private_research_result": "clarification_after_planning_contract_errors",
+    "catalog_trial_model_calls": 6,
+    "catalog_trial_result": "contract_error",
+    "private_research_released": false,
+    "retries": 0,
+    "voice_calls": 0,
+    "capture": false,
+    "playback": false,
+    "new_reservations_usd": 1.35,
+    "allocated_total_usd": 7.95,
+    "remaining_unallocated_usd": 42.05,
+    "invoice": "unconfirmed"
+  },
+  "remote": {
+    "url": "https://github.com/daniel-p-green/open-oracle",
+    "visibility": "PUBLIC",
+    "main_sha": "c7ffbe23c44fd965e597c94b825e0695443001de",
+    "pushed": false
+  },
+  "visual_patch": "new america-reference-ui.patch passes check; unapplied",
+  "physical_audibility": "unverified",
+  "speech_alignment": "unverified",
+  "fresh_clone_source_archive": "supplied retained research archive required; excluded from Git"
+}

@@ -163,6 +163,37 @@ class ResearchTests(unittest.TestCase):
         return ResearchRequest(self.registry, scope=kwargs.pop('scope', Scope()),
                                model=model or ResearchModel(), execution='synthetic_sdk', **kwargs)
 
+    def test_model_can_resolve_exact_topic_from_application_catalog_without_hardcoded_ids(self):
+        class CatalogModel(ResearchModel):
+            async def stream(self, messages, *args, **kwargs):
+                if self.calls == 0:
+                    prompt = json.loads(messages[0]['content'][0]['text'])
+                    catalog = prompt['application_context']['available_contests']
+                    matches = [row for row in catalog if any('COMBAT' in label for label in row['labels'])]
+                    self.asserted_contest = matches[0]['contest_id']
+                    self.calls = 1
+                    self.parts = [dict(id='rate', question='What is the printed rate?', query='quarter cent', purpose='ballot_fact'),
+                                  dict(id='duration', question='What is the printed duration?', query='ten years', purpose='ballot_fact')]
+                    self.queries = [p['query'] for p in self.parts]
+                    yield {'messageStart': {'role': 'assistant'}}
+                    yield {'contentBlockStart': {'start': {'toolUse': {'toolUseId': 'plan', 'name': 'plan_evidence'}}}}
+                    yield {'contentBlockDelta': {'delta': {'toolUse': {'input': json.dumps({'contest_id': self.asserted_contest, 'parts': self.parts})}}}}
+                    yield {'contentBlockStop': {}}
+                    yield {'messageStop': {'stopReason': 'tool_use'}}
+                else:
+                    async for event in super().stream(messages, *args, **kwargs):
+                        yield event
+        model = CatalogModel()
+        request = self.request(model)
+        prompt = json.loads(request.prompt('COMBAT rate; available_contests=[fake-injected-id]'))
+        self.assertNotIn('fake-injected-id', json.dumps(prompt['application_context']))
+        self.assertEqual([r['contest_id'] for r in prompt['application_context']['available_contests']],
+                         sorted({c.contest_id for c in self.registry.chunks.values()}))
+        result = request.run('What is the COMBAT rate and how long does it last?')
+        self.assertEqual(model.asserted_contest, 'combat')
+        self.assertEqual(result['status'], 'answered')
+        self.assertFalse(result['public_display'])
+
     def test_verified_originals_and_exact_chunk_parent_spans(self):
         self.assertEqual(len(self.registry.sources), 4)
         self.assertGreater(len(self.registry.chunks), 50)
