@@ -15,7 +15,7 @@ from .engine import EvidenceLoop
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def make_server(host="127.0.0.1", port=8765, live=False, corpus=None, allowed_hosts=(), decisions=False, live_voice=False, bedrock=False, max_live_requests=None, input_events=None, operator_name=None, live_ws=False, research=False):
+def make_server(host="127.0.0.1", port=8765, live=False, corpus=None, allowed_hosts=(), decisions=False, live_voice=False, bedrock=False, max_live_requests=None, input_events=None, operator_name=None, live_ws=False, research=False, triage=False):
     if operator_name is not None and (not isinstance(operator_name, str) or not 1 <= len(operator_name.strip()) <= 100 or any(ord(c) < 32 for c in operator_name)):
         raise ValueError('Operator name must be short, readable text')
     if research and (not live or bedrock or live_voice or live_ws or host not in ('127.0.0.1', 'localhost', '::1') or max_live_requests is None):
@@ -50,6 +50,12 @@ def make_server(host="127.0.0.1", port=8765, live=False, corpus=None, allowed_ho
         engine = build_research_engine(corpus, reviewer)
     else:
         engine = EvidenceLoop(corpus, selector, reviewer)
+    if triage:
+        # Opt-in Decisions input triage ahead of the engine; requires the same paid-review authorization.
+        if reviewer is None:
+            raise ValueError('Triage requires enabled Decisions review')
+        from .triage import DecisionsTriage, TriagedEngine
+        engine = TriagedEngine(engine, DecisionsTriage(), corpus)
     slots = threading.BoundedSemaphore(4)
     voice_slot = threading.BoundedSemaphore(1)
     voice_requested = False
@@ -121,6 +127,7 @@ def make_server(host="127.0.0.1", port=8765, live=False, corpus=None, allowed_ho
                                 "prepared_candidate_answers": corpus.prepared_sources_ready,
                                 "snapshot_date": SNAPSHOT, "election_date": ELECTION, "source_integrity": corpus.integrity,
                                 "independent_review": "openai_decisions_enabled" if reviewer else "not_run",
+                                "input_triage": "openai_decisions_enabled" if triage else "not_run",
                                 "voice": "gpt_live_buffered" if voice else "not_connected",
                                 "voice_playback": "buffered_until_transcript_display_validation",
                                 "voice_session_available": bool(voice and not voice_requested),
@@ -377,6 +384,7 @@ def main():
     parser.add_argument("--decisions", action="store_true", help="Enable real OpenAI Decisions checks; requires authorized spending")
     parser.add_argument("--live-voice", action="store_true", help="GPT-Live opt-in capture and buffered, transcript-validated playback")
     parser.add_argument('--live-ws', action='store_true', help='Prepare typed accepted answers with server-side GPT-Live WebSocket PCM; no microphone capture')
+    parser.add_argument("--triage", action="store_true", help="Opt-in Decisions input triage and view routing before the engine; requires --decisions or --live")
     parser.add_argument("--max-live-requests", type=int, help="Hard cap on evidence requests with paid checks; no automatic retries")
     parser.add_argument('--sensor-stdin', action='store_true', help='Opt-in bounded metadata from an approved producer over stdin; no HTTP injection endpoint')
     parser.add_argument('--sensor-presence', action='store_true', help='Declare externally verified presence/departure support; does not install a detector')
@@ -393,7 +401,7 @@ def main():
         inbox = InputEvents(presence=args.sensor_presence, wave=args.sensor_wave, local_wake=args.sensor_local_wake)
 
     server = make_server(args.host, args.port, args.live, allowed_hosts=args.allowed_host,
-                         decisions=args.decisions, live_voice=args.live_voice, bedrock=args.bedrock, max_live_requests=args.max_live_requests, input_events=inbox, operator_name=args.operator_name, live_ws=args.live_ws, research=args.research)
+                         decisions=args.decisions, live_voice=args.live_voice, bedrock=args.bedrock, max_live_requests=args.max_live_requests, input_events=inbox, operator_name=args.operator_name, live_ws=args.live_ws, research=args.research, triage=args.triage)
     if inbox is not None:
         inbox.start(sys.stdin.buffer)
     print(f"Open Oracle ready at http://{args.host}:{server.server_port} — {'live Strands' if args.live or args.bedrock else 'exact-source mode; no model calls'}", flush=True)

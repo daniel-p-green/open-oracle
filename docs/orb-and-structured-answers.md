@@ -48,3 +48,6 @@ Checked in a browser against a local server on port 8766: the orb renders in all
 Not checked: a real microphone, the GPT-Live stream, any real output audio, and WebGL performance on the Raspberry Pi.
 
 The server running on port 8765 must be restarted to serve the new files. Until then that page loads without the orb island and falls back to the static indicator.
+
+
+Update October 11, 2026: LiveWaveform, ShimmeringText and the question-sorting line were added to the same island. See [decisions-triage-and-ui-sources.md](decisions-triage-and-ui-sources.md). `index.html` no longer loads `intelligent.js`, so the structured views described above are not active on the current main page.
