@@ -6,7 +6,7 @@ import unittest
 from unittest.mock import patch
 
 from open_oracle.corpus import Corpus
-from open_oracle.demo_sources import CONTEST, ROOT, QUESTIONS, load
+from open_oracle.demo_sources import CONTEST, ROOT, QUESTIONS, comparison_parts, load, requested_topic
 from open_oracle.engine import EvidenceLoop
 from open_oracle.orchestration import select_with_strands
 from open_oracle.server import make_server
@@ -35,7 +35,10 @@ class DemoPathsTests(unittest.TestCase):
             self.assertTrue(all(not s['live'] and s['provider_execution'] == 'offline_stub' for s in response['trace']))
 
     def test_comparison_preserves_full_same_question_answers_and_attribution(self):
-        for query, topic in [('Compare Pollard and Fields priorities', 'issues'), ('Compare Pollard and Fields property taxes', 'property')]:
+        for query, topic in [('Compare Pollard and Fields priorities', 'issues'),
+                             ('Compare Pollard and Fields property taxes', 'property'),
+                             ('Compare Pollard and Fields approaches to property taxes', 'property'),
+                             ('Compare the differences between Pollard and Fields on property assessments', 'property')]:
             r = EvidenceLoop(self.corpus).answer(query)
             self.assertEqual(r['card']['title'], QUESTIONS[topic])
             self.assertEqual({x['candidate_name'] for x in r['card']['responses']}, {'LANCE POLLARD', 'CARLA FIELDS'})
@@ -54,12 +57,28 @@ class DemoPathsTests(unittest.TestCase):
             r = EvidenceLoop(self.corpus, selector=lambda *args: (ids, [])).answer('Compare Pollard and Fields priorities')
             self.assertEqual(r['status'], 'insufficient_evidence')
             self.assertIsNone(r['card']); self.assertEqual(r['evidence'], [])
-        for query in ('Compare Pollard and Fields on climate', 'Compare Pollard and Fields property taxes and crime'):
+        for query in ('Compare Pollard and Fields on climate',):
             r = EvidenceLoop(self.corpus).answer(query)
             self.assertEqual(r['status'], 'insufficient_evidence'); self.assertIsNone(r['card'])
         wrong_person = EvidenceLoop(self.corpus).answer('Compare Pollard and Peyton priorities', contest_id=CONTEST)
         self.assertIn(wrong_person['status'], ('clarification', 'insufficient_evidence'))
         self.assertIsNone(wrong_person['card']); self.assertEqual(wrong_person['claims'], [])
+
+    def test_comparison_request_parts_preserve_unknown_and_mixed_requests(self):
+        # Public handoff contract for independently accounting for requested parts.
+        cases = [
+            ('And property taxes?', ['property'], [], False, 'property'),
+            ('Compare Pollard and Fields property taxes and climate', ['property'], ['climate'], False, None),
+            ('Compare priorities and property assessments', ['issues', 'property'], [], False, None),
+            ('Compare Pollard and Fields housing', [], ['housing'], True, None),
+            ('Compare Pollard and Fields property taxes and housing', ['property'], ['housing'], True, None),
+            ('What about climate?', [], ['climate'], False, None),
+            ('And?', [], [], True, None),
+        ]
+        for query, topics, gaps, unclassified, legacy in cases:
+            with self.subTest(query=query):
+                self.assertEqual(comparison_parts(query), {'topics': topics, 'gaps': gaps, 'unclassified': unclassified})
+                self.assertEqual(requested_topic(query), legacy)
 
     def test_prepared_archive_corruption_and_missing_files_are_source_gaps(self):
         with tempfile.TemporaryDirectory() as directory:

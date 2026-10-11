@@ -94,23 +94,55 @@ def load(root: Path = ROOT) -> list[dict]:
         return []
 
 
-def requested_topic(question: str) -> str | None:
-    """Only offer the two inspected topics; unknown issues must remain source gaps."""
+def comparison_parts(question: str) -> dict:
+    """Describe the bounded retrieval request, never infer candidate positions.
+
+    Application callers must account for every gap/unclassified part. Candidate
+    identity, contest resolution and voting-advice checks belong to the engine.
+    """
     from .corpus import normalized
     q = normalized(question)
-    if re.search(r"\b(combat|crime|abortion|immigration|climate|endors|record|experience|sports|stadium|truman|sales|support|oppose|vote|voting)\b", q):
-        return None
-    # Generic comparison defaults visibly to the shared priorities question.
+    tokens = set(q.split())
     ignored = {"compare", "comparison", "candidate", "candidates", "lance", "pollard", "carla", "fields",
                "and", "or", "s", "the", "of", "a", "an", "their", "what", "are", "do", "does", "would",
                "how", "about", "on", "tell", "me", "show", "explain", "please", "to", "with", "between", "differ", "different", "say",
                "county", "legislature", "legislator", "1st", "first", "district", "at", "large", "jackson",
                "priorities", "priority", "issues", "platform", "platforms", "policies", "positions", "answers",
                "sources", "questionnaire", "for", "if", "elected", "will", "you", "make", "your", "own"}
-    if re.search(r"\b(property|assessment|assessments|appeals)\b", q):
-        ignored |= {"property", "tax", "taxes", "assessments", "assessment", "appeals", "more", "fair", "fairness", "reform"}
-        return "property" if set(q.split()) <= ignored else None
-    return "issues" if set(q.split()) <= ignored else None
+    ignored |= {"approach", "approaches", "difference", "differences", "they", "them", "both", "each", "is", "says", "said", "versus", "vs", "views", "view"}
+    property_words = {"property", "assessment", "assessments", "appeals"}
+    priority_words = {"priorities", "priority", "issues", "platform", "platforms"}
+    topics = []
+    if tokens & priority_words:
+        topics.append("issues")
+    if tokens & property_words:
+        topics.append("property")
+        ignored |= property_words | {"tax", "taxes", "more", "fair", "fairness", "reform"}
+    gaps = []
+    for label, words in (
+        ("climate", {"climate"}), ("crime", {"crime", "combat"}),
+        ("abortion", {"abortion"}), ("immigration", {"immigration"}),
+        ("records and experience", {"record", "records", "experience"}),
+        ("stadiums and sports", {"sports", "stadium", "stadiums", "truman"}),
+        ("sales taxes", {"sales"}), ("endorsements", {"endorsement", "endorsements", "endors"}),
+    ):
+        if tokens & words:
+            gaps.append(label)
+            ignored |= words
+    remainder = tokens - ignored
+    # Retain unsupported content explicitly instead of treating a partial match
+    # as the whole request. Callers must not hide an unclassified remainder.
+    if remainder:
+        gaps.append(" ".join(sorted(remainder)))
+    if not topics and not gaps and tokens & {"compare", "comparison", "policies", "positions", "answers", "questionnaire"}:
+        topics = ["issues"]  # The displayed shared priorities question is explicit.
+    return {"topics": topics, "gaps": gaps, "unclassified": bool(remainder) or not (topics or gaps)}
+
+
+def requested_topic(question: str) -> str | None:
+    """Legacy single-topic contract: mixed or unknown requests never default."""
+    parts = comparison_parts(question)
+    return parts["topics"][0] if len(parts["topics"]) == 1 and not parts["gaps"] and not parts["unclassified"] else None
 
 
 def add_to(corpus):

@@ -27,6 +27,8 @@ def make_view_plan(response, question):
     elif card.get('type') == 'candidate_comparison':
         component, keys, initial = 'candidate_quotes', [], 0
     elif card.get('type') == 'measure_explanation':
+        if set(response.get('requested_parts',[])) >= {'rate','duration'}:
+            return EvidenceViewPlan(request_id=response['request_id'], component='measure_focus', evidence_ids=[s['id'] for s in sources], facet_keys=['rate','time'], initial_part=1).model_dump()
         focus = ('rate' if re.search(r'\brate\b|how much.*tax', question, re.I) else
                  'time' if re.search(r'how long|duration|years|length', question, re.I) else
                  'fund' if re.search(r'money go|trust fund|general fund', question, re.I) else
@@ -62,6 +64,8 @@ def validate_view_plan(plan, response):
             return False
         if parsed.component == 'measure_parts':
             return parsed.facet_keys == list(FACET_KEYS) and parsed.initial_part == 0
+        if parsed.facet_keys == ['rate','time']:
+            return parsed.initial_part == 1 and set(response.get('requested_parts',[])) >= {'rate','duration'}
         return len(parsed.facet_keys) == 1 and parsed.initial_part == FACET_KEYS.index(parsed.facet_keys[0])
     except (ValueError, TypeError, KeyError):
         return False

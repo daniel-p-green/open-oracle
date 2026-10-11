@@ -303,7 +303,8 @@ def make_server(host="127.0.0.1", port=8765, live=False, corpus=None, allowed_ho
                         return
                     cancel = sessions.begin(session_id)
                     with operation(cancel):
-                        answer = engine.answer(question, scope, data["runId"], contest_id)
+                        context_id = sessions.contextual_contest(session_id, question, scope, contest_id, corpus)
+                        answer = engine.answer(question, scope, data["runId"], context_id)
                         sessions.retain(session_id, answer, corpus)
                         events = release_events(answer, data["threadId"], data["runId"], corpus=engine.corpus)
                         self.send(200, encode_events(events), "text/event-stream; charset=utf-8")
@@ -359,7 +360,8 @@ def make_server(host="127.0.0.1", port=8765, live=False, corpus=None, allowed_ho
                 if not self.reserve_request():
                     return
                 with operation(cancel):
-                    answer = engine.answer(data["question"], scope, data.get("request_id"), data.get("contest_id"))
+                    context_id = sessions.contextual_contest(session_id, data["question"], scope, data.get("contest_id"), corpus)
+                    answer = engine.answer(data["question"], scope, data.get("request_id"), context_id)
                     sessions.retain(session_id, answer, corpus)
                     self.send(200, answer)
             except SessionCancelled:

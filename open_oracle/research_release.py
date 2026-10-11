@@ -37,6 +37,8 @@ def requested_parts(question):
     q = question.casefold()
     if 'combat' not in q or len(q) > 2000:
         raise ValueError('Outside reviewed COMBAT research release contract')
+    if re.search(r'\bquestion\s*(?:#\s*)?\d+', q):
+        raise ValueError('Numbered subquestion requires separate scoped retrieval')
     words=set(re.findall(r'\w+',q))
     allowed=set('what is the combat tax rate and how long would it continue for does last duration will reduce reduction crime by percent percentage fall drop prevent a of its this question printed proposed could much whether give me at as says say wording'.split())
     if any(w not in allowed and not w.isdecimal() for w in words):

@@ -23,7 +23,7 @@ OFFICIAL_LINKS = [
 ]
 RECOMMEND = re.compile(r"how should|who should|recommend|best candidate|better (?:candidate|on|for)|who is better|should i (?:vote|support)|tell me (?:who|how) to vote", re.I)
 LOGISTICS = re.compile(r"polling|voter (?:id|identification)|register|registration|absentee|early vot|vote by mail|deadline|where (?:do|can|should) .*vote|voting hours", re.I)
-POSITION = re.compile(r"position|policy|policies|compare|better|stance|accomplish|record|qualif|priority|priorities|support|rating|performance|transcript|said|platform|endors|experience|\b(?:views?|thinks?|believes?|opinions?|issues?|plans?|stands?)\b", re.I)
+POSITION = re.compile(r"position|policy|policies|compare|better|stance|approach|propert|assessment|differ|climate|accomplish|record|qualif|priority|priorities|support|rating|performance|transcript|said|platform|endors|experience|\b(?:views?|thinks?|believes?|opinions?|issues?|plans?|stands?)\b", re.I)
 
 
 class EvidenceLoop:
@@ -152,16 +152,41 @@ class EvidenceLoop:
             result["required_scope"] = {"field": "district" if contest["scope"] == "district" else "municipality", "value": location}
             return finish("clarification", f"This question is specific to {location}. Confirm the relevant city or district before retrieving its wording. That confirmation still does not establish personal eligibility.")
         comparison_topic = None
+        comparison_request = None
+        combat_parts = None
         if contest["kind"] in ("candidate", "retention") and (POSITION.search(question) or re.search(r"\b(?:sources?|questionnaires?|surveys?|background|evidence|answers?)\b", question, re.I)):
+            # Validate all named identities even when an explicit contest overrides
+            # the resolver. A surname from another race is never an unknown topic.
+            query = ' ' + normalized(question) + ' '
+            local_surnames = {normalized(p['name']).split()[-1] for p in contest.get('candidates', [])}
+            foreign = [c['id'] for c in self.corpus.contests.values() if c['id'] != contest['id']
+                       and any(' ' + normalized(p['name']) + ' ' in query or
+                               (normalized(p['name']).split()[-1] not in local_surnames and
+                                ' ' + normalized(p['name']).split()[-1] + ' ' in query)
+                               for p in c.get('candidates', []))]
+            if contest['id'] == 'county-legislator-1st-district-at-large' and foreign:
+                result['choices'] = [{'id': ident, 'title': self.corpus.contests[ident]['title']}
+                                     for ident in sorted(set(foreign + [contest['id']]))]
+                return finish('clarification', 'The named people do not all match this contest. Please choose the contest and candidate identity you mean; I will not attach another person’s answers.')
             catalog = self.corpus.candidate_sources.lookup(contest, question, scope)
             if catalog["conflicts"]:
                 result["choices"] = [{"id": ident, "title": self.corpus.contests[ident]["title"]} for ident in catalog["conflicts"]]
                 return finish("clarification", "The named people do not all match this contest. Please choose the contest and candidate identity you mean; I won't attach one person's sources to another.")
-            from .demo_sources import CONTEST, requested_topic
+            from .demo_sources import CONTEST, comparison_parts
             if contest["id"] == CONTEST and self.corpus.prepared_sources_ready:
-                comparison_topic = requested_topic(question)
+                comparison_request = comparison_parts(question)
+                if comparison_request['topics']:
+                    comparison_topic = comparison_request['topics'][0]
+                    known = {'climate','crime','abortion','immigration','records and experience','stadiums and sports','sales taxes','endorsements'}
+                    comparison_request['gaps'] = [g for g in comparison_request['gaps'] if g in known] + (['other_requested_topic'] if comparison_request['unclassified'] else [])
+                    result['comparison_request'] = comparison_request
             if comparison_topic is None:
                 return self._candidate_gap(result, catalog, finish)
+        if contest['id'] == 'combat' and re.search(r'\brate\b|how long|\bduration\b', question, re.I):
+            from .research_release import requested_parts
+            try: combat_parts = sorted(requested_parts(question))
+            except ValueError:
+                return finish('insufficient_evidence', 'Your full request is outside the checked COMBAT rate/duration explanation. No subquestion was silently answered; inspect the retained wording or ask one supported part.')
         retrieval_scope = {**scope, "_comparison_topic": comparison_topic} if comparison_topic else scope
         related = [e for e in self.corpus.evidence.values() if e["contest_id"] == contest["id"]
                    and (e.get("topic") == comparison_topic if comparison_topic else "topic" not in e)]
@@ -190,11 +215,22 @@ class EvidenceLoop:
                     result["trace"].append({"tool": "test_ballot_readability", "evidence_ids": [selected[0]], "live": False})
                 except ValueError:
                     result["readability"] = {"execution": "strands_tool_direct", "status": "unavailable", "reason": "The requested policy span is not available in the retained evidence."}
-        evidence = [self.corpus.read(ident, retrieval_scope) for ident in selected]
+        if comparison_request and len(comparison_request['topics']) == 2:
+            # Existing optional live selector only covers one topic. Never add
+            # unread second-topic evidence after a live request or paid review.
+            if self.selector:
+                return finish('insufficient_evidence', 'This live selector can read one questionnaire topic per request. Please ask priorities or property taxes separately; both sources are retained.')
+            evidence = [e for topic in comparison_request['topics'] for e in self.corpus.search(contest['id'], {**scope, '_comparison_topic': topic})]
+            selected = [e['id'] for e in evidence]
+            result['trace'] = [{'tool': 'local_lookup', 'evidence_ids': selected, 'live': False}]
+            # Each topic is read through its own existing scoped read guard.
+            evidence = [self.corpus.read(e['id'], {**scope, '_comparison_topic': e['topic']}) for e in evidence]
+        if not (comparison_request and len(comparison_request['topics']) == 2):
+            evidence = [self.corpus.read(ident, retrieval_scope) for ident in selected]
         if not evidence or any(e is None or e["contest_id"] != contest["id"] for e in evidence):
             return finish("insufficient_evidence", "No applicable current-snapshot passage was returned. I won't fill the gap with an unsourced answer.")
         # Ballot wording lists purposes; it does not establish measured results or predictions.
-        if contest["id"] == "combat" and re.search(r"reduce.{0,35}(?:crime|percent|%)|(?:crime|effectiv|results?|success).{0,35}(?:rate|percent|%|reduc|prove)|how much.{0,35}(?:crime|save|cost)|guarantee", question, re.I):
+        if contest["id"] == "combat" and not (combat_parts and set(combat_parts)-{'prediction'}) and re.search(r"reduce.{0,35}(?:crime|percent|%)|(?:crime|effectiv|results?|success).{0,35}(?:rate|percent|%|reduc|prove)|how much.{0,35}(?:crime|save|cost)|guarantee", question, re.I):
             result["links"] = [{"title": "Retained official wording", "url": evidence[0]["original_route"]}]
             return finish("insufficient_evidence", "The retained ballot question states COMBAT's purposes. It does not establish how much crime it would reduce or prove its effectiveness. I cannot support that prediction from this wording.")
         if comparison_topic:
@@ -202,7 +238,8 @@ class EvidenceLoop:
             if not card:
                 return finish("insufficient_evidence", "The comparison requires both candidates' complete answers to the same question. The returned evidence was incomplete; no comparison was released.")
             result["card"] = card
-            answer = "Read how both candidates answered the same question. This compares their stated priorities or proposals; it does not rate the candidates or establish that their claims are true."
+            from .claim_bindings import comparison_answer
+            answer = comparison_answer(comparison_request)
             result["limitations"][1] = "Prepared comparison covers priorities and property assessments for District 1 At-Large. Other races and topics remain source gaps."
         elif contest["kind"] == "candidate":
             answer = "The retained official sample shows the printed roster below. The names also appear in the inventory. Position comparisons need additional original, attributed sources."
@@ -223,6 +260,10 @@ class EvidenceLoop:
             if focus and focus['component'] == 'measure_focus' and focus['initial_part'] > 0:
                 from .cards import FACETS
                 answer = FACETS[focus['initial_part']][1]
+        if combat_parts and set(combat_parts)-{'prediction'}:
+            from .claim_bindings import combat_parts_answer
+            result['requested_parts'] = combat_parts
+            answer = combat_parts_answer(combat_parts)
         if result.get('readability', {}).get('reports'):
             diagnostic = diagnostic_answer(result['readability'])
             if diagnostic:

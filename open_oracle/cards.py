@@ -77,7 +77,17 @@ def candidate_card(contest, evidence, topic):
         e = matches[0]
         responses.append({"candidate_name": candidate["name"], "party": candidate["party"], "quote": e["text"],
                           "evidence_id": e["id"], "passage_sha256": e["passage_sha256"]})
-    return {"type": "candidate_comparison", "id": "atlarge-1-" + topic + "-v1", "contest_id": CONTEST,
+    card = {"type": "candidate_comparison", "id": "atlarge-1-" + topic + "-v1", "contest_id": CONTEST,
             "title": QUESTIONS[topic], "topic": topic, "responses": responses,
             "method": "Both candidates answering the same Beacon questionnaire, published September 22, 2026. Full answers as published; paragraph and list spacing normalized.",
             "limit": "These are candidate statements, not verified outcomes or an endorsement. The publisher edited responses for length and clarity. Other topics are not inferred from these answers."}
+
+    if {e.get('topic') for e in evidence} == {'issues', 'property'}:
+        sections = []
+        for key in QUESTIONS:
+            section = candidate_card(contest, [e for e in evidence if e.get('topic') == key], key)
+            if section is None:
+                return None
+            sections.append({field: section[field] for field in ('topic', 'title', 'responses')})
+        card['sections'] = sections
+    return card

@@ -112,6 +112,33 @@ RETENTION_ANSWER = 'This is a judicial retention question: whether the named jud
 COMPARISON_ANSWER = 'Read how both candidates answered the same question. This compares their stated priorities or proposals; it does not rate the candidates or establish that their claims are true.'
 
 
+def comparison_answer(parts):
+    """Finite attributed-source framing; never a generated position comparison."""
+    if not isinstance(parts, dict) or set(parts) != {'topics', 'gaps', 'unclassified'}:
+        raise ValueError('Invalid comparison request')
+    topics, gaps = parts['topics'], parts['gaps']
+    known_gaps = {'climate', 'crime', 'abortion', 'immigration', 'records and experience',
+                  'stadiums and sports', 'sales taxes', 'endorsements', 'other_requested_topic'}
+    if topics not in (['issues'], ['property'], ['issues', 'property']) or not isinstance(gaps,list) or len(set(gaps)) != len(gaps) or set(gaps)-known_gaps or type(parts['unclassified']) is not bool:
+        raise ValueError('Invalid comparison coverage')
+    text = COMPARISON_ANSWER
+    if len(topics) == 2:
+        text += ' Both retained questionnaire topics are included in Sources: priorities and property-tax fairness.'
+    if gaps:
+        labels = [g.replace('other_requested_topic', 'the other requested topic') for g in gaps]
+        text += ' The retained answers do not establish their positions on ' + ', '.join(labels) + '. That part remains unanswered. Missing coverage is not a candidate position.'
+    return text
+
+
+def combat_parts_answer(parts):
+    from .cards import FACETS
+    from .research_release import GAP
+    if not isinstance(parts,list) or parts != sorted(set(parts)) or not parts or set(parts)-{'rate','duration','prediction'} or set(parts)=={'prediction'}:
+        raise ValueError('Invalid COMBAT coverage')
+    return ' '.join(([FACETS[1][1]] if 'rate' in parts else []) +
+                    ([FACETS[2][1]] if 'duration' in parts else []) + ([GAP] if 'prediction' in parts else []))
+
+
 def diagnose_unbound_text(text, facts):
     """Conservative diagnostics for demonstrated numeric/date failures; never acceptance by token overlap."""
     candidates = []
@@ -173,7 +200,11 @@ def validate_factual_display(response, corpus):
             return {'status': 'contradictory', 'reason': 'card_election_date_disagrees_with_source', 'claims': []}
         if card.get('jurisdiction') != 'Jackson County, Missouri':
             return {'status': 'contradictory', 'reason': 'card_jurisdiction_disagrees_with_source', 'claims': []}
-        if response['answer'] not in (*COMBAT_ANSWERS, *(item[1] for item in FACETS), *((diagnostic,) if diagnostic else ())) or statements != expected or card != expected_card:
+        try:
+            parts_answer = combat_parts_answer(response['requested_parts']) if response.get('requested_parts') else None
+        except (ValueError, TypeError):
+            return {'status': 'unsupported', 'reason': 'measure_coverage_unbound', 'claims': []}
+        if response['answer'] not in (*COMBAT_ANSWERS, *((parts_answer,) if parts_answer else ()), *(item[1] for item in FACETS), *((diagnostic,) if diagnostic else ())) or statements != expected or card != expected_card:
             text = response.get('answer', '') + ' ' + ' '.join(f.get('statement', '') for f in card.get('facets', []))
             return {**diagnose_unbound_text(text, facts), 'claims': []}
         if not {'measure.rate', 'measure.duration', 'measure.jurisdiction', 'measure.name', 'election.date'}.issubset(facts):
@@ -181,7 +212,14 @@ def validate_factual_display(response, corpus):
     elif card.get('type') == 'candidate_comparison':
         from .demo_sources import CONTEST, QUESTIONS
         from .cards import candidate_card
-        if contest.get('id') != CONTEST or card.get('title') != QUESTIONS.get(card.get('topic')) or response['answer'] != COMPARISON_ANSWER or card != candidate_card(contest, evidence, card.get('topic')):
+        parts = response.get('comparison_request')
+        try:
+            expected_answer = comparison_answer(parts) if parts is not None else COMPARISON_ANSWER
+        except (ValueError, TypeError, KeyError):
+            return {'status': 'unsupported', 'reason': 'comparison_coverage_unbound', 'claims': []}
+        if parts and (card.get('topic') != parts['topics'][0] or sorted({s.get('topic') for s in evidence}) != sorted(parts['topics']) or any(sum(s.get('topic') == topic for s in evidence) != 2 for topic in parts['topics'])):
+            return {'status': 'unsupported', 'reason': 'comparison_coverage_unbound', 'claims': []}
+        if contest.get('id') != CONTEST or card.get('title') != QUESTIONS.get(card.get('topic')) or response['answer'] != expected_answer or card != candidate_card(contest, evidence, card.get('topic')):
             return {'status': 'unsupported', 'reason': 'unregistered_attributed_display', 'claims': []}
     else:
         expected = CANDIDATE_ANSWER if contest.get('kind') == 'candidate' else RETENTION_ANSWER if contest.get('kind') == 'retention' else SOURCE_ANSWER

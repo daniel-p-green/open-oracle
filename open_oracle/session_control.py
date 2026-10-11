@@ -112,7 +112,25 @@ class VisitorSessions:
             item = self.entries.get(session_id)
             if item and not item['cancel'].is_set():
                 item['receipt'] = deepcopy(result) if contract else None
+                contest = result.get('contest') or {}
+                from .claim_bindings import fingerprint, validate_factual_display
+                if result.get('status') == 'answered' and corpus.contest_fingerprints.get(contest.get('id')) == fingerprint(contest) and validate_factual_display(result, corpus).get('status') == 'supported':
+                    item['context'] = {'contest_id': contest['id'], 'scope': deepcopy(result.get('scope',{}))}
                 item['touched'] = self.now()
+
+
+    def contextual_contest(self, session_id, question, scope, explicit, corpus):
+        """Volatile verified contest ID only; no transcript history or eligibility."""
+        import re
+        if explicit is not None or corpus.resolve(question): return explicit
+        if not re.search(r'^(?:and\b|what about\b|how do (?:their|they)\b)|\b(?:their|they|them)\b', question.strip(), re.I): return None
+        with self.lock:
+            item = self.entries.get(session_id)
+            if not item or item['cancel'].is_set() or self.now()-item['touched'] > self.ttl: return None
+            context = item.get('context')
+            if not context or any(context['scope'].get(k) != scope.get(k) for k in ('authority','municipality','district')): return None
+            if scope.get('election_date','2026-11-03') != context['scope'].get('election_date','2026-11-03'): return None
+            return context['contest_id']
 
     def speech(self, session_id, request_id, corpus):
         with self.lock:
@@ -137,5 +155,6 @@ class VisitorSessions:
                 self.entries[session_id] = item
             item['cancel'].set()
             item['receipt'] = None
+            item.pop('context',None)
             item['touched'] = self.now()
 
