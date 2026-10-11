@@ -1,4 +1,30 @@
 'use strict';
+/* Pure reading view. It creates no sources, explanations, translations or audio. */
+(() => {
+  const span = (text, start, end) => {
+    if (!Number.isInteger(start) || !Number.isInteger(end) || start < 0 || end < start) return null;
+    const points = Array.from(text);
+    if (end > points.length) return null;
+    return { before: points.slice(0, start).join(''), selected: points.slice(start, end).join(''), after: points.slice(end).join('') };
+  };
+  const matches = (source, facet) => {
+    const parts = span(source.text, facet.start, facet.end);
+    return facet.evidence_id === source.id && !!parts && parts.selected === facet.quote;
+  };
+  const render = (source, facet) => {
+    if (!matches(source, facet)) return null;
+    const parts = span(source.text, facet.start, facet.end);
+    const view = document.createElement('div'); view.className = 'source-reading';
+    const label = document.createElement('p'); label.className = 'source-meta'; label.textContent = 'Official original · selected clause underlined';
+    const original = document.createElement('blockquote'); original.className = 'ballot-wording';
+    const clause = document.createElement('span'); clause.className = 'selected-source-clause'; clause.textContent = parts.selected;
+    original.append(document.createTextNode(parts.before), clause, document.createTextNode(parts.after));
+    view.append(label, original); return view;
+  };
+  window.OpenOracleBallotFocus = Object.freeze({ matches, render });
+})();
+
+'use strict';
 const $ = id => document.getElementById(id);
 let inventory = [], category = 'measure', selectedId = null, latest = null;
 let epoch = 0, sequence = 0, controller = null, voiceReady = false, voiceActive = false, liveEpoch = 0;
@@ -252,7 +278,7 @@ function renderCard(result) {
   }
   if (!card || result.status !== 'answered' || card.type !== 'measure_explanation') return;
   const source = result.evidence.find(e => e.id === card.evidence_id && e.sha256 === card.source_sha256);
-  if (!source || !card.facets.every(f => f.evidence_id === source.id && source.text.slice(f.start, f.end) === f.quote)) return;
+  if (!source || !card.facets.every(f => f.evidence_id === source.id && window.OpenOracleBallotFocus.matches(source, f))) return;
   const region = $('adaptive-card'); region.tabIndex = 0; region.setAttribute('role','region'); region.setAttribute('aria-label','Explanation parts');
   const article = element('article', undefined, 'explanation-card');
   article.append(element('p', 'JCEB · Official sample ballot', 'source-kind'), element('h3', card.title));
@@ -270,9 +296,12 @@ function renderCard(result) {
     for (const facet of facets) {
       const section = element('section', undefined, 'explanation-facet');
       section.append(element('h4', facet.title));
-      if (facet.statement !== result.answer) section.append(element('p', facet.statement));
-      if (single) { section.append(element('p', 'Original wording', 'source-meta'), element('blockquote', facet.quote, 'facet-quote')); }
-      else { const original = element('details'); original.append(element('summary', 'See the source wording'), element('blockquote', facet.quote, 'facet-quote')); section.append(original); }
+      const reading = window.OpenOracleBallotFocus.render(source, facet);
+      if (!reading) return;
+      section.append(reading);
+      const explanation = element('div', undefined, 'clause-explanation');
+      explanation.append(element('p', 'Explanation of the selected clause', 'source-meta'), element('p', facet.statement));
+      section.append(explanation);
       content.append(section);
     }
     if (!single) {
