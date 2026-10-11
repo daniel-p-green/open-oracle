@@ -12,6 +12,9 @@ from .claim_bindings import validate_factual_display
 from .source_fallback import make_fallback
 from .view_plan import make_view_plan
 from .session_control import check_cancel
+from .readability import requested_span, build_readability_tool
+from .operational_receipts import new_receipt, current_receipt, record_release
+from strands_quality.local_metrics import AggregateMetrics
 
 OFFICIAL_LINKS = [
     {"title": "KCEB — Kansas City within Jackson County", "url": "https://www.kceb.org/"},
@@ -28,8 +31,30 @@ class EvidenceLoop:
         self.corpus = corpus
         self.selector = selector
         self.reviewer = reviewer
+        self.operation_metrics = AggregateMetrics()
 
     def answer(self, question: str, scope: dict | None = None, request_id: str | None = None, contest_id: str | None = None) -> dict:
+        receipt = new_receipt(self)
+        token = current_receipt.set(receipt)
+        response, error = None, None
+        try:
+            response = self._answer(question, scope, request_id, contest_id)
+            record_release(receipt, response)
+            if response.get("integration_error"):
+                error = RuntimeError("Integration did not complete")
+            return response
+        except BaseException as exc:
+            error = exc
+            receipt.release(status="unavailable", binding="not_run", review="not_run", review_execution="not_run")
+            raise
+        finally:
+            current_receipt.reset(token)
+            snapshot = receipt.finish(error)
+            self.operation_metrics.record(receipt)
+            if response is not None:
+                response["operational_receipt"] = snapshot
+
+    def _answer(self, question: str, scope: dict | None = None, request_id: str | None = None, contest_id: str | None = None) -> dict:
         check_cancel()
         started = time.monotonic()
         scope = dict(scope or {})
@@ -90,6 +115,8 @@ class EvidenceLoop:
                 result['speech'] = {'request_id': result['request_id'], 'language': 'en', 'text': result['answer'],
                                     'evidence_bindings': [{'id': e['id'], 'sha256': e['sha256'], 'text': e['text']} for e in result['evidence']]}
             result['view_plan'] = make_view_plan(result, question)
+            if result['status'] != 'answered':
+                result.pop('readability', None)
             result["elapsed_ms"] = round((time.monotonic() - started) * 1000)
             return result
 
@@ -144,6 +171,9 @@ class EvidenceLoop:
             try:
                 selected, trace = self.selector(question, retrieval_scope, contest["id"], self.corpus)
                 result["trace"] = trace
+                analyses = [step.pop("readability_analysis") for step in trace if "readability_analysis" in step]
+                if analyses:
+                    result["readability"] = {"execution": "strands_tool_agent", "reports": analyses}
             except Exception as exc:
                 result["integration_error"] = type(exc).__name__
                 result["evidence"] = self.corpus.search(contest["id"], retrieval_scope)
@@ -152,6 +182,14 @@ class EvidenceLoop:
             evidence = self.corpus.search(contest["id"], retrieval_scope)
             selected = [e["id"] for e in evidence]
             result["trace"] = [{"tool": "local_lookup", "evidence_ids": selected, "live": False}]
+            span = requested_span(question)
+            if span and contest["kind"] == "measure" and selected:
+                try:
+                    report = build_readability_tool(self.corpus, retrieval_scope)(evidence_id=selected[0], span=span)
+                    result["readability"] = {"execution": "strands_tool_direct", "reports": [report]}
+                    result["trace"].append({"tool": "test_ballot_readability", "evidence_ids": [selected[0]], "live": False})
+                except ValueError:
+                    result["readability"] = {"execution": "strands_tool_direct", "status": "unavailable", "reason": "The requested policy span is not available in the retained evidence."}
         evidence = [self.corpus.read(ident, retrieval_scope) for ident in selected]
         if not evidence or any(e is None or e["contest_id"] != contest["id"] for e in evidence):
             return finish("insufficient_evidence", "No applicable current-snapshot passage was returned. I won't fill the gap with an unsourced answer.")

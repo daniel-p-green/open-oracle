@@ -1,3 +1,6 @@
 # SDK and tool library for the Hack Midwest AWS / Strands challenge.
 strands-agents[otel]
 strands-agents-tools
+
+# Deterministic ballot text estimates, never a fidelity/release gate.
+cmudict==1.1.1
