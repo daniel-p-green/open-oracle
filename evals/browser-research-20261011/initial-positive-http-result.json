@@ -1,0 +1,427 @@
+{
+  "request_id": "6b4c46d0-768e-44c5-9393-4dae096b384f",
+  "mode": "reviewed_strands_research",
+  "status": "unavailable",
+  "answer": "Quality checks did not accept this research answer. Retained original wording remains available through the exact-source interface.",
+  "card": null,
+  "evidence": [],
+  "claims": [],
+  "choices": [],
+  "links": [],
+  "candidate_sources": [],
+  "scope": {
+    "state": "MO",
+    "county": "jackson-county-mo",
+    "election_date": "2026-11-03",
+    "authority": "JCEB",
+    "municipality": null,
+    "district": null,
+    "as_of": "2026-10-11",
+    "versions": []
+  },
+  "election_date": "2026-11-03",
+  "snapshot_date": "2026-10-11",
+  "language": "en",
+  "translation_status": "not_requested",
+  "speech": false,
+  "review": {
+    "provider": "openai_decisions",
+    "model": "gpt-6-luna",
+    "execution": "real_api",
+    "threshold": 0.95,
+    "calibration": "not_validated",
+    "rubric_version": "civic-v3-verified-diagnostics",
+    "usage": {
+      "input_tokens": 3491,
+      "output_tokens": 0,
+      "total_tokens": 3491
+    },
+    "status": "rejected",
+    "checks": [
+      {
+        "name": "source_support",
+        "status": "answered",
+        "type": "predicate",
+        "value": 0.99
+      },
+      {
+        "name": "no_vote_recommendation",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1
+      },
+      {
+        "name": "viewpoint_neutrality",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1
+      },
+      {
+        "name": "jurisdiction",
+        "status": "answered",
+        "type": "predicate",
+        "value": 0.93
+      },
+      {
+        "name": "clarity",
+        "status": "answered",
+        "type": "predicate",
+        "value": 0.85
+      },
+      {
+        "name": "abstention",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1
+      },
+      {
+        "name": "translation_status",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1
+      }
+    ],
+    "probabilities": {
+      "source_support": 0.99,
+      "no_vote_recommendation": 1,
+      "viewpoint_neutrality": 1,
+      "jurisdiction": 0.93,
+      "clarity": 0.85,
+      "abstention": 1,
+      "translation_status": 1
+    },
+    "label": "Decisions checks ran. Estimates are fallible; thresholds are not calibrated."
+  },
+  "public_display": false,
+  "limitations": [
+    "Retained November 3, 2026 sample ballot; subject to change. This does not identify your personal ballot."
+  ],
+  "fact_validation": {
+    "status": "supported",
+    "method": "finite_source_bound_combat_research_v1",
+    "arbitrary_prose_entailment_claimed": false,
+    "covered_parts": [
+      "duration",
+      "rate"
+    ]
+  },
+  "display_contract": "source_bound_research_browser_v1",
+  "release_state": "held",
+  "receipt": {
+    "version": 1,
+    "request_id": "0e85983e-55c7-401a-9c4e-892bc37b3a5d",
+    "config_sha256": "80453b993fb59ce6fb788d4fe730a7bfa4a9fe7dfc3d87f4f0ef9475cfa0f828",
+    "execution": "real_api",
+    "sdk_version": "1.59.0",
+    "finalized": true,
+    "elapsed_ms": 19636.202,
+    "model_attempts_started": 8,
+    "model_events": [
+      {
+        "attempt": 1,
+        "duration_ms": 3292.221,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 2,
+        "duration_ms": 1408.412,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 3,
+        "duration_ms": 1898.087,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 4,
+        "duration_ms": 2403.452,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 5,
+        "duration_ms": 2213.732,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 6,
+        "duration_ms": 2553.629,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 7,
+        "duration_ms": 2810.832,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 8,
+        "duration_ms": 2594.984,
+        "status": "completed",
+        "error_category": null
+      }
+    ],
+    "tool_events": [
+      {
+        "sequence": 1,
+        "name": "plan_evidence",
+        "status": "success",
+        "duration_ms": 0.36,
+        "error_category": null
+      },
+      {
+        "sequence": 2,
+        "name": "search_official_sources",
+        "status": "success",
+        "duration_ms": 0.594,
+        "error_category": null
+      },
+      {
+        "sequence": 3,
+        "name": "search_official_sources",
+        "status": "success",
+        "duration_ms": 0.377,
+        "error_category": null
+      },
+      {
+        "sequence": 4,
+        "name": "acquire_official_source",
+        "status": "success",
+        "duration_ms": 0.455,
+        "error_category": null
+      },
+      {
+        "sequence": 5,
+        "name": "search_indexed_evidence",
+        "status": "success",
+        "duration_ms": 0.428,
+        "error_category": null
+      },
+      {
+        "sequence": 6,
+        "name": "search_indexed_evidence",
+        "status": "success",
+        "duration_ms": 0.353,
+        "error_category": null
+      },
+      {
+        "sequence": 7,
+        "name": "read_evidence_chunk",
+        "status": "success",
+        "duration_ms": 0.978,
+        "error_category": null
+      },
+      {
+        "sequence": 8,
+        "name": "read_evidence_chunk",
+        "status": "success",
+        "duration_ms": 0.672,
+        "error_category": null
+      },
+      {
+        "sequence": 9,
+        "name": "CitedAnswer",
+        "status": "error",
+        "duration_ms": 0.359,
+        "error_category": null
+      },
+      {
+        "sequence": 10,
+        "name": "CitedAnswer",
+        "status": "error",
+        "duration_ms": 0.099,
+        "error_category": null
+      },
+      {
+        "sequence": 11,
+        "name": "CitedAnswer",
+        "status": "success",
+        "duration_ms": 0.038,
+        "error_category": null
+      }
+    ],
+    "dropped_event_count": 0,
+    "usage": {
+      "inputTokens": 26748,
+      "outputTokens": 1011,
+      "totalTokens": 27759
+    },
+    "stop_reason": "tool_use",
+    "stages_ms": {
+      "source_guards": 0.913,
+      "decisions": 442.056
+    },
+    "released_sources": [],
+    "release": {
+      "status": "unavailable",
+      "binding": "supported",
+      "review": "rejected",
+      "review_execution": "real_api"
+    },
+    "error_category": null
+  },
+  "elapsed_ms": 19648,
+  "operational_receipt": {
+    "version": 1,
+    "request_id": "0e85983e-55c7-401a-9c4e-892bc37b3a5d",
+    "config_sha256": "80453b993fb59ce6fb788d4fe730a7bfa4a9fe7dfc3d87f4f0ef9475cfa0f828",
+    "execution": "real_api",
+    "sdk_version": "1.59.0",
+    "finalized": true,
+    "elapsed_ms": 19636.202,
+    "model_attempts_started": 8,
+    "model_events": [
+      {
+        "attempt": 1,
+        "duration_ms": 3292.221,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 2,
+        "duration_ms": 1408.412,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 3,
+        "duration_ms": 1898.087,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 4,
+        "duration_ms": 2403.452,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 5,
+        "duration_ms": 2213.732,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 6,
+        "duration_ms": 2553.629,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 7,
+        "duration_ms": 2810.832,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 8,
+        "duration_ms": 2594.984,
+        "status": "completed",
+        "error_category": null
+      }
+    ],
+    "tool_events": [
+      {
+        "sequence": 1,
+        "name": "plan_evidence",
+        "status": "success",
+        "duration_ms": 0.36,
+        "error_category": null
+      },
+      {
+        "sequence": 2,
+        "name": "search_official_sources",
+        "status": "success",
+        "duration_ms": 0.594,
+        "error_category": null
+      },
+      {
+        "sequence": 3,
+        "name": "search_official_sources",
+        "status": "success",
+        "duration_ms": 0.377,
+        "error_category": null
+      },
+      {
+        "sequence": 4,
+        "name": "acquire_official_source",
+        "status": "success",
+        "duration_ms": 0.455,
+        "error_category": null
+      },
+      {
+        "sequence": 5,
+        "name": "search_indexed_evidence",
+        "status": "success",
+        "duration_ms": 0.428,
+        "error_category": null
+      },
+      {
+        "sequence": 6,
+        "name": "search_indexed_evidence",
+        "status": "success",
+        "duration_ms": 0.353,
+        "error_category": null
+      },
+      {
+        "sequence": 7,
+        "name": "read_evidence_chunk",
+        "status": "success",
+        "duration_ms": 0.978,
+        "error_category": null
+      },
+      {
+        "sequence": 8,
+        "name": "read_evidence_chunk",
+        "status": "success",
+        "duration_ms": 0.672,
+        "error_category": null
+      },
+      {
+        "sequence": 9,
+        "name": "CitedAnswer",
+        "status": "error",
+        "duration_ms": 0.359,
+        "error_category": null
+      },
+      {
+        "sequence": 10,
+        "name": "CitedAnswer",
+        "status": "error",
+        "duration_ms": 0.099,
+        "error_category": null
+      },
+      {
+        "sequence": 11,
+        "name": "CitedAnswer",
+        "status": "success",
+        "duration_ms": 0.038,
+        "error_category": null
+      }
+    ],
+    "dropped_event_count": 0,
+    "usage": {
+      "inputTokens": 26748,
+      "outputTokens": 1011,
+      "totalTokens": 27759
+    },
+    "stop_reason": "tool_use",
+    "stages_ms": {
+      "source_guards": 0.913,
+      "decisions": 442.056
+    },
+    "released_sources": [],
+    "release": {
+      "status": "unavailable",
+      "binding": "supported",
+      "review": "rejected",
+      "review_execution": "real_api"
+    },
+    "error_category": null
+  }
+}

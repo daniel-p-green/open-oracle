@@ -345,3 +345,8 @@ Repaired raw per-part citation IDs and a narrow source-bound COMBAT research rel
 ## October11 — readability restore point
 
 Recomputed counts now explain the finite diagnostic; source/score binding retained. Actual live candidate failed clarity0.05/abstention0.79, so remained withheld. A separate fallible Decisions diagnosis suggested missing score meaning; no criterion/threshold change. See evals/clarity-repair-20261011. Targeted diagnostic and SDK checks passed, no speech/capture. Paused to prioritize browser research.
+
+
+## October11 — actual browser research restore point
+
+All3 independent audit regressions repaired. Main browser now reaches real multi-part Strands research through capped loopback opt-in; schema-safe projection preserves complete original and distinct authority. Initial positive held (.93jurisdiction/.85clarity); prediction accepted (4Strands+1Decisions). Revised conditional wording/publisher context passed positive (6+1; clarity.97), matching DOM and retained PDF hash. Zero capture/playback; trial listeners stopped;8765 fallback preserved. Strict legacy AG-UI gate retained. Shared allocation$13.15/$50, invoices unconfirmed. Working-tree195tests:191pass4optional skips (includes separately owned classifier); focused11SDK+11browser/HTTP pass. See docs/browser-research-checkpoint-2026-10-11.md. Only finite wording forms; candidate/generated prose remains pending. No push/publication.

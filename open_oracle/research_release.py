@@ -3,7 +3,7 @@
 The actual Strands agent plans, searches, acquires and reads evidence per part.
 This adapter accepts only source-bound COMBAT rate/duration forms and an explicit
 prediction gap. It never turns citation presence or a Decisions score into proof
-of arbitrary prose entailment. No public HTTP route or speech transport is added.
+of arbitrary prose entailment. The opt-in browser engine uses a separate validated display projection; speech remains off.
 """
 from __future__ import annotations
 from dataclasses import asdict
@@ -21,11 +21,15 @@ from strands_quality.research_corpus import Scope, load_verified_corpus
 from strands_quality.research_agent import ResearchRequest
 
 FORMS = {
-    'rate': 'The question proposes continuing the COMBAT tax at a rate of one-quarter of one cent.',
-    'duration': 'The question proposes continuing the COMBAT tax for ten years.',
+    'rate': 'If approved, the COMBAT sales tax would continue at one-quarter of one cent.',
+    'duration': 'If approved, the COMBAT sales tax would continue for ten years.',
 }
 GAP = 'The retained ballot wording does not establish whether COMBAT would reduce crime or by how much. I cannot support that prediction from this evidence.'
-LIMIT = 'Retained November 3, 2026 sample ballot; subject to change. This does not identify your personal ballot.'
+LIMIT = 'Saved November 3, 2026 sample ballot. Samples can change. This is not your personal ballot.'
+
+def source_limit(authority):
+    issuer = {'JCEB': 'Jackson County Election Board', 'KCEB': 'Kansas City Election Board'}[authority]
+    return issuer + ': ' + LIMIT
 
 
 def requested_parts(question):
@@ -34,15 +38,19 @@ def requested_parts(question):
     if 'combat' not in q or len(q) > 2000:
         raise ValueError('Outside reviewed COMBAT research release contract')
     words=set(re.findall(r'\w+',q))
-    allowed=set('what is the combat tax rate and how long would it continue for does last duration will reduce reduction crime by percent percentage fall drop prevent a of its this question printed proposed could much whether give me at as says say wording number'.split())
+    allowed=set('what is the combat tax rate and how long would it continue for does last duration will reduce reduction crime by percent percentage fall drop prevent a of its this question printed proposed could much whether give me at as says say wording'.split())
     if any(w not in allowed and not w.isdecimal() for w in words):
         raise ValueError('Outside reviewed COMBAT research release contract')
     out = set()
     if re.search(r'\brate\b', q): out.add('rate')
     if re.search(r'how long|\bduration\b', q): out.add('duration')
     if re.search(r'(?:reduce|reduction|fall|drop|prevent).*\bcrime\b|\bcrime\b.*(?:reduce|reduction|fall|drop|prevent)', q): out.add('prediction')
+    # Percent attached to a prediction is an explicit gap, not a tax conversion.
+    tax_text = re.split(r'\b(?:will|would|could|whether)\b[^?]*\b(?:reduce|reduction|fall|drop|prevent)\b[^?]*\bcrime\b', q, maxsplit=1)[0] if 'prediction' in out else q
+    if re.search(r'\bpercent(?:age)?\b|%', tax_text):
+        raise ValueError('Outside reviewed COMBAT tax unit contract')
     # No unrelated request may ride along with a reviewed rate/duration answer.
-    if not out or re.search(r'\b(?:candidate|vote|law|ordinance|legal|percent(?:age)?|dollars?|effect|effective|budget|cost|amendment|proposition)\b', q):
+    if not out or re.search(r'\b(?:candidate|vote|law|ordinance|legal|dollars?|effect|effective|budget|cost|amendment|proposition)\b', q):
         # A numeric crime prediction is allowed only as an explicit refusal.
         if out != {'prediction'}: raise ValueError('Outside reviewed COMBAT research release contract')
     return out
@@ -98,7 +106,7 @@ def validate_draft(request, draft, question):
         'card':None,'evidence':list(sources.values()),'claims':deepcopy(draft['claims']),
         'scope':asdict(request.scope),'election_date':request.scope.election_date,
         'snapshot_date':request.scope.as_of,'language':'en','translation_status':'not_requested',
-        'mode':'reviewed_strands_research','limitations':[LIMIT],
+        'mode':'reviewed_strands_research','limitations':[source_limit(request.scope.authority)],
         'fact_validation':{'status':'supported','method':'finite_source_bound_combat_research_v1',
             'arbitrary_prose_entailment_claimed':False,'covered_parts':sorted(covered)},
         'public_display':False,'speech':False}
@@ -108,7 +116,7 @@ def validate_draft(request, draft, question):
 
 
 def research_reviewed(question, *, authority, model, execution, reviewer, corpus=None,
-                      is_current=lambda: True, max_turns=12, timeout_seconds=45, max_total_tokens=24000):
+                      is_current=lambda: True, max_turns=12, timeout_seconds=45, max_total_tokens=24000, display_adapter=None):
     """Dependency-injected text-only service. Review and cancellation precede final receipt."""
     check_cancel()
     requested_parts(question)
@@ -122,15 +130,18 @@ def research_reviewed(question, *, authority, model, execution, reviewer, corpus
         model=model,execution=execution,cancel=current_cancel.get(),is_current=is_current,
         max_turns=max_turns,timeout_seconds=timeout_seconds,max_total_tokens=max_total_tokens,
         release_config={'adapter_sha256':sha256(Path(__file__).read_bytes()).hexdigest(),
+            'display_sha256': sha256(Path(__file__).with_name('research_display.py').read_bytes()).hexdigest() if display_adapter else None,
             'checks':REVISED_CHECKS,'threshold':0.95,'contract':'finite_source_bound_combat_research_v1'})
     def release(r,draft):
         start=monotonic();response=validate_draft(r,draft,question)
+        if display_adapter: response=display_adapter(r,response)
         r.receipt.stage('source_guards',monotonic()-start)
         start=monotonic();review=reviewer.review({'question':question,'response':deepcopy(response)})
         r.receipt.stage('decisions',monotonic()-start)
         r.check();check_cancel()
         # Rebind after the fallible review, including source-file/cancellation changes.
         fresh=validate_draft(r,draft,question)
+        if display_adapter: fresh=display_adapter(r,fresh)
         if fresh != response: raise ValueError('Research envelope changed during review')
         accepted = review.get('status') == 'accepted' and (execution != 'real_api' or review.get('execution') == 'real_api')
         status=response['status'] if accepted else 'unavailable'
@@ -142,7 +153,7 @@ def research_reviewed(question, *, authority, model, execution, reviewer, corpus
             response['claims']=[];response['evidence']=[]
         r.receipt.release(status=status,binding='supported',review=review.get('status','unavailable'),
             review_execution='real_api' if review.get('execution')=='real_api' else 'synthetic_sdk',
-            evidence_ids=[s['id'] for s in response['evidence']])
+            evidence_ids=[s.get('source_id',s['id']) for s in response['evidence']])
         response['status']=status
         return response
     return request._run(question,release_adapter=release)

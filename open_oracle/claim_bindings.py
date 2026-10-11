@@ -133,7 +133,12 @@ def diagnose_unbound_text(text, facts):
 
 def validate_factual_display(response, corpus):
     """Every explanation is a fixed contract. Unknown prose is withheld, even with matching tokens."""
+    if response.get('display_contract') == 'source_bound_research_browser_v1':
+        from .research_display import validate_display
+        return validate_display(response, corpus)
     evidence = response.get('evidence') or []
+    if not isinstance(evidence, list) or any(not isinstance(e, dict) or not {'id', 'contest_id', 'text', 'sha256'} <= e.keys() for e in evidence):
+        return {'status': 'unsupported', 'reason': 'invalid_source_shape', 'claims': []}
     contest = response.get('contest') or {}
     facts = fact_catalog(corpus, evidence, contest.get('id')) if evidence else {}
     if response.get('status') != 'answered':

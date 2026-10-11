@@ -1,0 +1,5 @@
+{
+  "returncode": 0,
+  "stdout": "[{\"fixture\":\"positive\",\"status\":\"unavailable\",\"released\":false,\"review\":\"rejected\"},{\"fixture\":\"unsupported\",\"status\":\"insufficient_evidence\",\"released\":true,\"review\":\"accepted\"}]\n",
+  "stderr": ""
+}

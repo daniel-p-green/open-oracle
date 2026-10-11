@@ -15,16 +15,18 @@ from .engine import EvidenceLoop
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def make_server(host="127.0.0.1", port=8765, live=False, corpus=None, allowed_hosts=(), decisions=False, live_voice=False, bedrock=False, max_live_requests=None, input_events=None, operator_name=None, live_ws=False):
+def make_server(host="127.0.0.1", port=8765, live=False, corpus=None, allowed_hosts=(), decisions=False, live_voice=False, bedrock=False, max_live_requests=None, input_events=None, operator_name=None, live_ws=False, research=False):
     if operator_name is not None and (not isinstance(operator_name, str) or not 1 <= len(operator_name.strip()) <= 100 or any(ord(c) < 32 for c in operator_name)):
         raise ValueError('Operator name must be short, readable text')
+    if research and (not live or bedrock or live_voice or live_ws or host not in ('127.0.0.1', 'localhost', '::1') or max_live_requests is None):
+        raise ValueError('Research requires capped loopback OpenAI live text mode; voice remains off')
     if live and bedrock:
         raise ValueError("Choose one Strands model provider")
     if input_events is not None and host not in ('127.0.0.1', 'localhost', '::1'):
         raise ValueError('Input metadata requires loopback-only app hosting')
     corpus = corpus or Corpus()
     selector = None
-    if live:
+    if live and not research:
         from .orchestration import build_selector
         selector = build_selector()
     elif bedrock:
@@ -43,7 +45,11 @@ def make_server(host="127.0.0.1", port=8765, live=False, corpus=None, allowed_ho
         raise ValueError('max_live_requests must be a positive integer')
     budget_lock = threading.Lock()
     remaining_requests = max_live_requests
-    engine = EvidenceLoop(corpus, selector, reviewer)
+    if research:
+        from .research_engine import build_research_engine
+        engine = build_research_engine(corpus, reviewer)
+    else:
+        engine = EvidenceLoop(corpus, selector, reviewer)
     slots = threading.BoundedSemaphore(4)
     voice_slot = threading.BoundedSemaphore(1)
     voice_requested = False
@@ -110,7 +116,7 @@ def make_server(host="127.0.0.1", port=8765, live=False, corpus=None, allowed_ho
                 return
             path = urlparse(self.path).path
             if path == "/api/health":
-                self.send(200, {"status": "ready", "mode": "live_strands" if selector else "exact_source", "counts": corpus.counts(),
+                self.send(200, {"status": "ready", "mode": "reviewed_strands_research" if research else "live_strands" if selector else "exact_source", "counts": corpus.counts(),
                                 "provider": "bedrock" if bedrock else "openai" if live else None,
                                 "prepared_candidate_answers": corpus.prepared_sources_ready,
                                 "snapshot_date": SNAPSHOT, "election_date": ELECTION, "source_integrity": corpus.integrity,
@@ -366,6 +372,7 @@ def main():
     parser.add_argument("--port", type=int, default=8765)
     parser.add_argument("--allowed-host", action="append", default=[])
     parser.add_argument("--live", action="store_true", help="Explicitly enabled, previously authorized model use only")
+    parser.add_argument("--research", action="store_true", help="Opt-in real Strands research browser route; requires --live and --max-live-requests; text only")
     parser.add_argument("--bedrock", action="store_true", help="Strands with the AWS event profile and an explicitly selected Bedrock model")
     parser.add_argument("--decisions", action="store_true", help="Enable real OpenAI Decisions checks; requires authorized spending")
     parser.add_argument("--live-voice", action="store_true", help="GPT-Live opt-in capture and buffered, transcript-validated playback")
@@ -386,7 +393,7 @@ def main():
         inbox = InputEvents(presence=args.sensor_presence, wave=args.sensor_wave, local_wake=args.sensor_local_wake)
 
     server = make_server(args.host, args.port, args.live, allowed_hosts=args.allowed_host,
-                         decisions=args.decisions, live_voice=args.live_voice, bedrock=args.bedrock, max_live_requests=args.max_live_requests, input_events=inbox, operator_name=args.operator_name, live_ws=args.live_ws)
+                         decisions=args.decisions, live_voice=args.live_voice, bedrock=args.bedrock, max_live_requests=args.max_live_requests, input_events=inbox, operator_name=args.operator_name, live_ws=args.live_ws, research=args.research)
     if inbox is not None:
         inbox.start(sys.stdin.buffer)
     print(f"Open Oracle ready at http://{args.host}:{server.server_port} — {'live Strands' if args.live or args.bedrock else 'exact-source mode; no model calls'}", flush=True)

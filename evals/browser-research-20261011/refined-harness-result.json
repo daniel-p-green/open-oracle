@@ -1,0 +1,5 @@
+{
+  "returncode": 0,
+  "stdout": "[{\"fixture\":\"positive\",\"status\":\"answered\",\"released\":true,\"review\":\"accepted\",\"pdf\":true}]\n",
+  "stderr": ""
+}

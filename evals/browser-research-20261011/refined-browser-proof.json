@@ -1,0 +1,268 @@
+{
+  "health": {
+    "status": "ready",
+    "mode": "reviewed_strands_research",
+    "counts": {
+      "contests": 55,
+      "candidates": 62,
+      "retentions": 11,
+      "measures": 10
+    },
+    "provider": "openai",
+    "prepared_candidate_answers": true,
+    "snapshot_date": "2026-10-10",
+    "election_date": "2026-11-03",
+    "source_integrity": {
+      "jceb-sample": true,
+      "kceb-sample": true
+    },
+    "independent_review": "openai_decisions_enabled",
+    "voice": "not_connected",
+    "voice_playback": "buffered_until_transcript_display_validation",
+    "voice_session_available": false,
+    "speech_transport": null,
+    "input_events": {
+      "enabled": false
+    },
+    "operator_name": null
+  },
+  "reports": [
+    {
+      "fixture": "positive",
+      "question": "What is the COMBAT tax rate, and how long would it continue?",
+      "http_status": 200,
+      "execution": "actual_browser_ui_submit",
+      "result_status": "answered",
+      "released": true,
+      "review": {
+        "provider": "openai_decisions",
+        "model": "gpt-6-luna",
+        "execution": "real_api",
+        "threshold": 0.95,
+        "calibration": "not_validated",
+        "rubric_version": "civic-v3-verified-diagnostics",
+        "usage": {
+          "input_tokens": 3496,
+          "output_tokens": 0,
+          "total_tokens": 3496
+        },
+        "status": "accepted",
+        "checks": [
+          {
+            "name": "source_support",
+            "status": "answered",
+            "type": "predicate",
+            "value": 1
+          },
+          {
+            "name": "no_vote_recommendation",
+            "status": "answered",
+            "type": "predicate",
+            "value": 1
+          },
+          {
+            "name": "viewpoint_neutrality",
+            "status": "answered",
+            "type": "predicate",
+            "value": 1
+          },
+          {
+            "name": "jurisdiction",
+            "status": "answered",
+            "type": "predicate",
+            "value": 1
+          },
+          {
+            "name": "clarity",
+            "status": "answered",
+            "type": "predicate",
+            "value": 0.97
+          },
+          {
+            "name": "abstention",
+            "status": "answered",
+            "type": "predicate",
+            "value": 1
+          },
+          {
+            "name": "translation_status",
+            "status": "answered",
+            "type": "predicate",
+            "value": 1
+          }
+        ],
+        "probabilities": {
+          "source_support": 1,
+          "no_vote_recommendation": 1,
+          "viewpoint_neutrality": 1,
+          "jurisdiction": 1,
+          "clarity": 0.97,
+          "abstention": 1,
+          "translation_status": 1
+        },
+        "label": "Decisions checks ran. Estimates are fallible; thresholds are not calibrated."
+      },
+      "receipt": {
+        "version": 1,
+        "request_id": "f0541dbd-b560-4818-8aee-c07d34e2c533",
+        "config_sha256": "fb680912734dc0e94ca94acf4ad277808e2b36402e81a901a36f5e8ad888edb8",
+        "execution": "real_api",
+        "sdk_version": "1.59.0",
+        "finalized": true,
+        "elapsed_ms": 7721.793,
+        "model_attempts_started": 6,
+        "model_events": [
+          {
+            "attempt": 1,
+            "duration_ms": 1467.651,
+            "status": "completed",
+            "error_category": null
+          },
+          {
+            "attempt": 2,
+            "duration_ms": 865.023,
+            "status": "completed",
+            "error_category": null
+          },
+          {
+            "attempt": 3,
+            "duration_ms": 743.6,
+            "status": "completed",
+            "error_category": null
+          },
+          {
+            "attempt": 4,
+            "duration_ms": 1176.675,
+            "status": "completed",
+            "error_category": null
+          },
+          {
+            "attempt": 5,
+            "duration_ms": 1086.63,
+            "status": "completed",
+            "error_category": null
+          },
+          {
+            "attempt": 6,
+            "duration_ms": 1973.759,
+            "status": "completed",
+            "error_category": null
+          }
+        ],
+        "tool_events": [
+          {
+            "sequence": 1,
+            "name": "plan_evidence",
+            "status": "success",
+            "duration_ms": 0.387,
+            "error_category": null
+          },
+          {
+            "sequence": 2,
+            "name": "search_official_sources",
+            "status": "success",
+            "duration_ms": 0.646,
+            "error_category": null
+          },
+          {
+            "sequence": 3,
+            "name": "search_official_sources",
+            "status": "success",
+            "duration_ms": 0.195,
+            "error_category": null
+          },
+          {
+            "sequence": 4,
+            "name": "acquire_official_source",
+            "status": "success",
+            "duration_ms": 0.498,
+            "error_category": null
+          },
+          {
+            "sequence": 5,
+            "name": "search_indexed_evidence",
+            "status": "success",
+            "duration_ms": 0.524,
+            "error_category": null
+          },
+          {
+            "sequence": 6,
+            "name": "search_indexed_evidence",
+            "status": "success",
+            "duration_ms": 0.275,
+            "error_category": null
+          },
+          {
+            "sequence": 7,
+            "name": "read_evidence_chunk",
+            "status": "success",
+            "duration_ms": 0.614,
+            "error_category": null
+          },
+          {
+            "sequence": 8,
+            "name": "read_evidence_chunk",
+            "status": "success",
+            "duration_ms": 0.272,
+            "error_category": null
+          },
+          {
+            "sequence": 9,
+            "name": "CitedAnswer",
+            "status": "success",
+            "duration_ms": 0.138,
+            "error_category": null
+          }
+        ],
+        "dropped_event_count": 0,
+        "usage": {
+          "inputTokens": 16635,
+          "outputTokens": 516,
+          "totalTokens": 17151
+        },
+        "stop_reason": "tool_use",
+        "stages_ms": {
+          "source_guards": 0.658,
+          "decisions": 392.655
+        },
+        "released_sources": [
+          {
+            "id": "jceb-sample",
+            "version_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2"
+          }
+        ],
+        "release": {
+          "status": "answered",
+          "binding": "supported",
+          "review": "accepted",
+          "review_execution": "real_api"
+        },
+        "error_category": null
+      },
+      "answer": "If approved, the COMBAT sales tax would continue at one-quarter of one cent. If approved, the COMBAT sales tax would continue for ten years.",
+      "fact_validation": {
+        "status": "supported",
+        "method": "finite_source_bound_combat_research_v1",
+        "arbitrary_prose_entailment_claimed": false,
+        "covered_parts": [
+          "duration",
+          "rate"
+        ]
+      },
+      "displayed_text": "If approved, the COMBAT sales tax would continue at one-quarter of one cent. If approved, the COMBAT sales tax would continue for ten years.",
+      "display_matches": true,
+      "speech_action_visible": false,
+      "original_display_matches": true,
+      "pdf_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+      "pdf_matches": true,
+      "trust_fund_condition_visible": true
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "capture_calls": 0,
+  "actual_physical_pi": false,
+  "actual_audio": false,
+  "third_request_status": 429,
+  "no_automatic_retries": true
+}

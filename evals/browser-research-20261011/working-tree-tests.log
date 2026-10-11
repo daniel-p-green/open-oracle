@@ -1,0 +1,5 @@
+exception=<ConnectionError> | event loop cycle failed
+----------------------------------------------------------------------
+Ran 195 tests in 9.282s
+
+OK (skipped=4)

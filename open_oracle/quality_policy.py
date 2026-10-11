@@ -97,7 +97,11 @@ def release_block(response, corpus=None):
         evidence = response.get('evidence') or []
         if response.get('status') == 'answered' and not evidence:
             return 'evidence_missing'
-        if corpus is not None:
+        if corpus is not None and response.get('display_contract') == 'source_bound_research_browser_v1':
+            from .research_display import validate_display
+            if validate_display(response, corpus)['status'] != 'supported':
+                return 'research_display_unbound'
+        elif corpus is not None:
             for source in evidence:
                 retained = corpus.evidence.get(source.get('id'))
                 if not retained or source != retained or fingerprint(source) != corpus.evidence_fingerprints.get(source.get('id')) or source.get('contest_id') != response.get('contest', {}).get('id') or source.get('status') != 'current_snapshot':

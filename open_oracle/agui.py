@@ -39,9 +39,15 @@ def release_events(result, thread_id, run_id, corpus=None):
     if review.get('status') not in ('not_run', 'accepted'):
         if result.get('card') or result.get('evidence') or result.get('claims') or result.get('candidate_sources'):
             raise ValueError('Withheld content cannot become AG-UI state')
-    if result.get('mode') == 'live_strands' and (review.get('status') != 'accepted' or review.get('execution') != 'real_api'):
-        if result.get('status') != 'unavailable':
+    if result.get('mode') == 'live_strands' and (review.get('status') != 'accepted' or review.get('execution') != 'real_api') and result.get('status') != 'unavailable':
+        raise ValueError('Live content requires accepted review')
+    if result.get('mode') == 'reviewed_strands_research' and (review.get('status') != 'accepted' or review.get('execution') != 'real_api'):
+        if result.get('public_display') or result.get('status') == 'answered':
             raise ValueError('Live content requires accepted review')
+    if result.get('display_contract') == 'source_bound_research_browser_v1' and result.get('public_display'):
+        from .research_display import validate_display
+        if corpus is None or validate_display(result, corpus)['status'] != 'supported':
+            raise ValueError('Research display bindings must pass before streaming')
     from .claim_bindings import validate_factual_display
     if result.get('status') == 'answered' and (corpus is None or validate_factual_display(result, corpus)['status'] != 'supported'):
         raise ValueError('Factual display bindings must pass before streaming')

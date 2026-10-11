@@ -99,8 +99,8 @@ line breaks. If no span ID is offered, use an exact original quotation.
 Never add derived percentages, dollars or predictions to a printed rate.
 For the bounded COMBAT rate/duration release contract, use exactly these claim
 forms, only if the read source supports them, one claim per requested part:
-"The question proposes continuing the COMBAT tax at a rate of one-quarter of one cent."
-"The question proposes continuing the COMBAT tax for ten years."
+"If approved, the COMBAT sales tax would continue at one-quarter of one cent."
+"If approved, the COMBAT sales tax would continue for ten years."
 Other research remains a private draft; never substitute these forms for a
 question about something else. Use exact original quotations as citations. Explain the quoted rate and duration
 as separate claims when requested. Do not infer current law from a proposal.
