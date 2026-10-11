@@ -18,3 +18,19 @@ if (ballotForm && window.OpenOracleIntake) {
   window.OpenOracleWebsiteOwner = window.OpenOracleIntake.createOwner();
   window.OpenOracleIntake.mount(ballotForm, window.OpenOracleWebsiteOwner);
 }
+
+// Presentation-only: nested station help remains reachable from the existing header link.
+document.addEventListener('click', event => {
+ const link=event.target.closest?.('a[data-open-details]');
+ if(!link)return;
+ const target=document.getElementById(link.getAttribute('href')?.slice(1));
+ const parent=target?.closest('.station-help');
+ if(parent)parent.open=true;
+},true);
+// Existing app-owned help/privacy actions may open a nested disclosure directly.
+document.addEventListener('toggle', event => {
+ const target=event.target;
+ if(!(target instanceof HTMLDetailsElement)||!target.open)return;
+ const parent=target.closest('.station-help');
+ if(parent&&parent!==target)parent.open=true;
+},true);

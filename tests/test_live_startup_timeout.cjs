@@ -1,0 +1,21 @@
+const assert=require('node:assert/strict');
+const {boundedLiveOperation,OpenOracleLive}=require('../web/live.js');
+(async()=>{
+ let grant,stops=0;
+ const pending=new Promise(resolve=>grant=resolve);
+ await assert.rejects(boundedLiveOperation(pending,{timeoutMs:5,message:'permission timeout',onLateResolve:s=>s.getTracks().forEach(t=>t.stop())}),/permission timeout/);
+ grant({getTracks:()=>[{stop:()=>stops++}]});await Promise.resolve();assert.equal(stops,1,'late timed-out stream stopped');
+ const abort=new AbortController();let resolveCancelled;
+ const cancelled=boundedLiveOperation(new Promise(r=>resolveCancelled=r),{timeoutMs:10000,signal:abort.signal,onLateResolve:s=>s.stop()});abort.abort();await assert.rejects(cancelled,{name:'AbortError'});resolveCancelled({stop:()=>stops++});await Promise.resolve();assert.equal(stops,2,'late cancelled stream stopped');
+ await assert.rejects(boundedLiveOperation(new Promise(()=>{}),{timeoutMs:5,message:'offer timeout'}),/offer timeout/);
+ const descriptor=Object.getOwnPropertyDescriptor(globalThis,'navigator'),secure=globalThis.isSecureContext,peer=globalThis.RTCPeerConnection;
+ let deviceGrant,connections=0;globalThis.isSecureContext=true;globalThis.RTCPeerConnection=function(){connections++};
+ Object.defineProperty(globalThis,'navigator',{configurable:true,value:{mediaDevices:{getUserMedia:()=>new Promise(r=>deviceGrant=r)}}});
+ const events=[];const live=new OpenOracleLive(e=>events.push(e));live.waitForOperation=(p,o)=>boundedLiveOperation(p,{...o,timeoutMs:5});
+ await assert.rejects(live.start(),/Microphone permission did not finish/);assert.equal(connections,0,'no peer or provider before permission');assert.equal(live.starting,false);assert.equal(live.started,false);
+ assert.match(events.at(-1).text,/Microphone permission did not finish/,'plain reason survives close notification');
+ deviceGrant({getTracks:()=>[{stop:()=>stops++}]});await Promise.resolve();assert.equal(stops,3);
+ if(descriptor)Object.defineProperty(globalThis,'navigator',descriptor);else delete globalThis.navigator;
+ globalThis.isSecureContext=secure;globalThis.RTCPeerConnection=peer;
+ console.log('PASS: bounded pending permission, late grant cleanup, Stop abort, stalled SDP timeout, zero provider requests.');
+})().catch(e=>{console.error(e);process.exitCode=1});
