@@ -1,0 +1,34 @@
+{
+  "execution": "local_generated_audio_peer_loopback",
+  "provider_calls": 0,
+  "microphone_calls": 0,
+  "playback": false,
+  "initial": {
+    "clock": 0,
+    "state": "running",
+    "enabled": true,
+    "muted": false,
+    "ready": "live"
+  },
+  "started": true,
+  "final": {
+    "clock": 0,
+    "state": "running",
+    "enabled": true,
+    "muted": false,
+    "ready": "live",
+    "peer_state": "connected"
+  },
+  "rtp": [
+    {
+      "type": "outbound-rtp",
+      "kind": "audio",
+      "packetsSent": 0,
+      "bytesSent": 0
+    }
+  ],
+  "cleanup": {
+    "track": "ended",
+    "context": "closed"
+  }
+}

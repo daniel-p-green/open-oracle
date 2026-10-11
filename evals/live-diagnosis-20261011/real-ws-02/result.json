@@ -1,0 +1,331 @@
+{
+  "execution": "real_gpt_live_websocket",
+  "accepted": false,
+  "report": {
+    "acknowledged": true,
+    "transcript_matches": false,
+    "invalid_output": false,
+    "final_usage_confirmed": true,
+    "close_reason": "close_requested",
+    "buffered_bytes": 2054400
+  },
+  "journal": {
+    "events": [
+      {
+        "sequence": 1,
+        "monotonic_ms": 389,
+        "direction": "sent",
+        "type": "session.start",
+        "event_id": "3c80083e-b33f-4f52-9cef-5a0d0290ee28"
+      },
+      {
+        "sequence": 2,
+        "monotonic_ms": 864,
+        "direction": "received",
+        "type": "session.started",
+        "event_id": "event_EXebeIIrFokRBGVGHyDUb",
+        "client_event_id": "3c80083e-b33f-4f52-9cef-5a0d0290ee28",
+        "session": {
+          "model": "gpt-live-1",
+          "status": "active",
+          "expires_at": 1791696821
+        }
+      },
+      {
+        "sequence": 3,
+        "monotonic_ms": 864,
+        "direction": "sent",
+        "type": "session.input_audio.mute",
+        "event_id": "8b26c5f0-41b7-49df-8c83-bc638796cc7a"
+      },
+      {
+        "sequence": 4,
+        "monotonic_ms": 864,
+        "direction": "sent",
+        "type": "session.commentary.append",
+        "event_id": "05e90150-3ddc-49c6-a6ef-a712eed9b6ec",
+        "delegation_id": null,
+        "content_length": 48,
+        "content_is_approved_phrase": true,
+        "content": "The printed tax rate is one-quarter of one cent."
+      },
+      {
+        "sequence": 5,
+        "monotonic_ms": 943,
+        "direction": "received",
+        "type": "session.input_audio.muted",
+        "event_id": "event_EXebediFR3LjY3XW0nrdo",
+        "client_event_id": "8b26c5f0-41b7-49df-8c83-bc638796cc7a"
+      },
+      {
+        "sequence": 6,
+        "monotonic_ms": 1563,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXebeuVraRn46GFxENT1x",
+        "start_ms": 0,
+        "end_ms": 200,
+        "delta": "The printed"
+      },
+      {
+        "sequence": 7,
+        "monotonic_ms": 1714,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXebehHYdQX48CA6ZE2ZN",
+        "start_ms": 200,
+        "end_ms": 400,
+        "delta": " tax"
+      },
+      {
+        "sequence": 8,
+        "monotonic_ms": 2161,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXebf9cwrqo5CKdu4ccZy",
+        "start_ms": 600,
+        "end_ms": 800,
+        "delta": " rate"
+      },
+      {
+        "sequence": 9,
+        "monotonic_ms": 2161,
+        "direction": "received",
+        "type": "session.commentary.appended",
+        "event_id": "event_EXebfj334J1kviHPp1JJh",
+        "client_event_id": "05e90150-3ddc-49c6-a6ef-a712eed9b6ec",
+        "start_ms": 600,
+        "end_ms": 800
+      },
+      {
+        "sequence": 10,
+        "monotonic_ms": 2278,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXebfkpbAJN4mAVoVnvUx",
+        "start_ms": 800,
+        "end_ms": 1000,
+        "delta": " is"
+      },
+      {
+        "sequence": 11,
+        "monotonic_ms": 2477,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXebf7ZkZ9pwFGt7UMtrj",
+        "start_ms": 1000,
+        "end_ms": 1200,
+        "delta": " one-quarter"
+      },
+      {
+        "sequence": 12,
+        "monotonic_ms": 3319,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXebgkWvhHUk1hKzGXz7V",
+        "start_ms": 1800,
+        "end_ms": 2000,
+        "delta": " of"
+      },
+      {
+        "sequence": 13,
+        "monotonic_ms": 3519,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXebgoJn1tR7Rrjh9dTky",
+        "start_ms": 2000,
+        "end_ms": 2200,
+        "delta": " one"
+      },
+      {
+        "sequence": 14,
+        "monotonic_ms": 3731,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXebgqMFmdus7vTODKlvs",
+        "start_ms": 2200,
+        "end_ms": 2400,
+        "delta": " cent."
+      },
+      {
+        "sequence": 15,
+        "monotonic_ms": 4339,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXebhNhkDXRx8pBTLiJi8",
+        "start_ms": 2800,
+        "end_ms": 3000,
+        "delta": " I"
+      },
+      {
+        "sequence": 16,
+        "monotonic_ms": 4533,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXebhA7KZgpuOxbqmaKvL",
+        "start_ms": 3000,
+        "end_ms": 3200,
+        "delta": " can’t"
+      },
+      {
+        "sequence": 17,
+        "monotonic_ms": 4963,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXebil32diLHUF6J9qJnI",
+        "start_ms": 3400,
+        "end_ms": 3600,
+        "delta": " help with"
+      },
+      {
+        "sequence": 18,
+        "monotonic_ms": 5135,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXebi2ihbgkVtwTkdYaZL",
+        "start_ms": 3600,
+        "end_ms": 3800,
+        "delta": " guesses"
+      },
+      {
+        "sequence": 19,
+        "monotonic_ms": 5562,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXebiBTGEh2mJi0pyaGtE",
+        "start_ms": 4000,
+        "end_ms": 4200,
+        "delta": " or"
+      },
+      {
+        "sequence": 20,
+        "monotonic_ms": 5753,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXebiggE5FfpZdGe6FVu1",
+        "start_ms": 4200,
+        "end_ms": 4400,
+        "delta": " interpretation,"
+      },
+      {
+        "sequence": 21,
+        "monotonic_ms": 6860,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXebjpjukgsaxCauk2iJv",
+        "start_ms": 5000,
+        "end_ms": 5200,
+        "delta": " but"
+      },
+      {
+        "sequence": 22,
+        "monotonic_ms": 6908,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXebj5tXpJve3e5sIYFb4",
+        "start_ms": 5200,
+        "end_ms": 5400,
+        "delta": " I"
+      },
+      {
+        "sequence": 23,
+        "monotonic_ms": 7137,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXebkBURSFYDLgR5z2lSg",
+        "start_ms": 5400,
+        "end_ms": 5600,
+        "delta": " can"
+      },
+      {
+        "sequence": 24,
+        "monotonic_ms": 7391,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXebkhss9DwvfbGBKcuKy",
+        "start_ms": 5600,
+        "end_ms": 5800,
+        "delta": " repeat"
+      },
+      {
+        "sequence": 25,
+        "monotonic_ms": 7613,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXebkfXdiTrHBZeiCCVhi",
+        "start_ms": 5800,
+        "end_ms": 6000,
+        "delta": " the"
+      },
+      {
+        "sequence": 26,
+        "monotonic_ms": 7748,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXebkCQYKJ90UdBlw2BDy",
+        "start_ms": 6000,
+        "end_ms": 6200,
+        "delta": " printed"
+      },
+      {
+        "sequence": 27,
+        "monotonic_ms": 8045,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXeblYPdRZ9cryqtUSGow",
+        "start_ms": 6400,
+        "end_ms": 6600,
+        "delta": " rate."
+      },
+      {
+        "sequence": 28,
+        "monotonic_ms": 15842,
+        "direction": "received",
+        "type": "session.usage.updated",
+        "event_id": "event_EXebsFjbgKaKvXiXezr1B",
+        "usage_seconds": 14,
+        "context_usage_ratio": 0.010546875
+      },
+      {
+        "sequence": 29,
+        "monotonic_ms": 30878,
+        "direction": "received",
+        "type": "session.usage.updated",
+        "event_id": "event_EXec7IIN6bhet0ysf1WaV",
+        "usage_seconds": 29,
+        "context_usage_ratio": 0.012921875
+      },
+      {
+        "sequence": 30,
+        "monotonic_ms": 45010,
+        "direction": "sent",
+        "type": "session.close",
+        "event_id": "61024d88-55f6-439f-a4ac-04182bcf7331"
+      },
+      {
+        "sequence": 31,
+        "monotonic_ms": 45775,
+        "direction": "received",
+        "type": "session.closed",
+        "event_id": "event_EXecMoNkDf3kRF5GO0EeZ",
+        "client_event_id": "61024d88-55f6-439f-a4ac-04182bcf7331",
+        "reason": "close_requested",
+        "usage_seconds": 44,
+        "session": {
+          "model": "gpt-live-1",
+          "status": "active",
+          "expires_at": 1791696821
+        }
+      }
+    ],
+    "dropped": 0,
+    "complete": true
+  },
+  "input_frames": 1013760,
+  "synthetic_input": true,
+  "microphone": false,
+  "playback": false,
+  "retries": 0,
+  "media_saved": false,
+  "human_audibility": "unverified; playback forbidden"
+}

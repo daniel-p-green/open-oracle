@@ -1,0 +1,114 @@
+{
+  "execution": "actual_api_single_approved_trial",
+  "question": "What is the COMBAT tax rate?",
+  "evidence_status": "answered",
+  "http_status": 200,
+  "answer": "The printed tax rate is one-quarter of one cent.",
+  "strands_model": "gpt-6-luna",
+  "strands_tool_sequence": [
+    "resolve_contest",
+    "search_evidence",
+    "read_evidence"
+  ],
+  "strands_model_calls": 4,
+  "strands_usage": {
+    "inputTokens": 2790,
+    "outputTokens": 82,
+    "totalTokens": 2872
+  },
+  "source_guards": "supported",
+  "decisions": {
+    "provider": "openai_decisions",
+    "model": "gpt-6-luna",
+    "execution": "real_api",
+    "threshold": 0.95,
+    "calibration": "not_validated",
+    "rubric_version": "civic-v2-separated",
+    "usage": {
+      "input_tokens": 2525,
+      "output_tokens": 0,
+      "total_tokens": 2525
+    },
+    "status": "accepted",
+    "checks": [
+      {
+        "name": "source_support",
+        "status": "answered",
+        "type": "predicate",
+        "value": 0.99
+      },
+      {
+        "name": "no_vote_recommendation",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1
+      },
+      {
+        "name": "viewpoint_neutrality",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1
+      },
+      {
+        "name": "jurisdiction",
+        "status": "answered",
+        "type": "predicate",
+        "value": 0.99
+      },
+      {
+        "name": "clarity",
+        "status": "answered",
+        "type": "predicate",
+        "value": 0.98
+      },
+      {
+        "name": "abstention",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1
+      },
+      {
+        "name": "translation_status",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1
+      }
+    ],
+    "probabilities": {
+      "source_support": 0.99,
+      "no_vote_recommendation": 1,
+      "viewpoint_neutrality": 1,
+      "jurisdiction": 0.99,
+      "clarity": 0.98,
+      "abstention": 1,
+      "translation_status": 1
+    },
+    "label": "Decisions checks ran. Estimates are fallible; thresholds are not calibrated."
+  },
+  "evidence_elapsed_ms": 6741,
+  "speech_contract_present": true,
+  "voice_session_started": true,
+  "voice_commentary_acknowledged": false,
+  "voice_output_transcript_received": false,
+  "voice_provider_error_observed": true,
+  "provider_error_details": "not retained by original trial observer; cause not established",
+  "voice_finalization_confirmed": true,
+  "voice_close_reason": "expired",
+  "voice_usage_seconds": 15,
+  "playback_release": false,
+  "voice_ready": false,
+  "accepted_audio_bytes": 0,
+  "microphone_calls": 0,
+  "playback": false,
+  "page_errors": [],
+  "retries": 0,
+  "reserve_usd": 0.35,
+  "standard_uncached_usage_estimate_usd": 0.0130725,
+  "invoice_cost": "unconfirmed",
+  "pricing_sources": [
+    "https://developers.openai.com/api/docs/pricing",
+    "https://developers.openai.com/api/docs/models/gpt-6-luna"
+  ],
+  "estimate_limits": "Standard uncached-token and reported-duration estimate only; invoice and any unreported charges not established. Do not multiply aggregate Strands usage by the three tool trace entries.",
+  "raw_report_status_collision": "Original details.status overwrote evidence status with UI speech text. Raw report preserved; HTTP result/review/trace support answered evidence. This summary separates evidence and playback release."
+}

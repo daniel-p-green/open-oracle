@@ -1,0 +1,40 @@
+{
+  "health": {
+    "status": "ready",
+    "mode": "exact_source",
+    "counts": {
+      "contests": 55,
+      "candidates": 62,
+      "retentions": 11,
+      "measures": 10
+    },
+    "provider": null,
+    "prepared_candidate_answers": true,
+    "snapshot_date": "2026-10-10",
+    "election_date": "2026-11-03",
+    "source_integrity": {
+      "jceb-sample": true,
+      "kceb-sample": true
+    },
+    "independent_review": "not_run",
+    "voice": "not_connected",
+    "voice_playback": "buffered_until_transcript_display_validation"
+  },
+  "original_checks": [
+    {
+      "original": "jceb-sample",
+      "sha256_matches_retained_snapshot": true,
+      "bytes": 109533
+    },
+    {
+      "original": "kceb-sample",
+      "sha256_matches_retained_snapshot": true,
+      "bytes": 457535
+    }
+  ],
+  "current_start_command": ".venv/bin/python -m open_oracle.server --host 127.0.0.1 --port 8765",
+  "working_directory": "/Users/danielgreen/Documents/Codex/open-oracle",
+  "live_flags_not_enabled": true,
+  "live_test_syntax_only": true,
+  "no_paid_calls": true
+}

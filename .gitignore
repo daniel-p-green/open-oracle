@@ -1,0 +1,13 @@
+.DS_Store
+.venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+.aws/
+.local/
+.bedrock_agentcore/
+research/HackMidwest2026_research/
+node_modules/
+web/copilot-src/dist/

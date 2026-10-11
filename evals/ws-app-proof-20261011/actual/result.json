@@ -1,0 +1,287 @@
+{
+  "execution": "actual_full_app_ws_proof",
+  "reserve_usd": 0.35,
+  "phase": "failed",
+  "question": "What is the COMBAT tax rate?",
+  "microphone_calls": 0,
+  "playback_calls": 0,
+  "retries": 0,
+  "errors": [],
+  "http_status": 200,
+  "request_id": "acc4dcc0-313f-4d65-a126-fe0c1457a6f8",
+  "evidence_status": "answered",
+  "answer": "The printed tax rate is one-quarter of one cent.",
+  "mode": "live_strands",
+  "fact_validation": {
+    "status": "supported",
+    "method": "finite_source_span_contracts",
+    "claims": [
+      {
+        "status": "supported",
+        "key": "measure.rate",
+        "binding": {
+          "key": "measure.rate",
+          "kind": "number",
+          "value": "0.25",
+          "unit": "cent",
+          "evidence_id": "combat:jceb-sample",
+          "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 99,
+          "end": 139,
+          "quote": "at the rate of one-quarter  \nof one cent",
+          "binding": "retrieved_passage"
+        }
+      },
+      {
+        "status": "supported",
+        "key": "measure.duration",
+        "binding": {
+          "key": "measure.duration",
+          "kind": "number",
+          "value": "10",
+          "unit": "year",
+          "evidence_id": "combat:jceb-sample",
+          "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 140,
+          "end": 165,
+          "quote": "for a period of ten years",
+          "binding": "retrieved_passage"
+        }
+      },
+      {
+        "status": "supported",
+        "key": "measure.jurisdiction",
+        "binding": {
+          "key": "measure.jurisdiction",
+          "kind": "entity",
+          "value": "jackson county",
+          "unit": null,
+          "evidence_id": "combat:jceb-sample",
+          "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 21,
+          "end": 35,
+          "quote": "Jackson County",
+          "binding": "retrieved_passage"
+        }
+      },
+      {
+        "status": "supported",
+        "key": "measure.name",
+        "binding": {
+          "key": "measure.name",
+          "kind": "entity",
+          "value": "combat",
+          "unit": null,
+          "evidence_id": "combat:jceb-sample",
+          "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 91,
+          "end": 97,
+          "quote": "COMBAT",
+          "binding": "retrieved_passage"
+        }
+      },
+      {
+        "status": "supported",
+        "key": "election.date",
+        "binding": {
+          "key": "election.date",
+          "kind": "date",
+          "value": "2026-11-03",
+          "unit": null,
+          "evidence_id": "combat:jceb-sample",
+          "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "text_sha256": "279d07d0896232e763c732d42b64e29191e2dcfd628a2b2dcad00cef62302796",
+          "start": 681,
+          "end": 697,
+          "quote": "NOVEMBER 3, 2026",
+          "binding": "printed_document_header",
+          "text_reference": "jceb-sample"
+        }
+      }
+    ],
+    "prose_entailment_claimed": false,
+    "calibrated_probability_used": false
+  },
+  "review": {
+    "provider": "openai_decisions",
+    "model": "gpt-6-luna",
+    "execution": "real_api",
+    "threshold": 0.95,
+    "calibration": "not_validated",
+    "rubric_version": "civic-v2-separated",
+    "usage": {
+      "input_tokens": 2525,
+      "output_tokens": 0,
+      "total_tokens": 2525
+    },
+    "status": "accepted",
+    "checks": [
+      {
+        "name": "source_support",
+        "status": "answered",
+        "type": "predicate",
+        "value": 0.99
+      },
+      {
+        "name": "no_vote_recommendation",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1
+      },
+      {
+        "name": "viewpoint_neutrality",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1
+      },
+      {
+        "name": "jurisdiction",
+        "status": "answered",
+        "type": "predicate",
+        "value": 0.99
+      },
+      {
+        "name": "clarity",
+        "status": "answered",
+        "type": "predicate",
+        "value": 0.98
+      },
+      {
+        "name": "abstention",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1
+      },
+      {
+        "name": "translation_status",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1
+      }
+    ],
+    "probabilities": {
+      "source_support": 0.99,
+      "no_vote_recommendation": 1,
+      "viewpoint_neutrality": 1,
+      "jurisdiction": 0.99,
+      "clarity": 0.98,
+      "abstention": 1,
+      "translation_status": 1
+    },
+    "label": "Decisions checks ran. Estimates are fallible; thresholds are not calibrated."
+  },
+  "trace": [
+    {
+      "tool": "resolve_contest",
+      "evidence_ids": [],
+      "live": true,
+      "provider_execution": "real_api",
+      "model": "gpt-6-luna",
+      "model_attempts": 4,
+      "usage": {
+        "inputTokens": 2790,
+        "outputTokens": 82,
+        "totalTokens": 2872
+      }
+    },
+    {
+      "tool": "search_evidence",
+      "evidence_ids": [
+        "combat:jceb-sample"
+      ],
+      "live": true,
+      "provider_execution": "real_api",
+      "model": "gpt-6-luna",
+      "model_attempts": 4,
+      "usage": {
+        "inputTokens": 2790,
+        "outputTokens": 82,
+        "totalTokens": 2872
+      }
+    },
+    {
+      "tool": "read_evidence",
+      "evidence_ids": [
+        "combat:jceb-sample"
+      ],
+      "live": true,
+      "provider_execution": "real_api",
+      "model": "gpt-6-luna",
+      "model_attempts": 4,
+      "usage": {
+        "inputTokens": 2790,
+        "outputTokens": 82,
+        "totalTokens": 2872
+      }
+    }
+  ],
+  "stage_ms": {
+    "resolve_retrieve_construct": 4360,
+    "source_guards": 1,
+    "decisions": 939
+  },
+  "elapsed_ms": 5301,
+  "speech_contract_present": true,
+  "speech_http_status": 200,
+  "speech_server": {
+    "accepted": true,
+    "request_id": "acc4dcc0-313f-4d65-a126-fe0c1457a6f8",
+    "text": "The printed tax rate is one-quarter of one cent.",
+    "transcript": "The printed tax rate is one-quarter of one cent.",
+    "report": {
+      "acknowledged": true,
+      "transcript_matches": true,
+      "invalid_output": false,
+      "final_usage_confirmed": true,
+      "close_reason": "close_requested",
+      "buffered_bytes": 246720,
+      "peak": 0.353515625,
+      "rms": 0.04721619904120991,
+      "duration_ms": 4543,
+      "trimmed_silence_ms": 597
+    },
+    "usage": {
+      "seconds": 5
+    }
+  },
+  "speech_ready": true,
+  "transcript": "The printed tax rate is one-quarter of one cent.",
+  "audio_bytes": 218096,
+  "audio_duration_ms": 4543,
+  "last_validation": {
+    "request_id": "acc4dcc0-313f-4d65-a126-fe0c1457a6f8",
+    "transport": "websocket",
+    "acknowledged": true,
+    "transcript_matches": true,
+    "invalid_output": false,
+    "final_usage_confirmed": true,
+    "close_reason": "close_requested",
+    "buffered_bytes": 246720,
+    "peak": 0.353515625,
+    "rms": 0.04721619904120991,
+    "duration_ms": 4543,
+    "trimmed_silence_ms": 597,
+    "decode": "succeeded"
+  },
+  "final_usage": {
+    "seconds": 5
+  },
+  "speech_ui_status": "Speech matches the displayed answer. Choose Play answer.",
+  "button_label": "Play answer",
+  "orb_state": {
+    "sessionId": "visitor-0",
+    "requestId": "acc4dcc0-313f-4d65-a126-fe0c1457a6f8",
+    "releasedRequestId": "acc4dcc0-313f-4d65-a126-fe0c1457a6f8",
+    "state": "ready",
+    "label": "Ready for a question",
+    "inputLevel": 0,
+    "outputLevel": 0
+  },
+  "interaction_state": "answer_ready",
+  "error_type": "TimeoutError",
+  "error_category": "Owned test assertion or transport failure"
+}

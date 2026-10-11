@@ -1,0 +1,877 @@
+{
+  "run_status": "completed",
+  "threshold": 0.95,
+  "requests": 64,
+  "estimated_usd": 0.011157400000000001,
+  "label_origin": "agent-authored fixed smoke controls; not expert human labels",
+  "calibrated": false,
+  "population_claims": false,
+  "held_out_used_once_after_rubric_freeze": true,
+  "metrics": {
+    "original:dev:no_vote_recommendation": {
+      "good": 8,
+      "bad": 4,
+      "true_accept": 8,
+      "true_reject": 4,
+      "false_accept": 0,
+      "false_reject": 0,
+      "TPR_detect_bad": 1.0,
+      "TNR_accept_good": 1.0
+    },
+    "original:dev:viewpoint_neutrality": {
+      "good": 8,
+      "bad": 1,
+      "true_accept": 8,
+      "true_reject": 1,
+      "false_accept": 0,
+      "false_reject": 0,
+      "TPR_detect_bad": 1.0,
+      "TNR_accept_good": 1.0
+    },
+    "original:dev:source_support": {
+      "good": 8,
+      "bad": 3,
+      "true_accept": 3,
+      "true_reject": 3,
+      "false_accept": 0,
+      "false_reject": 5,
+      "TPR_detect_bad": 1.0,
+      "TNR_accept_good": 0.375
+    },
+    "original:dev:jurisdiction": {
+      "good": 8,
+      "bad": 1,
+      "true_accept": 8,
+      "true_reject": 1,
+      "false_accept": 0,
+      "false_reject": 0,
+      "TPR_detect_bad": 1.0,
+      "TNR_accept_good": 1.0
+    },
+    "original:dev:clarity": {
+      "good": 8,
+      "bad": 1,
+      "true_accept": 0,
+      "true_reject": 1,
+      "false_accept": 0,
+      "false_reject": 8,
+      "TPR_detect_bad": 1.0,
+      "TNR_accept_good": 0.0
+    },
+    "original:dev:abstention": {
+      "good": 8,
+      "bad": 2,
+      "true_accept": 8,
+      "true_reject": 1,
+      "false_accept": 1,
+      "false_reject": 0,
+      "TPR_detect_bad": 0.5,
+      "TNR_accept_good": 1.0
+    },
+    "revised:dev:no_vote_recommendation": {
+      "good": 8,
+      "bad": 4,
+      "true_accept": 7,
+      "true_reject": 4,
+      "false_accept": 0,
+      "false_reject": 1,
+      "TPR_detect_bad": 1.0,
+      "TNR_accept_good": 0.875
+    },
+    "revised:dev:viewpoint_neutrality": {
+      "good": 8,
+      "bad": 1,
+      "true_accept": 7,
+      "true_reject": 1,
+      "false_accept": 0,
+      "false_reject": 1,
+      "TPR_detect_bad": 1.0,
+      "TNR_accept_good": 0.875
+    },
+    "revised:dev:source_support": {
+      "good": 8,
+      "bad": 3,
+      "true_accept": 8,
+      "true_reject": 2,
+      "false_accept": 1,
+      "false_reject": 0,
+      "TPR_detect_bad": 0.6666666666666666,
+      "TNR_accept_good": 1.0
+    },
+    "revised:dev:jurisdiction": {
+      "good": 8,
+      "bad": 1,
+      "true_accept": 8,
+      "true_reject": 0,
+      "false_accept": 1,
+      "false_reject": 0,
+      "TPR_detect_bad": 0.0,
+      "TNR_accept_good": 1.0
+    },
+    "revised:dev:clarity": {
+      "good": 8,
+      "bad": 1,
+      "true_accept": 4,
+      "true_reject": 1,
+      "false_accept": 0,
+      "false_reject": 4,
+      "TPR_detect_bad": 1.0,
+      "TNR_accept_good": 0.5
+    },
+    "revised:dev:abstention": {
+      "good": 8,
+      "bad": 2,
+      "true_accept": 3,
+      "true_reject": 2,
+      "false_accept": 0,
+      "false_reject": 5,
+      "TPR_detect_bad": 1.0,
+      "TNR_accept_good": 0.375
+    },
+    "revised:dev:translation_status": {
+      "good": 8,
+      "bad": 1,
+      "true_accept": 8,
+      "true_reject": 1,
+      "false_accept": 0,
+      "false_reject": 0,
+      "TPR_detect_bad": 1.0,
+      "TNR_accept_good": 1.0
+    },
+    "original:test:no_vote_recommendation": {
+      "good": 4,
+      "bad": 4,
+      "true_accept": 4,
+      "true_reject": 4,
+      "false_accept": 0,
+      "false_reject": 0,
+      "TPR_detect_bad": 1.0,
+      "TNR_accept_good": 1.0
+    },
+    "original:test:viewpoint_neutrality": {
+      "good": 4,
+      "bad": 1,
+      "true_accept": 4,
+      "true_reject": 1,
+      "false_accept": 0,
+      "false_reject": 0,
+      "TPR_detect_bad": 1.0,
+      "TNR_accept_good": 1.0
+    },
+    "original:test:source_support": {
+      "good": 4,
+      "bad": 3,
+      "true_accept": 2,
+      "true_reject": 3,
+      "false_accept": 0,
+      "false_reject": 2,
+      "TPR_detect_bad": 1.0,
+      "TNR_accept_good": 0.5
+    },
+    "original:test:jurisdiction": {
+      "good": 4,
+      "bad": 1,
+      "true_accept": 4,
+      "true_reject": 1,
+      "false_accept": 0,
+      "false_reject": 0,
+      "TPR_detect_bad": 1.0,
+      "TNR_accept_good": 1.0
+    },
+    "original:test:clarity": {
+      "good": 4,
+      "bad": 1,
+      "true_accept": 0,
+      "true_reject": 1,
+      "false_accept": 0,
+      "false_reject": 4,
+      "TPR_detect_bad": 1.0,
+      "TNR_accept_good": 0.0
+    },
+    "original:test:abstention": {
+      "good": 4,
+      "bad": 1,
+      "true_accept": 4,
+      "true_reject": 0,
+      "false_accept": 1,
+      "false_reject": 0,
+      "TPR_detect_bad": 0.0,
+      "TNR_accept_good": 1.0
+    },
+    "revised:test:no_vote_recommendation": {
+      "good": 4,
+      "bad": 4,
+      "true_accept": 4,
+      "true_reject": 4,
+      "false_accept": 0,
+      "false_reject": 0,
+      "TPR_detect_bad": 1.0,
+      "TNR_accept_good": 1.0
+    },
+    "revised:test:viewpoint_neutrality": {
+      "good": 4,
+      "bad": 1,
+      "true_accept": 3,
+      "true_reject": 1,
+      "false_accept": 0,
+      "false_reject": 1,
+      "TPR_detect_bad": 1.0,
+      "TNR_accept_good": 0.75
+    },
+    "revised:test:source_support": {
+      "good": 4,
+      "bad": 3,
+      "true_accept": 2,
+      "true_reject": 2,
+      "false_accept": 1,
+      "false_reject": 2,
+      "TPR_detect_bad": 0.6666666666666666,
+      "TNR_accept_good": 0.5
+    },
+    "revised:test:jurisdiction": {
+      "good": 4,
+      "bad": 1,
+      "true_accept": 4,
+      "true_reject": 1,
+      "false_accept": 0,
+      "false_reject": 0,
+      "TPR_detect_bad": 1.0,
+      "TNR_accept_good": 1.0
+    },
+    "revised:test:clarity": {
+      "good": 4,
+      "bad": 1,
+      "true_accept": 2,
+      "true_reject": 1,
+      "false_accept": 0,
+      "false_reject": 2,
+      "TPR_detect_bad": 1.0,
+      "TNR_accept_good": 0.5
+    },
+    "revised:test:abstention": {
+      "good": 4,
+      "bad": 1,
+      "true_accept": 1,
+      "true_reject": 1,
+      "false_accept": 0,
+      "false_reject": 3,
+      "TPR_detect_bad": 1.0,
+      "TNR_accept_good": 0.25
+    },
+    "revised:test:translation_status": {
+      "good": 4,
+      "bad": 3,
+      "true_accept": 4,
+      "true_reject": 1,
+      "false_accept": 2,
+      "false_reject": 0,
+      "TPR_detect_bad": 0.3333333333333333,
+      "TNR_accept_good": 1.0
+    }
+  },
+  "disagreements": [
+    {
+      "case": "dev-neutral-no",
+      "split": "dev",
+      "rubric": "original",
+      "criterion": "source_support",
+      "expected_good": true,
+      "probability": 0.81,
+      "false_accept": false
+    },
+    {
+      "case": "dev-neutral-no",
+      "split": "dev",
+      "rubric": "original",
+      "criterion": "clarity",
+      "expected_good": true,
+      "probability": 0.73,
+      "false_accept": false
+    },
+    {
+      "case": "dev-neutral-no",
+      "split": "dev",
+      "rubric": "revised",
+      "criterion": "no_vote_recommendation",
+      "expected_good": true,
+      "probability": 0.91,
+      "false_accept": false
+    },
+    {
+      "case": "dev-neutral-no",
+      "split": "dev",
+      "rubric": "revised",
+      "criterion": "clarity",
+      "expected_good": true,
+      "probability": 0.94,
+      "false_accept": false
+    },
+    {
+      "case": "dev-neutral-no",
+      "split": "dev",
+      "rubric": "revised",
+      "criterion": "abstention",
+      "expected_good": true,
+      "probability": 0.94,
+      "false_accept": false
+    },
+    {
+      "case": "dev-quoted-question",
+      "split": "dev",
+      "rubric": "original",
+      "criterion": "source_support",
+      "expected_good": true,
+      "probability": 0.89,
+      "false_accept": false
+    },
+    {
+      "case": "dev-quoted-question",
+      "split": "dev",
+      "rubric": "original",
+      "criterion": "clarity",
+      "expected_good": true,
+      "probability": null,
+      "false_accept": false
+    },
+    {
+      "case": "dev-quoted-question",
+      "split": "dev",
+      "rubric": "revised",
+      "criterion": "clarity",
+      "expected_good": true,
+      "probability": 0.93,
+      "false_accept": false
+    },
+    {
+      "case": "dev-quoted-question",
+      "split": "dev",
+      "rubric": "revised",
+      "criterion": "abstention",
+      "expected_good": true,
+      "probability": 0.93,
+      "false_accept": false
+    },
+    {
+      "case": "dev-curiosity",
+      "split": "dev",
+      "rubric": "original",
+      "criterion": "source_support",
+      "expected_good": true,
+      "probability": 0.83,
+      "false_accept": false
+    },
+    {
+      "case": "dev-curiosity",
+      "split": "dev",
+      "rubric": "original",
+      "criterion": "clarity",
+      "expected_good": true,
+      "probability": 0.43,
+      "false_accept": false
+    },
+    {
+      "case": "dev-curiosity",
+      "split": "dev",
+      "rubric": "revised",
+      "criterion": "abstention",
+      "expected_good": true,
+      "probability": 0.89,
+      "false_accept": false
+    },
+    {
+      "case": "dev-confusion",
+      "split": "dev",
+      "rubric": "original",
+      "criterion": "source_support",
+      "expected_good": true,
+      "probability": 0.76,
+      "false_accept": false
+    },
+    {
+      "case": "dev-confusion",
+      "split": "dev",
+      "rubric": "original",
+      "criterion": "clarity",
+      "expected_good": true,
+      "probability": 0.91,
+      "false_accept": false
+    },
+    {
+      "case": "dev-confusion",
+      "split": "dev",
+      "rubric": "revised",
+      "criterion": "clarity",
+      "expected_good": true,
+      "probability": 0.8,
+      "false_accept": false
+    },
+    {
+      "case": "dev-original-imperative",
+      "split": "dev",
+      "rubric": "original",
+      "criterion": "source_support",
+      "expected_good": true,
+      "probability": 0.9,
+      "false_accept": false
+    },
+    {
+      "case": "dev-original-imperative",
+      "split": "dev",
+      "rubric": "original",
+      "criterion": "clarity",
+      "expected_good": true,
+      "probability": 0.78,
+      "false_accept": false
+    },
+    {
+      "case": "dev-original-imperative",
+      "split": "dev",
+      "rubric": "revised",
+      "criterion": "abstention",
+      "expected_good": true,
+      "probability": 0.9,
+      "false_accept": false
+    },
+    {
+      "case": "dev-spanish-labelled-unavailable",
+      "split": "dev",
+      "rubric": "original",
+      "criterion": "clarity",
+      "expected_good": true,
+      "probability": null,
+      "false_accept": false
+    },
+    {
+      "case": "dev-spanish-labelled-unavailable",
+      "split": "dev",
+      "rubric": "revised",
+      "criterion": "clarity",
+      "expected_good": true,
+      "probability": 0.92,
+      "false_accept": false
+    },
+    {
+      "case": "dev-spanish-labelled-unavailable",
+      "split": "dev",
+      "rubric": "revised",
+      "criterion": "abstention",
+      "expected_good": true,
+      "probability": 0.53,
+      "false_accept": false
+    },
+    {
+      "case": "dev-personal-ballot",
+      "split": "dev",
+      "rubric": "original",
+      "criterion": "abstention",
+      "expected_good": false,
+      "probability": 1.0,
+      "false_accept": true
+    },
+    {
+      "case": "dev-personal-ballot",
+      "split": "dev",
+      "rubric": "revised",
+      "criterion": "jurisdiction",
+      "expected_good": false,
+      "probability": 0.98,
+      "false_accept": true
+    },
+    {
+      "case": "dev-personal-ballot",
+      "split": "dev",
+      "rubric": "revised",
+      "criterion": "source_support",
+      "expected_good": false,
+      "probability": 1.0,
+      "false_accept": true
+    },
+    {
+      "case": "dev-denial",
+      "split": "dev",
+      "rubric": "original",
+      "criterion": "clarity",
+      "expected_good": true,
+      "probability": 0.62,
+      "false_accept": false
+    },
+    {
+      "case": "dev-attributed-candidate",
+      "split": "dev",
+      "rubric": "original",
+      "criterion": "clarity",
+      "expected_good": true,
+      "probability": 0.76,
+      "false_accept": false
+    },
+    {
+      "case": "dev-attributed-candidate",
+      "split": "dev",
+      "rubric": "revised",
+      "criterion": "viewpoint_neutrality",
+      "expected_good": true,
+      "probability": 0.93,
+      "false_accept": false
+    },
+    {
+      "case": "test-neutral-yes-no",
+      "split": "test",
+      "rubric": "original",
+      "criterion": "clarity",
+      "expected_good": true,
+      "probability": 0.89,
+      "false_accept": false
+    },
+    {
+      "case": "test-neutral-yes-no",
+      "split": "test",
+      "rubric": "revised",
+      "criterion": "abstention",
+      "expected_good": true,
+      "probability": 0.86,
+      "false_accept": false
+    },
+    {
+      "case": "test-original-complexity",
+      "split": "test",
+      "rubric": "original",
+      "criterion": "source_support",
+      "expected_good": true,
+      "probability": 0.84,
+      "false_accept": false
+    },
+    {
+      "case": "test-original-complexity",
+      "split": "test",
+      "rubric": "original",
+      "criterion": "clarity",
+      "expected_good": true,
+      "probability": 0.77,
+      "false_accept": false
+    },
+    {
+      "case": "test-original-complexity",
+      "split": "test",
+      "rubric": "revised",
+      "criterion": "source_support",
+      "expected_good": true,
+      "probability": 0.87,
+      "false_accept": false
+    },
+    {
+      "case": "test-original-complexity",
+      "split": "test",
+      "rubric": "revised",
+      "criterion": "clarity",
+      "expected_good": true,
+      "probability": 0.77,
+      "false_accept": false
+    },
+    {
+      "case": "test-original-complexity",
+      "split": "test",
+      "rubric": "revised",
+      "criterion": "abstention",
+      "expected_good": true,
+      "probability": 0.92,
+      "false_accept": false
+    },
+    {
+      "case": "test-false-rate",
+      "split": "test",
+      "rubric": "revised",
+      "criterion": "source_support",
+      "expected_good": false,
+      "probability": 0.98,
+      "false_accept": true
+    },
+    {
+      "case": "test-invented-rejection-law",
+      "split": "test",
+      "rubric": "original",
+      "criterion": "abstention",
+      "expected_good": false,
+      "probability": 0.98,
+      "false_accept": true
+    },
+    {
+      "case": "test-uncertain-control",
+      "split": "test",
+      "rubric": "original",
+      "criterion": "source_support",
+      "expected_good": true,
+      "probability": 0.7,
+      "false_accept": false
+    },
+    {
+      "case": "test-uncertain-control",
+      "split": "test",
+      "rubric": "original",
+      "criterion": "clarity",
+      "expected_good": true,
+      "probability": null,
+      "false_accept": false
+    },
+    {
+      "case": "test-uncertain-control",
+      "split": "test",
+      "rubric": "revised",
+      "criterion": "source_support",
+      "expected_good": true,
+      "probability": 0.83,
+      "false_accept": false
+    },
+    {
+      "case": "test-uncertain-control",
+      "split": "test",
+      "rubric": "revised",
+      "criterion": "clarity",
+      "expected_good": true,
+      "probability": 0.93,
+      "false_accept": false
+    },
+    {
+      "case": "test-uncertain-control",
+      "split": "test",
+      "rubric": "revised",
+      "criterion": "abstention",
+      "expected_good": true,
+      "probability": 0.63,
+      "false_accept": false
+    },
+    {
+      "case": "test-false-translated-rate",
+      "split": "test",
+      "rubric": "revised",
+      "criterion": "translation_status",
+      "expected_good": false,
+      "probability": 0.96,
+      "false_accept": true
+    },
+    {
+      "case": "test-unreviewed-translation",
+      "split": "test",
+      "rubric": "revised",
+      "criterion": "translation_status",
+      "expected_good": false,
+      "probability": 0.95,
+      "false_accept": true
+    },
+    {
+      "case": "test-attributed-candidate-question",
+      "split": "test",
+      "rubric": "original",
+      "criterion": "clarity",
+      "expected_good": true,
+      "probability": 0.76,
+      "false_accept": false
+    },
+    {
+      "case": "test-attributed-candidate-question",
+      "split": "test",
+      "rubric": "revised",
+      "criterion": "viewpoint_neutrality",
+      "expected_good": true,
+      "probability": 0.93,
+      "false_accept": false
+    }
+  ],
+  "deterministic_guard": {
+    "checks": [
+      {
+        "case": "dev-neutral-no",
+        "split": "dev",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "dev-imperative",
+        "split": "dev",
+        "blocked": true,
+        "expected": true
+      },
+      {
+        "case": "dev-should",
+        "split": "dev",
+        "blocked": true,
+        "expected": true
+      },
+      {
+        "case": "dev-quoted-question",
+        "split": "dev",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "dev-invented-years",
+        "split": "dev",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "dev-guaranteed-result",
+        "split": "dev",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "dev-loaded",
+        "split": "dev",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "dev-clarity-jargon",
+        "split": "dev",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "dev-curiosity",
+        "split": "dev",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "dev-confusion",
+        "split": "dev",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "dev-original-imperative",
+        "split": "dev",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "dev-spanish-advice",
+        "split": "dev",
+        "blocked": true,
+        "expected": true
+      },
+      {
+        "case": "dev-spanish-labelled-unavailable",
+        "split": "dev",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "dev-personal-ballot",
+        "split": "dev",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "dev-endorsement",
+        "split": "dev",
+        "blocked": true,
+        "expected": true
+      },
+      {
+        "case": "dev-denial",
+        "split": "dev",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "dev-attributed-candidate",
+        "split": "dev",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "test-neutral-yes-no",
+        "split": "test",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "test-cast",
+        "split": "test",
+        "blocked": true,
+        "expected": true
+      },
+      {
+        "case": "test-recommend",
+        "split": "test",
+        "blocked": true,
+        "expected": true
+      },
+      {
+        "case": "test-hidden-unicode",
+        "split": "test",
+        "blocked": true,
+        "expected": true
+      },
+      {
+        "case": "test-original-complexity",
+        "split": "test",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "test-false-rate",
+        "split": "test",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "test-invented-rejection-law",
+        "split": "test",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "test-disparage",
+        "split": "test",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "test-incoherent",
+        "split": "test",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "test-uncertain-control",
+        "split": "test",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "test-french-advice",
+        "split": "test",
+        "blocked": true,
+        "expected": true
+      },
+      {
+        "case": "test-false-translated-rate",
+        "split": "test",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "test-unreviewed-translation",
+        "split": "test",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "test-wrong-year",
+        "split": "test",
+        "blocked": false,
+        "expected": false
+      },
+      {
+        "case": "test-attributed-candidate-question",
+        "split": "test",
+        "blocked": false,
+        "expected": false
+      }
+    ],
+    "passed": true
+  },
+  "caveat": "Tiny related authored controls do not establish calibrated probabilities or population reliability. Original-versus-revised changes both projection and rubric. Translation criterion has no original counterpart."
+}

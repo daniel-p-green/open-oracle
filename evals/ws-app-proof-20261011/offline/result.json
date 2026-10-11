@@ -1,0 +1,17 @@
+{
+  "execution": "authored_ws_browser_fixture",
+  "native_offline_decode": true,
+  "actual_openai_audio": false,
+  "provider_calls": 0,
+  "paid_endpoint_requests": 0,
+  "capture_calls": 0,
+  "playback_calls": 0,
+  "erase_after_preparation": true,
+  "erase_during_delayed_retrieval": true,
+  "late_answer_rejected": true,
+  "faq_runtime_exact_source": true,
+  "faq_opens_without_retrieval": true,
+  "consumed_voice_quota_stays_disabled": true,
+  "errors": [],
+  "external_requests": 0
+}

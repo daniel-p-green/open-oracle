@@ -1,0 +1,284 @@
+{
+  "execute": true,
+  "protocol": "gpt-live-1 over existing WebRTC; unchanged recvonly audio direction",
+  "purpose": "Correlate exact nested provider error to outbound mute/commentary/close commands",
+  "public_content": "The printed tax rate is one-quarter of one cent.",
+  "live_sessions_max": 1,
+  "evidence_requests": 0,
+  "decisions_requests": 0,
+  "retries": 0,
+  "microphone_calls": 0,
+  "playback": false,
+  "product_release": false,
+  "store": false,
+  "observation_after_start_seconds": 20,
+  "close_grace_seconds": 12,
+  "outer_process_seconds": 90,
+  "reserve_usd": 0.15,
+  "estimate_if_20_voice_seconds_usd": 0.016666666666666666,
+  "charge_limits": "Conservative reservation, not an API dollar cap; failed finalization requires unknown-charge reporting",
+  "outgoing_commands": [
+    "session.input_audio.mute",
+    "session.commentary.append with null delegation_id",
+    "session.close"
+  ],
+  "retained": "Bounded error code/type/message/param/client_event_id, sent/received ordering, monotonic times, RTP counts, HTTP status and final usage. No SDP/ICE payload, headers, credentials or media files.",
+  "command": "node /Users/danielgreen/Documents/Codex/2026-10-10/task-2/live-diagnostics/protocol-diagnostic.cjs --execute-approved --output /Users/danielgreen/Documents/Codex/2026-10-10/task-2/live-diagnostics/real-protocol-01",
+  "diagnostic_request_id": "55e016e8-7ed0-4a7d-9331-a97920280452",
+  "diagnostic_session_id": "2356f57d-1588-445c-98bf-0fe1afa36504",
+  "config_id": "fbed115d52a0a08dedf46dfb428d01f46aa9d77ce81252f26f8cdc599d5feca9",
+  "visitor_id": null,
+  "execution": "actual_live_protocol_diagnostic",
+  "provider_calls": 1,
+  "evidence_status": "not_rerun; prior accepted text is only the fixed protocol payload",
+  "speech_release": false,
+  "phase": "completed",
+  "browser_errors": [],
+  "journal": {
+    "events": [
+      {
+        "sequence": 1,
+        "monotonic_ms": 1,
+        "direction": "transport",
+        "type": "application_connecting"
+      },
+      {
+        "sequence": 2,
+        "monotonic_ms": 75,
+        "direction": "transport",
+        "type": "data_channel_created",
+        "state": "connecting"
+      },
+      {
+        "sequence": 3,
+        "monotonic_ms": 77,
+        "direction": "transport",
+        "type": "signalingstatechange",
+        "ice_state": "new",
+        "signaling_state": "have-local-offer",
+        "connection_state": "new"
+      },
+      {
+        "sequence": 4,
+        "monotonic_ms": 200,
+        "direction": "transport",
+        "type": "http_request",
+        "method": "POST",
+        "path": "/api/live/session"
+      },
+      {
+        "sequence": 5,
+        "monotonic_ms": 1401,
+        "direction": "transport",
+        "type": "iceconnectionstatechange",
+        "ice_state": "checking",
+        "signaling_state": "have-local-offer",
+        "connection_state": "new"
+      },
+      {
+        "sequence": 6,
+        "monotonic_ms": 1401,
+        "direction": "transport",
+        "type": "http_response",
+        "path": "/api/live/session",
+        "status": 201
+      },
+      {
+        "sequence": 7,
+        "monotonic_ms": 1401,
+        "direction": "transport",
+        "type": "signalingstatechange",
+        "ice_state": "checking",
+        "signaling_state": "stable",
+        "connection_state": "new"
+      },
+      {
+        "sequence": 8,
+        "monotonic_ms": 1401,
+        "direction": "transport",
+        "type": "remote_track",
+        "state": "live",
+        "kind": "audio"
+      },
+      {
+        "sequence": 9,
+        "monotonic_ms": 1401,
+        "direction": "transport",
+        "type": "connectionstatechange",
+        "ice_state": "checking",
+        "signaling_state": "stable",
+        "connection_state": "connecting"
+      },
+      {
+        "sequence": 10,
+        "monotonic_ms": 1487,
+        "direction": "transport",
+        "type": "iceconnectionstatechange",
+        "ice_state": "connected",
+        "signaling_state": "stable",
+        "connection_state": "connecting"
+      },
+      {
+        "sequence": 11,
+        "monotonic_ms": 1549,
+        "direction": "transport",
+        "type": "connectionstatechange",
+        "ice_state": "connected",
+        "signaling_state": "stable",
+        "connection_state": "connected"
+      },
+      {
+        "sequence": 12,
+        "monotonic_ms": 1608,
+        "direction": "transport",
+        "type": "data_channel_open",
+        "state": "open"
+      },
+      {
+        "sequence": 13,
+        "monotonic_ms": 1636,
+        "direction": "received",
+        "type": "session.started",
+        "event_id": "event_EXeBMczhEEe6vXXxscMhI",
+        "session": {
+          "model": "gpt-live-1",
+          "status": "active",
+          "expires_at": 1791695191
+        }
+      },
+      {
+        "sequence": 14,
+        "monotonic_ms": 1636,
+        "direction": "transport",
+        "type": "application_connected"
+      },
+      {
+        "sequence": 15,
+        "monotonic_ms": 1637,
+        "direction": "transport",
+        "type": "transceiver",
+        "transceiver_direction": "recvonly",
+        "current_direction": "recvonly"
+      },
+      {
+        "sequence": 16,
+        "monotonic_ms": 1640,
+        "direction": "sent",
+        "type": "session.input_audio.mute",
+        "event_id": "fa78655e-42fa-43b6-b074-7d7150d25687"
+      },
+      {
+        "sequence": 17,
+        "monotonic_ms": 1640,
+        "direction": "sent",
+        "type": "session.commentary.append",
+        "event_id": "e6b7e04d-1a0c-43e8-9ce1-dd0800925afa",
+        "delegation_id": null,
+        "content_length": 48,
+        "content_is_approved_phrase": true,
+        "content": "The printed tax rate is one-quarter of one cent."
+      },
+      {
+        "sequence": 18,
+        "monotonic_ms": 1696,
+        "direction": "received",
+        "type": "session.input_audio.muted",
+        "event_id": "event_EXeBMXFK8qrB8BLEFBFdM",
+        "client_event_id": "fa78655e-42fa-43b6-b074-7d7150d25687"
+      },
+      {
+        "sequence": 19,
+        "monotonic_ms": 16393,
+        "direction": "received",
+        "type": "session.usage.updated",
+        "event_id": "event_EXeBbOyrefIMsxAHHmbhw",
+        "usage_seconds": 15
+      },
+      {
+        "sequence": 20,
+        "monotonic_ms": 21643,
+        "direction": "transport",
+        "type": "transceiver",
+        "transceiver_direction": "recvonly",
+        "current_direction": "recvonly"
+      },
+      {
+        "sequence": 21,
+        "monotonic_ms": 21645,
+        "direction": "sent",
+        "type": "session.input_audio.mute",
+        "event_id": "2ea13fb3-b3d5-4525-8a17-5f6a0d50f7e6"
+      },
+      {
+        "sequence": 22,
+        "monotonic_ms": 21645,
+        "direction": "sent",
+        "type": "session.close",
+        "event_id": "3053762d-0b59-4872-b798-c44b342fc2ef"
+      },
+      {
+        "sequence": 23,
+        "monotonic_ms": 21680,
+        "direction": "received",
+        "type": "session.input_audio.muted",
+        "event_id": "event_EXeBge0IbWo4S1iDpfCHd",
+        "client_event_id": "2ea13fb3-b3d5-4525-8a17-5f6a0d50f7e6"
+      },
+      {
+        "sequence": 24,
+        "monotonic_ms": 21680,
+        "direction": "received",
+        "type": "error",
+        "event_id": "event_EXeBgI3G2FBjozT4dRfSW",
+        "error": {
+          "type": "server_error",
+          "code": "context_injection_incomplete",
+          "message": "The session closed before the estimated context injection completed.",
+          "param": null,
+          "client_event_id": "e6b7e04d-1a0c-43e8-9ce1-dd0800925afa"
+        },
+        "error_detail_missing": false,
+        "error_message_clipped": false,
+        "error_message_redacted": false
+      },
+      {
+        "sequence": 25,
+        "monotonic_ms": 22087,
+        "direction": "received",
+        "type": "session.closed",
+        "event_id": "event_EXeBgAesI9fR5vnkZoGAc",
+        "client_event_id": "3053762d-0b59-4872-b798-c44b342fc2ef",
+        "reason": "close_requested",
+        "usage_seconds": 15,
+        "session": {
+          "model": "gpt-live-1",
+          "status": "active",
+          "expires_at": 1791695191
+        }
+      },
+      {
+        "sequence": 26,
+        "monotonic_ms": 22354,
+        "direction": "transport",
+        "type": "data_channel_closed",
+        "state": "closed"
+      },
+      {
+        "sequence": 27,
+        "monotonic_ms": 22592,
+        "direction": "transport",
+        "type": "application_stopped"
+      }
+    ],
+    "dropped": 0,
+    "complete": true
+  },
+  "capture_calls": 0,
+  "ready": false,
+  "closed_reason": "close_requested",
+  "final_usage_seconds": 15,
+  "observation_timeout": true,
+  "live_session_http_requests": 1,
+  "forbidden_requests": 0,
+  "finalization": "confirmed"
+}

@@ -1,0 +1,139 @@
+{
+  "execution": "real_gpt_live_websocket",
+  "accepted": false,
+  "report": {
+    "acknowledged": false,
+    "transcript_matches": false,
+    "invalid_output": true,
+    "final_usage_confirmed": true,
+    "close_reason": "close_requested",
+    "buffered_bytes": 0
+  },
+  "journal": {
+    "events": [
+      {
+        "sequence": 1,
+        "monotonic_ms": 352,
+        "direction": "sent",
+        "type": "session.start",
+        "event_id": "7613a3d0-3d25-4f6e-add3-83bcafc67797"
+      },
+      {
+        "sequence": 2,
+        "monotonic_ms": 858,
+        "direction": "received",
+        "type": "session.started",
+        "event_id": "event_EXeaeYkOAYoxTHGWc70W8",
+        "client_event_id": "7613a3d0-3d25-4f6e-add3-83bcafc67797",
+        "session": {
+          "model": "gpt-live-1",
+          "status": "active",
+          "expires_at": 1791696760
+        }
+      },
+      {
+        "sequence": 3,
+        "monotonic_ms": 858,
+        "direction": "sent",
+        "type": "session.input_audio.mute",
+        "event_id": "a84331d1-97ff-425e-87bf-d6c45bff80cc"
+      },
+      {
+        "sequence": 4,
+        "monotonic_ms": 858,
+        "direction": "sent",
+        "type": "session.commentary.append",
+        "event_id": "2b3a2fe3-b718-4e12-8e4b-fb6f97242de9",
+        "delegation_id": null,
+        "content_length": 48,
+        "content_is_approved_phrase": true,
+        "content": "The printed tax rate is one-quarter of one cent."
+      },
+      {
+        "sequence": 5,
+        "monotonic_ms": 951,
+        "direction": "received",
+        "type": "session.input_audio.muted",
+        "event_id": "event_EXeafhuKQmolvS5BzhdeG",
+        "client_event_id": "a84331d1-97ff-425e-87bf-d6c45bff80cc"
+      },
+      {
+        "sequence": 6,
+        "monotonic_ms": 1720,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXeafflRJs59yLxXhjyIy",
+        "start_ms": 0,
+        "end_ms": 200,
+        "delta": "The printed"
+      },
+      {
+        "sequence": 7,
+        "monotonic_ms": 1782,
+        "direction": "received",
+        "type": "session.output_audio.delta"
+      },
+      {
+        "sequence": 8,
+        "monotonic_ms": 1782,
+        "direction": "sent",
+        "type": "session.close",
+        "event_id": "8c76f043-8f87-4ce8-a1f4-a10021056642"
+      },
+      {
+        "sequence": 9,
+        "monotonic_ms": 1838,
+        "direction": "received",
+        "type": "error",
+        "event_id": "event_EXeafHKr6dx5w4sPmQ5lA",
+        "error": {
+          "type": "server_error",
+          "code": "context_injection_incomplete",
+          "message": "The session closed before the estimated context injection completed.",
+          "param": null,
+          "client_event_id": "2b3a2fe3-b718-4e12-8e4b-fb6f97242de9"
+        },
+        "error_detail_missing": false,
+        "error_message_clipped": false,
+        "error_message_redacted": false
+      },
+      {
+        "sequence": 10,
+        "monotonic_ms": 1838,
+        "direction": "transport",
+        "type": "websocket_error",
+        "error_type": "ProviderOrTransportError"
+      },
+      {
+        "sequence": 11,
+        "monotonic_ms": 2142,
+        "direction": "received",
+        "type": "session.output_audio.delta"
+      },
+      {
+        "sequence": 12,
+        "monotonic_ms": 2291,
+        "direction": "received",
+        "type": "session.closed",
+        "event_id": "event_EXeag87AGyBGoPP8isGpB",
+        "client_event_id": "8c76f043-8f87-4ce8-a1f4-a10021056642",
+        "reason": "close_requested",
+        "usage_seconds": 0,
+        "session": {
+          "model": "gpt-live-1",
+          "status": "active",
+          "expires_at": 1791696760
+        }
+      }
+    ],
+    "dropped": 0,
+    "complete": true
+  },
+  "input_frames": 21120,
+  "synthetic_input": true,
+  "microphone": false,
+  "playback": false,
+  "retries": 0,
+  "media_saved": false,
+  "human_audibility": "unverified; playback forbidden"
+}

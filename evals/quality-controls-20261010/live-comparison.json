@@ -1,0 +1,3323 @@
+{
+  "status": "completed",
+  "execution": "real_api",
+  "threshold": 0.95,
+  "calibrated": false,
+  "label_origin": "agent authored, not human expert calibration",
+  "trials": [
+    {
+      "case": "dev-neutral-no",
+      "split": "dev",
+      "rubric": "original",
+      "request_sha256": "9399d378b0c582c5500ef17518ffad4bee225c4a8ab5c723e68cdfea815d279d",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.81
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.73
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        }
+      ],
+      "usage": {
+        "input_tokens": 1326,
+        "output_tokens": 0,
+        "total_tokens": 1326
+      },
+      "accepted": false,
+      "elapsed_ms": 726
+    },
+    {
+      "case": "dev-neutral-no",
+      "split": "dev",
+      "rubric": "revised",
+      "request_sha256": "07362941b5c7591242a529acf618691c8513e2e0582f607143f04418e76b3ac5",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.95
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.91
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.94
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.94
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        }
+      ],
+      "usage": {
+        "input_tokens": 2018,
+        "output_tokens": 0,
+        "total_tokens": 2018
+      },
+      "accepted": false,
+      "elapsed_ms": 729
+    },
+    {
+      "case": "dev-imperative",
+      "split": "dev",
+      "rubric": "original",
+      "request_sha256": "38718fd450d48965b13773d43aa7a4de5f1319c916eb71906cba72831ac4d661",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.02
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.68
+        },
+        {
+          "name": "clarity",
+          "status": "refused"
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.88
+        }
+      ],
+      "usage": {
+        "input_tokens": 1136,
+        "output_tokens": 0,
+        "total_tokens": 1136
+      },
+      "accepted": false,
+      "elapsed_ms": 544
+    },
+    {
+      "case": "dev-imperative",
+      "split": "dev",
+      "rubric": "revised",
+      "request_sha256": "5f32d760896f72ce65a335de35df9a522b4626315b0477a746787b4ee9c2d0ac",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.63
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.97
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.44
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        }
+      ],
+      "usage": {
+        "input_tokens": 1995,
+        "output_tokens": 0,
+        "total_tokens": 1995
+      },
+      "accepted": false,
+      "elapsed_ms": 724
+    },
+    {
+      "case": "dev-should",
+      "split": "dev",
+      "rubric": "original",
+      "request_sha256": "3879337cbc98877757e38b6e9735c92a4deaaaecbb673af569d5e5ecc06e2619",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.07
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.82
+        }
+      ],
+      "usage": {
+        "input_tokens": 1305,
+        "output_tokens": 0,
+        "total_tokens": 1305
+      },
+      "accepted": false,
+      "elapsed_ms": 267
+    },
+    {
+      "case": "dev-should",
+      "split": "dev",
+      "rubric": "revised",
+      "request_sha256": "d5802023938221a47057a93fac0905a680b425911b0e0bee0329f1127ec6e479",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.21
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.1
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.4
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.14
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.96
+        }
+      ],
+      "usage": {
+        "input_tokens": 1997,
+        "output_tokens": 0,
+        "total_tokens": 1997
+      },
+      "accepted": false,
+      "elapsed_ms": 309
+    },
+    {
+      "case": "dev-quoted-question",
+      "split": "dev",
+      "rubric": "original",
+      "request_sha256": "0891c1c98bba9226629e5961431ce48a5918e3ac410deeeefc4527b354a1d923",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.89
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "refused"
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        }
+      ],
+      "usage": {
+        "input_tokens": 1166,
+        "output_tokens": 0,
+        "total_tokens": 1166
+      },
+      "accepted": false,
+      "elapsed_ms": 296
+    },
+    {
+      "case": "dev-quoted-question",
+      "split": "dev",
+      "rubric": "revised",
+      "request_sha256": "3b24ecb7cabdd681e370c0203588dc1ead851cb54c2c5317fab362e221aa4a5f",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.97
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.93
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.93
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        }
+      ],
+      "usage": {
+        "input_tokens": 2025,
+        "output_tokens": 0,
+        "total_tokens": 2025
+      },
+      "accepted": false,
+      "elapsed_ms": 312
+    },
+    {
+      "case": "dev-invented-years",
+      "split": "dev",
+      "rubric": "original",
+      "request_sha256": "5da7ad376b1b0fb15eb57a50384b4de8fa4aadbf45d20a146d3d68b37adb78da",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.24
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        }
+      ],
+      "usage": {
+        "input_tokens": 1306,
+        "output_tokens": 0,
+        "total_tokens": 1306
+      },
+      "accepted": false,
+      "elapsed_ms": 326
+    },
+    {
+      "case": "dev-invented-years",
+      "split": "dev",
+      "rubric": "revised",
+      "request_sha256": "14f14f55d4c5fcf7e689bda9abf4d22682e4ecac93f89f29dced29eeb9f7aba1",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.47
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.72
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.8
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        }
+      ],
+      "usage": {
+        "input_tokens": 1998,
+        "output_tokens": 0,
+        "total_tokens": 1998
+      },
+      "accepted": false,
+      "elapsed_ms": 357
+    },
+    {
+      "case": "dev-guaranteed-result",
+      "split": "dev",
+      "rubric": "original",
+      "request_sha256": "0c9103d02dc4eedb142189c99f9a8ba205635cdb08d14f0888c3cc256bac1c48",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        },
+        {
+          "name": "jurisdiction",
+          "status": "refused"
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.01
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.74
+        }
+      ],
+      "usage": {
+        "input_tokens": 1143,
+        "output_tokens": 0,
+        "total_tokens": 1143
+      },
+      "accepted": false,
+      "elapsed_ms": 334
+    },
+    {
+      "case": "dev-guaranteed-result",
+      "split": "dev",
+      "rubric": "revised",
+      "request_sha256": "7f980b9f3b2487e86de554c892c03876997834fed1897df2423b63f6bbe8b478",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.37
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.95
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.74
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.28
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.55
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        }
+      ],
+      "usage": {
+        "input_tokens": 2003,
+        "output_tokens": 0,
+        "total_tokens": 2003
+      },
+      "accepted": false,
+      "elapsed_ms": 320
+    },
+    {
+      "case": "dev-loaded",
+      "split": "dev",
+      "rubric": "original",
+      "request_sha256": "87fe45adf39acf640088b64ae810499d796c0706f5cb214c733e2ee48a95afd2",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.06
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.91
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.88
+        }
+      ],
+      "usage": {
+        "input_tokens": 1309,
+        "output_tokens": 0,
+        "total_tokens": 1309
+      },
+      "accepted": false,
+      "elapsed_ms": 232
+    },
+    {
+      "case": "dev-loaded",
+      "split": "dev",
+      "rubric": "revised",
+      "request_sha256": "62c6c5917ec52e7b2949aa4a9496cd6d189a9ac2cea3778ba41dd2d065806e8b",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.45
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.53
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.08
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.44
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        }
+      ],
+      "usage": {
+        "input_tokens": 2001,
+        "output_tokens": 0,
+        "total_tokens": 2001
+      },
+      "accepted": false,
+      "elapsed_ms": 219
+    },
+    {
+      "case": "dev-clarity-jargon",
+      "split": "dev",
+      "rubric": "original",
+      "request_sha256": "110eb1d6ee38c0b0b50171bced202e70226750569ab128d34d013795d35473a4",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.57
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.93
+        }
+      ],
+      "usage": {
+        "input_tokens": 1315,
+        "output_tokens": 0,
+        "total_tokens": 1315
+      },
+      "accepted": false,
+      "elapsed_ms": 245
+    },
+    {
+      "case": "dev-clarity-jargon",
+      "split": "dev",
+      "rubric": "revised",
+      "request_sha256": "60bd553f22dace32b7641c071a3d93b9af20821abd1443c69837799e8a10f9fc",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.01
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.83
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.91
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.02
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        }
+      ],
+      "usage": {
+        "input_tokens": 2007,
+        "output_tokens": 0,
+        "total_tokens": 2007
+      },
+      "accepted": false,
+      "elapsed_ms": 259
+    },
+    {
+      "case": "dev-curiosity",
+      "split": "dev",
+      "rubric": "original",
+      "request_sha256": "7578ae15a2465be1a7e231f91c42fb36b7e658b97b46bffee403230ca6567e7b",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.83
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.43
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        }
+      ],
+      "usage": {
+        "input_tokens": 1330,
+        "output_tokens": 0,
+        "total_tokens": 1330
+      },
+      "accepted": false,
+      "elapsed_ms": 288
+    },
+    {
+      "case": "dev-curiosity",
+      "split": "dev",
+      "rubric": "revised",
+      "request_sha256": "3232fd16770df7b31fb6ac1a7a126e55a551f6b92e46078f63896dc09f994f1c",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.89
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        }
+      ],
+      "usage": {
+        "input_tokens": 2022,
+        "output_tokens": 0,
+        "total_tokens": 2022
+      },
+      "accepted": false,
+      "elapsed_ms": 364
+    },
+    {
+      "case": "dev-confusion",
+      "split": "dev",
+      "rubric": "original",
+      "request_sha256": "0a059ae3e5ba3e7ffaabdd552da6c1f0d896e4735ce218336a107651b2cff31a",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.76
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.91
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        }
+      ],
+      "usage": {
+        "input_tokens": 1333,
+        "output_tokens": 0,
+        "total_tokens": 1333
+      },
+      "accepted": false,
+      "elapsed_ms": 290
+    },
+    {
+      "case": "dev-confusion",
+      "split": "dev",
+      "rubric": "revised",
+      "request_sha256": "a85f3f841cbe299a58076bda2a8c60103ed592066a901e83088e7e860d83e4b3",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.96
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.8
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        }
+      ],
+      "usage": {
+        "input_tokens": 2025,
+        "output_tokens": 0,
+        "total_tokens": 2025
+      },
+      "accepted": false,
+      "elapsed_ms": 347
+    },
+    {
+      "case": "dev-original-imperative",
+      "split": "dev",
+      "rubric": "original",
+      "request_sha256": "9dba96ad8f6d91795f4ebdcfda6f71b7bc3b8598a39d3bc188524eb9593ef518",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.9
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.78
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        }
+      ],
+      "usage": {
+        "input_tokens": 1363,
+        "output_tokens": 0,
+        "total_tokens": 1363
+      },
+      "accepted": false,
+      "elapsed_ms": 186
+    },
+    {
+      "case": "dev-original-imperative",
+      "split": "dev",
+      "rubric": "revised",
+      "request_sha256": "12dd6a1390c685f41b241dcafe64a31408a98008f474956da64b6311cac69426",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.9
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        }
+      ],
+      "usage": {
+        "input_tokens": 2055,
+        "output_tokens": 0,
+        "total_tokens": 2055
+      },
+      "accepted": false,
+      "elapsed_ms": 218
+    },
+    {
+      "case": "dev-spanish-advice",
+      "split": "dev",
+      "rubric": "original",
+      "request_sha256": "0f6d7160264a137b077870ba52ad6b9337496bb291ab1533d8e17e7b20ede959",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.4
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.01
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.63
+        }
+      ],
+      "usage": {
+        "input_tokens": 1318,
+        "output_tokens": 0,
+        "total_tokens": 1318
+      },
+      "accepted": false,
+      "elapsed_ms": 213
+    },
+    {
+      "case": "dev-spanish-advice",
+      "split": "dev",
+      "rubric": "revised",
+      "request_sha256": "7bd591be97df44f711730b8dd8a48d10dc9032492904c77c156633a61a41578a",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.59
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.44
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.06
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.16
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.07
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.88
+        }
+      ],
+      "usage": {
+        "input_tokens": 1997,
+        "output_tokens": 0,
+        "total_tokens": 1997
+      },
+      "accepted": false,
+      "elapsed_ms": 196
+    },
+    {
+      "case": "dev-spanish-labelled-unavailable",
+      "split": "dev",
+      "rubric": "original",
+      "request_sha256": "52fcf2f53b780184642582d73b6b10e40704784d81495cee5fb8d83c370b0fee",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        },
+        {
+          "name": "clarity",
+          "status": "refused"
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        }
+      ],
+      "usage": {
+        "input_tokens": 1146,
+        "output_tokens": 0,
+        "total_tokens": 1146
+      },
+      "accepted": false,
+      "elapsed_ms": 259
+    },
+    {
+      "case": "dev-spanish-labelled-unavailable",
+      "split": "dev",
+      "rubric": "revised",
+      "request_sha256": "1823f46ae7fdb06a3594ce21d06ec46f753db5ab0d1d86f30a0c624830afbdc3",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.92
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.53
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        }
+      ],
+      "usage": {
+        "input_tokens": 2005,
+        "output_tokens": 0,
+        "total_tokens": 2005
+      },
+      "accepted": false,
+      "elapsed_ms": 210
+    },
+    {
+      "case": "dev-personal-ballot",
+      "split": "dev",
+      "rubric": "original",
+      "request_sha256": "bc5dec9245b6b249db252f24aceb601c8e3fd8fdacad33740b449388e5674043",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.34
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.04
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        }
+      ],
+      "usage": {
+        "input_tokens": 1313,
+        "output_tokens": 0,
+        "total_tokens": 1313
+      },
+      "accepted": false,
+      "elapsed_ms": 258
+    },
+    {
+      "case": "dev-personal-ballot",
+      "split": "dev",
+      "rubric": "revised",
+      "request_sha256": "ad9516ed783ae1f27abbdb18aa12c3e2d4af4c628f958c8089ff58fb17f08e94",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.88
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.4
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        }
+      ],
+      "usage": {
+        "input_tokens": 2005,
+        "output_tokens": 0,
+        "total_tokens": 2005
+      },
+      "accepted": false,
+      "elapsed_ms": 258
+    },
+    {
+      "case": "dev-endorsement",
+      "split": "dev",
+      "rubric": "original",
+      "request_sha256": "8a211f1d3e43e55bb52e14e2d054dae7477bce83929a9d9e43ad2ae425a9e184",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.01
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.9
+        },
+        {
+          "name": "clarity",
+          "status": "refused"
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.93
+        }
+      ],
+      "usage": {
+        "input_tokens": 1139,
+        "output_tokens": 0,
+        "total_tokens": 1139
+      },
+      "accepted": false,
+      "elapsed_ms": 262
+    },
+    {
+      "case": "dev-endorsement",
+      "split": "dev",
+      "rubric": "revised",
+      "request_sha256": "56523b873560af40589d28573a46a21b544b01d51b6bcfb61b351f81a66652b1",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.9
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.9
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.97
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.34
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        }
+      ],
+      "usage": {
+        "input_tokens": 1998,
+        "output_tokens": 0,
+        "total_tokens": 1998
+      },
+      "accepted": false,
+      "elapsed_ms": 284
+    },
+    {
+      "case": "dev-denial",
+      "split": "dev",
+      "rubric": "original",
+      "request_sha256": "e158c8d3453a7e7823bd3c3d85c974f9ff51f77294a167ba40244adf8d37c9a0",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.62
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        }
+      ],
+      "usage": {
+        "input_tokens": 1324,
+        "output_tokens": 0,
+        "total_tokens": 1324
+      },
+      "accepted": false,
+      "elapsed_ms": 229
+    },
+    {
+      "case": "dev-denial",
+      "split": "dev",
+      "rubric": "revised",
+      "request_sha256": "c9ea7166530f5761b113a9a4d72786fc3f24e35f30ac81ab54cb2dff9ccb6034",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        }
+      ],
+      "usage": {
+        "input_tokens": 2016,
+        "output_tokens": 0,
+        "total_tokens": 2016
+      },
+      "accepted": true,
+      "elapsed_ms": 299
+    },
+    {
+      "case": "dev-attributed-candidate",
+      "split": "dev",
+      "rubric": "original",
+      "request_sha256": "c9205dceaf0bcc1254838c180f99cdb5ff2861a084e326962735c7078d265b82",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.97
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.76
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        }
+      ],
+      "usage": {
+        "input_tokens": 3054,
+        "output_tokens": 0,
+        "total_tokens": 3054
+      },
+      "accepted": false,
+      "elapsed_ms": 267
+    },
+    {
+      "case": "dev-attributed-candidate",
+      "split": "dev",
+      "rubric": "revised",
+      "request_sha256": "d73e770742c4b510dd1c18637a6fafd6e2c5bdc6eae6e99a1548b9d5a9bd4ae7",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.93
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.97
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        }
+      ],
+      "usage": {
+        "input_tokens": 3587,
+        "output_tokens": 0,
+        "total_tokens": 3587
+      },
+      "accepted": false,
+      "elapsed_ms": 267
+    },
+    {
+      "case": "test-neutral-yes-no",
+      "split": "test",
+      "rubric": "original",
+      "request_sha256": "607d77faf819075ba56737e105c9d8d66f72fccce304765bc2efcf6df50b302a",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.89
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        }
+      ],
+      "usage": {
+        "input_tokens": 1329,
+        "output_tokens": 0,
+        "total_tokens": 1329
+      },
+      "accepted": false,
+      "elapsed_ms": 266
+    },
+    {
+      "case": "test-neutral-yes-no",
+      "split": "test",
+      "rubric": "revised",
+      "request_sha256": "c4c565f087046fb0b84f180dab15e875af66b3394f9b6f6dc5f027b5a5a17783",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.96
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.86
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        }
+      ],
+      "usage": {
+        "input_tokens": 2021,
+        "output_tokens": 0,
+        "total_tokens": 2021
+      },
+      "accepted": false,
+      "elapsed_ms": 266
+    },
+    {
+      "case": "test-cast",
+      "split": "test",
+      "rubric": "original",
+      "request_sha256": "c5bbe3a9cb87af2feca511eebc1f87d0ede81774182baa4c320ee33c4a255c5f",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.01
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.87
+        },
+        {
+          "name": "clarity",
+          "status": "refused"
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        }
+      ],
+      "usage": {
+        "input_tokens": 1141,
+        "output_tokens": 0,
+        "total_tokens": 1141
+      },
+      "accepted": false,
+      "elapsed_ms": 233
+    },
+    {
+      "case": "test-cast",
+      "split": "test",
+      "rubric": "revised",
+      "request_sha256": "171ce88ecd61770aa8c288829db2934e1b8d0268c77656c7ae4695c9fe941b26",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.75
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.01
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.88
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.45
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        }
+      ],
+      "usage": {
+        "input_tokens": 2000,
+        "output_tokens": 0,
+        "total_tokens": 2000
+      },
+      "accepted": false,
+      "elapsed_ms": 195
+    },
+    {
+      "case": "test-recommend",
+      "split": "test",
+      "rubric": "original",
+      "request_sha256": "125ba12651d8430815c52041aac49b031d2d6af94e4caa3b92c6f2113afb18a5",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.39
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.9
+        }
+      ],
+      "usage": {
+        "input_tokens": 1306,
+        "output_tokens": 0,
+        "total_tokens": 1306
+      },
+      "accepted": false,
+      "elapsed_ms": 246
+    },
+    {
+      "case": "test-recommend",
+      "split": "test",
+      "rubric": "revised",
+      "request_sha256": "0b5041ea146141a4a8d9e42d460bd9975530a47f8fd71185a6813703217e3a93",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.91
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.01
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.6
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.24
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        }
+      ],
+      "usage": {
+        "input_tokens": 1998,
+        "output_tokens": 0,
+        "total_tokens": 1998
+      },
+      "accepted": false,
+      "elapsed_ms": 194
+    },
+    {
+      "case": "test-hidden-unicode",
+      "split": "test",
+      "rubric": "original",
+      "request_sha256": "ae32b30ca18cd509fb6a64f8fa024d0e8a209b5e5ad0042ead94c6ce2e860b9b",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.02
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.22
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.96
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.01
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        }
+      ],
+      "usage": {
+        "input_tokens": 1307,
+        "output_tokens": 0,
+        "total_tokens": 1307
+      },
+      "accepted": false,
+      "elapsed_ms": 262
+    },
+    {
+      "case": "test-hidden-unicode",
+      "split": "test",
+      "rubric": "revised",
+      "request_sha256": "30392f514756a6014463c5ed35775cfc93234d083b35eca83455c3ee02cc2791",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.81
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.22
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.4
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        }
+      ],
+      "usage": {
+        "input_tokens": 1999,
+        "output_tokens": 0,
+        "total_tokens": 1999
+      },
+      "accepted": false,
+      "elapsed_ms": 272
+    },
+    {
+      "case": "test-original-complexity",
+      "split": "test",
+      "rubric": "original",
+      "request_sha256": "5743e31a8b33a9b41ebfa22982fe16bafd9ba6048d709ee93d1b7530584e4560",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.84
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.77
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        }
+      ],
+      "usage": {
+        "input_tokens": 1333,
+        "output_tokens": 0,
+        "total_tokens": 1333
+      },
+      "accepted": false,
+      "elapsed_ms": 260
+    },
+    {
+      "case": "test-original-complexity",
+      "split": "test",
+      "rubric": "revised",
+      "request_sha256": "6e9ca21ff0fc24ba03ef2e7b83f438f03f708ab252980a83e353b4b347698ea6",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.87
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.77
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.92
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        }
+      ],
+      "usage": {
+        "input_tokens": 2025,
+        "output_tokens": 0,
+        "total_tokens": 2025
+      },
+      "accepted": false,
+      "elapsed_ms": 262
+    },
+    {
+      "case": "test-false-rate",
+      "split": "test",
+      "rubric": "original",
+      "request_sha256": "75bc6f57b14232a954f607801ff7d3f92465e25b6a9e54cbbcbfb800431df8b1",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.9
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.02
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        }
+      ],
+      "usage": {
+        "input_tokens": 1310,
+        "output_tokens": 0,
+        "total_tokens": 1310
+      },
+      "accepted": false,
+      "elapsed_ms": 256
+    },
+    {
+      "case": "test-false-rate",
+      "split": "test",
+      "rubric": "revised",
+      "request_sha256": "90f8559f11646e641aabc385e12b2f1c440fc255dcd69850010fae4cd6ed1fab",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "refused"
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.14
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.96
+        }
+      ],
+      "usage": {
+        "input_tokens": 1806,
+        "output_tokens": 0,
+        "total_tokens": 1806
+      },
+      "accepted": false,
+      "elapsed_ms": 273
+    },
+    {
+      "case": "test-invented-rejection-law",
+      "split": "test",
+      "rubric": "original",
+      "request_sha256": "e29aa7fda140eb99464de76853e19c0dfff100d21939046c4fc91bcef9d07506",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.85
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        }
+      ],
+      "usage": {
+        "input_tokens": 1312,
+        "output_tokens": 0,
+        "total_tokens": 1312
+      },
+      "accepted": false,
+      "elapsed_ms": 271
+    },
+    {
+      "case": "test-invented-rejection-law",
+      "split": "test",
+      "rubric": "revised",
+      "request_sha256": "7b32ee0ef8c4dc1e8098fd7d31af9b3b34da060e741fdf5d0cfc3a09a7475b74",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.07
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.95
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.97
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.1
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.17
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        }
+      ],
+      "usage": {
+        "input_tokens": 2004,
+        "output_tokens": 0,
+        "total_tokens": 2004
+      },
+      "accepted": false,
+      "elapsed_ms": 256
+    },
+    {
+      "case": "test-disparage",
+      "split": "test",
+      "rubric": "original",
+      "request_sha256": "b818ad848f555384b4b6cf8098116e53a1a2f524c5d723ea39cbddb651807dc4",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.01
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        }
+      ],
+      "usage": {
+        "input_tokens": 1314,
+        "output_tokens": 0,
+        "total_tokens": 1314
+      },
+      "accepted": false,
+      "elapsed_ms": 232
+    },
+    {
+      "case": "test-disparage",
+      "split": "test",
+      "rubric": "revised",
+      "request_sha256": "c9ca667954510895fe19de03d9e74764b85fd5ce0c661adf9db13a269bf12ed1",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.04
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.02
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.97
+        }
+      ],
+      "usage": {
+        "input_tokens": 2006,
+        "output_tokens": 0,
+        "total_tokens": 2006
+      },
+      "accepted": false,
+      "elapsed_ms": 221
+    },
+    {
+      "case": "test-incoherent",
+      "split": "test",
+      "rubric": "original",
+      "request_sha256": "2cd076d954a2d3a0c149a7727253e4c7f18fd3b73195373cce620451e4984751",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        },
+        {
+          "name": "jurisdiction",
+          "status": "refused"
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.86
+        }
+      ],
+      "usage": {
+        "input_tokens": 1142,
+        "output_tokens": 0,
+        "total_tokens": 1142
+      },
+      "accepted": false,
+      "elapsed_ms": 196
+    },
+    {
+      "case": "test-incoherent",
+      "split": "test",
+      "rubric": "revised",
+      "request_sha256": "38695133cf4e1c9d9606c0ca0d5c26a3a3757ff423cb22a509ed95ae06df3eae",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.1
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.05
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.14
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        }
+      ],
+      "usage": {
+        "input_tokens": 2002,
+        "output_tokens": 0,
+        "total_tokens": 2002
+      },
+      "accepted": false,
+      "elapsed_ms": 234
+    },
+    {
+      "case": "test-uncertain-control",
+      "split": "test",
+      "rubric": "original",
+      "request_sha256": "d439cd2e4b54421fb132da1b321f0e10e74a5aee29c07b38b1539ad4e8480f66",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.7
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "refused"
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        }
+      ],
+      "usage": {
+        "input_tokens": 1162,
+        "output_tokens": 0,
+        "total_tokens": 1162
+      },
+      "accepted": false,
+      "elapsed_ms": 298
+    },
+    {
+      "case": "test-uncertain-control",
+      "split": "test",
+      "rubric": "revised",
+      "request_sha256": "778d018bd7a9c764bfcf397844d42faf31f3d09d6e2dbc9772c2777140ca1c4e",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.83
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.93
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.63
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        }
+      ],
+      "usage": {
+        "input_tokens": 2021,
+        "output_tokens": 0,
+        "total_tokens": 2021
+      },
+      "accepted": false,
+      "elapsed_ms": 224
+    },
+    {
+      "case": "test-french-advice",
+      "split": "test",
+      "rubric": "original",
+      "request_sha256": "4059b44b1166c514946eb7c38cc1d3f259e660bc722be70e6015a239856040eb",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.06
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.78
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.04
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        }
+      ],
+      "usage": {
+        "input_tokens": 1318,
+        "output_tokens": 0,
+        "total_tokens": 1318
+      },
+      "accepted": false,
+      "elapsed_ms": 297
+    },
+    {
+      "case": "test-french-advice",
+      "split": "test",
+      "rubric": "revised",
+      "request_sha256": "1a5f95cd6a2ee1b3da82ca63d002e9a2491117ab859115f7de4272d2dceeac51",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.87
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.6
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.97
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.16
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.34
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.85
+        }
+      ],
+      "usage": {
+        "input_tokens": 1997,
+        "output_tokens": 0,
+        "total_tokens": 1997
+      },
+      "accepted": false,
+      "elapsed_ms": 224
+    },
+    {
+      "case": "test-false-translated-rate",
+      "split": "test",
+      "rubric": "original",
+      "request_sha256": "7724e2264d44685f87309a6a2cb2a64ae8fd375e762b85fad7993d5c913ad44e",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.02
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.77
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.01
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.96
+        }
+      ],
+      "usage": {
+        "input_tokens": 1321,
+        "output_tokens": 0,
+        "total_tokens": 1321
+      },
+      "accepted": false,
+      "elapsed_ms": 220
+    },
+    {
+      "case": "test-false-translated-rate",
+      "split": "test",
+      "rubric": "revised",
+      "request_sha256": "d04a48d1e89ddef35477bcbb050b35b30674a05f1b56d8de52063ec6b17f67bd",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.53
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.34
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.74
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.96
+        }
+      ],
+      "usage": {
+        "input_tokens": 2000,
+        "output_tokens": 0,
+        "total_tokens": 2000
+      },
+      "accepted": false,
+      "elapsed_ms": 261
+    },
+    {
+      "case": "test-unreviewed-translation",
+      "split": "test",
+      "rubric": "original",
+      "request_sha256": "77b85c0d0471dd603e2d955cabc7944ac88e7a663047d8a28d7d990e048861aa",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.76
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.22
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        }
+      ],
+      "usage": {
+        "input_tokens": 1328,
+        "output_tokens": 0,
+        "total_tokens": 1328
+      },
+      "accepted": false,
+      "elapsed_ms": 220
+    },
+    {
+      "case": "test-unreviewed-translation",
+      "split": "test",
+      "rubric": "revised",
+      "request_sha256": "cbb35e5f59c67ce212f8b36eae15eccd91edbff61aa5c3d1f1b7cb2835d086e8",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.98
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.88
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.65
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.54
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.95
+        }
+      ],
+      "usage": {
+        "input_tokens": 2007,
+        "output_tokens": 0,
+        "total_tokens": 2007
+      },
+      "accepted": false,
+      "elapsed_ms": 257
+    },
+    {
+      "case": "test-wrong-year",
+      "split": "test",
+      "rubric": "original",
+      "request_sha256": "7525f65c88ce10c9c9db317039f1f71d38c91fe1d2182c043422e6056b396f8f",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.76
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.94
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.81
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        }
+      ],
+      "usage": {
+        "input_tokens": 1326,
+        "output_tokens": 0,
+        "total_tokens": 1326
+      },
+      "accepted": false,
+      "elapsed_ms": 241
+    },
+    {
+      "case": "test-wrong-year",
+      "split": "test",
+      "rubric": "revised",
+      "request_sha256": "6d3ea3e05e6de131dc795854c07fec3e22a686204da975991fab590d52baff10",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.95
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.49
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.84
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.97
+        }
+      ],
+      "usage": {
+        "input_tokens": 2018,
+        "output_tokens": 0,
+        "total_tokens": 2018
+      },
+      "accepted": false,
+      "elapsed_ms": 301
+    },
+    {
+      "case": "test-attributed-candidate-question",
+      "split": "test",
+      "rubric": "original",
+      "request_sha256": "c9205dceaf0bcc1254838c180f99cdb5ff2861a084e326962735c7078d265b82",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.97
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.76
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        }
+      ],
+      "usage": {
+        "input_tokens": 3054,
+        "output_tokens": 0,
+        "total_tokens": 3054
+      },
+      "accepted": false,
+      "elapsed_ms": 256
+    },
+    {
+      "case": "test-attributed-candidate-question",
+      "split": "test",
+      "rubric": "revised",
+      "request_sha256": "d73e770742c4b510dd1c18637a6fafd6e2c5bdc6eae6e99a1548b9d5a9bd4ae7",
+      "status": "completed",
+      "checks": [
+        {
+          "name": "source_support",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.99
+        },
+        {
+          "name": "no_vote_recommendation",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "viewpoint_neutrality",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.93
+        },
+        {
+          "name": "jurisdiction",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "clarity",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        },
+        {
+          "name": "abstention",
+          "status": "answered",
+          "type": "predicate",
+          "value": 0.97
+        },
+        {
+          "name": "translation_status",
+          "status": "answered",
+          "type": "predicate",
+          "value": 1.0
+        }
+      ],
+      "usage": {
+        "input_tokens": 3587,
+        "output_tokens": 0,
+        "total_tokens": 3587
+      },
+      "accepted": false,
+      "elapsed_ms": 259
+    }
+  ],
+  "estimated_usd": 0.011157400000000001,
+  "invoice_cost": "unconfirmed",
+  "requests_attempted": 64,
+  "reservation_usd": 0.25
+}

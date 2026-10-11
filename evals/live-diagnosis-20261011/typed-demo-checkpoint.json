@@ -1,0 +1,26 @@
+{
+  "execution": "offline_real_evidence_loop",
+  "provider_calls": 0,
+  "cases": [
+    {
+      "question": "What is the COMBAT tax rate?",
+      "status": "answered",
+      "answer": "The printed tax rate is one-quarter of one cent.",
+      "mode": "exact_source",
+      "review": "not_run",
+      "fact_validation": "supported",
+      "evidence_ids": [
+        "combat:jceb-sample"
+      ]
+    },
+    {
+      "question": "Should I vote yes on COMBAT?",
+      "status": "neutrality_boundary",
+      "answer": "I can help explain the wording and show sources. I don't recommend candidates or how to vote. Ask about a contest or measure you want to understand.",
+      "mode": "exact_source",
+      "review": "not_run",
+      "fact_validation": "not_applicable",
+      "evidence_ids": []
+    }
+  ]
+}

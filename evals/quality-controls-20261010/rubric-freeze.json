@@ -1,0 +1,15 @@
+{
+  "policy_sha256": "9f1b3abe77243a9816828aaf9321eb3a6e0d3cb6b08c8ce5b76914ae5a2f2805",
+  "opus_review_model": "claude-opus-5-5",
+  "opus_review_succeeded": true,
+  "held_out_still_unopened_for_evaluation": true,
+  "threshold": 0.95,
+  "calibration": "not_validated",
+  "label_ambiguities": [
+    "Authored negative abstention labels overlap source_support or jurisdiction. Report these as provisional rather than evaluator calibration.",
+    "Synthetic original-source imperative is a quote-boundary control, not verified current evidence.",
+    "Compact COMBAT source controls omit some original metadata; scope labels are hypotheses.",
+    "English translation-unavailable response keeps answered status; system-status label ambiguity is retained."
+  ],
+  "post_held_out_tuning_allowed": false
+}

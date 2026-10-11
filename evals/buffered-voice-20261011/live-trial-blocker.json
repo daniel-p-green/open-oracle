@@ -1,0 +1,12 @@
+{
+  "execution": "not_run",
+  "automatic_approval_rejections": 2,
+  "paid_commands_executed": 0,
+  "exact_command": "node /Users/danielgreen/Documents/Codex/2026-10-10/task-2/voice-integration/live-voice-proof.cjs",
+  "reason": "Approval review treated quoted authorization inside delegation as untrusted, and retained the earlier no-unapproved-spend instruction.",
+  "stopped_after_single_authorized_retry": true,
+  "spent_this_pass_usd": 0,
+  "remaining_unallocated_reserve_usd": 1.05,
+  "ambient_capture": false,
+  "no_alternate_route": true
+}

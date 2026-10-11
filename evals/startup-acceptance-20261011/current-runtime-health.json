@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "execution": "read_only_actual_loopback_http",
+  "url": "http://127.0.0.1:8765",
+  "health": {
+    "status": "ready",
+    "mode": "exact_source",
+    "counts": {
+      "contests": 55,
+      "candidates": 62,
+      "retentions": 11,
+      "measures": 10
+    },
+    "provider": null,
+    "prepared_candidate_answers": true,
+    "snapshot_date": "2026-10-10",
+    "election_date": "2026-11-03",
+    "source_integrity": {
+      "jceb-sample": true,
+      "kceb-sample": true
+    },
+    "independent_review": "not_run",
+    "voice": "not_connected",
+    "voice_playback": "buffered_until_transcript_display_validation",
+    "voice_session_available": false,
+    "input_events": {
+      "enabled": false
+    },
+    "operator_name": null
+  },
+  "originals": {
+    "jceb-sample": {
+      "bytes": 109533,
+      "sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2"
+    },
+    "kceb-sample": {
+      "bytes": 457535,
+      "sha256": "92cda731c864b5a84062322a32f743597bcace6f986af4c0e2bfe55c7405dc62"
+    }
+  },
+  "host_origin_guards": true,
+  "get_only": true,
+  "physical_capture": false,
+  "provider_requests": 0,
+  "physical_pi": false,
+  "secure_context_browser_proof": false
+}

@@ -1,0 +1,272 @@
+{
+  "health": {
+    "status": "ready",
+    "mode": "exact_source",
+    "counts": {
+      "contests": 55,
+      "candidates": 62,
+      "retentions": 11,
+      "measures": 10
+    },
+    "provider": null,
+    "prepared_candidate_answers": true,
+    "snapshot_date": "2026-10-10",
+    "election_date": "2026-11-03",
+    "source_integrity": {
+      "jceb-sample": true,
+      "kceb-sample": true
+    },
+    "independent_review": "not_run",
+    "voice": "not_connected",
+    "voice_playback": "buffered_until_transcript_display_validation"
+  },
+  "answer": {
+    "request_id": "voice-offline-checkpoint",
+    "status": "answered",
+    "answer": "The printed tax rate is one-quarter of one cent.",
+    "card": {
+      "type": "measure_explanation",
+      "id": "combat-explanation-v1",
+      "contest_id": "combat",
+      "election_date": "2026-11-03",
+      "jurisdiction": "Jackson County, Missouri",
+      "evidence_id": "combat:jceb-sample",
+      "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+      "source_url": "https://jcebmo.org/wp-content/uploads/11.03.26-Notice-of-Election-Sample-Ballot-Poster.pdf",
+      "presentation": "overview",
+      "title": "What the COMBAT question asks",
+      "facets": [
+        {
+          "title": "The decision",
+          "statement": "YES approves the proposal to continue the COMBAT sales tax. NO rejects that proposal.",
+          "quote": "Shall Jackson County continue its anti-crime sales tax",
+          "evidence_id": "combat:jceb-sample",
+          "start": 15,
+          "end": 69
+        },
+        {
+          "title": "The rate",
+          "statement": "The printed tax rate is one-quarter of one cent.",
+          "quote": "at the rate of one-quarter  \nof one cent",
+          "evidence_id": "combat:jceb-sample",
+          "start": 99,
+          "end": 139
+        },
+        {
+          "title": "The time",
+          "statement": "The proposed continuation lasts ten years.",
+          "quote": "for a period of ten years",
+          "evidence_id": "combat:jceb-sample",
+          "start": 140,
+          "end": 165
+        },
+        {
+          "title": "The stated purpose",
+          "statement": "The wording lists public safety, drug abuse prevention and treatment, and actions involving violent criminals and drug dealers.",
+          "quote": "for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers",
+          "evidence_id": "combat:jceb-sample",
+          "start": 166,
+          "end": 422
+        },
+        {
+          "title": "Where the money goes",
+          "statement": "The wording puts the money in a separate county anti-crime trust fund.",
+          "quote": "The proceeds of this tax shall be deposited in a  \nspecial Jackson County Anti-Crime Sales Tax Trust  \nFund, separate from the general fund or any other county  \nfunds.",
+          "evidence_id": "combat:jceb-sample",
+          "start": 424,
+          "end": 592
+        }
+      ],
+      "limit": "This is a retained sample, not a confirmed personal ballot. It explains the printed question, not every consequence of passage or rejection. It does not recommend a response.",
+      "method": "Predefined explanation checked against retained wording; independent AI review follows the response label."
+    },
+    "evidence": [
+      {
+        "id": "combat:jceb-sample",
+        "contest_id": "combat",
+        "text": "QUESTION # 1  \nShall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers? The proceeds of this tax shall be deposited in a  \nspecial Jackson County Anti-Crime Sales Tax Trust  \nFund, separate from the general fund or any other county  \nfunds.  \nYES  \nNO",
+        "source_id": "jceb-sample",
+        "url": "https://jcebmo.org/wp-content/uploads/11.03.26-Notice-of-Election-Sample-Ballot-Poster.pdf",
+        "title": "JCEB November sample ballot",
+        "issuer": "Jackson County Election Board",
+        "source_category": "Official election sample",
+        "election_date": "2026-11-03",
+        "retrieved_date": "2026-10-09",
+        "snapshot_date": "2026-10-10",
+        "version": "Retained November notice",
+        "page": 2,
+        "column": null,
+        "start_offset": 8998,
+        "sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "status": "current_snapshot",
+        "extraction": "Reading-copy text; page visually checked against retained PDF",
+        "original_route": "/api/original/jceb-sample"
+      }
+    ],
+    "choices": [],
+    "claims": [
+      {
+        "quote": "QUESTION # 1  \nShall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers? The proceeds of this tax shall be deposited in a  \nspecial Jackson County Anti-Crime Sales Tax Trust  \nFund, separate from the general fund or any other county  \nfunds.  \nYES  \nNO",
+        "evidence_id": "combat:jceb-sample"
+      }
+    ],
+    "links": [],
+    "candidate_sources": [],
+    "scope": {
+      "election_date": "2026-11-03"
+    },
+    "snapshot_date": "2026-10-10",
+    "election_date": "2026-11-03",
+    "mode": "exact_source",
+    "language": "en",
+    "translation_status": "not_requested",
+    "review": {
+      "status": "not_run",
+      "label": "Application checks only. Independent AI review has not run."
+    },
+    "limitations": [
+      "Archived research snapshot. Samples are subject to change. This is not a personal ballot.",
+      "Exact source excerpts; a full legal-effect or candidate-position analysis is not available in this slice."
+    ],
+    "trace": [
+      {
+        "tool": "local_lookup",
+        "evidence_ids": [
+          "combat:jceb-sample"
+        ],
+        "live": false
+      }
+    ],
+    "contest": {
+      "id": "combat",
+      "title": "Jackson County Question 1 \u2014 COMBAT",
+      "kind": "measure",
+      "candidates": [],
+      "scope": "countywide",
+      "required_location": null,
+      "heading": "QUESTION # 1",
+      "coverage": "Official question wording and fiscal wording where printed. Full legal-effect analysis is not indexed.",
+      "applicability": "Countywide measure; personal eligibility not established."
+    },
+    "fact_validation": {
+      "status": "supported",
+      "method": "finite_source_span_contracts",
+      "claims": [
+        {
+          "status": "supported",
+          "key": "measure.rate",
+          "binding": {
+            "key": "measure.rate",
+            "kind": "number",
+            "value": "0.25",
+            "unit": "cent",
+            "evidence_id": "combat:jceb-sample",
+            "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+            "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+            "start": 99,
+            "end": 139,
+            "quote": "at the rate of one-quarter  \nof one cent",
+            "binding": "retrieved_passage"
+          }
+        },
+        {
+          "status": "supported",
+          "key": "measure.duration",
+          "binding": {
+            "key": "measure.duration",
+            "kind": "number",
+            "value": "10",
+            "unit": "year",
+            "evidence_id": "combat:jceb-sample",
+            "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+            "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+            "start": 140,
+            "end": 165,
+            "quote": "for a period of ten years",
+            "binding": "retrieved_passage"
+          }
+        },
+        {
+          "status": "supported",
+          "key": "measure.jurisdiction",
+          "binding": {
+            "key": "measure.jurisdiction",
+            "kind": "entity",
+            "value": "jackson county",
+            "unit": null,
+            "evidence_id": "combat:jceb-sample",
+            "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+            "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+            "start": 21,
+            "end": 35,
+            "quote": "Jackson County",
+            "binding": "retrieved_passage"
+          }
+        },
+        {
+          "status": "supported",
+          "key": "measure.name",
+          "binding": {
+            "key": "measure.name",
+            "kind": "entity",
+            "value": "combat",
+            "unit": null,
+            "evidence_id": "combat:jceb-sample",
+            "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+            "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+            "start": 91,
+            "end": 97,
+            "quote": "COMBAT",
+            "binding": "retrieved_passage"
+          }
+        },
+        {
+          "status": "supported",
+          "key": "election.date",
+          "binding": {
+            "key": "election.date",
+            "kind": "date",
+            "value": "2026-11-03",
+            "unit": null,
+            "evidence_id": "combat:jceb-sample",
+            "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+            "text_sha256": "279d07d0896232e763c732d42b64e29191e2dcfd628a2b2dcad00cef62302796",
+            "start": 681,
+            "end": 697,
+            "quote": "NOVEMBER 3, 2026",
+            "binding": "printed_document_header",
+            "text_reference": "jceb-sample"
+          }
+        }
+      ],
+      "prose_entailment_claimed": false,
+      "calibrated_probability_used": false
+    },
+    "stage_ms": {
+      "resolve_retrieve_construct": 1,
+      "source_guards": 1,
+      "decisions": 0
+    },
+    "view_plan": {
+      "version": 1,
+      "request_id": "voice-offline-checkpoint",
+      "component": "measure_focus",
+      "evidence_ids": [
+        "combat:jceb-sample"
+      ],
+      "facet_keys": [
+        "rate"
+      ],
+      "initial_part": 1,
+      "language": "en"
+    },
+    "elapsed_ms": 1
+  },
+  "address": "http://127.0.0.1:8765",
+  "server_session": 36673,
+  "listener_bind": "127.0.0.1",
+  "pi_reachable_url": null,
+  "model_calls_this_pass": 0,
+  "microphone_capture": false,
+  "live_trial": "blocked_auto_review_before_execution"
+}

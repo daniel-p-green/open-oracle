@@ -1,0 +1,188 @@
+{
+  "execution": "real_gpt_live_websocket",
+  "accepted": true,
+  "transcript": " The printed tax rate is one-quarter of one cent.",
+  "report": {
+    "acknowledged": true,
+    "transcript_matches": true,
+    "invalid_output": false,
+    "final_usage_confirmed": true,
+    "close_reason": "close_requested",
+    "buffered_bytes": 210240,
+    "peak": 0.31640625,
+    "rms": 0.03798480030002269,
+    "duration_ms": 3765,
+    "trimmed_silence_ms": 615
+  },
+  "journal": {
+    "events": [
+      {
+        "sequence": 1,
+        "monotonic_ms": 356,
+        "direction": "sent",
+        "type": "session.start",
+        "event_id": "844f6c9c-9b70-40b8-a695-d3ef72187735"
+      },
+      {
+        "sequence": 2,
+        "monotonic_ms": 731,
+        "direction": "received",
+        "type": "session.started",
+        "event_id": "event_EXedIadk1p1dhZYrFei2W",
+        "client_event_id": "844f6c9c-9b70-40b8-a695-d3ef72187735",
+        "session": {
+          "model": "gpt-live-1",
+          "status": "active",
+          "expires_at": 1791696923
+        }
+      },
+      {
+        "sequence": 3,
+        "monotonic_ms": 731,
+        "direction": "sent",
+        "type": "session.input_audio.mute",
+        "event_id": "b9742cb7-4268-428f-98ec-ac44344071e0"
+      },
+      {
+        "sequence": 4,
+        "monotonic_ms": 731,
+        "direction": "sent",
+        "type": "session.commentary.append",
+        "event_id": "fea114ca-2028-4ba6-90f6-37c4b1fdc45d",
+        "delegation_id": null,
+        "content_length": 48,
+        "content_is_approved_phrase": true,
+        "content": "The printed tax rate is one-quarter of one cent."
+      },
+      {
+        "sequence": 5,
+        "monotonic_ms": 834,
+        "direction": "received",
+        "type": "session.input_audio.muted",
+        "event_id": "event_EXedIiUsHDDqXJYbGKiFt",
+        "client_event_id": "b9742cb7-4268-428f-98ec-ac44344071e0"
+      },
+      {
+        "sequence": 6,
+        "monotonic_ms": 2098,
+        "direction": "received",
+        "type": "session.commentary.appended",
+        "event_id": "event_EXedJKdPquPmNLALFZaDz",
+        "client_event_id": "fea114ca-2028-4ba6-90f6-37c4b1fdc45d",
+        "start_ms": 600,
+        "end_ms": 800
+      },
+      {
+        "sequence": 7,
+        "monotonic_ms": 2317,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXedJ31cB6FYzm32Yit12",
+        "start_ms": 800,
+        "end_ms": 1000,
+        "delta": " The printed"
+      },
+      {
+        "sequence": 8,
+        "monotonic_ms": 2510,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXedJHOM2HJQVpm3SQPNV",
+        "start_ms": 1000,
+        "end_ms": 1200,
+        "delta": " tax"
+      },
+      {
+        "sequence": 9,
+        "monotonic_ms": 2888,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXedK6KhVN4SegXcZ7k14",
+        "start_ms": 1400,
+        "end_ms": 1600,
+        "delta": " rate"
+      },
+      {
+        "sequence": 10,
+        "monotonic_ms": 3074,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXedKp6d5MbFNczLdAUuv",
+        "start_ms": 1600,
+        "end_ms": 1800,
+        "delta": " is"
+      },
+      {
+        "sequence": 11,
+        "monotonic_ms": 3338,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXedKopkmoNCd1ySwGAFf",
+        "start_ms": 1800,
+        "end_ms": 2000,
+        "delta": " one-quarter"
+      },
+      {
+        "sequence": 12,
+        "monotonic_ms": 3878,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXedLPqvUXBfCXJuPKcwn",
+        "start_ms": 2400,
+        "end_ms": 2600,
+        "delta": " of"
+      },
+      {
+        "sequence": 13,
+        "monotonic_ms": 4075,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXedLZdbJh8SvbKWiPhob",
+        "start_ms": 2600,
+        "end_ms": 2800,
+        "delta": " one"
+      },
+      {
+        "sequence": 14,
+        "monotonic_ms": 4295,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXedLts7yLZTQkhzRWGIb",
+        "start_ms": 2800,
+        "end_ms": 3000,
+        "delta": " cent."
+      },
+      {
+        "sequence": 15,
+        "monotonic_ms": 5797,
+        "direction": "sent",
+        "type": "session.close",
+        "event_id": "d8a6a727-3523-4f34-a81b-abee5467345d"
+      },
+      {
+        "sequence": 16,
+        "monotonic_ms": 6452,
+        "direction": "received",
+        "type": "session.closed",
+        "event_id": "event_EXedN7Smz1iS1BWbQzfbr",
+        "client_event_id": "d8a6a727-3523-4f34-a81b-abee5467345d",
+        "reason": "close_requested",
+        "usage_seconds": 4,
+        "session": {
+          "model": "gpt-live-1",
+          "status": "active",
+          "expires_at": 1791696923
+        }
+      }
+    ],
+    "dropped": 0,
+    "complete": true
+  },
+  "input_frames": 114720,
+  "synthetic_input": true,
+  "microphone": false,
+  "playback": false,
+  "retries": 0,
+  "media_saved": false,
+  "human_audibility": "unverified; playback forbidden"
+}

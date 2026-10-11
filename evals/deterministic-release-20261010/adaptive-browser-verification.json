@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "physical_pi": false,
+  "microphone": false,
+  "playback": false,
+  "model_calls": 0,
+  "arbitrary_generated_scripts": false,
+  "full_freeform_open_intelligent_ui": false,
+  "reports": [
+    {
+      "route": "/",
+      "adaptive_focus_and_steps": true,
+      "official_copilot_hooks": false,
+      "component_descriptors": false,
+      "errors": [],
+      "external": [],
+      "iframe_count": 0
+    },
+    {
+      "route": "/copilot",
+      "adaptive_focus_and_steps": true,
+      "official_copilot_hooks": true,
+      "component_descriptors": true,
+      "errors": [],
+      "external": [],
+      "iframe_count": 0
+    },
+    {
+      "route": "/",
+      "synthetic_poisoned_facet_withheld": true,
+      "bound_originals_visible": true,
+      "model_calls": 0,
+      "errors": [],
+      "external": []
+    },
+    {
+      "route": "/copilot",
+      "synthetic_poisoned_facet_withheld": true,
+      "bound_originals_visible": true,
+      "model_calls": 0,
+      "errors": [],
+      "external": []
+    }
+  ]
+}

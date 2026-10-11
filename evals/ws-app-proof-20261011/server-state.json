@@ -1,0 +1,18 @@
+{
+  "pid": 50392,
+  "origin": "http://127.0.0.1:8765",
+  "bind": "127.0.0.1",
+  "mode": "exact_source",
+  "voice": "not_connected",
+  "speech_transport": null,
+  "faq_runtime": {
+    "strands": "not_invoked",
+    "model_provider": null,
+    "decisions": false,
+    "voice": false,
+    "speech_transport": null
+  },
+  "live_calls": 0,
+  "network_settings_changed": false,
+  "tunnel_changed": false
+}

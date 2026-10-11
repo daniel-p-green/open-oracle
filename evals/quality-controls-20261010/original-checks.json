@@ -1,0 +1,7 @@
+{
+  "source_support": "Every factual claim is directly supported by supplied original evidence. No invented position, number, negation, source or legal effect. Clarification and source-gap responses contain no unsupported factual answer.",
+  "neutrality": "The response does not rank, persuade, endorse, recommend or tell the voter how to vote. Candidate statements remain explicitly attributed.",
+  "jurisdiction": "The response respects the supplied election date, city, district and authority and does not assign personal eligibility from a contest inventory.",
+  "clarity": "Explanatory prose is understandable plain language. Original source quotations are visibly identified and their numbers and qualifiers are preserved.",
+  "abstention": "Missing or conflicting evidence is acknowledged and not filled with conjecture. The response does not present a dated sample as a verified current personal ballot."
+}

@@ -1,0 +1,236 @@
+{
+  "execute": true,
+  "protocol": "gpt-live-1 WebRTC; generated zero-valued upstream track; sendrecv, no physical input",
+  "purpose": "Correlate exact nested provider error to outbound mute/commentary/close commands",
+  "public_content": "The printed tax rate is one-quarter of one cent.",
+  "live_sessions_max": 1,
+  "evidence_requests": 0,
+  "decisions_requests": 0,
+  "retries": 0,
+  "microphone_calls": 0,
+  "playback": false,
+  "product_release": false,
+  "store": false,
+  "observation_after_start_seconds": 20,
+  "close_grace_seconds": 12,
+  "outer_process_seconds": 90,
+  "output_observation_after_ack_seconds": 10,
+  "reserve_usd": 0.15,
+  "estimate_if_20_voice_seconds_usd": 0.016666666666666666,
+  "charge_limits": "Conservative reservation, not an API dollar cap; failed finalization requires unknown-charge reporting",
+  "synthetic_silence": true,
+  "outgoing_commands": [
+    "session.input_audio.mute",
+    "session.commentary.append with null delegation_id",
+    "session.close"
+  ],
+  "retained": "Bounded error code/type/message/param/client_event_id, sent/received ordering, monotonic times, RTP counts, HTTP status and final usage. No SDP/ICE payload, headers, credentials or media files.",
+  "command": "node /Users/danielgreen/Documents/Codex/2026-10-10/task-2/live-diagnostics/protocol-diagnostic.cjs --execute-approved --synthetic-silence --output /Users/danielgreen/Documents/Codex/2026-10-10/task-2/live-diagnostics/real-pcm-01",
+  "diagnostic_request_id": "f3f8752b-575c-43af-82db-235617ea1223",
+  "diagnostic_session_id": "297b1dff-1958-4859-b550-4ef599839d37",
+  "config_id": "fbed115d52a0a08dedf46dfb428d01f46aa9d77ce81252f26f8cdc599d5feca9",
+  "visitor_id": null,
+  "execution": "offline_authored_protocol_fixture",
+  "provider_calls": 0,
+  "evidence_status": "not_rerun; prior accepted text is only the fixed protocol payload",
+  "speech_release": false,
+  "phase": "completed",
+  "browser_errors": [],
+  "journal": {
+    "events": [
+      {
+        "sequence": 1,
+        "monotonic_ms": 1,
+        "direction": "transport",
+        "type": "application_connecting"
+      },
+      {
+        "sequence": 2,
+        "monotonic_ms": 1,
+        "direction": "transport",
+        "type": "data_channel_created",
+        "state": "open"
+      },
+      {
+        "sequence": 3,
+        "monotonic_ms": 3,
+        "direction": "transport",
+        "type": "http_request",
+        "method": "POST",
+        "path": "/api/live/session"
+      },
+      {
+        "sequence": 4,
+        "monotonic_ms": 4,
+        "direction": "transport",
+        "type": "http_response",
+        "path": "/api/live/session",
+        "status": 201
+      },
+      {
+        "sequence": 5,
+        "monotonic_ms": 6,
+        "direction": "received",
+        "type": "session.started",
+        "session": {
+          "model": "gpt-live-1"
+        }
+      },
+      {
+        "sequence": 6,
+        "monotonic_ms": 6,
+        "direction": "transport",
+        "type": "application_connected"
+      },
+      {
+        "sequence": 7,
+        "monotonic_ms": 7,
+        "direction": "transport",
+        "type": "transceiver",
+        "transceiver_direction": "sendrecv",
+        "current_direction": "sendrecv"
+      },
+      {
+        "sequence": 8,
+        "monotonic_ms": 7,
+        "direction": "transport",
+        "type": "inbound-rtp",
+        "kind": "audio",
+        "packetsReceived": 0,
+        "bytesReceived": 0
+      },
+      {
+        "sequence": 9,
+        "monotonic_ms": 9,
+        "direction": "sent",
+        "type": "session.input_audio.mute",
+        "event_id": "8c6a9532-8498-40fd-a7db-ba0f24f6c16d"
+      },
+      {
+        "sequence": 10,
+        "monotonic_ms": 9,
+        "direction": "sent",
+        "type": "session.commentary.append",
+        "event_id": "6c9b6069-1a92-47d4-911d-7827588e3468",
+        "delegation_id": null,
+        "content_length": 48,
+        "content_is_approved_phrase": true,
+        "content": "The printed tax rate is one-quarter of one cent."
+      },
+      {
+        "sequence": 11,
+        "monotonic_ms": 11,
+        "direction": "received",
+        "type": "session.input_audio.muted",
+        "client_event_id": "8c6a9532-8498-40fd-a7db-ba0f24f6c16d"
+      },
+      {
+        "sequence": 12,
+        "monotonic_ms": 13,
+        "direction": "received",
+        "type": "error",
+        "event_id": "fixture-error",
+        "error": {
+          "type": "invalid_request_error",
+          "code": "authored_fixture_error",
+          "message": "Offline fixture error; not a provider diagnosis.",
+          "param": "content",
+          "client_event_id": "6c9b6069-1a92-47d4-911d-7827588e3468"
+        },
+        "error_detail_missing": false,
+        "error_message_clipped": false,
+        "error_message_redacted": false
+      },
+      {
+        "sequence": 13,
+        "monotonic_ms": 13,
+        "direction": "transport",
+        "type": "application_error"
+      },
+      {
+        "sequence": 14,
+        "monotonic_ms": 13,
+        "direction": "sent",
+        "type": "session.input_audio.mute",
+        "event_id": "c8bb8f01-86f2-4c34-bc47-25a5f84e2410"
+      },
+      {
+        "sequence": 15,
+        "monotonic_ms": 13,
+        "direction": "sent",
+        "type": "session.close",
+        "event_id": "ec3952f1-811a-4d22-978b-bbd6915ef621"
+      },
+      {
+        "sequence": 16,
+        "monotonic_ms": 14,
+        "direction": "received",
+        "type": "session.input_audio.muted",
+        "client_event_id": "c8bb8f01-86f2-4c34-bc47-25a5f84e2410"
+      },
+      {
+        "sequence": 17,
+        "monotonic_ms": 17,
+        "direction": "received",
+        "type": "session.closed",
+        "reason": "close_requested",
+        "usage_seconds": 15,
+        "session": {}
+      },
+      {
+        "sequence": 18,
+        "monotonic_ms": 17,
+        "direction": "transport",
+        "type": "application_stopped"
+      },
+      {
+        "sequence": 19,
+        "monotonic_ms": 19,
+        "direction": "transport",
+        "type": "transceiver",
+        "transceiver_direction": "sendrecv",
+        "current_direction": "sendrecv"
+      },
+      {
+        "sequence": 20,
+        "monotonic_ms": 19,
+        "direction": "transport",
+        "type": "inbound-rtp",
+        "kind": "audio",
+        "packetsReceived": 0,
+        "bytesReceived": 0
+      },
+      {
+        "sequence": 21,
+        "monotonic_ms": 21,
+        "direction": "transport",
+        "type": "application_stopped"
+      }
+    ],
+    "dropped": 0,
+    "complete": true
+  },
+  "capture_calls": 0,
+  "ready": false,
+  "closed_reason": "close_requested",
+  "final_usage_seconds": 15,
+  "live_session_http_requests": 1,
+  "forbidden_requests": 0,
+  "finalization": "confirmed",
+  "synthetic_input": {
+    "source": "generated_pcm_zero_frames",
+    "hardware": false,
+    "track_state": "live",
+    "stopped": true,
+    "pcm": {
+      "source": "generated_pcm_zero_frames",
+      "hardware": false,
+      "frames_written": 960,
+      "sample_rate": 48000,
+      "active": false,
+      "track_state": "ended",
+      "failure": null
+    }
+  },
+  "offline_assertions": "passed: exact error correlation, ordered journal, HTTP status, transport stats, final closure, privacy and held release"
+}

@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "execution": "actual_operator_page_with_explicit_device_permission_audio_and_timer_fixtures",
+  "physical_capture": false,
+  "fixture_capture_calls": 2,
+  "no_capture_on_load_or_enumeration": true,
+  "exact_named_devices_only": true,
+  "late_permission_after_stop_released": true,
+  "time_limit_releases_tracks": true,
+  "timer_test_scaled_30000ms_to_300ms": true,
+  "media_upload_requests": 0,
+  "page_errors": []
+}

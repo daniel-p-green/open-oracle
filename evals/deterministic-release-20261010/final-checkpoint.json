@@ -1,0 +1,57 @@
+{
+  "listener": "http://127.0.0.1:8765",
+  "server_session": 5026,
+  "health": {
+    "status": "ready",
+    "mode": "exact_source",
+    "counts": {
+      "contests": 55,
+      "candidates": 62,
+      "retentions": 11,
+      "measures": 10
+    },
+    "provider": null,
+    "prepared_candidate_answers": true,
+    "snapshot_date": "2026-10-10",
+    "election_date": "2026-11-03",
+    "source_integrity": {
+      "jceb-sample": true,
+      "kceb-sample": true
+    },
+    "independent_review": "not_run",
+    "voice": "not_connected",
+    "voice_playback": "muted_pending_buffer_validation"
+  },
+  "live_local_http": [
+    {
+      "question": "What is the COMBAT rate?",
+      "status": "answered",
+      "answer": "The printed tax rate is one-quarter of one cent.",
+      "facts": "supported",
+      "component": "measure_focus",
+      "review": "not_run"
+    },
+    {
+      "question": "How long does COMBAT last?",
+      "status": "answered",
+      "answer": "The proposed continuation lasts ten years.",
+      "facts": "supported",
+      "component": "measure_focus",
+      "review": "not_run"
+    },
+    {
+      "question": "Compare Pollard and Fields priorities",
+      "status": "answered",
+      "answer": "Read how both candidates answered the same question. This compares their stated priorities or proposals; it does not rate the candidates or establish that their claims are true.",
+      "facts": "supported",
+      "component": "candidate_quotes",
+      "review": "not_run"
+    }
+  ],
+  "python_tests": 71,
+  "offline_promptfoo": 51,
+  "model_calls_this_work": 0,
+  "reserved_usd": 3.95,
+  "remaining_reserve_usd": 1.0499999999999998,
+  "spoken_demo": false
+}

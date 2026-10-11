@@ -1,0 +1,45 @@
+{
+  "model_called": false,
+  "checks": [
+    {
+      "id": "supported_plus_advice",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "negated_direction",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "denied_endorsement",
+      "actual": false,
+      "expected": false
+    },
+    {
+      "id": "ballot_instruction",
+      "actual": false,
+      "expected": false
+    },
+    {
+      "id": "vote_deadline",
+      "actual": false,
+      "expected": false
+    },
+    {
+      "id": "markdown",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "spanish_mail",
+      "actual": false,
+      "expected": false
+    },
+    {
+      "id": "null_lists",
+      "actual": false,
+      "expected": false
+    }
+  ]
+}

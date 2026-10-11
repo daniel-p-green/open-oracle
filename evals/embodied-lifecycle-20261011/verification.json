@@ -1,0 +1,18 @@
+{
+  "lifecycle_groups_passed": 19,
+  "python_tests_passed": 76,
+  "offline_live_suites_passed": 3,
+  "js_syntax_passed": true,
+  "git_diff_check_passed": true,
+  "physical_capture_calls": 0,
+  "provider_calls": 0,
+  "actual_hardware_capture_proven": false,
+  "source_decisions_gates_changed": false,
+  "source_hashes": {
+    "web/interaction.js": "4bf1b462db7fccdf0250bdcccb92f2abdd4ab56b5b4cd10b833b0f3a53fbc570",
+    "web/app.js": "b04d4f9cc4a1604e2919e62650686594e16908d03551f083fc94dc2668290435",
+    "web/index.html": "3d2504e00904dadc77fc28f2f2857e7fd20ec0ee8de51c3dd32d2fc178214900",
+    "open_oracle/server.py": "f512b9017b151205e1894d579723a593d728a23d8f433d8f1f0923b35daff99f",
+    "tests/test_interaction.cjs": "ee82be193ebc4d197d2e1f85f47460e37793750f437e55a3cc3a1c352dd46ca4"
+  }
+}

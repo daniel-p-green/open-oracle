@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "provider": "offline_event_fixture",
+  "synthetic_signal": true,
+  "actual_browser_mediarecorder_decode_wav": true,
+  "playback_callbacks": "offline_fixture",
+  "native_headless_playback": "intermittent_clock_stall",
+  "native_audibility": false,
+  "real_speech": false,
+  "audible_human_verification": false,
+  "ambient_capture": false,
+  "receive_only_capture_calls": 0,
+  "denied_microphone_attempts": 0,
+  "consumed_voice_allowance_stays_disabled": true,
+  "stale_reset_blocks_playback": true,
+  "page_errors": [],
+  "real_orb_controller_event_contract_verified_with_authored_playback": true
+}

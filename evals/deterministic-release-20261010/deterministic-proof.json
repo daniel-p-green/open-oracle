@@ -1,0 +1,195 @@
+{
+  "execution": "offline_deterministic",
+  "models_called": 0,
+  "calibrated_probability_used": false,
+  "supported": [
+    {
+      "status": "supported",
+      "key": "measure.rate",
+      "binding": {
+        "key": "measure.rate",
+        "kind": "number",
+        "value": "0.25",
+        "unit": "cent",
+        "evidence_id": "combat:jceb-sample",
+        "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+        "start": 99,
+        "end": 139,
+        "quote": "at the rate of one-quarter  \nof one cent",
+        "binding": "retrieved_passage"
+      }
+    },
+    {
+      "status": "supported",
+      "key": "measure.duration",
+      "binding": {
+        "key": "measure.duration",
+        "kind": "number",
+        "value": "10",
+        "unit": "year",
+        "evidence_id": "combat:jceb-sample",
+        "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+        "start": 140,
+        "end": 165,
+        "quote": "for a period of ten years",
+        "binding": "retrieved_passage"
+      }
+    },
+    {
+      "status": "supported",
+      "key": "measure.jurisdiction",
+      "binding": {
+        "key": "measure.jurisdiction",
+        "kind": "entity",
+        "value": "jackson county",
+        "unit": null,
+        "evidence_id": "combat:jceb-sample",
+        "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+        "start": 21,
+        "end": 35,
+        "quote": "Jackson County",
+        "binding": "retrieved_passage"
+      }
+    },
+    {
+      "status": "supported",
+      "key": "measure.name",
+      "binding": {
+        "key": "measure.name",
+        "kind": "entity",
+        "value": "combat",
+        "unit": null,
+        "evidence_id": "combat:jceb-sample",
+        "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+        "start": 91,
+        "end": 97,
+        "quote": "COMBAT",
+        "binding": "retrieved_passage"
+      }
+    },
+    {
+      "status": "supported",
+      "key": "election.date",
+      "binding": {
+        "key": "election.date",
+        "kind": "date",
+        "value": "2026-11-03",
+        "unit": null,
+        "evidence_id": "combat:jceb-sample",
+        "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "text_sha256": "279d07d0896232e763c732d42b64e29191e2dcfd628a2b2dcad00cef62302796",
+        "start": 681,
+        "end": 697,
+        "quote": "NOVEMBER 3, 2026",
+        "binding": "printed_document_header",
+        "text_reference": "jceb-sample"
+      }
+    }
+  ],
+  "contradictory": [
+    {
+      "status": "contradictory",
+      "key": "measure.rate",
+      "reason": "disagrees_with_bound_source_value",
+      "expected_value": "0.25",
+      "expected_unit": "cent"
+    },
+    {
+      "status": "contradictory",
+      "key": "measure.duration",
+      "reason": "disagrees_with_bound_source_value",
+      "expected_value": "10",
+      "expected_unit": "year"
+    },
+    {
+      "status": "contradictory",
+      "key": "measure.jurisdiction",
+      "reason": "disagrees_with_bound_source_value",
+      "expected_value": "jackson county",
+      "expected_unit": null
+    },
+    {
+      "status": "contradictory",
+      "key": "election.date",
+      "reason": "disagrees_with_bound_source_value",
+      "expected_value": "2026-11-03",
+      "expected_unit": null
+    }
+  ],
+  "unsupported": [
+    {
+      "status": "unsupported",
+      "reason": "no_retained_fact_contract"
+    },
+    {
+      "status": "unsupported",
+      "reason": "unregistered_display_text"
+    }
+  ],
+  "plan": {
+    "version": 1,
+    "request_id": "offline-contract-proof",
+    "component": "measure_focus",
+    "evidence_ids": [
+      "combat:jceb-sample"
+    ],
+    "facet_keys": [
+      "rate"
+    ],
+    "initial_part": 1,
+    "language": "en"
+  },
+  "source_integrity": {
+    "jceb-sample": true,
+    "kceb-sample": true
+  },
+  "browser": {
+    "passed": true,
+    "physical_pi": false,
+    "microphone": false,
+    "playback": false,
+    "model_calls": 0,
+    "arbitrary_generated_scripts": false,
+    "full_freeform_open_intelligent_ui": false,
+    "reports": [
+      {
+        "route": "/",
+        "adaptive_focus_and_steps": true,
+        "official_copilot_hooks": false,
+        "component_descriptors": false,
+        "errors": [],
+        "external": [],
+        "iframe_count": 0
+      },
+      {
+        "route": "/copilot",
+        "adaptive_focus_and_steps": true,
+        "official_copilot_hooks": true,
+        "component_descriptors": true,
+        "errors": [],
+        "external": [],
+        "iframe_count": 0
+      },
+      {
+        "route": "/",
+        "synthetic_poisoned_facet_withheld": true,
+        "bound_originals_visible": true,
+        "model_calls": 0,
+        "errors": [],
+        "external": []
+      },
+      {
+        "route": "/copilot",
+        "synthetic_poisoned_facet_withheld": true,
+        "bound_originals_visible": true,
+        "model_calls": 0,
+        "errors": [],
+        "external": []
+      }
+    ]
+  }
+}

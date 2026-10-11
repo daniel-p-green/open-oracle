@@ -1,0 +1,14 @@
+{
+  "status": "ready",
+  "mode": "exact_source",
+  "provider": null,
+  "voice": "not_connected",
+  "voice_session_available": false,
+  "source_integrity": {
+    "jceb-sample": true,
+    "kceb-sample": true
+  },
+  "input_events": {
+    "enabled": false
+  }
+}

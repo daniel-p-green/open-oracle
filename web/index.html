@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open Oracle · Election evidence</title><link rel="stylesheet" href="/orb.css"><link rel="stylesheet" href="/styles.css"></head>
+<body>
+<header class="masthead"><span class="brand">Open Oracle</span><button id="reset" class="quiet" type="button">Start again</button></header>
+<main><section class="conversation" aria-labelledby="headline">
+<div class="presence"><span id="orb" class="orb" data-state="ready" aria-hidden="true"></span><span id="presence-state">Ready for a question</span><span id="orb-uncertainty" hidden aria-hidden="true">?</span></div>
+<p id="capture-notice" class="fine" hidden>Voice questions send microphone audio to OpenAI. Capture starts only after deliberate initiation and microphone permission. Provider retention has not been verified for this prototype.</p><button id="voice-stop" type="button" class="quiet" hidden>Stop voice</button>
+<p id="interaction-note" class="fine" role="status">Presence and departure unavailable · Voice off</p>
+<div class="intro"><h1 id="headline">What would you like<br>to understand?</h1><p>Jackson County, Missouri · November 3, 2026</p></div>
+
+<p id="spoken-question" class="answer-text" hidden aria-label="Your spoken question"></p>
+<div id="activity" class="activity" role="status" aria-live="polite"></div>
+<section id="answer-region" class="answer-region" hidden aria-label="Answer and evidence">
+<div class="answer-heading"><h2 id="answer-title">The answer</h2><span id="answer-status"></span></div>
+<p id="answer-text" class="answer-text" lang="en"></p><p id="speech-status" class="fine">Text is ready to read.</p><button id="speak" type="button" disabled hidden>Prepare spoken answer</button>
+<div id="choices" class="choices"></div><div id="adaptive-card"></div>
+<details id="sources-disclosure" class="source-disclosure"><summary id="sources-summary">Sources and limits</summary><div id="evidence"></div><div id="roster" class="roster"></div><div id="candidate-sources"></div><div id="links"></div><div id="limitations" class="limitations"></div><details class="workflow"><summary>Delivery details</summary><pre id="trace"></pre><span id="mode">Loading sources</span></details></details>
+</section>
+<details id="input-disclosure" open><summary id="type-summary" hidden>Ask another question</summary><form id="ask-form" class="question-card">
+<label class="sr-only" for="question">Your election question</label><textarea id="question" rows="1" maxlength="2000" placeholder="Ask about a candidate or ballot question…" required></textarea>
+<div class="form-actions"><button type="button" id="mic" class="quiet" disabled>Speak</button><button type="submit" class="primary">Show evidence</button></div>
+<p id="mic-note" class="fine">Voice is off. You can type your question.</p>
+<details class="scope"><summary>City or district context</summary><p>This guides the source lookup. It does not determine your personal ballot.</p><div class="scope-fields"><label>Election authority<select id="authority"><option value="unknown">Not sure</option><option value="KCEB">KCEB · Kansas City within Jackson County</option><option value="JCEB">JCEB · Outside Kansas City</option></select></label><label>City or district<select id="location"><option value="">Not specified</option><option>Kansas City within Jackson County</option><option>Blue Springs</option><option>Independence</option><option>Lee's Summit</option><option>Sni Valley Fire Protection District</option></select></label></div></details>
+</form></details>
+<details class="inventory" id="browse"><summary>Browse contests</summary><p id="count">55 printed contests</p><p>Countywide sources. Each voter receives only applicable contests.</p><label class="sr-only" for="search">Find a contest or candidate</label><input id="search" type="search" placeholder="Find a contest or candidate…"><div class="tabs" role="group" aria-label="Contest categories"><button data-kind="measure" class="selected" aria-pressed="true">Measures</button><button data-kind="candidate" aria-pressed="false">Candidates</button><button data-kind="retention" aria-pressed="false">Retention</button></div><div id="contests" class="contest-list"></div></details>
+<footer><p id="operator-notice">Open Oracle · supervised prototype. Operator not configured. AI explanations can be wrong; check the source.</p>Sources retained October 2026. Samples may change.<br>No voting recommendations.</footer>
+</section></main><script src="/live.js" defer></script><script src="/interaction.js" defer></script><script src="/input-bridge.js" defer></script><script src="/app.js" defer></script><script src="/orb.js" defer></script></body></html>

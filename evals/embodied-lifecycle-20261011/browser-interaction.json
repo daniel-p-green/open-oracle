@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "execution": "actual_browser_with_explicit_sensor_and_capture_ready_fixtures",
+  "physical_sensors": false,
+  "physical_capture_calls": 0,
+  "provider_calls": 0,
+  "presence_never_started_capture": true,
+  "synthetic_start_rejected": true,
+  "deliberate_start_guarded": true,
+  "transcript_review_preserved": true,
+  "actual_evidence_request": true,
+  "departure_stops_fixture_tracks_and_clears_content": true,
+  "delayed_actual_response_rejected": true,
+  "adapter_detach_reports_unknown": true,
+  "page_errors": []
+}

@@ -1,0 +1,443 @@
+{
+  "execute": true,
+  "protocol": "gpt-live-1 WebRTC; generated zero-valued upstream track; sendrecv, no physical input",
+  "purpose": "Correlate exact nested provider error to outbound mute/commentary/close commands",
+  "public_content": "The printed tax rate is one-quarter of one cent.",
+  "live_sessions_max": 1,
+  "evidence_requests": 0,
+  "decisions_requests": 0,
+  "retries": 0,
+  "microphone_calls": 0,
+  "playback": false,
+  "product_release": false,
+  "store": false,
+  "observation_after_start_seconds": 20,
+  "close_grace_seconds": 12,
+  "outer_process_seconds": 90,
+  "output_observation_after_ack_seconds": 10,
+  "reserve_usd": 0.15,
+  "estimate_if_20_voice_seconds_usd": 0.016666666666666666,
+  "charge_limits": "Conservative reservation, not an API dollar cap; failed finalization requires unknown-charge reporting",
+  "synthetic_silence": true,
+  "outgoing_commands": [
+    "session.input_audio.mute",
+    "session.commentary.append with null delegation_id",
+    "session.close"
+  ],
+  "retained": "Bounded error code/type/message/param/client_event_id, sent/received ordering, monotonic times, RTP counts, HTTP status and final usage. No SDP/ICE payload, headers, credentials or media files.",
+  "command": "node /Users/danielgreen/Documents/Codex/2026-10-10/task-2/live-diagnostics/protocol-diagnostic.cjs --execute-approved --synthetic-silence --output /Users/danielgreen/Documents/Codex/2026-10-10/task-2/live-diagnostics/real-pcm-01",
+  "diagnostic_request_id": "08472b8c-0eb0-469f-9965-44e1e06c779d",
+  "diagnostic_session_id": "5534c16b-4447-4036-b9b3-c6aa23b5af45",
+  "config_id": "fbed115d52a0a08dedf46dfb428d01f46aa9d77ce81252f26f8cdc599d5feca9",
+  "visitor_id": null,
+  "execution": "actual_live_protocol_diagnostic",
+  "provider_calls": 1,
+  "evidence_status": "not_rerun; prior accepted text is only the fixed protocol payload",
+  "speech_release": false,
+  "phase": "completed",
+  "browser_errors": [],
+  "journal": {
+    "events": [
+      {
+        "sequence": 1,
+        "monotonic_ms": 2,
+        "direction": "transport",
+        "type": "application_connecting"
+      },
+      {
+        "sequence": 2,
+        "monotonic_ms": 79,
+        "direction": "transport",
+        "type": "data_channel_created",
+        "state": "connecting"
+      },
+      {
+        "sequence": 3,
+        "monotonic_ms": 81,
+        "direction": "transport",
+        "type": "signalingstatechange",
+        "ice_state": "new",
+        "signaling_state": "have-local-offer",
+        "connection_state": "new"
+      },
+      {
+        "sequence": 4,
+        "monotonic_ms": 206,
+        "direction": "transport",
+        "type": "http_request",
+        "method": "POST",
+        "path": "/api/live/session"
+      },
+      {
+        "sequence": 5,
+        "monotonic_ms": 699,
+        "direction": "transport",
+        "type": "iceconnectionstatechange",
+        "ice_state": "checking",
+        "signaling_state": "have-local-offer",
+        "connection_state": "new"
+      },
+      {
+        "sequence": 6,
+        "monotonic_ms": 699,
+        "direction": "transport",
+        "type": "signalingstatechange",
+        "ice_state": "checking",
+        "signaling_state": "stable",
+        "connection_state": "new"
+      },
+      {
+        "sequence": 7,
+        "monotonic_ms": 699,
+        "direction": "transport",
+        "type": "remote_track",
+        "state": "live",
+        "kind": "audio"
+      },
+      {
+        "sequence": 8,
+        "monotonic_ms": 699,
+        "direction": "transport",
+        "type": "http_response",
+        "path": "/api/live/session",
+        "status": 201
+      },
+      {
+        "sequence": 9,
+        "monotonic_ms": 699,
+        "direction": "transport",
+        "type": "connectionstatechange",
+        "ice_state": "checking",
+        "signaling_state": "stable",
+        "connection_state": "connecting"
+      },
+      {
+        "sequence": 10,
+        "monotonic_ms": 776,
+        "direction": "transport",
+        "type": "iceconnectionstatechange",
+        "ice_state": "connected",
+        "signaling_state": "stable",
+        "connection_state": "connecting"
+      },
+      {
+        "sequence": 11,
+        "monotonic_ms": 905,
+        "direction": "transport",
+        "type": "connectionstatechange",
+        "ice_state": "connected",
+        "signaling_state": "stable",
+        "connection_state": "connected"
+      },
+      {
+        "sequence": 12,
+        "monotonic_ms": 1034,
+        "direction": "transport",
+        "type": "data_channel_open",
+        "state": "open"
+      },
+      {
+        "sequence": 13,
+        "monotonic_ms": 2200,
+        "direction": "received",
+        "type": "session.started",
+        "event_id": "event_EXeGmtKfa79fo3jGmTcgC",
+        "session": {
+          "model": "gpt-live-1",
+          "status": "active",
+          "expires_at": 1791695527
+        }
+      },
+      {
+        "sequence": 14,
+        "monotonic_ms": 2200,
+        "direction": "transport",
+        "type": "application_connected"
+      },
+      {
+        "sequence": 15,
+        "monotonic_ms": 2201,
+        "direction": "transport",
+        "type": "transceiver",
+        "transceiver_direction": "sendrecv",
+        "current_direction": "sendrecv"
+      },
+      {
+        "sequence": 16,
+        "monotonic_ms": 2202,
+        "direction": "transport",
+        "type": "outbound-rtp",
+        "kind": "audio",
+        "packetsSent": 55,
+        "bytesSent": 1921
+      },
+      {
+        "sequence": 17,
+        "monotonic_ms": 2205,
+        "direction": "sent",
+        "type": "session.input_audio.mute",
+        "event_id": "a76f958d-0e18-4de0-9619-f950f57c050d"
+      },
+      {
+        "sequence": 18,
+        "monotonic_ms": 2205,
+        "direction": "sent",
+        "type": "session.commentary.append",
+        "event_id": "b0db7dd4-d87b-4a64-8708-a6e320b16188",
+        "delegation_id": null,
+        "content_length": 48,
+        "content_is_approved_phrase": true,
+        "content": "The printed tax rate is one-quarter of one cent."
+      },
+      {
+        "sequence": 19,
+        "monotonic_ms": 2307,
+        "direction": "received",
+        "type": "session.input_audio.muted",
+        "event_id": "event_EXeGnZwJZxAs7QbPDaz9g",
+        "client_event_id": "a76f958d-0e18-4de0-9619-f950f57c050d"
+      },
+      {
+        "sequence": 20,
+        "monotonic_ms": 2768,
+        "direction": "received",
+        "type": "session.commentary.appended",
+        "event_id": "event_EXeGo3WruNWK0P1vWvQ0f",
+        "client_event_id": "b0db7dd4-d87b-4a64-8708-a6e320b16188",
+        "start_ms": 600,
+        "end_ms": 800
+      },
+      {
+        "sequence": 21,
+        "monotonic_ms": 3023,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXeGoRWVQd0gGcfEqOr4A",
+        "start_ms": 1200,
+        "end_ms": 1400,
+        "delta": "The printed"
+      },
+      {
+        "sequence": 22,
+        "monotonic_ms": 3023,
+        "direction": "transport",
+        "type": "application_buffering"
+      },
+      {
+        "sequence": 23,
+        "monotonic_ms": 3457,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXeGogW3cHM6ugNEOi7Zk",
+        "start_ms": 1600,
+        "end_ms": 1800,
+        "delta": " tax"
+      },
+      {
+        "sequence": 24,
+        "monotonic_ms": 3457,
+        "direction": "transport",
+        "type": "application_buffering"
+      },
+      {
+        "sequence": 25,
+        "monotonic_ms": 3622,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXeGonklljdXxh5Dkhmnu",
+        "start_ms": 1800,
+        "end_ms": 2000,
+        "delta": " rate"
+      },
+      {
+        "sequence": 26,
+        "monotonic_ms": 3622,
+        "direction": "transport",
+        "type": "application_buffering"
+      },
+      {
+        "sequence": 27,
+        "monotonic_ms": 4045,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXeGpm9Rnb9Gx2K4OcntO",
+        "start_ms": 2200,
+        "end_ms": 2400,
+        "delta": " is"
+      },
+      {
+        "sequence": 28,
+        "monotonic_ms": 4045,
+        "direction": "transport",
+        "type": "application_buffering"
+      },
+      {
+        "sequence": 29,
+        "monotonic_ms": 4222,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXeGpa7VNGlqPPQpFtn4P",
+        "start_ms": 2400,
+        "end_ms": 2600,
+        "delta": " one-quarter"
+      },
+      {
+        "sequence": 30,
+        "monotonic_ms": 4222,
+        "direction": "transport",
+        "type": "application_buffering"
+      },
+      {
+        "sequence": 31,
+        "monotonic_ms": 4849,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXeGqQSR7G2X1ObxiaAPG",
+        "start_ms": 3000,
+        "end_ms": 3200,
+        "delta": " of"
+      },
+      {
+        "sequence": 32,
+        "monotonic_ms": 4849,
+        "direction": "transport",
+        "type": "application_buffering"
+      },
+      {
+        "sequence": 33,
+        "monotonic_ms": 5072,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXeGqkO3kWNKC0kE7YLHw",
+        "start_ms": 3200,
+        "end_ms": 3400,
+        "delta": " one"
+      },
+      {
+        "sequence": 34,
+        "monotonic_ms": 5072,
+        "direction": "transport",
+        "type": "application_buffering"
+      },
+      {
+        "sequence": 35,
+        "monotonic_ms": 5226,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXeGqTTTcg5zRmk4MElA6",
+        "start_ms": 3400,
+        "end_ms": 3600,
+        "delta": " cent."
+      },
+      {
+        "sequence": 36,
+        "monotonic_ms": 5226,
+        "direction": "transport",
+        "type": "application_buffering"
+      },
+      {
+        "sequence": 37,
+        "monotonic_ms": 6733,
+        "direction": "transport",
+        "type": "transceiver",
+        "transceiver_direction": "sendrecv",
+        "current_direction": "sendrecv"
+      },
+      {
+        "sequence": 38,
+        "monotonic_ms": 6734,
+        "direction": "transport",
+        "type": "inbound-rtp",
+        "kind": "audio",
+        "packetsReceived": 205,
+        "bytesReceived": 29072,
+        "totalSamplesDuration": 0,
+        "audioLevel": 0,
+        "jitter": 0.004
+      },
+      {
+        "sequence": 39,
+        "monotonic_ms": 6734,
+        "direction": "transport",
+        "type": "outbound-rtp",
+        "kind": "audio",
+        "packetsSent": 265,
+        "bytesSent": 9166
+      },
+      {
+        "sequence": 40,
+        "monotonic_ms": 6736,
+        "direction": "sent",
+        "type": "session.input_audio.mute",
+        "event_id": "bc032cb2-19ef-4b94-87f6-357d2169f9a0"
+      },
+      {
+        "sequence": 41,
+        "monotonic_ms": 6736,
+        "direction": "sent",
+        "type": "session.close",
+        "event_id": "579c692d-6e64-4e93-8e93-3f858826afb8"
+      },
+      {
+        "sequence": 42,
+        "monotonic_ms": 6806,
+        "direction": "received",
+        "type": "session.input_audio.muted",
+        "event_id": "event_EXeGs7RXkG2kupDHjuAxX",
+        "client_event_id": "bc032cb2-19ef-4b94-87f6-357d2169f9a0"
+      },
+      {
+        "sequence": 43,
+        "monotonic_ms": 7218,
+        "direction": "received",
+        "type": "session.closed",
+        "event_id": "event_EXeGsjdFU9f0pKcNf6a3e",
+        "client_event_id": "579c692d-6e64-4e93-8e93-3f858826afb8",
+        "reason": "close_requested",
+        "usage_seconds": 15,
+        "session": {
+          "model": "gpt-live-1",
+          "status": "active",
+          "expires_at": 1791695527
+        }
+      },
+      {
+        "sequence": 44,
+        "monotonic_ms": 7490,
+        "direction": "transport",
+        "type": "data_channel_closed",
+        "state": "closed"
+      },
+      {
+        "sequence": 45,
+        "monotonic_ms": 7731,
+        "direction": "transport",
+        "type": "application_stopped"
+      }
+    ],
+    "dropped": 0,
+    "complete": true
+  },
+  "capture_calls": 0,
+  "ready": false,
+  "closed_reason": "close_requested",
+  "final_usage_seconds": 15,
+  "live_session_http_requests": 1,
+  "forbidden_requests": 0,
+  "finalization": "confirmed",
+  "synthetic_input": {
+    "source": "generated_pcm_zero_frames",
+    "hardware": false,
+    "track_state": "live",
+    "stopped": true,
+    "pcm": {
+      "source": "generated_pcm_zero_frames",
+      "hardware": false,
+      "frames_written": 327360,
+      "sample_rate": 48000,
+      "active": false,
+      "track_state": "ended",
+      "failure": null
+    }
+  }
+}

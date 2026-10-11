@@ -1,0 +1,42 @@
+{
+  "web/interaction.js": {
+    "sha256": "4bf1b462db7fccdf0250bdcccb92f2abdd4ab56b5b4cd10b833b0f3a53fbc570",
+    "bytes": 8858
+  },
+  "web/app.js": {
+    "sha256": "b04d4f9cc4a1604e2919e62650686594e16908d03551f083fc94dc2668290435",
+    "bytes": 26866
+  },
+  "web/live.js": {
+    "sha256": "2d10de7e994bf5999fb2c7e75e952fded5acd8b576acc84be28f9339b68fd1b5",
+    "bytes": 17762
+  },
+  "web/index.html": {
+    "sha256": "3d2504e00904dadc77fc28f2f2857e7fd20ec0ee8de51c3dd32d2fc178214900",
+    "bytes": 4272
+  },
+  "open_oracle/server.py": {
+    "sha256": "f512b9017b151205e1894d579723a593d728a23d8f433d8f1f0923b35daff99f",
+    "bytes": 15408
+  },
+  "open_oracle/engine.py": {
+    "sha256": "677d12f9e8393db3f25ca987503a15557560b21ad8259f36604a74fb05fd836d",
+    "bytes": 17038
+  },
+  "open_oracle/claim_bindings.py": {
+    "sha256": "f65fa126ebcad52c4ee989473143053588af02ef76b8805d73bd6b5b3aa036c0",
+    "bytes": 11831
+  },
+  "tests/test_interaction.cjs": {
+    "sha256": "ee82be193ebc4d197d2e1f85f47460e37793750f437e55a3cc3a1c352dd46ca4",
+    "bytes": 9344
+  },
+  "tests/test_buffered_voice.cjs": {
+    "sha256": "7ea5d40c738c874c4293621f5151d992fc402e28c70ac673c6bce8f19ee130ae",
+    "bytes": 4312
+  },
+  "tests/test_live_lifecycle.cjs": {
+    "sha256": "b375575a145034ea252aafe2fbb74b226f644eac8cf8df3b71a0d46108cb2bfa",
+    "bytes": 2868
+  }
+}

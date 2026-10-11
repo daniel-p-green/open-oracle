@@ -1,0 +1,528 @@
+{
+  "execution": "actual_repaired_full_app_proof",
+  "reserve_usd": 0.35,
+  "phase": "completed",
+  "question": "What is the COMBAT tax rate?",
+  "microphone_calls": 0,
+  "playback": false,
+  "retries": 0,
+  "errors": [],
+  "http_status": 200,
+  "request_id": "e6ae834f-ea21-463f-9267-63915549d0cf",
+  "evidence_status": "answered",
+  "answer": "The printed tax rate is one-quarter of one cent.",
+  "mode": "live_strands",
+  "fact_validation": {
+    "status": "supported",
+    "method": "finite_source_span_contracts",
+    "claims": [
+      {
+        "status": "supported",
+        "key": "measure.rate",
+        "binding": {
+          "key": "measure.rate",
+          "kind": "number",
+          "value": "0.25",
+          "unit": "cent",
+          "evidence_id": "combat:jceb-sample",
+          "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 99,
+          "end": 139,
+          "quote": "at the rate of one-quarter  \nof one cent",
+          "binding": "retrieved_passage"
+        }
+      },
+      {
+        "status": "supported",
+        "key": "measure.duration",
+        "binding": {
+          "key": "measure.duration",
+          "kind": "number",
+          "value": "10",
+          "unit": "year",
+          "evidence_id": "combat:jceb-sample",
+          "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 140,
+          "end": 165,
+          "quote": "for a period of ten years",
+          "binding": "retrieved_passage"
+        }
+      },
+      {
+        "status": "supported",
+        "key": "measure.jurisdiction",
+        "binding": {
+          "key": "measure.jurisdiction",
+          "kind": "entity",
+          "value": "jackson county",
+          "unit": null,
+          "evidence_id": "combat:jceb-sample",
+          "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 21,
+          "end": 35,
+          "quote": "Jackson County",
+          "binding": "retrieved_passage"
+        }
+      },
+      {
+        "status": "supported",
+        "key": "measure.name",
+        "binding": {
+          "key": "measure.name",
+          "kind": "entity",
+          "value": "combat",
+          "unit": null,
+          "evidence_id": "combat:jceb-sample",
+          "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 91,
+          "end": 97,
+          "quote": "COMBAT",
+          "binding": "retrieved_passage"
+        }
+      },
+      {
+        "status": "supported",
+        "key": "election.date",
+        "binding": {
+          "key": "election.date",
+          "kind": "date",
+          "value": "2026-11-03",
+          "unit": null,
+          "evidence_id": "combat:jceb-sample",
+          "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "text_sha256": "279d07d0896232e763c732d42b64e29191e2dcfd628a2b2dcad00cef62302796",
+          "start": 681,
+          "end": 697,
+          "quote": "NOVEMBER 3, 2026",
+          "binding": "printed_document_header",
+          "text_reference": "jceb-sample"
+        }
+      }
+    ],
+    "prose_entailment_claimed": false,
+    "calibrated_probability_used": false
+  },
+  "review": {
+    "provider": "openai_decisions",
+    "model": "gpt-6-luna",
+    "execution": "real_api",
+    "threshold": 0.95,
+    "calibration": "not_validated",
+    "rubric_version": "civic-v2-separated",
+    "usage": {
+      "input_tokens": 2525,
+      "output_tokens": 0,
+      "total_tokens": 2525
+    },
+    "status": "accepted",
+    "checks": [
+      {
+        "name": "source_support",
+        "status": "answered",
+        "type": "predicate",
+        "value": 0.99
+      },
+      {
+        "name": "no_vote_recommendation",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1
+      },
+      {
+        "name": "viewpoint_neutrality",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1
+      },
+      {
+        "name": "jurisdiction",
+        "status": "answered",
+        "type": "predicate",
+        "value": 0.99
+      },
+      {
+        "name": "clarity",
+        "status": "answered",
+        "type": "predicate",
+        "value": 0.98
+      },
+      {
+        "name": "abstention",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1
+      },
+      {
+        "name": "translation_status",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1
+      }
+    ],
+    "probabilities": {
+      "source_support": 0.99,
+      "no_vote_recommendation": 1,
+      "viewpoint_neutrality": 1,
+      "jurisdiction": 0.99,
+      "clarity": 0.98,
+      "abstention": 1,
+      "translation_status": 1
+    },
+    "label": "Decisions checks ran. Estimates are fallible; thresholds are not calibrated."
+  },
+  "trace": [
+    {
+      "tool": "resolve_contest",
+      "evidence_ids": [],
+      "live": true,
+      "provider_execution": "real_api",
+      "model": "gpt-6-luna",
+      "model_attempts": 4,
+      "usage": {
+        "inputTokens": 2790,
+        "outputTokens": 82,
+        "totalTokens": 2872
+      }
+    },
+    {
+      "tool": "search_evidence",
+      "evidence_ids": [
+        "combat:jceb-sample"
+      ],
+      "live": true,
+      "provider_execution": "real_api",
+      "model": "gpt-6-luna",
+      "model_attempts": 4,
+      "usage": {
+        "inputTokens": 2790,
+        "outputTokens": 82,
+        "totalTokens": 2872
+      }
+    },
+    {
+      "tool": "read_evidence",
+      "evidence_ids": [
+        "combat:jceb-sample"
+      ],
+      "live": true,
+      "provider_execution": "real_api",
+      "model": "gpt-6-luna",
+      "model_attempts": 4,
+      "usage": {
+        "inputTokens": 2790,
+        "outputTokens": 82,
+        "totalTokens": 2872
+      }
+    }
+  ],
+  "stage_ms": {
+    "resolve_retrieve_construct": 3640,
+    "source_guards": 1,
+    "decisions": 270
+  },
+  "elapsed_ms": 3911,
+  "speech_contract_present": true,
+  "speech_ready": false,
+  "transcript": null,
+  "audio_bytes": 0,
+  "audio_duration_ms": null,
+  "trimmed_silence_ms": null,
+  "final_event": {
+    "event_id": "event_EXeO6SZ1gR6RlycTxVBKS",
+    "type": "session.closed",
+    "reason": "close_requested",
+    "session": {
+      "id": "live_u2_EXeNyp3oMwNdjdRLJyLZscYSZDZ8mvdT",
+      "expires_at": 1791695975,
+      "model": "gpt-live-1",
+      "instructions": "You are Open Oracle, a neutral election evidence interface. Never recommend how to vote or invent facts. Delegate every substantive election question to the application. Ask for missing contest or jurisdiction context. Application evidence is a dated snapshot, not personal eligibility. Stay silent until the application sends approved commentary. Never greet, acknowledge, backchannel, or narrate progress. Read the approved English text exactly once without paraphrasing or adding words. All generated speech is buffered by the application and withheld unless the completed transcript matches the source-checked display.",
+      "audio": {
+        "output": {
+          "voice": "marin"
+        }
+      },
+      "delegation": {
+        "type": "client"
+      },
+      "status": "active",
+      "input": [],
+      "store": false
+    },
+    "usage": {
+      "seconds": 15
+    },
+    "client_event_id": "640a9a96-cd69-46b0-8016-9e4cc3b1b8a0"
+  },
+  "journal": {
+    "events": [
+      {
+        "sequence": 1,
+        "monotonic_ms": 4164,
+        "direction": "transport",
+        "type": "data_channel_created",
+        "state": "connecting"
+      },
+      {
+        "sequence": 2,
+        "monotonic_ms": 4167,
+        "direction": "transport",
+        "type": "signalingstatechange",
+        "ice_state": "new",
+        "signaling_state": "have-local-offer",
+        "connection_state": "new"
+      },
+      {
+        "sequence": 3,
+        "monotonic_ms": 4636,
+        "direction": "transport",
+        "type": "iceconnectionstatechange",
+        "ice_state": "checking",
+        "signaling_state": "have-local-offer",
+        "connection_state": "new"
+      },
+      {
+        "sequence": 4,
+        "monotonic_ms": 4637,
+        "direction": "transport",
+        "type": "signalingstatechange",
+        "ice_state": "checking",
+        "signaling_state": "stable",
+        "connection_state": "new"
+      },
+      {
+        "sequence": 5,
+        "monotonic_ms": 4637,
+        "direction": "transport",
+        "type": "remote_track",
+        "state": "live",
+        "kind": "audio"
+      },
+      {
+        "sequence": 6,
+        "monotonic_ms": 4637,
+        "direction": "transport",
+        "type": "connectionstatechange",
+        "ice_state": "checking",
+        "signaling_state": "stable",
+        "connection_state": "connecting"
+      },
+      {
+        "sequence": 7,
+        "monotonic_ms": 4720,
+        "direction": "transport",
+        "type": "iceconnectionstatechange",
+        "ice_state": "connected",
+        "signaling_state": "stable",
+        "connection_state": "connecting"
+      },
+      {
+        "sequence": 8,
+        "monotonic_ms": 4788,
+        "direction": "transport",
+        "type": "connectionstatechange",
+        "ice_state": "connected",
+        "signaling_state": "stable",
+        "connection_state": "connected"
+      },
+      {
+        "sequence": 9,
+        "monotonic_ms": 4837,
+        "direction": "transport",
+        "type": "data_channel_open",
+        "state": "open"
+      },
+      {
+        "sequence": 10,
+        "monotonic_ms": 4864,
+        "direction": "received",
+        "type": "session.started",
+        "event_id": "event_EXeNzD89a2AYYyvn8jMyf",
+        "session": {
+          "model": "gpt-live-1",
+          "status": "active",
+          "expires_at": 1791695975
+        }
+      },
+      {
+        "sequence": 11,
+        "monotonic_ms": 4865,
+        "direction": "sent",
+        "type": "session.input_audio.mute",
+        "event_id": "a17c765b-c938-41bc-b6b6-c509ed0ba62b"
+      },
+      {
+        "sequence": 12,
+        "monotonic_ms": 4865,
+        "direction": "sent",
+        "type": "session.commentary.append",
+        "event_id": "05931247-1e2d-4621-a288-b13489555a42",
+        "delegation_id": null,
+        "content_length": 48,
+        "content_is_approved_phrase": true,
+        "content": "The printed tax rate is one-quarter of one cent."
+      },
+      {
+        "sequence": 13,
+        "monotonic_ms": 4919,
+        "direction": "received",
+        "type": "session.input_audio.muted",
+        "event_id": "event_EXeNzdCQ1UVrpcDSmqheG",
+        "client_event_id": "a17c765b-c938-41bc-b6b6-c509ed0ba62b"
+      },
+      {
+        "sequence": 14,
+        "monotonic_ms": 5929,
+        "direction": "received",
+        "type": "session.commentary.appended",
+        "event_id": "event_EXeO067USCNhj6UOvMast",
+        "client_event_id": "05931247-1e2d-4621-a288-b13489555a42",
+        "start_ms": 600,
+        "end_ms": 800
+      },
+      {
+        "sequence": 15,
+        "monotonic_ms": 7042,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXeO1qqtgg4zdE7ptrBhf",
+        "start_ms": 1600,
+        "end_ms": 1800,
+        "delta": " The printed"
+      },
+      {
+        "sequence": 16,
+        "monotonic_ms": 7417,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXeO1F6zQuwkNF2J76POW",
+        "start_ms": 2000,
+        "end_ms": 2200,
+        "delta": " tax"
+      },
+      {
+        "sequence": 17,
+        "monotonic_ms": 7842,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXeO2OjCZM2W8WamDm4uW",
+        "start_ms": 2400,
+        "end_ms": 2600,
+        "delta": " rate"
+      },
+      {
+        "sequence": 18,
+        "monotonic_ms": 8047,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXeO2RzH7zAm1JZWrETpY",
+        "start_ms": 2600,
+        "end_ms": 2800,
+        "delta": " is"
+      },
+      {
+        "sequence": 19,
+        "monotonic_ms": 8227,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXeO2CE6zzzIvVi5qJZIP",
+        "start_ms": 2800,
+        "end_ms": 3000,
+        "delta": " one-quarter"
+      },
+      {
+        "sequence": 20,
+        "monotonic_ms": 9051,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXeO3cjgvLlWYp74dTfJ0",
+        "start_ms": 3600,
+        "end_ms": 3800,
+        "delta": " of"
+      },
+      {
+        "sequence": 21,
+        "monotonic_ms": 9231,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXeO3kfT4WyhqwlIZrCQb",
+        "start_ms": 3800,
+        "end_ms": 4000,
+        "delta": " one"
+      },
+      {
+        "sequence": 22,
+        "monotonic_ms": 9625,
+        "direction": "received",
+        "type": "session.output_transcript.delta",
+        "event_id": "event_EXeO4qugvwVggSVPH2RGm",
+        "start_ms": 4200,
+        "end_ms": 4400,
+        "delta": " cent."
+      },
+      {
+        "sequence": 23,
+        "monotonic_ms": 11134,
+        "direction": "sent",
+        "type": "session.input_audio.mute",
+        "event_id": "55d58a75-321f-462e-a388-bc0f2c9ea4be"
+      },
+      {
+        "sequence": 24,
+        "monotonic_ms": 11134,
+        "direction": "sent",
+        "type": "session.close",
+        "event_id": "640a9a96-cd69-46b0-8016-9e4cc3b1b8a0"
+      },
+      {
+        "sequence": 25,
+        "monotonic_ms": 11166,
+        "direction": "received",
+        "type": "session.input_audio.muted",
+        "event_id": "event_EXeO5AH0tmSw7FgFndck2",
+        "client_event_id": "55d58a75-321f-462e-a388-bc0f2c9ea4be"
+      },
+      {
+        "sequence": 26,
+        "monotonic_ms": 11588,
+        "direction": "received",
+        "type": "session.closed",
+        "event_id": "event_EXeO6SZ1gR6RlycTxVBKS",
+        "client_event_id": "640a9a96-cd69-46b0-8016-9e4cc3b1b8a0",
+        "reason": "close_requested",
+        "usage_seconds": 15,
+        "session": {
+          "model": "gpt-live-1",
+          "status": "active",
+          "expires_at": 1791695975
+        }
+      },
+      {
+        "sequence": 27,
+        "monotonic_ms": 11827,
+        "direction": "transport",
+        "type": "data_channel_closed",
+        "state": "closed"
+      },
+      {
+        "sequence": 28,
+        "monotonic_ms": 12097,
+        "direction": "transport",
+        "type": "transceiver",
+        "transceiver_direction": "stopped",
+        "current_direction": "stopped"
+      }
+    ],
+    "dropped": 0,
+    "complete": true
+  },
+  "playback_calls": 0,
+  "speech_ui_status": "Voice did not match or finish. Read the answer; its sources are available.",
+  "evidence_requests": 1,
+  "live_sessions": 1,
+  "forbidden_requests": 0,
+  "human_audibility": "unverified; no playback"
+}

@@ -1,0 +1,11 @@
+{
+  "frozen_before_review": true,
+  "test_used_for_development": false,
+  "threshold": 0.95,
+  "authoritative_human_calibration": false,
+  "artifacts": {
+    "dev.json": "12a152ad397ad34e5871e1d92368aa1b62837e17390b459ef315066c410c3981",
+    "test.json": "3a1f7a8a26c6e140e0c66cf7948139ce3b2ade33f3586fb0b18162754617c947",
+    "original-checks.json": "9142bd5ae403545ad321f102779747ac0b90869fd73e6e5dd67ad36ca5fecdec"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "provider_calls": 0,
+  "microphone_calls": 0,
+  "playback": false,
+  "synthetic_signal": true,
+  "recordings": [
+    {
+      "bytes": 0,
+      "mime": "audio/webm;codecs=opus"
+    }
+  ],
+  "track_events": [
+    "unmute"
+  ],
+  "initial_track": {
+    "muted": true,
+    "enabled": true,
+    "readyState": "live"
+  },
+  "audio_processor": "available",
+  "started": true,
+  "recorder_state": "recording",
+  "stats": [
+    {
+      "type": "outbound-rtp",
+      "kind": "audio",
+      "packetsSent": 212,
+      "bytesSent": 17148
+    },
+    {
+      "type": "inbound-rtp",
+      "kind": "audio",
+      "packetsReceived": 212,
+      "totalSamplesDuration": 0,
+      "bytesReceived": 17148
+    }
+  ],
+  "first_processed_frame": {
+    "done": true
+  }
+}

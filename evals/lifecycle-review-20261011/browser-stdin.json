@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "execution": "actual_python_stdin_http_browser_transport_with_explicit_metadata_fixtures",
+  "ssh_connection": false,
+  "physical_sensor_events": false,
+  "physical_capture_calls": 0,
+  "provider_calls": 0,
+  "metadata_stdin_to_same_origin_to_guarded_adapter": true,
+  "presence_does_not_capture": true,
+  "voice_off_blocks_intent": true,
+  "frame_lease_failure_is_unknown_not_departure": true,
+  "actual_source_answer_preserved": true,
+  "page_errors": []
+}
