@@ -1,0 +1,7 @@
+# English GPT-Live voice preference
+
+Daniel selected Cedar. New WebRTC sessions explicitly send `session.audio.output.voice="cedar"`; primary WebSocket speech starts with the same voice, preserving its negotiated/PCM transport configuration. Neither path attempts another voice on failure. The existing English-only release, completed transcript/display validation, cancellation and bounded authorization controls remain in force. Voice stays off in the default source-only runtime.
+
+Compatibility evidence is Live-specific, not inferred from Realtime: installed OpenAI Python 3.28.0 `types/live/built_in_voice.py` declares Cedar, and `types/live/session_config.py` exposes `audio.output.voice` for `gpt-live-1`. Installed Node 7.25.0 Live definitions agree. The [official Python Live voice definition](https://github.com/openai/openai-python/blob/v3.28.0/src/openai/types/live/built_in_voice.py) is the upstream reference. Startup voice is immutable; changing preference requires a new deliberately initiated session, not a hidden reconnect.
+
+Offline tests inspect the real SDK configuration, the WebRTC mocked transport and the exported pure WebSocket startup configuration. They create no Live session, microphone/camera capture or audio playback. Cedar account/runtime acceptance and human audibility remain unverified. This change does not deliver continuous conversation, Spanish translation or other application-language support; those remain separate approved work with release and audibility validation required.

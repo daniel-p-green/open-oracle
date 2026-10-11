@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open Oracle · Election evidence</title><link rel="stylesheet" href="/orb.css"><link rel="stylesheet" href="/styles.css"></head>
+<body class="oracle-kiosk">
+<a class="skip-link" href="#question">Skip to your question</a>
+<p class="community-notice">Independent community prototype · Not a government service</p>
+<header class="masthead"><a class="brand" href="/website" aria-label="Open Oracle website">Open Oracle</a><nav aria-label="Main"><a href="#how-it-works" data-open-details>How it works</a><button id="reset" class="quiet" type="button">Start again</button></nav></header>
+<main><section class="conversation" aria-labelledby="headline">
+<div class="intro"><p class="eyebrow">THE ORACLE · A CONVERSATION WITH YOUR BALLOT</p><h1 id="headline">Your ballot, clearer.</h1><p class="invitation">Ask in your own words.<br>Keep the original in view.</p><p class="election-context">Jackson County, Missouri · November 3, 2026</p></div>
+<div class="presence"><span id="orb" class="orb" data-state="ready" aria-hidden="true"></span><span id="presence-state">Ready for a question</span><span id="orb-uncertainty" hidden aria-hidden="true">?</span></div>
+<p id="capture-notice" class="fine" hidden>Voice questions send microphone audio to OpenAI. Capture starts only after deliberate initiation and microphone permission. Provider retention has not been verified for this prototype.</p><button id="voice-stop" type="button" class="quiet" hidden>Stop voice</button>
+
+
+
+<p id="spoken-question" class="answer-text" hidden aria-label="Your spoken question"></p>
+<div id="activity" class="activity" role="status" aria-live="polite"></div>
+<section id="answer-region" class="answer-region" hidden aria-label="Answer and evidence">
+<div class="answer-heading"><h2 id="answer-title">The answer</h2><span id="answer-status"></span></div>
+<p id="answer-text" class="answer-text" lang="en"></p><p id="speech-status" class="fine">Text is ready to read.</p><button id="speak" type="button" disabled hidden>Prepare spoken answer</button>
+<div id="choices" class="choices"></div><div id="adaptive-card"></div>
+<details id="sources-disclosure" class="source-disclosure"><summary id="sources-summary">Sources and limits</summary><div id="evidence"></div><div id="roster" class="roster"></div><div id="candidate-sources"></div><div id="links"></div><div id="limitations" class="limitations"></div><details class="workflow"><summary>Delivery details</summary><pre id="trace"></pre><span id="mode">Loading sources</span></details></details>
+</section>
+<details id="input-disclosure" open><summary id="type-summary" hidden>Ask another question</summary><form id="ask-form" class="question-card" autocomplete="off">
+<label class="composer-label" for="question">Your election question</label><textarea id="question" rows="1" maxlength="2000" placeholder="What would you like to understand?" required></textarea>
+<div class="form-actions"><button type="button" id="mic" class="quiet" disabled>Speak</button><button type="submit" class="primary">Show evidence</button></div>
+<p id="mic-note" class="fine">Voice is off. You can type your question.</p>
+<details class="scope"><summary>City or district context</summary><p>This guides the source lookup. It does not determine your personal ballot.</p><div class="scope-fields"><label>Election authority<select id="authority"><option value="unknown">Not sure</option><option value="KCEB">KCEB · Kansas City within Jackson County</option><option value="JCEB">JCEB · Outside Kansas City</option></select></label><label>City or district<select id="location"><option value="">Not specified</option><option>Kansas City within Jackson County</option><option>Blue Springs</option><option>Independence</option><option>Lee's Summit</option><option>Sni Valley Fire Protection District</option></select></label></div></details>
+</form></details>
+<div class="starting-points" role="group" aria-label="Example questions"><span>Start with a question</span><button type="button" data-demo="amendment-7">Understand Amendment 7 <span aria-hidden="true">↗</span></button><button type="button" data-demo="candidates">Compare Pollard &amp; Fields <span aria-hidden="true">↗</span></button></div>
+<details class="inventory" id="browse"><summary>Browse contests</summary><p id="count">55 printed contests</p><p>Countywide sources. Each voter receives only applicable contests.</p><label class="sr-only" for="search">Find a contest or candidate</label><input id="search" type="search" placeholder="Find a contest or candidate…"><div class="tabs" role="group" aria-label="Contest categories"><button data-kind="measure" class="selected" aria-pressed="true">Measures</button><button data-kind="candidate" aria-pressed="false">Candidates</button><button data-kind="retention" aria-pressed="false">Retention</button></div><div id="contests" class="contest-list"></div></details>
+<details class="how-it-works" id="how-it-works"><summary>How Open Oracle works</summary><ol class="how-steps"><li><span class="step-number" aria-hidden="true">01</span><h3>Ask in your own words.</h3><p>Start with a measure or candidate question. This demo uses retained sources for the election shown above.</p></li><li><span class="step-number" aria-hidden="true">02</span><h3>Keep the original in view.</h3><p>Read an explanation beside exact ballot wording, or compare attributed candidate answers to the same question.</p></li><li><span class="step-number" aria-hidden="true">03</span><h3>Follow the evidence.</h3><p>Open the source. See what is missing. Open Oracle does not choose your vote or verify every candidate claim.</p></li></ol><p class="method-note">In live research mode, source and review checks must pass before an explanation is released. The local retained-source mode does not run AI review. Readability estimates describe wording, not factual accuracy or legal meaning.</p></details>
+<details class="station-details"><summary>About this station</summary><p id="interaction-note" class="fine" role="status">Presence and departure unavailable · Voice off</p><p>Voice begins only after deliberate initiation and permission. Erase clears this session locally and cancels pending work; it cannot promise deletion by a provider.</p></details>
+<footer><p id="operator-notice">Open Oracle · supervised prototype. Operator not configured. AI explanations can be wrong; check the source.</p>Sources retained October 2026. Samples may change.<br>No voting recommendations.</footer>
+</section></main><script src="/live.js" defer></script><script src="/interaction.js" defer></script><script src="/input-bridge.js" defer></script><script src="/release-store.js" defer></script><script src="/render-bindings.js" defer></script><script src="/app.js" defer></script><script src="/orb.js" defer></script><script src="/website.js" defer></script></body></html>

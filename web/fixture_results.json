@@ -1,0 +1,966 @@
+{
+  "en": {
+    "status": "fixture_validated",
+    "language": "en",
+    "primary": "The printed tax rate is one-quarter of one cent.\nThe proposed continuation lasts ten years.",
+    "english": null,
+    "originals": [
+      {
+        "text": "QUESTION # 1  \nShall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers? The proceeds of this tax shall be deposited in a  \nspecial Jackson County Anti-Crime Sales Tax Trust  \nFund, separate from the general fund or any other county  \nfunds.  \nYES  \nNO",
+        "language": "en",
+        "authority": "Jackson County Election Board"
+      }
+    ],
+    "speech": null
+  },
+  "es": {
+    "status": "fixture_validated",
+    "authority": "core_mint_required",
+    "request_id": "fixed-offline-official-fixture",
+    "requested_language": "es",
+    "language": "es",
+    "primary": "La tasa impositiva impresa es un cuarto de un centavo.\nLa continuación propuesta dura diez años.",
+    "english": "The printed tax rate is one-quarter of one cent.\nThe proposed continuation lasts ten years.",
+    "originals": [
+      {
+        "id": "combat:jceb-sample",
+        "text": "QUESTION # 1  \nShall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers? The proceeds of this tax shall be deposited in a  \nspecial Jackson County Anti-Crime Sales Tax Trust  \nFund, separate from the general fund or any other county  \nfunds.  \nYES  \nNO",
+        "language": "en",
+        "authority": "Jackson County Election Board",
+        "role": "official_ballot",
+        "edition": "retained November 3, 2026 sample, not personal applicability",
+        "scope": [
+          [
+            "election_date",
+            "2026-11-03"
+          ],
+          [
+            "jurisdiction",
+            "Jackson County, Missouri"
+          ]
+        ],
+        "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "status": "current_snapshot",
+        "original_verified": true
+      }
+    ],
+    "translation": {
+      "version": "translation-envelope-v1",
+      "request_id": "fixed-offline-official-fixture",
+      "language": "es",
+      "explanation_style": "standard",
+      "scope": {
+        "election_date": "2026-11-03",
+        "jurisdiction": "Jackson County, Missouri"
+      },
+      "claims": [
+        {
+          "form_id": "es:official_rate",
+          "form_sha256": "be2984dc43487d78a4cecf13fc52620b5f7e1a1e47d061ac7a5770a6973f4d6d",
+          "source_id": "combat:jceb-sample",
+          "source_binding_sha256": "3c135e04523e482a808d0c67929576479fd75f9bcfacfbc6dd7259d5ef1ece60",
+          "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "source_text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 99,
+          "end": 139,
+          "quote": "at the rate of one-quarter  \nof one cent",
+          "quote_sha256": "0b3f68d1917f4a836e02d6804ed4473d80e372c8ae0982bf4ca709693aa2894a",
+          "english": "The printed tax rate is one-quarter of one cent.",
+          "english_sha256": "db90ea1b97d355d09e6383f23eb10fde47ad3aea617ad9a1aa74ae8e6a8920db",
+          "target": "La tasa impositiva impresa es un cuarto de un centavo.",
+          "target_sha256": "68686bde5e8ddb1a4d706b07d697790b53b7edb8b43c22f4ef693ce1a74e5e08",
+          "features": [
+            {
+              "kind": "number",
+              "value": "one-quarter",
+              "source_phrase": "one-quarter",
+              "english_phrase": "one-quarter",
+              "target_phrase": "un cuarto"
+            },
+            {
+              "kind": "unit",
+              "value": "one cent",
+              "source_phrase": "one cent",
+              "english_phrase": "one cent",
+              "target_phrase": "un centavo"
+            }
+          ]
+        },
+        {
+          "form_id": "es:official_time",
+          "form_sha256": "d98088390024672c95ed06cb3df1a3fd71a423dbc4ea1123bc2f86958becc043",
+          "source_id": "combat:jceb-sample",
+          "source_binding_sha256": "3c135e04523e482a808d0c67929576479fd75f9bcfacfbc6dd7259d5ef1ece60",
+          "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "source_text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 140,
+          "end": 165,
+          "quote": "for a period of ten years",
+          "quote_sha256": "118b57637e63bc5eb1aec055684c8a94235c6677b8e6a1e0c62e5bc1f43e8716",
+          "english": "The proposed continuation lasts ten years.",
+          "english_sha256": "67d279ad31cf900ab6a91ec369976694134518bf8296998f5f854a63ccd2ef67",
+          "target": "La continuación propuesta dura diez años.",
+          "target_sha256": "866488f821f3086bf9c1885150512bce62554afcd05375d522d97c51bfaf9150",
+          "features": [
+            {
+              "kind": "number",
+              "value": "ten years",
+              "source_phrase": "ten years",
+              "english_phrase": "ten years",
+              "target_phrase": "diez años"
+            },
+            {
+              "kind": "unit",
+              "value": "ten years",
+              "source_phrase": "ten years",
+              "english_phrase": "ten years",
+              "target_phrase": "diez años"
+            }
+          ]
+        }
+      ],
+      "originals": [
+        {
+          "id": "combat:jceb-sample",
+          "text": "QUESTION # 1  \nShall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers? The proceeds of this tax shall be deposited in a  \nspecial Jackson County Anti-Crime Sales Tax Trust  \nFund, separate from the general fund or any other county  \nfunds.  \nYES  \nNO",
+          "language": "en",
+          "authority": "Jackson County Election Board",
+          "role": "official_ballot",
+          "edition": "retained November 3, 2026 sample, not personal applicability",
+          "scope": [
+            [
+              "election_date",
+              "2026-11-03"
+            ],
+            [
+              "jurisdiction",
+              "Jackson County, Missouri"
+            ]
+          ],
+          "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "status": "current_snapshot",
+          "original_verified": true
+        }
+      ],
+      "source_locale": "en",
+      "target_locale": "es",
+      "source_snapshot_digest": "47060be9a3e3d0502953fa28f0608aa9b15c4f04eded847476b1f5602967ab29",
+      "source_operation": null
+    },
+    "translation_sha256": "2753a62f0fb6e61f90fa452014d9d799f4204b1d6b378ca8946a32f70a55c7f7",
+    "review": {
+      "status": "accepted",
+      "envelope_sha256": "2753a62f0fb6e61f90fa452014d9d799f4204b1d6b378ca8946a32f70a55c7f7",
+      "execution": "offline_stub",
+      "checks": [
+        {
+          "name": "meaning_preserved",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "quantities_dates_units",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "negation_exceptions_scope",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "ballot_polarity",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "names_source_attribution",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "jurisdiction_and_source_scope",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "neutrality_and_gaps",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "language_and_completeness",
+          "status": "answered",
+          "probability": 1.0
+        }
+      ],
+      "rubric": "translation-envelope-v1",
+      "policy_digest": "3615daa8581c2c2c8556487ac02d61f7c372844c4b69c5d69afb88ae46d7d421",
+      "model": "gpt-6-luna",
+      "calibration": "not_validated",
+      "threshold": 0.95
+    },
+    "speech": null,
+    "reason": null
+  },
+  "vi": {
+    "status": "fixture_validated",
+    "authority": "core_mint_required",
+    "request_id": "fixed-offline-official-fixture",
+    "requested_language": "vi",
+    "language": "vi",
+    "primary": "Mức thuế được in là một phần tư của một xu.\nViệc tiếp tục được đề xuất kéo dài mười năm.",
+    "english": "The printed tax rate is one-quarter of one cent.\nThe proposed continuation lasts ten years.",
+    "originals": [
+      {
+        "id": "combat:jceb-sample",
+        "text": "QUESTION # 1  \nShall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers? The proceeds of this tax shall be deposited in a  \nspecial Jackson County Anti-Crime Sales Tax Trust  \nFund, separate from the general fund or any other county  \nfunds.  \nYES  \nNO",
+        "language": "en",
+        "authority": "Jackson County Election Board",
+        "role": "official_ballot",
+        "edition": "retained November 3, 2026 sample, not personal applicability",
+        "scope": [
+          [
+            "election_date",
+            "2026-11-03"
+          ],
+          [
+            "jurisdiction",
+            "Jackson County, Missouri"
+          ]
+        ],
+        "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "status": "current_snapshot",
+        "original_verified": true
+      }
+    ],
+    "translation": {
+      "version": "translation-envelope-v1",
+      "request_id": "fixed-offline-official-fixture",
+      "language": "vi",
+      "explanation_style": "standard",
+      "scope": {
+        "election_date": "2026-11-03",
+        "jurisdiction": "Jackson County, Missouri"
+      },
+      "claims": [
+        {
+          "form_id": "vi:official_rate",
+          "form_sha256": "a70bf98ca6296924698cae797c8db01f4d9e00bae89fa765b32cdb2b1e08df65",
+          "source_id": "combat:jceb-sample",
+          "source_binding_sha256": "3c135e04523e482a808d0c67929576479fd75f9bcfacfbc6dd7259d5ef1ece60",
+          "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "source_text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 99,
+          "end": 139,
+          "quote": "at the rate of one-quarter  \nof one cent",
+          "quote_sha256": "0b3f68d1917f4a836e02d6804ed4473d80e372c8ae0982bf4ca709693aa2894a",
+          "english": "The printed tax rate is one-quarter of one cent.",
+          "english_sha256": "db90ea1b97d355d09e6383f23eb10fde47ad3aea617ad9a1aa74ae8e6a8920db",
+          "target": "Mức thuế được in là một phần tư của một xu.",
+          "target_sha256": "18b00552fd80f231b5fd090aa54a30381d86ec699a374d0df453c626b243c627",
+          "features": [
+            {
+              "kind": "number",
+              "value": "one-quarter",
+              "source_phrase": "one-quarter",
+              "english_phrase": "one-quarter",
+              "target_phrase": "một phần tư"
+            },
+            {
+              "kind": "unit",
+              "value": "one cent",
+              "source_phrase": "one cent",
+              "english_phrase": "one cent",
+              "target_phrase": "một xu"
+            }
+          ]
+        },
+        {
+          "form_id": "vi:official_time",
+          "form_sha256": "9bb6c67820a86cdd899f4f3d28ba76ad10fb28e6219eb6f630fc1ef175344e60",
+          "source_id": "combat:jceb-sample",
+          "source_binding_sha256": "3c135e04523e482a808d0c67929576479fd75f9bcfacfbc6dd7259d5ef1ece60",
+          "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "source_text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 140,
+          "end": 165,
+          "quote": "for a period of ten years",
+          "quote_sha256": "118b57637e63bc5eb1aec055684c8a94235c6677b8e6a1e0c62e5bc1f43e8716",
+          "english": "The proposed continuation lasts ten years.",
+          "english_sha256": "67d279ad31cf900ab6a91ec369976694134518bf8296998f5f854a63ccd2ef67",
+          "target": "Việc tiếp tục được đề xuất kéo dài mười năm.",
+          "target_sha256": "a5c589ce62fa8d66f6c492946a796ec33da49276c13d36da7c99e65375500bfc",
+          "features": [
+            {
+              "kind": "number",
+              "value": "ten years",
+              "source_phrase": "ten years",
+              "english_phrase": "ten years",
+              "target_phrase": "mười năm"
+            },
+            {
+              "kind": "unit",
+              "value": "ten years",
+              "source_phrase": "ten years",
+              "english_phrase": "ten years",
+              "target_phrase": "mười năm"
+            }
+          ]
+        }
+      ],
+      "originals": [
+        {
+          "id": "combat:jceb-sample",
+          "text": "QUESTION # 1  \nShall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers? The proceeds of this tax shall be deposited in a  \nspecial Jackson County Anti-Crime Sales Tax Trust  \nFund, separate from the general fund or any other county  \nfunds.  \nYES  \nNO",
+          "language": "en",
+          "authority": "Jackson County Election Board",
+          "role": "official_ballot",
+          "edition": "retained November 3, 2026 sample, not personal applicability",
+          "scope": [
+            [
+              "election_date",
+              "2026-11-03"
+            ],
+            [
+              "jurisdiction",
+              "Jackson County, Missouri"
+            ]
+          ],
+          "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "status": "current_snapshot",
+          "original_verified": true
+        }
+      ],
+      "source_locale": "en",
+      "target_locale": "vi",
+      "source_snapshot_digest": "47060be9a3e3d0502953fa28f0608aa9b15c4f04eded847476b1f5602967ab29",
+      "source_operation": null
+    },
+    "translation_sha256": "142929d89ce1d7556fca52dc4835be7bca65b3904bd305ba5d5b7aa2246367c5",
+    "review": {
+      "status": "accepted",
+      "envelope_sha256": "142929d89ce1d7556fca52dc4835be7bca65b3904bd305ba5d5b7aa2246367c5",
+      "execution": "offline_stub",
+      "checks": [
+        {
+          "name": "meaning_preserved",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "quantities_dates_units",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "negation_exceptions_scope",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "ballot_polarity",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "names_source_attribution",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "jurisdiction_and_source_scope",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "neutrality_and_gaps",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "language_and_completeness",
+          "status": "answered",
+          "probability": 1.0
+        }
+      ],
+      "rubric": "translation-envelope-v1",
+      "policy_digest": "3615daa8581c2c2c8556487ac02d61f7c372844c4b69c5d69afb88ae46d7d421",
+      "model": "gpt-6-luna",
+      "calibration": "not_validated",
+      "threshold": 0.95
+    },
+    "speech": null,
+    "reason": null
+  },
+  "ar": {
+    "status": "fixture_validated",
+    "authority": "core_mint_required",
+    "request_id": "fixed-offline-official-fixture",
+    "requested_language": "ar",
+    "language": "ar",
+    "primary": "معدل الضريبة المطبوع هو ربع سنت واحد.\nالاستمرار المقترح يدوم عشر سنوات.",
+    "english": "The printed tax rate is one-quarter of one cent.\nThe proposed continuation lasts ten years.",
+    "originals": [
+      {
+        "id": "combat:jceb-sample",
+        "text": "QUESTION # 1  \nShall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers? The proceeds of this tax shall be deposited in a  \nspecial Jackson County Anti-Crime Sales Tax Trust  \nFund, separate from the general fund or any other county  \nfunds.  \nYES  \nNO",
+        "language": "en",
+        "authority": "Jackson County Election Board",
+        "role": "official_ballot",
+        "edition": "retained November 3, 2026 sample, not personal applicability",
+        "scope": [
+          [
+            "election_date",
+            "2026-11-03"
+          ],
+          [
+            "jurisdiction",
+            "Jackson County, Missouri"
+          ]
+        ],
+        "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "status": "current_snapshot",
+        "original_verified": true
+      }
+    ],
+    "translation": {
+      "version": "translation-envelope-v1",
+      "request_id": "fixed-offline-official-fixture",
+      "language": "ar",
+      "explanation_style": "standard",
+      "scope": {
+        "election_date": "2026-11-03",
+        "jurisdiction": "Jackson County, Missouri"
+      },
+      "claims": [
+        {
+          "form_id": "ar:official_rate",
+          "form_sha256": "38938286b6d09c47bbbf28ef23d798adacdd8d058fa66cde7bea886714900d71",
+          "source_id": "combat:jceb-sample",
+          "source_binding_sha256": "3c135e04523e482a808d0c67929576479fd75f9bcfacfbc6dd7259d5ef1ece60",
+          "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "source_text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 99,
+          "end": 139,
+          "quote": "at the rate of one-quarter  \nof one cent",
+          "quote_sha256": "0b3f68d1917f4a836e02d6804ed4473d80e372c8ae0982bf4ca709693aa2894a",
+          "english": "The printed tax rate is one-quarter of one cent.",
+          "english_sha256": "db90ea1b97d355d09e6383f23eb10fde47ad3aea617ad9a1aa74ae8e6a8920db",
+          "target": "معدل الضريبة المطبوع هو ربع سنت واحد.",
+          "target_sha256": "63690d5d5731b6beea08b0b675f3d37b6aaad1d4edd4f10f4445008eff89fac2",
+          "features": [
+            {
+              "kind": "number",
+              "value": "one-quarter",
+              "source_phrase": "one-quarter",
+              "english_phrase": "one-quarter",
+              "target_phrase": "ربع"
+            },
+            {
+              "kind": "unit",
+              "value": "one cent",
+              "source_phrase": "one cent",
+              "english_phrase": "one cent",
+              "target_phrase": "سنت واحد"
+            }
+          ]
+        },
+        {
+          "form_id": "ar:official_time",
+          "form_sha256": "82c55cd5fc26eba33dcbdb409ac3be82a1f6d830d87c6c55847eab21208a6d75",
+          "source_id": "combat:jceb-sample",
+          "source_binding_sha256": "3c135e04523e482a808d0c67929576479fd75f9bcfacfbc6dd7259d5ef1ece60",
+          "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "source_text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 140,
+          "end": 165,
+          "quote": "for a period of ten years",
+          "quote_sha256": "118b57637e63bc5eb1aec055684c8a94235c6677b8e6a1e0c62e5bc1f43e8716",
+          "english": "The proposed continuation lasts ten years.",
+          "english_sha256": "67d279ad31cf900ab6a91ec369976694134518bf8296998f5f854a63ccd2ef67",
+          "target": "الاستمرار المقترح يدوم عشر سنوات.",
+          "target_sha256": "9820bc7a31652fb3c402d66e014ea14c7ea2c2e10dc755f9dc59a802137f103c",
+          "features": [
+            {
+              "kind": "number",
+              "value": "ten years",
+              "source_phrase": "ten years",
+              "english_phrase": "ten years",
+              "target_phrase": "عشر سنوات"
+            },
+            {
+              "kind": "unit",
+              "value": "ten years",
+              "source_phrase": "ten years",
+              "english_phrase": "ten years",
+              "target_phrase": "عشر سنوات"
+            }
+          ]
+        }
+      ],
+      "originals": [
+        {
+          "id": "combat:jceb-sample",
+          "text": "QUESTION # 1  \nShall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers? The proceeds of this tax shall be deposited in a  \nspecial Jackson County Anti-Crime Sales Tax Trust  \nFund, separate from the general fund or any other county  \nfunds.  \nYES  \nNO",
+          "language": "en",
+          "authority": "Jackson County Election Board",
+          "role": "official_ballot",
+          "edition": "retained November 3, 2026 sample, not personal applicability",
+          "scope": [
+            [
+              "election_date",
+              "2026-11-03"
+            ],
+            [
+              "jurisdiction",
+              "Jackson County, Missouri"
+            ]
+          ],
+          "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "status": "current_snapshot",
+          "original_verified": true
+        }
+      ],
+      "source_locale": "en",
+      "target_locale": "ar",
+      "source_snapshot_digest": "47060be9a3e3d0502953fa28f0608aa9b15c4f04eded847476b1f5602967ab29",
+      "source_operation": null
+    },
+    "translation_sha256": "e7c98db3f4955df8688fc02d12f105c635e1c963f906342a2c2d1f7b2a094909",
+    "review": {
+      "status": "accepted",
+      "envelope_sha256": "e7c98db3f4955df8688fc02d12f105c635e1c963f906342a2c2d1f7b2a094909",
+      "execution": "offline_stub",
+      "checks": [
+        {
+          "name": "meaning_preserved",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "quantities_dates_units",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "negation_exceptions_scope",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "ballot_polarity",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "names_source_attribution",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "jurisdiction_and_source_scope",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "neutrality_and_gaps",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "language_and_completeness",
+          "status": "answered",
+          "probability": 1.0
+        }
+      ],
+      "rubric": "translation-envelope-v1",
+      "policy_digest": "3615daa8581c2c2c8556487ac02d61f7c372844c4b69c5d69afb88ae46d7d421",
+      "model": "gpt-6-luna",
+      "calibration": "not_validated",
+      "threshold": 0.95
+    },
+    "speech": null,
+    "reason": null
+  },
+  "zh-Hans": {
+    "status": "fixture_validated",
+    "authority": "core_mint_required",
+    "request_id": "fixed-offline-official-fixture",
+    "requested_language": "zh-Hans",
+    "language": "zh-Hans",
+    "primary": "印出的税率是四分之一美分。\n拟议的延续期限为十年。",
+    "english": "The printed tax rate is one-quarter of one cent.\nThe proposed continuation lasts ten years.",
+    "originals": [
+      {
+        "id": "combat:jceb-sample",
+        "text": "QUESTION # 1  \nShall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers? The proceeds of this tax shall be deposited in a  \nspecial Jackson County Anti-Crime Sales Tax Trust  \nFund, separate from the general fund or any other county  \nfunds.  \nYES  \nNO",
+        "language": "en",
+        "authority": "Jackson County Election Board",
+        "role": "official_ballot",
+        "edition": "retained November 3, 2026 sample, not personal applicability",
+        "scope": [
+          [
+            "election_date",
+            "2026-11-03"
+          ],
+          [
+            "jurisdiction",
+            "Jackson County, Missouri"
+          ]
+        ],
+        "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "status": "current_snapshot",
+        "original_verified": true
+      }
+    ],
+    "translation": {
+      "version": "translation-envelope-v1",
+      "request_id": "fixed-offline-official-fixture",
+      "language": "zh-Hans",
+      "explanation_style": "standard",
+      "scope": {
+        "election_date": "2026-11-03",
+        "jurisdiction": "Jackson County, Missouri"
+      },
+      "claims": [
+        {
+          "form_id": "zh-Hans:official_rate",
+          "form_sha256": "b4e3f759bc58ea7904a964f41e4e5bf876c70bee3930326c2176729d4fc0ec31",
+          "source_id": "combat:jceb-sample",
+          "source_binding_sha256": "3c135e04523e482a808d0c67929576479fd75f9bcfacfbc6dd7259d5ef1ece60",
+          "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "source_text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 99,
+          "end": 139,
+          "quote": "at the rate of one-quarter  \nof one cent",
+          "quote_sha256": "0b3f68d1917f4a836e02d6804ed4473d80e372c8ae0982bf4ca709693aa2894a",
+          "english": "The printed tax rate is one-quarter of one cent.",
+          "english_sha256": "db90ea1b97d355d09e6383f23eb10fde47ad3aea617ad9a1aa74ae8e6a8920db",
+          "target": "印出的税率是四分之一美分。",
+          "target_sha256": "4d2d005236b5165058112958b0a5cc6c80155dc1e41a021092a9e7d092ce5459",
+          "features": [
+            {
+              "kind": "number",
+              "value": "one-quarter",
+              "source_phrase": "one-quarter",
+              "english_phrase": "one-quarter",
+              "target_phrase": "四分之一"
+            },
+            {
+              "kind": "unit",
+              "value": "one cent",
+              "source_phrase": "one cent",
+              "english_phrase": "one cent",
+              "target_phrase": "一美分"
+            }
+          ]
+        },
+        {
+          "form_id": "zh-Hans:official_time",
+          "form_sha256": "5ec71139954bf155124d65b963197e044ea23f8c9848cd7036e8a7dff553ac9e",
+          "source_id": "combat:jceb-sample",
+          "source_binding_sha256": "3c135e04523e482a808d0c67929576479fd75f9bcfacfbc6dd7259d5ef1ece60",
+          "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "source_text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 140,
+          "end": 165,
+          "quote": "for a period of ten years",
+          "quote_sha256": "118b57637e63bc5eb1aec055684c8a94235c6677b8e6a1e0c62e5bc1f43e8716",
+          "english": "The proposed continuation lasts ten years.",
+          "english_sha256": "67d279ad31cf900ab6a91ec369976694134518bf8296998f5f854a63ccd2ef67",
+          "target": "拟议的延续期限为十年。",
+          "target_sha256": "d2eaa3952d8c770449a8832bd629edeefa5b2cdcf339c5d6309a7363f02ced12",
+          "features": [
+            {
+              "kind": "number",
+              "value": "ten years",
+              "source_phrase": "ten years",
+              "english_phrase": "ten years",
+              "target_phrase": "十年"
+            },
+            {
+              "kind": "unit",
+              "value": "ten years",
+              "source_phrase": "ten years",
+              "english_phrase": "ten years",
+              "target_phrase": "十年"
+            }
+          ]
+        }
+      ],
+      "originals": [
+        {
+          "id": "combat:jceb-sample",
+          "text": "QUESTION # 1  \nShall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers? The proceeds of this tax shall be deposited in a  \nspecial Jackson County Anti-Crime Sales Tax Trust  \nFund, separate from the general fund or any other county  \nfunds.  \nYES  \nNO",
+          "language": "en",
+          "authority": "Jackson County Election Board",
+          "role": "official_ballot",
+          "edition": "retained November 3, 2026 sample, not personal applicability",
+          "scope": [
+            [
+              "election_date",
+              "2026-11-03"
+            ],
+            [
+              "jurisdiction",
+              "Jackson County, Missouri"
+            ]
+          ],
+          "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "status": "current_snapshot",
+          "original_verified": true
+        }
+      ],
+      "source_locale": "en",
+      "target_locale": "zh-Hans",
+      "source_snapshot_digest": "47060be9a3e3d0502953fa28f0608aa9b15c4f04eded847476b1f5602967ab29",
+      "source_operation": null
+    },
+    "translation_sha256": "1d435a93c5e1e9fa8ab33c73da4ef9c7787d2abcd5b99971083d73c5e76377ca",
+    "review": {
+      "status": "accepted",
+      "envelope_sha256": "1d435a93c5e1e9fa8ab33c73da4ef9c7787d2abcd5b99971083d73c5e76377ca",
+      "execution": "offline_stub",
+      "checks": [
+        {
+          "name": "meaning_preserved",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "quantities_dates_units",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "negation_exceptions_scope",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "ballot_polarity",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "names_source_attribution",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "jurisdiction_and_source_scope",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "neutrality_and_gaps",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "language_and_completeness",
+          "status": "answered",
+          "probability": 1.0
+        }
+      ],
+      "rubric": "translation-envelope-v1",
+      "policy_digest": "3615daa8581c2c2c8556487ac02d61f7c372844c4b69c5d69afb88ae46d7d421",
+      "model": "gpt-6-luna",
+      "calibration": "not_validated",
+      "threshold": 0.95
+    },
+    "speech": null,
+    "reason": null
+  },
+  "fil": {
+    "status": "fixture_validated",
+    "authority": "core_mint_required",
+    "request_id": "fixed-offline-official-fixture",
+    "requested_language": "fil",
+    "language": "fil",
+    "primary": "Ang nakalimbag na rate ng buwis ay isang-kapat ng isang sentimo.\nAng iminungkahing pagpapatuloy ay tatagal ng sampung taon.",
+    "english": "The printed tax rate is one-quarter of one cent.\nThe proposed continuation lasts ten years.",
+    "originals": [
+      {
+        "id": "combat:jceb-sample",
+        "text": "QUESTION # 1  \nShall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers? The proceeds of this tax shall be deposited in a  \nspecial Jackson County Anti-Crime Sales Tax Trust  \nFund, separate from the general fund or any other county  \nfunds.  \nYES  \nNO",
+        "language": "en",
+        "authority": "Jackson County Election Board",
+        "role": "official_ballot",
+        "edition": "retained November 3, 2026 sample, not personal applicability",
+        "scope": [
+          [
+            "election_date",
+            "2026-11-03"
+          ],
+          [
+            "jurisdiction",
+            "Jackson County, Missouri"
+          ]
+        ],
+        "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "status": "current_snapshot",
+        "original_verified": true
+      }
+    ],
+    "translation": {
+      "version": "translation-envelope-v1",
+      "request_id": "fixed-offline-official-fixture",
+      "language": "fil",
+      "explanation_style": "standard",
+      "scope": {
+        "election_date": "2026-11-03",
+        "jurisdiction": "Jackson County, Missouri"
+      },
+      "claims": [
+        {
+          "form_id": "fil:official_rate",
+          "form_sha256": "3d4ab14442ada725c6ad55eae76005dee6e64a692cf1bc663cc74ce6831f88b0",
+          "source_id": "combat:jceb-sample",
+          "source_binding_sha256": "3c135e04523e482a808d0c67929576479fd75f9bcfacfbc6dd7259d5ef1ece60",
+          "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "source_text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 99,
+          "end": 139,
+          "quote": "at the rate of one-quarter  \nof one cent",
+          "quote_sha256": "0b3f68d1917f4a836e02d6804ed4473d80e372c8ae0982bf4ca709693aa2894a",
+          "english": "The printed tax rate is one-quarter of one cent.",
+          "english_sha256": "db90ea1b97d355d09e6383f23eb10fde47ad3aea617ad9a1aa74ae8e6a8920db",
+          "target": "Ang nakalimbag na rate ng buwis ay isang-kapat ng isang sentimo.",
+          "target_sha256": "0a30ef73c9b3cba78cfafb786b1c3be9b48909cf099fd2aa411074934b41720e",
+          "features": [
+            {
+              "kind": "number",
+              "value": "one-quarter",
+              "source_phrase": "one-quarter",
+              "english_phrase": "one-quarter",
+              "target_phrase": "isang-kapat"
+            },
+            {
+              "kind": "unit",
+              "value": "one cent",
+              "source_phrase": "one cent",
+              "english_phrase": "one cent",
+              "target_phrase": "isang sentimo"
+            }
+          ]
+        },
+        {
+          "form_id": "fil:official_time",
+          "form_sha256": "f9b24be7dc4843d16b88d4a45bd787d9ed2767707f13ccfd03c090e829ac618f",
+          "source_id": "combat:jceb-sample",
+          "source_binding_sha256": "3c135e04523e482a808d0c67929576479fd75f9bcfacfbc6dd7259d5ef1ece60",
+          "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "source_text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 140,
+          "end": 165,
+          "quote": "for a period of ten years",
+          "quote_sha256": "118b57637e63bc5eb1aec055684c8a94235c6677b8e6a1e0c62e5bc1f43e8716",
+          "english": "The proposed continuation lasts ten years.",
+          "english_sha256": "67d279ad31cf900ab6a91ec369976694134518bf8296998f5f854a63ccd2ef67",
+          "target": "Ang iminungkahing pagpapatuloy ay tatagal ng sampung taon.",
+          "target_sha256": "20d6af21cc2aae78c3fd1e11dc1bcb3cb5cf0ad00e28f61417634c6caa7956db",
+          "features": [
+            {
+              "kind": "number",
+              "value": "ten years",
+              "source_phrase": "ten years",
+              "english_phrase": "ten years",
+              "target_phrase": "sampung taon"
+            },
+            {
+              "kind": "unit",
+              "value": "ten years",
+              "source_phrase": "ten years",
+              "english_phrase": "ten years",
+              "target_phrase": "sampung taon"
+            }
+          ]
+        }
+      ],
+      "originals": [
+        {
+          "id": "combat:jceb-sample",
+          "text": "QUESTION # 1  \nShall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers? The proceeds of this tax shall be deposited in a  \nspecial Jackson County Anti-Crime Sales Tax Trust  \nFund, separate from the general fund or any other county  \nfunds.  \nYES  \nNO",
+          "language": "en",
+          "authority": "Jackson County Election Board",
+          "role": "official_ballot",
+          "edition": "retained November 3, 2026 sample, not personal applicability",
+          "scope": [
+            [
+              "election_date",
+              "2026-11-03"
+            ],
+            [
+              "jurisdiction",
+              "Jackson County, Missouri"
+            ]
+          ],
+          "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "status": "current_snapshot",
+          "original_verified": true
+        }
+      ],
+      "source_locale": "en",
+      "target_locale": "fil",
+      "source_snapshot_digest": "47060be9a3e3d0502953fa28f0608aa9b15c4f04eded847476b1f5602967ab29",
+      "source_operation": null
+    },
+    "translation_sha256": "39018215f2f5f1968c071458d20a6e1f73c7545541e7a4f236169a17991a643a",
+    "review": {
+      "status": "accepted",
+      "envelope_sha256": "39018215f2f5f1968c071458d20a6e1f73c7545541e7a4f236169a17991a643a",
+      "execution": "offline_stub",
+      "checks": [
+        {
+          "name": "meaning_preserved",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "quantities_dates_units",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "negation_exceptions_scope",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "ballot_polarity",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "names_source_attribution",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "jurisdiction_and_source_scope",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "neutrality_and_gaps",
+          "status": "answered",
+          "probability": 1.0
+        },
+        {
+          "name": "language_and_completeness",
+          "status": "answered",
+          "probability": 1.0
+        }
+      ],
+      "rubric": "translation-envelope-v1",
+      "policy_digest": "3615daa8581c2c2c8556487ac02d61f7c372844c4b69c5d69afb88ae46d7d421",
+      "model": "gpt-6-luna",
+      "calibration": "not_validated",
+      "threshold": 0.95
+    },
+    "speech": null,
+    "reason": null
+  }
+}

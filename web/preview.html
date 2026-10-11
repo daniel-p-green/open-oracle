@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Open Oracle isolated language fixture</title><link rel="stylesheet" href="locale.css"></head>
+<body><main class="language-surface">
+<p lang="en">Isolated offline language fixtures. Controls and translations are authored examples; bilingual quality, voice and Pi are not verified.</p>
+<section aria-label="Experimental idle invitation"><div id="idle"></div><button id="rotation-pause" type="button" data-l10n="control.pause">Pause</button><button id="rotation-resume" type="button" data-l10n="control.resume">Resume</button><label><input id="static" type="checkbox"><span data-l10n="idle.static_toggle">Static invitations</span></label></section>
+<section id="controls"><label for="language" data-l10n="language.label">Language</label><select id="language"><option value="en">English</option><option value="es">Español</option><option value="vi">Tiếng Việt</option><option value="ar">العربية</option><option value="zh-Hans">普通话</option><option value="fil">Filipino (Tagalog)</option></select>
+<label><input id="english-toggle" type="checkbox"><span data-l10n="language.english">Also show English</span></label>
+<p id="voice-availability" role="status" data-l10n="reason.voice_unverified"></p>
+<button type="button" id="fixture-start" data-l10n="control.start">Start conversation</button><button type="button" id="fixture-stop" data-l10n="control.stop">Stop</button><button type="button" id="fixture-resume" data-l10n="control.resume">Resume</button><button type="button" id="fixture-erase" data-l10n="control.erase">Erase session</button>
+<label for="transcript" data-l10n="control.transcript">Your spoken question</label><textarea id="transcript" data-l10n-placeholder="control.placeholder"></textarea><button type="button" id="correct" data-l10n="control.correct">Correct transcript</button><p id="status" role="status" data-l10n="status.fixture"></p>
+</section>
+<section id="translated" aria-labelledby="target-heading"><h2 id="target-heading" data-l10n="control.translation">Translated explanation</h2><p id="primary"></p><section id="english-output" hidden><h3 data-l10n="control.english">English explanation</h3><p id="english"></p></section></section>
+<section id="original-section" aria-labelledby="original-heading"><h2 id="original-heading" data-l10n="control.original">Original official wording</h2><p id="source-caveat" data-l10n="notice.sample"></p><p lang="en" dir="ltr">Jackson County Election Board · 2026-11-03</p><pre id="original" lang="en" dir="ltr"></pre></section>
+</main><script src="locale.js?v=4"></script><script src="idle_languages.js?v=4"></script><script src="preview.js?v=4"></script></body></html>

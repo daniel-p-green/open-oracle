@@ -1,0 +1,17 @@
+# Targeted repaired-path trial: held before quality review
+
+Exactly one parent-authorized HTTP trial ran under the new retained `$1` reservation `semantic_research_clarity_targeted_20261011`. The primary source-only server on port 8765 was unchanged. A separate loopback research server completed its trial and stopped; voice/capture/resources remained off. No repetition occurred.
+
+For the public scripted combined COMBAT rate/duration question, the real repaired semantic path validated all three indexed candidates, including controls, then ranked the substantive rate/duration paragraph first and the trust-fund paragraph second. The controls were excluded from semantic ranking. Two search stages reused one request-local embedding; exactly one Titan call embedded the approved public query (7 tokens, 256 dimensions, 299.749ms). The query vector was discarded. This is one measured public-query result, not broad semantic quality proof.
+
+Strands completed eight gpt-6-luna model calls (24,853 input / 684 output / 25,537 total tokens). Both source reads succeeded. Two `CitedAnswer` tool errors preceded `limit_total_tokens`: the native between-call 24,000 bound had been crossed by the completed final call. No validated structured answer reached claim/citation rebinding or Decisions. **Zero Decisions transports occurred**, no revised wording was reviewed, no claims/evidence were released. No cap or threshold was weakened.
+
+The planned finite wording SHA256 was `4b37871991899ef5044272bf7673631c803476ce9009bf4ee389c6745adcf537`. It binds the proposed wording, not a live accepted or even reviewed output. The exact source/corpus/adapter code hashes are retained in the numeric/hash receipt. Erase returned 200, old-session reuse returned 410, and both caused zero additional embedding/research requests. These are post-response checks, not live in-flight voice/cancellation proof.
+
+The retained receipt contains fixed tool status/categories, not argument/error payloads. Consequently **the historical failing field paths are unknown**. Offline inspection of installed Strands 1.59 found a reproducible inconsistency: generated tool schemas permit null for optional list fields `claims`/`gaps`, but the Pydantic validator rejects null with `list_type`. That is a concrete schema bug, not proven historical causation and not evidence that the model cannot satisfy a corrected contract. Core repairs the emitted array requirement and adds request-owned validation categories/normalized schema field paths, never error messages/inputs/contexts or untrusted extra-field keys. An authored malformed-then-valid SDK test verifies instrumentation and bounded correction without provider calls; it is not a new live success.
+
+No further live trial follows from this result. Next work is offline schema/telemetry validation, then a separately authorized fixed-case verification if needed. A stronger-model comparison requires verified availability; no alternate model ID or provider reliability conclusion is guessed.
+
+This is useful successful withholding and one working retrieval path, **not successful completion of the combined public answer experience**. Promptfoo local quality regression and safe runtime collection are being integrated separately; no managed CloudWatch/AgentCore export is claimed.
+
+Evidence: `evals/semantic-targeted-held-20261011/{http-proof,assessment,offline-preflight}.json`. No document vector artifact, raw visitor transcript or provider output event is in this checkpoint.

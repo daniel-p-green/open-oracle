@@ -1,0 +1,2277 @@
+{
+  "version": 1,
+  "human_adjudicated": false,
+  "labels": "authored regression expectations, not ground truth or live model results",
+  "cases": [
+    {
+      "id": "source-positive",
+      "language": "en",
+      "stage": "evidence",
+      "adapter": "core",
+      "operation": "evidence_answer",
+      "expected": "answered",
+      "question": "What is the COMBAT tax rate?",
+      "scope": {}
+    },
+    {
+      "id": "source-gap",
+      "language": "en",
+      "stage": "evidence",
+      "adapter": "core",
+      "operation": "evidence_answer",
+      "expected": "insufficient_evidence",
+      "question": "What is the performance rating for Paul C. Wilson?",
+      "scope": {}
+    },
+    {
+      "id": "vote-refusal",
+      "language": "en",
+      "stage": "evidence",
+      "adapter": "core",
+      "operation": "evidence_answer",
+      "expected": "neutrality_boundary",
+      "question": "Who should I vote for?",
+      "scope": {}
+    },
+    {
+      "id": "scope-clarification",
+      "language": "en",
+      "stage": "evidence",
+      "adapter": "core",
+      "operation": "evidence_answer",
+      "expected": "clarification",
+      "question": "What is the Blue Springs use tax?",
+      "scope": {}
+    },
+    {
+      "id": "wrong-authority",
+      "language": "en",
+      "stage": "evidence",
+      "adapter": "core",
+      "operation": "evidence_answer",
+      "expected": "clarification",
+      "question": "Show Sni Valley fire question",
+      "scope": {
+        "authority": "KCEB",
+        "district": "Sni Valley Fire Protection District"
+      }
+    },
+    {
+      "id": "partial-fact-prediction",
+      "language": "en",
+      "stage": "evidence",
+      "adapter": "core",
+      "operation": "evidence_answer",
+      "expected": "answered",
+      "question": "What is the COMBAT rate and will it reduce crime?",
+      "scope": {}
+    },
+    {
+      "id": "guard-number",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "core",
+      "operation": "guard_number",
+      "expected": "contradictory"
+    },
+    {
+      "id": "guard-source_mutation",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "core",
+      "operation": "guard_source_mutation",
+      "expected": "held"
+    },
+    {
+      "id": "guard-unverified_upload",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "core",
+      "operation": "guard_unverified_upload",
+      "expected": "held"
+    },
+    {
+      "id": "guard-scope",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "core",
+      "operation": "guard_scope",
+      "expected": "held"
+    },
+    {
+      "id": "guard-advice",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "core",
+      "operation": "guard_advice",
+      "expected": "held"
+    },
+    {
+      "id": "guard-translation_assertion",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "core",
+      "operation": "guard_translation_assertion",
+      "expected": "held"
+    },
+    {
+      "id": "guard-unknown_prose",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "core",
+      "operation": "guard_unknown_prose",
+      "expected": "held"
+    },
+    {
+      "id": "decisions-accepted",
+      "language": "en",
+      "stage": "decisions",
+      "adapter": "core",
+      "operation": "decisions_accepted",
+      "expected": "accepted"
+    },
+    {
+      "id": "decisions-refusal",
+      "language": "en",
+      "stage": "decisions",
+      "adapter": "core",
+      "operation": "decisions_refusal",
+      "expected": "rejected"
+    },
+    {
+      "id": "decisions-incomplete",
+      "language": "en",
+      "stage": "decisions",
+      "adapter": "core",
+      "operation": "decisions_incomplete",
+      "expected": "unavailable"
+    },
+    {
+      "id": "decisions-wrong_identity",
+      "language": "en",
+      "stage": "decisions",
+      "adapter": "core",
+      "operation": "decisions_wrong_identity",
+      "expected": "unavailable"
+    },
+    {
+      "id": "decisions-nonfinite",
+      "language": "en",
+      "stage": "decisions",
+      "adapter": "core",
+      "operation": "decisions_nonfinite",
+      "expected": "unavailable"
+    },
+    {
+      "id": "decisions-guard_before_review",
+      "language": "en",
+      "stage": "decisions",
+      "adapter": "core",
+      "operation": "decisions_guard_before_review",
+      "expected": "guarded_without_dispatch"
+    },
+    {
+      "id": "server-erase",
+      "language": "en",
+      "stage": "privacy",
+      "adapter": "core",
+      "operation": "privacy_server_erase",
+      "expected": "cleared"
+    },
+    {
+      "id": "en-language-suggested",
+      "language": "en",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_suggested",
+      "expected": "suggested"
+    },
+    {
+      "id": "en-language-mixed",
+      "language": "en",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_mixed",
+      "expected": "mixed_input"
+    },
+    {
+      "id": "en-language-unknown",
+      "language": "en",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_unknown",
+      "expected": "uncertain"
+    },
+    {
+      "id": "en-language-short",
+      "language": "en",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_short",
+      "expected": "short_input"
+    },
+    {
+      "id": "en-correction",
+      "language": "en",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_correction",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "en-language_change",
+      "language": "en",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_language_change",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "en-stop_resume",
+      "language": "en",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_stop_resume",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "en-erase",
+      "language": "en",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_erase",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "en-direction",
+      "language": "en",
+      "stage": "accessibility",
+      "adapter": "language",
+      "operation": "accessibility_direction",
+      "expected": "ltr"
+    },
+    {
+      "id": "en-speech-exact",
+      "language": "en",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_exact",
+      "expected": "accepted"
+    },
+    {
+      "id": "en-speech-sign_change",
+      "language": "en",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_sign_change",
+      "expected": "held"
+    },
+    {
+      "id": "en-speech-spaced_sign_change",
+      "language": "en",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_spaced_sign_change",
+      "expected": "held"
+    },
+    {
+      "id": "en-speech-plus_change",
+      "language": "en",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_plus_change",
+      "expected": "held"
+    },
+    {
+      "id": "en-speech-decimal_change",
+      "language": "en",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_decimal_change",
+      "expected": "held"
+    },
+    {
+      "id": "en-speech-number_change",
+      "language": "en",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_number_change",
+      "expected": "held"
+    },
+    {
+      "id": "en-speech-year_change",
+      "language": "en",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_year_change",
+      "expected": "held"
+    },
+    {
+      "id": "en-speech-polarity_change",
+      "language": "en",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_polarity_change",
+      "expected": "held"
+    },
+    {
+      "id": "en-speech-extra_advice",
+      "language": "en",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_extra_advice",
+      "expected": "held"
+    },
+    {
+      "id": "en-speech-truncated",
+      "language": "en",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_truncated",
+      "expected": "held"
+    },
+    {
+      "id": "en-speech-missing_ack",
+      "language": "en",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_missing_ack",
+      "expected": "held"
+    },
+    {
+      "id": "en-speech-duplicate_event",
+      "language": "en",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_duplicate_event",
+      "expected": "held"
+    },
+    {
+      "id": "en-speech-silence",
+      "language": "en",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_silence",
+      "expected": "held"
+    },
+    {
+      "id": "en-speech-missing_closure",
+      "language": "en",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_missing_closure",
+      "expected": "held"
+    },
+    {
+      "id": "en-speech-unknown_usage",
+      "language": "en",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_unknown_usage",
+      "expected": "held"
+    },
+    {
+      "id": "en-speech-language-gate",
+      "language": "en",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_language_gate",
+      "expected": "accepted_contract"
+    },
+    {
+      "id": "en-playback-stale",
+      "language": "en",
+      "stage": "playback",
+      "adapter": "voice",
+      "operation": "playback_stale_callback",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "en-erase-private-buffers",
+      "language": "en",
+      "stage": "privacy",
+      "adapter": "voice",
+      "operation": "privacy_erase_clear",
+      "expected": "cleared"
+    },
+    {
+      "id": "es-language-suggested",
+      "language": "es",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_suggested",
+      "expected": "suggested"
+    },
+    {
+      "id": "es-language-mixed",
+      "language": "es",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_mixed",
+      "expected": "mixed_input"
+    },
+    {
+      "id": "es-language-unknown",
+      "language": "es",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_unknown",
+      "expected": "uncertain"
+    },
+    {
+      "id": "es-language-short",
+      "language": "es",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_short",
+      "expected": "short_input"
+    },
+    {
+      "id": "es-correction",
+      "language": "es",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_correction",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "es-language_change",
+      "language": "es",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_language_change",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "es-stop_resume",
+      "language": "es",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_stop_resume",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "es-erase",
+      "language": "es",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_erase",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "es-direction",
+      "language": "es",
+      "stage": "accessibility",
+      "adapter": "language",
+      "operation": "accessibility_direction",
+      "expected": "ltr"
+    },
+    {
+      "id": "es-translation-rate",
+      "language": "es",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "rate"
+    },
+    {
+      "id": "es-translation-dates",
+      "language": "es",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "dates"
+    },
+    {
+      "id": "es-translation-polarity",
+      "language": "es",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "polarity"
+    },
+    {
+      "id": "es-translation-exception",
+      "language": "es",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "exception"
+    },
+    {
+      "id": "es-translation-attribution",
+      "language": "es",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "attribution"
+    },
+    {
+      "id": "es-translation-production_block",
+      "language": "es",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_production_block",
+      "expected": "translation_not_verified",
+      "form": "rate"
+    },
+    {
+      "id": "es-translation-number_change",
+      "language": "es",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_number_change",
+      "expected": "translation_contract_mismatch",
+      "form": "rate"
+    },
+    {
+      "id": "es-translation-negation_drop",
+      "language": "es",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_negation_drop",
+      "expected": "translation_contract_mismatch",
+      "form": "exception"
+    },
+    {
+      "id": "es-translation-polarity_swap",
+      "language": "es",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_polarity_swap",
+      "expected": "translation_contract_mismatch",
+      "form": "polarity"
+    },
+    {
+      "id": "es-translation-source_changed",
+      "language": "es",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_source_changed",
+      "expected": "source_binding_mismatch",
+      "form": "rate"
+    },
+    {
+      "id": "es-translation-forged_review",
+      "language": "es",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_forged_review",
+      "expected": "invalid_translation_claim",
+      "form": "rate"
+    },
+    {
+      "id": "es-speech-exact",
+      "language": "es",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_exact",
+      "expected": "accepted"
+    },
+    {
+      "id": "es-speech-sign_change",
+      "language": "es",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_sign_change",
+      "expected": "held"
+    },
+    {
+      "id": "es-speech-spaced_sign_change",
+      "language": "es",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_spaced_sign_change",
+      "expected": "held"
+    },
+    {
+      "id": "es-speech-plus_change",
+      "language": "es",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_plus_change",
+      "expected": "held"
+    },
+    {
+      "id": "es-speech-decimal_change",
+      "language": "es",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_decimal_change",
+      "expected": "held"
+    },
+    {
+      "id": "es-speech-number_change",
+      "language": "es",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_number_change",
+      "expected": "held"
+    },
+    {
+      "id": "es-speech-year_change",
+      "language": "es",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_year_change",
+      "expected": "held"
+    },
+    {
+      "id": "es-speech-polarity_change",
+      "language": "es",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_polarity_change",
+      "expected": "held"
+    },
+    {
+      "id": "es-speech-extra_advice",
+      "language": "es",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_extra_advice",
+      "expected": "held"
+    },
+    {
+      "id": "es-speech-truncated",
+      "language": "es",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_truncated",
+      "expected": "held"
+    },
+    {
+      "id": "es-speech-missing_ack",
+      "language": "es",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_missing_ack",
+      "expected": "held"
+    },
+    {
+      "id": "es-speech-duplicate_event",
+      "language": "es",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_duplicate_event",
+      "expected": "held"
+    },
+    {
+      "id": "es-speech-silence",
+      "language": "es",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_silence",
+      "expected": "held"
+    },
+    {
+      "id": "es-speech-missing_closure",
+      "language": "es",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_missing_closure",
+      "expected": "held"
+    },
+    {
+      "id": "es-speech-unknown_usage",
+      "language": "es",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_unknown_usage",
+      "expected": "held"
+    },
+    {
+      "id": "es-speech-language-gate",
+      "language": "es",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_language_gate",
+      "expected": "held_contract"
+    },
+    {
+      "id": "es-playback-stale",
+      "language": "es",
+      "stage": "playback",
+      "adapter": "voice",
+      "operation": "playback_stale_callback",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "es-erase-private-buffers",
+      "language": "es",
+      "stage": "privacy",
+      "adapter": "voice",
+      "operation": "privacy_erase_clear",
+      "expected": "cleared"
+    },
+    {
+      "id": "vi-language-suggested",
+      "language": "vi",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_suggested",
+      "expected": "suggested"
+    },
+    {
+      "id": "vi-language-mixed",
+      "language": "vi",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_mixed",
+      "expected": "mixed_input"
+    },
+    {
+      "id": "vi-language-unknown",
+      "language": "vi",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_unknown",
+      "expected": "uncertain"
+    },
+    {
+      "id": "vi-language-short",
+      "language": "vi",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_short",
+      "expected": "short_input"
+    },
+    {
+      "id": "vi-correction",
+      "language": "vi",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_correction",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "vi-language_change",
+      "language": "vi",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_language_change",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "vi-stop_resume",
+      "language": "vi",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_stop_resume",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "vi-erase",
+      "language": "vi",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_erase",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "vi-direction",
+      "language": "vi",
+      "stage": "accessibility",
+      "adapter": "language",
+      "operation": "accessibility_direction",
+      "expected": "ltr"
+    },
+    {
+      "id": "vi-translation-rate",
+      "language": "vi",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "rate"
+    },
+    {
+      "id": "vi-translation-dates",
+      "language": "vi",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "dates"
+    },
+    {
+      "id": "vi-translation-polarity",
+      "language": "vi",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "polarity"
+    },
+    {
+      "id": "vi-translation-exception",
+      "language": "vi",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "exception"
+    },
+    {
+      "id": "vi-translation-attribution",
+      "language": "vi",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "attribution"
+    },
+    {
+      "id": "vi-translation-production_block",
+      "language": "vi",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_production_block",
+      "expected": "translation_not_verified",
+      "form": "rate"
+    },
+    {
+      "id": "vi-translation-number_change",
+      "language": "vi",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_number_change",
+      "expected": "translation_contract_mismatch",
+      "form": "rate"
+    },
+    {
+      "id": "vi-translation-negation_drop",
+      "language": "vi",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_negation_drop",
+      "expected": "translation_contract_mismatch",
+      "form": "exception"
+    },
+    {
+      "id": "vi-translation-polarity_swap",
+      "language": "vi",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_polarity_swap",
+      "expected": "translation_contract_mismatch",
+      "form": "polarity"
+    },
+    {
+      "id": "vi-translation-source_changed",
+      "language": "vi",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_source_changed",
+      "expected": "source_binding_mismatch",
+      "form": "rate"
+    },
+    {
+      "id": "vi-translation-forged_review",
+      "language": "vi",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_forged_review",
+      "expected": "invalid_translation_claim",
+      "form": "rate"
+    },
+    {
+      "id": "vi-speech-exact",
+      "language": "vi",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_exact",
+      "expected": "accepted"
+    },
+    {
+      "id": "vi-speech-sign_change",
+      "language": "vi",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_sign_change",
+      "expected": "held"
+    },
+    {
+      "id": "vi-speech-spaced_sign_change",
+      "language": "vi",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_spaced_sign_change",
+      "expected": "held"
+    },
+    {
+      "id": "vi-speech-plus_change",
+      "language": "vi",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_plus_change",
+      "expected": "held"
+    },
+    {
+      "id": "vi-speech-decimal_change",
+      "language": "vi",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_decimal_change",
+      "expected": "held"
+    },
+    {
+      "id": "vi-speech-number_change",
+      "language": "vi",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_number_change",
+      "expected": "held"
+    },
+    {
+      "id": "vi-speech-year_change",
+      "language": "vi",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_year_change",
+      "expected": "held"
+    },
+    {
+      "id": "vi-speech-polarity_change",
+      "language": "vi",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_polarity_change",
+      "expected": "held"
+    },
+    {
+      "id": "vi-speech-extra_advice",
+      "language": "vi",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_extra_advice",
+      "expected": "held"
+    },
+    {
+      "id": "vi-speech-truncated",
+      "language": "vi",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_truncated",
+      "expected": "held"
+    },
+    {
+      "id": "vi-speech-missing_ack",
+      "language": "vi",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_missing_ack",
+      "expected": "held"
+    },
+    {
+      "id": "vi-speech-duplicate_event",
+      "language": "vi",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_duplicate_event",
+      "expected": "held"
+    },
+    {
+      "id": "vi-speech-silence",
+      "language": "vi",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_silence",
+      "expected": "held"
+    },
+    {
+      "id": "vi-speech-missing_closure",
+      "language": "vi",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_missing_closure",
+      "expected": "held"
+    },
+    {
+      "id": "vi-speech-unknown_usage",
+      "language": "vi",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_unknown_usage",
+      "expected": "held"
+    },
+    {
+      "id": "vi-speech-language-gate",
+      "language": "vi",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_language_gate",
+      "expected": "held_contract"
+    },
+    {
+      "id": "vi-playback-stale",
+      "language": "vi",
+      "stage": "playback",
+      "adapter": "voice",
+      "operation": "playback_stale_callback",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "vi-erase-private-buffers",
+      "language": "vi",
+      "stage": "privacy",
+      "adapter": "voice",
+      "operation": "privacy_erase_clear",
+      "expected": "cleared"
+    },
+    {
+      "id": "ar-language-suggested",
+      "language": "ar",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_suggested",
+      "expected": "suggested"
+    },
+    {
+      "id": "ar-language-mixed",
+      "language": "ar",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_mixed",
+      "expected": "mixed_input"
+    },
+    {
+      "id": "ar-language-unknown",
+      "language": "ar",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_unknown",
+      "expected": "uncertain"
+    },
+    {
+      "id": "ar-language-short",
+      "language": "ar",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_short",
+      "expected": "short_input"
+    },
+    {
+      "id": "ar-correction",
+      "language": "ar",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_correction",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "ar-language_change",
+      "language": "ar",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_language_change",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "ar-stop_resume",
+      "language": "ar",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_stop_resume",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "ar-erase",
+      "language": "ar",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_erase",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "ar-direction",
+      "language": "ar",
+      "stage": "accessibility",
+      "adapter": "language",
+      "operation": "accessibility_direction",
+      "expected": "rtl"
+    },
+    {
+      "id": "ar-translation-rate",
+      "language": "ar",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "rate"
+    },
+    {
+      "id": "ar-translation-dates",
+      "language": "ar",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "dates"
+    },
+    {
+      "id": "ar-translation-polarity",
+      "language": "ar",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "polarity"
+    },
+    {
+      "id": "ar-translation-exception",
+      "language": "ar",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "exception"
+    },
+    {
+      "id": "ar-translation-attribution",
+      "language": "ar",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "attribution"
+    },
+    {
+      "id": "ar-translation-production_block",
+      "language": "ar",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_production_block",
+      "expected": "translation_not_verified",
+      "form": "rate"
+    },
+    {
+      "id": "ar-translation-number_change",
+      "language": "ar",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_number_change",
+      "expected": "translation_contract_mismatch",
+      "form": "rate"
+    },
+    {
+      "id": "ar-translation-negation_drop",
+      "language": "ar",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_negation_drop",
+      "expected": "translation_contract_mismatch",
+      "form": "exception"
+    },
+    {
+      "id": "ar-translation-polarity_swap",
+      "language": "ar",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_polarity_swap",
+      "expected": "translation_contract_mismatch",
+      "form": "polarity"
+    },
+    {
+      "id": "ar-translation-source_changed",
+      "language": "ar",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_source_changed",
+      "expected": "source_binding_mismatch",
+      "form": "rate"
+    },
+    {
+      "id": "ar-translation-forged_review",
+      "language": "ar",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_forged_review",
+      "expected": "invalid_translation_claim",
+      "form": "rate"
+    },
+    {
+      "id": "ar-speech-exact",
+      "language": "ar",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_exact",
+      "expected": "accepted"
+    },
+    {
+      "id": "ar-speech-sign_change",
+      "language": "ar",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_sign_change",
+      "expected": "held"
+    },
+    {
+      "id": "ar-speech-spaced_sign_change",
+      "language": "ar",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_spaced_sign_change",
+      "expected": "held"
+    },
+    {
+      "id": "ar-speech-plus_change",
+      "language": "ar",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_plus_change",
+      "expected": "held"
+    },
+    {
+      "id": "ar-speech-decimal_change",
+      "language": "ar",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_decimal_change",
+      "expected": "held"
+    },
+    {
+      "id": "ar-speech-number_change",
+      "language": "ar",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_number_change",
+      "expected": "held"
+    },
+    {
+      "id": "ar-speech-year_change",
+      "language": "ar",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_year_change",
+      "expected": "held"
+    },
+    {
+      "id": "ar-speech-polarity_change",
+      "language": "ar",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_polarity_change",
+      "expected": "held"
+    },
+    {
+      "id": "ar-speech-extra_advice",
+      "language": "ar",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_extra_advice",
+      "expected": "held"
+    },
+    {
+      "id": "ar-speech-truncated",
+      "language": "ar",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_truncated",
+      "expected": "held"
+    },
+    {
+      "id": "ar-speech-missing_ack",
+      "language": "ar",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_missing_ack",
+      "expected": "held"
+    },
+    {
+      "id": "ar-speech-duplicate_event",
+      "language": "ar",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_duplicate_event",
+      "expected": "held"
+    },
+    {
+      "id": "ar-speech-silence",
+      "language": "ar",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_silence",
+      "expected": "held"
+    },
+    {
+      "id": "ar-speech-missing_closure",
+      "language": "ar",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_missing_closure",
+      "expected": "held"
+    },
+    {
+      "id": "ar-speech-unknown_usage",
+      "language": "ar",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_unknown_usage",
+      "expected": "held"
+    },
+    {
+      "id": "ar-speech-language-gate",
+      "language": "ar",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_language_gate",
+      "expected": "held_contract"
+    },
+    {
+      "id": "ar-playback-stale",
+      "language": "ar",
+      "stage": "playback",
+      "adapter": "voice",
+      "operation": "playback_stale_callback",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "ar-erase-private-buffers",
+      "language": "ar",
+      "stage": "privacy",
+      "adapter": "voice",
+      "operation": "privacy_erase_clear",
+      "expected": "cleared"
+    },
+    {
+      "id": "zh-Hans-language-suggested",
+      "language": "zh-Hans",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_suggested",
+      "expected": "suggested"
+    },
+    {
+      "id": "zh-Hans-language-mixed",
+      "language": "zh-Hans",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_mixed",
+      "expected": "mixed_input"
+    },
+    {
+      "id": "zh-Hans-language-unknown",
+      "language": "zh-Hans",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_unknown",
+      "expected": "uncertain"
+    },
+    {
+      "id": "zh-Hans-language-short",
+      "language": "zh-Hans",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_short",
+      "expected": "short_input"
+    },
+    {
+      "id": "zh-Hans-correction",
+      "language": "zh-Hans",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_correction",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "zh-Hans-language_change",
+      "language": "zh-Hans",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_language_change",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "zh-Hans-stop_resume",
+      "language": "zh-Hans",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_stop_resume",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "zh-Hans-erase",
+      "language": "zh-Hans",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_erase",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "zh-Hans-direction",
+      "language": "zh-Hans",
+      "stage": "accessibility",
+      "adapter": "language",
+      "operation": "accessibility_direction",
+      "expected": "ltr"
+    },
+    {
+      "id": "zh-Hans-translation-rate",
+      "language": "zh-Hans",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "rate"
+    },
+    {
+      "id": "zh-Hans-translation-dates",
+      "language": "zh-Hans",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "dates"
+    },
+    {
+      "id": "zh-Hans-translation-polarity",
+      "language": "zh-Hans",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "polarity"
+    },
+    {
+      "id": "zh-Hans-translation-exception",
+      "language": "zh-Hans",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "exception"
+    },
+    {
+      "id": "zh-Hans-translation-attribution",
+      "language": "zh-Hans",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "attribution"
+    },
+    {
+      "id": "zh-Hans-translation-production_block",
+      "language": "zh-Hans",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_production_block",
+      "expected": "translation_not_verified",
+      "form": "rate"
+    },
+    {
+      "id": "zh-Hans-translation-number_change",
+      "language": "zh-Hans",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_number_change",
+      "expected": "translation_contract_mismatch",
+      "form": "rate"
+    },
+    {
+      "id": "zh-Hans-translation-negation_drop",
+      "language": "zh-Hans",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_negation_drop",
+      "expected": "translation_contract_mismatch",
+      "form": "exception"
+    },
+    {
+      "id": "zh-Hans-translation-polarity_swap",
+      "language": "zh-Hans",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_polarity_swap",
+      "expected": "translation_contract_mismatch",
+      "form": "polarity"
+    },
+    {
+      "id": "zh-Hans-translation-source_changed",
+      "language": "zh-Hans",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_source_changed",
+      "expected": "source_binding_mismatch",
+      "form": "rate"
+    },
+    {
+      "id": "zh-Hans-translation-forged_review",
+      "language": "zh-Hans",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_forged_review",
+      "expected": "invalid_translation_claim",
+      "form": "rate"
+    },
+    {
+      "id": "zh-Hans-speech-exact",
+      "language": "zh-Hans",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_exact",
+      "expected": "accepted"
+    },
+    {
+      "id": "zh-Hans-speech-sign_change",
+      "language": "zh-Hans",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_sign_change",
+      "expected": "held"
+    },
+    {
+      "id": "zh-Hans-speech-spaced_sign_change",
+      "language": "zh-Hans",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_spaced_sign_change",
+      "expected": "held"
+    },
+    {
+      "id": "zh-Hans-speech-plus_change",
+      "language": "zh-Hans",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_plus_change",
+      "expected": "held"
+    },
+    {
+      "id": "zh-Hans-speech-decimal_change",
+      "language": "zh-Hans",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_decimal_change",
+      "expected": "held"
+    },
+    {
+      "id": "zh-Hans-speech-number_change",
+      "language": "zh-Hans",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_number_change",
+      "expected": "held"
+    },
+    {
+      "id": "zh-Hans-speech-year_change",
+      "language": "zh-Hans",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_year_change",
+      "expected": "held"
+    },
+    {
+      "id": "zh-Hans-speech-polarity_change",
+      "language": "zh-Hans",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_polarity_change",
+      "expected": "held"
+    },
+    {
+      "id": "zh-Hans-speech-extra_advice",
+      "language": "zh-Hans",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_extra_advice",
+      "expected": "held"
+    },
+    {
+      "id": "zh-Hans-speech-truncated",
+      "language": "zh-Hans",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_truncated",
+      "expected": "held"
+    },
+    {
+      "id": "zh-Hans-speech-missing_ack",
+      "language": "zh-Hans",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_missing_ack",
+      "expected": "held"
+    },
+    {
+      "id": "zh-Hans-speech-duplicate_event",
+      "language": "zh-Hans",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_duplicate_event",
+      "expected": "held"
+    },
+    {
+      "id": "zh-Hans-speech-silence",
+      "language": "zh-Hans",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_silence",
+      "expected": "held"
+    },
+    {
+      "id": "zh-Hans-speech-missing_closure",
+      "language": "zh-Hans",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_missing_closure",
+      "expected": "held"
+    },
+    {
+      "id": "zh-Hans-speech-unknown_usage",
+      "language": "zh-Hans",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_unknown_usage",
+      "expected": "held"
+    },
+    {
+      "id": "zh-Hans-speech-language-gate",
+      "language": "zh-Hans",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_language_gate",
+      "expected": "held_contract"
+    },
+    {
+      "id": "zh-Hans-playback-stale",
+      "language": "zh-Hans",
+      "stage": "playback",
+      "adapter": "voice",
+      "operation": "playback_stale_callback",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "zh-Hans-erase-private-buffers",
+      "language": "zh-Hans",
+      "stage": "privacy",
+      "adapter": "voice",
+      "operation": "privacy_erase_clear",
+      "expected": "cleared"
+    },
+    {
+      "id": "fil-language-suggested",
+      "language": "fil",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_suggested",
+      "expected": "suggested"
+    },
+    {
+      "id": "fil-language-mixed",
+      "language": "fil",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_mixed",
+      "expected": "mixed_input"
+    },
+    {
+      "id": "fil-language-unknown",
+      "language": "fil",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_unknown",
+      "expected": "uncertain"
+    },
+    {
+      "id": "fil-language-short",
+      "language": "fil",
+      "stage": "language_identification",
+      "adapter": "language",
+      "operation": "identification_short",
+      "expected": "short_input"
+    },
+    {
+      "id": "fil-correction",
+      "language": "fil",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_correction",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "fil-language_change",
+      "language": "fil",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_language_change",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "fil-stop_resume",
+      "language": "fil",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_stop_resume",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "fil-erase",
+      "language": "fil",
+      "stage": "lifecycle",
+      "adapter": "language",
+      "operation": "lifecycle_erase",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "fil-direction",
+      "language": "fil",
+      "stage": "accessibility",
+      "adapter": "language",
+      "operation": "accessibility_direction",
+      "expected": "ltr"
+    },
+    {
+      "id": "fil-translation-rate",
+      "language": "fil",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "rate"
+    },
+    {
+      "id": "fil-translation-dates",
+      "language": "fil",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "dates"
+    },
+    {
+      "id": "fil-translation-polarity",
+      "language": "fil",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "polarity"
+    },
+    {
+      "id": "fil-translation-exception",
+      "language": "fil",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "exception"
+    },
+    {
+      "id": "fil-translation-attribution",
+      "language": "fil",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_fixture",
+      "expected": "fixture_validated",
+      "form": "attribution"
+    },
+    {
+      "id": "fil-translation-production_block",
+      "language": "fil",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_production_block",
+      "expected": "translation_not_verified",
+      "form": "rate"
+    },
+    {
+      "id": "fil-translation-number_change",
+      "language": "fil",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_number_change",
+      "expected": "translation_contract_mismatch",
+      "form": "rate"
+    },
+    {
+      "id": "fil-translation-negation_drop",
+      "language": "fil",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_negation_drop",
+      "expected": "translation_contract_mismatch",
+      "form": "exception"
+    },
+    {
+      "id": "fil-translation-polarity_swap",
+      "language": "fil",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_polarity_swap",
+      "expected": "translation_contract_mismatch",
+      "form": "polarity"
+    },
+    {
+      "id": "fil-translation-source_changed",
+      "language": "fil",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_source_changed",
+      "expected": "source_binding_mismatch",
+      "form": "rate"
+    },
+    {
+      "id": "fil-translation-forged_review",
+      "language": "fil",
+      "stage": "translation",
+      "adapter": "language",
+      "operation": "translation_forged_review",
+      "expected": "invalid_translation_claim",
+      "form": "rate"
+    },
+    {
+      "id": "fil-speech-exact",
+      "language": "fil",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_exact",
+      "expected": "accepted"
+    },
+    {
+      "id": "fil-speech-sign_change",
+      "language": "fil",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_sign_change",
+      "expected": "held"
+    },
+    {
+      "id": "fil-speech-spaced_sign_change",
+      "language": "fil",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_spaced_sign_change",
+      "expected": "held"
+    },
+    {
+      "id": "fil-speech-plus_change",
+      "language": "fil",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_plus_change",
+      "expected": "held"
+    },
+    {
+      "id": "fil-speech-decimal_change",
+      "language": "fil",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_decimal_change",
+      "expected": "held"
+    },
+    {
+      "id": "fil-speech-number_change",
+      "language": "fil",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_number_change",
+      "expected": "held"
+    },
+    {
+      "id": "fil-speech-year_change",
+      "language": "fil",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_year_change",
+      "expected": "held"
+    },
+    {
+      "id": "fil-speech-polarity_change",
+      "language": "fil",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_polarity_change",
+      "expected": "held"
+    },
+    {
+      "id": "fil-speech-extra_advice",
+      "language": "fil",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_extra_advice",
+      "expected": "held"
+    },
+    {
+      "id": "fil-speech-truncated",
+      "language": "fil",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_truncated",
+      "expected": "held"
+    },
+    {
+      "id": "fil-speech-missing_ack",
+      "language": "fil",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_missing_ack",
+      "expected": "held"
+    },
+    {
+      "id": "fil-speech-duplicate_event",
+      "language": "fil",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_duplicate_event",
+      "expected": "held"
+    },
+    {
+      "id": "fil-speech-silence",
+      "language": "fil",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_silence",
+      "expected": "held"
+    },
+    {
+      "id": "fil-speech-missing_closure",
+      "language": "fil",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_missing_closure",
+      "expected": "held"
+    },
+    {
+      "id": "fil-speech-unknown_usage",
+      "language": "fil",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_unknown_usage",
+      "expected": "held"
+    },
+    {
+      "id": "fil-speech-language-gate",
+      "language": "fil",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_language_gate",
+      "expected": "held_contract"
+    },
+    {
+      "id": "fil-playback-stale",
+      "language": "fil",
+      "stage": "playback",
+      "adapter": "voice",
+      "operation": "playback_stale_callback",
+      "expected": "stale_rejected"
+    },
+    {
+      "id": "fil-erase-private-buffers",
+      "language": "fil",
+      "stage": "privacy",
+      "adapter": "voice",
+      "operation": "privacy_erase_clear",
+      "expected": "cleared"
+    },
+    {
+      "id": "en-speech-negation-drop",
+      "language": "en",
+      "stage": "speech_fidelity",
+      "adapter": "voice",
+      "operation": "speech_negation_drop",
+      "expected": "held"
+    },
+    {
+      "id": "en-delegation-freeze",
+      "language": "en",
+      "stage": "delegation",
+      "adapter": "voice",
+      "operation": "delegation_freeze_duplicate",
+      "expected": "single_frozen_review"
+    },
+    {
+      "id": "en-usage-privacy",
+      "language": "en",
+      "stage": "privacy",
+      "adapter": "voice",
+      "operation": "privacy_usage_projection",
+      "expected": "allowlisted"
+    },
+    {
+      "id": "en-literacy-college_detail",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "literacy",
+      "operation": "literacy_contract",
+      "expected": "bound_fixture",
+      "style": "college_detail"
+    },
+    {
+      "id": "en-literacy-high_school",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "literacy",
+      "operation": "literacy_contract",
+      "expected": "bound_fixture",
+      "style": "high_school"
+    },
+    {
+      "id": "en-literacy-middle_school",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "literacy",
+      "operation": "literacy_contract",
+      "expected": "bound_fixture",
+      "style": "middle_school"
+    },
+    {
+      "id": "en-literacy-simplest_useful",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "literacy",
+      "operation": "literacy_contract",
+      "expected": "bound_fixture",
+      "style": "simplest_useful"
+    },
+    {
+      "id": "en-literacy-number_mutation",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "literacy",
+      "operation": "literacy_number_mutation",
+      "expected": "held",
+      "style": "simplest_useful"
+    },
+    {
+      "id": "en-literacy-missing_caveat",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "literacy",
+      "operation": "literacy_missing_caveat",
+      "expected": "held",
+      "style": "simplest_useful"
+    },
+    {
+      "id": "en-literacy-polarity_mutation",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "literacy",
+      "operation": "literacy_polarity_mutation",
+      "expected": "held",
+      "style": "simplest_useful"
+    },
+    {
+      "id": "en-literacy-source_mutation",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "literacy",
+      "operation": "literacy_source_mutation",
+      "expected": "held",
+      "style": "simplest_useful"
+    },
+    {
+      "id": "en-literacy-extra_advice",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "literacy",
+      "operation": "literacy_extra_advice",
+      "expected": "held",
+      "style": "simplest_useful"
+    },
+    {
+      "id": "en-literacy-unsupported_effect",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "literacy",
+      "operation": "literacy_unsupported_effect",
+      "expected": "held",
+      "style": "simplest_useful"
+    },
+    {
+      "id": "en-literacy-simpler-followup",
+      "language": "en",
+      "stage": "lifecycle",
+      "adapter": "literacy",
+      "operation": "literacy_followup",
+      "expected": "finite_simplest_no_fact_loss",
+      "style": "high_school"
+    },
+    {
+      "id": "en-literacy-original",
+      "language": "en",
+      "stage": "evidence",
+      "adapter": "literacy",
+      "operation": "literacy_original",
+      "expected": "retained_original",
+      "style": "simplest_useful"
+    },
+    {
+      "id": "es-literacy-college_detail",
+      "language": "es",
+      "stage": "translation",
+      "adapter": "literacy",
+      "operation": "literacy_contract",
+      "expected": "bound_fixture",
+      "style": "college_detail"
+    },
+    {
+      "id": "es-literacy-high_school",
+      "language": "es",
+      "stage": "translation",
+      "adapter": "literacy",
+      "operation": "literacy_contract",
+      "expected": "bound_fixture",
+      "style": "high_school"
+    },
+    {
+      "id": "es-literacy-middle_school",
+      "language": "es",
+      "stage": "translation",
+      "adapter": "literacy",
+      "operation": "literacy_contract",
+      "expected": "bound_fixture",
+      "style": "middle_school"
+    },
+    {
+      "id": "es-literacy-simplest_useful",
+      "language": "es",
+      "stage": "translation",
+      "adapter": "literacy",
+      "operation": "literacy_contract",
+      "expected": "bound_fixture",
+      "style": "simplest_useful"
+    },
+    {
+      "id": "es-literacy-number_mutation",
+      "language": "es",
+      "stage": "deterministic_guards",
+      "adapter": "literacy",
+      "operation": "literacy_number_mutation",
+      "expected": "held",
+      "style": "simplest_useful"
+    },
+    {
+      "id": "es-literacy-missing_caveat",
+      "language": "es",
+      "stage": "deterministic_guards",
+      "adapter": "literacy",
+      "operation": "literacy_missing_caveat",
+      "expected": "held",
+      "style": "simplest_useful"
+    },
+    {
+      "id": "es-literacy-polarity_mutation",
+      "language": "es",
+      "stage": "deterministic_guards",
+      "adapter": "literacy",
+      "operation": "literacy_polarity_mutation",
+      "expected": "held",
+      "style": "simplest_useful"
+    },
+    {
+      "id": "es-literacy-source_mutation",
+      "language": "es",
+      "stage": "deterministic_guards",
+      "adapter": "literacy",
+      "operation": "literacy_source_mutation",
+      "expected": "held",
+      "style": "simplest_useful"
+    },
+    {
+      "id": "es-literacy-extra_advice",
+      "language": "es",
+      "stage": "deterministic_guards",
+      "adapter": "literacy",
+      "operation": "literacy_extra_advice",
+      "expected": "held",
+      "style": "simplest_useful"
+    },
+    {
+      "id": "es-literacy-unsupported_effect",
+      "language": "es",
+      "stage": "deterministic_guards",
+      "adapter": "literacy",
+      "operation": "literacy_unsupported_effect",
+      "expected": "held",
+      "style": "simplest_useful"
+    },
+    {
+      "id": "es-literacy-simpler-followup",
+      "language": "es",
+      "stage": "lifecycle",
+      "adapter": "literacy",
+      "operation": "literacy_followup",
+      "expected": "finite_simplest_no_fact_loss",
+      "style": "high_school"
+    },
+    {
+      "id": "es-literacy-original",
+      "language": "es",
+      "stage": "evidence",
+      "adapter": "literacy",
+      "operation": "literacy_original",
+      "expected": "retained_original",
+      "style": "simplest_useful"
+    },
+    {
+      "id": "sdk-same_agent",
+      "language": "en",
+      "stage": "evidence",
+      "adapter": "sdk",
+      "operation": "same_agent",
+      "expected": "sdk_contract_pass"
+    },
+    {
+      "id": "sdk-missing_context",
+      "language": "en",
+      "stage": "evidence",
+      "adapter": "sdk",
+      "operation": "missing_context",
+      "expected": "sdk_contract_pass"
+    },
+    {
+      "id": "sdk-default_off",
+      "language": "en",
+      "stage": "evidence",
+      "adapter": "sdk",
+      "operation": "default_off",
+      "expected": "sdk_contract_pass"
+    },
+    {
+      "id": "sdk-cross_fact",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "sdk",
+      "operation": "cross_fact",
+      "expected": "sdk_contract_pass"
+    },
+    {
+      "id": "sdk-cancelled",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "sdk",
+      "operation": "cancelled",
+      "expected": "sdk_contract_pass"
+    },
+    {
+      "id": "sdk-token_cap",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "sdk",
+      "operation": "token_cap",
+      "expected": "sdk_contract_pass"
+    },
+    {
+      "id": "sdk-model_cap",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "sdk",
+      "operation": "model_cap",
+      "expected": "sdk_contract_pass"
+    },
+    {
+      "id": "sdk-provisional_scope",
+      "language": "en",
+      "stage": "deterministic_guards",
+      "adapter": "sdk",
+      "operation": "provisional_scope",
+      "expected": "sdk_contract_pass"
+    }
+  ]
+}

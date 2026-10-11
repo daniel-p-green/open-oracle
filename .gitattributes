@@ -1,0 +1,3 @@
+# Generated bundles preserve vendor string bytes; check authored source whitespace normally.
+web/copilot.js -whitespace
+web/orb.js -whitespace

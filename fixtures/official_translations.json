@@ -1,0 +1,319 @@
+{
+  "version": 1,
+  "validation": "offline_fixture_authored_not_human_adjudicated",
+  "source_fixture": "official_combat.json",
+  "purpose": "Experimental translations of retained official proposal spans; structural checks do not establish semantic fidelity or authorize live release.",
+  "source_quote_matching": "Whitespace-normalized phrase; locate the exact original span with whitespace-aware matching and preserve the original bytes/offsets.",
+  "translations": [
+    {
+      "language": "es",
+      "id": "official_rate",
+      "source_quote": "at the rate of one-quarter of one cent",
+      "english": "The printed tax rate is one-quarter of one cent.",
+      "target": "La tasa impositiva impresa es un cuarto de un centavo.",
+      "features": [
+        {
+          "kind": "number",
+          "source_phrase": "one-quarter",
+          "english_phrase": "one-quarter",
+          "target_phrase": "un cuarto"
+        },
+        {
+          "kind": "unit",
+          "source_phrase": "one cent",
+          "english_phrase": "one cent",
+          "target_phrase": "un centavo"
+        }
+      ],
+      "context": {
+        "source_id": "combat:jceb-sample",
+        "source_original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "authority": "Jackson County Election Board",
+        "source_role": "official_ballot",
+        "scope": "printed proposal; not an assertion of enacted current law"
+      }
+    },
+    {
+      "language": "es",
+      "id": "official_time",
+      "source_quote": "for a period of ten years",
+      "english": "The proposed continuation lasts ten years.",
+      "target": "La continuación propuesta dura diez años.",
+      "features": [
+        {
+          "kind": "number",
+          "source_phrase": "ten years",
+          "english_phrase": "ten years",
+          "target_phrase": "diez años"
+        },
+        {
+          "kind": "unit",
+          "source_phrase": "ten years",
+          "english_phrase": "ten years",
+          "target_phrase": "diez años"
+        }
+      ],
+      "context": {
+        "source_id": "combat:jceb-sample",
+        "source_original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "authority": "Jackson County Election Board",
+        "source_role": "official_ballot",
+        "scope": "printed proposal; not an assertion of enacted current law",
+        "proposal_condition": {
+          "source_phrase": "Shall Jackson County continue",
+          "english_phrase": "proposed continuation",
+          "target_phrase": "continuación propuesta",
+          "binding": "whole_retained_original_context; not inside the narrow duration span"
+        }
+      }
+    },
+    {
+      "language": "vi",
+      "id": "official_rate",
+      "source_quote": "at the rate of one-quarter of one cent",
+      "english": "The printed tax rate is one-quarter of one cent.",
+      "target": "Mức thuế được in là một phần tư của một xu.",
+      "features": [
+        {
+          "kind": "number",
+          "source_phrase": "one-quarter",
+          "english_phrase": "one-quarter",
+          "target_phrase": "một phần tư"
+        },
+        {
+          "kind": "unit",
+          "source_phrase": "one cent",
+          "english_phrase": "one cent",
+          "target_phrase": "một xu"
+        }
+      ],
+      "context": {
+        "source_id": "combat:jceb-sample",
+        "source_original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "authority": "Jackson County Election Board",
+        "source_role": "official_ballot",
+        "scope": "printed proposal; not an assertion of enacted current law"
+      }
+    },
+    {
+      "language": "vi",
+      "id": "official_time",
+      "source_quote": "for a period of ten years",
+      "english": "The proposed continuation lasts ten years.",
+      "target": "Việc tiếp tục được đề xuất kéo dài mười năm.",
+      "features": [
+        {
+          "kind": "number",
+          "source_phrase": "ten years",
+          "english_phrase": "ten years",
+          "target_phrase": "mười năm"
+        },
+        {
+          "kind": "unit",
+          "source_phrase": "ten years",
+          "english_phrase": "ten years",
+          "target_phrase": "mười năm"
+        }
+      ],
+      "context": {
+        "source_id": "combat:jceb-sample",
+        "source_original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "authority": "Jackson County Election Board",
+        "source_role": "official_ballot",
+        "scope": "printed proposal; not an assertion of enacted current law",
+        "proposal_condition": {
+          "source_phrase": "Shall Jackson County continue",
+          "english_phrase": "proposed continuation",
+          "target_phrase": "Việc tiếp tục được đề xuất",
+          "binding": "whole_retained_original_context; not inside the narrow duration span"
+        }
+      }
+    },
+    {
+      "language": "ar",
+      "id": "official_rate",
+      "source_quote": "at the rate of one-quarter of one cent",
+      "english": "The printed tax rate is one-quarter of one cent.",
+      "target": "معدل الضريبة المطبوع هو ربع سنت واحد.",
+      "features": [
+        {
+          "kind": "number",
+          "source_phrase": "one-quarter",
+          "english_phrase": "one-quarter",
+          "target_phrase": "ربع"
+        },
+        {
+          "kind": "unit",
+          "source_phrase": "one cent",
+          "english_phrase": "one cent",
+          "target_phrase": "سنت واحد"
+        }
+      ],
+      "context": {
+        "source_id": "combat:jceb-sample",
+        "source_original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "authority": "Jackson County Election Board",
+        "source_role": "official_ballot",
+        "scope": "printed proposal; not an assertion of enacted current law"
+      }
+    },
+    {
+      "language": "ar",
+      "id": "official_time",
+      "source_quote": "for a period of ten years",
+      "english": "The proposed continuation lasts ten years.",
+      "target": "الاستمرار المقترح يدوم عشر سنوات.",
+      "features": [
+        {
+          "kind": "number",
+          "source_phrase": "ten years",
+          "english_phrase": "ten years",
+          "target_phrase": "عشر سنوات"
+        },
+        {
+          "kind": "unit",
+          "source_phrase": "ten years",
+          "english_phrase": "ten years",
+          "target_phrase": "عشر سنوات"
+        }
+      ],
+      "context": {
+        "source_id": "combat:jceb-sample",
+        "source_original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "authority": "Jackson County Election Board",
+        "source_role": "official_ballot",
+        "scope": "printed proposal; not an assertion of enacted current law",
+        "proposal_condition": {
+          "source_phrase": "Shall Jackson County continue",
+          "english_phrase": "proposed continuation",
+          "target_phrase": "الاستمرار المقترح",
+          "binding": "whole_retained_original_context; not inside the narrow duration span"
+        }
+      }
+    },
+    {
+      "language": "zh-Hans",
+      "id": "official_rate",
+      "source_quote": "at the rate of one-quarter of one cent",
+      "english": "The printed tax rate is one-quarter of one cent.",
+      "target": "印出的税率是四分之一美分。",
+      "features": [
+        {
+          "kind": "number",
+          "source_phrase": "one-quarter",
+          "english_phrase": "one-quarter",
+          "target_phrase": "四分之一"
+        },
+        {
+          "kind": "unit",
+          "source_phrase": "one cent",
+          "english_phrase": "one cent",
+          "target_phrase": "一美分"
+        }
+      ],
+      "context": {
+        "source_id": "combat:jceb-sample",
+        "source_original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "authority": "Jackson County Election Board",
+        "source_role": "official_ballot",
+        "scope": "printed proposal; not an assertion of enacted current law"
+      }
+    },
+    {
+      "language": "zh-Hans",
+      "id": "official_time",
+      "source_quote": "for a period of ten years",
+      "english": "The proposed continuation lasts ten years.",
+      "target": "拟议的延续期限为十年。",
+      "features": [
+        {
+          "kind": "number",
+          "source_phrase": "ten years",
+          "english_phrase": "ten years",
+          "target_phrase": "十年"
+        },
+        {
+          "kind": "unit",
+          "source_phrase": "ten years",
+          "english_phrase": "ten years",
+          "target_phrase": "十年"
+        }
+      ],
+      "context": {
+        "source_id": "combat:jceb-sample",
+        "source_original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "authority": "Jackson County Election Board",
+        "source_role": "official_ballot",
+        "scope": "printed proposal; not an assertion of enacted current law",
+        "proposal_condition": {
+          "source_phrase": "Shall Jackson County continue",
+          "english_phrase": "proposed continuation",
+          "target_phrase": "拟议的延续",
+          "binding": "whole_retained_original_context; not inside the narrow duration span"
+        }
+      }
+    },
+    {
+      "language": "fil",
+      "id": "official_rate",
+      "source_quote": "at the rate of one-quarter of one cent",
+      "english": "The printed tax rate is one-quarter of one cent.",
+      "target": "Ang nakalimbag na rate ng buwis ay isang-kapat ng isang sentimo.",
+      "features": [
+        {
+          "kind": "number",
+          "source_phrase": "one-quarter",
+          "english_phrase": "one-quarter",
+          "target_phrase": "isang-kapat"
+        },
+        {
+          "kind": "unit",
+          "source_phrase": "one cent",
+          "english_phrase": "one cent",
+          "target_phrase": "isang sentimo"
+        }
+      ],
+      "context": {
+        "source_id": "combat:jceb-sample",
+        "source_original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "authority": "Jackson County Election Board",
+        "source_role": "official_ballot",
+        "scope": "printed proposal; not an assertion of enacted current law"
+      }
+    },
+    {
+      "language": "fil",
+      "id": "official_time",
+      "source_quote": "for a period of ten years",
+      "english": "The proposed continuation lasts ten years.",
+      "target": "Ang iminungkahing pagpapatuloy ay tatagal ng sampung taon.",
+      "features": [
+        {
+          "kind": "number",
+          "source_phrase": "ten years",
+          "english_phrase": "ten years",
+          "target_phrase": "sampung taon"
+        },
+        {
+          "kind": "unit",
+          "source_phrase": "ten years",
+          "english_phrase": "ten years",
+          "target_phrase": "sampung taon"
+        }
+      ],
+      "context": {
+        "source_id": "combat:jceb-sample",
+        "source_original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+        "authority": "Jackson County Election Board",
+        "source_role": "official_ballot",
+        "scope": "printed proposal; not an assertion of enacted current law",
+        "proposal_condition": {
+          "source_phrase": "Shall Jackson County continue",
+          "english_phrase": "proposed continuation",
+          "target_phrase": "iminungkahing pagpapatuloy",
+          "binding": "whole_retained_original_context; not inside the narrow duration span"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "repository": "https://github.com/phosphor-icons/core",
+  "commit": "2b75f3ad12b420c9504ef05df8d2564a28f8500e",
+  "license": "MIT",
+  "files": {
+    "microphone": {
+      "upstream": "https://raw.githubusercontent.com/phosphor-icons/core/2b75f3ad12b420c9504ef05df8d2564a28f8500e/assets/regular/microphone.svg",
+      "sha256": "b49dabfaf603e82594cef0c5e5784c747f4c098b7723d2973c92965745ca93a9",
+      "bytes": 362
+    },
+    "stop": {
+      "upstream": "https://raw.githubusercontent.com/phosphor-icons/core/2b75f3ad12b420c9504ef05df8d2564a28f8500e/assets/regular/stop.svg",
+      "sha256": "90c8296c46c18d913784d0c3d6c66bbbfcf536b161a0387659d65dc2548ba623",
+      "bytes": 216
+    },
+    "eraser": {
+      "upstream": "https://raw.githubusercontent.com/phosphor-icons/core/2b75f3ad12b420c9504ef05df8d2564a28f8500e/assets/regular/eraser.svg",
+      "sha256": "3e2e2a1f466051a32abed16cd8e6eadf30f9c560aeb6dcf2545f9c8a95ddfdef",
+      "bytes": 417
+    },
+    "arrow-left": {
+      "upstream": "https://raw.githubusercontent.com/phosphor-icons/core/2b75f3ad12b420c9504ef05df8d2564a28f8500e/assets/regular/arrow-left.svg",
+      "sha256": "3c2001cf957d182fc54927e4b286cc8cf66dd97830f441ca2650d42a63a9006a",
+      "bytes": 248
+    },
+    "arrow-right": {
+      "upstream": "https://raw.githubusercontent.com/phosphor-icons/core/2b75f3ad12b420c9504ef05df8d2564a28f8500e/assets/regular/arrow-right.svg",
+      "sha256": "e45bc4a12592b8723110db42c6deffdf177e4fe7704cf50324963fa0a59b2d74",
+      "bytes": 245
+    },
+    "arrow-up-right": {
+      "upstream": "https://raw.githubusercontent.com/phosphor-icons/core/2b75f3ad12b420c9504ef05df8d2564a28f8500e/assets/regular/arrow-up-right.svg",
+      "sha256": "44db5257b360ec04863eb6daaa41f220c8b714d23fb81403517d0a30acfda9f4",
+      "bytes": 217
+    },
+    "play": {
+      "upstream": "https://raw.githubusercontent.com/phosphor-icons/core/2b75f3ad12b420c9504ef05df8d2564a28f8500e/assets/regular/play.svg",
+      "sha256": "885b3ed2095889c4ff063dac35dc424cb9f6c00273ab44e2f90dc9dadbee661a",
+      "bytes": 293
+    },
+    "phone": {
+      "upstream": "https://raw.githubusercontent.com/phosphor-icons/core/2b75f3ad12b420c9504ef05df8d2564a28f8500e/assets/regular/phone.svg",
+      "sha256": "a6eaa18b76ebeff885aad0eff89dc286a659f263bea801359a6fe2d15cde24f8",
+      "bytes": 709
+    }
+  }
+}

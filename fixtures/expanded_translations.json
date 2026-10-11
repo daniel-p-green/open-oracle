@@ -1,0 +1,553 @@
+{
+  "version": 1,
+  "validation": "offline_fixture_authored_not_human_adjudicated",
+  "purpose": "Synthetic finite-contract tests; no live release, official translation, or provider coverage claim.",
+  "languages": {
+    "vi": "Vietnamese",
+    "ar": "Arabic",
+    "zh-Hans": "Simplified Chinese written fixtures for Mandarin; no other Chinese variety coverage claim",
+    "fil": "Filipino written fixtures; not independently adjudicated Tagalog coverage"
+  },
+  "translations": [
+    {
+      "language": "vi",
+      "id": "rate",
+      "source": "If approved, the COMBAT sales tax would continue at 0.25 cent for 10 years.",
+      "target": "Nếu được thông qua, thuế bán hàng COMBAT sẽ tiếp tục ở mức 0.25 xu trong 10 năm.",
+      "features": [
+        {
+          "kind": "condition",
+          "source_phrase": "approved",
+          "target_phrase": "được thông qua"
+        },
+        {
+          "kind": "number",
+          "source_phrase": "0.25",
+          "target_phrase": "0.25"
+        },
+        {
+          "kind": "unit",
+          "source_phrase": "cent",
+          "target_phrase": "xu"
+        },
+        {
+          "kind": "number",
+          "source_phrase": "10",
+          "target_phrase": "10"
+        },
+        {
+          "kind": "unit",
+          "source_phrase": "years",
+          "target_phrase": "năm"
+        },
+        {
+          "kind": "scope",
+          "source_phrase": "COMBAT",
+          "target_phrase": "COMBAT"
+        }
+      ]
+    },
+    {
+      "language": "vi",
+      "id": "dates",
+      "source": "The election date is 2026-11-03 in Jackson County, Missouri.",
+      "target": "Ngày bầu cử là 2026-11-03 tại Jackson County, Missouri.",
+      "features": [
+        {
+          "kind": "date",
+          "source_phrase": "2026-11-03",
+          "target_phrase": "2026-11-03"
+        },
+        {
+          "kind": "scope",
+          "source_phrase": "Jackson County, Missouri",
+          "target_phrase": "Jackson County, Missouri"
+        }
+      ]
+    },
+    {
+      "language": "vi",
+      "id": "polarity",
+      "source": "A YES vote approves the printed proposal. A NO vote rejects the printed proposal.",
+      "target": "Phiếu YES thông qua đề xuất được in. Phiếu NO bác bỏ đề xuất được in.",
+      "features": [
+        {
+          "kind": "polarity",
+          "source_phrase": "YES",
+          "target_phrase": "YES"
+        },
+        {
+          "kind": "polarity",
+          "source_phrase": "approves",
+          "target_phrase": "thông qua"
+        },
+        {
+          "kind": "polarity",
+          "source_phrase": "NO",
+          "target_phrase": "NO"
+        },
+        {
+          "kind": "polarity",
+          "source_phrase": "rejects",
+          "target_phrase": "bác bỏ"
+        }
+      ]
+    },
+    {
+      "language": "vi",
+      "id": "exception",
+      "source": "The proposal does not repeal the tax, except under the printed condition.",
+      "target": "Đề xuất không bãi bỏ thuế, ngoại trừ trường hợp theo điều kiện được in.",
+      "features": [
+        {
+          "kind": "negation",
+          "source_phrase": "does not repeal",
+          "target_phrase": "không bãi bỏ"
+        },
+        {
+          "kind": "exception",
+          "source_phrase": "except",
+          "target_phrase": "ngoại trừ"
+        },
+        {
+          "kind": "condition",
+          "source_phrase": "the printed condition",
+          "target_phrase": "điều kiện được in"
+        }
+      ]
+    },
+    {
+      "language": "vi",
+      "id": "attribution",
+      "source": "Candidate Example states: \"I support the proposal.\" This is an attributed statement, not an independently verified result.",
+      "target": "Candidate Example phát biểu: \"Tôi ủng hộ đề xuất.\" Đây là lời phát biểu có ghi rõ người nói, không phải là kết quả đã được xác minh độc lập.",
+      "features": [
+        {
+          "kind": "attribution",
+          "source_phrase": "Candidate Example",
+          "target_phrase": "Candidate Example"
+        },
+        {
+          "kind": "attribution",
+          "source_phrase": "states",
+          "target_phrase": "phát biểu"
+        },
+        {
+          "kind": "attribution",
+          "source_phrase": "attributed statement",
+          "target_phrase": "lời phát biểu có ghi rõ người nói"
+        },
+        {
+          "kind": "negation",
+          "source_phrase": "not an independently verified result",
+          "target_phrase": "không phải là kết quả đã được xác minh độc lập"
+        }
+      ]
+    },
+    {
+      "language": "ar",
+      "id": "rate",
+      "source": "If approved, the COMBAT sales tax would continue at 0.25 cent for 10 years.",
+      "target": "إذا تمت الموافقة، فستستمر ضريبة المبيعات COMBAT بمقدار 0.25 سنت لمدة 10 سنوات.",
+      "features": [
+        {
+          "kind": "condition",
+          "source_phrase": "approved",
+          "target_phrase": "تمت الموافقة"
+        },
+        {
+          "kind": "number",
+          "source_phrase": "0.25",
+          "target_phrase": "0.25"
+        },
+        {
+          "kind": "unit",
+          "source_phrase": "cent",
+          "target_phrase": "سنت"
+        },
+        {
+          "kind": "number",
+          "source_phrase": "10",
+          "target_phrase": "10"
+        },
+        {
+          "kind": "unit",
+          "source_phrase": "years",
+          "target_phrase": "سنوات"
+        },
+        {
+          "kind": "scope",
+          "source_phrase": "COMBAT",
+          "target_phrase": "COMBAT"
+        }
+      ]
+    },
+    {
+      "language": "ar",
+      "id": "dates",
+      "source": "The election date is 2026-11-03 in Jackson County, Missouri.",
+      "target": "تاريخ الانتخابات هو 2026-11-03 في Jackson County, Missouri.",
+      "features": [
+        {
+          "kind": "date",
+          "source_phrase": "2026-11-03",
+          "target_phrase": "2026-11-03"
+        },
+        {
+          "kind": "scope",
+          "source_phrase": "Jackson County, Missouri",
+          "target_phrase": "Jackson County, Missouri"
+        }
+      ]
+    },
+    {
+      "language": "ar",
+      "id": "polarity",
+      "source": "A YES vote approves the printed proposal. A NO vote rejects the printed proposal.",
+      "target": "التصويت بـ YES يوافق على المقترح المطبوع. التصويت بـ NO يرفض المقترح المطبوع.",
+      "features": [
+        {
+          "kind": "polarity",
+          "source_phrase": "YES",
+          "target_phrase": "YES"
+        },
+        {
+          "kind": "polarity",
+          "source_phrase": "approves",
+          "target_phrase": "يوافق على"
+        },
+        {
+          "kind": "polarity",
+          "source_phrase": "NO",
+          "target_phrase": "NO"
+        },
+        {
+          "kind": "polarity",
+          "source_phrase": "rejects",
+          "target_phrase": "يرفض"
+        }
+      ]
+    },
+    {
+      "language": "ar",
+      "id": "exception",
+      "source": "The proposal does not repeal the tax, except under the printed condition.",
+      "target": "لا يلغي المقترح الضريبة، إلا بموجب الشرط المطبوع.",
+      "features": [
+        {
+          "kind": "negation",
+          "source_phrase": "does not repeal",
+          "target_phrase": "لا يلغي"
+        },
+        {
+          "kind": "exception",
+          "source_phrase": "except",
+          "target_phrase": "إلا"
+        },
+        {
+          "kind": "condition",
+          "source_phrase": "the printed condition",
+          "target_phrase": "الشرط المطبوع"
+        }
+      ]
+    },
+    {
+      "language": "ar",
+      "id": "attribution",
+      "source": "Candidate Example states: \"I support the proposal.\" This is an attributed statement, not an independently verified result.",
+      "target": "يقول Candidate Example: \"أنا أؤيد المقترح.\" هذا قول منسوب إلى صاحبه، وليس نتيجة تم التحقق منها بشكل مستقل.",
+      "features": [
+        {
+          "kind": "attribution",
+          "source_phrase": "Candidate Example",
+          "target_phrase": "Candidate Example"
+        },
+        {
+          "kind": "attribution",
+          "source_phrase": "states",
+          "target_phrase": "يقول"
+        },
+        {
+          "kind": "attribution",
+          "source_phrase": "attributed statement",
+          "target_phrase": "قول منسوب إلى صاحبه"
+        },
+        {
+          "kind": "negation",
+          "source_phrase": "not an independently verified result",
+          "target_phrase": "ليس نتيجة تم التحقق منها بشكل مستقل"
+        }
+      ]
+    },
+    {
+      "language": "zh-Hans",
+      "id": "rate",
+      "source": "If approved, the COMBAT sales tax would continue at 0.25 cent for 10 years.",
+      "target": "如果获得批准，COMBAT 销售税将继续维持在 0.25 美分，持续 10 年。",
+      "features": [
+        {
+          "kind": "condition",
+          "source_phrase": "approved",
+          "target_phrase": "获得批准"
+        },
+        {
+          "kind": "number",
+          "source_phrase": "0.25",
+          "target_phrase": "0.25"
+        },
+        {
+          "kind": "unit",
+          "source_phrase": "cent",
+          "target_phrase": "美分"
+        },
+        {
+          "kind": "number",
+          "source_phrase": "10",
+          "target_phrase": "10"
+        },
+        {
+          "kind": "unit",
+          "source_phrase": "years",
+          "target_phrase": "年"
+        },
+        {
+          "kind": "scope",
+          "source_phrase": "COMBAT",
+          "target_phrase": "COMBAT"
+        }
+      ]
+    },
+    {
+      "language": "zh-Hans",
+      "id": "dates",
+      "source": "The election date is 2026-11-03 in Jackson County, Missouri.",
+      "target": "选举日期为 2026-11-03，地点在 Jackson County, Missouri。",
+      "features": [
+        {
+          "kind": "date",
+          "source_phrase": "2026-11-03",
+          "target_phrase": "2026-11-03"
+        },
+        {
+          "kind": "scope",
+          "source_phrase": "Jackson County, Missouri",
+          "target_phrase": "Jackson County, Missouri"
+        }
+      ]
+    },
+    {
+      "language": "zh-Hans",
+      "id": "polarity",
+      "source": "A YES vote approves the printed proposal. A NO vote rejects the printed proposal.",
+      "target": "投 YES 票表示批准印出的提案。投 NO 票表示否决印出的提案。",
+      "features": [
+        {
+          "kind": "polarity",
+          "source_phrase": "YES",
+          "target_phrase": "YES"
+        },
+        {
+          "kind": "polarity",
+          "source_phrase": "approves",
+          "target_phrase": "批准"
+        },
+        {
+          "kind": "polarity",
+          "source_phrase": "NO",
+          "target_phrase": "NO"
+        },
+        {
+          "kind": "polarity",
+          "source_phrase": "rejects",
+          "target_phrase": "否决"
+        }
+      ]
+    },
+    {
+      "language": "zh-Hans",
+      "id": "exception",
+      "source": "The proposal does not repeal the tax, except under the printed condition.",
+      "target": "该提案不废除该税，除非符合印出的条件。",
+      "features": [
+        {
+          "kind": "negation",
+          "source_phrase": "does not repeal",
+          "target_phrase": "不废除"
+        },
+        {
+          "kind": "exception",
+          "source_phrase": "except",
+          "target_phrase": "除非"
+        },
+        {
+          "kind": "condition",
+          "source_phrase": "the printed condition",
+          "target_phrase": "印出的条件"
+        }
+      ]
+    },
+    {
+      "language": "zh-Hans",
+      "id": "attribution",
+      "source": "Candidate Example states: \"I support the proposal.\" This is an attributed statement, not an independently verified result.",
+      "target": "Candidate Example 表示：“我支持该提案。”这是注明发言者的陈述，并非经过独立验证的结果。",
+      "features": [
+        {
+          "kind": "attribution",
+          "source_phrase": "Candidate Example",
+          "target_phrase": "Candidate Example"
+        },
+        {
+          "kind": "attribution",
+          "source_phrase": "states",
+          "target_phrase": "表示"
+        },
+        {
+          "kind": "attribution",
+          "source_phrase": "attributed statement",
+          "target_phrase": "注明发言者的陈述"
+        },
+        {
+          "kind": "negation",
+          "source_phrase": "not an independently verified result",
+          "target_phrase": "并非经过独立验证的结果"
+        }
+      ]
+    },
+    {
+      "language": "fil",
+      "id": "rate",
+      "source": "If approved, the COMBAT sales tax would continue at 0.25 cent for 10 years.",
+      "target": "Kung maaprubahan, magpapatuloy ang buwis sa pagbebenta na COMBAT sa 0.25 sentimo sa loob ng 10 taon.",
+      "features": [
+        {
+          "kind": "condition",
+          "source_phrase": "approved",
+          "target_phrase": "maaprubahan"
+        },
+        {
+          "kind": "number",
+          "source_phrase": "0.25",
+          "target_phrase": "0.25"
+        },
+        {
+          "kind": "unit",
+          "source_phrase": "cent",
+          "target_phrase": "sentimo"
+        },
+        {
+          "kind": "number",
+          "source_phrase": "10",
+          "target_phrase": "10"
+        },
+        {
+          "kind": "unit",
+          "source_phrase": "years",
+          "target_phrase": "taon"
+        },
+        {
+          "kind": "scope",
+          "source_phrase": "COMBAT",
+          "target_phrase": "COMBAT"
+        }
+      ]
+    },
+    {
+      "language": "fil",
+      "id": "dates",
+      "source": "The election date is 2026-11-03 in Jackson County, Missouri.",
+      "target": "Ang petsa ng halalan ay 2026-11-03 sa Jackson County, Missouri.",
+      "features": [
+        {
+          "kind": "date",
+          "source_phrase": "2026-11-03",
+          "target_phrase": "2026-11-03"
+        },
+        {
+          "kind": "scope",
+          "source_phrase": "Jackson County, Missouri",
+          "target_phrase": "Jackson County, Missouri"
+        }
+      ]
+    },
+    {
+      "language": "fil",
+      "id": "polarity",
+      "source": "A YES vote approves the printed proposal. A NO vote rejects the printed proposal.",
+      "target": "Ang boto na YES ay nag-aapruba sa nakalimbag na panukala. Ang boto na NO ay tumatanggi sa nakalimbag na panukala.",
+      "features": [
+        {
+          "kind": "polarity",
+          "source_phrase": "YES",
+          "target_phrase": "YES"
+        },
+        {
+          "kind": "polarity",
+          "source_phrase": "approves",
+          "target_phrase": "nag-aapruba"
+        },
+        {
+          "kind": "polarity",
+          "source_phrase": "NO",
+          "target_phrase": "NO"
+        },
+        {
+          "kind": "polarity",
+          "source_phrase": "rejects",
+          "target_phrase": "tumatanggi"
+        }
+      ]
+    },
+    {
+      "language": "fil",
+      "id": "exception",
+      "source": "The proposal does not repeal the tax, except under the printed condition.",
+      "target": "Hindi pinapawalang-bisa ng panukala ang buwis, maliban sa ilalim ng nakalimbag na kondisyon.",
+      "features": [
+        {
+          "kind": "negation",
+          "source_phrase": "does not repeal",
+          "target_phrase": "Hindi pinapawalang-bisa"
+        },
+        {
+          "kind": "exception",
+          "source_phrase": "except",
+          "target_phrase": "maliban"
+        },
+        {
+          "kind": "condition",
+          "source_phrase": "the printed condition",
+          "target_phrase": "nakalimbag na kondisyon"
+        }
+      ]
+    },
+    {
+      "language": "fil",
+      "id": "attribution",
+      "source": "Candidate Example states: \"I support the proposal.\" This is an attributed statement, not an independently verified result.",
+      "target": "Sinasabi ni Candidate Example: \"Sinusuportahan ko ang panukala.\" Ito ay pahayag na may tinukoy na nagsabi, hindi isang resultang napatunayan nang independiyente.",
+      "features": [
+        {
+          "kind": "attribution",
+          "source_phrase": "Candidate Example",
+          "target_phrase": "Candidate Example"
+        },
+        {
+          "kind": "attribution",
+          "source_phrase": "states",
+          "target_phrase": "Sinasabi"
+        },
+        {
+          "kind": "attribution",
+          "source_phrase": "attributed statement",
+          "target_phrase": "pahayag na may tinukoy na nagsabi"
+        },
+        {
+          "kind": "negation",
+          "source_phrase": "not an independently verified result",
+          "target_phrase": "hindi isang resultang napatunayan nang independiyente"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "execution": "authored_plan_not_run",
+  "total_paid_test_cap_usd": 100,
+  "budget_owner": "core",
+  "reservation_created": false,
+  "paid_calls_authorized_by_this_file": 0,
+  "preserve_prior_allocations": true,
+  "estimates_are_invoices": false,
+  "managed_bedrock": "optional_disabled",
+  "device": "MacBook_integrated_mic_webcam_deliberate_activation",
+  "pi_critical_path": false,
+  "threshold": 0.95,
+  "automatic_retry": false,
+  "automatic_promotion": false,
+  "cases": [
+    {"id":"corrected-supported-answer","status":"unrun","acceptance":"Core reserves one changed supported-answer trial for the selected demo contest, pins code/source/rubric, validates every exact claim pack and material qualification, performs one bounded Strands workflow plus required review; holds any failure without repeat or threshold lowering."},
+    {"id":"false-accept-supported-slot-wrong-prose","status":"unrun","acceptance":"A correct rate typed anchor cannot admit unrelated unsupported effects, current-law assertions or personal eligibility, even with high model probability. Full source/condition/neutrality/display guards remain mandatory."},
+    {"id":"false-refusal-neutral-source","status":"unrun","acceptance":"Independently label neutral crime/tax/legal wording, attributed advocacy and advice refusal separately from assistant voting advice. Compare model outcome to adjudicated labels, preserve refusals/unavailable separately, no calibration claim from a few controls."},
+    {"id":"en-es-four-style-two-output","status":"unrun","acceptance":"Use the shared eight fixture texts only; separate existing formula method/language validity from six clarity findings. Spanish English-formula scores stay unavailable. Source/meaning/conditions independent. No composite, education requirement or measured-comprehension claim."},
+    {"id":"macbook-two-turn","status":"unrun","acceptance":"Device owner coordinates two deliberate selected-contest turns; both exact approved script and real completed transcript must pass factual/Decisions/operation gates before manual Play. Actual hearing, captions, mic finality and correct follow-up recorded separately; no claim from synthetic PCM or generated WebAudio."},
+    {"id":"stop-erase-before-play","status":"unrun","acceptance":"Stop or Erase between completed generation and manual Play invalidates current request and late prior-turn callbacks. Verify no stale audio/display or extra dispatch and no revival on Resume. Request-private raw approved/generated comparison is erased; telemetry keeps only finite counters."}
+  ],
+  "adjudication": {
+    "development_labels": "agent_authored_provisional",
+    "validation": "not_created",
+    "locked_test": "not_created",
+    "calibration": "not_validated",
+    "human_comprehension": "not_measured",
+    "required_next": "Independent labeled cases split by source/claim family and language/style, frozen versioned rubric, false-accept/false-refusal and probability reliability assessment before policy change."
+  }
+}

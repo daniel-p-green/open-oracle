@@ -1,0 +1,294 @@
+{
+  "version": "literacy-contract-v1",
+  "authored_labels": "agent_authored_not_human_adjudicated",
+  "production_release": "withheld",
+  "source": {
+    "id": "combat:jceb-sample",
+    "contest_id": "combat",
+    "text": "QUESTION # 1  \nShall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers? The proceeds of this tax shall be deposited in a  \nspecial Jackson County Anti-Crime Sales Tax Trust  \nFund, separate from the general fund or any other county  \nfunds.  \nYES  \nNO",
+    "source_id": "jceb-sample",
+    "url": "https://jcebmo.org/wp-content/uploads/11.03.26-Notice-of-Election-Sample-Ballot-Poster.pdf",
+    "title": "JCEB November sample ballot",
+    "issuer": "Jackson County Election Board",
+    "source_category": "Official election sample",
+    "election_date": "2026-11-03",
+    "retrieved_date": "2026-10-09",
+    "snapshot_date": "2026-10-10",
+    "version": "Retained November notice",
+    "page": 2,
+    "column": null,
+    "start_offset": 8998,
+    "sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+    "status": "current_snapshot",
+    "extraction": "Reading-copy text; page visually checked against retained PDF",
+    "original_route": "/api/original/jceb-sample"
+  },
+  "source_fingerprint": "d6499bb00855a13d696f7f3c45559b5976c1055db780da60281966e0a7cd8ef7",
+  "invariants": {
+    "measure": "COMBAT",
+    "rate": {
+      "value": "1/4",
+      "unit": "cent"
+    },
+    "duration": {
+      "value": 10,
+      "unit": "year"
+    },
+    "jurisdiction": "Jackson County",
+    "authority": "JCEB",
+    "date": "2026-11-03",
+    "law_status": "printed_proposal_to_continue",
+    "approval_condition": true,
+    "yes": "approve_printed_proposal",
+    "no": "reject_printed_proposal",
+    "purposes": [
+      "public_safety",
+      "drug_prevention",
+      "drug_treatment",
+      "addiction_prevention",
+      "addiction_treatment",
+      "violent_crime_prevention",
+      "violent_crime_investigation",
+      "violent_crime_prosecution",
+      "violent_crime_detention",
+      "drug_dealer_prevention",
+      "drug_dealer_investigation",
+      "drug_dealer_prosecution",
+      "drug_dealer_detention"
+    ],
+    "fund": "special_anti_crime_tax_trust_fund",
+    "fund_separate_from": [
+      "general",
+      "other_county"
+    ],
+    "legal_consequences_beyond_source": "not_established",
+    "personal_ballot_or_eligibility": "not_established",
+    "exceptions": "none_additional_printed_in_retained_question; do not invent or drop if source changes"
+  },
+  "styles": [
+    {
+      "language": "en",
+      "explanation_style": "college_detail",
+      "layers": [
+        "The printed proposal asks whether Jackson County should continue the COMBAT sales tax at the rate of one-quarter of one cent for ten years, conditional on approval.",
+        "The printed purpose is public safety in Jackson County. This includes prevention and treatment of drug abuse and addiction. It also includes prevention, investigation, prosecution, and detention of violent criminals and drug dealers.",
+        "The tax money must go into a special Jackson County Anti-Crime Sales Tax Trust Fund, separate from the general fund and any other county funds.",
+        "YES approves this printed continuation proposal. NO rejects it. The sample does not establish all consequences if it fails. The election date is 2026-11-03. This is retained JCEB sample wording, not proof of your personal ballot or eligibility. Read the original source for its exact wording."
+      ],
+      "text": "The printed proposal asks whether Jackson County should continue the COMBAT sales tax at the rate of one-quarter of one cent for ten years, conditional on approval.\n\nThe printed purpose is public safety in Jackson County. This includes prevention and treatment of drug abuse and addiction. It also includes prevention, investigation, prosecution, and detention of violent criminals and drug dealers.\n\nThe tax money must go into a special Jackson County Anti-Crime Sales Tax Trust Fund, separate from the general fund and any other county funds.\n\nYES approves this printed continuation proposal. NO rejects it. The sample does not establish all consequences if it fails. The election date is 2026-11-03. This is retained JCEB sample wording, not proof of your personal ballot or eligibility. Read the original source for its exact wording.",
+      "validation": "agent_authored_unreviewed",
+      "source_evidence_id": "combat:jceb-sample",
+      "source_fingerprint": "d6499bb00855a13d696f7f3c45559b5976c1055db780da60281966e0a7cd8ef7",
+      "source_original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+      "source_text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+      "scope": {
+        "election_date": "2026-11-03"
+      },
+      "election_date": "2026-11-03",
+      "snapshot_date": "2026-10-10",
+      "authority": "JCEB",
+      "review": {
+        "meaning": "unrun",
+        "translation": "unrun",
+        "readability_target": "unrun",
+        "human_comprehension": "unrun"
+      }
+    },
+    {
+      "language": "en",
+      "explanation_style": "high_school",
+      "layers": [
+        "The printed proposal asks Jackson County to continue its COMBAT sales tax. If approved, the rate would be one-quarter of one cent for ten years.",
+        "The printed purpose is public safety in Jackson County. This includes prevention and treatment of drug abuse and addiction. It also includes prevention, investigation, prosecution, and detention of violent criminals and drug dealers.",
+        "The tax money must go into a special Jackson County Anti-Crime Sales Tax Trust Fund, separate from the general fund and any other county funds.",
+        "YES approves this printed continuation proposal. NO rejects it. The sample does not establish all consequences if it fails. The election date is 2026-11-03. This is retained JCEB sample wording, not proof of your personal ballot or eligibility. Read the original source for its exact wording."
+      ],
+      "text": "The printed proposal asks Jackson County to continue its COMBAT sales tax. If approved, the rate would be one-quarter of one cent for ten years.\n\nThe printed purpose is public safety in Jackson County. This includes prevention and treatment of drug abuse and addiction. It also includes prevention, investigation, prosecution, and detention of violent criminals and drug dealers.\n\nThe tax money must go into a special Jackson County Anti-Crime Sales Tax Trust Fund, separate from the general fund and any other county funds.\n\nYES approves this printed continuation proposal. NO rejects it. The sample does not establish all consequences if it fails. The election date is 2026-11-03. This is retained JCEB sample wording, not proof of your personal ballot or eligibility. Read the original source for its exact wording.",
+      "validation": "agent_authored_unreviewed",
+      "source_evidence_id": "combat:jceb-sample",
+      "source_fingerprint": "d6499bb00855a13d696f7f3c45559b5976c1055db780da60281966e0a7cd8ef7",
+      "source_original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+      "source_text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+      "scope": {
+        "election_date": "2026-11-03"
+      },
+      "election_date": "2026-11-03",
+      "snapshot_date": "2026-10-10",
+      "authority": "JCEB",
+      "review": {
+        "meaning": "unrun",
+        "translation": "unrun",
+        "readability_target": "unrun",
+        "human_comprehension": "unrun"
+      }
+    },
+    {
+      "language": "en",
+      "explanation_style": "middle_school",
+      "layers": [
+        "This is a printed proposal for Jackson County. It asks to keep the COMBAT sales tax. If approved, its rate would be one-quarter of one cent. It would continue for ten years.",
+        "The printed purpose is public safety in Jackson County. This includes prevention and treatment of drug abuse and addiction. It also includes prevention, investigation, prosecution, and detention of violent criminals and drug dealers.",
+        "The tax money must go into a special Jackson County Anti-Crime Sales Tax Trust Fund, separate from the general fund and any other county funds.",
+        "YES approves this printed continuation proposal. NO rejects it. The sample does not establish all consequences if it fails. The election date is 2026-11-03. This is retained JCEB sample wording, not proof of your personal ballot or eligibility. Read the original source for its exact wording."
+      ],
+      "text": "This is a printed proposal for Jackson County. It asks to keep the COMBAT sales tax. If approved, its rate would be one-quarter of one cent. It would continue for ten years.\n\nThe printed purpose is public safety in Jackson County. This includes prevention and treatment of drug abuse and addiction. It also includes prevention, investigation, prosecution, and detention of violent criminals and drug dealers.\n\nThe tax money must go into a special Jackson County Anti-Crime Sales Tax Trust Fund, separate from the general fund and any other county funds.\n\nYES approves this printed continuation proposal. NO rejects it. The sample does not establish all consequences if it fails. The election date is 2026-11-03. This is retained JCEB sample wording, not proof of your personal ballot or eligibility. Read the original source for its exact wording.",
+      "validation": "agent_authored_unreviewed",
+      "source_evidence_id": "combat:jceb-sample",
+      "source_fingerprint": "d6499bb00855a13d696f7f3c45559b5976c1055db780da60281966e0a7cd8ef7",
+      "source_original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+      "source_text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+      "scope": {
+        "election_date": "2026-11-03"
+      },
+      "election_date": "2026-11-03",
+      "snapshot_date": "2026-10-10",
+      "authority": "JCEB",
+      "review": {
+        "meaning": "unrun",
+        "translation": "unrun",
+        "readability_target": "unrun",
+        "human_comprehension": "unrun"
+      }
+    },
+    {
+      "language": "en",
+      "explanation_style": "simplest_useful",
+      "layers": [
+        "This is a proposal for Jackson County. It asks to keep the COMBAT sales tax. If approved: the rate is one-quarter of one cent. The time is ten years.",
+        "The printed purpose is public safety in Jackson County. This includes prevention and treatment of drug abuse and addiction. It also includes prevention, investigation, prosecution, and detention of violent criminals and drug dealers.",
+        "The tax money must go into a special Jackson County Anti-Crime Sales Tax Trust Fund, separate from the general fund and any other county funds.",
+        "YES approves this printed continuation proposal. NO rejects it. The sample does not establish all consequences if it fails. The election date is 2026-11-03. This is retained JCEB sample wording, not proof of your personal ballot or eligibility. Read the original source for its exact wording."
+      ],
+      "text": "This is a proposal for Jackson County. It asks to keep the COMBAT sales tax. If approved: the rate is one-quarter of one cent. The time is ten years.\n\nThe printed purpose is public safety in Jackson County. This includes prevention and treatment of drug abuse and addiction. It also includes prevention, investigation, prosecution, and detention of violent criminals and drug dealers.\n\nThe tax money must go into a special Jackson County Anti-Crime Sales Tax Trust Fund, separate from the general fund and any other county funds.\n\nYES approves this printed continuation proposal. NO rejects it. The sample does not establish all consequences if it fails. The election date is 2026-11-03. This is retained JCEB sample wording, not proof of your personal ballot or eligibility. Read the original source for its exact wording.",
+      "validation": "agent_authored_unreviewed",
+      "source_evidence_id": "combat:jceb-sample",
+      "source_fingerprint": "d6499bb00855a13d696f7f3c45559b5976c1055db780da60281966e0a7cd8ef7",
+      "source_original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+      "source_text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+      "scope": {
+        "election_date": "2026-11-03"
+      },
+      "election_date": "2026-11-03",
+      "snapshot_date": "2026-10-10",
+      "authority": "JCEB",
+      "review": {
+        "meaning": "unrun",
+        "translation": "unrun",
+        "readability_target": "unrun",
+        "human_comprehension": "unrun"
+      }
+    },
+    {
+      "language": "es",
+      "explanation_style": "college_detail",
+      "layers": [
+        "La propuesta impresa pregunta si Jackson County debe continuar el impuesto sobre las ventas COMBAT a una tasa de un cuarto de un centavo durante diez años, condicionado a su aprobación.",
+        "El propósito impreso es la seguridad pública en Jackson County. Incluye la prevención y el tratamiento del abuso de drogas y la adicción. También incluye la prevención, investigación, procesamiento penal y detención de delincuentes violentos y traficantes de drogas.",
+        "El dinero del impuesto debe ir a un fondo especial, Jackson County Anti-Crime Sales Tax Trust Fund, separado del fondo general y de cualquier otro fondo del condado.",
+        "YES aprueba esta propuesta impresa de continuación. NO la rechaza. La muestra no establece todas las consecuencias si no se aprueba. La fecha de la elección es 2026-11-03. Es el texto de una muestra conservada de JCEB, no prueba de su boleta personal ni de su elegibilidad. Lea la fuente original para ver las palabras exactas."
+      ],
+      "text": "La propuesta impresa pregunta si Jackson County debe continuar el impuesto sobre las ventas COMBAT a una tasa de un cuarto de un centavo durante diez años, condicionado a su aprobación.\n\nEl propósito impreso es la seguridad pública en Jackson County. Incluye la prevención y el tratamiento del abuso de drogas y la adicción. También incluye la prevención, investigación, procesamiento penal y detención de delincuentes violentos y traficantes de drogas.\n\nEl dinero del impuesto debe ir a un fondo especial, Jackson County Anti-Crime Sales Tax Trust Fund, separado del fondo general y de cualquier otro fondo del condado.\n\nYES aprueba esta propuesta impresa de continuación. NO la rechaza. La muestra no establece todas las consecuencias si no se aprueba. La fecha de la elección es 2026-11-03. Es el texto de una muestra conservada de JCEB, no prueba de su boleta personal ni de su elegibilidad. Lea la fuente original para ver las palabras exactas.",
+      "validation": "agent_authored_unreviewed",
+      "source_evidence_id": "combat:jceb-sample",
+      "source_fingerprint": "d6499bb00855a13d696f7f3c45559b5976c1055db780da60281966e0a7cd8ef7",
+      "source_original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+      "source_text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+      "scope": {
+        "election_date": "2026-11-03"
+      },
+      "election_date": "2026-11-03",
+      "snapshot_date": "2026-10-10",
+      "authority": "JCEB",
+      "review": {
+        "meaning": "unrun",
+        "translation": "unrun",
+        "readability_target": "unrun",
+        "human_comprehension": "unrun"
+      }
+    },
+    {
+      "language": "es",
+      "explanation_style": "high_school",
+      "layers": [
+        "La propuesta impresa pide a Jackson County que continúe su impuesto sobre las ventas COMBAT. Si se aprueba, la tasa sería un cuarto de un centavo durante diez años.",
+        "El propósito impreso es la seguridad pública en Jackson County. Incluye la prevención y el tratamiento del abuso de drogas y la adicción. También incluye la prevención, investigación, procesamiento penal y detención de delincuentes violentos y traficantes de drogas.",
+        "El dinero del impuesto debe ir a un fondo especial, Jackson County Anti-Crime Sales Tax Trust Fund, separado del fondo general y de cualquier otro fondo del condado.",
+        "YES aprueba esta propuesta impresa de continuación. NO la rechaza. La muestra no establece todas las consecuencias si no se aprueba. La fecha de la elección es 2026-11-03. Es el texto de una muestra conservada de JCEB, no prueba de su boleta personal ni de su elegibilidad. Lea la fuente original para ver las palabras exactas."
+      ],
+      "text": "La propuesta impresa pide a Jackson County que continúe su impuesto sobre las ventas COMBAT. Si se aprueba, la tasa sería un cuarto de un centavo durante diez años.\n\nEl propósito impreso es la seguridad pública en Jackson County. Incluye la prevención y el tratamiento del abuso de drogas y la adicción. También incluye la prevención, investigación, procesamiento penal y detención de delincuentes violentos y traficantes de drogas.\n\nEl dinero del impuesto debe ir a un fondo especial, Jackson County Anti-Crime Sales Tax Trust Fund, separado del fondo general y de cualquier otro fondo del condado.\n\nYES aprueba esta propuesta impresa de continuación. NO la rechaza. La muestra no establece todas las consecuencias si no se aprueba. La fecha de la elección es 2026-11-03. Es el texto de una muestra conservada de JCEB, no prueba de su boleta personal ni de su elegibilidad. Lea la fuente original para ver las palabras exactas.",
+      "validation": "agent_authored_unreviewed",
+      "source_evidence_id": "combat:jceb-sample",
+      "source_fingerprint": "d6499bb00855a13d696f7f3c45559b5976c1055db780da60281966e0a7cd8ef7",
+      "source_original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+      "source_text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+      "scope": {
+        "election_date": "2026-11-03"
+      },
+      "election_date": "2026-11-03",
+      "snapshot_date": "2026-10-10",
+      "authority": "JCEB",
+      "review": {
+        "meaning": "unrun",
+        "translation": "unrun",
+        "readability_target": "unrun",
+        "human_comprehension": "unrun"
+      }
+    },
+    {
+      "language": "es",
+      "explanation_style": "middle_school",
+      "layers": [
+        "Esta es una propuesta impresa para Jackson County. Pide continuar el impuesto sobre las ventas COMBAT. Si se aprueba, la tasa sería un cuarto de un centavo. Continuaría durante diez años.",
+        "El propósito impreso es la seguridad pública en Jackson County. Incluye la prevención y el tratamiento del abuso de drogas y la adicción. También incluye la prevención, investigación, procesamiento penal y detención de delincuentes violentos y traficantes de drogas.",
+        "El dinero del impuesto debe ir a un fondo especial, Jackson County Anti-Crime Sales Tax Trust Fund, separado del fondo general y de cualquier otro fondo del condado.",
+        "YES aprueba esta propuesta impresa de continuación. NO la rechaza. La muestra no establece todas las consecuencias si no se aprueba. La fecha de la elección es 2026-11-03. Es el texto de una muestra conservada de JCEB, no prueba de su boleta personal ni de su elegibilidad. Lea la fuente original para ver las palabras exactas."
+      ],
+      "text": "Esta es una propuesta impresa para Jackson County. Pide continuar el impuesto sobre las ventas COMBAT. Si se aprueba, la tasa sería un cuarto de un centavo. Continuaría durante diez años.\n\nEl propósito impreso es la seguridad pública en Jackson County. Incluye la prevención y el tratamiento del abuso de drogas y la adicción. También incluye la prevención, investigación, procesamiento penal y detención de delincuentes violentos y traficantes de drogas.\n\nEl dinero del impuesto debe ir a un fondo especial, Jackson County Anti-Crime Sales Tax Trust Fund, separado del fondo general y de cualquier otro fondo del condado.\n\nYES aprueba esta propuesta impresa de continuación. NO la rechaza. La muestra no establece todas las consecuencias si no se aprueba. La fecha de la elección es 2026-11-03. Es el texto de una muestra conservada de JCEB, no prueba de su boleta personal ni de su elegibilidad. Lea la fuente original para ver las palabras exactas.",
+      "validation": "agent_authored_unreviewed",
+      "source_evidence_id": "combat:jceb-sample",
+      "source_fingerprint": "d6499bb00855a13d696f7f3c45559b5976c1055db780da60281966e0a7cd8ef7",
+      "source_original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+      "source_text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+      "scope": {
+        "election_date": "2026-11-03"
+      },
+      "election_date": "2026-11-03",
+      "snapshot_date": "2026-10-10",
+      "authority": "JCEB",
+      "review": {
+        "meaning": "unrun",
+        "translation": "unrun",
+        "readability_target": "unrun",
+        "human_comprehension": "unrun"
+      }
+    },
+    {
+      "language": "es",
+      "explanation_style": "simplest_useful",
+      "layers": [
+        "Esta es una propuesta para Jackson County. Pide continuar el impuesto sobre las ventas COMBAT. Si se aprueba: la tasa es un cuarto de un centavo. El tiempo es diez años.",
+        "El propósito impreso es la seguridad pública en Jackson County. Incluye la prevención y el tratamiento del abuso de drogas y la adicción. También incluye la prevención, investigación, procesamiento penal y detención de delincuentes violentos y traficantes de drogas.",
+        "El dinero del impuesto debe ir a un fondo especial, Jackson County Anti-Crime Sales Tax Trust Fund, separado del fondo general y de cualquier otro fondo del condado.",
+        "YES aprueba esta propuesta impresa de continuación. NO la rechaza. La muestra no establece todas las consecuencias si no se aprueba. La fecha de la elección es 2026-11-03. Es el texto de una muestra conservada de JCEB, no prueba de su boleta personal ni de su elegibilidad. Lea la fuente original para ver las palabras exactas."
+      ],
+      "text": "Esta es una propuesta para Jackson County. Pide continuar el impuesto sobre las ventas COMBAT. Si se aprueba: la tasa es un cuarto de un centavo. El tiempo es diez años.\n\nEl propósito impreso es la seguridad pública en Jackson County. Incluye la prevención y el tratamiento del abuso de drogas y la adicción. También incluye la prevención, investigación, procesamiento penal y detención de delincuentes violentos y traficantes de drogas.\n\nEl dinero del impuesto debe ir a un fondo especial, Jackson County Anti-Crime Sales Tax Trust Fund, separado del fondo general y de cualquier otro fondo del condado.\n\nYES aprueba esta propuesta impresa de continuación. NO la rechaza. La muestra no establece todas las consecuencias si no se aprueba. La fecha de la elección es 2026-11-03. Es el texto de una muestra conservada de JCEB, no prueba de su boleta personal ni de su elegibilidad. Lea la fuente original para ver las palabras exactas.",
+      "validation": "agent_authored_unreviewed",
+      "source_evidence_id": "combat:jceb-sample",
+      "source_fingerprint": "d6499bb00855a13d696f7f3c45559b5976c1055db780da60281966e0a7cd8ef7",
+      "source_original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+      "source_text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+      "scope": {
+        "election_date": "2026-11-03"
+      },
+      "election_date": "2026-11-03",
+      "snapshot_date": "2026-10-10",
+      "authority": "JCEB",
+      "review": {
+        "meaning": "unrun",
+        "translation": "unrun",
+        "readability_target": "unrun",
+        "human_comprehension": "unrun"
+      }
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "name": "open-oracle-event-text-v1",
+  "description": "Proposed event input/output safeguards, not provisioned or calibrated. Neutral civic explanation stays in scope.",
+  "blockedInputMessaging": "This request could not pass the required safety checks.",
+  "blockedOutputsMessaging": "This answer could not pass the required safety checks.",
+  "contentPolicyConfig": {
+    "filtersConfig": [
+      {
+        "type": "PROMPT_ATTACK",
+        "inputStrength": "HIGH",
+        "outputStrength": "NONE",
+        "inputAction": "BLOCK",
+        "outputAction": "NONE",
+        "inputEnabled": true,
+        "outputEnabled": false,
+        "inputModalities": [
+          "TEXT"
+        ],
+        "outputModalities": [
+          "TEXT"
+        ]
+      },
+      {
+        "type": "HATE",
+        "inputStrength": "MEDIUM",
+        "outputStrength": "MEDIUM",
+        "inputAction": "BLOCK",
+        "outputAction": "BLOCK",
+        "inputEnabled": true,
+        "outputEnabled": true,
+        "inputModalities": [
+          "TEXT"
+        ],
+        "outputModalities": [
+          "TEXT"
+        ]
+      },
+      {
+        "type": "SEXUAL",
+        "inputStrength": "MEDIUM",
+        "outputStrength": "MEDIUM",
+        "inputAction": "BLOCK",
+        "outputAction": "BLOCK",
+        "inputEnabled": true,
+        "outputEnabled": true,
+        "inputModalities": [
+          "TEXT"
+        ],
+        "outputModalities": [
+          "TEXT"
+        ]
+      },
+      {
+        "type": "MISCONDUCT",
+        "inputStrength": "LOW",
+        "outputStrength": "LOW",
+        "inputAction": "BLOCK",
+        "outputAction": "BLOCK",
+        "inputEnabled": true,
+        "outputEnabled": true,
+        "inputModalities": [
+          "TEXT"
+        ],
+        "outputModalities": [
+          "TEXT"
+        ]
+      },
+      {
+        "type": "VIOLENCE",
+        "inputStrength": "LOW",
+        "outputStrength": "LOW",
+        "inputAction": "BLOCK",
+        "outputAction": "BLOCK",
+        "inputEnabled": true,
+        "outputEnabled": true,
+        "inputModalities": [
+          "TEXT"
+        ],
+        "outputModalities": [
+          "TEXT"
+        ]
+      },
+      {
+        "type": "INSULTS",
+        "inputStrength": "LOW",
+        "outputStrength": "LOW",
+        "inputAction": "BLOCK",
+        "outputAction": "BLOCK",
+        "inputEnabled": true,
+        "outputEnabled": true,
+        "inputModalities": [
+          "TEXT"
+        ],
+        "outputModalities": [
+          "TEXT"
+        ]
+      }
+    ],
+    "tierConfig": {
+      "tierName": "CLASSIC"
+    }
+  },
+  "topicPolicyConfig": {
+    "topicsConfig": [
+      {
+        "name": "AssistantVoteRecommendation",
+        "definition": "Assistant-authored recommendations on how to vote or which candidate or ballot choice to support. Exclude neutral explanation, advice refusal and clearly attributed source quotes.",
+        "examples": [
+          "You should vote yes.",
+          "Choose that candidate because they best fit your priorities."
+        ],
+        "type": "DENY",
+        "inputEnabled": false,
+        "outputEnabled": true,
+        "inputAction": "NONE",
+        "outputAction": "BLOCK"
+      }
+    ],
+    "tierConfig": {
+      "tierName": "CLASSIC"
+    }
+  },
+  "sensitiveInformationPolicyConfig": {
+    "piiEntitiesConfig": [
+      {
+        "type": "AWS_ACCESS_KEY",
+        "action": "BLOCK",
+        "inputEnabled": true,
+        "outputEnabled": true,
+        "inputAction": "BLOCK",
+        "outputAction": "BLOCK"
+      },
+      {
+        "type": "AWS_SECRET_KEY",
+        "action": "BLOCK",
+        "inputEnabled": true,
+        "outputEnabled": true,
+        "inputAction": "BLOCK",
+        "outputAction": "BLOCK"
+      },
+      {
+        "type": "PASSWORD",
+        "action": "BLOCK",
+        "inputEnabled": true,
+        "outputEnabled": true,
+        "inputAction": "BLOCK",
+        "outputAction": "BLOCK"
+      },
+      {
+        "type": "PIN",
+        "action": "BLOCK",
+        "inputEnabled": true,
+        "outputEnabled": true,
+        "inputAction": "BLOCK",
+        "outputAction": "BLOCK"
+      },
+      {
+        "type": "US_SOCIAL_SECURITY_NUMBER",
+        "action": "BLOCK",
+        "inputEnabled": true,
+        "outputEnabled": true,
+        "inputAction": "BLOCK",
+        "outputAction": "BLOCK"
+      },
+      {
+        "type": "CREDIT_DEBIT_CARD_NUMBER",
+        "action": "BLOCK",
+        "inputEnabled": true,
+        "outputEnabled": true,
+        "inputAction": "BLOCK",
+        "outputAction": "BLOCK"
+      }
+    ]
+  },
+  "tags": [
+    {
+      "key": "project",
+      "value": "open-oracle"
+    },
+    {
+      "key": "purpose",
+      "value": "bounded-event-validation"
+    }
+  ]
+}

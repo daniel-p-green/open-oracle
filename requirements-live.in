@@ -1,0 +1,2 @@
+# Optional live Strands OpenAI provider; install only when preparing authorized use.
+openai>=3.26.0,<4

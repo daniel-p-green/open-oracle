@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "execution": "authored_plan_unrun",
+  "policy": "Bedrock_primary_Strands_OpenAI_secondary_reasoning",
+  "GPT_Live": "personal_OpenAI_unchanged",
+  "Decisions": "personal_OpenAI_unchanged",
+  "core_owns_provider_config_and_dispatch": true,
+  "paid_calls_authorized_here": 0,
+  "total_paid_test_cap_usd": 100,
+  "no_current_default_promotion": true,
+  "case_sources": ["evals/claim_readability_cases.json", "evals/planned_acceptance.json"],
+  "required_same_inputs": ["exact_public_question", "source_originals_and_extraction_versions", "compound_parts", "registered_tools_and_schemas", "output_schema", "system_policy", "source_release_conditions", "review_rubric_and_0.95_threshold", "call_token_time_and_cancel_bounds", "language_and_style"],
+  "required_case_groups": ["supported_compound_rate_duration", "supported_fact_plus_missing_current_law_gap", "supported_fact_plus_vote_advice_refusal", "altered_value_unit_signed_number_quote_and_condition", "source_injection_and_wrong_authority_version", "schema_missing_null_arrays_extra_fields", "stop_erase_late_callback"],
+  "profiles": [
+    {"role":"primary","provider":"bedrock","model":"core_selected_verified_available_model","region":"core_selected_verified_region","status":"unrun"},
+    {"role":"secondary_reasoning","provider":"openai","model":"core_selected_existing_permitted_model","region":"not_applicable","status":"unrun"}
+  ],
+  "required_operational_metadata": ["trusted_config_hash", "static_provider_role", "configured_model", "configured_region_or_not_applicable", "bounded_fallback_reason_enum", "actual_dispatches_by_provider_role", "tool_success_and_fixed_error_categories", "schema_event_categories_and_normalized_paths", "observed_usage_or_unknown", "wall_latency", "retained_reservation", "measured_cost_estimate_or_unknown", "invoice_cost_or_unknown", "cancellation", "terminal_outcome"],
+  "required_quality_evidence": ["exact_claim_source_binding", "compound_coverage_and_gaps", "independent_numeric_quote_condition_jurisdiction_date_guards", "all_original_source_reads_in_same_request", "same_release_review", "false_accept_and_false_refusal_counts_on_adjudicated_labels", "evidence_tier_live_vs_authored"],
+  "privacy": "No raw visitor/model/tool/error contents, provider IDs or private text hashes in operational telemetry; scripted public eval text may be retained separately. Never infer secondary zero calls from missing telemetry.",
+  "fallback": "Core configured and explicitly budgeted only; record bounded reason and actual secondary dispatch. Do not retry/promote/claim a provider swap solved quality because of transport identity or synthetic pass.",
+  "acceptance": "Report both per-provider execution and whole-pipeline outcome with same gates, costs and latency. A schema-valid tool trace alone is not faithful public output. No Bedrock availability, primary default, fallback success, latency savings or model quality claim until actual pinned proof."
+}

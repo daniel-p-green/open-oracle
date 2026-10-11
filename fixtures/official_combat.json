@@ -1,0 +1,25 @@
+{
+  "label": "Retained official original; translation fixtures are offline only",
+  "evidence": {
+    "id": "combat:jceb-sample",
+    "contest_id": "combat",
+    "text": "QUESTION # 1  \nShall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers? The proceeds of this tax shall be deposited in a  \nspecial Jackson County Anti-Crime Sales Tax Trust  \nFund, separate from the general fund or any other county  \nfunds.  \nYES  \nNO",
+    "source_id": "jceb-sample",
+    "url": "https://jcebmo.org/wp-content/uploads/11.03.26-Notice-of-Election-Sample-Ballot-Poster.pdf",
+    "title": "JCEB November sample ballot",
+    "issuer": "Jackson County Election Board",
+    "source_category": "Official election sample",
+    "election_date": "2026-11-03",
+    "retrieved_date": "2026-10-09",
+    "snapshot_date": "2026-10-10",
+    "version": "Retained November notice",
+    "page": 2,
+    "column": null,
+    "start_offset": 8998,
+    "sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+    "status": "current_snapshot",
+    "extraction": "Reading-copy text; page visually checked against retained PDF",
+    "original_route": "/api/original/jceb-sample"
+  },
+  "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2"
+}
