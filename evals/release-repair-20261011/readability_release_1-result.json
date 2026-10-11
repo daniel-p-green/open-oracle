@@ -1,0 +1,279 @@
+{
+  "trial": "readability_release_1",
+  "execution": "actual_live_api",
+  "fixed_public_fixture": true,
+  "voice": false,
+  "capture": false,
+  "playback": false,
+  "retries": 0,
+  "status": "unavailable",
+  "released": false,
+  "answer": "The quality checks did not accept this response. No checked answer was released. The contest inventory remains available.",
+  "review": {
+    "provider": "openai_decisions",
+    "model": "gpt-6-luna",
+    "execution": "real_api",
+    "threshold": 0.95,
+    "calibration": "not_validated",
+    "rubric_version": "civic-v3-verified-diagnostics",
+    "usage": {
+      "input_tokens": 2854,
+      "output_tokens": 0,
+      "total_tokens": 2854
+    },
+    "status": "rejected",
+    "checks": [
+      {
+        "name": "source_support",
+        "status": "answered",
+        "type": "predicate",
+        "value": 0.98
+      },
+      {
+        "name": "no_vote_recommendation",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1.0
+      },
+      {
+        "name": "viewpoint_neutrality",
+        "status": "answered",
+        "type": "predicate",
+        "value": 0.98
+      },
+      {
+        "name": "jurisdiction",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1.0
+      },
+      {
+        "name": "clarity",
+        "status": "answered",
+        "type": "predicate",
+        "value": 0.38
+      },
+      {
+        "name": "abstention",
+        "status": "answered",
+        "type": "predicate",
+        "value": 0.95
+      },
+      {
+        "name": "translation_status",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1.0
+      }
+    ],
+    "probabilities": {
+      "source_support": 0.98,
+      "no_vote_recommendation": 1.0,
+      "viewpoint_neutrality": 0.98,
+      "jurisdiction": 1.0,
+      "clarity": 0.38,
+      "abstention": 0.95,
+      "translation_status": 1.0
+    },
+    "label": "Decisions checks ran. Estimates are fallible; thresholds are not calibrated."
+  },
+  "fact_validation": {
+    "status": "supported",
+    "method": "finite_source_span_contracts",
+    "claims": [
+      {
+        "status": "supported",
+        "key": "measure.rate",
+        "binding": {
+          "key": "measure.rate",
+          "kind": "number",
+          "value": "0.25",
+          "unit": "cent",
+          "evidence_id": "combat:jceb-sample",
+          "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 99,
+          "end": 139,
+          "quote": "at the rate of one-quarter  \nof one cent",
+          "binding": "retrieved_passage"
+        }
+      },
+      {
+        "status": "supported",
+        "key": "measure.duration",
+        "binding": {
+          "key": "measure.duration",
+          "kind": "number",
+          "value": "10",
+          "unit": "year",
+          "evidence_id": "combat:jceb-sample",
+          "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 140,
+          "end": 165,
+          "quote": "for a period of ten years",
+          "binding": "retrieved_passage"
+        }
+      },
+      {
+        "status": "supported",
+        "key": "measure.jurisdiction",
+        "binding": {
+          "key": "measure.jurisdiction",
+          "kind": "entity",
+          "value": "jackson county",
+          "unit": null,
+          "evidence_id": "combat:jceb-sample",
+          "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 21,
+          "end": 35,
+          "quote": "Jackson County",
+          "binding": "retrieved_passage"
+        }
+      },
+      {
+        "status": "supported",
+        "key": "measure.name",
+        "binding": {
+          "key": "measure.name",
+          "kind": "entity",
+          "value": "combat",
+          "unit": null,
+          "evidence_id": "combat:jceb-sample",
+          "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+          "start": 91,
+          "end": 97,
+          "quote": "COMBAT",
+          "binding": "retrieved_passage"
+        }
+      },
+      {
+        "status": "supported",
+        "key": "election.date",
+        "binding": {
+          "key": "election.date",
+          "kind": "date",
+          "value": "2026-11-03",
+          "unit": null,
+          "evidence_id": "combat:jceb-sample",
+          "source_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "text_sha256": "279d07d0896232e763c732d42b64e29191e2dcfd628a2b2dcad00cef62302796",
+          "start": 681,
+          "end": 697,
+          "quote": "NOVEMBER 3, 2026",
+          "binding": "printed_document_header",
+          "text_reference": "jceb-sample"
+        }
+      }
+    ],
+    "prose_entailment_claimed": false,
+    "calibrated_probability_used": false,
+    "computed_diagnostic": "recomputed_exact_match"
+  },
+  "receipt": {
+    "version": 1,
+    "config_sha256": "d4b32c069c937bc360eefdddafb2a506d944efef25865ab13454c51a7950207c",
+    "execution": "real_api",
+    "sdk_version": "1.59.0",
+    "finalized": true,
+    "elapsed_ms": 4923.919,
+    "model_attempts_started": 5,
+    "model_events": [
+      {
+        "attempt": 1,
+        "duration_ms": 978.217,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 2,
+        "duration_ms": 733.971,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 3,
+        "duration_ms": 849.102,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 4,
+        "duration_ms": 1062.623,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 5,
+        "duration_ms": 884.393,
+        "status": "completed",
+        "error_category": null
+      }
+    ],
+    "tool_events": [
+      {
+        "sequence": 1,
+        "name": "resolve_contest",
+        "status": "success",
+        "duration_ms": 0.182,
+        "error_category": null
+      },
+      {
+        "sequence": 2,
+        "name": "search_evidence",
+        "status": "success",
+        "duration_ms": 0.55,
+        "error_category": null
+      },
+      {
+        "sequence": 3,
+        "name": "read_evidence",
+        "status": "success",
+        "duration_ms": 0.28,
+        "error_category": null
+      },
+      {
+        "sequence": 4,
+        "name": "test_ballot_readability",
+        "status": "success",
+        "duration_ms": 212.213,
+        "error_category": null
+      },
+      {
+        "sequence": 5,
+        "name": "other_tool",
+        "status": "success",
+        "duration_ms": 0.099,
+        "error_category": null
+      }
+    ],
+    "dropped_event_count": 0,
+    "usage": {
+      "inputTokens": 4668,
+      "outputTokens": 108,
+      "totalTokens": 4776
+    },
+    "stop_reason": "tool_use",
+    "stages_ms": {
+      "strands": 4730.0,
+      "source_guards": 5.0,
+      "decisions": 189.0
+    },
+    "released_sources": [],
+    "release": {
+      "status": "unavailable",
+      "binding": "supported",
+      "review": "rejected",
+      "review_execution": "real_api"
+    },
+    "error_category": null
+  },
+  "source_ids": [],
+  "part_count": 0,
+  "claim_bindings": [],
+  "actual_model_calls": 5,
+  "actual_decisions_calls": 1,
+  "elapsed_ms": 4942
+}

@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "execution": "actual_current_localhost_offline",
+  "url": "http://127.0.0.1:60711",
+  "voice": "off",
+  "paid_calls": 0,
+  "full_accessibility_audit": false,
+  "physical_pi": false,
+  "reports": [
+    {
+      "route": "/",
+      "keyboard_question_and_source_disclosure": true,
+      "exact_source_text_preserved": true,
+      "pdf_sha256_matches": true,
+      "candidate_attribution_preserved": true,
+      "reset_blocks_actual_delayed_response": true,
+      "viewports": [
+        "800x480",
+        "320x700"
+      ],
+      "targets_at_least_48px": true,
+      "reduced_motion": true,
+      "secure_context": true,
+      "capture_calls": 0,
+      "live_requests": 0,
+      "external_requests": [],
+      "page_errors": []
+    },
+    {
+      "route": "/copilot",
+      "keyboard_question_and_source_disclosure": true,
+      "exact_source_text_preserved": true,
+      "pdf_sha256_matches": true,
+      "candidate_attribution_preserved": true,
+      "reset_blocks_actual_delayed_response": true,
+      "viewports": [
+        "800x480",
+        "320x700"
+      ],
+      "targets_at_least_48px": true,
+      "reduced_motion": true,
+      "secure_context": true,
+      "capture_calls": 0,
+      "live_requests": 0,
+      "external_requests": [],
+      "page_errors": []
+    }
+  ]
+}

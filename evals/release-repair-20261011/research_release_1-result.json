@@ -1,0 +1,270 @@
+{
+  "trial": "research_release_1",
+  "execution": "actual_live_api",
+  "fixed_public_fixture": true,
+  "voice": false,
+  "capture": false,
+  "playback": false,
+  "retries": 0,
+  "status": "answered",
+  "released": true,
+  "answer": "The question proposes continuing the COMBAT tax at a rate of one-quarter of one cent. The question proposes continuing the COMBAT tax for ten years.",
+  "review": {
+    "provider": "openai_decisions",
+    "model": "gpt-6-luna",
+    "execution": "real_api",
+    "threshold": 0.95,
+    "calibration": "not_validated",
+    "rubric_version": "civic-v3-verified-diagnostics",
+    "usage": {
+      "input_tokens": 3327,
+      "output_tokens": 0,
+      "total_tokens": 3327
+    },
+    "status": "accepted",
+    "checks": [
+      {
+        "name": "source_support",
+        "status": "answered",
+        "type": "predicate",
+        "value": 0.99
+      },
+      {
+        "name": "no_vote_recommendation",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1.0
+      },
+      {
+        "name": "viewpoint_neutrality",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1.0
+      },
+      {
+        "name": "jurisdiction",
+        "status": "answered",
+        "type": "predicate",
+        "value": 0.99
+      },
+      {
+        "name": "clarity",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1.0
+      },
+      {
+        "name": "abstention",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1.0
+      },
+      {
+        "name": "translation_status",
+        "status": "answered",
+        "type": "predicate",
+        "value": 1.0
+      }
+    ],
+    "probabilities": {
+      "source_support": 0.99,
+      "no_vote_recommendation": 1.0,
+      "viewpoint_neutrality": 1.0,
+      "jurisdiction": 0.99,
+      "clarity": 1.0,
+      "abstention": 1.0,
+      "translation_status": 1.0
+    },
+    "label": "Decisions checks ran. Estimates are fallible; thresholds are not calibrated."
+  },
+  "fact_validation": {
+    "status": "supported",
+    "method": "finite_source_bound_combat_research_v1",
+    "arbitrary_prose_entailment_claimed": false,
+    "covered_parts": [
+      "duration",
+      "rate"
+    ]
+  },
+  "receipt": {
+    "version": 1,
+    "config_sha256": "e2a31a932a1ccc3d4fae79cd02e9d4c1db15f104c9066d4d992310163a46e8c3",
+    "execution": "real_api",
+    "sdk_version": "1.59.0",
+    "finalized": true,
+    "elapsed_ms": 11160.345,
+    "model_attempts_started": 6,
+    "model_events": [
+      {
+        "attempt": 1,
+        "duration_ms": 1899.134,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 2,
+        "duration_ms": 1405.5,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 3,
+        "duration_ms": 1563.79,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 4,
+        "duration_ms": 1293.243,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 5,
+        "duration_ms": 1722.977,
+        "status": "completed",
+        "error_category": null
+      },
+      {
+        "attempt": 6,
+        "duration_ms": 2394.566,
+        "status": "completed",
+        "error_category": null
+      }
+    ],
+    "tool_events": [
+      {
+        "sequence": 1,
+        "name": "plan_evidence",
+        "status": "success",
+        "duration_ms": 0.48,
+        "error_category": null
+      },
+      {
+        "sequence": 2,
+        "name": "search_official_sources",
+        "status": "success",
+        "duration_ms": 0.973,
+        "error_category": null
+      },
+      {
+        "sequence": 3,
+        "name": "search_official_sources",
+        "status": "success",
+        "duration_ms": 0.549,
+        "error_category": null
+      },
+      {
+        "sequence": 4,
+        "name": "acquire_official_source",
+        "status": "success",
+        "duration_ms": 0.603,
+        "error_category": null
+      },
+      {
+        "sequence": 5,
+        "name": "search_indexed_evidence",
+        "status": "success",
+        "duration_ms": 0.866,
+        "error_category": null
+      },
+      {
+        "sequence": 6,
+        "name": "search_indexed_evidence",
+        "status": "success",
+        "duration_ms": 0.418,
+        "error_category": null
+      },
+      {
+        "sequence": 7,
+        "name": "read_evidence_chunk",
+        "status": "success",
+        "duration_ms": 0.765,
+        "error_category": null
+      },
+      {
+        "sequence": 8,
+        "name": "read_evidence_chunk",
+        "status": "success",
+        "duration_ms": 0.407,
+        "error_category": null
+      },
+      {
+        "sequence": 9,
+        "name": "CitedAnswer",
+        "status": "success",
+        "duration_ms": 0.184,
+        "error_category": null
+      }
+    ],
+    "dropped_event_count": 0,
+    "usage": {
+      "inputTokens": 16649,
+      "outputTokens": 514,
+      "totalTokens": 17163
+    },
+    "stop_reason": "tool_use",
+    "stages_ms": {
+      "source_guards": 0.663,
+      "decisions": 864.1
+    },
+    "released_sources": [
+      {
+        "id": "jceb-sample",
+        "version_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2"
+      }
+    ],
+    "release": {
+      "status": "answered",
+      "binding": "supported",
+      "review": "accepted",
+      "review_execution": "real_api"
+    },
+    "error_category": null
+  },
+  "source_ids": [
+    "jceb-sample"
+  ],
+  "part_count": 2,
+  "claim_bindings": [
+    {
+      "part_id": "rate",
+      "text": "The question proposes continuing the COMBAT tax at a rate of one-quarter of one cent.",
+      "citations": [
+        {
+          "source_id": "jceb-sample",
+          "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "extraction_sha256": "279d07d0896232e763c732d42b64e29191e2dcfd628a2b2dcad00cef62302796",
+          "chunk_id": "combat:jceb-sample:8998:4a50da630896",
+          "chunk_sha256": "4a50da630896d259ad0ebefcda19b9c91d8fd21495a662422bde6d8ae33a6556",
+          "page": 2,
+          "column": null,
+          "quote": "QUESTION # 1  \nShall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers?",
+          "quote_start": 8998,
+          "quote_end": 9421
+        }
+      ]
+    },
+    {
+      "part_id": "duration",
+      "text": "The question proposes continuing the COMBAT tax for ten years.",
+      "citations": [
+        {
+          "source_id": "jceb-sample",
+          "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+          "extraction_sha256": "279d07d0896232e763c732d42b64e29191e2dcfd628a2b2dcad00cef62302796",
+          "chunk_id": "combat:jceb-sample:8998:4a50da630896",
+          "chunk_sha256": "4a50da630896d259ad0ebefcda19b9c91d8fd21495a662422bde6d8ae33a6556",
+          "page": 2,
+          "column": null,
+          "quote": "QUESTION # 1  \nShall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers?",
+          "quote_start": 8998,
+          "quote_end": 9421
+        }
+      ]
+    }
+  ],
+  "actual_model_calls": 6,
+  "actual_decisions_calls": 1,
+  "elapsed_ms": 11181
+}

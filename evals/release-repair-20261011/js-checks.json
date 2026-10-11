@@ -1,0 +1,50 @@
+[
+  {
+    "suite": "test_buffered_voice.cjs",
+    "exit_code": 0,
+    "output": "Buffered voice adversarial lifecycle checks passed; offline fixtures only, no API or microphone.",
+    "errors": ""
+  },
+  {
+    "suite": "test_generated_silence.cjs",
+    "exit_code": 0,
+    "output": "PASS generated frames contain only zero PCM and close frame resources\nPASS timestamps advance by the generated sample count\nPASS immediate stop cleans track, waiting timer and writer\nPASS unsupported browser fails closed without microphone fallback\nPASS encoder write failure cleans resources and reports a bounded category\n{\"passed\":5,\"provider_calls\":0,\"microphone_calls\":0}",
+    "errors": ""
+  },
+  {
+    "suite": "test_input_bridge.cjs",
+    "exit_code": 0,
+    "output": "Input bridge: bootstrap replay, stream discontinuity and delayed-stop guards passed; no sensors or network.",
+    "errors": ""
+  },
+  {
+    "suite": "test_interaction.cjs",
+    "exit_code": 0,
+    "output": "PASS default sensors unavailable and intent cannot capture\nPASS continuous presence reaches invitation without capture\nPASS brief presence loss cancels invitation\nPASS wave requires stable invitation plus voice readiness\nPASS listening needs actual capture event and review does not retrieve\nPASS answer and actual playback are separate guarded transitions\nPASS withheld evidence never enters speaking\nPASS new turn rejects previous answer/playback tokens\nPASS synthetic malformed cross-session and wrong-source inputs rejected\nPASS stale future duplicate and out-of-order sensor events rejected\nPASS consumed blocked intent cannot replay after invitation\nPASS camera error is unknown not departure or reset\nPASS confirmed departure needs preceding observed loss\nPASS reset invalidates outputs immediately and cleanup synchronously\nPASS departure during capture retrieval and playback invalidates each token\nPASS late intent microtask after reset never starts capture\nPASS cleanup failure and timeout remain blocked\nPASS spoken initiation requires configured local wake capability\nPASS capture failure returns honest conversation fallback\nPASS failed reset is blocked but a fresh reset retries cleanup\nPASS wave observed before readable invitation cannot initiate\nPASS withheld answer cannot pass indirect preparation/playback path\nPASS accepted speech readiness and pause permit guarded replay\nPASS dead presence becomes unknown and cannot authorize wave\nPASS malformed array type cannot masquerade as reset or start\nPASS accessible initiation remains available during presence dwell\n{\"passed\":26,\"physical_sensors\":false,\"capture_calls\":0,\"provider_calls\":0}",
+    "errors": ""
+  },
+  {
+    "suite": "test_live_events.cjs",
+    "exit_code": 0,
+    "output": "Offline GPT-Live events passed: no partial tool execution, duplicate delegation, immediate capture stop, no unchecked output, rejected context closes session.",
+    "errors": ""
+  },
+  {
+    "suite": "test_live_lifecycle.cjs",
+    "exit_code": 0,
+    "output": "Offline Live lifecycle passed: immediate capture stop, single close, stale-event suppression, delayed permission cleanup. No audio/API/microphone was used.",
+    "errors": ""
+  },
+  {
+    "suite": "test_silent_transport.cjs",
+    "exit_code": 0,
+    "output": "PASS transcript review stops physical capture immediately and replaces only its sender with generated silence\nPASS text speech negotiates generated upstream track without device acquisition and cleans it on close\nPASS unsupported generated transport closes locally before creating a paid session\n{\"passed\":3,\"provider_calls\":0,\"physical_capture_calls\":0}",
+    "errors": ""
+  },
+  {
+    "suite": "test_ws_client.cjs",
+    "exit_code": 0,
+    "output": "7 WebSocket client groups passed: identity-only render, forged gate, provider predicate holds, cancellation late response, display change during decode, exact multilingual erase intent, recognized erase across active phases. Offline fixtures only; no claim of speech recognition when capture is stopped.",
+    "errors": ""
+  }
+]

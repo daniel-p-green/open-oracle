@@ -1,0 +1,9 @@
+{
+  "execution": "authored_offline_promptfoo_cases",
+  "AI_judge": false,
+  "model_calls": 0,
+  "cases": 53,
+  "passed": 53,
+  "failed": 0,
+  "errors": 0
+}

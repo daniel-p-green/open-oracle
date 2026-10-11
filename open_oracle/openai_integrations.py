@@ -79,7 +79,7 @@ class DecisionsReviewer:
 
     def review(self, envelope):
         metadata = {"provider": "openai_decisions", "model": "gpt-6-luna", "execution": self.execution,
-                    "threshold": 0.95, "calibration": "not_validated", "rubric_version": "civic-v2-separated"}
+                    "threshold": 0.95, "calibration": "not_validated", "rubric_version": "civic-v3-verified-diagnostics"}
         blocked = release_block(envelope.get("response", {}))
         if blocked:
             return {**metadata, "execution": "deterministic_guard", "status": "rejected",

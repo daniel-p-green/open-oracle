@@ -12,7 +12,7 @@ from .claim_bindings import validate_factual_display
 from .source_fallback import make_fallback
 from .view_plan import make_view_plan
 from .session_control import check_cancel
-from .readability import requested_span, build_readability_tool
+from .readability import requested_span, build_readability_tool, diagnostic_answer
 from .operational_receipts import new_receipt, current_receipt, record_release
 from strands_quality.local_metrics import AggregateMetrics
 
@@ -111,7 +111,7 @@ class EvidenceLoop:
             # Reuse the exact accepted text: no extra rewrite model or weakened check.
             if (result['status'] == 'answered' and result['fact_validation']['status'] == 'supported'
                     and result['review'].get('execution') == 'real_api' and result['review']['status'] == 'accepted'
-                    and result['language'] == 'en' and len(result['answer']) <= 1800):
+                    and result['language'] == 'en' and len(result['answer']) <= 1800 and 'readability' not in result):
                 result['speech'] = {'request_id': result['request_id'], 'language': 'en', 'text': result['answer'],
                                     'evidence_bindings': [{'id': e['id'], 'sha256': e['sha256'], 'text': e['text']} for e in result['evidence']]}
             result['view_plan'] = make_view_plan(result, question)
@@ -223,6 +223,12 @@ class EvidenceLoop:
             if focus and focus['component'] == 'measure_focus' and focus['initial_part'] > 0:
                 from .cards import FACETS
                 answer = FACETS[focus['initial_part']][1]
+        if result.get('readability', {}).get('reports'):
+            diagnostic = diagnostic_answer(result['readability'])
+            if diagnostic:
+                answer = diagnostic
+                result['card'] = None  # Only the requested diagnostic plus its complete bound original.
+                result['limitations'].append('Surface readability is a formula estimate, not a comprehension or quality test.')
         return finish("answered", answer)
 
     def _candidate_gap(self, result, catalog, finish):

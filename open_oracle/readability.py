@@ -200,3 +200,51 @@ def build_readability_tool(corpus=None, scope: dict | None = None):
                                    language, extraction_method)
 
     return test_ballot_readability
+
+
+def diagnostic_answer(readability: dict) -> str | None:
+    """Finite diagnostic prose from verified tool results; never election-effect claims."""
+    if not isinstance(readability, dict):
+        return None
+    reports = readability.get("reports", [])
+    if not isinstance(reports, list) or len(reports) != 1 or not isinstance(reports[0], dict) or reports[0].get("status") != "estimated":
+        return None
+    try:
+        scores = reports[0]["scores"]
+        ease = f"{scores['flesch_reading_ease']:.2f}"
+        grade = f"{scores['flesch_kincaid_grade_level']:.2f}"
+    except (KeyError, TypeError, ValueError):
+        return None
+    return (f"The wording scores {grade} on a scale based on school reading grades. Higher numbers mean harder wording. "
+            f"It scores {ease} on a separate reading-ease scale, where higher numbers mean easier wording. "
+            "These scores are estimates from counts of words, sentences and syllables—the parts of words you hear. "
+            "They do not tell us whether someone understands the wording or whether it is accurate.")
+
+
+def verify_diagnostic(response: dict, corpus=None) -> bool:
+    """Recompute every report from the exact scoped original, rejecting any changed field."""
+    data = response.get("readability")
+    if not isinstance(data, dict) or data.get("execution") not in {"strands_tool_direct", "strands_tool_agent"}:
+        return False
+    reports = data.get("reports", [])
+    if len(reports) != 1:
+        return False
+    try:
+        report = reports[0]
+        source_id = report['provenance']['id']
+        source = next(s for s in response['evidence'] if s['id'] == source_id)
+        span = report['provenance']['span']
+        if corpus is not None:
+            expected = build_readability_tool(corpus, response['scope'])(evidence_id=source_id, span=span)
+        else:
+            # Reviewer preflight can verify math/binding; core additionally binds the retained corpus.
+            scored, start, end = measure_span(source['text'], span)
+            provenance = {k:v for k,v in source.items() if k != 'text'}
+            provenance.update(provenance_status='application_bound_snapshot', span=span,
+                              span_start_offset=start, span_end_offset_exclusive=end,
+                              original_evidence_text_sha256=sha256(source['text']))
+            expected = analyze_readability(scored, report['label'], provenance, 'en', source.get('extraction','retained_reading_copy'))
+            expected['original_evidence_text'] = source['text']
+        return report == expected and response['answer'] == diagnostic_answer(data)
+    except (KeyError, TypeError, ValueError, StopIteration):
+        return False

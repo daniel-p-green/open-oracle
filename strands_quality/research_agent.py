@@ -15,7 +15,7 @@ import json
 import re
 from pathlib import Path
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 from strands import Agent, tool
 from strands.hooks import HookProvider, BeforeModelCallEvent, BeforeToolCallEvent, AfterInvocationEvent
 from strands.tools.executors import SequentialToolExecutor
@@ -47,7 +47,14 @@ class Plan(Strict):
 
 class Quote(Strict):
     chunk_id: str = Field(min_length=1, max_length=180)
-    exact_quote: str = Field(min_length=12, max_length=800)
+    exact_quote: str | None = Field(default=None, min_length=12, max_length=800)
+    citation_span_id: str | None = Field(default=None, pattern=r'^[0-9a-f]{64}$')
+
+    @model_validator(mode='after')
+    def one_locator(self):
+        if (self.exact_quote is None) == (self.citation_span_id is None):
+            raise ValueError('Supply one exact quote or issued citation span ID')
+        return self
 
 
 class Claim(Strict):
@@ -85,7 +92,17 @@ Search the approved source registry per part, acquire chosen archive IDs, search
 their indexed chunks, then read selected chunks. These are archived snapshots,
 not fresh internet searches. For relevant legal references, read the source first,
 then use the bounded lookup tool; acquire/search/read the approved target.
-Use exact original quotations as citations. Explain the quoted rate and duration
+Read a chunk separately for EACH part_id that it supports. Reading a chunk for
+rate does not authorize citing it for duration. Prefer the citation_span_id
+returned by that read, with the same chunk_id; do not retype or normalize PDF
+line breaks. If no span ID is offered, use an exact original quotation.
+Never add derived percentages, dollars or predictions to a printed rate.
+For the bounded COMBAT rate/duration release contract, use exactly these claim
+forms, only if the read source supports them, one claim per requested part:
+"The question proposes continuing the COMBAT tax at a rate of one-quarter of one cent."
+"The question proposes continuing the COMBAT tax for ten years."
+Other research remains a private draft; never substitute these forms for a
+question about something else. Use exact original quotations as citations. Explain the quoted rate and duration
 as separate claims when requested. Do not infer current law from a proposal.
 For missing sources, predictions, unverified OCR or missing location, preserve a
 specific supported gap. Every planned part must have claims OR one gap. Use short
@@ -133,7 +150,8 @@ class ResearchRequest:
     def __init__(self, registry: Registry, *, scope: Scope, model, execution: str,
                  followup: Followup | None = None, cancel: Event | None = None,
                  is_current: Callable[[], bool] = lambda: True, max_turns: int = 20,
-                 timeout_seconds: float = 30, max_total_tokens: int = 16000):
+                 timeout_seconds: float = 30, max_total_tokens: int = 16000,
+                 release_config: dict | None = None):
         if not 2 <= max_turns <= 24 or not 0 < timeout_seconds <= 60 or not 20 <= max_total_tokens <= 50000:
             raise ValueError('Invalid bounded invocation')
         if model is None or isinstance(model, str):
@@ -155,10 +173,11 @@ class ResearchRequest:
         self.acquired: set[str] = set()
         self.retrieved: dict[str, set[str]] = {}
         self.read_by_part: dict[str, set[str]] = {}
+        self.citation_spans: dict[tuple[str, str, str], str] = {}
         self.gaps: dict[str, set[str]] = {}
         self.references: list[dict] = []
         self._lock = RLock()
-        config = {'prompt': SYSTEM, 'schema': CitedAnswer.model_json_schema(),
+        config = {'release_config': release_config, 'prompt': SYSTEM, 'schema': CitedAnswer.model_json_schema(),
                   'sources': {s.id: s.original_sha256 for s in registry.sources.values()},
                   'limits': [max_turns, timeout_seconds, max_total_tokens], 'retrieval': 'fts5',
                   'model_id': model.get_config().get('model_id', 'unreported'),
@@ -275,7 +294,14 @@ class ResearchRequest:
                 r.gaps[part_id].add('incomplete_extraction')
             tool_context.agent.state.set('research', {'phase': 'reading', 'plan': r.plan.model_dump(),
                 'read_chunks': sorted(set().union(*r.read_by_part.values()))})
-            return value
+            # IDs reference raw request-owned text, not model-normalized quotations.
+            # Full bounded chunks retain every qualification and original line break.
+            spans = []
+            if 12 <= len(c.text) <= 800 and r.registry.sources[c.source_id].quality in {'verified_reading_copy', 'native_html'}:
+                ident = sha256(json.dumps([part_id, c.id, c.sha256, c.text], ensure_ascii=False).encode()).hexdigest()
+                r.citation_spans[(part_id, c.id, ident)] = c.text
+                spans.append({'citation_span_id': ident, 'start': c.start, 'end': c.end, 'text': c.text})
+            return {**value, 'part_id': part_id, 'citation_spans': spans}
 
         @tool
         def lookup_legal_reference(part_id: str, chunk_id: str, reference: str) -> dict:
@@ -378,7 +404,11 @@ class ResearchRequest:
                 c = self.registry.chunks[quote.chunk_id]
                 if not self.registry.eligible(c, self.scope, self.plan.contest_id, p.purpose):
                     raise ValueError('Citation no longer eligible')
-                citations.append(self.registry.citation(quote.chunk_id, quote.exact_quote))
+                raw = quote.exact_quote
+                if quote.citation_span_id is not None:
+                    raw = self.citation_spans.get((p.id, quote.chunk_id, quote.citation_span_id))
+                    if raw is None: raise ValueError('Citation span ID was not issued for this part and chunk')
+                citations.append(self.registry.citation(quote.chunk_id, raw))
             covered.add(p.id)
             claims.append({'part_id': p.id, 'text': claim.text, 'citations': citations})
         for gap in answer.gaps:
@@ -402,6 +432,11 @@ class ResearchRequest:
                 'reference_edges': list(self.references)}
 
     def run(self, question: str) -> dict:
+        return self._run(question)
+
+    def _run(self, question: str, release_adapter=None) -> dict:
+        # Only the core service supplies the application-owned release adapter.
+        # Default/native research stays private, with no downstream events exposed.
         self.begin()
         error = None
         try:
@@ -409,9 +444,13 @@ class ResearchRequest:
             result = self.agent(self.prompt(question), invocation_state={'request_id': self.receipt.request_id},
                 limits={'turns': self.max_turns, 'total_tokens': self.max_total_tokens}, cancel_signal=self.cancel)
             draft = self.finalize(result)
-            return {**draft, 'receipt': self.receipt.finish()}
+            value = release_adapter(self, draft) if release_adapter is not None else draft
+            self.check()
+            return {**value, 'receipt': self.receipt.finish()}
         except BaseException as exc:
             error = exc
+            if release_adapter is not None:
+                self.receipt.release(status='unavailable', binding='not_run', review='not_run', review_execution='not_run')
             if not self.active() or self._control_stop:
                 error = TimeoutError('Research request stopped by lifecycle controls')
                 raise error from None

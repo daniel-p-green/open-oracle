@@ -138,6 +138,8 @@ def validate_factual_display(response, corpus):
     facts = fact_catalog(corpus, evidence, contest.get('id')) if evidence else {}
     if response.get('status') != 'answered':
         return {'status': 'not_applicable', 'reason': 'no_substantive_answer', 'claims': []}
+    if not isinstance(response.get('answer'), str) or not response['answer'].strip():
+        return {'status': 'unsupported', 'reason': 'unregistered_display_text', 'claims': []}
     if corpus.contest_fingerprints.get(contest.get('id')) != fingerprint(contest):
         return {'status': 'unsupported', 'reason': 'contest_entity_binding_failed', 'claims': []}
     if any(corpus.evidence_fingerprints.get(s['id']) != fingerprint(s) for s in evidence):
@@ -146,6 +148,13 @@ def validate_factual_display(response, corpus):
         return {'status': 'contradictory', 'reason': 'election_date_disagrees_with_snapshot', 'claims': []}
     if response.get('claims') != [{'quote': source['text'], 'evidence_id': source['id']} for source in evidence]:
         return {'status': 'unsupported', 'reason': 'quoted_claim_binding_failed', 'claims': []}
+    from .readability import diagnostic_answer, verify_diagnostic
+    data = response.get('readability') or {}
+    if not isinstance(data, dict):
+        return {'status': 'unsupported', 'reason': 'computed_diagnostic_unbound', 'claims': []}
+    diagnostic = diagnostic_answer(data)
+    if data.get('reports') and not verify_diagnostic(response, corpus):
+        return {'status': 'unsupported', 'reason': 'computed_diagnostic_unbound', 'claims': []}
     card = response.get('card') or {}
     if card and card.get('type') not in ('measure_explanation', 'candidate_comparison'):
         return {'status': 'unsupported', 'reason': 'unregistered_component_data', 'claims': []}
@@ -159,7 +168,7 @@ def validate_factual_display(response, corpus):
             return {'status': 'contradictory', 'reason': 'card_election_date_disagrees_with_source', 'claims': []}
         if card.get('jurisdiction') != 'Jackson County, Missouri':
             return {'status': 'contradictory', 'reason': 'card_jurisdiction_disagrees_with_source', 'claims': []}
-        if response['answer'] not in (*COMBAT_ANSWERS, *(item[1] for item in FACETS)) or statements != expected or card != expected_card:
+        if response['answer'] not in (*COMBAT_ANSWERS, *(item[1] for item in FACETS), *((diagnostic,) if diagnostic else ())) or statements != expected or card != expected_card:
             text = response.get('answer', '') + ' ' + ' '.join(f.get('statement', '') for f in card.get('facets', []))
             return {**diagnose_unbound_text(text, facts), 'claims': []}
         if not {'measure.rate', 'measure.duration', 'measure.jurisdiction', 'measure.name', 'election.date'}.issubset(facts):
@@ -171,8 +180,9 @@ def validate_factual_display(response, corpus):
             return {'status': 'unsupported', 'reason': 'unregistered_attributed_display', 'claims': []}
     else:
         expected = CANDIDATE_ANSWER if contest.get('kind') == 'candidate' else RETENTION_ANSWER if contest.get('kind') == 'retention' else SOURCE_ANSWER
-        if response['answer'] != expected:
+        if response['answer'] != (diagnostic or expected):
             return {**diagnose_unbound_text(response.get('answer', ''), facts), 'claims': []}
     checks = [assess_claim(item, facts) for item in facts.values()]
     return {'status': 'supported', 'method': 'finite_source_span_contracts', 'claims': checks,
-            'prose_entailment_claimed': False, 'calibrated_probability_used': False}
+            'prose_entailment_claimed': False, 'calibrated_probability_used': False,
+            'computed_diagnostic': 'recomputed_exact_match' if diagnostic else 'not_requested'}
