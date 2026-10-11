@@ -21,3 +21,340 @@ a{color:#0066c5;display:inline-block;min-height:48px;padding:12px 0;overflow-wra
 .oracle-kiosk .conversation{position:relative}.oracle-kiosk main{padding-top:32px}.oracle-kiosk .conversation:not(.has-answer) .intro{text-align:left;padding:24px 228px 0 0}.oracle-kiosk .intro h1{font-size:clamp(48px,5.7vw,88px)}.oracle-kiosk .intro .eyebrow{margin-bottom:16px}.oracle-kiosk .intro .invitation{margin:16px 0;font-size:22px}.oracle-kiosk .conversation:not(.has-answer) .presence{position:absolute;right:0;top:4px;width:212px;margin:0}.oracle-kiosk .conversation:not(.has-answer) .presence #orb{--oracle-orb-size:160px}.oracle-kiosk .starting-points{margin:20px auto 24px}.oracle-kiosk .masthead{padding:16px 24px;min-height:76px;margin-top:8px}
 @media(max-width:767px){.oracle-kiosk .conversation:not(.has-answer) .intro{text-align:center;padding:0}.oracle-kiosk .conversation:not(.has-answer) .presence{position:static;width:auto;margin:16px auto}.oracle-kiosk .conversation:not(.has-answer) .presence #orb{--oracle-orb-size:128px}.oracle-kiosk .intro h1{font-size:48px}.oracle-kiosk .masthead{padding:12px 8px}}
 .oracle-kiosk #how-it-works{scroll-margin-top:24px}
+/* Demo polish (Oct 11): calmer landing and side-by-side reading view on desktop. Presentation only. */
+/* Keep help, station information and data-use details reachable after an answer. */
+.oracle-kiosk .has-answer .inventory{display:none}
+.oracle-kiosk .has-answer .presence{flex-direction:row;justify-content:flex-start;gap:12px;min-height:0;margin:0 0 8px}
+.oracle-kiosk .has-answer .presence #orb{--oracle-orb-size:40px;width:40px;height:40px;flex:0 0 40px;margin:0}
+.oracle-kiosk .answer-heading h2{font:400 40px/1.1 var(--font-serif);letter-spacing:-.03em}
+.oracle-kiosk .answer-heading span{font-size:13px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+.oracle-kiosk #answer-text{font-size:26px;line-height:1.4;max-width:46ch;margin:16px 0 4px}
+.oracle-kiosk .explanation-card>.source-kind,.oracle-kiosk .explanation-facet>.source-meta{font-size:14px;color:var(--muted);margin:0 0 6px}
+.oracle-kiosk .clause-explanation>.source-meta{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.oracle-kiosk .explanation-card [aria-live]>.source-meta{font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 8px}
+.oracle-kiosk .explanation-facet h4{font:400 32px/1.15 var(--font-serif);letter-spacing:-.02em;margin:0 0 24px}
+.oracle-kiosk .source-reading .source-meta{font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.oracle-kiosk .selected-source-clause{text-decoration:none;background:linear-gradient(transparent 62%,#ffe58a 62%);box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.oracle-kiosk .clause-explanation>p:last-child{font-size:24px}
+.oracle-kiosk .explanation-card>.choices button[data-part="1"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.oracle-kiosk .explanation-card>.choices button[data-part="1"]:hover{background:var(--hover)}
+@media(min-width:1200px){
+ .oracle-kiosk .conversation.has-answer{max-width:1440px}
+ .oracle-kiosk .has-answer .answer-region{max-width:none}
+ .oracle-kiosk .has-answer #input-disclosure{max-width:none}
+ .oracle-kiosk .has-answer .question-card{max-width:880px;margin-left:0}
+ .oracle-kiosk .explanation-card{padding:40px 48px}
+ .oracle-kiosk .explanation-facet{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);column-gap:56px;align-items:start}
+ .oracle-kiosk .explanation-facet>h4{grid-column:1/-1}
+ .oracle-kiosk .explanation-facet>.source-reading{grid-column:1;grid-row:2/5;padding-right:56px;border-right:1px solid var(--line)}
+ .oracle-kiosk .explanation-facet>.clause-explanation{grid-column:2;grid-row:2;border-top:0;margin-top:0;padding-top:0}
+ .oracle-kiosk .explanation-facet>a{grid-column:2;grid-row:3;align-self:start}
+ .oracle-kiosk .ballot-wording{font-size:26px;line-height:1.5}
+ .oracle-kiosk .clause-explanation::before{content:"In plain language";display:block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+}
+@media(min-width:768px) and (max-width:1199px){
+ .oracle-kiosk .conversation.has-answer{max-width:880px}
+ .oracle-kiosk .ballot-wording{font-size:22px}
+}
+.oracle-kiosk .has-answer .answer-region{margin-top:0}
+.oracle-kiosk #speech-status{margin:4px 0 20px}
+@media(min-width:1200px){.oracle-kiosk .ballot-wording{font-size:24px;line-height:1.45}.oracle-kiosk .explanation-card{padding:32px 48px}.oracle-kiosk .explanation-facet h4{margin-bottom:16px}.oracle-kiosk #answer-text{max-width:60ch;font-size:24px}}
+/* Voice-first stage (Oct 11). Orb + Voice Button are the primary control; typing is the fallback. */
+.oracle-kiosk .voice-hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:48px;align-items:center;max-width:1280px;margin:0 auto}
+.oracle-kiosk .conversation:not(.has-answer){max-width:1280px}
+.oracle-kiosk .conversation:not(.has-answer) .intro{padding:0;text-align:left}
+.oracle-kiosk .intro .eyebrow{font-size:14px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 20px}
+.oracle-kiosk .intro h1{font-size:clamp(56px,6vw,112px)}
+.oracle-kiosk .intro .invitation{font-size:26px;line-height:1.4;color:var(--ink);max-width:24ch;margin:28px 0 12px}
+.oracle-kiosk .intro .election-context{font-size:17px;color:var(--muted);margin:0}
+.oracle-kiosk .voice-stage{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px}
+.oracle-kiosk .conversation:not(.has-answer) .presence{position:relative;top:auto;right:auto;width:auto;margin:0;display:flex;flex-direction:column;align-items:center;cursor:pointer;min-height:0}
+.oracle-kiosk .conversation:not(.has-answer) .presence #orb{--oracle-orb-size:300px;width:300px;height:300px;flex:0 0 300px}
+.oracle-kiosk .presence .orb-voice{display:flex;justify-content:center;min-height:0}
+.oracle-kiosk .presence .oo-wave{width:220px;margin-top:8px}
+.oracle-kiosk .voice-controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.oracle-kiosk .voice-button{min-height:64px;padding:0 32px 0 26px;border-radius:999px;background:var(--accent);border-color:var(--accent);color:#fff;font-size:20px;display:inline-flex;align-items:center;gap:12px;box-shadow:0 10px 30px #00266433}
+.oracle-kiosk .voice-button::before{content:"";width:10px;height:16px;border:2.5px solid currentColor;border-radius:8px;box-shadow:0 6px 0 -3.5px currentColor;margin-top:-4px}
+.oracle-kiosk .voice-button:hover{background:var(--hover)}
+.oracle-kiosk .voice-button:disabled{background:#fff;color:var(--muted);border-color:var(--line);box-shadow:none}
+.oracle-kiosk .voice-stop{min-height:64px;padding:0 24px}
+.oracle-kiosk .presence-state{margin:0;font-size:17px;color:var(--ink);font-weight:500}
+.oracle-kiosk .voice-note{margin:0;max-width:40ch;font-size:15px}
+.oracle-kiosk .transcript{max-width:860px;margin:24px auto 0;padding:18px 24px;background:#fff;border:1px solid var(--line);border-radius:20px;font-size:22px;line-height:1.45}
+.oracle-kiosk .transcript::before{content:"What I heard";display:block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.oracle-kiosk .conversation:not(.has-answer) #input-disclosure{max-width:1280px;margin:40px auto 0}
+.oracle-kiosk .conversation:not(.has-answer) .question-card{max-width:none;grid-template-columns:minmax(0,1fr) auto;align-items:end;padding:16px 16px 16px 28px;border-radius:999px;border-color:var(--line)}
+.oracle-kiosk .conversation:not(.has-answer) .question-card .composer-label{grid-column:1/-1;margin:0;color:var(--muted);font-weight:400}
+.oracle-kiosk .conversation:not(.has-answer) .question-card textarea{min-height:48px;font-size:20px;resize:none}
+/* Existing source context stays reachable before the first answer; details remain collapsed. */
+.oracle-kiosk .conversation:not(.has-answer) .question-card:has(>.scope[open]){border-radius:32px}
+.oracle-kiosk .question-card .composer-label{grid-column:1/-1}
+.oracle-kiosk .starting-points{max-width:1280px;justify-content:flex-start;margin:20px auto 0}
+.oracle-kiosk .starting-points>span{width:auto;text-align:left}
+.oracle-kiosk .conversation:not(.has-answer) .inventory,.oracle-kiosk .conversation:not(.has-answer) .how-it-works{max-width:1280px}
+/* Answer state: compact conversation bar */
+.oracle-kiosk .has-answer .voice-hero{display:flex;align-items:center;gap:16px;max-width:none;margin:0 0 20px;padding:10px 12px 10px 10px;background:#fff;border:1px solid var(--line);border-radius:999px}
+.oracle-kiosk .has-answer .intro{display:none}
+.oracle-kiosk .has-answer .voice-stage{flex-direction:row;align-items:center;gap:14px;width:100%;text-align:left}
+.oracle-kiosk .has-answer .presence{display:flex;flex-direction:row;align-items:center;gap:10px;margin:0;cursor:pointer}
+.oracle-kiosk .has-answer .presence #orb{--oracle-orb-size:56px;width:56px;height:56px;flex:0 0 56px}
+.oracle-kiosk .has-answer .presence .oo-wave{width:120px;margin:0}
+.oracle-kiosk .has-answer .presence-state{order:1;flex:1}
+.oracle-kiosk .has-answer .voice-controls{order:2}
+.oracle-kiosk .has-answer .voice-button,.oracle-kiosk .has-answer .voice-stop{min-height:48px;font-size:16px;padding:0 20px}
+.oracle-kiosk #speak:not([hidden]){display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 24px 0 18px;background:var(--accent);border-color:var(--accent);color:#fff;font-size:17px}
+.oracle-kiosk #speak:not([hidden])::before{content:"";width:0;height:0;border-left:12px solid currentColor;border-top:8px solid transparent;border-bottom:8px solid transparent}
+.oracle-kiosk #speak:disabled{background:#fff;color:var(--muted);border-color:var(--line)}
+@media(max-width:1199px){
+ .oracle-kiosk .voice-hero{grid-template-columns:1fr;gap:32px;text-align:center}
+ .oracle-kiosk .conversation:not(.has-answer) .intro{text-align:center}
+ .oracle-kiosk .intro .invitation{margin-left:auto;margin-right:auto}
+ .oracle-kiosk .voice-stage{order:-1}
+ .oracle-kiosk .conversation:not(.has-answer) .presence #orb{--oracle-orb-size:220px;width:220px;height:220px;flex-basis:220px}
+ .oracle-kiosk .starting-points{justify-content:center}
+}
+@media(max-width:767px){
+ .oracle-kiosk .conversation:not(.has-answer) .presence #orb{--oracle-orb-size:168px;width:168px;height:168px;flex-basis:168px}
+ .oracle-kiosk .intro .invitation{font-size:20px}
+ .oracle-kiosk .voice-button{min-height:56px;font-size:18px}
+ .oracle-kiosk .conversation:not(.has-answer) .question-card{border-radius:28px;grid-template-columns:1fr}
+ .oracle-kiosk .has-answer .voice-hero{border-radius:28px}
+ .oracle-kiosk .has-answer .presence .oo-wave{display:none}
+}
+@media(max-height:800px) and (min-width:1200px){
+ .oracle-kiosk .conversation:not(.has-answer) .presence #orb{--oracle-orb-size:220px;width:220px;height:220px;flex-basis:220px}
+ .oracle-kiosk .intro h1{font-size:80px}
+}
+/* Review fixes: keep source roles, status and station notes visible (genUI review lead). */
+.oracle-kiosk .has-answer .activity{margin:0 0 12px}
+.oracle-kiosk .has-answer .voice-note{font-size:13px;max-width:none}
+.oracle-kiosk .has-answer .voice-stage{flex-wrap:wrap}
+.oracle-kiosk .station-details{max-width:1280px;margin-left:auto;margin-right:auto}
+
+/* Daniel's Oracle checkpoint. Claude r6 type/grid; existing accepted renderer and controllers.
+   Licensed brand kit faces, unchanged VOTE03 geometry, official Phosphor regular assets. */
+@font-face{font-family:"Libre Baskerville";src:url('/brand/fonts/libre-baskerville.ttf') format('truetype');font-weight:400 700;font-style:normal;font-display:swap}
+@font-face{font-family:"Libre Franklin";src:url('/brand/fonts/libre-franklin.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap}
+body.oracle-kiosk{--font-body:"Libre Franklin",Arial,Helvetica,sans-serif;--font-display:var(--font-body);--font-serif:"Libre Baskerville",Georgia,serif;background:#f1f5fb;font-family:var(--font-body);font-synthesis:none;--muted:#526379;--line:#ced7e3;--control-line:#748399}
+.oracle-kiosk::before{content:none}
+.oracle-kiosk .community-notice{min-height:24px;padding:3px 16px;font-size:14px;line-height:18px}
+.oracle-kiosk .masthead{margin:0;padding:8px clamp(20px,3vw,64px);min-height:80px;gap:24px;border-bottom:1px solid var(--line)}
+.oracle-kiosk .masthead .brand{padding:0;min-height:56px;display:flex;align-items:center}
+.oracle-kiosk .oracle-lockup{display:block;width:auto;max-width:240px;height:64px}
+.oracle-kiosk .masthead nav{gap:24px}
+.oracle-kiosk .masthead .quiet{background:transparent;color:var(--ink);border-color:var(--control-line)}
+.oracle-kiosk main{padding:24px clamp(20px,3vw,64px) 16px}
+.oracle-kiosk .conversation,.oracle-kiosk .conversation.has-answer,.oracle-kiosk .conversation:not(.has-answer){max-width:1600px;width:100%}
+.oracle-kiosk .voice-hero{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:48px;max-width:none}
+.oracle-kiosk .intro .eyebrow{font-size:16px;letter-spacing:0;text-transform:none;margin:0 0 20px}
+.oracle-kiosk .intro h1{font-size:clamp(48px,4.8vw,88px);line-height:1.08;letter-spacing:-.035em;max-width:14ch;text-wrap:balance}
+.oracle-kiosk .intro .invitation{font-size:clamp(20px,1.5vw,28px);max-width:28ch;margin:24px 0 12px}
+.oracle-kiosk .intro .election-context{font-size:16px;margin:0}
+.oracle-kiosk .voice-stage{gap:8px;order:0}
+.oracle-kiosk .conversation:not(.has-answer) .presence #orb{--oracle-orb-size:clamp(160px,12vw,220px);width:var(--oracle-orb-size);height:var(--oracle-orb-size);flex-basis:var(--oracle-orb-size);margin:0}
+.oracle-kiosk .voice-button{box-shadow:none;min-height:56px;font-size:18px}
+.oracle-kiosk .voice-note,.oracle-kiosk .has-answer .voice-note{font-size:16px;max-width:42ch}
+.oracle-kiosk .voice-button::before,.oracle-kiosk #speak:not([hidden])::before{border:0;border-radius:0;box-shadow:none;margin:0;content:"";width:24px;height:24px;background:currentColor;mask:url('/icons/phosphor/microphone.svg') center/contain no-repeat}
+.oracle-kiosk #speak:not([hidden])::before{mask-image:url('/icons/phosphor/play.svg')}
+.oracle-kiosk #reset,.oracle-kiosk #voice-stop,.oracle-kiosk button[data-part],.oracle-kiosk .starting-points button{display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.oracle-kiosk #reset::before,.oracle-kiosk #voice-stop::before,.oracle-kiosk button[data-part]::before,.oracle-kiosk .starting-points button::after{content:"";display:inline-block;width:22px;height:22px;flex:none;background:currentColor;mask-position:center;mask-size:contain;mask-repeat:no-repeat}
+.oracle-kiosk #reset::before{mask-image:url('/icons/phosphor/eraser.svg')}
+.oracle-kiosk #voice-stop::before{mask-image:url('/icons/phosphor/stop.svg')}
+.oracle-kiosk button[data-part="-1"]::before{mask-image:url('/icons/phosphor/arrow-left.svg')}
+.oracle-kiosk button[data-part="1"]::before{mask-image:url('/icons/phosphor/arrow-right.svg')}
+.oracle-kiosk .starting-points button::after{mask-image:url('/icons/phosphor/arrow-up-right.svg')}
+.oracle-kiosk .conversation:not(.has-answer) #input-disclosure,.oracle-kiosk #input-disclosure{max-width:none;width:100%;margin:20px 0 0}
+.oracle-kiosk .question-card,.oracle-kiosk .conversation:not(.has-answer) .question-card,.oracle-kiosk .has-answer .question-card{max-width:none;margin:0;padding:12px 20px;border:1px solid var(--control-line);border-radius:20px;box-shadow:none;grid-template-columns:minmax(0,1fr) auto}
+.oracle-kiosk textarea{min-height:48px;font-size:20px}
+.oracle-kiosk .question-card .composer-label{font-size:16px}
+.oracle-kiosk .scope>summary{padding:4px 0;min-height:40px;font-size:16px}
+.oracle-kiosk .starting-points{margin:12px 0;max-width:none;justify-content:flex-start;gap:8px 16px}
+.oracle-kiosk .starting-points>span{width:auto;text-align:left}
+.oracle-kiosk .has-answer .voice-hero{margin:0 0 12px;padding:8px 12px;border-radius:16px;background:#fff}
+.oracle-kiosk .has-answer .voice-stage{flex-direction:row;flex-wrap:wrap;gap:8px 16px}
+.oracle-kiosk .has-answer .presence #orb{--oracle-orb-size:44px;width:44px;height:44px;flex-basis:44px;margin:0}
+.oracle-kiosk .has-answer .voice-note{flex:1 1 35ch;margin:0}
+.oracle-kiosk .has-answer .voice-controls{order:2;margin-left:auto}
+.oracle-kiosk .activity{margin:8px 0;color:var(--ink);font-size:16px}
+.oracle-kiosk .answer-region,.oracle-kiosk .has-answer .answer-region{max-width:none;margin:0}
+.oracle-kiosk .answer-heading{gap:12px}
+.oracle-kiosk .answer-heading h2{font:500 20px/1.3 var(--font-body);letter-spacing:0}
+.oracle-kiosk .answer-heading span{font-size:14px;letter-spacing:0}
+.oracle-kiosk #speech-status{font-size:16px;margin:4px 0 12px}
+/* The complete accepted facet is the focal answer; the redundant overview stays for other views. */
+/* Native closed details controls measure visibility. Bare candidate/measure answers remain visible. */
+.oracle-kiosk .has-card #full-answer-reading[open] #answer-text{display:block;font-size:22px;max-width:64ch}
+.oracle-kiosk #full-answer-reading[open]{max-height:36vh;overflow:auto;flex:none}
+.oracle-kiosk .explanation-card{padding:24px 0;border:0;border-top:2px solid var(--ink);border-radius:0;box-shadow:none;background:transparent}
+.oracle-kiosk .explanation-card>.source-kind{display:block;font-size:16px;margin:0 0 8px}
+.oracle-kiosk .explanation-card:is([data-view-component="measure_parts"],[data-view-component="measure_focus"])>.source-kind{display:none}
+.oracle-kiosk .explanation-card [aria-live]>.source-meta{font-size:16px;text-transform:none;letter-spacing:0;margin:0 0 12px}
+.oracle-kiosk .explanation-facet{display:block;max-width:100%;padding:0}
+.oracle-kiosk .explanation-facet h4{font:400 clamp(30px,2.1vw,40px)/1.16 var(--font-serif);letter-spacing:-.025em;margin:0 0 16px;max-width:36ch}
+.oracle-kiosk .explanation-facet>.source-meta{font-size:16px;margin:0 0 12px;color:var(--muted)}
+.oracle-kiosk .clause-explanation{border:0;margin:0;padding:0;width:min(100%,1080px);max-width:none}
+.oracle-kiosk .clause-explanation::before{content:none}
+.oracle-kiosk .clause-explanation>p:last-child{font:400 clamp(22px,1.8vw,32px)/1.42 var(--font-body);letter-spacing:-.012em;margin:0;max-width:58ch}
+.oracle-kiosk .clause-explanation:has(.condition-controls)>p[aria-live]{font:400 clamp(22px,1.8vw,32px)/1.42 var(--font-body);letter-spacing:-.012em;margin:12px 0;max-width:58ch}
+.oracle-kiosk .clause-explanation:has(.condition-controls)>.source-meta{position:static;width:auto;height:auto;overflow:visible;clip:auto;white-space:normal;font-size:16px;margin:0}
+.oracle-kiosk .clause-explanation:has(.condition-controls)>.fine{font:400 16px/1.5 var(--font-body);margin:8px 0;max-width:70ch}
+.oracle-kiosk .condition-controls{margin:12px 0}
+.oracle-kiosk .condition-controls button{display:inline-flex;align-items:center;gap:8px}
+.oracle-kiosk .condition-controls button::before{content:"";width:22px;height:22px;background:currentColor;mask:url('/icons/phosphor/arrow-left.svg') center/contain no-repeat}
+.oracle-kiosk .condition-controls button:last-child::before{mask-image:url('/icons/phosphor/arrow-right.svg')}
+.oracle-kiosk .explanation-facet>details{margin:16px 0 0;max-width:72ch;border-top:1px solid var(--line)}
+.oracle-kiosk .explanation-facet>details>summary{font-size:18px;font-weight:500}
+.oracle-kiosk .explanation-facet>.source-reading{padding:0;border:0}
+.oracle-kiosk .source-reading{max-width:1000px}
+.oracle-kiosk .source-reading .source-meta{font-size:16px;letter-spacing:0;text-transform:none}
+.oracle-kiosk .ballot-wording{font:400 clamp(20px,1.45vw,28px)/1.5 var(--font-body);letter-spacing:0;max-width:62ch}
+.oracle-kiosk .selected-source-clause{background:transparent;text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:.2em}
+.oracle-kiosk .explanation-card>.choices{gap:12px;margin:16px 0}
+.oracle-kiosk .explanation-card>.fine{font-size:16px;max-width:90ch;margin:12px 0;color:var(--ink)}
+.oracle-kiosk .explanation-card a{font-size:16px}
+.oracle-kiosk .source-disclosure{margin:4px 0;border-top:1px solid var(--line)}
+.oracle-kiosk .source-disclosure>summary{font-size:18px}
+.oracle-kiosk .compact-reading-note{display:none}
+.oracle-kiosk .oracle-utilities{display:flex;align-items:flex-start;gap:12px 32px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:16px}
+.oracle-kiosk .oracle-utilities>details{max-width:none;margin:0;border:0;flex:0 1 auto}
+.oracle-kiosk .oracle-utilities>details>summary{font-size:16px;padding:12px 0}
+.oracle-kiosk .oracle-utilities>details[open]{flex:1 1 100%;background:#fff;padding:0 20px 20px;border:1px solid var(--line);border-radius:12px}
+.oracle-kiosk .oracle-utilities .inventory input,.oracle-kiosk .contest-list{max-width:800px}
+.oracle-kiosk .oracle-utilities footer{max-width:none;margin:16px 0 0}
+.oracle-kiosk .faq-content{max-width:72ch}
+.oracle-kiosk .faq-content>details{border-top:1px solid var(--line)}
+.oracle-kiosk .faq-content>details>p{margin:0 0 16px}
+.oracle-kiosk .how-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.oracle-kiosk .how-steps li{display:block}
+.oracle-kiosk .how-steps h3{margin:8px 0;font-size:24px}
+.oracle-kiosk .how-steps p{font-size:18px}
+/* TV shell does not scroll as a page. Complete long answers and open details can scroll inside
+   focusable, labelled answer/main regions; no sentence is clipped or shrunk to force a fit. */
+@media(min-width:1100px) and (min-height:650px){
+ body.oracle-kiosk{height:100dvh;overflow:hidden;display:grid;grid-template-rows:auto auto minmax(0,1fr)}
+ .oracle-kiosk main{height:auto;min-height:0;overflow:auto}
+ .oracle-kiosk .conversation{height:100%;min-height:0;display:flex;flex-direction:column}
+ .oracle-kiosk .conversation:not(.has-answer) .voice-hero{flex:1;min-height:220px}
+ .oracle-kiosk .has-answer .answer-region{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;padding-right:16px}
+ .oracle-kiosk .has-answer .answer-region:has([data-view-component="measure_parts"]),.oracle-kiosk .has-answer .answer-region:has([data-view-component="measure_focus"]){display:flex;flex-direction:column;overflow:hidden}
+ .oracle-kiosk .has-answer .answer-region:has(#choices:empty):has([data-view-component="measure_parts"]),.oracle-kiosk .has-answer .answer-region:has(#choices:empty):has([data-view-component="measure_focus"]){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto;gap:0 24px}
+ .oracle-kiosk .answer-region:has(#choices:empty)>.answer-heading{grid-column:1/-1;grid-row:1}
+ .oracle-kiosk .answer-region:has(#choices:empty)>#speech-status{grid-column:1;grid-row:2}
+ .oracle-kiosk .answer-region:has(#choices:empty)>#speak{grid-column:2;grid-row:2;justify-self:start}
+ .oracle-kiosk .answer-region:has(#choices:empty)>#adaptive-card{grid-column:1/-1;grid-row:3}
+ .oracle-kiosk .answer-region:has(#choices:empty)>#full-answer-reading{grid-column:1;grid-row:4;border-top:1px solid var(--line)}
+ .oracle-kiosk .answer-region:has(#choices:empty)>.source-disclosure{grid-column:2;grid-row:4;margin:0}
+ .oracle-kiosk .has-answer #adaptive-card:has([data-view-component="measure_parts"]),.oracle-kiosk .has-answer #adaptive-card:has([data-view-component="measure_focus"]){flex:1;min-height:0}
+ .oracle-kiosk .explanation-card:is([data-view-component="measure_parts"],[data-view-component="measure_focus"]){height:100%;min-height:0;display:flex;flex-direction:column;padding:12px 0 0}
+ .oracle-kiosk .explanation-card:is([data-view-component="measure_parts"],[data-view-component="measure_focus"])>div[aria-live]{flex:1;min-height:0;overflow:auto;padding-right:16px;overscroll-behavior:contain}
+ .oracle-kiosk .explanation-card>.choices{flex:none;margin:8px 0}
+ .oracle-kiosk .explanation-card>.fine{flex:none;margin:8px 0}
+ .oracle-kiosk .explanation-card>a{flex:none;min-height:32px;padding:4px 0}
+ .oracle-kiosk .source-disclosure{flex:none}
+ .oracle-kiosk .source-disclosure[open]{max-height:42vh;overflow:auto}
+ .oracle-kiosk .facet-original[open]{position:fixed;inset:12vh 10vw 16vh;z-index:5;max-width:none;margin:0;padding:24px 40px;background:#fff;border:1px solid var(--control-line);border-radius:16px;overflow:auto;box-shadow:0 8px 32px #000c1f26}
+ .oracle-kiosk .facet-original[open]>summary{position:sticky;top:-24px;padding:16px 0;background:#fff;z-index:1;border-bottom:1px solid var(--line)}
+ .oracle-kiosk .has-answer #input-disclosure{margin:8px 0 0}
+ .oracle-kiosk .has-answer #input-disclosure:not([open]){min-height:48px}
+ .oracle-kiosk .has-answer .question-card{padding:8px 16px}
+ .oracle-kiosk .has-answer .question-card textarea{min-height:40px}
+ .oracle-kiosk .oracle-utilities{margin-top:8px;flex:none}
+ .oracle-kiosk .oracle-utilities:has(>details[open]){max-height:48vh;overflow:auto;flex:0 0 auto}
+ .oracle-kiosk .explanation-card>.choices{position:static;padding:8px 0;background:#f1f5fb;border-top:1px solid var(--line)}
+}
+@media(max-width:1099px){
+ .oracle-kiosk .voice-hero{grid-template-columns:1fr;gap:24px}
+ .oracle-kiosk .conversation:not(.has-answer) .intro{text-align:center}
+ .oracle-kiosk .intro h1,.oracle-kiosk .intro .invitation{margin-left:auto;margin-right:auto}
+ .oracle-kiosk .voice-stage{order:0}
+ .oracle-kiosk .conversation:not(.has-answer) .presence #orb{--oracle-orb-size:150px}
+ .oracle-kiosk .how-steps{grid-template-columns:1fr}
+ .oracle-kiosk .candidate-comparison{grid-template-columns:1fr}
+}
+/* A shorter TV cannot carry the complete reading and every control in fixed rows.
+   Preserve complete text in one ordinary inner scroll instead of a zero-height pane. */
+@media(min-width:1100px) and (min-height:650px) and (max-height:850px){
+ .oracle-kiosk main{padding-top:16px;padding-bottom:12px}
+ .oracle-kiosk .has-answer .answer-region:has([data-view-component="measure_parts"]),.oracle-kiosk .has-answer .answer-region:has([data-view-component="measure_focus"]){display:block!important;overflow:auto}
+ .oracle-kiosk .has-answer #adaptive-card:has([data-view-component="measure_parts"]),.oracle-kiosk .has-answer #adaptive-card:has([data-view-component="measure_focus"]){height:auto;min-height:0}
+ .oracle-kiosk .explanation-card:is([data-view-component="measure_parts"],[data-view-component="measure_focus"]){display:block;height:auto}
+ .oracle-kiosk .explanation-card:is([data-view-component="measure_parts"],[data-view-component="measure_focus"])>div[aria-live]{overflow:visible;height:auto;min-height:0}
+ .oracle-kiosk .compact-reading-note{display:block;font-size:16px;color:var(--muted);margin:4px 0 12px}
+ .oracle-kiosk .explanation-facet h4{font-size:30px}
+ .oracle-kiosk .clause-explanation>p:last-child,.oracle-kiosk .clause-explanation:has(.condition-controls)>p[aria-live]{font-size:22px}
+ .oracle-kiosk .explanation-facet>.source-meta{margin-bottom:8px}
+ .oracle-kiosk .has-answer #full-answer-reading{max-height:40vh}
+}
+@media(max-width:767px){
+ .oracle-kiosk .masthead{gap:8px;padding:8px 20px;flex-wrap:wrap}
+ .oracle-kiosk .oracle-lockup{width:210px}
+ .oracle-kiosk .masthead nav{width:100%;justify-content:space-between;gap:8px}
+ .oracle-kiosk .intro h1{font-size:clamp(36px,8vw,56px)}
+ .oracle-kiosk main{padding:24px 20px}
+ .oracle-kiosk .question-card,.oracle-kiosk .conversation:not(.has-answer) .question-card{grid-template-columns:1fr;padding:16px;border-radius:16px}
+ .oracle-kiosk .scope-fields{min-width:0}
+ .oracle-kiosk .scope-fields label{min-width:0}
+ .oracle-kiosk select{max-width:100%;font-size:16px}
+ .oracle-kiosk .starting-points{justify-content:flex-start}
+ .oracle-kiosk .starting-points>span{width:100%}
+ .oracle-kiosk .explanation-facet h4{font-size:30px}
+ .oracle-kiosk .clause-explanation>p:last-child{font-size:22px}
+ .oracle-kiosk .has-answer .voice-controls{margin:0}
+ .oracle-kiosk .oracle-utilities{gap:0 24px}
+}
+@media(prefers-reduced-motion:no-preference){
+ .oracle-kiosk button,.oracle-kiosk a{transition:background-color .18s ease,color .18s ease,border-color .18s ease}
+}
+@media(prefers-reduced-motion:reduce){
+ .oracle-kiosk *,.oracle-kiosk *::before,.oracle-kiosk *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+
+/* Admin scope is hidden only after core validates the actual station contract. */
+body.oracle-kiosk[data-station-configured="true"] .scope{display:none}
+body.oracle-kiosk #mic::before{mask-image:url("/icons/phosphor/phone.svg");-webkit-mask-image:url("/icons/phosphor/phone.svg")}
+
+/* Plain public copy, shown from the validated station scope and current KCEB option. */
+.oracle-kiosk .station-kceb-label{display:none}
+body.oracle-kiosk[data-station-configured="true"]:has(#authority option[value="KCEB"]:checked) .station-kceb-label{display:inline}
+body.oracle-kiosk[data-station-configured="true"]:has(#authority option[value="KCEB"]:checked) .station-default-label{display:none}
+.oracle-kiosk .voice-use{min-width:0}
+.oracle-kiosk .voice-use>summary{font-size:16px;min-height:48px;cursor:pointer}
+.oracle-kiosk .voice-use[open]{max-height:40vh;overflow:auto;max-width:70ch}
+.oracle-kiosk .voice-use p{font-size:16px;max-width:65ch}
+
+/* Daniel's latest hierarchy: no decorative overline, readable support beside the invitation. */
+.oracle-kiosk .intro h1{font-size:clamp(40px,3.35vw,64px);line-height:1.16;letter-spacing:-.025em;max-width:20ch}
+.oracle-kiosk .intro .invitation{font-size:clamp(20px,1.5vw,24px);line-height:1.5;margin-top:20px}
+.oracle-kiosk .station-context{font-size:16px;line-height:1.5;margin:16px 0;color:var(--muted)}
+@media(max-width:767px){.oracle-kiosk .intro h1{font-size:clamp(32px,8vw,40px)}.oracle-kiosk .intro .invitation{font-size:20px;margin-top:16px}}
+
+/* Configured public voice station. Core retains all form/control IDs for its single voice chain.
+   The unconfigured source-only review surface keeps its existing typed path. */
+.oracle-kiosk .voice-identity{font:500 18px/1.4 var(--font-body);letter-spacing:0;margin:0 0 16px;color:var(--ink)}
+.oracle-kiosk .station-help{border-top:1px solid var(--line);margin-top:12px;flex:none}
+.oracle-kiosk .station-help>summary{font:400 16px/1.5 var(--font-body);cursor:pointer;padding:12px 0;min-height:48px}
+.oracle-kiosk .station-help:not([open]) .oracle-utilities{display:none}
+.oracle-kiosk .station-help[open]{max-height:44vh;overflow:auto}
+.oracle-kiosk .station-help .oracle-utilities{border:0;margin:0}
+body.oracle-kiosk[data-station-configured="true"] #input-disclosure,
+body.oracle-kiosk[data-station-configured="true"] .starting-points{display:none}
+body.oracle-kiosk[data-station-configured="true"] .conversation:not(.has-answer) .voice-hero{grid-template-columns:1fr;gap:16px;align-content:center;justify-items:center;text-align:center}
+body.oracle-kiosk[data-station-configured="true"] .conversation:not(.has-answer) .intro{text-align:center;padding:0}
+body.oracle-kiosk[data-station-configured="true"] .conversation:not(.has-answer) .intro h1{max-width:22ch;margin-inline:auto}
+body.oracle-kiosk[data-station-configured="true"] .conversation:not(.has-answer) .invitation{margin:16px 0 0}
+body.oracle-kiosk[data-station-configured="true"] .conversation:not(.has-answer) .voice-stage{gap:8px}
+body.oracle-kiosk[data-station-configured="true"] .conversation:not(.has-answer) .presence #orb{--oracle-orb-size:160px;margin:8px 0}
+body.oracle-kiosk[data-station-configured="true"]:has(#orb[data-state="listening"]) .intro,
+body.oracle-kiosk[data-station-configured="true"]:has(#orb[data-state="thinking"]) .intro,
+body.oracle-kiosk[data-station-configured="true"]:has(#orb[data-state="speaking"]) .intro{display:none}
+body.oracle-kiosk[data-station-configured="true"]:has(#orb:is([data-state="listening"],[data-state="thinking"],[data-state="speaking"])) .conversation:not(.has-answer) .presence #orb{--oracle-orb-size:clamp(180px,20vw,280px)}
+@media(max-width:767px){.oracle-kiosk .voice-identity{font-size:16px}body.oracle-kiosk[data-station-configured="true"] .conversation:not(.has-answer) .presence #orb{--oracle-orb-size:144px}}
+
+/* Latest direct instruction: the brand already identifies the experience; one invitation is enough. */
+.oracle-kiosk .intro h1{font-size:clamp(32px,2.4vw,44px);max-width:24ch;line-height:1.2}
+body.oracle-kiosk[data-station-configured="true"] #mic-note{display:none}
+.oracle-kiosk #presence-state{font-size:16px;line-height:1.5}
+@media(max-width:767px){.oracle-kiosk .intro h1{font-size:32px}}
+
+.voice-unavailable{display:none;font-size:16px;line-height:1.5;color:var(--muted);margin:4px 0}
+body.oracle-kiosk[data-station-configured="true"]:has(#mic:disabled) .voice-unavailable{display:block}
