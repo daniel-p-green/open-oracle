@@ -1,0 +1,13 @@
+/* Layout primitives only: owner supplies visual tokens. System script fallbacks
+   require actual browser/Pi font verification. No remote font dependency. */
+.language-surface { font-family: system-ui, sans-serif; max-inline-size: 65rem; margin-inline: auto; padding-inline: 1rem; }
+.language-surface :lang(ar) { font-family: 'Noto Sans Arabic', 'Geeza Pro', 'DejaVu Sans', sans-serif; line-height: 1.9; }
+.language-surface :lang(zh) { font-family: 'Noto Sans CJK SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; line-height: 1.8; }
+.language-surface :lang(vi) { line-height: 1.7; }
+.language-surface [dir] { text-align: start; unicode-bidi: isolate; }
+.language-surface pre, .language-surface p { white-space: pre-wrap; overflow-wrap: anywhere; }
+.language-surface button, .language-surface select, .language-surface textarea { min-block-size: 2.75rem; font: inherit; max-inline-size: 100%; }
+.language-surface :focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+.idle-language { min-block-size: 6rem; }
+.language-capability { font-size: .9rem; }
+@media(prefers-reduced-motion: reduce) { .language-surface * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }

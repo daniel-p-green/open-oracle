@@ -1,0 +1,13 @@
+# Provider session metadata checkpoint — October 11, 2026
+
+GitHub alerts 1 and 2 classify two historical `final_event.session.id` fields as GoCardless live access tokens. The values are authentic OpenAI Live resource identifiers by provenance: both records are actual `session.closed` events for `gpt-live-1`, with `store:false`. The installed official SDK defines SessionResource.id as a Live session identifier. Recording, fork and sideband helpers separately require API-key bearer authentication; a session ID is a resource selector, not the SDK's bearer credential. No service validation was performed, and server-side ownership checks were not tested. GitHub reports validity unknown. No evidence supports GoCardless credential rotation.
+
+The original commit is `5f0b00c3cfe19f1884f1b809a0cdf19e2d071981`; both locations are line 239 in `evals/live-diagnosis-20261011/full-app-02/result.json` and `full-app-03/result.json`. A read-only remote-head check confirmed that commit is reachable through `claude/project-thread-shsiz2` at `d3145ebdd23057be39ce6f5cfb9031ac3913bfba`, the head of draft PR 1. Remote main remains `c7ffbe23c44fd965e597c94b825e0695443001de` and does not contain it.
+
+The local fix retains only closure type, an allowlisted reason and finite nonnegative usage seconds. Normal, cancelled/late and server speech paths discard session snapshots, provider/event identifiers, instructions and arbitrary usage fields. A received closure lacking valid usage withholds speech without waiting for a duplicate closure. Current copies of the two diagnostics now retain only that metadata, with explicit redaction notes; historical execution labels and other proof remain intact.
+
+Offline regressions cover sentinel snapshot exclusion, malformed/missing billing, ordinary and late closure, stale-generation rejection, server preparation and unchanged speech receipt/display/review gates. No credential values appear in this report or fixtures. No provider requests, capture or playback were used for this repair. The old historical commit remains unchanged and remotely reachable; this local commit does not clear GitHub alerts.
+
+Alerts remain open. No revocation, dismissal, history rewrite, push, merge or deployment was performed. Any publication or historical cleanup remains a separate authorized decision. Full provider snapshots must not be exported to logs or diagnostics.
+
+SDK references independently checked: `openai/resources/live/live.d.ts` SessionClosedEvent and SessionResource, `live/sessions.js` recording/fork bearerAuth, and `live/sideband/ws-base.js` separate API-key Bearer header. Installed copies were inspected locally; no identifiers were sent to APIs.

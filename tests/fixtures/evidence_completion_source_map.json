@@ -1,0 +1,64 @@
+{
+  "core_head": "d91164548d2d592d2b5a058d16ea459ac8ae3950",
+  "file_pins": {
+    "strands_quality/research_agent.py": "16bdf92436da45007faf57cd1a2e00fa7da93f853fba24378e67ad637f6104e6",
+    "strands_quality/research_corpus.py": "70ebdd78e9a0dbb3e90f00758e879638cf52ece7b08383661db336837cc086f6",
+    "strands_quality/verified_passages.py": "0bbfa2f8f85244a4b6f5ade196ba759d64aed74a70950200f8c08b26f12906c0",
+    "strands_quality/receipts.py": "e2fbdddb7ac98c82afc486d0738dd187353c7a29bcac0ea5aa770fb354285164",
+    "open_oracle/research_engine.py": "c7edc8024215674a20eee86877cb83c6e0ceed56565a8ed918438248080d5b9a",
+    "open_oracle/research_release.py": "2472d76428d3d3ab1c50bfe54b9fc6213efdf0857bd4d8c54b7f45d4778013db",
+    "data/6096-selected-index.json": "13b7602bf7d7d6553465732f343156ba5900480521900f1633baf5c21de32d39"
+  },
+  "exact_public_evidence": [
+    {
+      "chunk_id": "combat:jceb-sample:8998:4a50da630896",
+      "source_id": "jceb-sample",
+      "role": "ballot_proposal",
+      "quality": "verified_reading_copy",
+      "issuer": "Jackson County Election Board",
+      "url": "https://jcebmo.org/wp-content/uploads/11.03.26-Notice-of-Election-Sample-Ballot-Poster.pdf",
+      "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+      "extraction_sha256": "279d07d0896232e763c732d42b64e29191e2dcfd628a2b2dcad00cef62302796",
+      "chunk_sha256": "4a50da630896d259ad0ebefcda19b9c91d8fd21495a662422bde6d8ae33a6556",
+      "parent_start": 8998,
+      "parent_end": 9421,
+      "page": 2,
+      "section": "Jackson County Question 1 \u2014 COMBAT",
+      "text": "QUESTION # 1  \nShall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers?"
+    },
+    {
+      "chunk_id": "combat:combat-6096-selected-v1:existing_expiry",
+      "source_id": "combat-6096-selected-v1",
+      "role": "adopted_proposal",
+      "quality": "verified_reading_copy",
+      "issuer": "Jackson County Legislature",
+      "url": "https://jacksonco.legistar.com/View.ashx?GUID=4621CABB-462E-44AB-8859-BABBB11CB427&ID=15655867&M=F",
+      "original_sha256": "5fa4474560da047207bfd7c7033de0d0a1febb20d6e92cc6447982ca71a1afde",
+      "extraction_sha256": "229da53b66722072ed5f980c09ef91125b573fb1a18c333d2ed14961163f83a5",
+      "chunk_sha256": "a4e0963f51960cccddecdd5d94d911c718ce1255e5b15174b3b729dd16e6066b",
+      "parent_start": 586,
+      "parent_end": 669,
+      "page": 1,
+      "section": "third WHEREAS recital",
+      "text": "WHEREAS, unless continued by the voters, COMBAT will expire on March 31, 2027; and,"
+    },
+    {
+      "chunk_id": "combat:combat-6096-selected-v1:approval_condition_and_extension_dates",
+      "source_id": "combat-6096-selected-v1",
+      "role": "adopted_proposal",
+      "quality": "verified_reading_copy",
+      "issuer": "Jackson County Legislature",
+      "url": "https://jacksonco.legistar.com/View.ashx?GUID=4621CABB-462E-44AB-8859-BABBB11CB427&ID=15655867&M=F",
+      "original_sha256": "5fa4474560da047207bfd7c7033de0d0a1febb20d6e92cc6447982ca71a1afde",
+      "extraction_sha256": "229da53b66722072ed5f980c09ef91125b573fb1a18c333d2ed14961163f83a5",
+      "chunk_sha256": "a92c3676b7b748c3318c41bcf9655b91902c8c7d53d2efd6c9e853637ddc7d3e",
+      "parent_start": 2439,
+      "parent_end": 2717,
+      "page": 3,
+      "section": "Section 4, full body",
+      "text": "If a majority of the qualified voters voting at said election shall vote in favor of the approval of this ordinance, the tax provisions hereof shall be binding and shall become effective April 1, 2027, and shall automatically terminate ten years after that date, March 31, 2037."
+    }
+  ],
+  "new_provider_calls": 0,
+  "public_release_approved": false
+}

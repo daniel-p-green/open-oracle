@@ -1,0 +1,23 @@
+{
+  "name": "open-oracle-controlled-copilot",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild main.tsx --bundle --minify --format=iife --target=es2020 --jsx=automatic --define:process.env.NODE_ENV=\"\\\"production\\\"\" --loader:.css=empty --legal-comments=eof --outfile=dist/copilot.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@copilotkit/react-core": "1.78.0",
+    "@ag-ui/client": "1.0.2",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2"
+  }
+}

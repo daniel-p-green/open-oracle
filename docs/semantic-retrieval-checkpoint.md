@@ -1,0 +1,25 @@
+# Optional semantic retrieval checkpoint — October 11, 2026
+
+The default text interface remains exact-source and lexical. No embedding client, query upload, cloud storage or automatic ingestion is created by starting the app. Semantic retrieval is an explicitly supplied request-owned backend inside the existing Strands planning/search/read/citation tools; its ranking never approves a claim.
+
+The public-source manifest pins original and extraction hashes, chunk text hashes/offsets, authority, election, role and applicability. Unverified Ordinance 6096 OCR is excluded. Filtering precedes embedding. Every returned chunk is rebound to the exact retained source before a citation can be released. Provider availability, explicit input denial or exhausted embedding budget permits lexical fallback; malformed vectors, forged IDs, stale originals and cancellation remain fatal. Empty results retain truthful per-call retrieval status. Receipts bind model/dimensions, vector artifact and adapter code revision.
+
+Services accept optional `semantic_backend_factory(registry, check)`; the factory must return a LocalVectorBackend bound to the fresh request registry. Each request owns its registry and cancellation/deadline check. The browser engine propagates the factory only when explicitly supplied; no new CLI activation or default provider is introduced. Independent review and deterministic display/source/numeric/advice guards remain unchanged. The public research answer contract covers checked COMBAT rate/duration and an explicit prediction refusal. Freeform visitor queries remain lexical; cloud embedding requires a separately authorized application policy for an exact scripted public query. An injected client must enforce explicit call bounds and no retries.
+
+## Actual bounded AWS proof
+
+Three Titan V2 embedding attempts, zero retries: two verified JCEB COMBAT source spans and the frozen public paraphrase “How long would renewal last?”. Full-corpus lexical search had no matches. Local exact cosine ranked the duration/rate span first (0.1004552570), ahead of the separate-trust-fund span (0.0025992892). These scores are similarities, not probabilities/confidence or civic quality grades. KCEB's actual COMBAT chunk was excluded; wrong state/county/election/original-version cases returned no matches with zero further calls. The returned citation is the exact parent extraction span 8998..9421 on page 2, with original SHA256 `032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2`.
+
+137 actual input tokens were observed. Public document vectors remain local; the query vector was discarded. No cloud storage/resources/access changes occurred. The bounded public execution summary is in `docs/public-evidence-summary.md`. The earlier one-span smoke was a separate call; no additional call was made for core integration.
+
+This proves one scoped registry paraphrase retrieval over two spans. It does not prove full 83-chunk ingestion, calibrated quality, freshness, end-to-end browser semantic inference, physical playback, S3 Vectors or Bedrock Knowledge Base access. The proof phrase by itself does not identify a contest and is outside current reviewed intake. No release grammar was broadened to accommodate it.
+
+## Offline integration evidence
+
+12 adapter tests and five service tests pass using authored models/vectors and actual Strands SDK tool dispatch. The initial full isolated suite ran 238 tests with four optional integrations skipped. The final integrated suite, including four natural-intake regressions, ran 242 tests with four skips. Tests cover private drafts, independent review rejection, distinct request registries, receipt revisions, source/version/location gates, malformed vectors, cancelled queries, provider denial without retries and zero-call lexical fallback for unapproved visitor text. Synthetic vectors are not live semantic-quality evidence. Exact-source browser and current-source regression checks accompany the local integration commit.
+
+Optional S3 Vectors adapter is read-only and remains unconfigured. Its inclusion grants no resource/upload authority. Bedrock KB, source ingestion storage and freeform query submission remain separate approval/permission boundaries. Research verification packets must be reviewed and exact spans rebound before any new source/claim contract is accepted.
+
+## Later application integration checkpoint
+
+The later parent-authorized three-chunk strict JCEB COMBAT index and real HTTP trials are recorded in [semantic-research-http-proof.md](semantic-research-http-proof.md). The earlier statement that no additional integration call ran applies to that earlier checkpoint only. Actual semantic retrieval now reached deterministic source checks and Decisions: the positive answer was held on clarity 0.94/0.95, while a sourced rate plus explicit prediction refusal was accepted through lexical fallback. No accepted semantic-positive answer, full-corpus quality or primary-runtime enablement is claimed.

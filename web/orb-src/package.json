@@ -1,0 +1,24 @@
+{
+  "name": "open-oracle-orb",
+  "private": true,
+  "description": "Builds web/orb.js: the ElevenLabs UI Orb mounted into the vanilla Open Oracle page.",
+  "scripts": {
+    "build": "esbuild main.tsx --bundle --minify --format=iife --target=es2020 --jsx=automatic --define:process.env.NODE_ENV='\"production\"' --legal-comments=eof --outfile=../orb.js",
+    "noise": "python3 make_noise.py ../orb-noise.png"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.1",
+    "motion": "^12.43.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.186.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2"
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "source_id": "combat-6096-selected-v1",
+  "role": "adopted_proposal",
+  "quality": "verified_reading_copy",
+  "issuer": "Jackson County Legislature",
+  "state": "MO",
+  "county": "jackson-county-mo",
+  "authority": null,
+  "election_date": "2026-11-03",
+  "effective_from": null,
+  "retrieved_date": "2026-10-11",
+  "status": "retained_snapshot",
+  "source_url": "https://jacksonco.legistar.com/View.ashx?GUID=4621CABB-462E-44AB-8859-BABBB11CB427&ID=15655867&M=F",
+  "original_sha256": "5fa4474560da047207bfd7c7033de0d0a1febb20d6e92cc6447982ca71a1afde",
+  "original_bytes": 466739,
+  "original_pages": 5,
+  "reading_file": "6096-selected-reading.txt",
+  "reading_sha256": "229da53b66722072ed5f980c09ef91125b573fb1a18c333d2ed14961163f83a5",
+  "verification_packet_sha256": "ad8c7fe44fd934217615cd7c931f824e005f104657900b359e0fb47f67e316b2",
+  "offset_basis": "Unicode code points, zero-based half-open in selected normalized reading copy",
+  "partial": true,
+  "runtime_release_approved": false,
+  "transcription_method": "Manual selected reading copy: visual line breaks joined and repeated spaces normalized; not original PDF typography or a PDF text layer.",
+  "verification_limit": "Core checked all eight spans and all five images; no fresh attachment-byte match claimed. Only these selected passages are verified; voter approval, complete current law and legal effectiveness are not established.",
+  "passages": [
+    {
+      "id": "prior_authorization",
+      "start": 179,
+      "end": 532,
+      "text_sha256": "f1268853f488c1a294bf4d23f26d27de1eeadd1ff521733f953de3b5d06d0bff",
+      "pdf_page_1_based": 1,
+      "section_or_locator": "first WHEREAS recital",
+      "reviewer_locator": {
+        "image_file": "pages/ordinance-6096-1.png",
+        "approximate_normalized_bbox": [
+          0.1,
+          0.35,
+          0.9,
+          0.51
+        ],
+        "semantics": "Reviewer locator only; [left,top,right,bottom] relative to the 130dpi full page, not a machine-extracted text bounding box"
+      },
+      "transcription": "Manually compared to scan; visual line breaks joined, repeated spaces normalized; meaningful punctuation/words retained",
+      "runtime_release_approved": false
+    },
+    {
+      "id": "existing_expiry",
+      "start": 586,
+      "end": 669,
+      "text_sha256": "a4e0963f51960cccddecdd5d94d911c718ce1255e5b15174b3b729dd16e6066b",
+      "pdf_page_1_based": 1,
+      "section_or_locator": "third WHEREAS recital",
+      "reviewer_locator": {
+        "image_file": "pages/ordinance-6096-1.png",
+        "approximate_normalized_bbox": [
+          0.1,
+          0.72,
+          0.9,
+          0.78
+        ],
+        "semantics": "Reviewer locator only; [left,top,right,bottom] relative to the 130dpi full page, not a machine-extracted text bounding box"
+      },
+      "transcription": "Manually compared to scan; visual line breaks joined, repeated spaces normalized; meaningful punctuation/words retained",
+      "runtime_release_approved": false
+    },
+    {
+      "id": "submission_scope_rate_duration_purposes",
+      "start": 746,
+      "end": 1330,
+      "text_sha256": "c76e4ef5009af27491ea9a9c4f1b0bb0b9372031a782ee5022488358d401d98b",
+      "pdf_page_1_based": 2,
+      "section_or_locator": "Section 1, full body",
+      "reviewer_locator": {
+        "image_file": "pages/ordinance-6096-2.png",
+        "approximate_normalized_bbox": [
+          0.1,
+          0.2,
+          0.9,
+          0.56
+        ],
+        "semantics": "Reviewer locator only; [left,top,right,bottom] relative to the 130dpi full page, not a machine-extracted text bounding box"
+      },
+      "transcription": "Manually compared to scan; visual line breaks joined, repeated spaces normalized; meaningful punctuation/words retained",
+      "runtime_release_approved": false
+    },
+    {
+      "id": "administration_and_election_cost_exception",
+      "start": 1410,
+      "end": 1705,
+      "text_sha256": "27f54f39295672f0012264a03ae821472207070eb29b919cd2b0ef62f7cc2dda",
+      "pdf_page_1_based": 2,
+      "section_or_locator": "Section 2, full body",
+      "reviewer_locator": {
+        "image_file": "pages/ordinance-6096-2.png",
+        "approximate_normalized_bbox": [
+          0.1,
+          0.6,
+          0.9,
+          0.72
+        ],
+        "semantics": "Reviewer locator only; [left,top,right,bottom] relative to the 130dpi full page, not a machine-extracted text bounding box"
+      },
+      "transcription": "Manually compared to scan; visual line breaks joined, repeated spaces normalized; meaningful punctuation/words retained",
+      "runtime_release_approved": false
+    },
+    {
+      "id": "submitted_ballot_full_question",
+      "start": 1806,
+      "end": 2363,
+      "text_sha256": "ae547bb4af3eae3d6196cd6d0caaf2abdefd83de230372abbbb1ad1ca9127725",
+      "pdf_page_1_based": 3,
+      "section_or_locator": "Section 3, complete question and trust-fund condition",
+      "reviewer_locator": {
+        "image_file": "pages/ordinance-6096-3.png",
+        "approximate_normalized_bbox": [
+          0.1,
+          0.3,
+          0.9,
+          0.52
+        ],
+        "semantics": "Reviewer locator only; [left,top,right,bottom] relative to the 130dpi full page, not a machine-extracted text bounding box"
+      },
+      "transcription": "Manually compared to scan; visual line breaks joined, repeated spaces normalized; meaningful punctuation/words retained",
+      "runtime_release_approved": false
+    },
+    {
+      "id": "approval_condition_and_extension_dates",
+      "start": 2439,
+      "end": 2717,
+      "text_sha256": "a92c3676b7b748c3318c41bcf9655b91902c8c7d53d2efd6c9e853637ddc7d3e",
+      "pdf_page_1_based": 3,
+      "section_or_locator": "Section 4, full body",
+      "reviewer_locator": {
+        "image_file": "pages/ordinance-6096-3.png",
+        "approximate_normalized_bbox": [
+          0.1,
+          0.75,
+          0.9,
+          0.89
+        ],
+        "semantics": "Reviewer locator only; [left,top,right,bottom] relative to the 130dpi full page, not a machine-extracted text bounding box"
+      },
+      "transcription": "Manually compared to scan; visual line breaks joined, repeated spaces normalized; meaningful punctuation/words retained",
+      "runtime_release_approved": false
+    },
+    {
+      "id": "election_board_notification",
+      "start": 2782,
+      "end": 3107,
+      "text_sha256": "76149f9c0b969b057cd1a9e3af8118aebeebe931e76629e2c509af6b616bb84e",
+      "pdf_page_1_based": 4,
+      "section_or_locator": "Section 5, full body",
+      "reviewer_locator": {
+        "image_file": "pages/ordinance-6096-4.png",
+        "approximate_normalized_bbox": [
+          0.1,
+          0.13,
+          0.9,
+          0.25
+        ],
+        "semantics": "Reviewer locator only; [left,top,right,bottom] relative to the 130dpi full page, not a machine-extracted text bounding box"
+      },
+      "transcription": "Manually compared to scan; visual line breaks joined, repeated spaces normalized; meaningful punctuation/words retained",
+      "runtime_release_approved": false
+    },
+    {
+      "id": "ordinance_effective_condition",
+      "start": 3191,
+      "end": 3296,
+      "text_sha256": "5706d8121692a6112318d99bef9795dbc2a4914e55c86cbe3a59411e58507771",
+      "pdf_page_1_based": 5,
+      "section_or_locator": "Effective Date, full printed sentence",
+      "reviewer_locator": {
+        "image_file": "pages/ordinance-6096-5.png",
+        "approximate_normalized_bbox": [
+          0.1,
+          0.1,
+          0.9,
+          0.14
+        ],
+        "semantics": "Reviewer locator only; [left,top,right,bottom] relative to the 130dpi full page, not a machine-extracted text bounding box"
+      },
+      "transcription": "Manually compared to scan; visual line breaks joined, repeated spaces normalized; meaningful punctuation/words retained",
+      "runtime_release_approved": false
+    }
+  ]
+}

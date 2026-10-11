@@ -1,0 +1,27 @@
+Selected manually image-checked Ordinance 6096 clauses
+Whitespace-normalized transcription; this is not a PDF text layer.
+
+[prior_authorization] PDF page 1; first WHEREAS recital
+WHEREAS, pursuant to Ordinance 4881, dated August 22, 2016, the voters of Jackson County did, on November 8, 2016, authorize the continuation of a countywide sales tax at the rate of one-quarter of one cent, to be used solely to combat the serious problems of illegal drug use and violent crime which were then and are still plaguing our community; and,
+
+[existing_expiry] PDF page 1; third WHEREAS recital
+WHEREAS, unless continued by the voters, COMBAT will expire on March 31, 2027; and,
+
+[submission_scope_rate_duration_purposes] PDF page 2; Section 1, full body
+Pursuant to the provisions of § 67.547, RSMo Supp. 2013, there is hereby submitted to the qualified voters of Jackson County, Missouri, at the general election to be held on November 3, 2026, a question for the continuation of the countywide anti-crime sales tax (COMBAT) at the rate of one-quarter of one cent for a period of ten years for the purpose of promoting and providing public safety within Jackson County, including the prevention and treatment of drug abuse and addiction and the prevention, investigation, prosecution, and detention of violent criminals and drug dealers.
+
+[administration_and_election_cost_exception] PDF page 2; Section 2, full body
+All aspects of the tax shall continue to be administered in accordance with Chapter 93, Jackson County Code, 1984, except that a portion of the tax’s proceeds may be used to pay the costs incurred by the appropriate election authorities in conducting the election provided for in this Ordinance.
+
+[submitted_ballot_full_question] PDF page 3; Section 3, complete question and trust-fund condition
+Shall Jackson County continue its anti-crime sales tax, commonly known as COMBAT, at the rate of one-quarter of one cent for a period of ten years for the purpose of promoting and providing public safety within Jackson County, including the prevention and treatment of drug abuse and addiction and the prevention, investigation, prosecution, and detention of violent criminals and drug dealers? The proceeds of this tax shall be deposited in a special Jackson County Anti-Crime Sales Tax Trust Fund, separate from the general fund or any other county funds.
+
+[approval_condition_and_extension_dates] PDF page 3; Section 4, full body
+If a majority of the qualified voters voting at said election shall vote in favor of the approval of this ordinance, the tax provisions hereof shall be binding and shall become effective April 1, 2027, and shall automatically terminate ten years after that date, March 31, 2037.
+
+[election_board_notification] PDF page 4; Section 5, full body
+The Clerk of the Legislature is hereby authorized and directed to notify the Jackson County and Kansas City Boards of Election Commissioners of the adoption of this Ordinance no later than 5:00 p.m. on August 25, 2026, and to include in said notification all of the terms and provisions required by §115.125, RSMo Supp. 2013.
+
+[ordinance_effective_condition] PDF page 5; Effective Date, full printed sentence
+Effective Date: This Ordinance shall be effective immediately upon its signature by the County Executive.
+

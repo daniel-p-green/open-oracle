@@ -1,0 +1,6 @@
+{
+  "name": "open-oracle-local-live-speech",
+  "private": true,
+  "version": "0.1.0",
+  "dependencies": { "openai": "7.25.0", "ws": "8.22.0" }
+}

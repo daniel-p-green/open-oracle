@@ -1,0 +1,17 @@
+# Amendment 7 bounded voice preparation
+
+The executive briefing task froze and handed off 14 changed files to the core integrator. The local checkpoint adds four-source Strands reads within the existing model/tool bounds, spoken-number resolution, source-bound focused live cards, and a shared finite capture/speech attempt allowance. The default allowance remains one. All four same-request sources remain required even when one explanation facet is displayed. Core additionally rejects a focused answer that differs from that facet, including at speech receipt validation.
+
+The finite allowance counts attempts once under a lock, survives visitor Erase, and is shared by capture creation and buffered speech. Concurrent speech rendering remains serialized. Capture closes before a reviewed text request in WebSocket mode. No review threshold, original source hash or audio fidelity gate was weakened. The current manual Prepare/Play path remains; this checkpoint does not complete the approved continuous conversation target.
+
+Validation: 382 Python tests ran, 378 passed and four optional tests skipped; all ten JavaScript suites, syntax checks, Copilot typecheck and diff checks passed. Actual headless main and Copilot browsers passed on a temporary exact-source loopback server at 800×480 and 320px, with zero external, capture or live requests. This includes retained original/PDF checks, COMBAT rate plus duration, attributed candidate follow-ups, visible mixed gaps, Erase races/focus and a fresh request. The temporary listener stopped; active 8765 was not restarted.
+
+Live readiness remains held. The originating task reported three real Strands workflows, three Decisions reviews (all withheld), two Live capture creations and zero speech renders. Generated WebAudio reached a complete Yes transcript and capture closure, but no human microphone or heard audio was proved. Its final focused-card change has no real provider acceptance. Core made zero additional paid calls.
+
+The public proof records code pins and bounded results, not raw diagnostic payloads. The rehearsal harness is inert by default. A new execution requires explicit capped authorization and a single execution owner. Rejected review never permits speech. No automatic retry or device acceptance follows from this checkpoint.
+
+## Fresh focused trial and independently sourced repair
+
+Core ran one fixed public Yes/No proof after 979f65e. The generated Yes input reached a real Cedar session and complete transcript, capture stopped, and Strands reported four model attempts reading all four sources. One Decisions review rejected source support (0.93) and clarity (0.90) at the unchanged 0.95 gate. No speech request occurred; the No turn was not reached. The ephemeral browser/server stopped, no human microphone or playback occurred, and active 8765 stayed unchanged. No automatic retry.
+
+The reviewer supplied predicate values and no rationale. An independent source comparison found omitted qualifications in the brief explanation: net investment earnings, approval by concurrent resolution, and the first 60 calendar days of the immediately following regular session. The wording now preserves these conditions and the full original remains unchanged. Exact source/qualification and cross-facet receipt tests cover this repair. This is not a proven explanation of the rejection, and the repaired wording has no real provider acceptance. Rehearsal remains held.

@@ -1,0 +1,11 @@
+# Local website and kiosk draft
+
+The user-authorized NDS-informed draft is integrated locally: `/website` introduces the service and shows a complete retained COMBAT original; `/` retains the working kiosk, and `/copilot` remains the controlled renderer. The five visual files came from the visual owner's frozen handoff. Core added only three allowlisted static routes using existing host/origin, CSP and no-store controls. The exact replacement remains a reviewable draft, not a locked creative selection or a public deployment.
+
+The website's paste field only counts and clears text locally. Evaluation, supplied PDF/TXT intake and continuous GPT-Live are approved future targets, explicitly unavailable in this draft. No evaluator/provider request is made. How it works distinguishes retained-source mode from gated live research and explains source inspection, missing coverage and the no-voting-advice boundary.
+
+The static example preserves the complete reading-copy text, including qualifications and YES/NO. Core encoded trailing source spaces as HTML entities; decoded text remains exactly equal to retained corpus text. Only the two source-specific rate/duration clauses are underlined. Original files and their hashes were not changed.
+
+Actual headless browser acceptance passes both root and Copilot: original text/PDF hash, COMBAT rate+duration, candidate natural property phrasing/context, mixed supported property+explicit climate gap, both shared questions/all originals, Erase late-response rejection/focus and a successful fresh request. Zero external requests, capture or provider calls. Two additional tests check complete website-original equality, honest unavailable capability text, the additive routes/security headers, old surfaces and rejected untrusted hosts. The full integrated Python run has 307 tests, 303 passes and four optional skips. See `evals/visual-local-20261011/checkpoint.json`.
+
+These checks are not physical Pi/audio, continuous conversation, uploaded-document evaluation, full screen-reader or comprehensive accessibility proof. The visual owner's isolated 1280/390/320 previews and concept images remain in `.local/visual-redesign-20261011/`; no private diagnostics or generated imagery are published. Core retained other owners' dirty changes separately and did not alter the request/release/session/voice controllers.

@@ -1,0 +1,310 @@
+[
+  {
+    "measure_id": "amendment-3",
+    "span": "question",
+    "raw_text": "Shall the Missouri Constitution be\namended to:\n●Repeal the 2024 voter-approved\n        Amendment providing reproductive\n        healthcare     rights,    including\n        abortion through fetal viability;\n●Allow abortions for rape and incest\n        (under twelve-weeks’ gestation),\n        emergencies, and fetal anomalies;\n●Allow legislation regulating abortion;\n●Ensure parental consent for minors’\n        abortions;\n●Prohibit gender transition procedures for\n        minors?\n  ",
+    "provenance": {
+      "issuer": "Kansas City Election Board",
+      "url": "https://drive.google.com/file/d/1K9yPQmPpIB1g9qoErahvNjTGhrBRi9A2/view?usp=sharing",
+      "official_link_page": "https://kceb.org/elections/ballot/",
+      "page": 7,
+      "pdf_sha256": "92cda731c864b5a84062322a32f743597bcace6f986af4c0e2bfe55c7405dc62",
+      "revision": "2026-09-14",
+      "election_date": "2026-11-03",
+      "download_verified_date": "2026-10-11",
+      "region_points_top_left": [
+        0,
+        0,
+        280,
+        792
+      ],
+      "region_text_file": "amendment-3-region.txt",
+      "region_sha256": "73a6a173d8dbac89f93bac6a4a27c3f4a34f956a3e4fe1e21e46974c6f7a52d0",
+      "start_offset": 359,
+      "end_offset_exclusive": 842,
+      "span_policy": "Question/body and fiscal paragraph separately; headings, authorship, YES/NO and instructions excluded.",
+      "extraction_review": "Pages 7 and 8 rendered and inspected; layout crop avoids column interleaving. No OCR corrections.",
+      "provenance_status": "official_public_pdf_hash_verified"
+    }
+  },
+  {
+    "measure_id": "amendment-3",
+    "span": "fiscal_summary",
+    "raw_text": "State governmental entities estimate no\ncosts or savings. Greene County\nestimates it may experience an unknown\nincrease in tax revenue. Other local\ngovernmental entities estimate no costs or\nsavings.\n            ",
+    "provenance": {
+      "issuer": "Kansas City Election Board",
+      "url": "https://drive.google.com/file/d/1K9yPQmPpIB1g9qoErahvNjTGhrBRi9A2/view?usp=sharing",
+      "official_link_page": "https://kceb.org/elections/ballot/",
+      "page": 7,
+      "pdf_sha256": "92cda731c864b5a84062322a32f743597bcace6f986af4c0e2bfe55c7405dc62",
+      "revision": "2026-09-14",
+      "election_date": "2026-11-03",
+      "download_verified_date": "2026-10-11",
+      "region_points_top_left": [
+        0,
+        0,
+        280,
+        792
+      ],
+      "region_text_file": "amendment-3-region.txt",
+      "region_sha256": "73a6a173d8dbac89f93bac6a4a27c3f4a34f956a3e4fe1e21e46974c6f7a52d0",
+      "start_offset": 842,
+      "end_offset_exclusive": 1054,
+      "span_policy": "Question/body and fiscal paragraph separately; headings, authorship, YES/NO and instructions excluded.",
+      "extraction_review": "Pages 7 and 8 rendered and inspected; layout crop avoids column interleaving. No OCR corrections.",
+      "provenance_status": "official_public_pdf_hash_verified"
+    }
+  },
+  {
+    "measure_id": "amendment-6",
+    "span": "question",
+    "raw_text": "Shall the Missouri Constitution be amended to:\n\n     ●expand the initiative and referendum petition\n            process by making it a fundamental right;\n     ●allow courts to revise ballot summaries through\n            lawsuits;\n     ●prohibit the legislature from weakening initiative or\n            referendum powers;\n     ●prohibit the legislature from changing or repealing\n            laws enacted through the initiative process,\n            or passing laws similar to those rejected by\n            referendum, without approval from at least\n            80% of both chambers; and\n     ●preserve existing majority vote and signature\n            requirements for initiative and referendum\n            petitions?\n     ",
+    "provenance": {
+      "issuer": "Kansas City Election Board",
+      "url": "https://drive.google.com/file/d/1K9yPQmPpIB1g9qoErahvNjTGhrBRi9A2/view?usp=sharing",
+      "official_link_page": "https://kceb.org/elections/ballot/",
+      "page": 7,
+      "pdf_sha256": "92cda731c864b5a84062322a32f743597bcace6f986af4c0e2bfe55c7405dc62",
+      "revision": "2026-09-14",
+      "election_date": "2026-11-03",
+      "download_verified_date": "2026-10-11",
+      "region_points_top_left": [
+        280,
+        0,
+        332,
+        792
+      ],
+      "region_text_file": "amendment-6-region.txt",
+      "region_sha256": "d54bbf2fd502d53af54f371d83bf6e656a396fb6fe3b07dbaee578f0cbe59fd4",
+      "start_offset": 222,
+      "end_offset_exclusive": 943,
+      "span_policy": "Question/body and fiscal paragraph separately; headings, authorship, YES/NO and instructions excluded.",
+      "extraction_review": "Pages 7 and 8 rendered and inspected; layout crop avoids column interleaving. No OCR corrections.",
+      "provenance_status": "official_public_pdf_hash_verified"
+    }
+  },
+  {
+    "measure_id": "amendment-6",
+    "span": "fiscal_summary",
+    "raw_text": "State and local governmental entities estimate no\n            costs or savings.\n                      ",
+    "provenance": {
+      "issuer": "Kansas City Election Board",
+      "url": "https://drive.google.com/file/d/1K9yPQmPpIB1g9qoErahvNjTGhrBRi9A2/view?usp=sharing",
+      "official_link_page": "https://kceb.org/elections/ballot/",
+      "page": 7,
+      "pdf_sha256": "92cda731c864b5a84062322a32f743597bcace6f986af4c0e2bfe55c7405dc62",
+      "revision": "2026-09-14",
+      "election_date": "2026-11-03",
+      "download_verified_date": "2026-10-11",
+      "region_points_top_left": [
+        280,
+        0,
+        332,
+        792
+      ],
+      "region_text_file": "amendment-6-region.txt",
+      "region_sha256": "d54bbf2fd502d53af54f371d83bf6e656a396fb6fe3b07dbaee578f0cbe59fd4",
+      "start_offset": 943,
+      "end_offset_exclusive": 1045,
+      "span_policy": "Question/body and fiscal paragraph separately; headings, authorship, YES/NO and instructions excluded.",
+      "extraction_review": "Pages 7 and 8 rendered and inspected; layout crop avoids column interleaving. No OCR corrections.",
+      "provenance_status": "official_public_pdf_hash_verified"
+    }
+  },
+  {
+    "measure_id": "amendment-7",
+    "span": "question",
+    "raw_text": "Shall the Missouri Constitution be amended to\n      establish a permanent public endowment fund to\n      support state government instead of taxing\n      Missouri residents, prohibit the General Assembly\n      from appropriating or diverting the fund, and\n      eliminate state-imposed taxes once the fund\n      generates sufficient revenue to replace them?\n\n        ",
+    "provenance": {
+      "issuer": "Kansas City Election Board",
+      "url": "https://drive.google.com/file/d/1K9yPQmPpIB1g9qoErahvNjTGhrBRi9A2/view?usp=sharing",
+      "official_link_page": "https://kceb.org/elections/ballot/",
+      "page": 7,
+      "pdf_sha256": "92cda731c864b5a84062322a32f743597bcace6f986af4c0e2bfe55c7405dc62",
+      "revision": "2026-09-14",
+      "election_date": "2026-11-03",
+      "download_verified_date": "2026-10-11",
+      "region_points_top_left": [
+        280,
+        0,
+        332,
+        792
+      ],
+      "region_text_file": "amendment-7-region.txt",
+      "region_sha256": "d54bbf2fd502d53af54f371d83bf6e656a396fb6fe3b07dbaee578f0cbe59fd4",
+      "start_offset": 1298,
+      "end_offset_exclusive": 1665,
+      "span_policy": "Question/body and fiscal paragraph separately; headings, authorship, YES/NO and instructions excluded.",
+      "extraction_review": "Pages 7 and 8 rendered and inspected; layout crop avoids column interleaving. No OCR corrections.",
+      "provenance_status": "official_public_pdf_hash_verified"
+    }
+  },
+  {
+    "measure_id": "amendment-7",
+    "span": "fiscal_summary",
+    "raw_text": "State and local governmental entities estimate no\n      costs or savings.\n\n                       ",
+    "provenance": {
+      "issuer": "Kansas City Election Board",
+      "url": "https://drive.google.com/file/d/1K9yPQmPpIB1g9qoErahvNjTGhrBRi9A2/view?usp=sharing",
+      "official_link_page": "https://kceb.org/elections/ballot/",
+      "page": 7,
+      "pdf_sha256": "92cda731c864b5a84062322a32f743597bcace6f986af4c0e2bfe55c7405dc62",
+      "revision": "2026-09-14",
+      "election_date": "2026-11-03",
+      "download_verified_date": "2026-10-11",
+      "region_points_top_left": [
+        280,
+        0,
+        332,
+        792
+      ],
+      "region_text_file": "amendment-7-region.txt",
+      "region_sha256": "d54bbf2fd502d53af54f371d83bf6e656a396fb6fe3b07dbaee578f0cbe59fd4",
+      "start_offset": 1665,
+      "end_offset_exclusive": 1763,
+      "span_policy": "Question/body and fiscal paragraph separately; headings, authorship, YES/NO and instructions excluded.",
+      "extraction_review": "Pages 7 and 8 rendered and inspected; layout crop avoids column interleaving. No OCR corrections.",
+      "provenance_status": "official_public_pdf_hash_verified"
+    }
+  },
+  {
+    "measure_id": "amendment-8",
+    "span": "question",
+    "raw_text": "Shall the Missouri Constitution be\namended to support law enforcement by\npreserving the right of citizens to elect a\ncounty sheriff, prohibiting the removal of\na county sheriff except by a writ of quo\nwarranto, and recognizing the office of\nsheriff as part of the administration of\njustice?\n   ",
+    "provenance": {
+      "issuer": "Kansas City Election Board",
+      "url": "https://drive.google.com/file/d/1K9yPQmPpIB1g9qoErahvNjTGhrBRi9A2/view?usp=sharing",
+      "official_link_page": "https://kceb.org/elections/ballot/",
+      "page": 8,
+      "pdf_sha256": "92cda731c864b5a84062322a32f743597bcace6f986af4c0e2bfe55c7405dc62",
+      "revision": "2026-09-14",
+      "election_date": "2026-11-03",
+      "download_verified_date": "2026-10-11",
+      "region_points_top_left": [
+        0,
+        0,
+        290,
+        360
+      ],
+      "region_text_file": "amendment-8-region.txt",
+      "region_sha256": "cc2d21932c3872e2f9831dbe75b547e1756dad30dbf85f5bcb63c9fbd7f2a371",
+      "start_offset": 163,
+      "end_offset_exclusive": 457,
+      "span_policy": "Question/body and fiscal paragraph separately; headings, authorship, YES/NO and instructions excluded.",
+      "extraction_review": "Pages 7 and 8 rendered and inspected; layout crop avoids column interleaving. No OCR corrections.",
+      "provenance_status": "official_public_pdf_hash_verified"
+    }
+  },
+  {
+    "measure_id": "amendment-8",
+    "span": "fiscal_summary",
+    "raw_text": "State and local governmental entities\nestimate no costs or savings.\n\n           ",
+    "provenance": {
+      "issuer": "Kansas City Election Board",
+      "url": "https://drive.google.com/file/d/1K9yPQmPpIB1g9qoErahvNjTGhrBRi9A2/view?usp=sharing",
+      "official_link_page": "https://kceb.org/elections/ballot/",
+      "page": 8,
+      "pdf_sha256": "92cda731c864b5a84062322a32f743597bcace6f986af4c0e2bfe55c7405dc62",
+      "revision": "2026-09-14",
+      "election_date": "2026-11-03",
+      "download_verified_date": "2026-10-11",
+      "region_points_top_left": [
+        0,
+        0,
+        290,
+        360
+      ],
+      "region_text_file": "amendment-8-region.txt",
+      "region_sha256": "cc2d21932c3872e2f9831dbe75b547e1756dad30dbf85f5bcb63c9fbd7f2a371",
+      "start_offset": 457,
+      "end_offset_exclusive": 537,
+      "span_policy": "Question/body and fiscal paragraph separately; headings, authorship, YES/NO and instructions excluded.",
+      "extraction_review": "Pages 7 and 8 rendered and inspected; layout crop avoids column interleaving. No OCR corrections.",
+      "provenance_status": "official_public_pdf_hash_verified"
+    }
+  },
+  {
+    "measure_id": "proposition-a",
+    "span": "question",
+    "raw_text": "Do the people of the state of Missouri\n         approve the act of the General Assembly\n         entitled “House Bill No. 1 (2025 Second\n         Extraordinary Session),” which repeals\n         Missouri’s existing congressional plan, and\n         replaces it with new congressional\n         boundaries that keep more counties intact?\n           ",
+    "provenance": {
+      "issuer": "Kansas City Election Board",
+      "url": "https://drive.google.com/file/d/1K9yPQmPpIB1g9qoErahvNjTGhrBRi9A2/view?usp=sharing",
+      "official_link_page": "https://kceb.org/elections/ballot/",
+      "page": 8,
+      "pdf_sha256": "92cda731c864b5a84062322a32f743597bcace6f986af4c0e2bfe55c7405dc62",
+      "revision": "2026-09-14",
+      "election_date": "2026-11-03",
+      "download_verified_date": "2026-10-11",
+      "region_points_top_left": [
+        290,
+        0,
+        322,
+        360
+      ],
+      "region_text_file": "proposition-a-region.txt",
+      "region_sha256": "4e0077798487fda77cf59381d6befed226da3a04a07565c8b5932a72c2aad840",
+      "start_offset": 105,
+      "end_offset_exclusive": 450,
+      "span_policy": "Question/body and fiscal paragraph separately; headings, authorship, YES/NO and instructions excluded.",
+      "extraction_review": "Pages 7 and 8 rendered and inspected; layout crop avoids column interleaving. No OCR corrections.",
+      "provenance_status": "official_public_pdf_hash_verified"
+    }
+  },
+  {
+    "measure_id": "proposition-a",
+    "span": "fiscal_summary",
+    "raw_text": "State and local governmental entities\n         estimate no costs or savings.\n\n                     ",
+    "provenance": {
+      "issuer": "Kansas City Election Board",
+      "url": "https://drive.google.com/file/d/1K9yPQmPpIB1g9qoErahvNjTGhrBRi9A2/view?usp=sharing",
+      "official_link_page": "https://kceb.org/elections/ballot/",
+      "page": 8,
+      "pdf_sha256": "92cda731c864b5a84062322a32f743597bcace6f986af4c0e2bfe55c7405dc62",
+      "revision": "2026-09-14",
+      "election_date": "2026-11-03",
+      "download_verified_date": "2026-10-11",
+      "region_points_top_left": [
+        290,
+        0,
+        322,
+        360
+      ],
+      "region_text_file": "proposition-a-region.txt",
+      "region_sha256": "4e0077798487fda77cf59381d6befed226da3a04a07565c8b5932a72c2aad840",
+      "start_offset": 450,
+      "end_offset_exclusive": 549,
+      "span_policy": "Question/body and fiscal paragraph separately; headings, authorship, YES/NO and instructions excluded.",
+      "extraction_review": "Pages 7 and 8 rendered and inspected; layout crop avoids column interleaving. No OCR corrections.",
+      "provenance_status": "official_public_pdf_hash_verified"
+    }
+  },
+  {
+    "measure_id": "combat",
+    "span": "question",
+    "raw_text": "Shall Jackson County continue its anti-crime sales tax, commonly known as COMBAT, at\n    the rate of one-quarter of one cent for a period of ten years for the purpose of promoting\n    and providing public safety within Jackson County, including the prevention and treatment\n    of drug abuse and addiction and the prevention, investigation, prosecution, and detention\n    of violent criminals and drug dealers? The proceeds of this tax shall be deposited in a\n    special Jackson County Anti-Crime Sales Tax Trust Fund, separate from the general fund\n    or any other county funds.",
+    "provenance": {
+      "issuer": "Kansas City Election Board",
+      "url": "https://drive.google.com/file/d/1K9yPQmPpIB1g9qoErahvNjTGhrBRi9A2/view?usp=sharing",
+      "official_link_page": "https://kceb.org/elections/ballot/",
+      "page": 8,
+      "pdf_sha256": "92cda731c864b5a84062322a32f743597bcace6f986af4c0e2bfe55c7405dc62",
+      "revision": "2026-09-14",
+      "election_date": "2026-11-03",
+      "download_verified_date": "2026-10-11",
+      "region_points_top_left": [
+        0,
+        485,
+        612,
+        165
+      ],
+      "region_text_file": "combat-region.txt",
+      "region_sha256": "6ba2988a08bee062cdd55add9ad01bd1bfa709a118569eb0b296b0b2bb6b5ab2",
+      "start_offset": 59,
+      "end_offset_exclusive": 640,
+      "span_policy": "Question/body and fiscal paragraph separately; headings, authorship, YES/NO and instructions excluded.",
+      "extraction_review": "Pages 7 and 8 rendered and inspected; layout crop avoids column interleaving. No OCR corrections.",
+      "provenance_status": "official_public_pdf_hash_verified"
+    }
+  }
+]
