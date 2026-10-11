@@ -40,6 +40,27 @@ async function checkedQuestionFlow({ current, finishInput, requestAnswer, prepar
   catch { return current() && canHear() ? 'hear_fallback' : 'audio_held'; }
 }
 
+// Bound permission and browser negotiation even when an implementation never settles.
+// A late permission grant must release its tracks after Stop, Erase or timeout.
+function boundedLiveOperation(operation, { timeoutMs, signal, message, onLateResolve } = {}) {
+  return new Promise((resolve, reject) => {
+    let done = false, timer;
+    const finish = (callback, value) => {
+      if (done) return;
+      done = true; clearTimeout(timer); signal?.removeEventListener('abort', abort);
+      callback(value);
+    };
+    const abort = () => finish(reject, new DOMException('Voice start stopped.', 'AbortError'));
+    Promise.resolve(operation).then(value => {
+      if (done) { onLateResolve?.(value); return; }
+      finish(resolve, value);
+    }, error => finish(reject, error));
+    if (signal?.aborted) { abort(); return; }
+    signal?.addEventListener('abort', abort, { once: true });
+    timer = setTimeout(() => finish(reject, new Error(message)), timeoutMs);
+  });
+}
+
 async function trimRemoteAudio(blob) {
   const context = new OfflineAudioContext(1, 1, 24000);
   try {
@@ -63,7 +84,7 @@ async function trimRemoteAudio(blob) {
   } finally { /* Offline decoding creates no speaker or microphone stream. */ }
 }
 function createGeneratedSilence({Track=globalThis.MediaStreamTrackGenerator,Frame=globalThis.AudioData,Stream=globalThis.MediaStream,setTimer=globalThis.setTimeout.bind(globalThis),clearTimer=globalThis.clearTimeout.bind(globalThis)}={}){
- if(typeof Track!=='function'||typeof Frame!=='function'||typeof Stream!=='function')throw Error('Generated silent audio is unavailable in this browser. Use text input.');
+ if(typeof Track!=='function'||typeof Frame!=='function'||typeof Stream!=='function')throw Error('Voice playback is unavailable in this browser. Open this page in Chrome or ask for station help.');
  const track=new Track({kind:'audio'}),writer=track.writable.getWriter(),stream=new Stream([track]);
  let active=true,frames=0,timer=null,wake=null,failure=null;
  const task=(async()=>{try{while(active){const frame=new Frame({format:'f32-planar',sampleRate:48000,numberOfFrames:960,numberOfChannels:1,timestamp:Math.round(frames/48000*1e6),data:new Float32Array(960)});try{await writer.write(frame);frames+=960;}finally{frame.close();}if(active)await new Promise(resolve=>{wake=resolve;timer=setTimer(()=>{timer=null;wake=null;resolve()},20)})}}catch(error){failure=error.name;active=false;track.stop();}finally{try{await writer.close()}catch{}}})();
@@ -71,6 +92,7 @@ function createGeneratedSilence({Track=globalThis.MediaStreamTrackGenerator,Fram
 }
 class OpenOracleLive {
   constructor(notify, currentDisplay = () => null) {
+    this.waitForOperation = boundedLiveOperation; this.startupPhase = 'idle';
     this.createSilence = createGeneratedSilence; this.finalizeAudio = trimRemoteAudio; this.notify = notify; this.currentDisplay = currentDisplay; this.generation = 0; this.playbackToken = 0; this.started = false;
     this.transcript = ''; this.fragments = []; this.delegations = new Set(); this.pendingDelegation = null;
     this.outputTranscript = ''; this.outputEvents = new Set(); this.chunks = []; this.bufferBytes = 0; this.prepared = null; this.ready = null;
@@ -88,15 +110,15 @@ class OpenOracleLive {
     if (generation !== this.generation || !event || typeof event !== 'object') return;
     if (event.type === 'session.started') {
       if (this.started) return;
-      this.started = true; clearTimeout(this.startupTimer);
+      this.started = true; this.startupPhase = 'listening'; clearTimeout(this.startupTimer);
       if (this.timings) this.timings.connect_ms = Math.round(performance.now() - this.timings.connection_started);
       this.stream?.getAudioTracks().forEach(t => { t.enabled = true; });
       this.notify({ type: this.stream ? 'listening' : 'connected', text: this.stream ? 'Say one question, then review the transcript.' : 'Connected. Preparing the displayed answer.' });
       this.resolveStarted?.();
       if (this.stream) this.noInputTimer = setTimeout(() => {
         if (generation !== this.generation || this.transcript.trim() || this.pendingDelegation) return;
-        this.inputFailure = 'I did not hear a question. Check your microphone and try Talk again, or type it here.';
-        this.notify({type:'error', text:'I did not hear a question. Check your microphone and try Talk again, or type it here.'});
+        this.inputFailure = 'I did not hear a question. Check your microphone, then choose Talk again.';
+        this.notify({type:'error', text:'I did not hear a question. Check your microphone, then choose Talk again.'});
         this.close();
       }, 20000);
     } else if (event.type === 'session.input_transcript.delta') {
@@ -133,7 +155,7 @@ class OpenOracleLive {
     }
   }
   async start({ microphone = true } = {}) {
-    if (microphone && (!globalThis.isSecureContext || !navigator.mediaDevices?.getUserMedia || typeof RTCPeerConnection !== 'function')) throw new Error('This browser cannot use the microphone here. Open this page in Chrome or Safari, or type your question.');
+    if (microphone && (!globalThis.isSecureContext || !navigator.mediaDevices?.getUserMedia || typeof RTCPeerConnection !== 'function')) throw new Error('This browser cannot use the microphone here. Open this page in Chrome or Safari, or ask for station help.');
     if (this.peer || this.closePromise || this.starting || this.wsAbort) throw new Error('Stop the current voice session first.');
     this.cancelPlayback();
     this.timings = { connection_started: performance.now() };
@@ -143,7 +165,12 @@ class OpenOracleLive {
     this.notify({ type: 'connecting', text: microphone ? 'Allow the microphone to speak one question.' : 'Connecting voice for the displayed answer…' });
     try {
       if (microphone) {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        this.startupPhase = 'permission';
+        const stream = await this.waitForOperation(navigator.mediaDevices.getUserMedia({ audio: true }), {
+          timeoutMs: 12000, signal: this.sessionAbort.signal,
+          message: 'Microphone permission did not finish. Allow it in your browser, then choose Talk again.',
+          onLateResolve: stream => stream.getTracks().forEach(track => track.stop())
+        });
         if (generation !== this.generation) { stream.getTracks().forEach(t => t.stop()); return; }
         this.stream = stream; stream.getAudioTracks().forEach(t => { t.enabled = false; });
       }
@@ -174,28 +201,46 @@ class OpenOracleLive {
       this.channel.onmessage = message => { try { this.handle(JSON.parse(message.data), generation); } catch { this.invalidOutput = true; } };
       const started = new Promise((resolve, reject) => {
         this.resolveStarted = resolve; this.rejectStarted = reject;
-        this.startupTimer = setTimeout(() => reject(new Error('Voice did not connect. Use text input.')), 30000);
+        this.startupTimer = setTimeout(() => reject(new Error('Voice did not connect. Choose Talk again or ask for station help.')), 30000);
       });
       // Mark rejected startup as handled even if SDP negotiation fails first.
       started.catch(() => {});
-      await this.peer.setLocalDescription(await this.peer.createOffer());
+      this.startupPhase = 'offer';
+      const offer = await this.waitForOperation(this.peer.createOffer(), { timeoutMs: 10000, signal: this.sessionAbort.signal, message: 'Voice connection did not finish. Choose Talk again.' });
+      if (generation !== this.generation) return;
+      await this.waitForOperation(this.peer.setLocalDescription(offer), { timeoutMs: 10000, signal: this.sessionAbort.signal, message: 'Voice connection did not finish. Choose Talk again.' });
+      this.startupPhase = 'ice';
       if (generation !== this.generation) return;
       if (this.peer.iceGatheringState !== 'complete') await new Promise((resolve, reject) => {
-        const timer = setTimeout(() => reject(new Error('Voice connection timed out. Use text input.')), 10000);
+        const timer = setTimeout(() => reject(new Error('Voice connection timed out. Choose Talk again or ask for station help.')), 10000);
         this.peer.onicegatheringstatechange = () => { if (this.peer?.iceGatheringState === 'complete') { clearTimeout(timer); resolve(); } };
       });
       if (generation !== this.generation) return;
+      this.startupPhase = 'provider';
       const response = await fetch('/api/live/session', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sdp: this.peer.localDescription.sdp }), signal: AbortSignal.any([this.sessionAbort.signal, AbortSignal.timeout(20000)]) });
       const result = await response.json();
       if (generation !== this.generation) return;
       if (Number.isInteger(result.voice_sessions_remaining)) this.notify({ type: 'allowance', remaining: result.voice_sessions_remaining, text: result.voice_sessions_remaining > 0 ? 'Voice is available for another question.' : 'The approved voice allowance is used. This question can finish.' });
-      if (!response.ok) { if (response.status === 429 || response.status === 503) this.notify({ type: 'unavailable', text: 'Voice session allowance is unavailable. Use text input.' }); throw new Error(result.error || 'Voice could not connect. Use text input.'); }
+      if (!response.ok) { if (response.status === 429 || response.status === 503) this.notify({ type: 'unavailable', text: 'Voice session allowance is unavailable. Ask for station help.' }); throw new Error(result.error || 'Voice could not connect. Choose Talk again or ask for station help.'); }
       if (generation !== this.generation) return;
-      await this.peer.setRemoteDescription({ type: 'answer', sdp: result.transport.sdp });
-      await started;
+      this.startupPhase = 'peer';
+      await this.waitForOperation(this.peer.setRemoteDescription({ type: 'answer', sdp: result.transport.sdp }), { timeoutMs: 10000, signal: this.sessionAbort.signal, message: 'Voice could not finish connecting. Choose Talk again.' });
+      if (!this.started) this.startupPhase = 'session_started';
+      await this.waitForOperation(started, { timeoutMs: 10000, signal: this.sessionAbort.signal, message: 'Voice did not start listening. Choose Talk again.' });
       if (generation !== this.generation) return;
+      this.startupPhase = 'listening';
       this.limitTimer = setTimeout(() => this.close(), 75000);
-    } catch (error) { if (generation !== this.generation) return; await this.close(); throw error; } finally { if (this.startGeneration === generation) this.starting = false; }
+    } catch (error) {
+      if (generation !== this.generation) return;
+      // Cleanup emits stopped before the host catch runs; retain the plain cause.
+      const deviceErrors = {
+        NotAllowedError: 'Microphone permission was not granted. Allow it in your browser, then choose Talk again.',
+        NotFoundError: 'No microphone was found. Connect one, then choose Talk again.',
+        NotReadableError: 'The microphone is busy or unavailable. Close other apps using it, then choose Talk again.'
+      };
+      this.inputFailure = deviceErrors[error.name] || (error.message === 'Microphone permission did not finish. Allow it in your browser, then choose Talk again.' ? error.message : 'Voice could not connect. Choose Talk again.');
+      await this.close(); throw error;
+    } finally { if (this.startGeneration === generation) this.starting = false; }
   }
   mute({ maintainTimeline = true } = {}) {
     this.stream?.getAudioTracks().forEach(t => { t.enabled = false; });
@@ -293,7 +338,7 @@ class OpenOracleLive {
       return this.closePromise;
     }
     this.closeRelease = release; this.closing = true;
-    this.starting = false; this.sessionAbort?.abort(); this.rejectStarted?.(new Error('Voice start cancelled.'));
+    this.starting = false; this.startupPhase = 'stopped'; this.sessionAbort?.abort(); this.rejectStarted?.(new Error('Voice start cancelled.'));
     const generation = this.generation, token = this.playbackToken;
     this.closingGeneration = generation;
     if (!release) this.generation++;
@@ -338,10 +383,10 @@ class OpenOracleLive {
       this.peer = this.channel = this.stream = this.recorder = null; this.started = false; this.prepared = null;
       this.chunks = []; this.bufferBytes = 0; this.outputTranscript = ''; this.transcript = ''; this.fragments = []; this.delegations.clear();
       this.generation++;
-      this.notify({ type: 'stopped', text: this.inputFailure || (accepted ? 'Microphone and connection closed. Speech is ready to play.' : this.finalUsageConfirmed ? 'Voice session closed. Text input is ready.' : 'Microphone stopped. You can type your question.') });
+      this.notify({ type: 'stopped', text: this.inputFailure || (accepted ? 'Microphone and connection closed. Speech is ready to play.' : this.finalUsageConfirmed ? 'Voice session closed. Choose Talk for another question.' : 'Microphone stopped. Choose Talk when you are ready.') });
     })().finally(() => { this.closePromise = null; this.finishClose = null; this.resolveStarted = null; this.rejectStarted = null; this.closeRelease = false; this.closing = false; });
     return this.closePromise;
   }
 }
 if (typeof window !== 'undefined') { window.OpenOracleLive = OpenOracleLive; window.OpenOracleCheckedQuestionFlow = checkedQuestionFlow; window.OpenOracleEraseIntent = eraseIntent; }
-if (typeof module !== 'undefined') module.exports = { checkedQuestionFlow, OpenOracleLive, speechContract, speechWords, trimRemoteAudio, createGeneratedSilence, eraseIntent, closedUsageMetadata };
+if (typeof module !== 'undefined') module.exports = { boundedLiveOperation, checkedQuestionFlow, OpenOracleLive, speechContract, speechWords, trimRemoteAudio, createGeneratedSilence, eraseIntent, closedUsageMetadata };

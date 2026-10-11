@@ -109,7 +109,7 @@ const live = new window.OpenOracleLive(event => {
   if (event.type === 'stopped' || event.type === 'error') {
     interaction.signal('capture_failed', captureToken); interaction.signal('speech_held', answerToken);
     voiceActive = false; $('mic').textContent = 'Talk';
-    state('ready', 'Text input is ready');
+    state('ready', 'Ready for a question');
     $('voice-stop').hidden = !spokenJob; interaction.configure({ voiceReady: Boolean(voiceReady) }); restoreSpeechControls();
     orbEvent(event.type === 'error' ? 'connection-error' : 'capture-stopped');
   }
@@ -401,7 +401,7 @@ async function ask(options = {}) {
     $('activity').textContent = 'Hi. What would you like to understand about your ballot?';
     state('ready', 'What would you like to ask?'); $('input-disclosure').open = true; $('question').focus(); return;
   }
-  if (!question) { $('activity').textContent = 'I did not hear a question. Try Talk again or type it here.'; $('question').focus(); return; }
+  if (!question) { $('activity').textContent = 'I did not hear a question. Check the microphone and choose Talk again.'; $('question').focus(); return; }
   const lifecycleToken = interaction.beginThinking();
   if (!lifecycleToken) { $('activity').textContent = 'Reset is still stopping devices. Please wait or choose Start again to retry cleanup.'; return; }
   answerToken = lifecycleToken;
@@ -523,7 +523,7 @@ async function completeSpokenQuestion() {
       play: () => live.play(), canHear: () => Boolean(live.ready)
     });
     if (!current()) return;
-    if (outcome === 'input_held') $('activity').textContent = 'I could not finish hearing the question. Try Talk again or type it here.';
+    if (outcome === 'input_held') $('activity').textContent = 'I could not finish hearing the question. Check the microphone and choose Talk again.';
     if (outcome === 'hear_fallback') { $('speak').hidden = false; $('speak').disabled = false; $('speak').textContent = 'Hear answer'; $('speech-status').textContent = 'Your answer is ready. Choose Hear answer to listen.'; }
   } catch { if (current()) $('speech-status').textContent = 'Audio could not finish. You can read the answer or try Hear answer.'; }
   finally { if (spokenJob === job) { spokenJob = null; $('voice-stop').hidden = !voiceActive; } }
@@ -535,10 +535,10 @@ async function beginVoice(token) {
   try {
     const health = await fetch('/api/health', { cache: 'no-store' }).then(r => r.json());
     if (!interaction.valid(token)) return;
-    if (health.voice_session_available === false) { voiceReady = false; interaction.configure({ voiceReady: false }); throw new Error('Voice time is used up. You can type your question.'); }
+    if (health.voice_session_available === false) { voiceReady = false; interaction.configure({ voiceReady: false }); throw new Error('Voice time is used up. Ask the person running this station for help.'); }
     await live.start();
   }
-  catch (error) { if (epoch !== thisEpoch || !interaction.valid(token)) return; interaction.signal('capture_failed', token); voiceActive = false; $('mic').textContent = 'Talk'; $('activity').textContent = ({NotAllowedError:'Microphone permission was not granted. Allow it in your browser or type your question.',NotFoundError:'No microphone was found. Connect one or type your question.',NotReadableError:'The microphone is busy or unavailable. Close other apps using it, or type your question.'})[error.name] || error.message; state('uncertain', 'You can type instead'); }
+  catch (error) { if (epoch !== thisEpoch || !interaction.valid(token)) return; interaction.signal('capture_failed', token); voiceActive = false; $('mic').textContent = 'Talk'; $('activity').textContent = ({NotAllowedError:'Microphone permission was not granted. Allow it in your browser, then choose Talk again.',NotFoundError:'No microphone was found. Connect one, then choose Talk again.',NotReadableError:'The microphone is busy or unavailable. Close other apps using it, then choose Talk again.'})[error.name] || error.message; state('uncertain', 'Please check the microphone'); }
 }
 $('mic').addEventListener('click', async () => {
   if (voiceActive) { await live.close(); return; }
@@ -558,7 +558,7 @@ Promise.all([fetch('/api/inventory').then(r => r.json()), fetch('/api/health').t
     interaction.configure({ voiceReady: Boolean(voiceReady) });
     $('mic').disabled = !voiceReady; $('mic').textContent = 'Talk';
     if (stationScope && voiceReady) { $('input-disclosure').open = false; $('type-summary').hidden = false; }
-    $('mic-note').textContent = voiceReady ? 'Choose Talk to ask a question.' : 'Voice is off. You can type your question.';
+    $('mic-note').textContent = voiceReady ? 'Choose Talk to ask a question.' : 'Voice is not available here. Ask the person running this station for help.';
     $('count').textContent = `${health.counts.contests} printed contests · ${health.counts.candidates} nominees`;
     $('mode').textContent = health.mode === 'live_strands' ? 'Answers checked' : 'Saved source text';
     renderInventory();
