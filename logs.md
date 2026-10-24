@@ -446,3 +446,26 @@ This is a backfill, not a contemporaneous event stream.
   landed. Full offline/loopback checks and syntax/whitespace verification are
   run before the associated commit. Remote CI is checked after push, never
   assumed from local results. No public deployment or Pi modification.
+
+## 2026-10-24 UTC — committed integration, CI and final review closure
+
+- **Completed:** implementation commit `efd774e3a67e0628b4acf6a5db7d50b62680c8ee`
+  pushed to existing rebuild branch and draft PR6. Actual credential-free
+  [CI run40064264659](https://github.com/daniel-p-green/open-oracle/actions/runs/40064264659)
+  completed **success**. Updated PR purpose, actual tests/costs and limitations;
+  no merge/deployment. Working tree was clean after the implementation commit.
+- **Completed:** final short Opus response closed both medium blockers based on
+  supplied logic/browser proof, explicitly not a new source-delta inspection.
+  Independent reviewer did inspect the repaired source and passed the precise
+  ownership regression. Whole-product verdict remains **not ready**.
+- **Follow-on correction:** adopted final feedback to make confirmation buttons
+  explicitly name COMBAT/Missouri, preventing a California/property-tax question
+  from confirming an unqualified tax topic. Existing workflow proof now covers
+  both language menus. Added expiry invalidation for an already-visible legal
+  note as well as initial source admission. Feature gate checks actual APIs,
+  not browser identity. No new paid request or human audio activity.
+- **Pending product-lead decision:** private spoken-input architecture deviation;
+  candidate source/quote/rights admission and civic-language/acoustic/real-device
+  validation remain pending, not denied. The earlier two SOS-original downloads
+  remain blocked by HTTP403 and were not retried. Other useful authorized source
+  and UI work is preserved; this checkpoint is not offered as full acceptance.

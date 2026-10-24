@@ -73,3 +73,12 @@ labels, labeled application interpretation, no consent control when audio is
 unavailable and Stop/partial-render recovery. Both default and review surfaces
 were actually loaded. A final short Opus closure request is pending; it is not
 represented as returned approval. Whole-product status remains not ready.
+
+The final short Opus response closed both medium findings **on the described
+logic and reported browser proof**, explicitly not a new reading of the complete
+delta source. Independent code review did inspect and verify those repairs.
+Whole-product verdict remains not ready. Its remaining scope-label suggestion
+was adopted: confirmation choices explicitly name COMBAT/Missouri instead of an
+unqualified tax/maps topic. Startup uses feature detection, not user-agent
+exclusion. Stop hides ordering even when visuals remain. No additional broad
+review or acceptance claim follows from this narrow closure.

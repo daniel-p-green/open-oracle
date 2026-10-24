@@ -4,6 +4,7 @@ import { readFile } from "node:fs/promises";
 import { webcrypto } from "node:crypto";
 import { createSession } from "../web/core.mjs";
 import {
+  COPY,
   routeQuestion,
   experienceAnswer,
   validateLayout,
@@ -37,6 +38,7 @@ test("product queries preserve scope, civic translation holds and primary covera
     ["What is the tax rate and duration?", "unknown"],
   ])
     assert.equal(routeQuestion(q), intent);
+  for (const language of ["en", "es"]) assert.deepEqual(COPY[language].examples.map(routeQuestion), ["effects", "rate", "maps", "candidates"]);
   assert.equal(
     (await experienceAnswer("rate", corpus, "en")).claims[0].id,
     "rate",

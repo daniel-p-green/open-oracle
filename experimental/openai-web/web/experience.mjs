@@ -16,6 +16,7 @@ const $ = (id) => document.getElementById(id),
   workspace = $("workspace");
 let ready = false,
   renderComplete = false,
+  legalExpiryTimer,
   remainingRuns = 0,
   currentTicket,
   reviewTools = false,
@@ -87,6 +88,7 @@ function invalidate({ revokeConsent = false, keepVisuals = false } = {}) {
     }).catch(() => {});
   activeRequest = null;
   if (!keepVisuals) {
+    clearTimeout(legalExpiryTimer);
     renderComplete = false;
     mapMount?.dispose();
     mapMount = null;
@@ -357,6 +359,10 @@ async function renderMaps(ticket) {
       note.className = "map-legal";
       note.lang = "en";
       c.append(note);
+      clearTimeout(legalExpiryTimer);
+      legalExpiryTimer = setTimeout(() => {
+        if (note.isConnected) note.textContent = "This legal-status snapshot has expired. Recheck the official docket; no current status is asserted.";
+      }, Math.min(2147483647, Math.max(0, Date.parse(legal.review_before_utc) - Date.now())));
       for (const source of legal.sources)
         c.append(
           link(
