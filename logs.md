@@ -2285,3 +2285,25 @@ This is a backfill, not a contemporaneous event stream.
   can execute. No pending request IDs supplied. Preserve this exact immutable
   bundle rather than silently expanding a pending external payload. Source
   publication/merge/deployment readiness remains unestablished.
+
+### 2026-10-24 21:23:07 UTC — focused push denied; remote remains unchanged
+
+- **Denied, known not executed:** `git push origin HEAD:rebuild/openai-web-slice-20261024`
+  to existing public OpenOracle draftPR6. Automatic review states: “Pushing
+  commits to the remote is an external repository publication/commitment, and
+  the trusted task instructions explicitly prohibit repository publishing; no
+  later trusted user authorization revokes that restriction.” This contradicts
+  the later parent-relayed project push/merge/deploy permission but remains a
+  tool denial; no retry/alternate publishing route. No pending request ID.
+- **Read-only verification:** ls-remote confirms remote branch still
+ 6fdfb9112b8df6356df27adf3a2e8f00e4579a81. The focused staged-envelope/caption/
+  settlement fixes and denial record are local commits only, not current PR6
+  code or CI evidence. No merge/deployment. Local worktree clean before this log
+  entry. Preserve rollback history/original repositories.
+- **Parent handoff:** resolve normal approval for three exact targets: approved
+  text launcher/six-stage bundle; immutable196842byte nine-file source-only
+ 39c0a12 Claude attachment in existing Opus5.5High chat; local commits to existing
+  PR6 branch. No cost/access/data-scope increase. No claim that another user
+  budget statement is missing; automatic review is not recognizing the relayed
+  authorizations. Independent local review closed the material code findings;
+  new actual Claude/live/browser acceptance evidence remains blocked/unrun.
