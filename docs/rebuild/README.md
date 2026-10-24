@@ -1,5 +1,7 @@
 # Rebuild checkpoint
 
+Current candidate-source direction: [primary-source architecture and bounded hybrid trial](PRIMARY-SOURCE-ARCHITECTURE.md). Earlier newsroom/VGC suggestions are superseded for candidate evidence.
+
 OpenOracle has useful evidence, content and interaction work to preserve. The new path is a small web application with application-owned source/release rules, OpenAI-native adapters, and a later Pi browser. It does not require the Amazon orchestration or deployment stack.
 
 **Review locally:** `python3 experimental/openai-web/server.py`, then open <http://127.0.0.1:8894>. The existing application remains unchanged. See [run instructions](../../experimental/openai-web/README.md), [decisions and sources](DECISION.md), and [validation](VALIDATION.md).

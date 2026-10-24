@@ -1,5 +1,7 @@
 # OpenAI web rebuild decision — October 24, 2026
 
+Current candidate-source direction: [primary-source architecture and bounded hybrid trial](PRIMARY-SOURCE-ARCHITECTURE.md). Earlier newsroom/VGC suggestions are superseded for candidate evidence.
+
 Status: initial architecture record; executable provider-off experiment. Follow-up consent fixes and authorized isolated API tests are in [the current checkpoint](CONSENT-AND-API-CHECKPOINT.md). Stable application unchanged. Parent remains project lead.
 
 ## What we learned and will keep

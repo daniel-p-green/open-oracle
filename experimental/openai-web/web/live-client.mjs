@@ -72,7 +72,7 @@ export function createProviderClient({session,corpus,transport,onState=()=>{},on
             }
             return;
           }
-          if(['held','cancelled','expired','cancel_requested'].includes(state.state)) {onState(state.state);return;}
+          if(['held','cancelled','expired','cancel_requested'].includes(state.state)) {onState(state.state,state.reason);return;}
           if(!['queued','routing','text','review','audio'].includes(state.state))throw Error('invalid_state');
           onState(state.state);await pause(ownAbort.signal);
           state=await transport.poll(id,ownAbort.signal);

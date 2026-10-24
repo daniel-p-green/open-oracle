@@ -163,3 +163,16 @@ class LiveMemoryTests(unittest.TestCase):
         self.assertEqual(result['errors'], ['transcript_bound'])
 
 if __name__ == '__main__': unittest.main()
+
+class RoutingContractTests(unittest.TestCase):
+    def test_routing_classifies_lookup_intent_without_treating_missing_answer_as_abstention(self):
+        provider = object.__new__(OpenAIProvider)
+        captured = []
+        provider.post = lambda path, body, cancel: captured.append((path, body)) or {}
+        provider.route(threading.Event())
+        path, body = captured[0]
+        self.assertEqual(path, 'decisions')
+        self.assertIn('admitted_lookup_topics', body['input'])
+        question = body['questions'][0]
+        self.assertIn('do not answer', question['instructions'])
+        self.assertTrue(all('description' in c for c in question['choices']))

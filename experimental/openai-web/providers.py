@@ -82,10 +82,10 @@ class OpenAIProvider:
 
     def route(self, cancel):
         return self.post('decisions', {
-            'model': 'gpt-6-luna', 'input': QUESTION,
+            'model': 'gpt-6-luna', 'input': json.dumps({'request': QUESTION, 'context': 'COMBAT public sample ballot', 'admitted_lookup_topics': ['rate']}),
             'questions': [{'type': 'choice', 'name': 'route',
-                           'instructions': 'Select rate only for a question about the printed COMBAT rate. Otherwise select abstain. Never infer personal ballot membership or recommend a vote.',
-                           'choices': [{'value': 'rate'}, {'value': 'abstain'}]}]}, cancel)
+                           'instructions': 'Classify the request for lookup routing only; do not answer it or assess source sufficiency. Select rate when the request asks for the printed COMBAT sales-tax rate. Select abstain for unrelated, unclear, advice or personal-ballot requests. A rate selection authorizes only the admitted public lookup, never a factual answer or eligibility inference.',
+                           'choices': [{'value': 'rate', 'description': 'A request asking how much the printed COMBAT sales-tax rate is.'}, {'value': 'abstain', 'description': 'Anything other than that public-rate lookup, including recommendations or personal eligibility.'}]}]}, cancel)
 
     def generate(self, corpus, cancel):
         text = corpus['claims']['rate']['text']

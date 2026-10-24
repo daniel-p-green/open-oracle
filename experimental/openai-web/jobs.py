@@ -73,9 +73,11 @@ class Budget:
             row['direct_usage_price_estimate_usd'] = sum(s['price_estimate_usd'] for s in row['stages'])
             row['invoice_confirmed'] = False
 
-    def finish(self, run, state):
+    def finish(self, run, state, reason=None):
         with self.locked() as data:
-            next(r for r in data['runs'] if r['id'] == run)['state'] = state
+            row = next(r for r in data['runs'] if r['id'] == run)
+            row['state'] = state
+            if reason is not None: row['outcome_reason'] = reason
             data['state'] = 'latest integrated run ' + state
             data['direct_usage_price_estimate_usd'] = sum(r.get('price_estimate_usd', r.get('direct_usage_price_estimate_usd', 0)) for r in data['runs'])
 
@@ -159,7 +161,7 @@ class Jobs:
             with self.lock: row.update(state='held', reason='provider_failure', result=None, audio=None)
         finally:
             try:
-                if row['state'] != 'ready': self.budget.finish(row['run'], row['state'])
+                if row['state'] != 'ready': self.budget.finish(row['run'], row['state'], row['reason'])
             except Exception:
                 with self.lock: row.update(state='held', reason='ledger_unavailable', result=None, audio=None)
 
