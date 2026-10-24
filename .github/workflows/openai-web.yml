@@ -5,12 +5,14 @@ on:
       - 'experimental/openai-web/**'
       - '.github/workflows/openai-web.yml'
       - 'docs/rebuild/MAP-*.json'
+      - 'docs/rebuild/EXPERIENCE-ASSET-PIN.json'
   push:
     branches: [main, 'rebuild/openai-web-slice-20261024']
     paths:
       - 'experimental/openai-web/**'
       - '.github/workflows/openai-web.yml'
       - 'docs/rebuild/MAP-*.json'
+      - 'docs/rebuild/EXPERIENCE-ASSET-PIN.json'
 permissions:
   contents: read
 jobs:
@@ -34,10 +36,11 @@ jobs:
         run: python -m unittest discover -s experimental/openai-web/tests -p 'test_*.py'
       - name: Syntax and whitespace
         run: |
+          for file in experimental/openai-web/web/*.mjs; do node --check "$file"; done
           node --check experimental/openai-web/web/app.mjs
           node --check experimental/openai-web/web/live-client.mjs
           node --check experimental/openai-web/web/maps.mjs
           node --check experimental/openai-web/web/map-core.mjs
-          python -m py_compile experimental/openai-web/providers.py experimental/openai-web/jobs.py experimental/openai-web/server.py
+          python -m py_compile experimental/openai-web/providers.py experimental/openai-web/jobs.py experimental/openai-web/server.py experimental/openai-web/layout.py
           python -m py_compile experimental/openai-web/research/*.py
           git diff --check

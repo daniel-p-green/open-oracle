@@ -298,3 +298,151 @@ This is a backfill, not a contemporaneous event stream.
 - **Completed:** wrote [exact controls, exposure and supported next step](docs/rebuild/AGENTS-BUDGET-REVIEW.md).
   No new tests, SOS retries, deployment, microphone or speakers. Prior shared
   reservations and usage estimates remain unchanged.
+
+## 2026-10-24 UTC — product completion correction and integrated milestone
+
+- **Direction:** Daniel correctly rejected interpreting the harness/map checkpoint
+  as a completed multilingual voice/generative-UI product, and set developer-
+  profile/public-demonstration quality as the completion bar. Continued work
+  remains bounded by consent, privacy, primary sources, existing API budget and
+  publication restrictions. Managed Agents is deferred; bounded Responses is
+  acceptable for implementation but not an Agents comparison.
+- **Running:** integrated web entrypoint replacing separate reviewer-facing
+  surfaces, with diagnostics preserved. Added a concrete user-workflow acceptance
+  matrix, explicitly not complete/public-ready. Prioritize source-backed typed
+  views, map integration, English/Spanish interaction, speech/currentness and
+  coherent error/reset behavior. No new microphone/speaker authority inferred.
+
+## 2026-10-24 UTC — integrated workspace and checked prepared voice
+
+- **Completed, local review:** one web entrypoint now composes scope, explanations,
+  exact originals, coverage gaps and synchronized official maps from typed
+  components. Prior fixture/provider harness remains at `/diagnostics`.
+  English/Spanish interface and map controls share question/language/reset state.
+  Spanish civic answers remain held; navigation translation is not legal review.
+- **Completed, metered:** one real `gpt-6-luna` Responses UI composition returned
+  admitted map component IDs inside the browser journey: 126 input / 24 output
+  tokens, approximately $0.0000246 at verified Standard pricing. No raw visitor
+  question, factual prose or arbitrary UI markup went to/from the planner.
+  Server-side enablement, one/two-run limit, owner token, idempotence and ledger
+  reservations remain explicit; provider-off composition remains available.
+- **Completed, synthetic only:** prepared three `gpt-live-1` clips: English rate,
+  English map navigation and Spanish map navigation. Full transcript equality,
+  final close/usage, no backend events and nonempty bounded PCM passed before
+  retaining local WAV fixtures. These intentionally retained generated examples
+  are not human recordings. Bytes stay outside Git, pinned by application-owned
+  metadata. No microphone or speakers were activated. English/Spanish navigation
+  audio is not a complete multilingual voice agent or acoustic validation.
+- **Cost evidence:** Live final usages 20 + 19 + 19 seconds, approximately
+  $0.0483333. New composition plus audio estimate $0.0483579. Shared conservative
+  reservations $0.71; aggregate direct usage-price estimate $0.0727494, excluding
+  earlier unmetered Playground usage. Estimates are not invoices. No recharge,
+  purchase, billing change, credentials or managed Agents run.
+- **Independent review and repairs:** scoped keyword canonicalization could
+  answer an unrelated tax/measure with COMBAT facts; replaced with finite aliases
+  and abstention on mismatched/mixed questions. Gated examples during source
+  initialization, preserved core explanations on optional service failure,
+  repaired Stop cancellation/request correlation, bounded start/body/poll waits
+  and audio fetching, and fenced late playback promises. Focused owner-boundary
+  checks cover these risks without a test-count target. Whole offline suites
+  passed before the last source addition; final verification follows below.
+- **Completed, primary-source clarification:** independently downloaded distinct
+  official KCEB public sample `01-00006-01-NON.pdf` (not a retry/bypass of denied
+  SOS originals). SHA256 `d33d41b4c377e7d9d1bd63af0c2f1053bc4b63f608eb3167200a8385e576e0fc`,
+  retrieved 2026-10-24T04:32:39Z. Rendered/visually checked page 2 under the actual
+  installed PDF skill. The referendum is labeled Proposition A. Added its exact
+  question and page/version attribution beside the map comparison, with the stay
+  caveat; no personal ballot inclusion inferred. Original PDF remains private
+  outside Git. Map reuse/public release gates remain unresolved.
+- **Running — requested Claude gate:** installed CLI supports Opus 5.5 High, but
+  its separate subscription's extra-usage status was unverified. Used the existing
+  signed-in Chrome Claude account instead: UI explicitly showed Opus 5.5 High,
+  included capacity, usage-credit balance $0, monthly cap $0 and auto-reload off.
+  No billing/access changes. Sent only a scrubbed 18-file OpenOracle source and
+  relevant instruction bundle, excluding credential identifiers/private inputs
+  and unrelated material. Requested no memory/connectors/tools. Critique pending;
+  no acceptance or review-completion claim until its returned result is read.
+
+## 2026-10-24 UTC — Opus critique dispositions and substantive review repairs
+
+- **Completed — actual requested review:** existing browser visibly selected
+  Opus 5.5 High and returned a detailed **not ready** critique. The reviewer cannot
+  introspect client effort; High was independently observed in the UI. Preserved
+  the actual result privately and documented findings/dispositions in
+  `docs/rebuild/CLAUDE-REVIEW-2026-10-24.md`. A focused re-review is running, not
+  yet accepted or counted as complete. No unrelated material/credentials sent.
+- **Completed:** verified content now renders immediately; optional AI action
+  truthfully chooses card order from fixed options. Unsupported/one-order topics
+  and language switches do not automatically spend runs. Added local confirmed
+  topic choices instead of silently misrouting paraphrases. Fixed separate advice,
+  membership and unsupported statuses. Review-only tools/old routes/unheard audio
+  require an explicit local flag. Default surface withholds unreviewed clips.
+  Fixed replay, generic navigation re-preparation, owner refresh exhaustion,
+  browser cross-site capability access, source page citations and idle warning/
+  scroll activity/focus behavior. New code formatted with pinned Prettier 3.6.2;
+  no project dependency added. Restricted/offline formatter lookups failed; the
+  authorized pinned registry invocation succeeded. No test-count goal.
+- **Completed — legal provenance:** downloaded official Court opinion
+  `26a388_q86b.pdf`, SHA256
+  `73ef64de152e4dc257baa83767b75eb19fe6aea473be8688b61644c0741afd2e`,
+  retrieved 04:35:42Z, rendered/visually checked page 2. Retained official docket
+  HTML SHA256 `e184ad387a37923ade5883b05c13df2a61aaf09183f165f6827b9be2b8c99139`,
+  retrieved 04:36:15Z; its latest listed proceeding is September25. Legal statement
+  is now a separately pinned as-of record with a 24h review deadline. Missing,
+  changed or expired record withholds the assertion; neutral map labels remain.
+  This does not settle every challenge or grant publication/rights clearance.
+- **Completed — audio measurement/correction:** review's padding inference was
+  confirmed by 20ms RMS windows. Preserved original generated WAVs, trimmed
+  leading/trailing silence with 200ms margins, repinned derivatives: 6.68s, 8.60s,
+  11.46s. Re-transcribed actual trimmed public synthetic files with account-
+  verified `gpt-transcribe`; all three match expected text after punctuation
+  normalization. No human capture/playback or human pronunciation approval.
+  Three calls reserve $0.03 and estimate $0.0020055 using measured supplied WAV
+  duration and current price; this is not returned provider-meter/invoice usage.
+  Shared reservations $0.74; combined usage/duration price estimate $0.0747549,
+  excluding earlier unmetered Playground charges. No new credits/access/billing.
+- **Completed — actual UI checks:** integrated desktop and 390px-viewport Spanish
+  maps/controls/current transcript/silent re-exercise inspected. Observed page
+  width and scroll width both375px (browser scrollbar), no horizontal overflow.
+  Actual device/screen-reader, nonauthor comprehension and human acoustic checks
+  remain unverified. Screenshots retained privately outside Git.
+- **Not adopted:** Claude suggested using a Live utterance-complete event;
+  verified official docs explicitly lack that boundary. Kept full-session close
+  gate and documented bounded pre-generation latency. Do not treat a pause as
+  permission to release partial speech.
+- **Consequential next decision:** raw cloud microphone capture cannot guarantee
+  the standing no-DOB/address/private-voter-data rule. Proposed local speech
+  transcription before public admitted categories cross the cloud boundary is a
+  stack deviation requiring project-lead direction. No speech-model download,
+  new credentials, microphone/speaker activation, public release or Pi changes.
+  Continue source-backed product work; prepared narration/card ordering is not
+  the full multilingual voice/generative-UI concept. Acceptance matrix updated.
+
+## 2026-10-24 UTC — final integration proof before commit
+
+- **Completed:** focused Opus re-review returned, confirmed most repairs and
+  withdrew the unsupported Live completion-event suggestion. Its two medium
+  findings (unknown versus coverage-gap copy, premature/stale ordering control)
+  were repaired and demonstrated. Final short closure request remains running.
+- **Completed:** independent reviewer reproduced token-expiry orphaning with a
+  gated dummy job, then verified the repair. Expired owners cancel and retain
+  draining workers, block concurrent dispatch, reject stale tokens and disappear
+  after cleanup. Ordering requires a complete current component set and cannot
+  claim success without application. Targeted ownership proof passed.
+- **Completed — final real path:** on a fresh explicitly enabled single-run
+  server, both maps/exact question were visible under local composition before
+  the optional ordering click. One real Luna request returned 126 input/24 output
+  tokens, approximately $0.0000246; both maps remained and matching narration
+  re-prepared. Allowance-used state prevented another run. A raw paraphrase then
+  showed unsupported/confirmation controls and reached the rate with one click,
+  without transmitting that text. Play stayed disabled throughout.
+- **Current costs:** all-worker conservative reservations $0.75; aggregate
+  usage/duration price estimate $0.0747795, excluding earlier unmetered Playground
+  usage. No invoice claim, purchase, new access or human audio activity.
+- **Completed:** fresh default page hides unheard audio consent/review links;
+  explicit review page prepares pinned clips but requires separate speaker
+  consent. Current Chromium feature gate, malformed-date withholding, source-
+  derived labels, UTC date, partial-Stop recovery and playback-error handling
+  landed. Full offline/loopback checks and syntax/whitespace verification are
+  run before the associated commit. Remote CI is checked after push, never
+  assumed from local results. No public deployment or Pi modification.

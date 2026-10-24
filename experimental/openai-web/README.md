@@ -1,106 +1,106 @@
-# OpenAI web rebuild experiment
+# OpenOracle integrated local review
 
-Provider-off review slice. No packages, credentials or paid calls required.
+**Not the completed multilingual voice/generative-UI product.** This is a working
+local evidence workspace with prepared synthetic narration, not a human voice
+trial or public-release approval. Python **3.12+**; no project Node dependency.
+
+From the repository root:
 
 ```sh
 python3 experimental/openai-web/server.py
-# Open http://127.0.0.1:8894
+# http://127.0.0.1:8894 — providers off, unreviewed audio and diagnostics hidden
 ```
+
+The current retained local review assets live outside Git. With those assets:
+
+```sh
+python3 experimental/openai-web/server.py --port 8899 \
+  --map-review-dir ../map-review --experience-dir ../experience-review --review-tools
+# http://127.0.0.1:8899
+```
+
+`--review-tools` deliberately exposes old diagnostics, standalone map review,
+silent lifecycle exercise and unheard synthetic audio for local review. It does
+not grant microphone or speaker consent. **Do not activate Play without the
+person's explicit consent.** Default mode filters clips with
+`acoustic_human_review:false`. The server binds only to loopback; do not expose it
+as a public service. No API key is read without explicit provider enablement.
+
+The workspace offers source-backed COMBAT facts/Yes–No effects, exact originals,
+coverage/refusal/unknown-membership states and the actual paired official map
+artifacts. Unknown paraphrases require selecting a topic; a different measure or
+jurisdiction is never silently converted to COMBAT. English/Spanish interface
+and map navigation work; Spanish civic explanations remain held for human
+review. The official KCEB Proposition A wording is a pinned **public sample**,
+not personal-ballot applicability. Court/docket status is a separately pinned,
+dated record with a review deadline; stale/missing status is withheld.
+
+Prepared public voice clips are matched to language, intent, source version,
+text and byte hash. Reset/Stop/language/source changes fence delayed results;
+playback requires separate speaker consent and a deliberate Play. Captions show
+the prepared transcript, not live human captions. Full model transcript checks
+and independent ASR are not human pronunciation or acoustic review. No human
+microphone path is enabled; camera/geolocation/microphone permissions are blocked.
+
+## Bounded provider experiment
+
+Only an operator with already authorized API access may enable providers:
+Python environment with pinned `requirements-provider.txt`, existing process
+`OPENAI_API_KEY`, explicit organization/project scope, private existing authorized
+ledger and `--enable-openai --max-runs 1` (maximum2). Keep account values, keys,
+ledgers, audio and receipts outside Git. No credentials/access are created here.
+
+Baseline content is immediate and local. The optional button runs a single
+`gpt-6-luna` Responses check choosing card order from fixed options; this is a
+narrow generative-UI experiment, not broad UI generation. It sends only a canned
+intent ID, never the raw typed question. Unknown/candidate one-order recipes and
+language switches do not spend a model run. Request/body/poll timeouts, bounded
+schema/output, owner token, idempotence/cancel tombstones and shared conservative
+reservations apply. Cancellation suppresses later stages/results; an in-flight
+HTTP request can drain to its transport timeout and may still be billed.
+
+The review-only `/diagnostics` retains the earlier fixed rate pipeline: Decisions
+routing → exact Responses claim selection → Decisions support check → buffered
+GPT-Live preparation. Live buffers are checked at complete session close; no
+per-spoken-response completion event is assumed. Its PCM remains in server
+memory with a two-minute TTL and no download/playback route. This is distinct
+from the intentionally retained prepared synthetic WAV fixtures above.
+
+## Verification and review
 
 ```sh
 node --test experimental/openai-web/tests/*.test.mjs
 python3 -m unittest discover -s experimental/openai-web/tests -p 'test_*.py'
 ```
 
-The exact COMBAT reading copy is reused from `fixtures/official_combat.json`.
-The source and curated claim registry are pinned together by a digest. The PDF
-artifact digest and reading-copy text digest are distinct. See
-`fixtures/provenance.json` and [the decision brief](../../docs/rebuild/DECISION.md).
+These checks use fixtures/mocks/local HTTP, not paid services or microphones.
+CI uses pinned official Actions with read-only permissions and no model secrets.
+Check remote status separately. See [acceptance](../../docs/rebuild/DEMO-ACCEPTANCE.md)
+and [actual independent review/dispositions](../../docs/rebuild/CLAUDE-REVIEW-2026-10-24.md).
 
-In the default fixture mode, only six predefined English question forms are supported. Other wording holds
-with a visible gap. This intentionally narrow parser is a baseline, not natural
-language understanding or an AI quality evaluation. No generative text,
-Decisions review, GPT-Live, microphone, personal ballot import, candidate/office
-coverage or external MCP transport is enabled. Spanish interface preview does
-not release Spanish civic explanations. Newsroom coverage cannot establish
-personal ballot membership; Missouri currently has no VGC coverage.
+## Rebuilding private retained assets
 
-Keyboard/buttons use the same request/reset controller; idle reset clears the
-tab after two minutes. No saved history, logs, accounts, cloud routes or analytics.
-Reset is not secure memory wiping. CSP disables external requests/media and the
-server serves only an explicit public file allowlist, bound to loopback.
-
-The experiment is isolated from the stable application. A model or hardware
-capability is established only by a later authorized integrated human trial.
-
-The voice-flow preview uses injected fixture permission/capture/preparation/player
-adapters. It displays a cloud-data disclosure before simulated consent, stops
-fixture capture before source checking, requires the complete matching reading,
-and requires manual Play. Stop/reset, question or language changes invalidate
-pending work and dispose late handles. It generates no sound; preview text is
-explicitly not live captions. Live adapters are rejected by this build.
-
-The authorized API smoke and integrated results are in
-[the follow-up record](../../docs/rebuild/CONSENT-AND-API-CHECKPOINT.md). They do
-not automatically enable providers or establish a human-heard journey.
-
-## Explicit local provider pilot
-
-The default command remains provider-off. An operator with existing authorized
-API access can explicitly enable the fixed public-rate path using a Python
-runtime with `requirements-provider.txt` installed, an existing process
-`OPENAI_API_KEY`, explicit organization/project scope, a private authorized spend
-ledger, and `--enable-openai --max-runs 1`. No key setup or persistent access is
-performed by this application. Keep ledger/account values outside Git.
-
-Only `question_id=rate` is accepted; raw typed visitor input is rejected. The
-live-example button runs Decisions routing, a constrained Responses selection,
-an independent Decisions support check, and GPT-Live audio preparation. Prepared
-wording and citation ownership remain application-controlled. This is a narrow
-baseline for later generative comparison, not a conclusion against freeform text.
-
-All Live PCM is buffered server-side until session closure, exact full-transcript
-match, source/request and final-usage checks. There is no audio playback/download
-endpoint or browser media element. Cancellation invalidates local display
-immediately; in-flight HTTP calls may drain to their timeout, with usage still
-recorded and later stages suppressed. Ready audio/results expire from memory
-after two minutes, including when the browser stops polling. No audio is written
-to disk. Conservative reservations are retained for unknown billing outcomes.
-
-The public-repository CI workflow runs only fixture/mock/loopback tests with
-read-only permissions, pinned official Actions and no model credentials or paid
-services. Remote CI success must be checked separately from local passes.
-
-## Local official-map research review
-
-This uses retained, hash-pinned official files, with no tile service or inference.
-The source bytes and derived map JSON remain outside the repository. Supply the
-four exact filenames/versions in `docs/rebuild/MAP-SOURCE-MANIFEST.json`.
+Map originals and derivative are outside Git. Supply the exact four filenames
+and versions in `docs/rebuild/MAP-SOURCE-MANIFEST.json`:
 
 ```sh
-# From the repository root, using a separate build-time Python environment:
 python3.13 -m venv ../.map-venv
 ../.map-venv/bin/python -m pip install -r experimental/openai-web/research/requirements-maps.txt
 ../.map-venv/bin/python experimental/openai-web/research/build_maps.py --inputs ../map-research --output ../map-review
-python3 experimental/openai-web/server.py --port 8895 --map-review-dir ../map-review
-# Open http://127.0.0.1:8895/maps
 ```
 
-A rebuilt derivative must match the independently reviewed application pin;
-changed tooling/input/output holds until reviewed and explicitly repinned. A
-self-authored receipt cannot grant admission. The builder validates the original
-and projected geometries/coverage edges but does not classify political changes,
-prove absence of holes or calculate population/partisan effects. State reuse
-rights and legal freshness remain explicit. No geometry/source archive is in Git.
+A derivative must match the independently reviewed application pin. Changes
+require review and explicit repinning. Geometry checks do not prove absence of
+all holes, quantify political changes or clear state reuse rights. A verified
+accessible territorial description is still unavailable; district-number tables
+are not an equivalent geographic explanation.
 
-The offline candidate-bundle compiler uses retained originals in a separate
-private folder and never calls a model:
+The offline one-candidate research compiler is retained:
 
 ```sh
 python3 experimental/openai-web/research/build_evidence.py --inputs ../evidence-research --output ../evidence-review
 ```
 
-This one-candidate research harness admits exact pinned filing/campaign excerpts
-for local review; it is not a general ingestion connector or publication approval.
-The managed Agents paid trial remains closed: verified remote cost and hard-stop
-controls are missing. See [actual results and blockers](../../docs/rebuild/EVIDENCE-AND-MAP-CHECKPOINT.md).
+It uses pinned official filing/attributed campaign excerpts for local review,
+not a nationwide connector or publication approval. Managed Agents is deferred;
+see [exact budget limitations](../../docs/rebuild/AGENTS-BUDGET-REVIEW.md).

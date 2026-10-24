@@ -16,7 +16,7 @@ spec.loader.exec_module(server_module)
 class ServerTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.server = server_module.make_server(0)
+        cls.server = server_module.make_server(0, review_tools=True)
         cls.url = f'http://127.0.0.1:{cls.server.server_port}'
         cls.thread = threading.Thread(target=cls.server.serve_forever, daemon=True)
         cls.thread.start()
@@ -114,3 +114,12 @@ class EnabledServerTests(unittest.TestCase):
         self.assertEqual(self.jobs.runs, 0)
 
 if __name__ == '__main__': unittest.main()
+
+class ProductSurfaceTests(unittest.TestCase):
+    def test_unheard_voice_is_excluded_outside_explicit_local_review(self):
+        with tempfile.TemporaryDirectory() as folder:
+            approved=json.loads((server_module.ROOT.parents[1]/'docs/rebuild/EXPERIENCE-ASSET-PIN.json').read_text())
+            (Path(folder)/'manifest.json').write_text(json.dumps(approved))
+            routes=server_module.load_experience(folder,review_tools=False)
+            self.assertEqual(json.loads(routes['/experience/manifest.json'][0])['audio'],[])
+            self.assertFalse(any('/audio/' in route for route in routes))

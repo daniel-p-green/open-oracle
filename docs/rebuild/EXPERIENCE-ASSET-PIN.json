@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "audio": [
+    {
+      "id": "rate-en",
+      "intent": "rate",
+      "locale": "en",
+      "text": "The printed rate is one-quarter of one cent. This is a retained public sample, not your personal ballot.",
+      "source_version": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+      "release_policy": "admitted_en_measure",
+      "kind": "synthetic_prepared_voice",
+      "sha256": "4273f4b1533d6a749d08781eefe5c6a090f642f2bdd6214f471e390d426e7391",
+      "bytes": 320684,
+      "model": "gpt-live-1",
+      "transcript_match": true,
+      "acoustic_human_review": false,
+      "trim": {
+        "method": "20ms RMS >100; 200ms margins",
+        "original_sha256": "d05e56584b2ad4e5ea79b1e8ad50b1ebc507a7353e8c4718f126110e866a454c",
+        "start_frame": 20640,
+        "end_frame": 180960,
+        "original_seconds": 18.84,
+        "seconds": 6.68
+      },
+      "independent_asr": {
+        "model": "gpt-transcribe",
+        "normalized_transcript_match": true,
+        "human_pronunciation_review": false
+      }
+    },
+    {
+      "id": "maps-en",
+      "intent": "maps",
+      "locale": "en",
+      "text": "Both maps are shown together. Choose a view or a district number. Read the source and version notes below. Your personal district has not been verified.",
+      "source_version": "68b3dec613d58653a64337001bd66b3fa33b18f2184845bd15ad4fdbacde4c25",
+      "release_policy": "ui_navigation",
+      "kind": "synthetic_prepared_voice",
+      "sha256": "6c89b4af65592db653ee6cfe775eb3983533afbceca080fef56229cedcc8b5b5",
+      "bytes": 412844,
+      "model": "gpt-live-1",
+      "transcript_match": true,
+      "acoustic_human_review": false,
+      "trim": {
+        "method": "20ms RMS >100; 200ms margins",
+        "original_sha256": "254d33de3a8208e678912f60a518b011aa9a81ec856041a8354c76a688516909",
+        "start_frame": 16800,
+        "end_frame": 223200,
+        "original_seconds": 19.0,
+        "seconds": 8.6
+      },
+      "independent_asr": {
+        "model": "gpt-transcribe",
+        "normalized_transcript_match": true,
+        "human_pronunciation_review": false
+      }
+    },
+    {
+      "id": "maps-es",
+      "intent": "maps",
+      "locale": "es",
+      "text": "Los dos mapas se muestran juntos. Elija una vista o un número de distrito. Consulte las fuentes y las versiones debajo de los mapas. No se ha verificado su distrito personal.",
+      "source_version": "68b3dec613d58653a64337001bd66b3fa33b18f2184845bd15ad4fdbacde4c25",
+      "release_policy": "ui_navigation",
+      "kind": "synthetic_prepared_voice",
+      "sha256": "50c3fd68078b5cef3d2b66e7cff54b6c0630d6a209e2738ace442a1e8b6ded41",
+      "bytes": 550124,
+      "model": "gpt-live-1",
+      "transcript_match": true,
+      "acoustic_human_review": false,
+      "trim": {
+        "method": "20ms RMS >100; 200ms margins",
+        "original_sha256": "bd25ce179b40c4da34f1ffe7cbdb8d54bd08eb2631b5a10200acebb76c9c2517",
+        "start_frame": 13440,
+        "end_frame": 288480,
+        "original_seconds": 18.78,
+        "seconds": 11.46
+      },
+      "independent_asr": {
+        "model": "gpt-transcribe",
+        "normalized_transcript_match": true,
+        "human_pronunciation_review": false
+      }
+    }
+  ]
+}

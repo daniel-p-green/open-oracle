@@ -37,7 +37,8 @@ class Budget:
             finally:
                 if os.path.exists(name): os.unlink(name)
 
-    def reserve(self, run):
+    def reserve(self, run, task=None):
+        amount = min(self.per_run, .01) if task else self.per_run
         with self.locked() as data:
             maximum = data.get('authorization_usd_max')
             runs = data.get('runs')
@@ -45,10 +46,10 @@ class Budget:
                 raise Held('budget_invalid')
             amounts = [r.get('reserved_usd') for r in runs]
             if any(type(n) not in (int, float) or not math.isfinite(n) or n < 0 for n in amounts): raise Held('budget_invalid')
-            if sum(amounts) + self.per_run > maximum: raise Held('budget_exhausted')
-            runs.append({'id': run, 'kind': 'integrated_public_rate', 'state': 'reserved',
-                         'reserved_usd': self.per_run, 'retry': False, 'requests_max': 4, 'stages': []})
-            data['conservative_reservations_usd'] = sum(amounts) + self.per_run
+            if sum(amounts) + amount > maximum: raise Held('budget_exhausted')
+            runs.append({'id': run, 'kind': 'bounded_ui_composition' if task else 'integrated_public_rate', 'state': 'reserved',
+                         'reserved_usd': amount, 'retry': False, 'requests_max': 1 if task else 4, 'stages': []})
+            data['conservative_reservations_usd'] = sum(amounts) + amount
             data['state'] = 'integrated public-provider test in flight'
 
     def record(self, run, stage, usage):
@@ -102,40 +103,45 @@ class Jobs:
         now = self.clock()
         for owner in self.owners.values():
             for row in owner['jobs'].values():
-                if now - row['created'] >= JOB_TTL:
+                if now - row['created'] >= JOB_TTL or now - owner['created'] >= TOKEN_TTL:
                     row['cancel'].set(); row['result'] = row['audio'] = None; row['state'] = 'expired'
         self.owners = {token: value for token, value in self.owners.items()
-                       if now - value['created'] < TOKEN_TTL}
+                       if now - value['created'] < TOKEN_TTL or any(r.get('in_flight') for r in value['jobs'].values())}
 
     def capabilities(self):
         with self.lock:
             self._expire()
-            if len(self.owners) >= 8: raise Held('owner_capacity')
+            if len(self.owners) >= 8:
+                inactive=[(token,owner) for token,owner in self.owners.items() if all(not r.get('in_flight') for r in owner['jobs'].values())]
+                if not inactive: raise Held('owner_capacity')
+                del self.owners[min(inactive,key=lambda item:item[1]['created'])[0]]
             token = secrets.token_urlsafe(32)
             self.owners[token] = {'created': self.clock(), 'jobs': {}, 'cancelled': set()}
             return {'mode': 'public_provider_pilot', 'providers': 'enabled', 'microphone': 'disabled',
                     'playback': 'disabled', 'visitor_persistence': False, 'credentials_read': True,
-                    'session_token': token, 'remaining_runs': max(0, self.max_runs - self.runs)}
+                    'layout_enabled': hasattr(self.pipeline, 'run_task'), 'session_token': token, 'remaining_runs': max(0, self.max_runs - self.runs)}
 
     def _owner(self, token):
         self._expire()
         owner = self.owners.get(token)
-        if owner is None: raise Held('owner_unavailable')
+        if owner is None or self.clock()-owner['created']>=TOKEN_TTL: raise Held('owner_unavailable')
         return owner
 
-    def start(self, token, request):
+    def start(self, token, request, task=None):
         with self.lock:
             owner = self._owner(token)
             if request in owner['cancelled']: raise Held('cancelled')
-            if request in owner['jobs']: return self.public(token, request)
+            if request in owner['jobs']:
+                if owner['jobs'][request].get('task') != task: raise Held('request_conflict')
+                return self.public(token, request)
             if self.runs >= self.max_runs: raise Held('run_limit')
-            if any(r['state'] not in {'ready', 'held', 'cancelled', 'expired'} for o in self.owners.values() for r in o['jobs'].values()):
+            if any(r.get('in_flight') for o in self.owners.values() for r in o['jobs'].values()):
                 raise Held('busy')
             run = secrets.token_hex(12)
-            self.budget.reserve(run)
+            self.budget.reserve(run, task) if task else self.budget.reserve(run)
             self.runs += 1
             row = {'created': self.clock(), 'state': 'queued', 'cancel': threading.Event(),
-                   'result': None, 'audio': None, 'run': run, 'reason': None}
+                   'result': None, 'audio': None, 'run': run, 'reason': None, 'task': task, 'in_flight': True}
             owner['jobs'][request] = row
             worker = threading.Thread(target=self._run, args=(row,), daemon=True, name='openoracle-public-run')
             self.workers.append(worker); worker.start()
@@ -147,16 +153,17 @@ class Jobs:
                 check_cancel(row['cancel']); row['state'] = stage
         def meter(stage, usage): self.budget.record(row['run'], stage, usage)
         try:
-            result, pcm = self.pipeline.run(row['cancel'], progress, meter)
+            result, pcm = (self.pipeline.run_task(row['task'], row['cancel'], progress, meter) if row['task']
+                           else self.pipeline.run(row['cancel'], progress, meter))
             check_cancel(row['cancel'])
-            self.budget.finish(row['run'], 'ready')
             with self.lock:
                 check_cancel(row['cancel'])
                 if self.clock() - row['created'] >= JOB_TTL: raise Held('expired')
+                self.budget.finish(row['run'], 'ready')
                 row.update(state='ready', result=copy.deepcopy(result), audio=bytes(pcm))
         except Held as error:
             with self.lock:
-                row.update(state='cancelled' if row['cancel'].is_set() else 'held', reason=str(error), result=None, audio=None)
+                row.update(state='expired' if row['state']=='expired' or str(error)=='expired' else 'cancelled' if row['cancel'].is_set() else 'held', reason=str(error), result=None, audio=None)
         except Exception:
             with self.lock: row.update(state='held', reason='provider_failure', result=None, audio=None)
         finally:
@@ -164,6 +171,8 @@ class Jobs:
                 if row['state'] != 'ready': self.budget.finish(row['run'], row['state'], row['reason'])
             except Exception:
                 with self.lock: row.update(state='held', reason='ledger_unavailable', result=None, audio=None)
+            finally:
+                with self.lock: row['in_flight']=False
 
     def public(self, token, request):
         with self.lock:

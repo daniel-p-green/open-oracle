@@ -6,30 +6,40 @@ These are product acceptance goals, not capabilities established by the English
 fixed-rate harness. Keep the [primary-source policy](PRIMARY-SOURCE-ARCHITECTURE.md)
 and controlled speech path as shared foundations.
 
-## Current completed boundary
+## Current implemented and verified boundary — October 24
 
-The local web harness has exact public sources, abstention, source/currentness
-checks, consent fixtures and one completed real Decisions/Responses/Live path.
-No mic/speaker, broad candidate corpus, multilingual civic release, map comparison
-or Pi acceptance has occurred. Complete each next slice with actual evidence,
-small commits and a log entry before expanding paid usage or source volume.
+The integrated local workspace now shows checked COMBAT claims/originals,
+coverage/refusal states, actual paired official maps and the exact KCEB public
+sample Proposition A question. Dated opinion/docket evidence controls the legal
+note. English/Spanish interface and map navigation share reset/currentness gates.
+Three synthetic clips have full Live transcript/final-usage checks, silence
+trimming and independent ASR matches. They remain unheard by a human. One real
+Responses card-order experiment ran; it is deliberately labeled as fixed-option
+ordering and no longer delays baseline content. These are foundation results,
+not completion of broad generative UI or conversational multilingual voice.
 
-## Next bounded work
+## Next product work and consequential decision
 
-1. One candidate primary-evidence bundle: read-only source/identity/rights
-   inventory, tiny text extraction/version fixtures, then the agreed Agents API
-   job after eligibility/pricing verification. Missing permitted debate transcript
-   remains a gap; no unbounded transcription. The application owns publication.
-2. Flagship redistricting comparison: verify the exact certified proposition,
-   election date, enacted/proposed map versions, operative map and current court
-   orders from official sources before implementation. Admission must distinguish
-   certification from petition circulation and enactment from present operation.
-3. A complete English/Spanish comparison journey: source-backed visual selection,
-   checked explanation, matching captions/translation and deliberately enabled
-   audio; test uncertainty, interruption, stale evidence and corrections across
-   the entire journey. Human civic-language review precedes Spanish release.
+1. Resolve private human spoken-input design. Unrestricted cloud capture cannot
+   guarantee that DOB/address/private voter records never leave the device.
+   Proposed local transcription before sending admitted public categories is a
+   departure from an all-API capture stack and needs project-lead direction.
+   Do not download a speech model or activate a microphone on that assumption.
+2. Complete source-backed candidate retrieval and content/UI composition using
+   admitted official roster/filings/government records, attributed campaign
+   claims and rights-cleared original debates. Existing private bundle remains
+   under identity/quote/rights review; missing transcript stays explicit. Managed
+   Agents trial is deferred, not a blocker for bounded Responses extraction.
+3. Complete English/Spanish spoken questioning, responses/captions and dynamic
+   evidence UI across the full journey. Existing prepared map navigation and
+   card ordering do not satisfy this. Human civic-language/acoustic review,
+   accessible territorial alternatives, actual device/screen-reader and
+   nonauthor workflow tests precede a readiness claim.
+4. Resolve public reuse/legal freshness gates and obtain final independent
+   review, then Daniel's acceptance and explicit publication authority. No public
+   deployment or Pi system changes are authorized by this roadmap.
 
-## Official-map preflight: identified, not admitted
+## Earlier official-map discovery record (superseded by pinned local review)
 
 Read-only official discovery found the Missouri SOS
 [2026 referendum circulation page](https://www.sos.mo.gov/petitions/2026refcirculation)

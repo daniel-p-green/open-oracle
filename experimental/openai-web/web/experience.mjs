@@ -1,0 +1,788 @@
+import { createSession, immutableCopy, validateCorpus } from "./core.mjs";
+import {
+  COPY,
+  routeQuestion,
+  experienceAnswer,
+  baselineLayout,
+  validateLayout,
+} from "./experience-core.mjs";
+import { loadMapEvidence, mountMapComparison } from "./map-view.mjs";
+import { loadMapMeasure, loadMapStatus } from "./measure-source.mjs";
+import { requestLayout } from "./layout-client.mjs";
+import { admittedReadings, bindReading } from "./readings.mjs";
+import { createSpeechOutput } from "./speech-output.mjs";
+const $ = (id) => document.getElementById(id),
+  session = createSession(),
+  workspace = $("workspace");
+let ready = false,
+  renderComplete = false,
+  remainingRuns = 0,
+  currentTicket,
+  reviewTools = false,
+  corpus,
+  manifest,
+  readings = [],
+  assets = [],
+  locale = "en",
+  intent = null,
+  mapData,
+  mapMeasure,
+  mapMount,
+  requestController,
+  providerToken,
+  activeRequest;
+const el = (tag, text) => {
+  const n = document.createElement(tag);
+  if (text !== undefined) n.textContent = text;
+  return n;
+};
+const speaker = createSpeechOutput({
+  session,
+  onChange: (state) => {
+    const labels =
+      locale === "es"
+        ? {
+            off: "Altavoces apagados",
+            loading: "Verificando audio…",
+            ready: "Lectura verificada y preparada",
+            held: "Audio retenido",
+            starting: "Iniciando audio",
+            playing: "Reproduciendo",
+            complete: "Lectura terminada",
+            rehearsed: "Recorrido verificado sin sonido",
+          }
+        : {
+            off: "Speaker off",
+            loading: "Checking audio…",
+            ready: "Reading checked and prepared",
+            held: "Audio withheld",
+            starting: "Starting audio",
+            playing: "Playing",
+            complete: "Reading complete",
+            rehearsed: "Lifecycle exercised without sound",
+          };
+    $("voice-state").textContent = labels[state.stage];
+    $("transcript").textContent =
+      state.reading || COPY[locale].speechUnavailable;
+    $("play").disabled = !state.playable;
+    $("rehearse").disabled = state.stage !== "ready";
+  },
+});
+function invalidate({ revokeConsent = false, keepVisuals = false } = {}) {
+  session.reset();
+  $("reorder").hidden = true;
+  $("reorder").disabled = true;
+  speaker.stop({ revokeConsent });
+  requestController?.abort();
+  requestController = null;
+  if (activeRequest && providerToken)
+    fetch("/api/provider/cancel", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Session-Token": providerToken,
+      },
+      body: JSON.stringify({ request_id: activeRequest }),
+      keepalive: true,
+    }).catch(() => {});
+  activeRequest = null;
+  if (!keepVisuals) {
+    renderComplete = false;
+    mapMount?.dispose();
+    mapMount = null;
+  }
+  if (revokeConsent) $("speaker-consent").checked = false;
+}
+function card(title, wide = false) {
+  const n = el("article");
+  n.className = "card" + (wide ? " card-wide" : "");
+  n.append(el("h2", title));
+  return n;
+}
+function link(url, title) {
+  const n = el("a", title);
+  n.href = url;
+  n.target = "_blank";
+  n.rel = "noopener noreferrer";
+  n.className = "source-link";
+  return n;
+}
+function appendSource(container, source) {
+  container.append(
+    link(source.url, source.title),
+    el(
+      "p",
+      `${source.issuer} · ${locale === "es" ? "página" : "page"} ${source.page} · ${source.retrieved_date}`,
+    ),
+  );
+}
+function renderScope() {
+  const c = card(COPY[locale].scope, true);
+  c.classList.add("scope-card");
+  c.append(el("p", COPY[locale].scopeText));
+  return c;
+}
+function renderOriginal() {
+  const s = corpus.sources[0],
+    c = card(
+      locale === "es"
+        ? "Texto oficial original · inglés"
+        : "Original official wording",
+      true,
+    );
+  appendSource(c, s);
+  const q = el("blockquote", s.text);
+  q.className = "source-original";
+  q.lang = "en";
+  c.append(
+    q,
+    el(
+      "p",
+      `${locale === "es" ? "Versión SHA256" : "Version SHA256"}: ${s.text_sha256}`,
+    ),
+  );
+  return c;
+}
+function renderClaim(claim) {
+  const block = el("div"),
+    p = el("p", claim.text);
+  p.className = "fact-line";
+  p.lang = "en";
+  const quote = el("blockquote", claim.quote);
+  quote.className = "source-original";
+  quote.lang = "en";
+  block.append(
+    p,
+    quote,
+    link(
+      corpus.sources[0].url + "#page=" + corpus.sources[0].page,
+      `${COPY[locale].source} · p. ${corpus.sources[0].page}`,
+    ),
+  );
+  return block;
+}
+function renderFacts(result, effects = false) {
+  const c = card(
+    effects
+      ? locale === "es"
+        ? "COMBAT · texto original: Yes / No"
+        : "COMBAT · Yes / No"
+      : locale === "es"
+        ? "Explicación cívica · estado de revisión"
+        : "Source-backed explanation",
+    true,
+  );
+  if (result.status !== "answered") {
+    c.append(
+      el(
+        "p",
+        result.status === "translation_held"
+          ? COPY[locale].translation
+          : result.status === "advice_refused"
+            ? COPY[locale].advice
+            : result.status === "membership_unknown"
+              ? COPY[locale].membership
+              : result.status === "coverage_gap"
+                ? COPY[locale].gap
+                : locale === "es"
+                  ? "Esta demostración aún no admite esa pregunta. Elija una pregunta de ejemplo."
+                  : "This demo does not support that question yet. Choose an example question.",
+      ),
+    );
+    return c;
+  }
+  const host = el("div");
+  if (effects) host.className = "effects-grid";
+  for (const claim of result.claims) {
+    const d = renderClaim(claim);
+    if (effects) {
+      d.className = "effect";
+      d.prepend(
+        el(
+          "h3",
+          {
+            yes: "Yes",
+            no: "No",
+            rate: "Printed rate",
+            duration: "Duration",
+            purpose: "Purpose",
+            fund: "Separate fund",
+          }[claim.id],
+        ),
+      );
+    }
+    host.append(d);
+  }
+  c.append(host);
+  return c;
+}
+function renderGap(status) {
+  const c = card(
+    locale === "es" ? "Cobertura y límites" : "Coverage and limits",
+    true,
+  );
+  c.append(
+    el(
+      "p",
+      status === "advice_refused"
+        ? COPY[locale].advice
+        : status === "membership_unknown"
+          ? COPY[locale].membership
+          : status === "coverage_gap"
+            ? COPY[locale].gap
+            : locale === "es"
+              ? "Esta demostración aún no admite esa pregunta. Elija un ejemplo para confirmar el tema."
+              : "This demo does not support that question yet. Choose an example to confirm the topic.",
+    ),
+  );
+  if (intent === "unknown") {
+    const label = el(
+      "h3",
+      locale === "es"
+        ? "¿Quiso decir uno de estos temas de la muestra pública?"
+        : "Did you mean one of these public-sample topics?",
+    );
+    c.append(label);
+    for (const text of COPY[locale].examples) {
+      const button = el("button", text);
+      button.type = "button";
+      button.onclick = () => {
+        $("question").value = text;
+        void explore(text);
+      };
+      c.append(button);
+    }
+  }
+  if (intent === "candidates") {
+    c.append(
+      el(
+        "p",
+        locale === "es"
+          ? "El registro oficial de candidatos no se ha incorporado. No se muestra una lista parcial como si estuviera completa."
+          : "The authoritative candidate roster has not been admitted. A partial evidence bundle is not presented as a complete candidate list.",
+      ),
+      el(
+        "p",
+        locale === "es"
+          ? "Una declaración de campaña es una afirmación atribuida; no es un hecho verificado de forma independiente."
+          : "A campaign statement is an attributed assertion, not an independently established fact.",
+      ),
+    );
+  }
+  return c;
+}
+async function renderMaps(ticket) {
+  const c = card(
+      locale === "es"
+        ? "Compare los mapas oficiales"
+        : "Compare the official maps",
+      true,
+    ),
+    host = el("div");
+  c.append(host);
+  workspace.append(c);
+  try {
+    if (!manifest) throw Error("map_manifest_unavailable");
+    [mapData, mapMeasure] = await Promise.all([
+      mapData ??
+        loadMapEvidence(
+          AbortSignal.any([
+            requestController.signal,
+            AbortSignal.timeout(5000),
+          ]),
+        ),
+      mapMeasure ??
+        loadMapMeasure(
+          AbortSignal.any([
+            requestController.signal,
+            AbortSignal.timeout(5000),
+          ]),
+        ),
+    ]);
+    if (!session.current(ticket)) return;
+    mapMount = mountMapComparison(host, mapData, {
+      locale,
+      planLabels: mapMeasure.plan_labels,
+      onChange() {
+        speaker.stop();
+        if (!session.current(currentTicket)) currentTicket = session.begin();
+        void prepareReading(currentTicket, true);
+      },
+    });
+    if (locale === "es")
+      c.append(
+        el(
+          "p",
+          "Estado legal: texto original en inglés; traducción cívica pendiente de revisión.",
+        ),
+      );
+    const question = el("div");
+    question.className = "map-question";
+    question.lang = "en";
+    question.append(
+      el("h3", mapMeasure.label + " · official public sample"),
+      el("blockquote", mapMeasure.text),
+      link(
+        mapMeasure.url + "#page=" + mapMeasure.page,
+        mapMeasure.publisher +
+          " · page " +
+          mapMeasure.page +
+          " · " +
+          mapMeasure.retrieved_utc.slice(0, 10),
+      ),
+    );
+    if (locale === "en") {
+      question.append(
+        el("h4", "Explanation of this wording"),
+        el("p", mapMeasure.interpretation.yes),
+        el("p", mapMeasure.interpretation.no),
+      );
+    } else
+      question.prepend(
+        el(
+          "p",
+          "Texto oficial en inglés; explicación cívica en español pendiente de revisión.",
+        ),
+      );
+    c.append(question);
+    try {
+      const legal = await loadMapStatus(
+        AbortSignal.any([requestController.signal, AbortSignal.timeout(5000)]),
+      );
+      if (!session.current(ticket)) return;
+      const note = el(
+        "p",
+        `As of ${legal.as_of_utc.slice(0, 10)} UTC: ${legal.claim} ${legal.uncertainty}`,
+      );
+      note.className = "map-legal";
+      note.lang = "en";
+      c.append(note);
+      for (const source of legal.sources)
+        c.append(
+          link(
+            source.url + (source.page ? "#page=" + source.page : ""),
+            source.page
+              ? source.publisher + " · page " + source.page
+              : source.publisher +
+                  " · docket retrieved " +
+                  source.retrieved_utc.slice(0, 10),
+          ),
+        );
+    } catch {
+      if (session.current(ticket))
+        c.append(
+          el(
+            "p",
+            locale === "es"
+              ? "No se pudo verificar el estado legal vigente."
+              : "Current legal status could not be verified.",
+          ),
+        );
+    }
+    c.append(el("p", COPY[locale].mapLimits));
+  } catch {
+    if (session.current(ticket))
+      host.textContent =
+        locale === "es"
+          ? "No se pudieron verificar los mapas. No se muestra una imagen sustituta."
+          : "The map artifacts could not be verified. No replacement geography is shown.";
+  }
+}
+function renderMapSources() {
+  const c = card(
+    locale === "es"
+      ? "Fuentes y versiones de los mapas"
+      : "Map sources and versions",
+    true,
+  );
+  for (const source of manifest?.sources ?? []) {
+    const p = el("p");
+    p.append(
+      link(source.url, source.name),
+      el(
+        "span",
+        ` · ${source.retrieved_utc.slice(0, 10)} · SHA256 ${source.sha256.slice(0, 16)}…`,
+      ),
+    );
+    c.append(p);
+  }
+  c.append(
+    el(
+      "p",
+      locale === "es"
+        ? "Los números no prueban que el territorio sea el mismo. No se infiere su distrito."
+        : "Matching numbers do not establish matching territory. Your district is not inferred.",
+    ),
+  );
+  return c;
+}
+async function planFor(currentIntent, ticket) {
+  return requestLayout({
+    intent: currentIntent,
+    ticket,
+    session,
+    token: providerToken,
+    signal: requestController.signal,
+    onRequest: (id) => {
+      if (session.current(ticket)) activeRequest = id;
+    },
+  });
+}
+async function explore(question, { focus = true } = {}) {
+  if (!ready) {
+    $("status").textContent =
+      locale === "es"
+        ? "Las fuentes aún no están listas."
+        : "Evidence is not ready yet.";
+    return;
+  }
+  invalidate();
+  const ticket = session.begin();
+  currentTicket = ticket;
+  let mapsVerified = false;
+  requestController = new AbortController();
+  intent = routeQuestion(question);
+  workspace.replaceChildren();
+  $("status").textContent =
+    locale === "es"
+      ? "Consultando las fuentes admitidas…"
+      : "Checking admitted evidence…";
+  $("plan-mode").textContent = "";
+  const result = await experienceAnswer(intent, corpus, locale),
+    plan = {
+      layout: validateLayout(baselineLayout(intent), intent),
+      mode: "local",
+    };
+  if (!session.current(ticket) || !plan) return;
+  $("status").textContent =
+    result.status === "answered"
+      ? locale === "es"
+        ? "Fuente disponible"
+        : "Source-backed explanation"
+      : result.status === "maps"
+        ? locale === "es"
+          ? "Comparación de fuentes oficiales"
+          : "Official-source comparison"
+        : result.status === "translation_held"
+          ? COPY[locale].translation
+          : result.status === "advice_refused"
+            ? COPY[locale].advice
+            : result.status === "membership_unknown"
+              ? COPY[locale].membership
+              : result.status === "coverage_gap"
+                ? COPY[locale].gap
+                : locale === "es"
+                  ? "Esta demostración aún no admite esa pregunta. Elija una pregunta de ejemplo."
+                  : "This demo does not support that question yet. Choose an example question.";
+  $("plan-mode").textContent =
+    plan.mode === "live"
+      ? locale === "es"
+        ? "Composición de IA verificada · hechos de las fuentes"
+        : "Checked AI composition · facts from sources"
+      : plan.mode === "fallback"
+        ? locale === "es"
+          ? "Composición local · proveedor no disponible"
+          : "Local composition · provider unavailable"
+        : locale === "es"
+          ? "Composición local · IA de diseño no ejecutada"
+          : "Local composition · layout AI not run";
+  $("reorder").hidden = true;
+  $("reorder").disabled = true;
+  for (const component of plan.layout.components) {
+    if (!session.current(ticket)) return;
+    if (component === "scope") workspace.append(renderScope());
+    else if (component === "original") workspace.append(renderOriginal());
+    else if (component === "facts" || component === "effects")
+      workspace.append(renderFacts(result, component === "effects"));
+    else if (component === "coverage")
+      workspace.append(renderGap(result.status));
+    else if (component === "map_sources") workspace.append(renderMapSources());
+    else if (component === "maps") {
+      await renderMaps(ticket);
+      mapsVerified = !!mapMount;
+    }
+    if (workspace.lastElementChild)
+      workspace.lastElementChild.dataset.component = component;
+  }
+  if (!session.current(ticket)) return;
+  if (focus) workspace.focus({ preventScroll: true });
+  renderComplete = true;
+  $("reorder").hidden = !providerToken || plan.layout.components.length < 3;
+  $("reorder").disabled = remainingRuns <= 0;
+  await prepareReading(ticket, mapsVerified);
+}
+async function prepareReading(ticket, mapsVerified) {
+  const binding =
+    (intent !== "maps" || mapsVerified) &&
+    bindReading(
+      assets.find((a) => a.intent === intent && a.locale === locale),
+      readings,
+      intent,
+      locale,
+    );
+  if (binding)
+    await speaker.prepare(binding.asset, {
+      ticket,
+      locale,
+      text: binding.text,
+      sourceVersion: binding.sourceVersion,
+    });
+  else speaker.stop();
+}
+function setCopy() {
+  const t = COPY[locale];
+  document.documentElement.lang = locale;
+  for (const [id, key] of Object.entries({
+    title: "title",
+    intro: "intro",
+    "demo-label": "sample",
+    "scope-label": "scope",
+    privacy: "privacy",
+    "question-label": "ask",
+    explore: "submit",
+    reset: "reset",
+    "voice-title": "voice",
+    "voice-note": "voiceNote",
+    "speaker-consent-label": "consent",
+    play: "play",
+    rehearse: "silent",
+    stop: "stop",
+    "details-label": "details",
+  }))
+    $(id).textContent = t[key];
+  document.querySelector(".skip").textContent =
+    locale === "es" ? "Saltar a la explicación" : "Skip to explanation";
+  $("examples").setAttribute(
+    "aria-label",
+    locale === "es" ? "Preguntas de ejemplo" : "Example questions",
+  );
+  $("reorder").textContent =
+    locale === "es"
+      ? "Probar orden de tarjetas con IA · opciones fijas"
+      : "Try AI card ordering · fixed options";
+  $("question").placeholder =
+    locale === "es"
+      ? "Por ejemplo: Mostrar los mapas oficiales"
+      : "For example: Show the actual maps";
+  $("question").value = "";
+  $("examples").replaceChildren();
+  for (const text of t.examples) {
+    const b = el("button", text);
+    b.type = "button";
+    b.disabled = !ready;
+    b.onclick = () => {
+      $("question").value = text;
+      void explore(text);
+    };
+    $("examples").append(b);
+  }
+  $("context-label").textContent =
+    locale === "es"
+      ? "Jackson County + Missouri · noviembre de 2026"
+      : "Jackson County + Missouri · November 2026";
+  $("footer-label").textContent =
+    locale === "es"
+      ? "Comprensión no partidista · Sin recomendaciones de voto · Sin grabación ambiental ni analítica"
+      : "Nonpartisan comprehension · No vote recommendations · No ambient capture or analytics";
+  $("review-limits").textContent =
+    locale === "es"
+      ? "Las explicaciones cívicas y la pronunciación en español requieren revisión. La preparación por IA, la admisión de fuentes, la revisión humana y la publicación son etapas distintas. No se ha importado una boleta personal."
+      : "Spanish civic explanations and pronunciation require review. Prepared model output, source admission, human review and public release are separate states. No personal ballot has been imported.";
+  $("capture-limit").textContent =
+    locale === "es"
+      ? "El micrófono está desactivado. Esta revisión usa preguntas escritas y ejemplos públicos preparados."
+      : "Microphone capture is not enabled. This review uses typed questions and prepared public examples.";
+  $("evidence-mode").textContent =
+    locale === "es"
+      ? "Las fuentes se guardan con sus versiones. Los datos de campaña y las traducciones cívicas no revisadas no se publican."
+      : "Sources retain their versions. Unreviewed candidate material and civic translations are not published.";
+  speaker.stop();
+}
+$("reorder").onclick = async () => {
+  if (
+    !providerToken ||
+    remainingRuns <= 0 ||
+    !intent ||
+    !requestController ||
+    !renderComplete ||
+    !session.current(currentTicket)
+  )
+    return;
+  const expected = baselineLayout(intent).components;
+  if (
+    expected.some(
+      (id) => ![...workspace.children].some((n) => n.dataset.component === id),
+    )
+  )
+    return;
+  const ticket = session.begin();
+  currentTicket = ticket;
+  speaker.stop();
+  $("reorder").disabled = true;
+  remainingRuns--;
+  const plan = await planFor(intent, ticket);
+  if (!session.current(ticket) || !plan) return;
+  if (plan.mode === "live") {
+    const nodes = new Map(
+      [...workspace.children].map((n) => [n.dataset.component, n]),
+    );
+    if (!plan.layout.components.every((id) => nodes.has(id))) {
+      $("plan-mode").textContent =
+        locale === "es"
+          ? "Se conserva la vista local."
+          : "Local view retained.";
+      return;
+    }
+    workspace.replaceChildren(
+      ...plan.layout.components.map((id) => nodes.get(id)),
+    );
+    $("plan-mode").textContent =
+      locale === "es"
+        ? "IA eligió el orden de tarjetas entre opciones fijas"
+        : "AI chose card order from fixed options";
+  } else
+    $("plan-mode").textContent =
+      locale === "es"
+        ? "Se conserva el orden local; revisión de IA no completada"
+        : "Local order retained; AI ordering check did not complete";
+  if (remainingRuns <= 0) {
+    providerToken = null;
+    $("reorder").textContent =
+      locale === "es"
+        ? "Límite de pruebas de IA utilizado"
+        : "AI test allowance used";
+  } else $("reorder").disabled = false;
+  await prepareReading(ticket, !!mapMount);
+};
+$("question-form").onsubmit = (e) => {
+  e.preventDefault();
+  void explore($("question").value);
+};
+$("question").oninput = () => {
+  invalidate();
+  $("status").textContent = COPY[locale].choose;
+  workspace.replaceChildren();
+  $("plan-mode").textContent = "";
+};
+$("language").onchange = () => {
+  const old = intent;
+  invalidate({ revokeConsent: true });
+  locale = $("language").value;
+  setCopy();
+  if (old)
+    void explore(
+      {
+        maps: "maps",
+        candidates: "candidates",
+        rate: "tax rate",
+        duration: "duration",
+        purpose: "combat",
+        effects: "yes and no",
+        advice: "should i vote",
+        membership: "my ballot",
+        unknown: "unknown",
+      }[old] ?? "unknown",
+      { focus: false },
+    );
+  else workspace.replaceChildren();
+};
+$("reset").onclick = () => {
+  invalidate({ revokeConsent: true });
+  intent = null;
+  $("question").value = "";
+  workspace.replaceChildren();
+  $("status").textContent = COPY[locale].clear;
+  $("plan-mode").textContent = "";
+  $("question").focus();
+};
+$("speaker-consent").onchange = () =>
+  speaker.setConsent($("speaker-consent").checked);
+$("play").onclick = () => void speaker.play();
+$("rehearse").onclick = () => void speaker.play({ silent: true });
+$("stop").onclick = () => {
+  const keepVisuals = renderComplete;
+  invalidate({ keepVisuals });
+  if (!keepVisuals) workspace.replaceChildren();
+  $("status").textContent =
+    locale === "es"
+      ? "Se detuvo la actividad pendiente."
+      : "Pending activity stopped.";
+};
+for (const name of ["pointerdown", "keydown", "wheel", "scroll", "focusin"])
+  document.addEventListener(name, () => session.touch());
+setInterval(() => {
+  $("idle-warning").hidden = !intent || !session.idle(Date.now() + 20000);
+  $("idle-warning").textContent =
+    locale === "es"
+      ? "La sesión se borrará pronto por inactividad. Desplácese, toque o pulse una tecla para continuar."
+      : "This session will clear soon for inactivity. Scroll, tap or press a key to continue.";
+  if (intent && session.idle()) {
+    invalidate({ revokeConsent: true });
+    intent = null;
+    $("question").value = "";
+    workspace.replaceChildren();
+    $("status").textContent = COPY[locale].clear;
+    $("plan-mode").textContent = "";
+    $("reorder").hidden = true;
+  }
+}, 1000);
+addEventListener("pagehide", () => invalidate({ revokeConsent: true }));
+async function init() {
+  setCopy();
+  $("explore").disabled = true;
+  if (
+    typeof AbortSignal.any !== "function" ||
+    typeof AbortSignal.timeout !== "function"
+  ) {
+    $("status").textContent =
+      "This local review requires a current Chromium browser (120+).";
+    return;
+  }
+  try {
+    const r = await fetch("/fixture.json", {
+      cache: "no-store",
+      signal: AbortSignal.timeout(5000),
+    });
+    if (!r.ok) throw Error();
+    corpus = immutableCopy(await r.json());
+    await validateCorpus(corpus);
+  } catch {
+    $("status").textContent =
+      "Evidence unavailable. No explanation is released.";
+    return;
+  }
+  const optional = async (url) => {
+    try {
+      const r = await fetch(url, {
+        cache: "no-store",
+        signal: AbortSignal.timeout(5000),
+      });
+      return r.ok ? await r.json() : null;
+    } catch {
+      return null;
+    }
+  };
+  const [m, pin, prepared, caps] = await Promise.all(
+    [
+      "/map-manifest.json",
+      "/map-review-pin.json",
+      "/experience/manifest.json",
+      "/api/capabilities",
+    ].map(optional),
+  );
+  manifest = m;
+  if (pin) readings = admittedReadings(corpus, pin);
+  assets = immutableCopy(prepared?.audio ?? []);
+  $("speaker-consent").closest("label").hidden = assets.length === 0;
+  reviewTools = caps?.review_tools === true;
+  remainingRuns = caps?.remaining_runs ?? 0;
+  if (caps?.layout_enabled && remainingRuns > 0)
+    providerToken = caps.session_token;
+  $("review-links").hidden = !reviewTools;
+  $("rehearse").hidden = !reviewTools;
+  ready = true;
+  setCopy();
+  $("explore").disabled = false;
+  $("status").textContent = COPY[locale].choose;
+}
+void init();

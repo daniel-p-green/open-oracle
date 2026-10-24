@@ -82,3 +82,11 @@ Verify current account eligibility, endpoint/model pricing and retention before 
 Suggested latency targets (not vendor promises or current results) are ≤3s p95 cached ordinary approved audio and ≤250ms interruption silence. Revise using measured quality/latency tradeoffs rather than weakening source or playback checks. The shared authorized $200 testing ceiling is a maximum; reserve in-flight uncertainty across workers, including Live silence/wait duration and backend usage. No bulk ingestion estimate is claimed until source volume/duration and retention permissions are known.
 
 Official capability references: [voice architectures](https://developers.openai.com/api/docs/guides/voice-agents), [native Live/Decisions](https://developers.openai.com/api/docs/guides/decisions-voice), [Live migration guardrails](https://developers.openai.com/api/docs/guides/live-migration), [speech buffering](https://developers.openai.com/api/docs/guides/voice-server-controls#check-speech-before-playback), [data controls](https://developers.openai.com/api/docs/guides/your-data), [evaluation guidance](https://developers.openai.com/api/docs/guides/evaluation-best-practices). Source admission/scaling/latency targets above are product design, not documented OpenAI guarantees.
+
+## Current execution status — 2026-10-24
+
+The earlier user-approved managed Agents trial is **deferred**, not executed.
+Its caller-set dollar ceiling remains unverified; see AGENTS-BUDGET-REVIEW.md.
+Continue bounded Responses/application-owned extraction and product integration
+without claiming an Agents comparison. No bulk ingestion is authorized by this
+status update.

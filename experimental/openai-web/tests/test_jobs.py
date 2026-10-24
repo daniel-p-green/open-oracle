@@ -38,6 +38,18 @@ class JobsTests(unittest.TestCase):
         with self.assertRaises(Held): self.jobs.start(self.token, 'public_request_0002')
         self.assertEqual(len(json.loads(self.path.read_text())['runs']), 1)
 
+    def test_rehearsal_refresh_evicts_inactive_owner_without_displacing_active_work(self):
+        entered, gate=threading.Event(),threading.Event()
+        class Delayed:
+            def run(self,cancel,progress,meter):
+                entered.set();gate.wait(2);return {'checked':True},b''
+        self.jobs.pipeline=Delayed();self.jobs.start(self.token,self.request)
+        self.assertTrue(entered.wait(1))
+        tokens=[self.jobs.capabilities()['session_token'] for _ in range(12)]
+        self.assertEqual(len(self.jobs.owners),8)
+        self.assertIn(tokens[-1],self.jobs.owners);self.assertIn(self.token,self.jobs.owners)
+        gate.set();self.assertEqual(self.wait_terminal()['state'],'ready')
+
     def test_unknown_owner_cannot_start_read_or_cancel(self):
         for action in [self.jobs.start, self.jobs.public, self.jobs.cancel]:
             with self.assertRaises(Held): action('not_the_owner', self.request)
@@ -70,6 +82,23 @@ class JobsTests(unittest.TestCase):
         row = self.jobs.public(self.token, self.request)
         self.assertEqual(row['state'], 'expired'); self.assertIsNone(row['result'])
         self.assertIsNone(self.jobs.owners[self.token]['jobs'][self.request]['audio'])
+
+    def test_token_expiry_cancels_and_retains_draining_job_ownership(self):
+        self.jobs.close();now=[0.0];entered,gate=threading.Event(),threading.Event()
+        class Draining:
+            def run(self,cancel,progress,meter):
+                entered.set();gate.wait(2);return {'late':True},b'audio'
+        self.jobs=Jobs(Draining(),Budget(self.path),max_runs=2,clock=lambda:now[0])
+        token=self.jobs.capabilities()['session_token'];now[0]=590
+        self.jobs.start(token,self.request);self.assertTrue(entered.wait(1))
+        row=self.jobs.owners[token]['jobs'][self.request];now[0]=601
+        other=self.jobs.capabilities()['session_token']
+        self.assertTrue(row['cancel'].is_set());self.assertIn(token,self.jobs.owners)
+        with self.assertRaisesRegex(Held,'busy'):self.jobs.start(other,'another_request_01')
+        with self.assertRaises(Held):self.jobs.public(token,self.request)
+        gate.set();self.jobs.workers[0].join(1)
+        self.assertFalse(row['in_flight']);self.assertIsNone(row['result'])
+        self.jobs.capabilities();self.assertNotIn(token,self.jobs.owners)
 
     def test_conservative_reservations_enforce_authorized_cap(self):
         self.path.write_text(json.dumps({'authorization_usd_max': 200, 'runs': [{'id': 'prior', 'reserved_usd': 199.95}]}))

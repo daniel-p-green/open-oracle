@@ -6,12 +6,26 @@ import json
 import re
 import hashlib
 import importlib.metadata
+import io
+import wave
 from providers import Held, OpenAIProvider, Pipeline, admitted_corpus
 from jobs import Budget, Jobs
+from layout import ProductPipeline, RECIPES
 
 ROOT = Path(__file__).resolve().parent
 FILES = {
     '/': (ROOT / 'web/index.html', 'text/html; charset=utf-8'),
+    '/diagnostics': (ROOT / 'web/diagnostics.html', 'text/html; charset=utf-8'),
+    '/experience.mjs': (ROOT / 'web/experience.mjs', 'text/javascript; charset=utf-8'),
+    '/experience-core.mjs': (ROOT / 'web/experience-core.mjs', 'text/javascript; charset=utf-8'),
+    '/map-status.json': (ROOT / 'fixtures/map-status.json', 'application/json'),
+    '/proposition-a.json': (ROOT / 'fixtures/proposition-a.json', 'application/json'),
+    '/measure-source.mjs': (ROOT / 'web/measure-source.mjs', 'text/javascript; charset=utf-8'),
+    '/layout-client.mjs': (ROOT / 'web/layout-client.mjs', 'text/javascript; charset=utf-8'),
+    '/readings.mjs': (ROOT / 'web/readings.mjs', 'text/javascript; charset=utf-8'),
+    '/speech-output.mjs': (ROOT / 'web/speech-output.mjs', 'text/javascript; charset=utf-8'),
+    '/map-view.mjs': (ROOT / 'web/map-view.mjs', 'text/javascript; charset=utf-8'),
+    '/experience.css': (ROOT / 'web/experience.css', 'text/css; charset=utf-8'),
     '/app.mjs': (ROOT / 'web/app.mjs', 'text/javascript; charset=utf-8'),
     '/core.mjs': (ROOT / 'web/core.mjs', 'text/javascript; charset=utf-8'),
     '/conversation.mjs': (ROOT / 'web/conversation.mjs', 'text/javascript; charset=utf-8'),
@@ -26,6 +40,7 @@ FILES = {
     '/map-review-pin.json': (ROOT.parents[1] / 'docs/rebuild/MAP-DERIVATIVE-PIN.json', 'application/json'),
     '/map-manifest.json': (ROOT.parents[1] / 'docs/rebuild/MAP-SOURCE-MANIFEST.json', 'application/json'),
 }
+REVIEW_ROUTES={'/diagnostics','/app.mjs','/conversation.mjs','/live-client.mjs','/style.css','/maps','/maps.mjs'}
 REQUEST_ID = re.compile(r'[a-zA-Z0-9_-]{16,64}\Z')
 
 
@@ -49,7 +64,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Referrer-Policy', 'no-referrer')
         self.send_header('X-Content-Type-Options', 'nosniff')
         self.send_header('Permissions-Policy', 'microphone=(), camera=(), geolocation=()')
-        self.send_header('Content-Security-Policy', "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'; media-src 'none'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'")
+        self.send_header('Content-Security-Policy', "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'; media-src blob:; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'")
         self.end_headers()
         try: self.wfile.write(data)
         except (BrokenPipeError, ConnectionResetError): pass
@@ -66,14 +81,21 @@ class Handler(BaseHTTPRequestHandler):
             self.json_reply(403, {'error': 'loopback_only'}); return
         try:
             if self.path == '/api/capabilities':
+                if self.headers.get('Sec-Fetch-Site') not in {None, 'same-origin', 'none'}: raise Held('unexpected_site')
                 caps = self.server.jobs.capabilities() if self.server.jobs else {'mode': 'fixture', 'providers': 'disabled', 'credentials_read': False, 'microphone': 'disabled', 'playback': 'disabled', 'visitor_persistence': False}
+                caps['review_tools']=self.server.review_tools
                 self.json_reply(200, caps)
             elif self.path.startswith('/api/provider/job/') and self.server.jobs:
                 request = self.path.removeprefix('/api/provider/job/')
                 if not REQUEST_ID.fullmatch(request): raise Held('request_invalid')
                 self.json_reply(200, self.server.jobs.public(self.headers.get('X-Session-Token'), request))
+            elif self.path in self.server.experience:
+                raw, mime = self.server.experience[self.path]
+                self.reply(200, raw, mime)
             elif self.path == '/maps.json' and self.server.maps is not None:
                 self.reply(200, self.server.maps)
+            elif self.path in REVIEW_ROUTES and not self.server.review_tools:
+                self.json_reply(404, {'error':'not_found'})
             elif self.path in FILES:
                 path, mime = FILES[self.path]
                 self.reply(200, path.read_bytes(), mime)
@@ -101,12 +123,12 @@ class Handler(BaseHTTPRequestHandler):
             keys = {'request_id', 'question_id'} if self.path.endswith('/start') else {'request_id'}
             if type(body) is not dict or set(body) != keys or type(body['request_id']) is not str or not REQUEST_ID.fullmatch(body['request_id']):
                 raise ValueError()
-            if self.path.endswith('/start') and body['question_id'] != 'rate': raise ValueError()
+            if self.path.endswith('/start') and body['question_id'] not in {'rate', *('layout:' + key for key in RECIPES)}: raise ValueError()
         except Exception:
             self.json_reply(400, {'error': 'request_invalid'}); return
         try:
             token = self.headers.get('X-Session-Token')
-            result = (self.server.jobs.start(token, body['request_id']) if self.path.endswith('/start')
+            result = (self.server.jobs.start(token, body['request_id'], body['question_id'] if body['question_id'].startswith('layout:') else None) if self.path.endswith('/start')
                       else self.server.jobs.cancel(token, body['request_id']))
             self.json_reply(202, result)
         except Held as error:
@@ -133,12 +155,37 @@ def load_maps(directory):
     return raw
 
 
-def make_server(port=8894, jobs=None, map_review_dir=None):
+def load_experience(directory, review_tools=False):
+    if directory is None: return {'/experience/manifest.json': (b'{"version":1,"audio":[]}', 'application/json')}
+    directory = Path(directory).resolve()
+    approved = json.loads((ROOT.parents[1] / 'docs/rebuild/EXPERIENCE-ASSET-PIN.json').read_text())
+    manifest = directory / 'manifest.json'
+    if not manifest.is_file() or manifest.stat().st_size > 32768: raise ValueError('experience_manifest')
+    if json.loads(manifest.read_text()) != approved: raise ValueError('experience_pin')
+    admitted = dict(approved, audio=[a for a in approved['audio'] if review_tools or a.get('acoustic_human_review') is True])
+    routes = {'/experience/manifest.json': (json.dumps(admitted).encode(), 'application/json')}
+    for asset in admitted['audio']:
+        if not re.fullmatch(r'[a-z]{2,12}-(?:en|es)', asset['id']): raise ValueError('audio_id')
+        path = (directory / (asset['id'] + '.wav')).resolve()
+        if path.parent != directory or not path.is_file() or not 44 <= path.stat().st_size <= 4 * 1024 * 1024: raise ValueError('audio_path')
+        raw = path.read_bytes()
+        if len(raw) != asset['bytes'] or hashlib.sha256(raw).hexdigest() != asset['sha256']: raise ValueError('audio_integrity')
+        with wave.open(io.BytesIO(raw), 'rb') as audio:
+            if audio.getnchannels() != 1 or audio.getsampwidth() != 2 or audio.getframerate() != 24000 or not 0 < audio.getnframes() <= 24000 * 40:
+                raise ValueError('audio_format')
+        routes['/experience/audio/' + asset['id'] + '.wav'] = (raw, 'audio/wav')
+    return routes
+
+
+def make_server(port=8894, jobs=None, map_review_dir=None, experience_dir=None, review_tools=False):
     maps = load_maps(map_review_dir) if map_review_dir else None
+    experience = load_experience(experience_dir, review_tools)
     server = ThreadingHTTPServer(('127.0.0.1', port), Handler)
     server.daemon_threads = True
     server.jobs = jobs
     server.maps = maps
+    server.experience = experience
+    server.review_tools = review_tools
     return server
 
 
@@ -151,6 +198,8 @@ if __name__ == '__main__':
     parser.add_argument('--ledger', type=Path)
     parser.add_argument('--max-runs', type=int, default=1)
     parser.add_argument('--map-review-dir', type=Path)
+    parser.add_argument('--experience-dir', type=Path)
+    parser.add_argument('--review-tools', action='store_true')
     args = parser.parse_args()
     jobs = None
     if args.enable_openai:
@@ -162,9 +211,9 @@ if __name__ == '__main__':
         repository = ROOT.parents[1]
         if ledger.is_relative_to(repository) and '.local' not in ledger.parts:
             parser.error('Keep the operational ledger outside Git or under ignored .local/.')
-        jobs = Jobs(Pipeline(admitted_corpus(ROOT / 'fixtures/combat.json'), OpenAIProvider(args.organization, args.project)), Budget(ledger), args.max_runs)
-    server = make_server(args.port, jobs, args.map_review_dir)
-    print(f'OpenOracle local review: http://127.0.0.1:{server.server_port} ({"providers enabled; no capture/playback" if jobs else "fixtures only"})', flush=True)
+        jobs = Jobs(ProductPipeline(Pipeline(admitted_corpus(ROOT / 'fixtures/combat.json'), OpenAIProvider(args.organization, args.project))), Budget(ledger), args.max_runs)
+    server = make_server(args.port, jobs, args.map_review_dir, args.experience_dir, args.review_tools)
+    print(f'OpenOracle local review: http://127.0.0.1:{server.server_port} ({"bounded providers enabled" if jobs else "providers off"}; microphone off; manual speaker consent required)', flush=True)
     try: server.serve_forever()
     except KeyboardInterrupt: pass
     finally:
