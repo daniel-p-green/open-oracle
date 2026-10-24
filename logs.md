@@ -1867,3 +1867,17 @@ This is a backfill, not a contemporaneous event stream.
   file-chooser capability without new access; actual returned native-source
   Opus review; then measured full EN/ES caption/voice/map behavior. Human media,
   source/style/rights coverage, accessibility and showcase acceptance stay open.
+
+### 2026-10-24 18:20 UTC — caption/UI repair pushed; remote gates verified
+
+- **Completed:** focused code/fixture/plan/log commit
+  590d124e61fcf6f6f7a41033cb9288674e1ed4cb pushed to existing draftPR6. Both
+  exact-code offline-contracts succeeded:
+  https://github.com/daniel-p-green/open-oracle/actions/runs/40120164963 and
+  https://github.com/daniel-p-green/open-oracle/actions/runs/40120161134 .
+  PR description now distinguishes actual offline rendering, unverified live
+  correlation, the specific Claude attachment failure and pending0.40 sequence.
+- **Still paused:** denied paid diagnostic, later host-policy-blocked browser
+  scenario, native-source Opus attachment/review. No new spend, human media,
+  access grant, merge/deploy or showcase-ready claim. Existing frozen external
+  payloads and historical receipts remain unchanged.
