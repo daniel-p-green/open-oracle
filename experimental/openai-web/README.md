@@ -43,3 +43,30 @@ explicitly not live captions. Live adapters are rejected by this build.
 The isolated authorized API smoke results are in
 [the follow-up record](../../docs/rebuild/CONSENT-AND-API-CHECKPOINT.md). They do
 not enable providers in this application or establish a human-heard journey.
+
+## Explicit local provider pilot
+
+The default command remains provider-off. An operator with existing authorized
+API access can explicitly enable the fixed public-rate path using a Python
+runtime with `requirements-provider.txt` installed, an existing process
+`OPENAI_API_KEY`, explicit organization/project scope, a private authorized spend
+ledger, and `--enable-openai --max-runs 1`. No key setup or persistent access is
+performed by this application. Keep ledger/account values outside Git.
+
+Only `question_id=rate` is accepted; raw typed visitor input is rejected. The
+live-example button runs Decisions routing, a constrained Responses selection,
+an independent Decisions support check, and GPT-Live audio preparation. Prepared
+wording and citation ownership remain application-controlled. This is a narrow
+baseline for later generative comparison, not a conclusion against freeform text.
+
+All Live PCM is buffered server-side until session closure, exact full-transcript
+match, source/request and final-usage checks. There is no audio playback/download
+endpoint or browser media element. Cancellation invalidates local display
+immediately; in-flight HTTP calls may drain to their timeout, with usage still
+recorded and later stages suppressed. Ready audio/results expire from memory
+after two minutes, including when the browser stops polling. No audio is written
+to disk. Conservative reservations are retained for unknown billing outcomes.
+
+The public-repository CI workflow runs only fixture/mock/loopback tests with
+read-only permissions, pinned official Actions and no model credentials or paid
+services. Remote CI success must be checked separately from local passes.

@@ -1,0 +1,38 @@
+name: OpenAI web provider-off checks
+on:
+  pull_request:
+    paths:
+      - 'experimental/openai-web/**'
+      - '.github/workflows/openai-web.yml'
+  push:
+    branches: [main, 'rebuild/openai-web-slice-20261024']
+    paths:
+      - 'experimental/openai-web/**'
+      - '.github/workflows/openai-web.yml'
+permissions:
+  contents: read
+jobs:
+  offline-contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: JavaScript contracts and stale-result tests
+        run: node --test experimental/openai-web/tests/*.test.mjs
+      - name: Python provider mocks and loopback HTTP checks
+        run: python -m unittest discover -s experimental/openai-web/tests -p 'test_*.py'
+      - name: Syntax and whitespace
+        run: |
+          node --check experimental/openai-web/web/app.mjs
+          node --check experimental/openai-web/web/live-client.mjs
+          python -m py_compile experimental/openai-web/providers.py experimental/openai-web/jobs.py experimental/openai-web/server.py
+          git diff --check

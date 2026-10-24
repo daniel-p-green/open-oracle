@@ -3,6 +3,8 @@ import json
 from pathlib import Path
 import threading
 import unittest
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 
@@ -62,5 +64,53 @@ class ServerTests(unittest.TestCase):
         e.exception.close()
 
 
-if __name__ == '__main__':
-    unittest.main()
+
+# Provider HTTP contract uses fake work only; no API credential is read.
+import tempfile
+from jobs import Budget, Jobs
+from test_jobs import ImmediatePipeline
+
+
+class EnabledServerTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.temp = tempfile.TemporaryDirectory()
+        ledger = Path(cls.temp.name) / 'ledger.json'
+        ledger.write_text(json.dumps({'authorization_usd_max': 200, 'runs': []}))
+        cls.jobs = Jobs(ImmediatePipeline(), Budget(ledger))
+        cls.server = server_module.make_server(0, cls.jobs)
+        cls.url = f'http://127.0.0.1:{cls.server.server_port}'
+        cls.thread = threading.Thread(target=cls.server.serve_forever, daemon=True); cls.thread.start()
+        with urlopen(cls.url + '/api/capabilities') as r: cls.token = json.load(r)['session_token']
+    @classmethod
+    def tearDownClass(cls):
+        cls.jobs.close(); cls.server.shutdown(); cls.server.server_close(); cls.thread.join(); cls.temp.cleanup()
+    def post(self, path, body, token=None, origin=None):
+        headers = {'Content-Type': 'application/json', 'X-Session-Token': token or self.token, 'Origin': origin or self.url}
+        return urlopen(Request(self.url + path, data=body, headers=headers))
+
+    def test_rejects_raw_visitor_input_unknown_question_duplicate_fields_and_cross_origin(self):
+        for body in [b'{"request_id":"public_request_0001","question_id":"rate","text":"private visitor words"}',
+                     b'{"request_id":"public_request_0001","question_id":"other"}',
+                     b'{"request_id":"public_request_0001","request_id":"public_request_0002","question_id":"rate"}']:
+            with self.assertRaises(HTTPError) as e: self.post('/api/provider/start', body)
+            self.assertEqual(e.exception.code, 400); e.exception.close()
+        body = b'{"request_id":"public_request_0001","question_id":"rate"}'
+        with self.assertRaises(HTTPError) as e: self.post('/api/provider/start', body, origin='https://attacker.invalid')
+        self.assertEqual(e.exception.code, 403); e.exception.close()
+
+    def test_owner_binding_and_audio_routes_remain_closed(self):
+        with self.assertRaises(HTTPError) as e: self.post('/api/provider/start', b'{"request_id":"public_request_0001","question_id":"rate"}', token='wrong-owner')
+        self.assertEqual(e.exception.code, 409); e.exception.close()
+        for route in ['/api/provider/audio/public_request_0001','/api/session','/.env.local']:
+            with self.assertRaises(HTTPError) as e: urlopen(self.url + route)
+            self.assertEqual(e.exception.code, 404); e.exception.close()
+
+    def test_cancel_before_start_tombstone_prevents_paid_work(self):
+        request = b'{"request_id":"public_cancel_0001"}'
+        with self.post('/api/provider/cancel', request) as r: self.assertEqual(r.status, 202)
+        with self.assertRaises(HTTPError) as e: self.post('/api/provider/start', b'{"request_id":"public_cancel_0001","question_id":"rate"}')
+        self.assertEqual(e.exception.code, 409); e.exception.close()
+        self.assertEqual(self.jobs.runs, 0)
+
+if __name__ == '__main__': unittest.main()

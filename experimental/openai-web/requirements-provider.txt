@@ -1,0 +1,2 @@
+# Optional provider pilot only; fixture/server tests require no third-party packages.
+websockets==15.0.1
