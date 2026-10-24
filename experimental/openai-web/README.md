@@ -1,5 +1,37 @@
 # OpenOracle integrated local review
 
+## Recovered resident journey
+
+The default starting actions now lead to the official Proposition A/map source
+journey and candidate-evidence coverage. COMBAT remains an engineering reference.
+The connected panel offers fresh overview, simpler wording, more detail and
+evidence limits, plus local exact Yes/No effects, source challenge, optional
+No-vote teach-back and an ephemeral recap. Source/map browsing stays usable while
+generation is pending. Missing optional geometry does not hide the original.
+
+Generation is explicitly enabled server-side; no visitor text is submitted.
+The client sends an operation/language and optional parent request ID. The
+server retrieves only its own ready same-owner public answer, verifies its source
+version and uses that unit as adaptation context. Source and number/time/scope
+checks precede separate atomic Decisions judgments. These uncalibrated checks
+are not correctness certificates. **Current real stricter trials are held; the
+fresh generation/review interface is still being improved, not accepted.**
+
+The existing operator `--max-runs` bound is 1–8 (default1), process-wide, with
+global ledger reservations and no automatic paid retries. `--text-model` permits
+`gpt-6-luna` (512 output tokens, $0.01 reservation/turn) or `gpt-6.1-sol`
+(Low reasoning, 1536 total output tokens, $0.10 reservation/turn). Both have a
+12,000-byte serialized request bound, two calls/turn, no tools/background work.
+Sol reservations cover conservative input/cache-write/output arithmetic; reported
+usage estimates are not invoices. A model comparison is not a winner declaration.
+
+Spanish fresh civic prose/teach-back is held outside explicit local review mode.
+That mode permits examination of experimental machine text, not human language
+approval. Ready public context lives at most the owner’s ten-minute lifetime;
+Erase revokes its references. Missing/expired parent rejects before reservation,
+restores the client allowance only on a confirmed unstarted request, and needs a
+deliberate fresh action. No automatic retry or prerecorded-answer substitution.
+
 **Not the completed multilingual voice/generative-UI product.** This is a working
 local evidence workspace with prepared synthetic narration, not a human voice
 trial or public-release approval. Python **3.12+**; no project Node dependency.

@@ -544,3 +544,109 @@ This is a backfill, not a contemporaneous event stream.
 - **Next:** assess recovered owners for reuse against current API/privacy
   contracts, then implement the connected public-source typed/synthetic journey.
   Complete renewed Opus5.5High substantive-delta review before readiness claim.
+
+## 2026-10-24 UTC — restore the resident journey; stretch level authorized
+
+- **User authorization/scope:** Daniel explicitly authorized implementing the
+  recovered stretch level using development best practices. D2 now governs the
+  acceptance target with later official-source/OpenAI/multilingual/generative-UI
+  changes. Preserve statewide ambition and complete Jackson County/KCEB/JCEB
+  proof. No new publication, credential, human-media or spending authority.
+  Parent later relayed the official API showcase as inspiration; parent owns
+  that broad read-only research, so this worker did not duplicate it.
+- **Completed — reuse assessment:** read later Pi architecture, retrospective,
+  OpenAI contracts and engineering review; inspected its contracts/session/
+  playback/operator/evidence/pipeline/audio owners. Reused current createSession,
+  Jobs/budget/cancellation and provider-job transport; no second session/media
+  controller, whole older app migration or dependency installation. Exact
+  scope/limits are in `docs/rebuild/REUSE-ASSESSMENT.md`.
+- **Implemented:** official Proposition A/map journey with fresh overview,
+  simpler wording, more detail and limits; exact original/source disclosure;
+  local clearly labeled Yes/No effects with no model call; optional No-vote
+  teach-back, disputed-unit withdrawal and ephemeral language-filtered recap.
+  New default examples/fallback omit COMBAT. Candidate action remains an honest
+  coverage gap, not an invented/partial complete roster. Campaign excerpt held.
+- **Implemented — actual adaptation/privacy:** requests contain only selected
+  public operation/language and optional parent request ID. Backend retrieves
+  its own ready same-owner public unit, rechecks source version and supplies it
+  as context; no raw visitor text or client-supplied history. Erase revokes
+  server references. Ready public units retain at most owner10minute lifetime,
+  pending work retains120s expiry. Confirmed unstarted409 restores local
+  allowance and clears stale parent, with deliberate fresh action only.
+- **Implemented — release/operation bounds:** pinned original, exact effects,
+  source IDs, number-word/time/congressional-scope gates and free-prose vote
+  outcome guard. Generation then separate Decisions review, no constant-input
+  routing call. Original wording loads before optional geometry. Source/map/
+  recap/teach-back browsing use a separate region and do not cancel text;
+  Stop/Erase/language changes still invalidate. Spanish civic generation and
+  teach-back remain held outside review mode; server preflight precedes spend.
+  Default1, maximum8 explicit process runs permit a bounded connected journey;
+  shared ledger cap200 remains authoritative. No automatic paid retries.
+- **Actual independent review:** requested Opus5.5High was again visibly selected
+  in the existing authorized Claude UI. Scrubbed relevant source/requirements
+  uploaded; actual critique and source re-review returned. Found effects
+  inversion, cross-slot prose risk, stale source views, Spanish bypass, geometry
+  coupling, misleading labels/caps and missing actual adaptation. Repaired.
+  Re-review accepted earlier findings, then found120s-parent expiry and disputed
+  parent reuse; those were repaired with focused ownership/client proofs. Exact
+  effect reversal under a false-positive fake reviewer is rejected. Indirect
+  semantic inversion still depends on fallible model checks, not a guarantee.
+- **Actual browser evidence:** original/source, local recap and language controls
+  exercised. Provider-off instance without geometry retained readable original
+  and precise missing-map state. Default Spanish teach-back/generation disabled;
+  reset removed journey state. During a real generation, opening its original
+  and moving the map preserved pending text and the source. No human microphone,
+  speaker, playback consent or Play action used. Existing idle clear removed
+  prior review content; no screenshot falsely reconstructs a cleared result.
+- **Actual API results — not acceptance:** initial English generation reached
+  display/recap; Spanish simpler output held. Stricter subsequent English
+  attempts held. A scripted diagnostic retained only public generated text and
+  scores privately, showing support0.87/polarity1.0. After stronger attribution,
+  same-source Luna/SolLow comparison held at0.85/0.91 support (polarity1.0).
+  Opus found small real Luna drift and no clear material Sol defect; that is its
+  opinion, not proof or a model-winner claim. Both account model calls completed;
+  no access grant/credential change. Official Sol docs reject None effort;
+  code uses Low/1536total output tokens and$0.10 reservation, versus Luna512/
+  $0.01. Both requests bounded12,000serialized bytes, no tools/background/retry.
+- **Quality evidence:** one four-control Decisions request accepted an
+  engineering-labeled faithful control and rejected inverted/unattributed/
+  personal claims. Following Opus advice, split review into cited-evidence-only
+  entailment, no additions, attribution, request fit and polarity, keeping0.95.
+  Two bounded calls evaluated six distinct engineering-labeled variants: all
+  four adverse variants held, both intended faithful variants also held on
+  request-fit0.94 or attribution0.94. Time drift passed the model but code held
+  it. This small development set is not independent calibration or accuracy.
+- **Current cost evidence:** conservative shared reservations$0.94;
+  usage/duration price estimate$0.0788082 recorded in the private shared ledger, excluding
+  prior unmetered Playground charges; not an invoice. Sol cache-write pricing
+  uses a conservative12h allowance if such tokens appear. No credit purchase,
+  billing change, managed Agents inference or private speech transmission.
+- **Independent primary evidence work:** retained the public U.S.House office
+  explanation original at2026-10-24T05:58:07.441959Z, SHA256
+  `2db1232424310e0844870902e01c976dcc52bf613d04798beb28203d345b7cdf`.
+  House terms distinguish government-produced material from transferred
+  copyrights; no images or broad license claimed. Extraction/admission remains
+  pending; no ZIP/address representative lookup. No denied SOS retry.
+- **Verification:** focused false-positive/polarity/source, server-owned context/
+  expiry/revocation and confirmed-unstarted client proofs pass. Existing Node
+  suite and Python suite passed before latest small expiry/review changes;
+  required suites/syntax/whitespace run again before commit, remote CI checked
+  after push. No test quota, acoustic validation or whole-product claim.
+- **Still running work:** semantic review interface needs to separate factual
+  eligibility, explicit application source attribution and requested delivery
+  quality without lowering factual gates to force a demo. Fresh checked voice,
+  natural input, candidate/office coverage, bilingual/human accessibility and
+  resident comprehension/operational evidence remain open stretch requirements.
+- **Reference research received from parent:** adopt Tempo's separation of
+  bounded workflow actions from grounded Responses, uncertainty/quotas and
+  server-only credentials; Lumen's evidence-bearing viewport/accessibility
+  checks and Loupe's distinction between applied and visually verified fixes.
+  Solar System's MIT WebRTC/visual pattern is a reference only; no source has
+  been imported and no Realtime-for-Live substitution made. Chatkit map/chat
+  concept does not justify small-screen exclusion or unlicensed code copying.
+  Tempo/Lumen/Loupe root-app licensing remains unestablished; no wholesale ZIP
+  source reuse. These concepts reinforce current owners/contracts, not new
+  infrastructure or election/Spanish-quality proof.
+- **Completed before commit:** required Node/provider-off Python/loopback suites,
+  updated-module syntax and whitespace checks passed after the final repairs.
+  Remote CI is checked after pushing; no success is inferred from local output.

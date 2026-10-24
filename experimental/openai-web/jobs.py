@@ -17,9 +17,11 @@ JOB_TTL = 120
 
 
 class Budget:
-    def __init__(self, path, per_run=.10):
+    def __init__(self, path, per_run=.10, journey_reserve=.01):
         self.path = Path(path).resolve()
         self.per_run = per_run
+        self.journey_reserve = journey_reserve
+        if journey_reserve not in {.01,.10}: raise Held('budget_configuration')
         if not 0 < per_run <= .10 or not self.path.is_file(): raise Held('budget_configuration')
 
     @contextmanager
@@ -38,7 +40,7 @@ class Budget:
                 if os.path.exists(name): os.unlink(name)
 
     def reserve(self, run, task=None):
-        amount = min(self.per_run, .01) if task else self.per_run
+        amount = self.journey_reserve if task and task.startswith('journey:') else min(self.per_run, .01) if task else self.per_run
         with self.locked() as data:
             maximum = data.get('authorization_usd_max')
             runs = data.get('runs')
@@ -47,8 +49,9 @@ class Budget:
             amounts = [r.get('reserved_usd') for r in runs]
             if any(type(n) not in (int, float) or not math.isfinite(n) or n < 0 for n in amounts): raise Held('budget_invalid')
             if sum(amounts) + amount > maximum: raise Held('budget_exhausted')
-            runs.append({'id': run, 'kind': 'bounded_ui_composition' if task else 'integrated_public_rate', 'state': 'reserved',
-                         'reserved_usd': amount, 'retry': False, 'requests_max': 1 if task else 4, 'stages': []})
+            journey = bool(task and task.startswith('journey:'))
+            runs.append({'id': run, 'kind': 'fresh_public_journey' if journey else 'bounded_ui_composition' if task else 'integrated_public_rate', 'state': 'reserved',
+                         'reserved_usd': amount, 'retry': False, 'requests_max': 2 if journey else 1 if task else 4, 'stages': []})
             data['conservative_reservations_usd'] = sum(amounts) + amount
             data['state'] = 'integrated public-provider test in flight'
 
@@ -66,8 +69,11 @@ class Budget:
             if any(type(n) is not int or not 0 <= n <= 20000 for n in (incoming, outgoing, cached, written)) or cached + written > incoming:
                 raise Held('usage_unconfirmed')
             if stage == 'text' and outgoing > 128: raise Held('usage_bound')
+            if stage == 'journey_text' and outgoing > 512: raise Held('usage_bound')
+            if stage == 'sol_text' and outgoing > 1536: raise Held('usage_bound')
             safe = {'input_tokens': incoming, 'output_tokens': outgoing, 'cached_tokens': cached, 'cache_write_tokens': written}
-            estimate = ((incoming - cached - written) * .10 + cached * .01 + written * .125 + (outgoing * .50 if stage == 'text' else 0)) / 1_000_000
+            estimate = (((incoming-cached-written)*2 + cached*.10 + written*5 + outgoing*10) if stage == 'sol_text' else
+                        ((incoming - cached - written) * .10 + cached * .01 + written * .125 + (outgoing * .50 if stage in {'text', 'journey_text'} else 0))) / 1_000_000
         with self.locked() as data:
             row = next(r for r in data['runs'] if r['id'] == run)
             row['stages'].append({'stage': stage, 'usage': safe, 'price_estimate_usd': estimate})
@@ -85,7 +91,7 @@ class Budget:
 
 class Jobs:
     def __init__(self, pipeline, budget, max_runs=1, clock=time.monotonic):
-        if type(max_runs) is not int or not 1 <= max_runs <= 2: raise Held('run_limit')
+        if type(max_runs) is not int or not 1 <= max_runs <= 8: raise Held('run_limit')
         self.pipeline, self.budget, self.max_runs, self.clock = pipeline, budget, max_runs, clock
         self.lock = threading.RLock()
         self.owners = {}
@@ -103,8 +109,9 @@ class Jobs:
         now = self.clock()
         for owner in self.owners.values():
             for row in owner['jobs'].values():
-                if now - row['created'] >= JOB_TTL or now - owner['created'] >= TOKEN_TTL:
-                    row['cancel'].set(); row['result'] = row['audio'] = None; row['state'] = 'expired'
+                ready_public_context = row['state'] == 'ready' and str(row.get('task','')).startswith('journey:')
+                if (not ready_public_context and now - row['created'] >= JOB_TTL) or now - owner['created'] >= TOKEN_TTL:
+                    row['cancel'].set(); row['result'] = row['audio'] = row['prior'] = None; row['state'] = 'expired'
         self.owners = {token: value for token, value in self.owners.items()
                        if now - value['created'] < TOKEN_TTL or any(r.get('in_flight') for r in value['jobs'].values())}
 
@@ -127,13 +134,20 @@ class Jobs:
         if owner is None or self.clock()-owner['created']>=TOKEN_TTL: raise Held('owner_unavailable')
         return owner
 
-    def start(self, token, request, task=None):
+    def start(self, token, request, task=None, parent_request=None):
         with self.lock:
             owner = self._owner(token)
             if request in owner['cancelled']: raise Held('cancelled')
             if request in owner['jobs']:
-                if owner['jobs'][request].get('task') != task: raise Held('request_conflict')
+                if owner['jobs'][request].get('task') != task or owner['jobs'][request].get('parent_request') != parent_request: raise Held('request_conflict')
                 return self.public(token, request)
+            prior = None
+            if parent_request:
+                parent = owner['jobs'].get(parent_request)
+                if (not task or not task.startswith('journey:') or not parent or parent['state'] != 'ready'
+                        or type(parent.get('result')) is not dict or not parent['result'].get('unit') or parent['result'].get('mode') != 'fresh_grounded_generation'):
+                    raise Held('parent_unavailable')
+                prior = copy.deepcopy(parent['result'])
             if self.runs >= self.max_runs: raise Held('run_limit')
             if any(r.get('in_flight') for o in self.owners.values() for r in o['jobs'].values()):
                 raise Held('busy')
@@ -141,7 +155,7 @@ class Jobs:
             self.budget.reserve(run, task) if task else self.budget.reserve(run)
             self.runs += 1
             row = {'created': self.clock(), 'state': 'queued', 'cancel': threading.Event(),
-                   'result': None, 'audio': None, 'run': run, 'reason': None, 'task': task, 'in_flight': True}
+                   'result': None, 'audio': None, 'run': run, 'reason': None, 'task': task, 'in_flight': True, 'prior': prior, 'parent_request': parent_request}
             owner['jobs'][request] = row
             worker = threading.Thread(target=self._run, args=(row,), daemon=True, name='openoracle-public-run')
             self.workers.append(worker); worker.start()
@@ -153,7 +167,8 @@ class Jobs:
                 check_cancel(row['cancel']); row['state'] = stage
         def meter(stage, usage): self.budget.record(row['run'], stage, usage)
         try:
-            result, pcm = (self.pipeline.run_task(row['task'], row['cancel'], progress, meter) if row['task']
+            result, pcm = (self.pipeline.run_task(row['task'], row['cancel'], progress, meter, prior=row['prior']) if row['task'] and row['task'].startswith('journey:')
+                           else self.pipeline.run_task(row['task'], row['cancel'], progress, meter) if row['task']
                            else self.pipeline.run(row['cancel'], progress, meter))
             check_cancel(row['cancel'])
             with self.lock:
@@ -179,9 +194,11 @@ class Jobs:
             owner = self._owner(token)
             row = owner['jobs'].get(request)
             if row is None: raise Held('job_unavailable')
+            lifetime_left = (TOKEN_TTL - (self.clock()-owner['created']) if row['state']=='ready' and str(row.get('task','')).startswith('journey:')
+                             else JOB_TTL-(self.clock()-row['created']))
             return copy.deepcopy({'request_id': request, 'state': row['state'], 'reason': row['reason'],
                                   'result': row['result'], 'playback_enabled': False,
-                                  'expires_in_seconds': max(0, JOB_TTL - (self.clock() - row['created']))})
+                                  'expires_in_seconds': max(0, lifetime_left)})
 
     def cancel(self, token, request):
         with self.lock:
@@ -191,6 +208,7 @@ class Jobs:
             row = owner['jobs'].get(request)
             if row:
                 row['cancel'].set(); row['result'] = row['audio'] = None
+                row['prior'] = None
                 row['state'] = 'cancelled' if row['state'] in {'ready', 'held', 'cancelled', 'expired'} else 'cancel_requested'
             return {'request_id': request, 'state': 'cancel_requested', 'result': None, 'playback_enabled': False}
 

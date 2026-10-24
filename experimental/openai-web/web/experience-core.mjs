@@ -55,6 +55,8 @@ export function routeQuestion(text) {
       "what candidate evidence is available",
       "what candidate evidence is admitted",
       "que fuentes de candidatos estan admitidas",
+      "what candidate evidence is admitted",
+      "que fuentes de candidatos estan admitidas",
       "what sources are available about candidates",
       "que fuentes hay sobre los candidatos",
       "candidates",
@@ -154,7 +156,7 @@ export const COPY = Object.freeze({
       "Ask a question, explore the original sources, and make your own choice.",
     sample: "Public-source demonstration · personal ballot not loaded",
     privacy:
-      "Do not enter your address, date of birth or private voter records. Your typed text stays in this tab. For supported questions, an optional AI ordering check sends only the question category.",
+      "Do not enter your address, date of birth or private voter records. Your typed text stays in this tab. For supported questions, optional AI checks send only your selected public question category and language, plus public evidence.",
     ask: "What would you like to understand?",
     submit: "Explore",
     reset: "Start over",
@@ -198,7 +200,7 @@ export const COPY = Object.freeze({
       "Haga una pregunta, consulte las fuentes originales y tome su propia decisión.",
     sample: "Demostración con fuentes públicas · boleta personal no cargada",
     privacy:
-      "No ingrese su dirección, fecha de nacimiento ni datos privados. El texto escrito permanece en esta pestaña. Una revisión opcional de orden con IA envía solo la categoría de una pregunta admitida.",
+      "No ingrese su dirección, fecha de nacimiento ni datos privados. El texto escrito permanece en esta pestaña. Las revisiones opcionales con IA envían solo la categoría pública elegida, el idioma y las fuentes públicas.",
     ask: "¿Qué desea entender?",
     submit: "Explorar",
     reset: "Empezar de nuevo",

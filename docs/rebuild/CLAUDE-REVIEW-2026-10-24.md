@@ -82,3 +82,32 @@ was adopted: confirmation choices explicitly name COMBAT/Missouri instead of an
 unqualified tax/maps topic. Startup uses feature detection, not user-agent
 exclusion. Stop hides ordering even when visuals remain. No additional broad
 review or acceptance claim follows from this narrow closure.
+
+## Reconciled resident-journey review — actual Opus 5.5 High
+
+The same existing Claude conversation received scrubbed current source plus the
+recovered requirements, then an actual source re-review. Client UI again showed
+Opus5.5High; the model accurately says it cannot introspect effort. Returned
+critique is preserved privately, not attributed to a fabricated run. No billing,
+new access, microphone or speaker change accompanied review.
+
+| Finding | Disposition / evidence |
+| --- | --- |
+| False-positive review could admit reversed effects, including other prose slots | Exact effects moved to local application wording, no paid generation or fresh-AI label; cross-slot vote tokens, numeric words, time drift and congressional scope guarded; separate polarity check. Indirect semantic inversion remains model-dependent and explicitly needs evaluation. |
+| Source/map/teach-back/recap actions cancelled text or overwrote views | Separate source/activity region; map navigation stops speech without cancelling same-source text. Stop/Erase/language changes still invalidate. Actual browser opened source and moved map while a real generation remained pending. |
+| Spanish teach-back bypass and reservation-before-language-check | Both UI/function gates plus server preflight before reservation; default browser check confirmed disabled civic generation/teach-back. |
+| Optional map failure hid valid original | Original admitted first; geometry failure shows a gap while original/citations remain. Actual provider-off browser without maps verified. |
+| Constant-input routing call | Removed. Code already knows the explicitly selected public operation; Decisions reviews generated evidence instead. |
+| Missing actual adaptation | Same-owner ready public unit, obtained by parent request ID, now enters generation context. Client cannot supply raw prior prose. Source version is rechecked. |
+| Parent expiry and misleading local allowance | Ready journey context retains owner TTL; expired/unstarted409 is distinguished, parent cleared and allowance restored only for a confirmed unstarted run. No automatic paid retry was adopted. Focused ownership/expiry and client rejection checks pass. |
+| Challenge reused disputed parent | Clears/revokes that parent and removes only the displayed unit; other accepted public units remain in recap. |
+| Examples/privacy/version/BF-cache/cap copy | Candidate aliases and default public fallback corrected, privacy states category/language/public evidence, displayed version shares the source loader pin, restored page resets, ordering hidden in journey, cap explained. |
+
+Re-review closed/accepted earlier findings, identified the parent/challenge
+issues above and kept whole-product status **not ready**. Its reading found small
+drift in the actual Luna draft and no clear material defect in the Sol draft,
+while explicitly labeling that assessment opinion rather than explanation of
+the scores. It recommended atomic review over cited evidence only, preserving
+thresholds and evaluating distinct faithful/adverse controls. That interface is
+implemented; six engineering-labeled controls are recorded in logs.md. This is
+not independent editorial calibration or a human comprehension/acoustic pass.

@@ -1,5 +1,15 @@
 # Original planning reconciliation — October 24, 2026
 
+**Subsequent direct authorization:** Daniel explicitly selected implementation of
+the stretch level and development best practices. D2 is now the implementation/
+acceptance target, reconciled with later OpenAI-only, official-source,
+multilingual/adaptive voice and generative-UI direction. Statewide service is the
+accepted ambition; Jackson County/KCEB/JCEB remains the incremental complete-scope
+proof, not a substitute for that ambition. Earlier draft/proposal labels below
+describe original document status. Research, publication, credentials, spending
+and human-media boundaries remain unchanged; no resident study or numerical
+readiness result is implied by this authorization.
+
 The rebuild had reviewed old implementation/history and postmortem evidence,
 but had **not established review of the original PRD/JTBD set**. Daniel's
 correction prompted this targeted review. The current finite COMBAT/map/audio

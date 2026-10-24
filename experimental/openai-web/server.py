@@ -11,6 +11,7 @@ import wave
 from providers import Held, OpenAIProvider, Pipeline, admitted_corpus
 from jobs import Budget, Jobs
 from layout import ProductPipeline, RECIPES
+from journey import TASKS
 
 ROOT = Path(__file__).resolve().parent
 FILES = {
@@ -22,6 +23,7 @@ FILES = {
     '/proposition-a.json': (ROOT / 'fixtures/proposition-a.json', 'application/json'),
     '/measure-source.mjs': (ROOT / 'web/measure-source.mjs', 'text/javascript; charset=utf-8'),
     '/layout-client.mjs': (ROOT / 'web/layout-client.mjs', 'text/javascript; charset=utf-8'),
+    '/journey-core.mjs': (ROOT / 'web/journey-core.mjs', 'text/javascript; charset=utf-8'),
     '/readings.mjs': (ROOT / 'web/readings.mjs', 'text/javascript; charset=utf-8'),
     '/speech-output.mjs': (ROOT / 'web/speech-output.mjs', 'text/javascript; charset=utf-8'),
     '/map-view.mjs': (ROOT / 'web/map-view.mjs', 'text/javascript; charset=utf-8'),
@@ -121,14 +123,18 @@ class Handler(BaseHTTPRequestHandler):
             body = json.loads(self.rfile.read(int(lengths[0])), object_pairs_hook=strict_object,
                               parse_constant=lambda _: (_ for _ in ()).throw(ValueError()))
             keys = {'request_id', 'question_id'} if self.path.endswith('/start') else {'request_id'}
+            if type(body) is dict and 'parent_request_id' in body and self.path.endswith('/start'):
+                keys.add('parent_request_id')
+                if type(body['parent_request_id']) is not str or not REQUEST_ID.fullmatch(body['parent_request_id']) or not str(body.get('question_id','')).startswith('journey:'): raise ValueError()
             if type(body) is not dict or set(body) != keys or type(body['request_id']) is not str or not REQUEST_ID.fullmatch(body['request_id']):
                 raise ValueError()
-            if self.path.endswith('/start') and body['question_id'] not in {'rate', *('layout:' + key for key in RECIPES)}: raise ValueError()
+            if self.path.endswith('/start') and body['question_id'] not in {'rate', *('layout:' + key for key in RECIPES), *TASKS}: raise ValueError()
+            if self.path.endswith('/start') and body['question_id'].startswith('journey:') and body['question_id'].endswith(':es') and not self.server.review_tools: raise ValueError()
         except Exception:
             self.json_reply(400, {'error': 'request_invalid'}); return
         try:
             token = self.headers.get('X-Session-Token')
-            result = (self.server.jobs.start(token, body['request_id'], body['question_id'] if body['question_id'].startswith('layout:') else None) if self.path.endswith('/start')
+            result = (self.server.jobs.start(token, body['request_id'], body['question_id'] if body['question_id'].startswith(('layout:', 'journey:')) else None, parent_request=body.get('parent_request_id')) if self.path.endswith('/start')
                       else self.server.jobs.cancel(token, body['request_id']))
             self.json_reply(202, result)
         except Held as error:
@@ -197,6 +203,7 @@ if __name__ == '__main__':
     parser.add_argument('--project')
     parser.add_argument('--ledger', type=Path)
     parser.add_argument('--max-runs', type=int, default=1)
+    parser.add_argument('--text-model', choices=['gpt-6-luna','gpt-6.1-sol'], default='gpt-6-luna')
     parser.add_argument('--map-review-dir', type=Path)
     parser.add_argument('--experience-dir', type=Path)
     parser.add_argument('--review-tools', action='store_true')
@@ -211,7 +218,7 @@ if __name__ == '__main__':
         repository = ROOT.parents[1]
         if ledger.is_relative_to(repository) and '.local' not in ledger.parts:
             parser.error('Keep the operational ledger outside Git or under ignored .local/.')
-        jobs = Jobs(ProductPipeline(Pipeline(admitted_corpus(ROOT / 'fixtures/combat.json'), OpenAIProvider(args.organization, args.project))), Budget(ledger), args.max_runs)
+        jobs = Jobs(ProductPipeline(Pipeline(admitted_corpus(ROOT / 'fixtures/combat.json'), OpenAIProvider(args.organization, args.project)), allow_spanish=args.review_tools, text_model=args.text_model), Budget(ledger, journey_reserve=.10 if args.text_model == 'gpt-6.1-sol' else .01), args.max_runs)
     server = make_server(args.port, jobs, args.map_review_dir, args.experience_dir, args.review_tools)
     print(f'OpenOracle local review: http://127.0.0.1:{server.server_port} ({"bounded providers enabled" if jobs else "providers off"}; microphone off; manual speaker consent required)', flush=True)
     try: server.serve_forever()

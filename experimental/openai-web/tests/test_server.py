@@ -92,6 +92,7 @@ class EnabledServerTests(unittest.TestCase):
     def test_rejects_raw_visitor_input_unknown_question_duplicate_fields_and_cross_origin(self):
         for body in [b'{"request_id":"public_request_0001","question_id":"rate","text":"private visitor words"}',
                      b'{"request_id":"public_request_0001","question_id":"other"}',
+                     b'{"request_id":"public_request_0001","question_id":"journey:overview:es"}',
                      b'{"request_id":"public_request_0001","request_id":"public_request_0002","question_id":"rate"}']:
             with self.assertRaises(HTTPError) as e: self.post('/api/provider/start', body)
             self.assertEqual(e.exception.code, 400); e.exception.close()

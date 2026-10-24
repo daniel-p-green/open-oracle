@@ -38,6 +38,30 @@ class JobsTests(unittest.TestCase):
         with self.assertRaises(Held): self.jobs.start(self.token, 'public_request_0002')
         self.assertEqual(len(json.loads(self.path.read_text())['runs']), 1)
 
+    def test_adaptation_uses_only_ready_same_owner_public_unit_and_erase_revokes_it(self):
+        class PublicJourney:
+            def __init__(self): self.parents=[]
+            def run_task(self,task,cancel,progress,meter,prior=None):
+                self.parents.append(prior)
+                return {'mode':'fresh_grounded_generation','unit':{'public':'checked'}},b''
+        self.jobs.close();pipeline=PublicJourney();now=[0.0];self.jobs=Jobs(pipeline,Budget(self.path),max_runs=3,clock=lambda:now[0])
+        self.token=self.jobs.capabilities()['session_token']
+        self.jobs.start(self.token,self.request,'journey:overview:en');self.wait_terminal()
+        now[0]=121
+        self.assertEqual(self.jobs.public(self.token,self.request)['state'],'ready')
+        other=self.jobs.capabilities()['session_token']
+        with self.assertRaisesRegex(Held,'parent_unavailable'):
+            self.jobs.start(other,'cross_owner_context','journey:simpler:en',parent_request=self.request)
+        child='public_followup_0002';self.jobs.start(self.token,child,'journey:simpler:en',parent_request=self.request)
+        self.jobs.workers[-1].join(1)
+        self.assertEqual(pipeline.parents[-1],{'mode':'fresh_grounded_generation','unit':{'public':'checked'}})
+        self.jobs.cancel(self.token,self.request)
+        with self.assertRaisesRegex(Held,'parent_unavailable'):
+            self.jobs.start(self.token,'erased_context_0003','journey:simpler:en',parent_request=self.request)
+        self.assertEqual(self.jobs.runs,2)
+        now[0]=601
+        with self.assertRaisesRegex(Held,'owner_unavailable'):self.jobs.public(self.token,child)
+
     def test_rehearsal_refresh_evicts_inactive_owner_without_displacing_active_work(self):
         entered, gate=threading.Event(),threading.Event()
         class Delayed:

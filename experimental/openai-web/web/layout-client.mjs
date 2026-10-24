@@ -1,22 +1,14 @@
 import { baselineLayout, validateLayout } from "./experience-core.mjs";
 // The operation timeout owns fetch, body consumption and polling. No visitor
 // string enters this client: the only provider input is an admitted intent ID.
-export async function requestLayout({
-  intent,
-  ticket,
-  session,
-  token,
-  signal,
-  onRequest = () => {},
-  fetcher = fetch,
-  timeoutMs = 25000,
-}) {
+export async function requestLayout(options) {
+  const { intent } = options;
   const fallback = () => ({
     layout: validateLayout(baselineLayout(intent), intent),
     mode: "fallback",
   });
   if (
-    !token ||
+    !options.token ||
     ![
       "effects",
       "rate",
@@ -28,6 +20,32 @@ export async function requestLayout({
     ].includes(intent)
   )
     return { ...fallback(), mode: "local" };
+  return requestProviderJob({
+    ...options,
+    task: "layout:" + intent,
+    fallback,
+    decode: (result) => ({
+      layout: validateLayout(result.layout, intent),
+      mode: "live",
+    }),
+  });
+}
+
+// Shared transport/ownership path for layout and fresh evidence answers.
+export async function requestProviderJob({
+  task,
+  parentRequest = null,
+  fallback,
+  decode,
+  ticket,
+  session,
+  token,
+  signal,
+  onRequest = () => {},
+  onNotStarted = () => {},
+  fetcher = fetch,
+  timeoutMs = 25000,
+}) {
   if (signal.aborted || !session.current(ticket)) return null;
   const id = crypto.randomUUID().replaceAll("-", ""),
     controller = new AbortController();
@@ -57,17 +75,34 @@ export async function requestLayout({
     const response = await fetcher("/api/provider/start", {
       ...opts,
       method: "POST",
-      body: JSON.stringify({ request_id: id, question_id: "layout:" + intent }),
+      body: JSON.stringify({
+        request_id: id,
+        question_id: task,
+        ...(parentRequest ? { parent_request_id: parentRequest } : {}),
+      }),
     });
-    if (!response.ok) throw Error("layout_held");
+    if (!response.ok) {
+      if (response.status === 409) {
+        const denial = await response.json();
+        if (
+          [
+            "parent_unavailable",
+            "run_limit",
+            "busy",
+            "owner_unavailable",
+            "budget_exhausted",
+            "request_conflict",
+            "cancelled",
+          ].includes(denial.error)
+        )
+          onNotStarted(denial.error);
+      }
+      throw Error("provider_held");
+    }
     let job = await response.json();
     while (session.current(ticket) && !operationSignal.aborted) {
       if (job.request_id !== id) throw Error("request_mismatch");
-      if (job.state === "ready")
-        return {
-          layout: validateLayout(job.result.layout, intent),
-          mode: "live",
-        };
+      if (job.state === "ready") return decode(job.result);
       if (
         ["held", "cancelled", "expired", "cancel_requested"].includes(job.state)
       )

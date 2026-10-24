@@ -1,6 +1,7 @@
 """One bounded Responses composition. No visitor text or generated facts."""
 import json
 from providers import Held, check_cancel
+from journey import JourneyPipeline, TASKS
 
 RECIPES = {
     'effects': ['scope', 'effects', 'original'],
@@ -14,14 +15,17 @@ RECIPES = {
 
 
 class ProductPipeline:
-    def __init__(self, base):
+    def __init__(self, base, allow_spanish=False, text_model='gpt-6-luna'):
         self.base = base
+        self.journey = JourneyPipeline(base.provider, allow_spanish, text_model)
 
     def run(self, cancel, stage, meter):
         return self.base.run(cancel, stage, meter)
 
-    def run_task(self, task, cancel, stage, meter):
+    def run_task(self, task, cancel, stage, meter, prior=None):
         check_cancel(cancel)
+        if task in TASKS:
+            return self.journey.run_task(task, cancel, stage, meter, prior=prior)
         if not isinstance(task, str) or not task.startswith('layout:') or task[7:] not in RECIPES:
             raise Held('task_unadmitted')
         intent = task[7:]
