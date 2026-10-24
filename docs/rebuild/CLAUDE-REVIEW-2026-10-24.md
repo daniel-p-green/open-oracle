@@ -190,3 +190,13 @@ after an upstream failure. Extended the existing transport owner proof with thes
 protocol cases; no paid retry follows. Human acoustic/civic/Spanish/accessibility,
 candidate background, second individual JCEB style, current certification,
 semantic composition, consolidated recap and map-text-equivalent gates remain.
+
+Subsequent independent lifecycle review found source selection surviving idle
+erase, then a direct accessibility-click expiry path. Both were repaired through
+the shared erase owner/capture guard. Actual real-clock browser checks additionally
+found a warning-layout scroll renewing activity at100s. Tagged numeric/event
+diagnosis established that cause; passive scroll was removed and explicit Continue
+added. Real Chrome erase occurred after~120.719s and next entry had no prior contest.
+Default debug logging was restored to off. Warning-focus handling was reviewed
+and repaired without claiming a human screen-reader trial. See the dated log for
+failed observations as well as completed proof.

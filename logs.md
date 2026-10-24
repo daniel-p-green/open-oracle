@@ -1389,3 +1389,58 @@ This is a backfill, not a contemporaneous event stream.
 - **Validation:** changed transport owner cases and syntax/whitespace pass after
   residual fixes; full provider-off Node/Python checks had passed the integrated
   source increment. Final remote CI will exercise all checks on the pushed code.
+
+### 2026-10-24 15:11 UTC — actual idle failure and first-return guard
+
+- **Completed local commit:** fd34825 contains the KC/source/review increment.
+  No new push yet; do not expose a known session-lifetime defect for convenience.
+- **Actual failed proof:** at15:07:33Z, the JCEB selection set15:05:17Z was still
+  displayed after more than120s; re-opening candidates preserved it. Therefore
+  the first real idle check did not pass. Background timer suspension/returning
+  focus ordering is a plausible mechanism, not a measured browser-internals fact.
+  Code inspection confirmed activity unconditionally touched the idle clock
+  before a delayed interval could erase the session.
+- **Fixed:** one existing-owner eraseSession path now serves explicit Erase and
+  interval expiry, clears source selection and suppresses idle autofocus. Capture-
+  phase activity checks expiry before touching. Includes direct click for
+  assistive inputs without pointer/key events; expired actions are consumed
+  before old controls can renew a turn. Independent review identified that
+  direct-click path before this final repair. No new controller or fake clock.
+- **Actual partial verification:** explicit Erase followed by candidate entry
+  starts kc-sample with empty contest. Final real120s idle check began15:11:20Z
+  with JCEB Independence; outcome still running at this entry. No human/AT/media
+  proof inferred from automation. Syntax/whitespace pass.
+- **Read-only hosting assessment:** no deployment configuration found in scoped
+  experimental/docs/workflow files, and connected Vercel's repository-filtered
+  project read returned no match in its available account scope. This does not
+  prove absence on other hosts/teams. No hosting project, access, credential or
+  billing change created; a safe metered deployment target remains unestablished.
+
+### 2026-10-24 15:26 UTC — traced idle feedback loop and verified erasure
+
+- **Diagnosis/correction:** earlier background-clock theories were not confirmed.
+  Installed MP-diagnosing-bugs guidance applied to the actual failing browser
+  loop. Temporary tagged logs recorded numeric clock values and event types only.
+  They showed the100s warning reveal causing two automatic scroll events, which
+  the generic scroll activity listener counted as input. That renewed the clock,
+  hid the warning and prevented120s expiry. No unexpected begin/reset or private
+  input was needed. The actual source/clock/event evidence, not the initial
+  theory, determined the fix.
+- **Fixed:** passive scroll no longer renews the session. Actual wheel, pointer,
+  key, focus and click input remain; a stable EN/ES Continue button gives an
+  explicit accessible extension path. Focus within that warning does not hide
+  its control or renew merely by landing there; activation renews and returns
+  focus to the reading workspace without scrolling. Warning copy no longer
+  promises generic AT scrolling extends time. Expired-input capture guard and
+  shared erase remain. Repeated identical live-warning text is not rewritten.
+- **Actual real-clock proof:** Chrome last input15:22:44.827Z; automatic erase
+  recorded15:24:45.546Z (~120.719s). Fresh AX state showed Session cleared,
+  empty question/workspace and no source controls; deliberate re-entry showed
+  kc-sample/empty contest, not prior JCEB Independence. This fixes the observable
+  original failure. No shortened timeout, clock injection or human/AT assumption.
+- **Cleanup/validation:** all temporary OO-IDLE-QA logs removed, core.mjs back to
+  unchanged bytes, default debug capture/export remains off. Node checks and
+  syntax/whitespace pass. Independent review closed capture/erase ordering and
+  identified the warning-focus issue repaired above. Final Spanish warning/
+  keyboard check began15:26:37Z; outcome pending. No new API reservations/costs,
+  human media, credentials or public deployment. Focused privacy commit next.

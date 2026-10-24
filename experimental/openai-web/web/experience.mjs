@@ -1696,7 +1696,7 @@ $("language").onchange = () => {
     );
   else workspace.replaceChildren();
 };
-$("reset").onclick = () => {
+function eraseSession({ focusInput = false } = {}) {
   sourceSelection = null;
   invalidate({ revokeConsent: true });
   intent = null;
@@ -1710,8 +1710,11 @@ $("reset").onclick = () => {
   workspace.replaceChildren();
   $("status").textContent = COPY[locale].clear;
   $("plan-mode").textContent = "";
-  $("question").focus();
-};
+  $("reorder").hidden = true;
+  $("idle-warning").hidden = true;
+  if (focusInput) $("question").focus();
+}
+$("reset").onclick = () => eraseSession({ focusInput: true });
 $("speaker-consent").onchange = () =>
   speaker.setConsent($("speaker-consent").checked);
 $("play").onclick = () => void speaker.play();
@@ -1726,32 +1729,49 @@ $("stop").onclick = () => {
       ? "Se detuvo la actividad pendiente."
       : "Pending activity stopped.";
 };
-for (const name of ["pointerdown", "keydown", "wheel", "scroll", "focusin"])
-  document.addEventListener(name, () => {
-    session.touch();
-    $("idle-warning").hidden = true;
-  });
+for (const name of ["pointerdown", "click", "keydown", "wheel", "focusin"])
+  document.addEventListener(
+    name,
+    (event) => {
+      // Background tabs may suspend interval delivery. The first returning
+      // activity must erase an expired session before it can extend that session.
+      if (intent && session.idle()) {
+        eraseSession();
+        // Consume the expired action before any old control can renew a turn.
+        // Include click for assistive inputs that emit no pointer/key event.
+        if (
+          ["pointerdown", "click", "keydown"].includes(name) &&
+          event.cancelable
+        )
+          event.preventDefault();
+        event.stopImmediatePropagation();
+      } else if ($("idle-warning").contains(event.target)) {
+        // Keep a focused Continue control stable until deliberate activation.
+        return;
+      } else session.touch();
+      $("idle-warning").hidden = true;
+    },
+    { capture: true },
+  );
+$("idle-continue").onclick = () => {
+  session.touch();
+  workspace.focus({ preventScroll: true });
+  $("idle-warning").hidden = true;
+};
 setInterval(() => {
   $("idle-warning").hidden = !intent || !session.idle(Date.now() + 20000);
-  $("idle-warning").textContent =
+  const warningMessage =
     locale === "es"
-      ? "La sesión se borrará pronto por inactividad. Desplácese, toque o pulse una tecla para continuar."
-      : "This session will clear soon for inactivity. Scroll, tap or press a key to continue.";
+      ? "La sesión se borrará pronto por inactividad. Use Continuar esta sesión, toque o pulse una tecla para continuar."
+      : "This session will clear soon for inactivity. Use Continue this session, tap or press a key to continue.";
+  if ($("idle-message").textContent !== warningMessage)
+    $("idle-message").textContent = warningMessage;
+  const continueLabel =
+    locale === "es" ? "Continuar esta sesión" : "Continue this session";
+  if ($("idle-continue").textContent !== continueLabel)
+    $("idle-continue").textContent = continueLabel;
   if (intent && session.idle()) {
-    sourceSelection = null;
-    invalidate({ revokeConsent: true });
-    intent = null;
-    document.body.classList.remove("has-content");
-    $("experience-grid").classList.remove("journey-open");
-    journeyActive = false;
-    clearJourneyHistory();
-    $("journey-panel").hidden = true;
-    $("journey-answer").replaceChildren();
-    $("question").value = "";
-    workspace.replaceChildren();
-    $("status").textContent = COPY[locale].clear;
-    $("plan-mode").textContent = "";
-    $("reorder").hidden = true;
+    eraseSession();
   }
 }, 1000);
 addEventListener("pagehide", () => {
