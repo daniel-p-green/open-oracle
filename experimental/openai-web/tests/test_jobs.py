@@ -191,6 +191,40 @@ class JobsTests(unittest.TestCase):
         self.assertEqual(len(rows),4)
         self.assertAlmostEqual(sum(row['reserved_usd'] for row in rows),.40)
 
+    def test_staged_package_keeps_old_trials_closed_and_blocks_unknown_dispatch(self):
+        from jobs import STAGED_TRIAL_PACKAGE as package
+        budget=Budget(self.path,per_run=.01)
+        with self.assertRaisesRegex(Held,'trial_prerequisite'):
+            budget.reserve('premature','voice:synthetic:en',trial_package=package,trial_purpose='english')
+        budget.reserve('text',trial_package=package,trial_purpose='text_initial')
+        budget.attempt('text')
+        budget.finish('text','held')  # HTTP attempt without metered response is uncertain.
+        with self.assertRaisesRegex(Held,'outcome_unconfirmed'):
+            budget.reserve('repair',trial_package=package,trial_purpose='text_repair',repair_basis='named offline repair')
+        budget.record('text','journey_text',{'input_tokens':10,'output_tokens':10})
+        budget.finish('text','held')
+        with self.assertRaisesRegex(Held,'trial_prerequisite'):
+            budget.reserve('skip','voice:synthetic:en',trial_package=package,trial_purpose='english')
+        budget.reserve('repair',trial_package=package,trial_purpose='text_repair',repair_basis='named offline repair')
+        for _ in range(4):
+            budget.attempt('repair');budget.record('repair','review',{'input_tokens':10,'output_tokens':0})
+        with self.assertRaisesRegex(Held,'trial_attempt_limit'): budget.attempt('repair')
+        budget.finish('repair','ready')
+        budget.reserve('en','voice:synthetic:en',trial_package=package,trial_purpose='english')
+        with self.assertRaisesRegex(Held,'outcome_unconfirmed'):
+            budget.reserve('es','voice:synthetic:es',trial_package=package,trial_purpose='spanish')
+        budget.record('en','fresh_audio',{'seconds':2})
+        budget.finish('en','ready',voice_receipt={'finalized':True,'close_reason':'close_requested','usage':{'seconds':2},'errors':[]})
+        for purpose in ('spanish','native_repair','recovery'):
+            budget.reserve(purpose,'voice:synthetic:es' if purpose=='spanish' else 'voice:synthetic:en',trial_package=package,trial_purpose=purpose,repair_basis='named offline repair' if purpose=='native_repair' else None)
+            budget.record(purpose,'fresh_audio',{'seconds':2})
+            budget.finish(purpose,'ready',voice_receipt={'finalized':True,'close_reason':'close_requested','usage':{'seconds':2},'errors':[]})
+        with self.assertRaisesRegex(Held,'trial_package_exhausted'):
+            budget.reserve('extra',trial_package=package,trial_purpose='text_initial')
+        rows=json.loads(self.path.read_text())['runs']
+        self.assertAlmostEqual(sum(r['reserved_usd'] for r in rows),.42)
+        self.assertEqual(sum(r['requests_max'] for r in rows),52)
+
     def test_internal_voice_deadline_is_held_without_disguising_it_as_operator_cancel(self):
         class Deadline:
             def run(self,cancel,progress,meter):

@@ -1,4 +1,4 @@
-# One staged API verification bundle — awaiting explicit approval
+# One staged API verification bundle — approved October 24, 2026
 
 The normal review rejected the four-request text check before process creation:
 “This is a new paid external text test outside the specifically approved
@@ -22,7 +22,10 @@ manifest hash. Data/services/limits below remain fixed; no unrelated features.
 >billing/login changes, purchases, extra access, public deployment or retries
 >after a tool denial.
 
-This is a proposal, not received permission or a provider-side dollar hard cap.
+Daniel explicitly approved this exact six-run/52-attempt/$0.42 bundle in reply
+to parent message Sentinel_861f4223f7ac81919bf442fcf4cdbf44
+(reply Sentinel_09d54ca8577c81918b3000c61c826579). This is application-enforced
+permission and reservations, not a provider-side dollar hard cap.
 The full reservation is retained on uncertain outcomes. Skip unnecessary stages.
 The old four-purpose package stays closed. Only after new approval, enforce a
 distinct new ledger package with atomic aggregate/purpose caps and native final

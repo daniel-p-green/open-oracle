@@ -2176,3 +2176,26 @@ This is a backfill, not a contemporaneous event stream.
   interpretation, private-safe human capture and primary browser/human QA.
   Host-policy-denied localhost8925 check remains un-retried. No credit-login
   bypass, new credentials, human media, unbounded ingest or public readiness claim.
+
+### 2026-10-24 21:08:55 UTC — exact staged verification authorization received
+
+- **Approved:** Daniel replied “yes approved” to the exact six-run, 52-attempt,
+  $0.42 reserved bundle within the existing $200 cap (parent
+  Sentinel_861f4223f7ac81919bf442fcf4cdbf44; reply
+  Sentinel_09d54ca8577c81918b3000c61c826579). Existing account/credential and public
+  synthetic inputs only; no human media, new access or billing login. This is
+  materially new authority for one normal retry of the known-not-executed text
+  launcher, not a workaround for the earlier denial.
+- **Implemented before dispatch:** distinct staged ledger package with atomic
+  aggregate runs/reservations/allocated-attempt ceilings, unique purposes,
+  per-dispatch text counter, prerequisite and repair-basis checks, uncertain
+  response/closure barrier. Old four-trial package remains exhausted/unchanged.
+- **Verification:** existing budget-owner boundary checks plus one staged
+  lifecycle case pass: missing metered response blocks next stage, premature
+  voice blocked, dispatch cap enforced, six allocations total52/$0.42. These are
+  temporary local ledgers, no API requests. Installed MP-diagnosing-bugs,
+  test-audit and OpenAI Docs guidance read/applied. Official pricing re-fetched;
+  relevant Luna/Live/Transcribe rates unchanged. No fresh balance/login claim.
+- **Next/running:** fixed text-contract check first; semantic hold pauses for
+  diagnosis, unknown usage stops sequence. No provider request has run yet at
+  this entry. Focused code commit will pin this envelope before dispatch.

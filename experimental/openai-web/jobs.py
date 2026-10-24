@@ -18,6 +18,10 @@ TOKEN_TTL = 600
 JOB_TTL = 120
 VOICE_TRIAL_PACKAGE = 'native_voice_four_trials_20261024'
 VOICE_TRIAL_PURPOSES = {'english_diagnostic', 'repair_verification', 'spanish', 'recovery'}
+STAGED_TRIAL_PACKAGE = 'native_voice_staged_six_20261024'
+STAGED_TRIAL_LIMITS = {'text_initial': (.01, 4), 'text_repair': (.01, 4),
+                       'english': (.10, 11), 'spanish': (.10, 11),
+                       'native_repair': (.10, 11), 'recovery': (.10, 11)}
 
 
 class Budget:
@@ -43,7 +47,7 @@ class Budget:
             finally:
                 if os.path.exists(name): os.unlink(name)
 
-    def reserve(self, run, task=None, *, trial_package=None, trial_purpose=None):
+    def reserve(self, run, task=None, *, trial_package=None, trial_purpose=None, repair_basis=None):
         speech=bool(task and task.startswith('speech:'))
         voice=bool(task and task.startswith('voice:synthetic:'))
         amount = .10 if speech or voice else self.journey_reserve if task and task.startswith('journey:') else min(self.per_run, .01) if task else self.per_run
@@ -55,7 +59,29 @@ class Budget:
             amounts = [r.get('reserved_usd') for r in runs]
             if any(type(n) not in (int, float) or not math.isfinite(n) or n < 0 for n in amounts): raise Held('budget_invalid')
             if sum(amounts) + amount > maximum: raise Held('budget_exhausted')
-            if trial_package is not None or trial_purpose is not None:
+            if trial_package == STAGED_TRIAL_PACKAGE:
+                if trial_purpose not in STAGED_TRIAL_LIMITS: raise Held('trial_package_invalid')
+                expected, attempts = STAGED_TRIAL_LIMITS[trial_purpose]
+                text_trial = trial_purpose.startswith('text_')
+                if amount != expected or (text_trial and task is not None) or (not text_trial and not voice):
+                    raise Held('trial_package_invalid')
+                if 'repair' in trial_purpose and (type(repair_basis) is not str or not 10 <= len(repair_basis) <= 200):
+                    raise Held('trial_repair_basis_required')
+                previous = [r for r in runs if r.get('trial_package') == trial_package]
+                if (len(previous) >= 6 or sum(r['reserved_usd'] for r in previous) + amount > .420001
+                        or sum(r['requests_max'] for r in previous) + attempts > 52
+                        or any(r.get('trial_purpose') == trial_purpose for r in previous)):
+                    raise Held('trial_package_exhausted')
+                if any(r.get('state') == 'reserved' or r.get('trial_closure_confirmed') is not True for r in previous):
+                    raise Held('trial_package_outcome_unconfirmed')
+                if trial_purpose != 'text_initial' and not previous: raise Held('trial_prerequisite')
+                if not text_trial and not any(r.get('trial_purpose') in {'text_initial','text_repair'} and r.get('state') == 'ready' for r in previous):
+                    raise Held('trial_prerequisite')
+                # A semantic hold requires diagnosis and its allocated repair,
+                # never another unchanged-language run merely to get a pass.
+                if previous and previous[-1].get('state') == 'held' and 'repair' not in trial_purpose:
+                    raise Held('trial_repair_required')
+            elif trial_package is not None or trial_purpose is not None:
                 if trial_package != VOICE_TRIAL_PACKAGE or trial_purpose not in VOICE_TRIAL_PURPOSES or not voice:
                     raise Held('trial_package_invalid')
                 previous = [r for r in runs if r.get('trial_package') == trial_package]
@@ -69,8 +95,20 @@ class Budget:
                          'reserved_usd': amount, 'retry': False, 'requests_max': 9 if voice else 2 if journey or speech else 1 if task else 4, 'stages': []})
             if trial_package:
                 runs[-1].update(trial_package=trial_package, trial_purpose=trial_purpose)
+                if trial_package == STAGED_TRIAL_PACKAGE:
+                    runs[-1].update(requests_max=attempts, requests_attempted=0)
+                    if repair_basis: runs[-1]['repair_basis'] = repair_basis
             data['conservative_reservations_usd'] = sum(amounts) + amount
             data['state'] = 'integrated public-provider test in flight'
+
+    def attempt(self, run):
+        """Atomic pre-dispatch counter for the staged public test transport."""
+        with self.locked() as data:
+            row = next(r for r in data['runs'] if r['id'] == run)
+            if row.get('trial_package') != STAGED_TRIAL_PACKAGE or row['state'] != 'reserved':
+                raise Held('trial_package_invalid')
+            if row['requests_attempted'] >= row['requests_max']: raise Held('trial_attempt_limit')
+            row['requests_attempted'] += 1
 
     def record(self, run, stage, usage):
         if not isinstance(usage, dict): raise Held('usage_unconfirmed')
@@ -103,6 +141,9 @@ class Budget:
         with self.locked() as data:
             row = next(r for r in data['runs'] if r['id'] == run)
             row['state'] = state
+            if row.get('trial_package') == STAGED_TRIAL_PACKAGE and row['trial_purpose'].startswith('text_'):
+                row['trial_closure_confirmed'] = (0 < row['requests_attempted'] <= row['requests_max']
+                    and len(row['stages']) == row['requests_attempted'])
             if row.get('trial_package') and voice_receipt is not None:
                 usage=voice_receipt.get('usage',{}) if type(voice_receipt) is dict else {}
                 seconds=usage.get('seconds') if type(usage) is dict else None
