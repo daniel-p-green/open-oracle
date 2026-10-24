@@ -81,3 +81,13 @@ provider tests now show first checked speech and native contextual map selection
 but the second answer held on language review. Whole-loop/browser verification
 remains pending. Primary transcript schema and stable view state are application
 adaptations, not copied reference code. See NATIVE-VOICE-TRIALS-2026-10-24.json.
+
+The voice-first replay increment applies the stable-shell/shared-event pattern
+to provisional/unavailable/held/final transcript states and map transitions.
+`voice.mjs` keeps one session owner; source controls now complete alongside
+validated geometry before optional legal-status IO. `map-view.mjs` reports
+allowlisted local view selection so an unchanged conversational focus need not
+reset statewide. `tests/manual/replay_voice_ui.py` replays captured public route
+events without a model/provider and labels this explicitly; no showcase code
+was copied or new framework/license introduced. Browser replay demonstrates
+rendering/state behavior, not live generation, translation quality or speed.

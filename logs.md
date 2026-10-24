@@ -1799,3 +1799,71 @@ This is a backfill, not a contemporaneous event stream.
   before execution as recorded above; browser-control capability unavailable for
   primary interaction QA and renewed existing Opus5.5High source-only review. No
   alternate credential/login/review route, unapproved media or deployment used.
+
+### 2026-10-24 18:17 UTC — offline caption diagnosis and actual primary-UI replay
+
+- **Scope:** denied paid diagnostic remained paused, no retry/alternate launcher,
+  new credential, billing login, media, publication or extra API spend. User
+  stepping away does not resolve a tool denial. Reused debugging, frontend QA
+  and Peter Steinberger test-audit guidance for high-value behavior checks.
+- **Language evidence limit:** saved run2 contains23 input deltas/16 displayed
+  timed fragments but no rejected raw fragments/windows, held second draft or
+  predicate scores. Cannot establish true language mismatch versus false
+  positive offline. Existing .95 critical language/factual gates unchanged;
+  extended the existing owner proof so isolated negative language review still
+  holds even when other predicates pass. Public-only diagnostics are prepared
+  in the external bounded runner, which was not executed.
+- **Concrete caption repair:** official native schema measures start/end from
+  session beginning, not sent PCM count. Removed that invalid clock equivalence.
+  Synthetic audio commands carry owned IDs; only echoed matching IDs with valid
+  timing attach provisional words. Missing/invalid binding marks unavailable and
+  persists a gap label; known prior IDs cannot contaminate a current turn.
+  Echo is optional in the API: actual coverage still unverified, not declared
+  fixed. Protocol proof covers unknown IDs with plausible old timing, valid IDs
+  with differing clocks and missing timing after an accepted partial.
+- **Actual Chrome1002x757 UI replay:** browser control returned. New local replay
+  adapter/committed public-only event fixture reuse the real jobs/HTTP/session/UI
+  path, no provider instance/key/shared ledger/API/player. Explicit offline
+  banner/status; historical reviewed text/audio omitted rather than minted into
+  a current success receipt. Observed measure→actual paired KC maps, selected KC
+  buttons, two separate provisional EN turns, Stop legal demotion and language
+  erasure/Spanish labels. No relevant console errors or horizontal overflow in
+  that desktop state. Actual inputs remain incomplete/provisional.
+- **UI repairs:** Spanish skip/sample/visual accessible labels; stopped pending
+  captions become held; pending source display no longer spins after Stop; new
+  session no longer displays Session erased. Remember local map view across an
+  unchanged model focus; retained maps keep original/source context. Source hash
+  wrapping uses overflow-wrap. These are focused primary interaction fixes.
+- **Responsive limitation:** Chrome viewport override returned unchanged1002px
+  then inconsistent300px/scale through scoped CDP. Cleared overrides/restored
+ 1002x757; no390px or physical mobile proof claimed. No persistent browser
+  setting or security permission changed.
+- **Independent review:** found missing-timing gaps bypassing unavailable state
+  and map Stop preserving geometry before original/source controls. Fixed both:
+  gap admission covers all unbindable fragments, source controls mount before
+  optional legal IO. Re-review closed both by inspection. Broader provider-off
+  Node/Python/loopback checks passed; focused protocol/map/client checks passed
+  after repairs. No test count used as quality or live-acceptance claim.
+- **New denied browser check:** additional same-origin replay Stop-before-map
+  scenario targeting http://127.0.0.1:8925/ returned "Host access is restricted by
+  policy." No completed scenario proof; setup/tab outcome uncertain, no retry
+  or alternate browser route. Earlier completed replay evidence remains scoped.
+- **Claude scope clarified:** actual Opus5.5High visible in fresh tab for the
+  existing OpenOracle review conversation. File-chooser APIs timed out before
+  setFiles, second attempt reset UI tool. No native bundle attachment or prompt
+  sent, no model critique. Native-app lookup selected an unrelated window and
+  was not operated. Did not change extension permissions. Final source-only
+  native v2 bundle193186bytes/SHAbee77e8c…20cd4 outside Git;17files+instructions,
+  no account/credential/private data. Earlier frozen payloads untouched.
+- **Single next approval plan:** docs/rebuild/NATIVE-VOICE-NEXT-TEST-SPEC.md
+  requests up to4 distinct synthetic native trials, <=0.10 each/<=0.40 aggregate
+  reserved inside existing200. Existing account/credential; public EN pair,
+  installed-voice synthetic ES pair, named-repair verification and one recovery
+  goal. Max45s operation+15s close, capped calls, no automatic retries; uncertainty/
+  denied action/auth/scope/cost/closure failures stop sequence. This is planning
+  only; reservation is not a vendor dollar hard cap. Current shared reservations
+  remain2.16, recorded direct estimate0.2754198 excluding older unmetered calls.
+- **Next:** normal authorization for that bounded sequence; resolve local host/
+  file-chooser capability without new access; actual returned native-source
+  Opus review; then measured full EN/ES caption/voice/map behavior. Human media,
+  source/style/rights coverage, accessibility and showcase acceptance stay open.

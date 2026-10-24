@@ -275,3 +275,29 @@ text and final checked-audio transcripts remain distinct. Canonical final turns
 recover checked captions after slow polling; partial native input is never called
 final. Offline checks establish neither natural spoken conversation nor human
 pronunciation/comprehension.
+
+Offline primary-UI replay (no OpenAI instance, credential, shared ledger, capture
+or player): with the already verified local map-review assets present, run:
+
+```sh
+python3 experimental/openai-web/tests/manual/replay_voice_ui.py --trace experimental/openai-web/fixtures/native-voice-route-replay.json --map-review-dir ../map-review --port 8925
+```
+
+Open http://127.0.0.1:8925/ and expand Development controls. The explicit OFFLINE
+REPLAY banner/status must remain visible. Replay public events: first provisional
+input→measure; after a bounded pause, second provisional input→Kansas City maps;
+the captured failure is preserved. Stop demotes the legal assertion; language
+change/Erase clear turns and maps. The held historical checked text/audio is not
+replayed as a current success receipt. Spanish replay is unavailable (no captured
+ES conversation); switching shell language must not invent one. This exercises
+actual DOM/rendering and the shared job/session route, not live inference, input
+ASR quality, heard sound or real responsiveness. Temporary ledger is a simulated
+fixture and never the shared API ledger. Ctrl-C stops the loopback server.
+
+The original native caption code incorrectly compared session-timeline ms with
+sent PCM offsets. Input appends now carry application-owned command IDs and
+provisional captions require their echoed client_event_id. Missing correlation
+is marked incomplete/unavailable, not guessed. The API documents that echo as
+optional, so actual coverage still requires a bounded live diagnostic or a
+separately reviewed public-input ASR fallback. No language threshold was lowered
+without the absent held draft/predicate evidence.

@@ -22,6 +22,9 @@ let language = "en",
   geometry;
 let legalExpiryTimer;
 let hasConversation = false;
+let visualComplete = false;
+let lastMapView = "statewide";
+const inputGaps = new Set();
 function transcript(role, number, text, state) {
   const host = $("conversation-turns");
   let item = host.querySelector(
@@ -39,9 +42,15 @@ function transcript(role, number, text, state) {
     provisional: es()
       ? "Transcripción provisional · idioma seleccionado"
       : "Provisional transcript · selected language",
+    unavailable: es()
+      ? "Transcripción incompleta · alineación no confirmada"
+      : "Incomplete transcript · alignment unconfirmed",
     checked_text: es()
       ? "Respuesta comprobada · audio pendiente"
       : "Checked answer text · audio pending",
+    held: es()
+      ? "Texto comprobado · audio sin publicar"
+      : "Checked text · audio not released",
     final: es()
       ? "Transcripción final del audio comprobado · sin reproducción"
       : "Final checked audio transcript · not played",
@@ -84,8 +93,19 @@ function welcome() {
   return box;
 }
 const status = (text) => {
-  $("connection").textContent = text;
+  const prefix = capability?.mode === "offline_public_trace_replay"
+    ? (es() ? "REPRODUCCIÓN SIN CONEXIÓN · " : "OFFLINE REPLAY · ") : "";
+  $("connection").textContent = prefix + text;
 };
+function holdPendingCaptions() {
+  for (const item of $("conversation-turns").querySelectorAll('[data-transcript-state="checked_text"]')) {
+    const text = item.lastElementChild.textContent;
+    transcript("assistant", Number(item.dataset.turn), text, "held");
+  }
+  $("answer-state").textContent = es()
+    ? "Audio retenido · no se reproduce"
+    : "Audio held · not played";
+}
 function stop(erase = false) {
   session.reset();
   abort?.abort();
@@ -95,12 +115,20 @@ function stop(erase = false) {
   turn = 0;
   visualRevision++;
   clearTimeout(legalExpiryTimer);
+  if (!erase && hasConversation) {
+    holdPendingCaptions();
+    if (!visualComplete && !map)
+      $("visual").replaceChildren(make("p", es() ? "Vista detenida." : "Display stopped."));
+  }
   if (erase) {
     hasConversation = false;
     $("voice-idle").hidden = true;
     $("conversation-turns").replaceChildren();
     map?.dispose();
     map = null;
+    visualComplete = false;
+    lastMapView = "statewide";
+    inputGaps.clear();
   }
   const legalNote = document.querySelector("[data-legal-status]");
   if (legalNote) {
@@ -157,6 +185,7 @@ async function view(action, ticket) {
   const current = () =>
     session.current(ticket) && ownRevision === visualRevision;
   const host = $("visual");
+  visualComplete = false;
   map?.dispose();
   map = null;
   host.replaceChildren(
@@ -180,13 +209,14 @@ async function view(action, ticket) {
       map = mountMapComparison(maps, geometry, {
         locale: language,
         planLabels: measure.plan_labels,
+        onChange: (selection) => { lastMapView = selection.view; },
       });
       if (action.mapFocus !== "unchanged")
-        map.setView(
+        lastMapView =
           { statewide: "statewide", kansas_city: "kc", st_louis: "stl" }[
             action.mapFocus
-          ],
-        );
+          ];
+      map.setView(lastMapView);
       host.append(
         make(
           "p",
@@ -195,6 +225,10 @@ async function view(action, ticket) {
             : "Accessible territorial description and reuse clearance remain pending. Your district is not inferred.",
         ),
       );
+      // A retained map must already have its checked original/source context.
+      // Optional legal-status IO cannot be the gate for those source controls.
+      original(host);
+      visualComplete = true;
       const legal = await loadMapStatus(signal).catch(() => null);
       if (!current()) return;
       const note = make(
@@ -210,7 +244,7 @@ async function view(action, ticket) {
             ? "Estado legal vigente no verificado."
             : "Current legal status is unverified.",
       );
-      note.lang = "en";
+      note.lang = legal && mapStatusCurrent(legal) ? "en" : language;
       note.dataset.legalStatus = "snapshot";
       host.append(note);
       if (legal && mapStatusCurrent(legal)) {
@@ -319,7 +353,10 @@ async function view(action, ticket) {
       host.append(
         make("h2", es() ? "La pregunta oficial" : "The official question"),
       );
-    if (current()) original(host);
+    if (current()) {
+      if (action.view !== "maps") original(host);
+      visualComplete = true;
+    }
   } catch {
     if (current())
       host.replaceChildren(
@@ -340,7 +377,14 @@ function progress(values, ticket) {
     revision = action.revision;
     turn = action.turn;
     if (action.stage === "input_partial") {
-      transcript("user", action.turn, action.text, "provisional");
+      transcript("user", action.turn, action.text, inputGaps.has(action.turn) ? "unavailable" : "provisional");
+      continue;
+    }
+    if (action.stage === "input_unavailable") {
+      inputGaps.add(action.turn);
+      transcript("user", action.turn,
+        es() ? "No se puede asociar todo el texto recibido con este turno. No se muestra una transcripción final."
+          : "Not all received text can be bound to this turn. A final input transcript is unavailable.", "unavailable");
       continue;
     }
     const labels = {
@@ -386,6 +430,9 @@ async function synthetic() {
   hasConversation = true;
   abort = new AbortController();
   $("synthetic-run").disabled = true;
+  $("caption").textContent = es()
+    ? "El texto recibido aparecerá aquí. Las transcripciones provisionales pueden estar incompletas."
+    : "Received text will appear here. Provisional transcripts may be incomplete.";
   status(
     es()
       ? "Iniciando prueba pública sintética…"
@@ -408,13 +455,14 @@ async function synthetic() {
     },
   });
   if (!session.current(ticket)) return;
-  if (!result)
+  if (!result) {
+    holdPendingCaptions();
     status(
       es()
         ? "La interacción no completó todas las comprobaciones. No se reproduce audio ni se reintenta automáticamente."
         : "The interaction did not complete all checks. No audio is played and there is no automatic retry.",
     );
-  else {
+  } else {
     for (const action of result)
       transcript("assistant", action.turn, action.text, "final");
     $("answer-state").textContent = es()
@@ -437,6 +485,9 @@ $("language").onchange = () => {
   language = $("language").value;
   $("synthetic-run").disabled = !fixtureAvailable();
   document.documentElement.lang = language;
+  $("skip-visual").textContent = es() ? "Ir a la explicación visual" : "Skip to the visual explanation";
+  $("sample-label").textContent = es() ? "Voz IA · ejemplo público de Missouri" : "AI voice · Missouri public-source example";
+  $("visual").setAttribute("aria-label", es() ? "Explicación visual" : "Visual explanation");
   $("visual").replaceChildren(welcome());
   $("eyebrow").textContent = es()
     ? "COMPRENDA LA BOLETA"
@@ -464,6 +515,7 @@ $("language").onchange = () => {
   $("source-label").textContent = es()
     ? "Fuentes, privacidad y estado de la vista"
     : "Sources, privacy and preview status";
+  developmentCopy();
   $("scope").textContent = es()
     ? "Ejemplo público: Proposición A de Missouri · KCEB W1-P7 · 3 de noviembre de 2026. Su boleta y su distrito no están verificados. Sin recomendaciones de voto."
     : "Public example: Missouri Proposition A · KCEB W1-P7 · November 3, 2026. Your personal ballot and district are unverified. No vote recommendations.";
@@ -488,6 +540,15 @@ $("language").onchange = () => {
   );
 };
 addEventListener("pagehide", () => stop(true));
+function developmentCopy() {
+  if (capability?.mode !== "offline_public_trace_replay") return;
+  $("synthetic-run").textContent = es()
+    ? "Reproducir eventos públicos · sin API ni sonido"
+    : "Replay public events · no API or sound";
+  $("development-description").textContent = es()
+    ? "Solo prueba local: eventos públicos capturados, reloj acelerado y fallo conservado. Sin modelos, cargos, captura ni reproducción de audio. No demuestra una conversación en vivo."
+    : "Local testing only: captured public events, accelerated clock and preserved failure. No models, charges, capture or audio playback. This does not demonstrate a live conversation.";
+}
 session.touch();
 for (const name of ["pointerdown", "click", "keydown", "wheel", "focusin"])
   document.addEventListener(name, (event) => {
@@ -531,6 +592,7 @@ try {
   capability = await response.json();
   $("development").hidden = !capability.review_tools;
   $("synthetic-run").disabled = !fixtureAvailable();
+  developmentCopy();
   status("Development preview · human conversation not yet enabled");
 } catch {
   status("Connection unavailable · microphone and speakers off");

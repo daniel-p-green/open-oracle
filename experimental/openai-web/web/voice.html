@@ -10,12 +10,12 @@
     <script type="module" src="/voice.mjs"></script>
   </head>
   <body>
-    <a class="skip" href="#visual">Skip to the visual explanation</a>
+    <a class="skip" id="skip-visual" href="#visual">Skip to the visual explanation</a>
     <header>
       <a class="brand" href="/"
         ><img src="/logo.svg" width="34" height="34" alt="" />OpenOracle</a
       >
-      <span class="sample">AI voice · Missouri public-source example</span>
+      <span class="sample" id="sample-label">AI voice · Missouri public-source example</span>
       <label
         >Language / Idioma
         <select id="language">
@@ -92,7 +92,7 @@
       </details>
       <details id="development" hidden>
         <summary>Development controls · synthetic inputs only</summary>
-        <p>
+        <p id="development-description">
           Runs authored public synthetic audio through GPT-Live, native
           Decisions and grounded Responses. No human capture or device playback.
           Counts against the configured bounded test allowance.

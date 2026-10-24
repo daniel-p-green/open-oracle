@@ -58,6 +58,14 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
                     if kind=='session.start':await self.queue.put({'type':'session.started'})
                     elif kind=='session.input_audio.append' and not self.routed:
                         self.routed=True
+                        # Same-session timing is not a sent-PCM byte offset.
+                        # Unknown commands with plausible timing stay withheld;
+                        # an owned command can bind even when clocks differ.
+                        fragments=([(event['event_id'],'public input',40000),(event['event_id'],'omitted',None)] if fault=='none'
+                                   else [('foreign','incorrect',0),(event['event_id'],'public input',40000)])
+                        for command,delta,start in fragments:
+                            await self.queue.put({'type':'session.input_transcript.delta','client_event_id':command,
+                                'delta':delta,**({'start_ms':start,'end_ms':start+200} if start is not None else {})})
                         await self.queue.put({'type':'session.delegation.created','delegation':{'target':'decisions','id':'fixture_delegation'}})
                         answers=[{'type':'choice','name':name+'_turn_1','choice':value} for name,value in [('view','source'),('map_focus','unchanged'),('delivery','brief')]]
                         await self.queue.put({'type':'decision.event','delegation_id':'fixture_delegation','event':{'type':'decision.completed','decision':{'answers':answers}}})
@@ -74,8 +82,14 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
                         asyncio.run_coroutine_threadsafe(socket.audio(),socket.loop).result(timeout=1);time.sleep(.03)
                     return {'text':expected,'languages':[{'code':'en'}]}
             async def run():
+                updates=[]
                 with patch.dict(sys.modules,{'websockets':SimpleNamespace(connect=lambda *a,**k:socket)}):
-                    return await PublicSyntheticVoiceLoop(Provider(),seconds=15).run([fixture],threading.Event(),lambda *_:None,lambda *_:None)
+                    result=await PublicSyntheticVoiceLoop(Provider(),seconds=15).run([fixture],threading.Event(),lambda *_:None,updates.append)
+                self.assertEqual([e['text'] for e in updates if e['stage']=='input_partial'],['public input'])
+                self.assertEqual(len([e for e in updates if e['stage']=='input_unavailable']),1)
+                self.assertEqual([e['stage'] for e in updates if e['stage'] in {'input_partial','input_unavailable'}],
+                                 ['input_partial','input_unavailable'] if fault=='none' else ['input_unavailable','input_partial'])
+                return result
             with self.subTest(fault=fault):
                 result=asyncio.run(run())
                 self.assertEqual(result['all_turns_checked'],fault=='none')

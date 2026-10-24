@@ -25,11 +25,11 @@ class JourneyTests(unittest.TestCase):
         question = load_question()
         draft = {'operation':'overview','language':'en','sections':[{'source_id':'question','text':'This question asks whether to approve House Bill No. 1 (2025 Second Extraordinary Session). The ballot describes the act as replacing Missouri’s existing congressional plan.'}]}
         class Provider:
-            def __init__(self): self.calls=[]; self.reject=False; self.low_delivery=False; self.components=['explanation','original','uncertainty']
+            def __init__(self): self.calls=[]; self.reject=False; self.low_delivery=False; self.language_mismatch=False; self.components=['explanation','original','uncertainty']
             def post(self,path,body,cancel):
                 self.calls.append((path,body));usage={'input_tokens':400,'output_tokens':80 if path=='responses' else 0}
                 if path=='responses': return {'status':'completed','usage':usage,'output':[{'type':'message','content':[{'type':'output_text','text':json.dumps(dict(draft,components=self.components))}]}]}
-                return {'usage':usage,'answers':[{'type':'predicate','name':name,'probability':.1 if self.reject else .9 if self.low_delivery and name in {'attributed','request_fit'} else .99} for name in ['entailed','no_additions','attributed','request_fit','polarity_safe','language_match']]}
+                return {'usage':usage,'answers':[{'type':'predicate','name':name,'probability':.1 if self.reject or self.language_mismatch and name=='language_match' else .9 if self.low_delivery and name in {'attributed','request_fit'} else .99} for name in ['entailed','no_additions','attributed','request_fit','polarity_safe','language_match']]}
         provider=Provider();pipeline=JourneyPipeline(provider);cancel=threading.Event();metered=[]
         result,audio=pipeline.run_task('journey:overview:en',cancel,lambda _:None,lambda *args:metered.append(args))
         self.assertEqual(result['unit'],draft);self.assertEqual(audio,b'');self.assertFalse(result['raw_visitor_input_sent'])
@@ -37,6 +37,10 @@ class JourneyTests(unittest.TestCase):
         self.assertFalse(provider.calls[0][1]['store']);self.assertEqual(provider.calls[0][1]['max_output_tokens'],512)
         self.assertEqual(result['presentation'], {'components':['explanation','original','uncertainty']})
         self.assertEqual(result['presentation_mode'], 'model_selected')
+        provider.language_mismatch=True
+        with self.assertRaisesRegex(Held,'journey_language_match_held'):
+            pipeline.run_task('journey:overview:en',cancel,lambda _:None,lambda *_:None)
+        provider.language_mismatch=False
         count=len(provider.calls)
         provider.components=['explanation','original','uncertainty','candidate_ranking']
         with self.assertRaisesRegex(Held,'journey_presentation'):

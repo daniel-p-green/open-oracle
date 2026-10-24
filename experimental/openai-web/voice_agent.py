@@ -142,6 +142,8 @@ class PublicSyntheticVoiceLoop:
         audio_clock_ms=0
         input_windows={}
         input_parts={}
+        input_commands={}
+        caption_unavailable=set()
         active_delegation = None
         known_delegations, seen_decisions, decided_turns = {}, set(), set()
         task = None
@@ -244,14 +246,18 @@ class PublicSyntheticVoiceLoop:
                                 raise Held('voice_input_bound')
                             input_transcript.append(delta)
                             diagnostics['input_deltas']+=1
-                            # Native deltas are provisional, never a final user
-                            # turn. Only attach timed fragments to their actual
-                            # application-owned input window; do not relabel a
-                            # late prior fragment with the current turn.
+                            if diagnostics['input_deltas']>128: raise Held('voice_input_bound')
+                            # start/end are on the server's session timeline,
+                            # not our sent-PCM sample counter. Correlate the
+                            # echoed client command when supplied; do not guess
+                            # an offset or attach late fragments by arrival.
                             start,end=event.get('start_ms'),event.get('end_ms')
+                            command=event.get('client_event_id')
+                            source_turn=input_commands.get(command) if type(command) is str else None
+                            bound=None
                             if type(start) in (int,float) and type(end) in (int,float) and math.isfinite(start) and math.isfinite(end) and 0<=start<=end:
-                                bound=next((n for n,(low,high) in input_windows.items() if low<=start<high and end<=high+100),None)
-                                diagnostics['input_timing'].append({'turn':active_turn,'start_ms':start,'end_ms':end,'input_window_ms':list(input_windows.get(active_turn,())), 'bound_turn':bound})
+                                bound=source_turn
+                                diagnostics['input_timing'].append({'turn':active_turn,'start_ms':start,'end_ms':end,'sent_pcm_window_ms':list(input_windows.get(active_turn,())), 'bound_turn':bound})
                                 if bound==active_turn:
                                     diagnostics['timed_input_deltas']+=1
                                     input_parts.setdefault(bound,[]).append(delta)
@@ -259,6 +265,10 @@ class PublicSyntheticVoiceLoop:
                                     if len(text)>500: raise Held('voice_input_bound')
                                     update('input_partial',text=text,transcript_state='provisional',
                                         start_ms=start,end_ms=end)
+                            if (active_turn and bound!=active_turn and source_turn in (None,active_turn)
+                                    and active_turn not in caption_unavailable):
+                                caption_unavailable.add(active_turn)
+                                update('input_unavailable')
                         elif kind=='session.output_transcript.delta' and output_allowed:
                             delta=event.get('delta')
                             if type(delta) is not str or sum(map(len,output_transcript))+len(delta)>2000:
@@ -327,7 +337,10 @@ class PublicSyntheticVoiceLoop:
                     input_windows[number]=(audio_clock_ms,audio_clock_ms+len(clip)/48)
                     for start in range(0,len(clip),960):
                         if finished.is_set() or time.monotonic()>=deadline: raise Held('voice_session_bound')
-                        await send({'type':'session.input_audio.append','audio':base64.b64encode(clip[start:start+960].ljust(960,b'\0')).decode()})
+                        command=f'input_{number}_{start//960}'
+                        input_commands[command]=number
+                        await send({'type':'session.input_audio.append','event_id':command,
+                            'audio':base64.b64encode(clip[start:start+960].ljust(960,b'\0')).decode()})
                         audio_clock_ms+=20
                         await asyncio.sleep(.02)
                     sender=asyncio.create_task(silence())
@@ -378,7 +391,7 @@ class PublicSyntheticVoiceLoop:
                     except TimeoutError: errors.append('voice_close_unconfirmed')
                 receiver.cancel();await asyncio.gather(receiver,return_exceptions=True)
                 cancellation_watcher.cancel();await asyncio.gather(cancellation_watcher,return_exceptions=True)
-                pending_audio.clear();input_transcript.clear();output_transcript.clear();input_parts.clear();input_windows.clear()
+                pending_audio.clear();input_transcript.clear();output_transcript.clear();input_parts.clear();input_windows.clear();input_commands.clear()
         usage_seconds=(receipt.get('usage') or {}).get('seconds')
         if type(usage_seconds) not in (int,float) or not math.isfinite(usage_seconds) or not 0<usage_seconds<=75:
             errors.append('voice_usage_unconfirmed')

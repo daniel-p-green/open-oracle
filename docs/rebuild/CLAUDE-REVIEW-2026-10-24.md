@@ -234,3 +234,30 @@ external actions and reported no substantive finding. Its browser/AT evidence
 remains limited to the root's reported checks. Live-provider composition, human
 civic/acoustic/Spanish/AT quality, full source coverage and AI-selected generative
 composition remain open. Source hashes are consistency checks, not truth scores.
+
+## Native voice-first review: prepared, not submitted
+
+Browser control returned during the next turn. The old review tab had a stale
+debugger attachment; a fresh tab to the same existing OpenOracle conversation
+worked. The visible control read **Model: Opus5.5 High** in Daniel's existing
+account. No account selection, subscription change or new service was needed.
+
+The source-only native bundle was rendered/scanned with the installed Oracle
+(no API/browser engine). Chrome's documented chooser flow timed out10s after
+clicking the upload menu, before a chooser or setFiles. Read-only outcome check
+showed no attachment and Send disabled. The identified document input also
+timed out before setFiles and reset the UI tool session. No file payload or
+review prompt was submitted. A native-app lookup selected an unrelated window,
+which was not operated. No extension permissions were changed. The selected
+browser's troubleshooting documentation suggests checking file-URL permission;
+its actual setting has not been inspected, so that is not a diagnosed cause.
+
+The final local repair bundle is
+`openoracle-native-voice-review-20261024-v2.md`,193186bytes, SHA256
+`bee77e8c94008c6e488a9b692ece3d98070cc70aac8af1a9efa6ab740bb20cd4`,
+outside Git with its file/hash manifest. It includes17 explicitly selected
+OpenOracle application/test/requirement files plus review instructions, excluding
+credentials, account IDs, operational ledger, raw caller/audio and unrelated
+files. It supersedes the unuploaded native v1; v1 and the much earlier frozen
+seven-file evidence-composition payload remain unchanged. Neither is retroactively
+claimed reviewed. The native increment still needs an actual returned critique.

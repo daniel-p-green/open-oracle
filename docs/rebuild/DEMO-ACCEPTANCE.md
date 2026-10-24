@@ -23,7 +23,7 @@ conversation, latency, interruption, multilingual or human acceptance.
 Current transcript implementation separates timed provisional input, checked
 answer text awaiting speech validation and final checked-audio transcript state,
 bound to language/source/turn/revision and cleared on Erase. Native input deltas
-without an admitted timestamp window are withheld; they are never called final
+without an echoed owned command/timing binding are marked unavailable; they are never called final
 utterances. The input-language field is a preference, not language detection.
 This remains unverified through an actual full EN/ES voice/UI interaction.
 
@@ -197,3 +197,19 @@ human device journey; restored browser tooling and renewed Opus5.5High review.
 The new primary preview is code-reviewed and provider-off checked, not visually
 verified or showcase-ready. Brief answer bound is now120 characters; its effect
 on live latency is unmeasured. No checks were removed to improve speed.
+
+Offline investigation/replay increment: actual Chrome1002×757 DOM/screenshots
+showed the held trace's measure→paired Kansas City map transition, separate
+provisional input turns, Stop legal demotion and Spanish language erasure. No
+relevant console errors were observed. The replay banner explicitly excludes
+API execution/audio/success claims. Responsive override returned inconsistent
+dimensions and was reset; no new390px proof. A later Stop-before-map browser
+check was denied by host-access policy and was not retried. Final source-before-
+legal and missing-timing repairs were independently inspected and protocol
+checked, not newly browser-verified. Actual live correlation, complete input
+transcripts, language-hold diagnosis and bilingual acceptance remain open.
+
+Current requested Claude Opus5.5High was visibly available in the existing
+OpenOracle chat. The native-source file chooser timed out before setFiles; no
+attachment or review prompt was submitted. This is a specific attachment-tool
+blocker, not a claim that Claude or all browser tools are unavailable.

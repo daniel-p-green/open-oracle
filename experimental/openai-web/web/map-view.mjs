@@ -169,8 +169,8 @@ export function mountMapComparison(
     b.type = "button";
     b.dataset.view = view.id;
     b.onclick = () => {
-      onChange();
       viewId = view.id;
+      onChange({ view: viewId, district: selected });
       draw();
     };
     viewControls.append(b);
@@ -190,8 +190,8 @@ export function mountMapComparison(
           : `Highlight district ${id}`,
     );
     b.onclick = () => {
-      onChange();
       selected = id;
+      onChange({ view: viewId, district: selected });
       draw();
     };
     districtControls.append(b);

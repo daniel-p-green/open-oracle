@@ -1,0 +1,227 @@
+{
+  "kind": "public_synthetic_captured_ui_replay",
+  "provenance": {
+    "purpose": "Only routing/provisional-caption UI replay from the held second native English test; not current model execution or successful speech evidence",
+    "original_receipt_sha256": "f811e93b59dc7930f19b4cbe91bf973d762d0e15ca0a101b1517234311aca0d0",
+    "date": "2026-10-24",
+    "inputs": "two explicitly authored public synthetic questions; no human recording"
+  },
+  "receipt": {
+    "mode": "native_live_public_synthetic",
+    "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+    "language": "en",
+    "human_capture": false,
+    "speaker_playback": false,
+    "all_turns_checked": false
+  },
+  "events": [
+    {
+      "stage": "listening",
+      "turn": 1,
+      "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+      "language": "en",
+      "at_ms": 709.658
+    },
+    {
+      "stage": "input_partial",
+      "turn": 1,
+      "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+      "language": "en",
+      "at_ms": 1720.797,
+      "text": " I",
+      "transcript_state": "provisional",
+      "start_ms": 400,
+      "end_ms": 600
+    },
+    {
+      "stage": "input_partial",
+      "turn": 1,
+      "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+      "language": "en",
+      "at_ms": 2162.248,
+      "text": " I keep",
+      "transcript_state": "provisional",
+      "start_ms": 800,
+      "end_ms": 1000
+    },
+    {
+      "stage": "input_partial",
+      "turn": 1,
+      "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+      "language": "en",
+      "at_ms": 2323.608,
+      "text": " I keep hearing",
+      "transcript_state": "provisional",
+      "start_ms": 1000,
+      "end_ms": 1200
+    },
+    {
+      "stage": "input_partial",
+      "turn": 1,
+      "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+      "language": "en",
+      "at_ms": 2813.704,
+      "text": " I keep hearing about",
+      "transcript_state": "provisional",
+      "start_ms": 1400,
+      "end_ms": 1600
+    },
+    {
+      "stage": "input_partial",
+      "turn": 1,
+      "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+      "language": "en",
+      "at_ms": 2953.801,
+      "text": " I keep hearing about this",
+      "transcript_state": "provisional",
+      "start_ms": 1600,
+      "end_ms": 1800
+    },
+    {
+      "stage": "input_partial",
+      "turn": 1,
+      "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+      "language": "en",
+      "at_ms": 3538.913,
+      "text": " I keep hearing about this redistrict",
+      "transcript_state": "provisional",
+      "start_ms": 2200,
+      "end_ms": 2400
+    },
+    {
+      "stage": "input_partial",
+      "turn": 1,
+      "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+      "language": "en",
+      "at_ms": 3718.423,
+      "text": " I keep hearing about this redistricting",
+      "transcript_state": "provisional",
+      "start_ms": 2400,
+      "end_ms": 2600
+    },
+    {
+      "stage": "input_partial",
+      "turn": 1,
+      "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+      "language": "en",
+      "at_ms": 4331.675,
+      "text": " I keep hearing about this redistricting question",
+      "transcript_state": "provisional",
+      "start_ms": 3000,
+      "end_ms": 3200
+    },
+    {
+      "stage": "input_partial",
+      "turn": 1,
+      "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+      "language": "en",
+      "at_ms": 4856.228,
+      "text": " I keep hearing about this redistricting question. What",
+      "transcript_state": "provisional",
+      "start_ms": 3400,
+      "end_ms": 3600
+    },
+    {
+      "stage": "input_partial",
+      "turn": 1,
+      "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+      "language": "en",
+      "at_ms": 4930.269,
+      "text": " I keep hearing about this redistricting question. What is it",
+      "transcript_state": "provisional",
+      "start_ms": 3600,
+      "end_ms": 3800
+    },
+    {
+      "stage": "input_partial",
+      "turn": 1,
+      "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+      "language": "en",
+      "at_ms": 5524.742,
+      "text": " I keep hearing about this redistricting question. What is it asking",
+      "transcript_state": "provisional",
+      "start_ms": 4000,
+      "end_ms": 4200
+    },
+    {
+      "stage": "input_partial",
+      "turn": 1,
+      "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+      "language": "en",
+      "at_ms": 5545.597,
+      "text": " I keep hearing about this redistricting question. What is it asking me",
+      "transcript_state": "provisional",
+      "start_ms": 4200,
+      "end_ms": 4400
+    },
+    {
+      "stage": "input_partial",
+      "turn": 1,
+      "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+      "language": "en",
+      "at_ms": 5640.051,
+      "text": " I keep hearing about this redistricting question. What is it asking me to",
+      "transcript_state": "provisional",
+      "start_ms": 4400,
+      "end_ms": 4600
+    },
+    {
+      "stage": "routing",
+      "turn": 1,
+      "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+      "language": "en",
+      "at_ms": 6738.327,
+      "view": "measure",
+      "map_focus": "unchanged"
+    },
+    {
+      "stage": "listening",
+      "turn": 2,
+      "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+      "language": "en",
+      "at_ms": 24363.681
+    },
+    {
+      "stage": "input_partial",
+      "turn": 2,
+      "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+      "language": "en",
+      "at_ms": 25312.979,
+      "text": " Can",
+      "transcript_state": "provisional",
+      "start_ms": 24600,
+      "end_ms": 24800
+    },
+    {
+      "stage": "input_partial",
+      "turn": 2,
+      "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+      "language": "en",
+      "at_ms": 25477.614,
+      "text": " Can you",
+      "transcript_state": "provisional",
+      "start_ms": 24800,
+      "end_ms": 25000
+    },
+    {
+      "stage": "input_partial",
+      "turn": 2,
+      "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+      "language": "en",
+      "at_ms": 25829.268,
+      "text": " Can you show me",
+      "transcript_state": "provisional",
+      "start_ms": 25200,
+      "end_ms": 25400
+    },
+    {
+      "stage": "routing",
+      "turn": 2,
+      "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+      "language": "en",
+      "at_ms": 28321.554,
+      "view": "maps",
+      "map_focus": "kansas_city"
+    }
+  ]
+}

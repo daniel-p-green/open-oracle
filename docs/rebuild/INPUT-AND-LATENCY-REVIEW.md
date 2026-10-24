@@ -233,3 +233,29 @@ execution. Record checked text, audio-ready, stage cost and holds; no microphone
 or Play. This is conservative application reservation, not vendor-guaranteed
 per-request billing. The older≤$0.20 Spanish proposal remains separately gated.
 No new trial is needed to reproduce the local rendering results above.
+
+## Native-caption investigation after the held second run
+
+Captured 23 native input deltas but displayed 16 timed deltas. The first displayed
+input ended “asking me to”; the second ended “Can you show me”. The trace did not
+retain rejected raw events, sent-window values, the held second Responses draft
+or individual predicate scores. Those facts cannot be reconstructed. The exact
+reason for the language score and quantitative cause of each dropped word are
+therefore unknown; genuine mismatches remain held at the existing threshold.
+
+Code inspection plus the official primary-WebSocket schema identified a concrete
+clock contract error ([official transcript schema](https://developers.openai.com/api/reference/resources/live/primary-websocket#session.input_transcript.delta)): transcript start_ms/end_ms are measured from the Live
+session beginning, whereas the application compared them to sent-PCM sample
+counts. Scheduler/transport pacing is not a synchronization contract. Current
+code correlates explicit audio-command IDs when echoed and marks missing binding
+unavailable. An offline protocol regression rejects an unknown command even
+with plausible old-window timing and accepts an owned command with differing
+clock values. This proves the binding rule, not actual server echo coverage or
+complete captions. See [pending sequence](NATIVE-VOICE-NEXT-TEST-SPEC.md).
+
+Actual provider timing remains 9.896s checked text and 24.317s first checked speech
+from test origin. Shorter 120-character brief mode is implemented but unmeasured.
+No whole-WAV ASR or grounding check was skipped. Browser replay of captured
+routes demonstrated measure→actual Kansas City paired maps, separate provisional
+input turns, Stop demotion and language erasure with providers disabled. This is
+UI behavior, not improved API/acoustic latency or bilingual acceptance.

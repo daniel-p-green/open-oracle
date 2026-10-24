@@ -3,6 +3,7 @@ const STAGES = [
   "connected",
   "listening",
   "input_partial",
+  "input_unavailable",
   "routing",
   "checked_text",
   "checking_speech",
