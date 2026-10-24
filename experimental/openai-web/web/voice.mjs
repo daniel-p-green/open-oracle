@@ -26,6 +26,7 @@ let visualComplete = false;
 let lastMapView = "statewide";
 let spokenHeld = false;
 const inputGaps = new Set();
+const finalInputs = new Set();
 function transcript(role, number, text, state) {
   const host = $("conversation-turns");
   let item = host.querySelector(
@@ -46,6 +47,9 @@ function transcript(role, number, text, state) {
     unavailable: es()
       ? "Transcripción incompleta · alineación no confirmada"
       : "Incomplete transcript · alignment unconfirmed",
+    input_final: es()
+      ? "Transcripción final del clip sintético · ASR independiente"
+      : "Final synthetic-clip transcript · independent ASR",
     checked_text: es()
       ? "Respuesta comprobada · audio pendiente"
       : "Checked answer text · audio pending",
@@ -142,6 +146,7 @@ function stop(erase = false) {
     lastMapView = "statewide";
     spokenHeld = false;
     inputGaps.clear();
+    finalInputs.clear();
   }
   const legalNote = document.querySelector("[data-legal-status]");
   if (legalNote) {
@@ -411,11 +416,18 @@ function progress(values, ticket) {
     const action = voiceUpdate(value, language, revision, turn);
     revision = action.revision;
     turn = action.turn;
+    if (action.stage === "input_final") {
+      finalInputs.add(action.turn); inputGaps.delete(action.turn);
+      transcript("user", action.turn, action.text, "input_final");
+      continue;
+    }
     if (action.stage === "input_partial") {
+      if (finalInputs.has(action.turn)) continue;
       transcript("user", action.turn, action.text, inputGaps.has(action.turn) ? "unavailable" : "provisional");
       continue;
     }
     if (action.stage === "input_unavailable") {
+      if (finalInputs.has(action.turn)) continue;
       inputGaps.add(action.turn);
       transcript("user", action.turn,
         es() ? "No se puede asociar todo el texto recibido con este turno. No se muestra una transcripción final."
@@ -501,8 +513,10 @@ async function synthetic() {
         : "The interaction did not complete all checks. No audio is played and there is no automatic retry.",
     );
   } else {
-    for (const action of result)
+    for (const action of result) {
+      if (action.inputText) transcript("user", action.turn, action.inputText, "input_final");
       transcript("assistant", action.turn, action.text, "final");
+    }
     $("answer-state").textContent = es()
       ? "Transcripciones finales comprobadas · altavoces apagados · revisión humana pendiente"
       : "Final transcripts checked · speakers off · human review pending";

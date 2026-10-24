@@ -120,11 +120,12 @@ class PublicSyntheticVoiceLoop:
     notify receives application-owned checked text/view metadata. Output PCM stays
     in memory and is not released to any device by this development adapter.
     """
-    def __init__(self, provider, *, language='en', seconds=60):
-        if language not in ('en','es') or not 15 <= seconds <= 60:
+    def __init__(self, provider, *, language='en', seconds=60, input_captions=False):
+        if language not in ('en','es') or not 15 <= seconds <= 60 or type(input_captions) is not bool:
             raise Held('voice_configuration')
         self.provider, self.language, self.seconds = provider, language, seconds
         self.backend = JourneyPipeline(provider, allow_spanish=True)
+        self.input_captions = input_captions
 
     async def run(self, fixtures, cancel, meter, notify):
         # Includes connection/backend/ASR, rather than checking a clock only
@@ -159,6 +160,9 @@ class PublicSyntheticVoiceLoop:
         input_parts={}
         input_commands={}
         caption_unavailable=set()
+        final_inputs=set()
+        input_caption_tasks=[]
+        asr_work=[]
         active_delegation = None
         known_delegations, seen_decisions, decided_turns = {}, set(), set()
         task = None
@@ -167,7 +171,7 @@ class PublicSyntheticVoiceLoop:
         receipt = {'mode':'native_live_public_synthetic', 'model':'gpt-live-1',
             'human_capture':False, 'speaker_playback':False, 'audio_persisted':False,
             'source_version':QUESTION_PIN, 'language':self.language, 'turns':turns,
-            'finalized':False, 'native_decisions':0, 'errors':errors}
+            'finalized':False, 'native_decisions':0, 'errors':errors, 'inputs':[]}
         diagnostics={'discarded_audio_bytes':0,'discarded_chunks_with_energy_bytes':0,'buffered_audio_bytes':0,'output_transcript_chars':0,
             'expected_chars':0,'first_output_ms':None,'planned_text_match':False,
             'input_deltas':0,'timed_input_deltas':0,'input_timing':[],
@@ -185,6 +189,7 @@ class PublicSyntheticVoiceLoop:
             check_cancel(cancel)
             notify({'stage':stage,'turn':active_turn,'source_version':QUESTION_PIN,
                     'language':self.language,'at_ms':offset(),**value})
+        self.provider.account_attempt()  # Live connection, counted before dispatch.
         async with websockets.connect('wss://api.openai.com/v1/live/sessions',
                 additional_headers=self.provider._headers, proxy=None,
                 open_timeout=10, close_timeout=2, max_size=4*1024*1024) as connection:
@@ -224,7 +229,7 @@ class PublicSyntheticVoiceLoop:
                         mark('review_done')
                         text=' '.join(p['text'] for p in result['unit']['sections'])
                     check_cancel(cancel)
-                    if turn != active_turn or delegation != active_delegation: return
+                    if turn != active_turn or delegation != active_delegation or finished.is_set(): return
                     mark('checked_text_ready')
                     update('checked_text',view=action['view'],map_focus=action['map_focus'],
                         text=text, result=result)
@@ -245,6 +250,47 @@ class PublicSyntheticVoiceLoop:
                     errors.append('voice_cancelled' if str(error)=='cancelled' else str(error)); finished.set()
                 except Exception:
                     errors.append('voice_backend_failure');finished.set()
+
+            async def transcribe_owned(pcm):
+                # Meter inside the worker: cancelling its awaiting coroutine
+                # cannot cancel urllib or discard the eventual usage settlement.
+                work={'metered':False}
+                asr_work.append(work)
+                def request():
+                    result=self.provider.transcribe(public_wave(pcm),cancel)
+                    meter('transcription',{'seconds':len(pcm)/48000})
+                    work['metered']=True
+                    return result
+                return await asyncio.to_thread(request)
+
+            async def input_caption(fixture, turn):
+                # An optional bounded file request, never ambient capture. The
+                # exact submitted PCM owns this transcript; no server-time or
+                # text-arrival heuristic is used. Does not feed answer evidence.
+                try:
+                    mark('input_asr_started')
+                    result=await transcribe_owned(fixture['pcm'])
+                    check_cancel(cancel)
+                    if turn != active_turn or finished.is_set(): return
+                    text=result.get('text')
+                    languages=result.get('languages')
+                    if type(text) is not str or not text.strip() or len(text)>500:
+                        raise Held('voice_input_asr_text')
+                    if type(languages) is not list or not languages or type(languages[0]) is not dict or languages[0].get('code')!=self.language:
+                        raise Held('voice_input_asr_language')
+                    final_inputs.add(turn)
+                    mark('input_asr_returned')
+                    receipt['inputs'].append({'turn':turn,'language':self.language,'text':text,
+                        'input_audio_sha256':fixture['sha256'],'transcript_origin':'independent_bounded_input_asr'})
+                    update('input_final',text=text,transcript_state='final',
+                        input_audio_sha256=fixture['sha256'],transcript_origin='independent_bounded_input_asr')
+                except Held as error:
+                    if not cancel.is_set() and turn==active_turn and not finished.is_set():
+                        errors.append(str(error));finished.set()
+                except asyncio.CancelledError: raise
+                except Exception:
+                    if not cancel.is_set() and turn==active_turn and not finished.is_set():
+                        errors.append('voice_input_asr_failure');finished.set()
 
             async def receive():
                 nonlocal active_delegation, task, voiced_at
@@ -285,7 +331,8 @@ class PublicSyntheticVoiceLoop:
                             receipt['native_decisions']+=1
                             mark('decision_completed')
                             usage=event['event'].get('decision',{}).get('usage')
-                            if usage: meter('review',usage)
+                            if type(usage) is not dict: raise Held('voice_native_usage_unconfirmed')
+                            meter('review',usage)
                             update('routing',view=action['view'],map_focus=action['map_focus'])
                             task=asyncio.create_task(answer(action,delegation,active_turn))
                         elif kind=='session.input_transcript.delta':
@@ -306,14 +353,14 @@ class PublicSyntheticVoiceLoop:
                             if type(start) in (int,float) and type(end) in (int,float) and math.isfinite(start) and math.isfinite(end) and 0<=start<=end:
                                 bound=source_turn
                                 diagnostics['input_timing'].append({'turn':active_turn,'start_ms':start,'end_ms':end,'sent_pcm_window_ms':list(input_windows.get(active_turn,())), 'bound_turn':bound})
-                                if bound==active_turn:
+                                if bound==active_turn and bound not in final_inputs:
                                     diagnostics['timed_input_deltas']+=1
                                     input_parts.setdefault(bound,[]).append(delta)
                                     text=''.join(input_parts[bound])
                                     if len(text)>500: raise Held('voice_input_bound')
                                     update('input_partial',text=text,transcript_state='provisional',
                                         start_ms=start,end_ms=end)
-                            if (active_turn and bound!=active_turn and source_turn in (None,active_turn)
+                            if (active_turn and active_turn not in final_inputs and bound!=active_turn and source_turn in (None,active_turn)
                                     and active_turn not in caption_unavailable):
                                 caption_unavailable.add(active_turn)
                                 update('input_unavailable')
@@ -374,6 +421,7 @@ class PublicSyntheticVoiceLoop:
                     audio_clock_ms+=20
                     await asyncio.sleep(.02)
             try:
+                self.provider.account_attempt()  # Reserve the first native Decisions attempt.
                 await send({'type':'session.start','session':live_configuration(self.language)})
                 await asyncio.wait_for(started.wait(),10)
                 update('connected')
@@ -382,6 +430,7 @@ class PublicSyntheticVoiceLoop:
                     check_cancel(cancel)
                     active_turn=number;active_delegation=None;expected=None;output_allowed=False
                     if number>1:
+                        self.provider.account_attempt()  # Native turn config before it can run.
                         configuration_ready.clear()
                         await send({'type':'session.update','event_id':f'turn_config_{number}',
                             'session':{'delegation':live_configuration(self.language,number)['delegation']}})
@@ -400,6 +449,8 @@ class PublicSyntheticVoiceLoop:
                         audio_clock_ms+=20
                         await asyncio.sleep(.02)
                     mark('input_complete')
+                    if self.input_captions:
+                        input_caption_tasks.append(asyncio.create_task(input_caption(fixture,number)))
                     sender=asyncio.create_task(silence())
                     # Exact planned text + quiet only proposes a candidate
                     # segment. Independent whole-waveform ASR still gates it.
@@ -410,13 +461,16 @@ class PublicSyntheticVoiceLoop:
                             break
                         await asyncio.sleep(.05)
                     else: raise Held('voice_cancelled' if cancel.is_set() else 'voice_segment_incomplete')
+                    if input_caption_tasks:
+                        await input_caption_tasks[-1]
+                        check_cancel(cancel)
+                        if number not in final_inputs: raise Held('voice_input_caption_unconfirmed')
                     snapshot=bytes(pending_audio)
                     if not snapshot: raise Held('voice_segment_empty')
                     update('checking_speech')
                     mark('asr_started')
-                    asr=await asyncio.to_thread(self.provider.transcribe,public_wave(snapshot),cancel)
+                    asr=await transcribe_owned(snapshot)
                     mark('asr_returned')
-                    meter('transcription',{'seconds':len(snapshot)/48000})
                     check_cancel(cancel)
                     if words(asr.get('text',''))!=words(expected): raise Held('voice_asr_mismatch')
                     languages=asr.get('languages',[])
@@ -443,6 +497,9 @@ class PublicSyntheticVoiceLoop:
             finally:
                 closing=True
                 finished.set()
+                for caption_task in input_caption_tasks:
+                    if not caption_task.done(): caption_task.cancel()
+                await asyncio.gather(*input_caption_tasks,return_exceptions=True)
                 if sender: sender.cancel();await asyncio.gather(sender,return_exceptions=True)
                 if task and not task.done():
                     cancel.set();task.cancel();await asyncio.gather(task,return_exceptions=True)
@@ -456,6 +513,10 @@ class PublicSyntheticVoiceLoop:
                 receiver.cancel();await asyncio.gather(receiver,return_exceptions=True)
                 cancellation_watcher.cancel();await asyncio.gather(cancellation_watcher,return_exceptions=True)
                 pending_audio.clear();input_transcript.clear();output_transcript.clear();input_parts.clear();input_windows.clear();input_commands.clear()
+        receipt['asr_outcome_confirmed']=all(work['metered'] for work in asr_work)
+        receipt['asr_attempted']=len(asr_work)
+        receipt['asr_metered']=sum(work['metered'] for work in asr_work)
+        if not receipt['asr_outcome_confirmed']: errors.append('voice_asr_outcome_unconfirmed')
         usage_seconds=(receipt.get('usage') or {}).get('seconds')
         if type(usage_seconds) not in (int,float) or not math.isfinite(usage_seconds) or not 0<usage_seconds<=75:
             errors.append('voice_usage_unconfirmed')

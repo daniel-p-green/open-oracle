@@ -150,7 +150,10 @@ class Budget:
                 final_usage=[s['usage']['seconds'] for s in row['stages'] if s['stage']=='fresh_audio']
                 confirmed=(voice_receipt.get('finalized') is True and voice_receipt.get('close_reason')=='close_requested'
                            and type(seconds) in (int,float) and 0<seconds<=75 and final_usage==[seconds]
-                           and not set(voice_receipt.get('errors',[])) & {'voice_usage_unconfirmed','voice_close_unconfirmed','voice_closure_unconfirmed'}) if type(voice_receipt) is dict else False
+                           and not set(voice_receipt.get('errors',[])) & {'voice_usage_unconfirmed','voice_native_usage_unconfirmed','voice_asr_outcome_unconfirmed','usage_unconfirmed','usage_bound','voice_close_unconfirmed','voice_closure_unconfirmed'}) if type(voice_receipt) is dict else False
+                if row['trial_package'] == STAGED_TRIAL_PACKAGE:
+                    confirmed = (confirmed and voice_receipt.get('asr_outcome_confirmed') is True
+                                 and 0 < row.get('requests_attempted',0) == len(row['stages']) <= row['requests_max'])
                 row['trial_closure_confirmed']=confirmed
                 row['voice_closure']={'finalized':voice_receipt.get('finalized') is True,
                                       'close_reason':'close_requested' if voice_receipt.get('close_reason')=='close_requested' else 'unconfirmed',
@@ -256,8 +259,8 @@ class Jobs:
                     revision=row.get('update_revision',0)+1
                     if revision>128: raise Held('voice_update_bound')
                     row['update_revision']=revision
-                    if update.get('stage')=='input_partial':
-                        updates[:]=[item for item in updates if not (item.get('stage')=='input_partial' and item.get('turn')==update.get('turn'))]
+                    if update.get('stage') in {'input_partial','input_final'}:
+                        updates[:]=[item for item in updates if not (item.get('stage') in ({'input_partial','input_unavailable'} if update['stage']=='input_final' else {'input_partial'}) and item.get('turn')==update.get('turn'))]
                     updates.append(copy.deepcopy(dict(update, revision=revision)))
                     if len(updates)>16: raise Held('voice_update_bound')
         def meter(stage, usage): self.budget.record(row['run'], stage, usage)

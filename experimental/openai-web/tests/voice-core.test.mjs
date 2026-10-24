@@ -69,6 +69,11 @@ test("native voice view events require the current source, language, turn and ch
     () => voiceUpdate({ ...partial, transcript_state: "final" }, "en", 1, 1),
     /transcript_binding/,
   );
+  const finalInput={...event,stage:"input_final",text:"Could you show the official source?",transcript_state:"final",
+    input_audio_sha256:"b".repeat(64),transcript_origin:"independent_bounded_input_asr"};
+  assert.equal(voiceUpdate(finalInput,"en",1,1).text,finalInput.text);
+  for (const change of [{transcript_state:"provisional"},{transcript_origin:"arrival_guess"},{input_audio_sha256:"bad"},{text:""}])
+    assert.throws(()=>voiceUpdate({...finalInput,...change},"en",1,1),/input_final_binding/);
   assert.throws(
     () => voiceUpdate({ ...partial, start_ms: 200 }, "en", 1, 1),
     /transcript_binding/,
@@ -88,8 +93,13 @@ test("a slow poll recovers every final checked caption from the complete receipt
         text: voiceControlText("source", "en") },
     })),
   };
+  receipt.inputs=[{turn:1,language:"en",text:"Show the source.",input_audio_sha256:"b".repeat(64),transcript_origin:"independent_bounded_input_asr"}];
   assert.deepEqual(voiceFinalTurns(receipt,"en").map(part=>part.turn),[1,2]);
+  assert.equal(voiceFinalTurns(receipt,"en")[0].inputText,"Show the source.");
+  assert.equal(voiceFinalTurns(receipt,"en")[1].inputText,null);
   for (const mutate of [
+    value=>{value.inputs.push(value.inputs[0])},
+    value=>{value.inputs[0].language="es"},
     value=>{value.errors=["late_audio"]},
     value=>{value.turns[1].turn=1},
     value=>{value.turns[1].source_version="foreign"},

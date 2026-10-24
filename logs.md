@@ -2199,3 +2199,63 @@ This is a backfill, not a contemporaneous event stream.
 - **Next/running:** fixed text-contract check first; semantic hold pauses for
   diagnosis, unknown usage stops sequence. No provider request has run yet at
   this entry. Focused code commit will pin this envelope before dispatch.
+
+### 2026-10-24 21:17:16 UTC — staged dispatch still denied; independent caption repairs
+
+- **Denied, known not executed:** one normal retry of
+  `.api-test-venv/bin/python text_contract_bounded_trial.py` after exact bundle
+  approval. Automatic review states: “This executes paid external API requests
+  using an existing credential; although narrowly capped and limited to public
+  synthetic data, no trusted user approval for this new staged bundle is present,
+  and the original user explicitly required approval before paid API calls.”
+  No pending request ID returned. Verified zero new package rows/text artifacts,
+  reservations2.56/recorded estimate0.3013148 unchanged. Stopped paid sequence;
+  no retry, alternate launcher, credential or billing-login route. This is an
+  authorization-propagation blocker despite parent-relayed exact approval.
+- **Implemented offline:** optional synthetic input-ASR captions bound to the
+  exact submitted PCM hash/turn, same-language final-state validation and
+  slow-poll recovery. Runs alongside response work; does not replace evidence,
+  infer clock offsets, or enable human capture. Off by default; no live or
+  current browser success. Source: current official file-transcription guide
+  confirms gpt-transcribe original-language text/languages JSON; no forced hints.
+- **Independent reviewer findings/fixes:** malformed native usage could still
+  authorize another stage; cancelled to_thread ASR could lose metering; staged
+  voice counters were allocation-only. Now malformed/unknown usage prevents
+  closure, ASR metering occurs inside its worker even when awaiting coroutine
+  is cancelled, unsettled ASR blocks progression, and provider HTTP/ASR plus
+  Live/native dispatch hooks count attempts. Staged closure requires nonzero
+  attempt count exactly matching metered stages. No staged native launcher has
+  run; existing old package stays closed. A slow in-flight request cannot be
+  unsent, so full reservations remain and uncertain outcomes stop progression.
+- **Verified local behaviors:** exact synthetic input caption ownership;
+  wrong-language hold; cancellation prevents final-caption/audio release;
+  cancelled-await worker still records transcription cost; input final replaces
+  provisional/gap events and survives slow polls; malformed usage/ASR settlement
+  and dispatch caps block subsequent stages. Existing protocol/job/client owner
+  checks pass. No test count used as a quality claim.
+- **Skills:** actual installed Oracle (@steipete) and test-audit read; test-audit
+  provenance is an OpenClaw adaptation, not a claim of individual authorship.
+  Evals-start routed to validate-evaluator: no expert-labeled calibration set
+  exists, so model .95 thresholds remain uncalibrated and no TPR/TNR or false-
+  positive rate claimed. This does not relax deterministic or independent gates.
+- **Next:** immutable focused commit, narrow source-only Opus5.5High review,
+  fixes for substantiated findings, push/CI. Existing Chrome8925 host denial
+  remains separate/unretried. Full natural EN/ES/visual interaction, context-
+  preserving language switch, safe latency and public readiness remain open.
+
+### 2026-10-24 21:20 UTC — independent settlement recheck and required local gates
+
+- **Returned review:** independent reviewer rechecked its three findings and ran
+  the focused no-network budget/protocol proofs, including cancelled-await ASR.
+  No further consequential defect found. The old manual native launcher remains
+  closed-package/no-hook; a future approved staged launcher must pass the budget
+  dispatch hook before native execution. No such launcher or paid run is active.
+- **Verification limits:** broad provider-off Python checks passed apart from
+  two test-server class setups denied by default sandbox loopback bind. The
+  scoped existing server contract suite then passed with normal sandbox approval
+  for a temporary loopback listener only; this does not retry the separately
+  host-policy-denied Chrome8925 inspection. Complete Node contracts passed.
+  No source changes occurred during these verification runs. Current browser
+  transcript rendering and real provider language/caption quality remain unrun.
+- **Next:** source-only Opus5.5High re-review of immutable caption/settlement
+  increment, then focused fixes if warranted. Full readiness remains false.

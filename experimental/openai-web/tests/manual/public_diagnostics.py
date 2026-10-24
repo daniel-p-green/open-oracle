@@ -8,10 +8,10 @@ from providers import Held, OpenAIProvider
 
 
 class PublicDiagnosticProvider(OpenAIProvider):
-    def __init__(self, organization, project, *, fixture_kind):
+    def __init__(self, organization, project, *, fixture_kind, before_dispatch=None):
         if fixture_kind != 'synthetic_public_questions_no_human_recording':
             raise Held('public_diagnostics_role')
-        super().__init__(organization, project)
+        super().__init__(organization, project, before_dispatch=before_dispatch)
         self.public_drafts = []
         self.predicate_reviews = []
 

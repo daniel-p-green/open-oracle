@@ -1,6 +1,16 @@
 # One staged API verification bundle — approved October 24, 2026
 
-The normal review rejected the four-request text check before process creation:
+**Current execution state:** the exact bundle is approved by Daniel, but the
+one normal retry of `.api-test-venv/bin/python text_contract_bounded_trial.py`
+was again rejected before process creation on October24 around21:09UTC. Review
+said no trusted user approval for the new staged bundle was present. No pending
+request ID was supplied. Zero new ledger rows/reservations/requests/artifacts;
+shared reservations2.56 and recorded direct estimate0.3013148 remain unchanged.
+No retry, alternate command, host or credential route. Approval propagation to
+normal tool review remains the concrete blocker, not billing login or API funds.
+
+Historical earlier denial: the normal review rejected the four-request text
+check before process creation:
 “This is a new paid external text test outside the specifically approved
 four-trial voice package; the broad $200 project cap does not by itself authorize
 this additional spend.” No request or reservation was added. Do not retry that
@@ -69,8 +79,9 @@ balance statement. No other worker may spend against this reserved bundle.
 - Per native run: at most two <=8s inputs,45s operation plus<=15s graceful close,
   <=75s final reported Live usage, max2native decisions/2Responses/2reviews/
  2outputASR/2optional public-inputASR plus1Live connection =11attempts.
-  Input-ASR fallback may run only if implemented/reviewed offline first; current
-  code has no such enabled fallback. Each output-ASR waveform<=20s; no output
+  Input-ASR fallback may run only if implemented/reviewed offline first. The
+  optional exact-clip caption path is now implemented and offline-tested, off
+  by default and not live-verified; renewed review remains required before use. Each output-ASR waveform<=20s; no output
   PCM retained on disk. Hold until independent checks pass; no human playback.
 - Preserve current pricing check: Live0.05/min, Luna0.10/M input/0.50/M output,
   transcribe0.0045/min; cache-write uncertainty priced conservatively. Recheck

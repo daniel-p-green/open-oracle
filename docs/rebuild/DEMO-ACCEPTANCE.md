@@ -26,6 +26,16 @@ without an echoed owned command/timing binding are marked unavailable; they are 
 utterances. The input-language field is a preference, not language detection.
 This remains unverified through an actual full EN/ES voice/UI interaction.
 
+October24 later caption/settlement repair: an optional public-synthetic-only
+input-ASR path now binds final input captions to the exact submitted PCM hash
+and turn, in parallel with the native response. Late provisional text cannot
+replace its final caption; the complete receipt recovers captions after slow
+polling. Input language mismatch and uncertain settlement hold the run. It is
+off by default, has protocol/client contract proof, and has **no real-provider or
+current-browser evidence**. No human capture or privacy-policy expansion follows.
+The exact new six-stage bundle is approved but its first text launch was again
+automatically denied before execution; [current blocker and limits](API-TEST-APPROVAL-BUNDLE.md).
+
 Current API roles, checked against official documentation and actual local code:
 
 | Service | Actual role / endpoint | Evidence and limit |
@@ -48,7 +58,7 @@ D3–D6 to its later adaptive-voice decisions, inventoried in the reconciliation
 | R03 D2§3/5 fresh voice loop | Native GPT-Live→Decisions choices→Responses→independent review→buffered Live→ASR gate | Earlier one EN accepted segment; contextual maps/KC native choice; newest four holds/usage documented | Successful full unanticipated question and follow-up with synchronized actual visuals/speech; acceptable measured latency |
 | R04 D2§4 comprehension/adaptation | Fresh brief/simpler/detail with server-owned checked parent; session-owned repeat; separate exact effects | Earlier real EN overview→simpler→ES text adaptation in review mode; offline two-turn fresh-generation→repeat proof | Adapt based on explicit requests/demonstrated understanding, slower/repeat/clarification in real voice; no education/accent inference; brief contract live revalidation |
 | R05 D2§4 strongest language | EN/ES UI and generated text paths; original English retained; translation status | Earlier ES text adaptation; new native Spanish input routed but attribution held | Full fresh ES speech/captions and mid-conversation language switch; human civic meaning/pronunciation review |
-| R06 D2§4 captions/text alternative | Partial/input-gap/checked-text/final-audio transcript states bound to turn/language/revision | Offline lifecycle/replay; actual four runs had no usable command echo, marked unavailable | Reliable language-appropriate input captions; no guessed clock association; usable silent core journey |
+| R06 D2§4 captions/text alternative | Partial/input-gap/optional exact-clip final input/checked-text/final-audio states bound to turn/language/revision | Offline lifecycle/replay; actual four runs had no usable command echo, marked unavailable | Reliable language-appropriate input captions; no guessed clock association; usable silent core journey |
 | R07 D2§5 controlled generative UI | Allowlisted evidence components, actual pinned maps, region-bound navigation acknowledgment; matching map reuse preserves local selection | Prior native maps/KC routing and offline browser render; source/prop checks | Actual conversation-selected summary/comparison/map updates; map-specific speech parity; no arbitrary code or invented facts |
 | R08 D2§3/6C verify/challenge | Exact original, citations/version/uncertainty, held challenged parent, source access | Passage/hash/context guards; earlier browser source/challenge paths | First-class natural challenge/correction and visible correction history; conflicts/accessible originals/editorial admission |
 | R09 D2 candidate journey/6B coverage | Printed roster gaps, equal fields, official office records, held campaign excerpt | 55-contest notice union,62 printed candidate entries/11 judges; source-specific office context | Individual styles/current certification, complete county/judicial office coverage, candidate identity/rights/primary-evidence admission; no inferred positions |
@@ -56,7 +66,7 @@ D3–D6 to its later adaptive-voice decisions, inventoried in the reconciliation
 | R11 D2§4/5 accessibility | Semantic controls, text paths, keyboard, reduced motion, idle warning/extension | Prior scoped desktop/390px source-review checks; native replay1002px | Actual primary voice keyboard/screen-reader/zoom/mobile and geographic text equivalent; no blanket WCAG/Pi claim |
 | R12 D2§4/6F privacy | Human media off, no private voter transport, ephemeral state/Erase; provider disclosure | Source/secret/client/reset checks, synthetic-only actual calls | Resolve private-safe natural input policy; local ASR alone cannot authorize private text downstream; human consent and retention verification |
 | R13 D2§6D failure/interruption | Cancel/reset/stale revisions, deadlines, fail-closed review, exact-source fallback | Offline protocol/job/client checks; real held sessions closed with usage | Live cancellation trigger actually reached, wrong-turn UI/audio recovery, measured human interruption-to-silence; newest recovery did not reach trigger |
-| R14 D2§6F/7 cost/operations | Shared ledger, bounded requests, unique four-purpose package/closure gate, rollback Git | Four package rows0.40 reserved/0.025895 estimate; exact prior CI; no new access | Public access/cost protection, source/editorial/language/on-call ownership and rollback rehearsal before deployment |
+| R14 D2§6F/7 cost/operations | Shared ledger, distinct exhausted four-purpose and new six-stage packages; dispatch/usage/closure gates, rollback Git | Four package rows0.40 reserved/0.025895 estimate; exact prior CI; no new access | Public access/cost protection, source/editorial/language/on-call ownership and rollback rehearsal before deployment |
 | R15 D2§8/9 repeatable proof | Local run/review artifacts and retained original demo reference | Actual source-only Opus critiques; original video frames/transcript inspected | Uninterrupted real interaction recording/event trace, nonauthor and bilingual/AT review, no mock-as-success claim |
 | R16 D2 statewide/Pi ambition | Application-owned versioned source boundaries; web-first implementation | Local Mac contracts only | Jurisdiction adapters/source coverage and actual Pi memory/display/device tests; no current statewide/Pi readiness |
 

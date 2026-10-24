@@ -62,14 +62,16 @@ class JobsTests(unittest.TestCase):
                 progress('audio',{'stage':'checked_text','turn':1,'text':'public checked wording'})
                 for number in range(100):
                     progress('audio',{'stage':'input_partial','turn':2,'text':str(number)})
+                progress('audio',{'stage':'input_unavailable','turn':2})
+                progress('audio',{'stage':'input_final','turn':2,'text':'public final input'})
                 return {'public_fixture':True},b''
         self.jobs.pipeline=PublicVoice()
         self.jobs.start(self.token,self.request,'voice:synthetic:en')
         row=self.wait_terminal()
         self.assertEqual(row['state'],'ready')
         self.assertEqual([(item['stage'],item['text']) for item in row['updates']],
-                         [('checked_text','public checked wording'),('input_partial','99')])
-        self.assertEqual([item['revision'] for item in row['updates']],[1,101])
+                         [('checked_text','public checked wording'),('input_final','public final input')])
+        self.assertEqual([item['revision'] for item in row['updates']],[1,103])
         self.jobs.cancel(self.token,self.request)
         self.assertNotIn('updates',self.jobs.public(self.token,self.request))
 
@@ -183,7 +185,7 @@ class JobsTests(unittest.TestCase):
             if number == 0:
                 with self.assertRaisesRegex(Held,'trial_package_outcome_unconfirmed'):
                     budget.reserve('unclosed','voice:synthetic:en',trial_package=VOICE_TRIAL_PACKAGE,trial_purpose='recovery')
-            budget.finish('fixture_'+str(number),'held',voice_receipt={'finalized':True,'close_reason':'close_requested','usage':{'seconds':2},'errors':[]})
+            budget.finish('fixture_'+str(number),'held',voice_receipt={'finalized':True,'close_reason':'close_requested','usage':{'seconds':2},'errors':[],'asr_outcome_confirmed':True})
             budget.finish('fixture_'+str(number),'held')  # bookkeeping cannot erase established confirmation
         with self.assertRaisesRegex(Held,'trial_package_exhausted'):
             budget.reserve('extra','voice:synthetic:en',trial_package=VOICE_TRIAL_PACKAGE,trial_purpose='english_diagnostic')
@@ -213,12 +215,19 @@ class JobsTests(unittest.TestCase):
         budget.reserve('en','voice:synthetic:en',trial_package=package,trial_purpose='english')
         with self.assertRaisesRegex(Held,'outcome_unconfirmed'):
             budget.reserve('es','voice:synthetic:es',trial_package=package,trial_purpose='spanish')
-        budget.record('en','fresh_audio',{'seconds':2})
-        budget.finish('en','ready',voice_receipt={'finalized':True,'close_reason':'close_requested','usage':{'seconds':2},'errors':[]})
+        budget.attempt('en');budget.record('en','fresh_audio',{'seconds':2})
+        budget.finish('en','ready',voice_receipt={'finalized':True,'close_reason':'close_requested','usage':{'seconds':2},'errors':[],'asr_outcome_confirmed':True})
+        budget.finish('en','held',voice_receipt={'finalized':True,'close_reason':'close_requested','usage':{'seconds':2},'errors':['usage_unconfirmed'],'asr_outcome_confirmed':True})
+        with self.assertRaisesRegex(Held,'outcome_unconfirmed'):
+            budget.reserve('blocked','voice:synthetic:es',trial_package=package,trial_purpose='spanish')
+        budget.finish('en','held',voice_receipt={'finalized':True,'close_reason':'close_requested','usage':{'seconds':2},'errors':[],'asr_outcome_confirmed':False})
+        with self.assertRaisesRegex(Held,'outcome_unconfirmed'):
+            budget.reserve('blocked','voice:synthetic:es',trial_package=package,trial_purpose='spanish')
+        budget.finish('en','ready',voice_receipt={'finalized':True,'close_reason':'close_requested','usage':{'seconds':2},'errors':[],'asr_outcome_confirmed':True})
         for purpose in ('spanish','native_repair','recovery'):
             budget.reserve(purpose,'voice:synthetic:es' if purpose=='spanish' else 'voice:synthetic:en',trial_package=package,trial_purpose=purpose,repair_basis='named offline repair' if purpose=='native_repair' else None)
-            budget.record(purpose,'fresh_audio',{'seconds':2})
-            budget.finish(purpose,'ready',voice_receipt={'finalized':True,'close_reason':'close_requested','usage':{'seconds':2},'errors':[]})
+            budget.attempt(purpose);budget.record(purpose,'fresh_audio',{'seconds':2})
+            budget.finish(purpose,'ready',voice_receipt={'finalized':True,'close_reason':'close_requested','usage':{'seconds':2},'errors':[],'asr_outcome_confirmed':True})
         with self.assertRaisesRegex(Held,'trial_package_exhausted'):
             budget.reserve('extra',trial_package=package,trial_purpose='text_initial')
         rows=json.loads(self.path.read_text())['runs']

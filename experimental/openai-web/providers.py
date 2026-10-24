@@ -52,18 +52,24 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
 
 
 class OpenAIProvider:
-    def __init__(self, organization, project):
+    def __init__(self, organization, project, *, before_dispatch=None):
         key = os.environ.get('OPENAI_API_KEY')
         if not key or not organization or not project:
             raise Held('provider_configuration')
+        if before_dispatch is not None and not callable(before_dispatch): raise Held('provider_configuration')
+        self.before_dispatch = before_dispatch
         self._headers = {'Authorization': 'Bearer ' + key,
                          'OpenAI-Organization': organization, 'OpenAI-Project': project}
+
+    def account_attempt(self):
+        if self.before_dispatch is not None: self.before_dispatch()
 
     def post(self, path, body, cancel):
         check_cancel(cancel)
         payload = json.dumps(body).encode()
         if path not in {'decisions', 'responses'} or len(payload) > 12000:
             raise Held('request_bound')
+        self.account_attempt()
         opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), NoRedirect())
         request = urllib.request.Request('https://api.openai.com/v1/' + path, data=payload,
                                         headers={**self._headers, 'Content-Type': 'application/json'})
@@ -111,6 +117,7 @@ class OpenAIProvider:
     def transcribe(self, wav, cancel):
         check_cancel(cancel)
         if type(wav) is not bytes or not 44<=len(wav)<=60*48000+44: raise Held('transcription_bound')
+        self.account_attempt()
         boundary='openoracle'+secrets.token_hex(16)
         payload=(f'--{boundary}\r\nContent-Disposition: form-data; name="model"\r\n\r\ngpt-transcribe\r\n'
                  f'--{boundary}\r\nContent-Disposition: form-data; name="file"; filename="public-reading.wav"\r\nContent-Type: audio/wav\r\n\r\n').encode()+wav+f'\r\n--{boundary}--\r\n'.encode()
