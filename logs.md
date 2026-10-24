@@ -920,3 +920,18 @@ This is a backfill, not a contemporaneous event stream.
   linked; no deprecated TTS API silently substituted. Full stretch product is
   still not acceptance-ready. Parent checkpoint requested; terminal results
   returned after final local verification/commit and remote CI inspection.
+
+- **Implementation committed:** `65bad7ab3aa09970a25a9546f30266aa4a1cecc6`
+  contains speech review repairs, expiry-state clarity, cancellation saturation
+  protection and the complete pinned U.S.House5 public-sample contest. Full local
+  behavior suites, module syntax and whitespace passed; staged patch inspected
+  for credentials/account identifiers and unrelated artifacts.
+- **New publication blocker:** automatic approval review denied pushing this
+  newer commit to the existing PR6, again citing retained no-publication wording
+  and asserting no later user authorization. The command did not execute; no
+  retry or alternate publication route used. Original three retries above stay
+  completed. PR6 therefore remains atdd6c1ac with its actual green CI; there is
+  no remote CI for65bad7a. Exact follow-up approval question requests pushing
+  this branch's tested OpenOracle implementation and related logs to existing
+  PR6 only, no merge/deploy/secrets/private data. Question tool accepted it but
+  returned no request ID. This is pending, not an uncertain push outcome.
