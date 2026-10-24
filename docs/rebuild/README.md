@@ -22,6 +22,6 @@ Questions remain in tab memory; the loopback server has no provider, private int
 
 1. Preserve buffered/manual civic audio until a tested audio release path can check content before it is heard. GPT-Live can speak while backend checks run; holding backend text alone cannot guarantee checked speech. This trades conversational speed for fidelity.
 2. Resolve how unrestricted microphone input can satisfy the rule against sending private voter information externally before enabling cloud voice. Streaming audio cannot be reliably redacted by a text regex.
-3. After explicit bounded spend approval, compare Responses generation with the finite baseline, calibrate review behavior, and prove a complete human journey on Mac. Then assess actual Pi hardware, Spanish language review and physical controls.
+3. Within the subsequently authorized bounded testing budget, compare Responses generation with the finite baseline, calibrate review behavior, and prove a complete human journey on Mac. Then assess actual Pi hardware, Spanish language review and physical controls.
 
-No paid API calls, credentials/access grants, MCP queries, deployment, Pi changes or external messages occurred. The user separately authorized project commits/PRs; this branch contains only the rebuild brief, isolated experiment and validation.
+The initial fixture checkpoint made no paid API calls. Later authorized isolated service tests are recorded in [the consent/API checkpoint](CONSENT-AND-API-CHECKPOINT.md); they do not enable the app’s providers. No new credentials/access grants, MCP queries, deployment or Pi changes occurred. The user separately authorized project commits/PRs; this branch contains only the rebuild brief, isolated experiment and validation.

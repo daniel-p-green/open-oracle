@@ -1,5 +1,7 @@
 # Provider-off validation — October 24, 2026
 
+Initial checkpoint record. The [current follow-up](CONSENT-AND-API-CHECKPOINT.md) has 29 passing Node tests, 5 passing HTTP tests, independent review fixes and separate authorized API smoke evidence.
+
 ## Automated checks actually executed
 
 - `node --test experimental/openai-web/tests/core.test.mjs`: **10 tests pass**. Six predefined questions; preserved Yes/No scope; candidate/office abstention; injected/forged personal membership records; altered source text/role/hash/URL/scope; invented/missing/extra claims; source/query prompt injection; advice/help/Spanish hold; VGC coverage/disconnection; reset, newer request and idle currentness.

@@ -1,6 +1,6 @@
 # OpenAI web rebuild decision — October 24, 2026
 
-Status: proposed architecture; executable provider-off experiment. Stable application unchanged. Parent remains project lead.
+Status: initial architecture record; executable provider-off experiment. Follow-up consent fixes and authorized isolated API tests are in [the current checkpoint](CONSENT-AND-API-CHECKPOINT.md). Stable application unchanged. Parent remains project lead.
 
 ## What we learned and will keep
 

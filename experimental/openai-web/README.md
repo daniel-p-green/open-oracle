@@ -8,7 +8,7 @@ python3 experimental/openai-web/server.py
 ```
 
 ```sh
-node --test experimental/openai-web/tests/core.test.mjs
+node --test experimental/openai-web/tests/*.test.mjs
 python3 -m unittest discover -s experimental/openai-web/tests -p 'test_*.py'
 ```
 
@@ -32,3 +32,14 @@ server serves only an explicit public file allowlist, bound to loopback.
 
 The experiment is isolated from the stable application. A model or hardware
 capability is established only by a later authorized integrated human trial.
+
+The voice-flow preview uses injected fixture permission/capture/preparation/player
+adapters. It displays a cloud-data disclosure before simulated consent, stops
+fixture capture before source checking, requires the complete matching reading,
+and requires manual Play. Stop/reset, question or language changes invalidate
+pending work and dispose late handles. It generates no sound; preview text is
+explicitly not live captions. Live adapters are rejected by this build.
+
+The isolated authorized API smoke results are in
+[the follow-up record](../../docs/rebuild/CONSENT-AND-API-CHECKPOINT.md). They do
+not enable providers in this application or establish a human-heard journey.
