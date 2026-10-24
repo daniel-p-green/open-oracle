@@ -94,7 +94,7 @@ export function validateJourney(
       part.source_id !== ids[index] ||
       typeof part.text !== "string" ||
       !part.text.trim() ||
-      part.text.length > (operation === "brief" ? 260 : 700) ||
+      part.text.length > (operation === "brief" ? 120 : 700) ||
       /[<>]|https?:\/\/|www\./i.test(part.text)
     )
       throw Error("journey_section");

@@ -16,7 +16,12 @@ from fresh_speech import TASKS as SPEECH_TASKS
 
 ROOT = Path(__file__).resolve().parent
 FILES = {
-    '/': (ROOT / 'web/index.html', 'text/html; charset=utf-8'),
+    '/': (ROOT / 'web/voice.html', 'text/html; charset=utf-8'),
+    '/voice': (ROOT / 'web/voice.html', 'text/html; charset=utf-8'),
+    '/voice.mjs': (ROOT / 'web/voice.mjs', 'text/javascript; charset=utf-8'),
+    '/voice-core.mjs': (ROOT / 'web/voice-core.mjs', 'text/javascript; charset=utf-8'),
+    '/voice.css': (ROOT / 'web/voice.css', 'text/css; charset=utf-8'),
+    '/source-review': (ROOT / 'web/index.html', 'text/html; charset=utf-8'),
     '/diagnostics': (ROOT / 'web/diagnostics.html', 'text/html; charset=utf-8'),
     '/experience.mjs': (ROOT / 'web/experience.mjs', 'text/javascript; charset=utf-8'),
     '/experience-core.mjs': (ROOT / 'web/experience-core.mjs', 'text/javascript; charset=utf-8'),
@@ -57,7 +62,7 @@ FILES = {
     '/map-review-pin.json': (ROOT.parents[1] / 'docs/rebuild/MAP-DERIVATIVE-PIN.json', 'application/json'),
     '/map-manifest.json': (ROOT.parents[1] / 'docs/rebuild/MAP-SOURCE-MANIFEST.json', 'application/json'),
 }
-REVIEW_ROUTES={'/diagnostics','/app.mjs','/conversation.mjs','/live-client.mjs','/style.css','/maps','/maps.mjs'}
+REVIEW_ROUTES={'/source-review','/diagnostics','/app.mjs','/conversation.mjs','/live-client.mjs','/style.css','/maps','/maps.mjs'}
 REQUEST_ID = re.compile(r'[a-zA-Z0-9_-]{16,64}\Z')
 
 
@@ -101,6 +106,8 @@ class Handler(BaseHTTPRequestHandler):
                 if self.headers.get('Sec-Fetch-Site') not in {None, 'same-origin', 'none'}: raise Held('unexpected_site')
                 caps = self.server.jobs.capabilities() if self.server.jobs else {'mode': 'fixture', 'providers': 'disabled', 'credentials_read': False, 'microphone': 'disabled', 'playback': 'disabled', 'visitor_persistence': False}
                 caps['review_tools']=self.server.review_tools
+                caps['voice_fixture_enabled']=bool(self.server.review_tools and self.server.jobs and getattr(self.server.jobs.pipeline,'voice_fixtures',None))
+                caps['voice_fixture_languages']=getattr(self.server.jobs.pipeline,'voice_languages',[]) if caps['voice_fixture_enabled'] else []
                 self.json_reply(200, caps)
             elif self.path.startswith('/api/provider/job/') and self.server.jobs:
                 request = self.path.removeprefix('/api/provider/job/')
@@ -147,14 +154,16 @@ class Handler(BaseHTTPRequestHandler):
                 if type(body['parent_request_id']) is not str or not REQUEST_ID.fullmatch(body['parent_request_id']) or not str(body.get('question_id','')).startswith(('journey:','speech:')): raise ValueError()
             if type(body) is not dict or set(body) != keys or type(body['request_id']) is not str or not REQUEST_ID.fullmatch(body['request_id']):
                 raise ValueError()
-            if self.path.endswith('/start') and body['question_id'] not in {'rate', *('layout:' + key for key in RECIPES), *TASKS,*SPEECH_TASKS}: raise ValueError()
+            if self.path.endswith('/start') and body['question_id'] not in {'rate', *('layout:' + key for key in RECIPES), *TASKS,*SPEECH_TASKS,'voice:synthetic:en','voice:synthetic:es'}: raise ValueError()
+            if self.path.endswith('/start') and body['question_id'].startswith('voice:') and not (self.server.review_tools and getattr(self.server.jobs.pipeline,'voice_fixtures',None)): raise ValueError()
+            if self.path.endswith('/start') and body['question_id'].startswith('voice:') and body['question_id'].rsplit(':',1)[1] not in getattr(self.server.jobs.pipeline,'voice_languages',[]): raise ValueError()
             if self.path.endswith('/start') and body['question_id'].startswith('speech:') and not self.server.review_tools: raise ValueError()
             if self.path.endswith('/start') and body['question_id'].startswith(('journey:','speech:')) and body['question_id'].endswith(':es') and not self.server.review_tools: raise ValueError()
         except Exception:
             self.json_reply(400, {'error': 'request_invalid'}); return
         try:
             token = self.headers.get('X-Session-Token')
-            result = (self.server.jobs.start(token, body['request_id'], body['question_id'] if body['question_id'].startswith(('layout:', 'journey:','speech:')) else None, parent_request=body.get('parent_request_id')) if self.path.endswith('/start')
+            result = (self.server.jobs.start(token, body['request_id'], body['question_id'] if body['question_id'].startswith(('layout:', 'journey:','speech:','voice:')) else None, parent_request=body.get('parent_request_id')) if self.path.endswith('/start')
                       else self.server.jobs.cancel(token, body['request_id']))
             self.json_reply(202, result)
         except Held as error:
@@ -227,6 +236,7 @@ if __name__ == '__main__':
     parser.add_argument('--map-review-dir', type=Path)
     parser.add_argument('--experience-dir', type=Path)
     parser.add_argument('--review-tools', action='store_true')
+    parser.add_argument('--voice-fixtures', type=Path)
     args = parser.parse_args()
     jobs = None
     if args.enable_openai:
@@ -238,7 +248,8 @@ if __name__ == '__main__':
         repository = ROOT.parents[1]
         if ledger.is_relative_to(repository) and '.local' not in ledger.parts:
             parser.error('Keep the operational ledger outside Git or under ignored .local/.')
-        jobs = Jobs(ProductPipeline(Pipeline(admitted_corpus(ROOT / 'fixtures/combat.json'), OpenAIProvider(args.organization, args.project)), allow_spanish=args.review_tools, text_model=args.text_model), Budget(ledger, journey_reserve=.10 if args.text_model == 'gpt-6.1-sol' else .01), args.max_runs)
+        if args.voice_fixtures and not args.review_tools: parser.error('Synthetic voice fixtures require explicit local review tools.')
+        jobs = Jobs(ProductPipeline(Pipeline(admitted_corpus(ROOT / 'fixtures/combat.json'), OpenAIProvider(args.organization, args.project)), allow_spanish=args.review_tools, text_model=args.text_model, voice_fixtures=args.voice_fixtures), Budget(ledger, journey_reserve=.10 if args.text_model == 'gpt-6.1-sol' else .01), args.max_runs)
     server = make_server(args.port, jobs, args.map_review_dir, args.experience_dir, args.review_tools)
     print(f'OpenOracle local review: http://127.0.0.1:{server.server_port} ({"bounded providers enabled" if jobs else "providers off"}; microphone off; manual speaker consent required)', flush=True)
     try: server.serve_forever()

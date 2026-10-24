@@ -44,6 +44,7 @@ export async function requestProviderJob({
   onRequest = () => {},
   onNotStarted = () => {},
   onTiming = () => {},
+  onProgress = () => {},
   fetcher = fetch,
   timeoutMs = 25000,
 }) {
@@ -115,6 +116,13 @@ export async function requestProviderJob({
     let job = await response.json();
     while (session.current(ticket) && !operationSignal.aborted) {
       if (job.request_id !== id) throw Error("request_mismatch");
+      if (
+        Array.isArray(job.updates) &&
+        !["held", "cancelled", "expired", "cancel_requested"].includes(
+          job.state,
+        )
+      )
+        onProgress(job.updates);
       if (job.state === "ready") {
         onTiming(job.timing);
         return decode(job.result, {

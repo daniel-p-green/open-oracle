@@ -56,6 +56,23 @@ class JobsTests(unittest.TestCase):
         with self.assertRaises(Held): self.jobs.start(self.token, 'public_request_0002')
         self.assertEqual(len(json.loads(self.path.read_text())['runs']), 1)
 
+    def test_slow_voice_poll_preserves_checked_turns_and_cancel_removes_captions(self):
+        class PublicVoice:
+            def run_task(self,task,cancel,progress,meter):
+                progress('audio',{'stage':'checked_text','turn':1,'text':'public checked wording'})
+                for number in range(100):
+                    progress('audio',{'stage':'input_partial','turn':2,'text':str(number)})
+                return {'public_fixture':True},b''
+        self.jobs.pipeline=PublicVoice()
+        self.jobs.start(self.token,self.request,'voice:synthetic:en')
+        row=self.wait_terminal()
+        self.assertEqual(row['state'],'ready')
+        self.assertEqual([(item['stage'],item['text']) for item in row['updates']],
+                         [('checked_text','public checked wording'),('input_partial','99')])
+        self.assertEqual([item['revision'] for item in row['updates']],[1,101])
+        self.jobs.cancel(self.token,self.request)
+        self.assertNotIn('updates',self.jobs.public(self.token,self.request))
+
     def test_adaptation_uses_only_ready_same_owner_public_unit_and_erase_revokes_it(self):
         class PublicJourney:
             def __init__(self): self.parents=[]

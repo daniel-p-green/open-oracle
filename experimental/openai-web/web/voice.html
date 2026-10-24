@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>OpenOracle · a conversation, grounded in evidence</title>
+    <link rel="icon" href="/logo.svg" />
+    <link rel="stylesheet" href="/maps.css" />
+    <link rel="stylesheet" href="/voice.css" />
+    <script type="module" src="/voice.mjs"></script>
+  </head>
+  <body>
+    <a class="skip" href="#visual">Skip to the visual explanation</a>
+    <header>
+      <a class="brand" href="/"
+        ><img src="/logo.svg" width="34" height="34" alt="" />OpenOracle</a
+      >
+      <span class="sample">AI voice · Missouri public-source example</span>
+      <label
+        >Language / Idioma
+        <select id="language">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+        </select></label
+      >
+    </header>
+    <main>
+      <section class="conversation" aria-labelledby="voice-title">
+        <p class="eyebrow" id="eyebrow">UNDERSTAND YOUR BALLOT</p>
+        <h1 id="voice-title">Ask. See. Understand.</h1>
+        <p class="intro" id="voice-intro">
+          A conversation about the question. The evidence appears as you
+          explore.
+        </p>
+        <div class="voice-presence" aria-hidden="true"><span></span></div>
+        <p id="connection" role="status" aria-live="polite">
+          Checking local capabilities…
+        </p>
+        <button id="start-talking" type="button" disabled>Start talking</button>
+        <div class="session-controls">
+          <button id="interrupt" type="button">Stop</button
+          ><button id="erase" type="button">End and erase</button>
+        </div>
+        <p id="media-state" class="small">Microphone off · speakers off</p>
+        <aside id="voice-idle" hidden role="status">
+          <p id="voice-idle-message"></p>
+          <button id="voice-continue" type="button">Keep this session</button>
+        </aside>
+        <section class="caption" aria-labelledby="caption-label">
+          <h2 id="caption-label">Conversation</h2>
+          <p id="caption" dir="auto">
+            This development preview has not started a live conversation.
+          </p>
+          <p id="answer-state" class="small"></p>
+          <ol id="conversation-turns" role="log" aria-live="polite" aria-relevant="additions text" aria-label="Conversation turns"></ol>
+        </section>
+      </section>
+      <section
+        id="visual"
+        class="visual"
+        tabindex="-1"
+        aria-label="Visual explanation"
+      >
+        <div class="canvas-welcome">
+          <span class="canvas-mark" aria-hidden="true">◎</span>
+          <h2 id="canvas-title">The right view, at the right moment.</h2>
+          <p id="canvas-intro">
+            Official maps, clear comparisons and the original wording—connected
+            to the conversation.
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p id="scope">
+        Public example: Missouri Proposition A · KCEB W1-P7 · November 3, 2026.
+        Your personal ballot and district are unverified. No vote
+        recommendations.
+      </p>
+      <details>
+        <summary id="source-label">Sources, privacy and preview status</summary>
+        <div id="source-details">
+          <p>
+            Human microphone and speaker use is not enabled. No recording begins
+            on this page. Do not enter private voter information.
+          </p>
+          <p>
+            Checked text, checked audio and human acceptance are separate
+            states. This preview is not a finished realtime voice demonstration.
+          </p>
+        </div>
+      </details>
+      <details id="development" hidden>
+        <summary>Development controls · synthetic inputs only</summary>
+        <p>
+          Runs authored public synthetic audio through GPT-Live, native
+          Decisions and grounded Responses. No human capture or device playback.
+          Counts against the configured bounded test allowance.
+        </p>
+        <button id="synthetic-run" type="button" disabled>
+          Run public synthetic conversation · no sound</button
+        ><a href="/source-review">Supporting source review</a>
+      </details>
+    </footer>
+  </body>
+</html>

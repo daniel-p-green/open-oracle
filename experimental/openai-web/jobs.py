@@ -43,7 +43,8 @@ class Budget:
 
     def reserve(self, run, task=None):
         speech=bool(task and task.startswith('speech:'))
-        amount = .10 if speech else self.journey_reserve if task and task.startswith('journey:') else min(self.per_run, .01) if task else self.per_run
+        voice=bool(task and task.startswith('voice:synthetic:'))
+        amount = .10 if speech or voice else self.journey_reserve if task and task.startswith('journey:') else min(self.per_run, .01) if task else self.per_run
         with self.locked() as data:
             maximum = data.get('authorization_usd_max')
             runs = data.get('runs')
@@ -53,8 +54,8 @@ class Budget:
             if any(type(n) not in (int, float) or not math.isfinite(n) or n < 0 for n in amounts): raise Held('budget_invalid')
             if sum(amounts) + amount > maximum: raise Held('budget_exhausted')
             journey = bool(task and task.startswith('journey:'))
-            runs.append({'id': run, 'kind': 'fresh_public_speech' if speech else 'fresh_public_journey' if journey else 'bounded_ui_composition' if task else 'integrated_public_rate', 'state': 'reserved',
-                         'reserved_usd': amount, 'retry': False, 'requests_max': 2 if journey or speech else 1 if task else 4, 'stages': []})
+            runs.append({'id': run, 'kind': 'native_live_synthetic_loop' if voice else 'fresh_public_speech' if speech else 'fresh_public_journey' if journey else 'bounded_ui_composition' if task else 'integrated_public_rate', 'state': 'reserved',
+                         'reserved_usd': amount, 'retry': False, 'requests_max': 9 if voice else 2 if journey or speech else 1 if task else 4, 'stages': []})
             data['conservative_reservations_usd'] = sum(amounts) + amount
             data['state'] = 'integrated public-provider test in flight'
 
@@ -120,6 +121,7 @@ class Jobs:
                          else not ready_public_context and now-row['created']>=JOB_TTL)
                 if expired or now - owner['created'] >= TOKEN_TTL:
                     row['cancel'].set(); row['result'] = row['audio'] = row['prior'] = None; row['state'] = 'expired'
+                    row.pop('updates',None)
             for row in owner['jobs'].values():
                 if str(row.get('task','')).startswith('speech:'):
                     parent=owner['jobs'].get(row.get('parent_request'))
@@ -178,10 +180,21 @@ class Jobs:
             return self.public(token, request)
 
     def _run(self, row):
-        def progress(stage):
+        def progress(stage, update=None):
             with self.lock:
                 self._expire()
                 check_cancel(row['cancel']); row['timing'].advance(stage); row['state'] = stage
+                if update is not None:
+                    if not str(row.get('task','')).startswith('voice:synthetic:') or len(json.dumps(update))>32768:
+                        raise Held('voice_update_bound')
+                    updates=row.setdefault('updates',[])
+                    revision=row.get('update_revision',0)+1
+                    if revision>128: raise Held('voice_update_bound')
+                    row['update_revision']=revision
+                    if update.get('stage')=='input_partial':
+                        updates[:]=[item for item in updates if not (item.get('stage')=='input_partial' and item.get('turn')==update.get('turn'))]
+                    updates.append(copy.deepcopy(dict(update, revision=revision)))
+                    if len(updates)>16: raise Held('voice_update_bound')
         def meter(stage, usage): self.budget.record(row['run'], stage, usage)
         try:
             result, pcm = (self.pipeline.run_task(row['task'], row['cancel'], progress, meter, prior=row['prior']) if row['task'] and row['task'].startswith(('journey:','speech:'))
@@ -220,6 +233,7 @@ class Jobs:
                              else JOB_TTL-(self.clock()-row['created']))
             return copy.deepcopy({'request_id': request, 'state': row['state'], 'reason': row['reason'],
                                   'result': row['result'], 'playback_enabled': False, 'timing': row['timing'].snapshot(),
+                                  **({'updates':row.get('updates',[])} if str(row.get('task','')).startswith('voice:synthetic:') and row['state'] not in {'held','cancelled','cancel_requested','expired'} else {}),
                                   'expires_in_seconds': max(0, lifetime_left)})
 
     def cancel(self, token, request):
@@ -235,6 +249,7 @@ class Jobs:
             row = owner['jobs'].get(request)
             if row:
                 row['cancel'].set(); row['result'] = row['audio'] = None
+                row.pop('updates',None)
                 row['prior'] = None
                 row['state'] = 'cancelled' if row['state'] in {'ready', 'held', 'cancelled', 'expired'} else 'cancel_requested'
             # Revocation reaches dependent speech even after its WAV was prepared.

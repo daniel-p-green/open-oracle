@@ -16,16 +16,37 @@ RECIPES = {
 
 
 class ProductPipeline:
-    def __init__(self, base, allow_spanish=False, text_model='gpt-6-luna'):
+    def __init__(self, base, allow_spanish=False, text_model='gpt-6-luna', voice_fixtures=None):
         self.base = base
         self.journey = JourneyPipeline(base.provider, allow_spanish, text_model)
         self.speech = FreshSpeechPipeline(base.provider, allow_spanish)
+        self.voice_fixtures=voice_fixtures
+        self.voice_languages=[]
+        if voice_fixtures:
+            from pathlib import Path
+            from voice_agent import load_synthetic_fixtures
+            record=json.loads(Path(voice_fixtures).read_text())
+            for language in record.get('languages',{}):
+                if language not in {'en','es'}: raise Held('synthetic_manifest_language')
+                load_synthetic_fixtures(voice_fixtures,language)
+                self.voice_languages.append(language)
 
     def run(self, cancel, stage, meter):
         return self.base.run(cancel, stage, meter)
 
     def run_task(self, task, cancel, stage, meter, prior=None):
         check_cancel(cancel)
+        if task in {'voice:synthetic:en','voice:synthetic:es'}:
+            if not self.voice_fixtures: raise Held('synthetic_voice_unavailable')
+            import asyncio
+            from voice_agent import PublicSyntheticVoiceLoop, load_synthetic_fixtures
+            language=task.rsplit(':',1)[1]
+            fixtures=load_synthetic_fixtures(self.voice_fixtures,language)
+            result=asyncio.run(PublicSyntheticVoiceLoop(self.base.provider,language=language,seconds=45).run(
+                fixtures,cancel,meter,lambda value:stage('audio',value)))
+            if result.get('all_turns_checked') is not True:
+                raise Held('voice_session_held')
+            return result,b''
         if task in TASKS:
             return self.journey.run_task(task, cancel, stage, meter, prior=prior)
         if task in SPEECH_TASKS:

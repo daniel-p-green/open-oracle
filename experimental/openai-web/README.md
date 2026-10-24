@@ -252,3 +252,26 @@ source pages/column/crop coordinates, readout hashes and spans. The visually
 absent stray KCEB State Senator text-layer heading is excluded. Old research and
 source originals remain unchanged. Runtime browsing uses the bundled fixture
 and does not need Poppler or the old repository.
+
+October24 primary-interaction correction: `/` and `/voice` now serve the
+voice-first development preview. It explicitly holds human microphone/playback;
+it is not a live conversation demo yet. `/source-review` retains supporting
+evidence work only with `--review-tools`. Native `voice:synthetic:en|es` is a
+separately enabled, bounded development path using an admitted local WAV manifest
+(`--voice-fixtures` together with existing provider/review flags). No audio upload
+or free visitor-transcript endpoint exists. Fixture language/format/hash checks
+precede dispatch. One native session allows at most two synthetic inputs, a45s
+operation window plus<=15s graceful close, with a0.10 shared-ledger reservation
+and no retry. After an initial rejection and direct authorization evidence, one
+actual English test selected a measure view and produced checked text, but held
+before checked speech. The corrected commentary-return test then checked its
+first speech and selected the Kansas City map for a contextual follow-up, but
+held the second grounded answer on language review. The whole conversation is
+not verified. A further diagnostic run was denied before launch; no automatic
+retry. See `docs/rebuild/NATIVE-VOICE-TRIALS-2026-10-24.json` for measured stages
+and costs. Native full-loop compatibility, latency, actual browser behavior and
+human EN/ES acceptance remain unverified. Timed provisional input, pending checked
+text and final checked-audio transcripts remain distinct. Canonical final turns
+recover checked captions after slow polling; partial native input is never called
+final. Offline checks establish neither natural spoken conversation nor human
+pronunciation/comprehension.

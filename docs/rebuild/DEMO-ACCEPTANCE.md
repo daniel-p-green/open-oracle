@@ -5,6 +5,28 @@ public developer-profile demonstration. **Not complete or publicly ready.** No
 public deployment, microphone/speaker activation or new credentials follow from
 this checklist. Managed Agents is deferred; it must not block product work.
 
+**October24 product correction:** primary interaction means natural speech,
+contextual follow-up and a model-selected visual canvas. A document browser,
+recap collection or canned routing does not satisfy it. The new default preview
+centers Start talking, EN/ES, connection/media state, captions and canvas; human
+capture/playback remain disabled. Native Live→Decisions→grounded Responses is
+implemented for public synthetic audio. Two actual English sessions ran. The
+corrected second run checked its first generated speech at24.317s and native
+Decisions selected the contextual maps/kansas_city follow-up at28.322s. Its
+second answer was held by the language check; the complete conversation failed.
+No human heard audio and no integrated browser rendering was verified. See
+[recorded trial evidence](NATIVE-VOICE-TRIALS-2026-10-24.json). Supporting source
+review is review-only. A subsequent diagnostic run was denied before execution.
+No screenshot, mock or offline protocol receipt establishes the required real
+conversation, latency, interruption, multilingual or human acceptance.
+
+Current transcript implementation separates timed provisional input, checked
+answer text awaiting speech validation and final checked-audio transcript state,
+bound to language/source/turn/revision and cleared on Erase. Native input deltas
+without an admitted timestamp window are withheld; they are never called final
+utterances. The input-language field is a preference, not language detection.
+This remains unverified through an actual full EN/ES voice/UI interaction.
+
 | User workflow | Implementation / evidence now | Remaining release evidence |
 | --- | --- | --- |
 | Ask about exact public measure wording and follow up | Actual fresh EN overview → simpler → ES adaptation from server-owned prior; exact original/local Yes–No effects, challenge, optional teach-back and ephemeral recap | Broader admitted evidence, generative component selection and nonauthor comprehension/paraphrase review |
@@ -167,3 +189,11 @@ Temporary fault server8924 was stopped after QA; providers-off review8923 remain
 available locally. Documentation receipts do not change the tested application.
 Consolidated recap is implemented/locally verified; AI-planned composition,
 live bilingual latency and the other full acceptance gates remain open.
+
+Native-loop acceptance gaps after the corrected test: complete two-turn success;
+full input caption timing/finality; Spanish live input/output and civic review;
+first safe speech latency; actual interruption-to-silence; consent/privacy and
+human device journey; restored browser tooling and renewed Opus5.5High review.
+The new primary preview is code-reviewed and provider-off checked, not visually
+verified or showcase-ready. Brief answer bound is now120 characters; its effect
+on live latency is unmeasured. No checks were removed to improve speed.

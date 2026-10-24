@@ -68,3 +68,16 @@ requires no extra rendering LLM. It is user-chosen deterministic composition,
 not proof of native/AI planning. Actual source/cancel/failure/390px checks and
 review findings drove fixes, including hash wrapping and private lookup references
 remaining text-only on a shared terminal. No new UI dependency/license is introduced.
+
+October24 voice-first correction: native/showcase references inform the primary
+conversation + focused visual canvas, rather than a document dashboard.
+`web/voice.html`, `voice.css`, `voice.mjs` keep inventories/provider controls/recap
+out of the primary flow. `voice_agent.py` implements native Live→Decisions choices
+of view/map focus/delivery, the existing checked Responses boundary and pinned
+maps. `map-view.mjs.setView` accepts an admitted application view ID; no generated
+geometry or arbitrary HTML/URL. No reference code copied. Official Live
+delegation/Decisions/server-control docs fetched before implementation. Actual
+provider tests now show first checked speech and native contextual map selection,
+but the second answer held on language review. Whole-loop/browser verification
+remains pending. Primary transcript schema and stable view state are application
+adaptations, not copied reference code. See NATIVE-VOICE-TRIALS-2026-10-24.json.

@@ -1626,3 +1626,157 @@ This is a backfill, not a contemporaneous event stream.
   authority; do not bypass the denied login or call historical credit current.
   Live loop still needs implementation and actual synthetic public input tests;
   human microphone/speakers remain unapproved. No new paid run in this increment.
+
+### 2026-10-24 17:13 UTC — native voice-first implementation; paid test denied
+
+- **Preserved:** evidence contracts2b3cac8 pushed toPR6; independent review
+  closed its two wiring repairs. Daniel explicitly rejected the recap/document
+  UX. Natural spoken conversation, contextual follow-ups and model-selected
+  visuals are the primary interaction; support panels are not product acceptance.
+- **Implemented, not live-proven:** default preview now centers Start talking,
+  EN/ES, connection/media state, caption and focused canvas. Human capture/player
+  absent and labeled. Source review requires review-tools. Existing session,
+  request/job/cancel/ledger/checked-text/map owners reused. Native gpt-live-1
+  receives only hash-checked synthetic public PCM; native gpt-6-luna Decisions
+  selects view/map focus/delivery. Grounded Responses+independent Decisions
+  precede Live speech, buffered/ASR-checked. No arbitrary factual UI props,
+  HTML/URLs/geometry, vote advice or personal assignment.
+- **Docs:** fetched official voice-websockets, live-delegation, decisions-voice,
+  voice-server-controls pre-playback checks, and September pricing changelog.
+  Live0.05/minute, backend extra. No output-done event or commentary exactness
+  guarantee assumed. Quiet+planned transcript only proposes a segment, not
+  completion approval. Turn-named decisions and effective-config acknowledgement
+  fence the second input.45s operation timeout includes backend/ASR/connection,
+  plus<=15s graceful close. Final usage/close_requested required for success.
+- **Review/fixes:** independent fake transport exposed0.05s checked versus0.15s
+  emitted PCM being accepted. Fixed growth during ASR and post-seal audio; one
+  protocol regression now covers positive, extra during ASR/close and missing
+  usage. It passed4.168s, no network/media. Legal status has expiry and Stop
+  demotion. Browser tools still unavailable: no new visual/mobile/provider result
+  claimed. Provider-off preview8923 restarted; open_in_codex queued its tab.
+- **Synthetic inputs only:** installed local TTS generated4.640s public question
+  and3.088s map follow-up to files, no speakers. Initial sandbox output was empty;
+  length/integrity admission caught it before inference. Scoped local generation
+  then succeeded. These are caller fixtures, not a substantive answer library.
+- **Denied, known not executed:** ../native_voice_bounded_trial.py would reserve
+  <=0.10 within shared200, one Live session/up to two public inputs, bounded
+  Responses/review/ASR; no human media/new key/retry. Automatic review rejected:
+  "Runs a live paid OpenAI voice trial using an existing credential and reserves
+  $0.10, but the trusted instructions require approval for paid API calls and no
+  such user approval covers this exact request." No request ID; do not retry
+  without new relevant approval. Verified no output/native-loop ledger row;
+  reservations unchanged1.96, no new usage. Claude upload remains separately
+  denied; billing account selection separately pending.
+- **Blocker clarified:** existing credential and earlier successful account-scope
+  headers exist. Fresh billing login is not an API authentication prerequisite.
+  No denied-login bypass/alternate credential/new access used. Earlier1067.97
+  remains historical. Real native compatibility, measured latency/interruption,
+  EN/ES, human consent/privacy/input/player and recording/acceptance remain open.
+
+### 2026-10-24 17:27 UTC — actual native trial held; transcript contract implemented
+
+- **Approval reconciliation:** parent supplied direct API-budget/optimization
+  instructions and Claude source-only approval as materially relevant evidence.
+  Retried known-not-executed native test once under normal review. Initial
+  launch failed before reservation/API because system Python lacked websockets;
+  verified existing .api-test-venv has pinned15.0.1 and used that established
+  runtime without install/new credentials. Billing login was not retried.
+- **Actual test, held:** one gpt-live-1 session connected at1568.561ms; native
+  Decisions selected measure/unchanged at7531.189ms. Grounded gpt-6-luna brief
+  passed source/review at11114.138ms and actually selected explanation/original/
+  uncertainty components. These are test-origin offsets, not first audible
+  latency.45s deadline held before checked speech; graceful close finalized at
+  47654.160ms. One native decision, no accepted audio segment, no second turn,
+  no human capture/playback or persisted output audio. Do not call this a live
+  conversation success, UI-render proof or latency improvement. Private public-
+  input receipt preserved at ../native-voice-en-trial-01-private.json.
+- **Cost evidence:** actual reported43.0Live seconds plus Responses/review usage
+  gives0.0361289333 usage/duration estimate, not invoice. Shared reservations2.06,
+  cumulative recorded estimate0.2488334 including this run; older unmetered
+  Playground requests remain outside that estimate. No credit purchase/reload,
+  balance reauthentication or changed200 cap.
+- **Correction implemented, not provider-verified:** native delegation docs use
+  commentary.append to return the backend result. First adapter used instruction
+  only. Now sends checked commentary plus exact-reading instruction, while still
+  checking actual buffered speech/ASR rather than assuming verbatim output.
+  Added numeric bytes/transcript-length/match diagnostics; no raw input transcript
+  retained/exported. Cannot retrospectively diagnose the first run's exact spoken
+  mismatch from diagnostics it did not collect. Offline PCM regression passes.
+- **Further test denied, known not executed:** same runner under existing test
+  runtime, another<=0.10 bounded experiment after this substantive protocol fix,
+  was rejected: "This would initiate another paid $0.10 OpenAI voice experiment
+  after the explicitly authorized one retry already ran; the available
+  authorization does not cover an additional paid run." No request ID, no retry
+  or alternate route. Exact next approval is one additional0.10 native experiment
+  with the same public clips, established credential and caps. This is separate
+  from the still-pending billing login. No second reservation/API call started.
+- **Latest user acceptance:** live voice + language-appropriate on-screen
+  transcripts + generative UI. Implemented provisional timed input versus checked
+  text versus final audio transcript states, shared language/source/turn/revision,
+  explicit no-playback label and ephemeral erasure. No delta/delegation called a
+  final input turn; unmatched timestamp windows withhold input captions. Output
+  final labels require full checked session completion, not text generation.
+  Actual EN/ES conversation, input finality, frame synchronization and assistive
+  acceptance remain open; translated navigation is not proof of these outcomes.
+- **Other limits:** current native code needs renewed Opus5.5High review; trusted
+  scope addresses the former rejection but browser tools are unavailable, so no
+  upload retry/review claimed. Accidental unrelated read-only lookup changed
+  nothing; no returned contents copied to the project. Continue only project
+  work. No merge/deploy/readiness claim or Pi changes.
+  No merge, deployment, Pi change or full-product success claim.
+
+### 2026-10-24 17:43 UTC — corrected native speech checked; follow-up held
+
+- **New exact approval and actual action:** Daniel explicitly approved the
+  corrected<=0.10 native experiment and reaffirmed the shared200 test maximum.
+  Normal tool review permitted the corrected test using only the established
+  server credential/scope and existing synthetic public clips. No billing login,
+  microphone, player, new credential or software installation. Preserved the
+  second receipt outside Git at ../native-voice-en-trial-02-private.json.
+- **Measured partial result, overall held:** connected709.586ms; native measure
+  decision6738.327ms; checked text9896.239ms; candidate speech segment at22955.855ms;
+  independent ASR matched24317.470ms; turn2 began24363.681ms after effective config
+  acknowledgement; native maps/kansas_city choice28321.554ms. The second fresh
+  answer held journey_language_match_held and voice_segment_incomplete. Session
+  finalized33277.555ms with30.0 reported Live seconds. One checked audio segment,
+  two native decisions, zero human-heard/playback/rendering claims.
+- **Cost:** corrected run recorded0.0265864 estimate from token/duration usage,
+  not invoice. Shared conservative reservations2.16; cumulative recorded direct
+  estimate0.2754198. Earlier two unmetered Playground requests remain excluded.
+  Sanitized stage/cost evidence committed in
+  docs/rebuild/NATIVE-VOICE-TRIALS-2026-10-24.json, with receipt hashes and explicit
+  missing code-snapshot provenance; no account identifiers/private voter data.
+- **Findings and fixes:** first answer196characters required12.9s waveform.
+  Reduced brief maximum260→120 in server and client without changing factual,
+  source, language or ASR checks; effect unmeasured. Timing diagnostics showed
+  only16 of23 input fragments aligned, leaving an incomplete provisional second
+  caption. Keep unmatched fragments withheld and no final input claim. Added
+  bounded numeric window diagnostics and a public-fixture-only diagnostic
+  provider in the external trial runner to investigate the language hold; no
+  production payload recording or threshold weakening.
+- **Independent local re-review:** closed idle-expiry and lost-final-caption
+  defects. Activity capture erases expired content before renewal; passive scroll
+  no longer renews and Continue keeps stable focus. Coalesced provisional events
+  preserve essential checked events; final receipt carries revalidated canonical
+  checked payloads. Server cannot mark a failed native session ready. Extra PCM
+  during ASR/close and missing final usage remain holding conditions. Scoped
+  independent inspection found no further consequential defect; whole-product
+  acceptance and renewed Claude review remain open.
+- **Verification:** JS contracts passed; Python non-socket contracts passed.
+  Sandbox denied loopback bind in HTTP setup, so reran only existing HTTP suite
+  with normal scoped escalation: all HTTP checks passed. No paid/media calls in
+  checks. Actual viewport/mobile/AT validation unavailable with browser tools.
+- **Denied, known not executed:** next diagnostic .api-test-venv/bin/python
+  native_voice_bounded_trial.py, same two public clips/credential,<=0.10 reserved,
+  was rejected by automatic review: "This would launch another paid $0.10
+  OpenAI voice test after the explicitly approved corrected run already executed;
+  no trusted user authorization covers this additional experiment." No request
+  ID; no new reservation/call. Stopped this operation, no alternate route. Exact
+  next approval: one diagnostic native run<=0.10 on those same inputs/scope,
+  no human capture/playback. Separate denied billing login remains untouched
+  and is not technically required for API authentication.
+- **Remaining gates:** native two-turn completion, input timestamp/finality,
+  actual Spanish voice, acceptable measured safe-output latency, human consent
+  and private-speech handling, device interruption, full browser interaction/
+  recording, source/rights/coverage gaps and Opus5.5High native-code critique.
+  No merge, deployment, Pi change or showcase-ready claim.

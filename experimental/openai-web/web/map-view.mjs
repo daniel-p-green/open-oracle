@@ -198,6 +198,12 @@ export function mountMapComparison(
   }
   draw();
   return {
+    setView(id) {
+      if (disposed || !data.views.some((view) => view.id === id)) return false;
+      viewId = id;
+      draw();
+      return true;
+    },
     dispose() {
       disposed = true;
       host.replaceChildren();
