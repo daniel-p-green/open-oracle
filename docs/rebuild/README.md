@@ -1,5 +1,12 @@
 # Rebuild checkpoint
 
+**Planning correction:** the [original PRD/JTBD reconciliation](ORIGINAL-PLANNING-RECONCILIATION.md)
+governs new product work. The current finite COMBAT/clip workspace is an
+engineering harness. It does not replace the selected fresh adaptive voice
+product or the whole Jackson County final-scope goal. A later OpenAI-only
+Mac-first project was recovered and must be assessed for reuse before more
+session/voice architecture is written.
+
 Current candidate-source direction: [primary-source architecture and bounded hybrid trial](PRIMARY-SOURCE-ARCHITECTURE.md). Earlier newsroom/VGC suggestions are superseded for candidate evidence.
 
 Current product goals: [multilingual voice and source-backed official-map UI roadmap](PRODUCT-ROADMAP.md). Chronological decisions/actions: [root log](../../logs.md).

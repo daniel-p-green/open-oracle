@@ -1,0 +1,97 @@
+{
+  "review_date_utc": "2026-10-24",
+  "status": "targeted original-planning reconciliation; not exhaustive project review",
+  "authority_note": "Modification times identify snapshots, not user approval. D2 is untracked; duplicate is byte-identical. Recorded earlier user decisions need reconciliation with latest direct instructions.",
+  "documents": [
+    {
+      "id": "D1",
+      "path": "/Users/danielgreen/Documents/Codex/open-oracle/research/HackMidwest2026_research/OpenOracle-JacksonCounty-2026-Research/context/PRD-SCOPE-CONTEXT.md",
+      "title": "Open Oracle",
+      "sha256": "191feccd542219036a10816ffd2da8386690ed0854e17dd5586feb9f80faa1d3",
+      "lines": 244,
+      "filesystem_modified_utc": "2026-10-09T20:58:35.537299+00:00",
+      "review_scope": "full document; original scope/research context"
+    },
+    {
+      "id": "D2",
+      "path": "/Users/danielgreen/Documents/Codex/open-oracle/docs/OPEN_ORACLE_STRETCH_PRD.md",
+      "title": "Open Oracle: The Missouri Civic Understanding Service",
+      "sha256": "932bda15f94d7bc0ca21eac5c3a720830640eea9fadbe19ef80be316e9c7412b",
+      "lines": 363,
+      "filesystem_modified_utc": "2026-10-10T22:27:12.034250+00:00",
+      "review_scope": "full document; draft stretch PRD including section 4 jobs-to-be-done"
+    },
+    {
+      "id": "D2-copy",
+      "path": "/Users/danielgreen/Documents/Codex/2026-10-11/task-5/bedrock-primary/workspace/docs/OPEN_ORACLE_STRETCH_PRD.md",
+      "title": "Open Oracle: The Missouri Civic Understanding Service",
+      "sha256": "932bda15f94d7bc0ca21eac5c3a720830640eea9fadbe19ef80be316e9c7412b",
+      "lines": 363,
+      "filesystem_modified_utc": "2026-10-10T22:27:12.034250+00:00",
+      "review_scope": "hash comparison only; identical to D2"
+    },
+    {
+      "id": "D3",
+      "path": "/Users/danielgreen/Documents/Codex/2026-10-11/task-16/open-oracle-pi/PLANNING-SUMMARY.md",
+      "title": "Open Oracle Pi \u2014 planning package for review",
+      "sha256": "ee1120170ffe2632ad8d556111cd557cbf61b786b7b26ee129807a84b1b948a8",
+      "lines": 75,
+      "filesystem_modified_utc": "2026-10-12T03:39:02.120856+00:00",
+      "review_scope": "full document; historical planning summary"
+    },
+    {
+      "id": "D4",
+      "path": "/Users/danielgreen/Documents/Codex/2026-10-11/task-16/open-oracle-pi/docs/PRODUCT-DECISION.md",
+      "title": "Continue, pivot or stop \u2014 provisional recommendation",
+      "sha256": "7176f1dcb13a6b04b27a2f93cfa12ec415df1911541b2ee6b60542a865951a87",
+      "lines": 35,
+      "filesystem_modified_utc": "2026-10-12T02:56:33.367331+00:00",
+      "review_scope": "full document; recorded decisions and proposed experiment"
+    },
+    {
+      "id": "D5",
+      "path": "/Users/danielgreen/Documents/Codex/2026-10-11/task-16/open-oracle-pi/docs/PRO-REVIEW-RECONCILIATION.md",
+      "title": "Supplied Pro review \u2014 reconciliation and product decision",
+      "sha256": "3daa18ab46a39f9614a228ac76691d9bbf119c83d80acdcad1f2ce099ea85c0d",
+      "lines": 49,
+      "filesystem_modified_utc": "2026-10-12T03:39:02.121207+00:00",
+      "review_scope": "full document; partial supplied review distinguished from user decisions"
+    },
+    {
+      "id": "D6",
+      "path": "/Users/danielgreen/Documents/Codex/2026-10-11/task-16/open-oracle-pi/docs/ACCEPTANCE.md",
+      "title": "Acceptance checklist \u2014 local engineering checks run; live/Pi gates pending",
+      "sha256": "e54117a8a92e11f371990966ea1d828a0d309b73a40bc30c659f18cc967fc770",
+      "lines": 67,
+      "filesystem_modified_utc": "2026-10-12T04:43:23.563283+00:00",
+      "review_scope": "full document; proposed gates and narrow prior verification"
+    },
+    {
+      "id": "D7",
+      "path": "/Users/danielgreen/Documents/Codex/2026-10-11/task-16/open-oracle-pi/docs/CHECKPOINT.md",
+      "title": "Mac-first connected local integration \u2014 2026-10-12",
+      "sha256": "5a520b6ee5dedd6cebec858eac4f9f62dffdd681796daf25c27d79b83e8c4eba",
+      "lines": 37,
+      "filesystem_modified_utc": "2026-10-12T04:31:53.069657+00:00",
+      "review_scope": "full document; reported executed local verification, not rerun"
+    },
+    {
+      "id": "D8",
+      "path": "/Users/danielgreen/Documents/Codex/2026-10-11/task-16/open-oracle-pi/README.md",
+      "title": "Open Oracle \u2014 Mac-first local demo",
+      "sha256": "d1f1fae3859273fa1f78ce6b4d0c5f979ee2cfabceda61cc1fafc72682d308ad",
+      "lines": 28,
+      "filesystem_modified_utc": "2026-10-12T04:31:53.069589+00:00",
+      "review_scope": "full document; runnable package boundary"
+    },
+    {
+      "id": "D9",
+      "path": "/Users/danielgreen/Documents/Codex/2026-10-11/task-16/open-oracle-pi/TODO.md",
+      "title": "Current sequence \u2014 Mac first",
+      "sha256": "12769a9418ec8ed8dcfb9936ae3d55850884092619b0a91d17e4f12749b01d2b",
+      "lines": 55,
+      "filesystem_modified_utc": "2026-10-12T04:25:38.923985+00:00",
+      "review_scope": "full document; current and historical sequence"
+    }
+  ]
+}

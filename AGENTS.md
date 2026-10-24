@@ -1,5 +1,22 @@
 # Open Oracle project guidance
 
+## Current rebuild precedence — October 24, 2026
+
+Read `docs/rebuild/ORIGINAL-PLANNING-RECONCILIATION.md` before new product work.
+Original PRD/JTBD and later adaptive-voice decisions were recovered after the
+initial rebuild. Prepared substantive clips and COMBAT are engineering fixtures,
+not the selected product/showcase. Assess the existing October 12 OpenAI-only
+Mac project before duplicating session/voice owners. Keep the whole Jackson
+County final-scope goal distinct from a bounded supported slice.
+
+Later direct user instructions supersede historical paragraphs below: use the
+OpenAI stack rather than mandatory Strands/AWS; shared API testing maximum is
+$200, with existing reservation/usage controls. Project commits/PRs are
+authorized; no merge, deployment, new credentials/access, human microphone or
+speaker activation, or Pi system modification is authorized. Campaign-source
+policy remains under reconciliation; do not publish the held campaign excerpt.
+Historical event deadlines and prior $100 limit below are not current authority.
+
 Open Oracle helps voters understand official ballot wording and attributed candidate statements. It never ranks candidates, endorses measures or tells voters how to vote. Current scope is November 3, 2026, Jackson County, Missouri, covering KCEB and JCEB; historical sources are separate evaluation data.
 
 ## Work and ownership

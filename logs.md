@@ -488,3 +488,59 @@ This is a backfill, not a contemporaneous event stream.
   acoustic/accessibility acceptance. No proof or approval is invented for them.
   Shared cost figures remain $0.75 reserved / $0.0747795 estimated plus prior
   unmetered Playground charges. No further paid calls, deployment or Pi work.
+
+## 2026-10-24 UTC — original PRD/JTBD recovery and scope reconciliation
+
+- **Completed — artifact delivery:** uploaded the existing integrated desktop
+  JPEG to Daniel's Library using the installed Library skill/current transfer
+  helpers; create and required xattrs succeeded, verified image size325287bytes.
+  Private receipt and exact Library identifier are retained outside Git and
+  returned to parent. This is a private review artifact, not publication or
+  evidence of full readiness. No human sound or paid inference was activated.
+- **User direction:** Daniel asked for the original PRD and jobs-to-be-done in
+  the Hack Midwest directory. Parent directed pause on new product assumptions,
+  exact inventory/version review and traceability before more architecture.
+- **Discovery correction:** earlier rebuild reviewed history/implementation but
+  had not established review of the original PRD/JTBD set. Configured
+  HackMidwest2026 project root is `/Users/danielgreen/Documents/Codex`. Located
+  and read October9 PRD/context, October10 stretch PRD including section4 JTBD,
+  and October12 OpenAI-only Pi planning/decision/reconciliation/acceptance/
+  checkpoint/README/TODO documents. Dated SHA snapshots and exact read scopes
+  are in `docs/rebuild/ORIGINAL-PLANNING-INVENTORY.json`; duplicate stretch PRD
+  is byte-identical and original is untracked, not a separate approved revision.
+  Targeted search is not exhaustive review of all Mac/cloud planning documents.
+- **Consequential recovered requirements:** final scope includes both election
+  authorities and all Jackson County ballot variants/candidates/measures;
+  distinguish inventory/applicability/evidence/experience coverage. Original
+  resident jobs include office orientation, simpler wording, fresh follow-up,
+  source challenge/correction, optional teach-back and recap. Current finite
+  harness does not satisfy them. Statewide ambition and numerical study gates
+  remain draft proposals, not current authorization or measured results.
+- **Recovered recorded decisions:** October12 02:50:58UTC selects GPT-Live
+  adaptive generated conversation and rejects substantive prerecorded routing
+  as release/fallback;02:52:23 allows startup/loading greetings only. COMBAT is
+  excluded from showcase/demo/pilot in those records; current authorized
+  COMBAT provider tests are engineering reference, not an explicit showcase
+  reversal. Amendment7 was only a candidate. Keep latest official-map direction.
+  Earlier campaign-marketing exclusion versus later attributed-statement
+  permission needs reconciliation; current campaign excerpt stays held.
+- **Reuse:** found clean later Mac-first OpenAI-only repo at
+  `2026-10-11/task-16/open-oracle-pi`, HEAD`cc0bf50`. Its checkpoint reports
+  synthetic/build/browser evidence, explicitly no live/human/acoustic readiness.
+  Targeted source inspection confirms expressed preferences, scoped bindings,
+  session Stop/Erase and hash/span/expiry admission concepts. Complete audio/
+  sideband audit and real-provider validation have not been repeated. Preserve
+  original work and inspect owners before importing; no silent wholesale port.
+- **Completed:** concise requirement-to-implementation/gap mapping, retain/
+  replace/reconsider decisions and corrected next milestone documented in
+  `ORIGINAL-PLANNING-RECONCILIATION.md`; roadmap/index/initial-decision pointers
+  and current AGENTS precedence updated. AWS/time-bound event/$100 instructions
+  are historical; latest $200 authorization and media/publication gates apply.
+- **Validation:** documentation/source-snapshot work only; compare exact hashes,
+  inspect links/staged diff and run whitespace checks. No extra tests for count,
+  no whole-product acceptance claim. Existing local test-audit skill consulted;
+  proportionate verification retained. No new paid requests, SOS retry, install,
+  credential change, deployment or Pi modifications.
+- **Next:** assess recovered owners for reuse against current API/privacy
+  contracts, then implement the connected public-source typed/synthetic journey.
+  Complete renewed Opus5.5High substantive-delta review before readiness claim.

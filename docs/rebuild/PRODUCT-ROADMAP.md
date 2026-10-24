@@ -1,5 +1,24 @@
 # Integrated civic experience roadmap
 
+## Original-planning correction — October 24
+
+The [PRD/JTBD reconciliation](ORIGINAL-PLANNING-RECONCILIATION.md) restores the
+complete resident journey and recorded adaptive-voice decisions. It takes
+precedence over next-step assumptions below. Prepared readings remain synthetic
+engineering fixtures; substantive prerecorded answer routing was previously
+rejected as release/fallback. COMBAT remains reference-only for the showcase
+unless Daniel explicitly changes that choice. The latest map request remains
+active; no pending measure is selected by its presence in a source archive.
+
+Prioritize reuse assessment of the existing October 12 OpenAI-only Mac project,
+then connected orientation, fresh follow-up/simplification/language changes,
+challenge/source access and ephemeral recap. Preserve whole Jackson County
+coverage as the final scope, while labeling the current slice partial. Keep the
+campaign excerpt held while original marketing exclusions and later attributed-
+claim direction are reconciled. Official filings/government records and permitted
+original debates provide independent useful work. Do not broaden ingestion or
+add another voice controller on an unexamined product assumption.
+
 User direction recorded October 24, 2026: multilingual AI voice, fact-based
 explanations and generative UI, including actual official maps for redistricting.
 These are product acceptance goals, not capabilities established by the English
