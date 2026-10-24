@@ -988,3 +988,25 @@ This is a backfill, not a contemporaneous event stream.
   pending. Local changes will be committed together with these decisions. Remote
   PR/CI remain atdd6c1ac, not evidence for current local work. Full stretch and
   human/multilingual/accessibility/corpus acceptance remain open.
+
+
+### 2026-10-24 08:49 UTC — local increment committed and independently reviewed
+
+- **Completed:** `59e8ee016f735537e3322e79b7572aaab9c57d91` contains the confirmed
+  public-intent flow, bounded brief operation, optional local Whisper adapter and
+  input/latency evidence. Staged file scope, credential/account-pattern scan,
+  whitespace and changed-module syntax passed. Working tree was clean afterward.
+- **Completed:** independent follow-on review found no consequential defect in
+  the optional local adapter or exact-alias compatibility. It confirmed no
+  capture/server wiring, bounded PCM, verified existing weights, no download
+  fallback, local correction requirement and honest cancellation/Mac limitations.
+  No API/network/Git/media action occurred in that review. Capture-owner fencing,
+  privacy-erasure and device acceptance remain future integration gates.
+- **Completed artifact:** local provider-off browser screenshot
+  `openoracle-local-input-confirmation.png` retained outside Git; fixed selected
+  follow-up is visible with the retained map journey and unchecked speaker
+  consent. No Library/Claude transmission or played audio is implied.
+- **Pending:** three exact approvals remain unresolved: existing PR6 push, new
+  eight-file Claude upload and one <=$0.20 synthetic Spanish provider trial.
+  No request ID was exposed for either new question. Denied actions were not
+  retried; new upload attachment count0 and provider process never started.
