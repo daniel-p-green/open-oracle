@@ -200,3 +200,37 @@ added. Real Chrome erase occurred after~120.719s and next entry had no prior con
 Default debug logging was restored to off. Warning-focus handling was reviewed
 and repaired without claiming a human screen-reader trial. See the dated log for
 failed observations as well as completed proof.
+
+## Consolidated recap and official next-step references
+
+Actual Opus5.5High was visible before the new uploads. Initial eight-file bundle
+SHA2569a2416ca6f4012936e6bd031a87cb7beffbf3dcd20c46da46153af8d3bdc4f7b;
+focused fixes SHA256a056b2d96fb7fb42ba78703284ac11b827405429c6091a0d377a569c19322d60;
+shared-terminal closure SHA25667826c8595bc3dd4a9b8871fe638eda837eda6365d4dea73c45d29764d0e4eeb.
+Oracle rendered/reported selected files; no credentials, voter records or unrelated
+files were included. No main-branch merge/deployment occurred (a loose phrase in
+the first brief was explicitly corrected in its submission message).
+
+The critique found no consequential privacy/injection/lifecycle defect, but five
+useful product/recovery issues: missing per-unit AI role labels; notice-only
+withdrawal also clearing independently sourced W1-P7 answers; no removal after
+failed source checking; uncaught Add errors; and Close losing source-control
+focus. Repairs and actual browser/fault checks addressed those. The first focused
+re-review marked all five closed. Source graph withdrawal now follows source IDs,
+not just the shared proposition label.
+
+Official next steps were added from two anonymously retrieved official pages,
+with original HTML retained outside Git, retrieval timestamps/hash, navigation-only
+role and no private lookup/import. The next critique identified residue risk from
+opening a private lookup in another tab on the original shared terminal. Chosen
+default: plain-text official references for the resident's own device, no lookup
+anchor/form/window opener or new mode framework. Copy limits the two jurisdiction
+descriptions, names required private details without collecting them and explains
+Erase cannot clear another site. A final actual critique closed both remaining
+findings for the bounded local review. It did not grant full product acceptance.
+
+Independent code review also inspected the final narrow changes without new
+external actions and reported no substantive finding. Its browser/AT evidence
+remains limited to the root's reported checks. Live-provider composition, human
+civic/acoustic/Spanish/AT quality, full source coverage and AI-selected generative
+composition remain open. Source hashes are consistency checks, not truth scores.

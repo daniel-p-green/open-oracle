@@ -57,3 +57,14 @@ added. Source contexts and ephemeral return state are application-owned. Native
 source/code was not copied. Browser proof covered KC/JCEB switching, complete
 wording, source return and390px Spanish navigation; this is not evidence of full
 multilingual voice, human comprehension or native ChatGPT's internal architecture.
+
+October24 consolidated recap: `recap-view.mjs` adapts the considered stable-shell,
+typed-evidence and progressive-source patterns into a mixed recap of explicit
+source choices and existing checked explanation units. No reference code copied.
+`experience.mjs` retains the single state/abort/erase owner; source cards resolve
+the admitted registry by source/contest/version IDs, never model HTML or URLs.
+The renderer varies candidate/retention/measure content from actual evidence and
+requires no extra rendering LLM. It is user-chosen deterministic composition,
+not proof of native/AI planning. Actual source/cancel/failure/390px checks and
+review findings drove fixes, including hash wrapping and private lookup references
+remaining text-only on a shared terminal. No new UI dependency/license is introduced.

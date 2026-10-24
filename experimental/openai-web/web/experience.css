@@ -481,6 +481,9 @@ body.has-content .product-intro .intro {
 .source-reading-guide {
   margin-block: 1rem;
 }
+#session-recap details p {
+  overflow-wrap: anywhere;
+}
 #inventory-detail mark {
   background: #fff0a1;
   color: #122b27;

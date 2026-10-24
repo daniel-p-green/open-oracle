@@ -1477,3 +1477,86 @@ This is a backfill, not a contemporaneous event stream.
   and human/device acceptance remain open. Hosting read found no matching repo
   project in the available Vercel scope; no safe public metered endpoint/rights
   release exists yet. Merge/deploy permission is present, readiness is not.
+
+### 2026-10-24 16:19 UTC — one consolidated evidence recap and recovery
+
+- **Direction/boundary:** parent confirmed exact Google sign-in question is
+  pending in main chat; no retry or alternate balance route. Continued independent
+  recap/evidence work. The earlier1067-dollar observations remain historical,
+  not freshly verified credit. No paid test/reservation started in this work.
+- **Source discovery completed, gap remains:** one focused official JCEB search
+  plus current on-the-ballot/sample-ballot page reads still establish only the
+  November3 notice and name/DOB individual lookup. No public November individual
+  style established, no query submitted, no guessed URLs/person/district combo,
+  no denied SOS/restricted-source access retried. Notice is still never relabeled
+  as the requested second individual ballot. References:
+  https://jcebmo.org/election-information/on-the-ballot/ and
+  https://jcebmo.org/sample-ballot/ .
+- **Implemented actual recap:** one existing app owner now combines current-
+  language checked journey units and up to six explicit source/contest/version
+  choices in one panel. Source Add and global My recap are different actions;
+  browsing saves no recap source. No raw input, votes, teach-back answers, account,
+  storage/export or provider transmission added. Deduplication/bounds/version/
+  occurrence/URL/kind checks keep mixed candidate, retention and measure cards
+  source-specific. Source content re-resolves against pinned records on open;
+  names/party/instruction/status/full question/original/version/gaps retain roles.
+  The two original private recap renderers were replaced, not a new controller.
+- **Architecture:** recap-view.mjs owns presentation/typed source resolution;
+  experience.mjs retains state, shared session/abort/current-ticket/erasure.
+  Closed card variants compose the selected evidence without arbitrary HTML/JS
+  or any rendering LLM call. This is deterministic user-chosen composition, not
+  a claim of full AI-planned generative UI. Existing checked-unit integration is
+  wired; no new live-provider combined-unit browser result is claimed.
+- **Actual browser proof:** browsing->empty recap; explicit KC House5->complete
+  three-name card; explicit JCEB Independence->second exact question card with
+  $19,900,000/20-year plan/1827 Log Courthouse; withdrawal removes that occurrence;
+  Spanish navigation/removal and original English preserve traceability. Close
+  returns to the connected originating control. Real120s idle erase of the two
+  explicitly saved sources left next recap empty. Explicit Erase also cleared.
+- **Actual fault proof:** isolated providers-off loopback wrapper returned503
+  and delayed /kc-public-sample.json. Failed content withheld with working Remove
+  all saved sources; no unchecked partial roster appeared. Stop during actual
+  Checking source versions hid the panel and late response stayed suppressed;
+  deliberate reopen recovered. Erase while loading plus late release left the
+  new recap empty. No shortened timeout, fake clock, API, microphone or playback.
+- **Review:** existing independent reviewer found no substantive issue in its
+  scoped code pass. Actual Claude Opus5.5High setting verified; Oracle-scanned
+  app-only bundles rendered/reported before upload. Initial SHA256
+  9a2416ca6f4012936e6bd031a87cb7beffbf3dcd20c46da46153af8d3bdc4f7b;
+  focused fixes a056b2d96fb7fb42ba78703284ac11b827405429c6091a0d377a569c19322d60;
+  shared-terminal closure67826c8595bc3dd4a9b8871fe638eda837eda6365d4dea73c45d29764d0e4eeb.
+  Returned findings fixed: per-unit AI/not-quotation/human-pending labels;
+  withdrawal follows actual kc-sample dependency rather than matching a notice
+  label; failure removal, Add error recovery and original-opener focus. Follow-up
+  returned all five closed. Review code/runtime limits remain explicit.
+- **Official next steps:** anonymously retained verified KCEB voter-status and
+  JCEB sample-lookup pages, original HTML outside Git under
+  ../ballot-research/authority-nextsteps, retrieval timestamps/hash/requirements
+  and navigation-only role. Fixture SHA256
+  af7758008f478eca9b5a5b6878e7cc2e8817975bd0827809e5944da34fcf7ae0.
+  No names/DOB/lookup/results used. Model review caught private-tab residue risk
+  on a shared terminal. Chose conservative plain-text references for a resident's
+  own device, with private-input/Erase limits and two-jurisdiction scope. No new
+  operator mode/access framework; no lookup anchors/forms/window opening. Public
+  original-PDF evidence links stay separate. Final actual re-review closed both
+  remaining findings; loading/failure copy now consistently says references.
+- **Observed/fixed viewport issue:** Chrome retained actual1014px despite390px
+  request, so that attempt is not mobile evidence. Actual390px in-app browser
+  exposed617px overflow from expanded hashes. Scoped recap-details wrapping fixed
+  it: scrollWidth375 with full hashes and question qualifiers retained. No new
+  CSS behavior test quota; actual fresh visual/DOM inspection used. No actual
+  phone/Pi or human AT/Spanish civic/pronunciation proof is implied.
+- **Validation/costs:** final provider-off Node/Python, static-route/privacy,
+  source/context/version/tamper, syntax and whitespace checks pass. Added one
+  recap owner boundary proof, extended existing intent proof; tests target changed
+  invariants, not counts. Installed Oracle/test-audit/engineering guidance applied.
+  Fresh local ledger read still$1.96 conservative reservations/~$0.2127044667
+  recorded usage-duration estimate plus2 earlier unmetered Playground requests;
+  not invoice/current credit. No new OpenAI call, credentials, paid grant, external
+  human message, merge/deploy or Pi modification. Claude used existing allocation.
+- **Running/next:** local review8923 providers off; prior owned8922 stopped via
+  valid handle. Temporary fault server8924 will close after QA. Focused commit,
+  PR6 push/remoteCI, artifact and final receipt next. Source completeness/candidate
+  admission, second verified individual style, AI-planned composition, live
+  bilingual latency and human civic/AT/device/release gates remain open. No
+  showcase-ready claim or fabricated coverage fills those gaps.

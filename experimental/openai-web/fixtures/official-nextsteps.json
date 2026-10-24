@@ -1,0 +1,29 @@
+{
+  "schema": "openoracle-official-nextsteps/v1",
+  "limits": {
+    "personal_membership": false,
+    "lookup_submitted": false,
+    "private_input_collected": false,
+    "lookup_results_imported": false
+  },
+  "sources": {
+    "kceb": {
+      "url": "https://kceb.org/voters/status/",
+      "publisher": "Kansas City Election Board",
+      "jurisdiction": "Kansas City within Jackson County",
+      "role": "official_navigation_only",
+      "retrieved_utc": "2026-10-24T15:56:20.634641+00:00",
+      "original_sha256": "62389cd9df34667542bb3296ac4b32e87850a0f8383768df05699a410c4aa6ab",
+      "lookup_requirements_original": "Enter your legal name and date of birth exactly as they appear on your voter registration."
+    },
+    "jceb": {
+      "url": "https://jcebmo.org/sample-ballot/",
+      "publisher": "Jackson County Election Board",
+      "jurisdiction": "Jackson County outside Kansas City corporate limits",
+      "role": "official_navigation_only",
+      "retrieved_utc": "2026-10-24T15:56:20.985022+00:00",
+      "original_sha256": "168aee41c6b46364417f0184df08a544e273e104489c542ddc53e00d7b43cf38",
+      "lookup_requirements_original": "Enter your first and last name and date of birth in the JCEB Voter ID Lookup below."
+    }
+  }
+}

@@ -60,6 +60,7 @@
         role="group"
         aria-label="Example questions"
       ></div>
+      <button id="session-recap-open" type="button">My recap</button>
       <div class="workspace-head">
         <p id="status" role="status" aria-live="polite">
           Loading retained evidence…
@@ -95,6 +96,13 @@
           aria-label="Explanation and evidence"
         ></section>
       </div>
+      <section
+        id="session-recap"
+        class="card"
+        aria-labelledby="session-recap-title"
+        tabindex="-1"
+        hidden
+      ></section>
       <details class="voice-preview" id="voice-controls">
         <summary id="voice-controls-summary">
           Voice controls · microphone off

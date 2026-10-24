@@ -153,3 +153,11 @@ The original scope correction is complete for the documents inventoried here;
 the implementation gaps above are open work. Editorial policy and final showcase
 selection are consequential unresolved choices, not reasons to stop independent
 official-source and lifecycle work.
+
+October24 follow-through: the bounded app now has one consolidated local recap
+for checked current-language answer units plus explicitly selected, revalidated
+candidate/retention/measure sources. It includes provenance, equal evidence gaps,
+unresolved questions and dated official next-step references. Passive browsing
+does not save sources; session erase removes them. This implements the recap
+interface/job within current admitted content, not demonstrated resident learning,
+complete candidate/ballot coverage, AI-planned composition or accepted live voice.

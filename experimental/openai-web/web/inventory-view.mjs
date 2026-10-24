@@ -38,6 +38,8 @@ export async function mountContestInventory(
     onOffice,
     onMeasure,
     onActions,
+    onRecap,
+    onWithdraw,
     translationNote,
     initialSelection = null,
     onSelection = () => {},
@@ -431,62 +433,19 @@ export async function mountContestInventory(
         detail.append(section);
       }
       const sourceCheckButton = mountSourceCheck(detail, { language, onRead });
-      const recap = el("section");
-      recap.tabIndex = -1;
       const recapButton = button(
         detail,
-        text("Recap this source", "Resumir esta fuente"),
+        text("Add this source to my recap", "Agregar esta fuente a mi resumen"),
         () => {
           onRead();
-          recap.replaceChildren(
-            el(
-              "h4",
-              text(
-                "Source recap · this tab only",
-                "Resumen de la fuente · solo en esta pestaña",
-              ),
-            ),
+          onRecap(
+            contest.occurrences.filter(inContext).map((o) => ({
+              source_id: o.source_id,
+              contest_id: contest.id,
+              browse_version: value.browse_version,
+            })),
+            value,
           );
-          recap.append(
-            el("p", contest.label),
-            el(
-              "p",
-              text(
-                "This is a public-source selection, not a verified personal ballot. Background explanations, individual applicability and eligible write-ins remain unresolved. No vote choice is saved.",
-                "Esta es una selección de una fuente pública, no una boleta personal verificada. Siguen sin resolverse las fuentes de contexto, la aplicabilidad personal y los candidatos elegibles por escrito. No se guarda una elección de voto.",
-              ),
-            ),
-          );
-          const marked = detail.querySelector("mark");
-          if (marked) {
-            const quote = el("blockquote", marked.textContent);
-            quote.lang = "en";
-            recap.append(
-              el(
-                "p",
-                text(
-                  "Selected original passage · ",
-                  "Pasaje original seleccionado · ",
-                ) +
-                  (value.sources[marked.dataset.sourceId]?.publisher ??
-                    text("source unavailable", "fuente no disponible")),
-              ),
-              quote,
-            );
-          }
-          for (const occurrence of contest.occurrences.filter(inContext)) {
-            const source = value.sources[occurrence.source_id];
-            recap.append(
-              link(
-                originalUrl(source, occurrence),
-                source.publisher +
-                  " · " +
-                  text("page ", "página ") +
-                  occurrence.page,
-              ),
-            );
-          }
-          recap.focus();
         },
       );
       const challengeButton = button(
@@ -499,6 +458,10 @@ export async function mountContestInventory(
           onActions(null);
           onRead();
           const originals = contest.occurrences.filter(inContext);
+          const explanationsWithdrawn = onWithdraw(
+            contest.id,
+            originals.map((o) => o.source_id),
+          );
           detail.replaceChildren(
             el("h3", contest.label),
             el(
@@ -509,6 +472,21 @@ export async function mountContestInventory(
               ),
             ),
           );
+          if (contest.id === "proposition-a")
+            detail.append(
+              el(
+                "p",
+                explanationsWithdrawn
+                  ? text(
+                      "This also withdraws any related W1-P7 AI explanations from this session and recap.",
+                      "Esto también retira de esta sesión y del resumen cualquier explicación por IA de W1-P7 relacionada.",
+                    )
+                  : text(
+                      "This does not withdraw W1-P7 explanations, which cite a different retained source context.",
+                      "Esto no retira las explicaciones de W1-P7, que citan otro contexto de fuente guardada.",
+                    ),
+              ),
+            );
           for (const occurrence of originals) {
             const source = value.sources[occurrence.source_id];
             detail.append(
@@ -532,7 +510,6 @@ export async function mountContestInventory(
           detail.focus();
         },
       );
-      detail.append(recap);
       let officeButton = null;
       const family = officeFamily(contest);
       if (family) {

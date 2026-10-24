@@ -927,13 +927,20 @@ test("follow-ups bind the selected notice and cannot inherit a different measure
   ])
     assert.equal(draftPublicIntent(unsupported, options), null);
   assert.equal(
-    draftPublicIntent("Recap", {
+    draftPublicIntent("Add this source to my recap", {
       ...options,
       sourceContext: { ...options.sourceContext, version: "changed" },
       journeyActive: false,
     }),
     null,
   );
+  const recap = draftPublicIntent("Mi resumen", options);
+  assert.equal(recap.kind, "local");
+  assert.equal(recap.operation, "recap");
+  const add = draftPublicIntent("Agregar esta fuente a mi resumen", options);
+  assert.equal(add.kind, "inventory");
+  assert.equal(add.context_id, options.sourceContext.id);
+  assert.match(publicIntentLabel(add, "es"), /Agregar/);
   const explicit = draftPublicIntent("Explain Proposition A", options);
   assert.equal(explicit.kind, "journey");
   assert.equal(explicit.operation, "brief");

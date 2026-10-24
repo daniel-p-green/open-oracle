@@ -23,7 +23,19 @@ import {
 } from "./journey-core.mjs";
 import { admittedReadings, bindReading } from "./readings.mjs";
 import { createSpeechOutput } from "./speech-output.mjs";
-import { loadOfficeContext, INVENTORY_VERSION } from "./office-source.mjs";
+import {
+  loadOfficeContext,
+  loadBrowseInventory,
+  INVENTORY_VERSION,
+} from "./office-source.mjs";
+import {
+  addRecapSource,
+  recapSourceCards,
+  mountRecapSources,
+  mountRecapFrame,
+  loadOfficialNextSteps,
+  mountOfficialNextSteps,
+} from "./recap-view.mjs";
 import { createViewTiming } from "./view-timing.mjs";
 import { mountContestInventory } from "./inventory-view.mjs";
 import { draftPublicIntent, publicIntentLabel } from "./input-intent.mjs";
@@ -59,7 +71,9 @@ let journeyCurrentUnit = null,
   journeyRequestIds = [];
 let pendingInput = null,
   inventoryActions = null,
-  sourceSelection = null;
+  sourceSelection = null,
+  recapSources = [],
+  recapOpener = null;
 const el = (tag, text) => {
   const n = document.createElement(tag);
   if (text !== undefined) n.textContent = text;
@@ -156,6 +170,7 @@ function revokePreparedAudio() {
   preparedAudioRequest = null;
 }
 function invalidate({ revokeConsent = false, keepVisuals = false } = {}) {
+  hideRecap();
   clearInputDraft();
   session.reset();
   $("reorder").hidden = true;
@@ -378,7 +393,8 @@ function renderGap(status) {
   return c;
 }
 function sourceReadContext() {
-  requestController ??= new AbortController();
+  if (!requestController || requestController.signal.aborted)
+    requestController = new AbortController();
   const ticket = session.snapshot(),
     language = locale;
   return {
@@ -405,6 +421,33 @@ function showContestInventory(host) {
     initialSelection: sourceSelection,
     onSelection: (selection) => {
       sourceSelection = selection;
+    },
+    onRecap: (selections, inventory) => {
+      try {
+        recapSources = selections.reduce(
+          (entries, selection) => addRecapSource(entries, selection, inventory),
+          recapSources,
+        );
+        void showRecap();
+      } catch {
+        $("status").textContent =
+          locale === "es"
+            ? "Esta fuente no pudo agregarse; su versión no pudo comprobarse."
+            : "This source could not be added; its version could not be checked.";
+      }
+    },
+    onWithdraw: (contestId, sourceIds) => {
+      recapSources = recapSources.filter(
+        (s) => s.contest_id !== contestId || !sourceIds.includes(s.source_id),
+      );
+      hideRecap();
+      const explanationsWithdrawn =
+        contestId === "proposition-a" && sourceIds.includes("kc-sample");
+      if (explanationsWithdrawn) {
+        invalidate({ keepVisuals: true });
+        clearJourneyHistory();
+      }
+      return explanationsWithdrawn;
     },
   });
 }
@@ -1376,42 +1419,109 @@ function teachBack() {
   notice.setAttribute("role", "status");
   host.append(notice);
 }
-function showRecap() {
+function hideRecap() {
+  $("session-recap").hidden = true;
+  $("session-recap").replaceChildren();
+  recapOpener = null;
+}
+async function showRecap() {
   stopSpeechForReading();
-  const host = $("journey-tools");
-  host.replaceChildren();
-  const units = recapUnits(journeyUnits, locale);
-  host.append(el("h3", journeyCopy().recap));
-  if (!units.length)
-    host.append(
-      el(
-        "p",
-        locale === "es"
-          ? "Aún no hay explicaciones comprobadas en este idioma. Puede consultar el original."
-          : "No checked explanations in this language yet. You can still read the original.",
-      ),
-    );
-  for (const unit of units) {
-    host.append(el("h4", journeyHeading(unit, locale)));
-    for (const part of unit.sections) host.append(el("p", part.text));
+  const panel = $("session-recap"),
+    language = locale;
+  const context = sourceReadContext(),
+    ticket = session.snapshot();
+  if (!panel.contains(document.activeElement))
+    recapOpener = document.activeElement;
+  const units =
+    mapMeasure?.source_version === QUESTION_VERSION
+      ? recapUnits(journeyUnits, language)
+      : [];
+  const { host, sourceHost, nextSteps } = mountRecapFrame(panel, {
+    language,
+    units,
+    hasSources: recapSources.length > 0,
+    renderSource: journeySource,
+    onClose: () => {
+      const opener = recapOpener;
+      hideRecap();
+      (opener?.isConnected && !opener.disabled
+        ? opener
+        : $("session-recap-open")
+      ).focus({ preventScroll: true });
+    },
+  });
+  const current = () =>
+    host.isConnected &&
+    !panel.hidden &&
+    locale === language &&
+    session.current(ticket);
+  const navigationWork = loadOfficialNextSteps(
+    AbortSignal.any([context.signal, AbortSignal.timeout(5000)]),
+  )
+    .then((record) => {
+      if (current())
+        mountOfficialNextSteps(nextSteps, record, {
+          language,
+        });
+    })
+    .catch(() => {
+      if (current())
+        nextSteps.textContent =
+          language === "es"
+            ? "Las referencias oficiales no pudieron comprobarse; no se muestra ningún destino supuesto."
+            : "Official references could not be checked; no guessed destination is shown.";
+    });
+  panel.focus();
+  if (recapSources.length) {
+    sourceHost.textContent =
+      language === "es"
+        ? "Comprobando versiones de fuentes…"
+        : "Checking source versions…";
+    const selections = recapSources;
+    try {
+      const inventory = await loadBrowseInventory(
+        AbortSignal.any([context.signal, AbortSignal.timeout(5000)]),
+      );
+      if (!current()) return;
+      const cards = recapSourceCards(selections, inventory);
+      sourceHost.replaceChildren();
+      mountRecapSources(sourceHost, cards, {
+        language,
+        onRemove: (selection) => {
+          recapSources = recapSources.filter(
+            (s) =>
+              s.source_id !== selection.source_id ||
+              s.contest_id !== selection.contest_id,
+          );
+          void showRecap();
+        },
+      });
+    } catch {
+      if (current()) {
+        sourceHost.replaceChildren(
+          el(
+            "p",
+            language === "es"
+              ? "Las versiones no pudieron comprobarse. Se retiene el contenido de estas fuentes; puede cerrar el resumen o elegir una fuente de nuevo."
+              : "Source versions could not be checked. Their content is withheld; close the recap or deliberately choose a source again.",
+          ),
+        );
+        const removeSaved = el(
+          "button",
+          language === "es"
+            ? "Quitar todas las fuentes guardadas"
+            : "Remove all saved sources",
+        );
+        removeSaved.type = "button";
+        removeSaved.onclick = () => {
+          recapSources = [];
+          void showRecap();
+        };
+        sourceHost.append(removeSaved);
+      }
+    }
   }
-  host.append(
-    el(
-      "p",
-      locale === "es"
-        ? "Pendiente: su boleta, su distrito y el estado judicial actual no se establecen a partir de esta pregunta. Este resumen desaparece al borrar la sesión."
-        : "Unresolved: your ballot, your district and current court status are not established by this question. This recap disappears when the session is cleared.",
-    ),
-  );
-  journeySource(host, "question");
-  const notice = el(
-    "p",
-    locale === "es"
-      ? "Solo memoria local; sin cuenta ni exportación automática."
-      : "Local tab memory only; no account or automatic export.",
-  );
-  notice.setAttribute("role", "status");
-  host.append(notice);
+  await navigationWork;
 }
 async function prepareReading(ticket, mapsVerified) {
   const binding =
@@ -1432,6 +1542,9 @@ async function prepareReading(ticket, mapsVerified) {
   else speaker.stop();
 }
 function setCopy() {
+  hideRecap();
+  $("session-recap-open").textContent =
+    locale === "es" ? "Mi resumen" : "My recap";
   const t = COPY[locale];
   $("provider-data-note").textContent =
     locale === "es"
@@ -1649,6 +1762,8 @@ $("confirm-input").onclick = async () => {
     $("language").value = draft.language;
     $("language").dispatchEvent(new Event("change"));
     $("language").focus();
+  } else if (draft.kind === "local" && draft.operation === "recap") {
+    await showRecap();
   } else if (
     draft.kind === "local" &&
     ["maps", "candidates"].includes(draft.operation)
@@ -1698,6 +1813,7 @@ $("language").onchange = () => {
 };
 function eraseSession({ focusInput = false } = {}) {
   sourceSelection = null;
+  recapSources = [];
   invalidate({ revokeConsent: true });
   intent = null;
   document.body.classList.remove("has-content");
@@ -1776,9 +1892,11 @@ setInterval(() => {
 }, 1000);
 addEventListener("pagehide", () => {
   sourceSelection = null;
+  recapSources = [];
   invalidate({ revokeConsent: true });
   clearJourneyHistory();
 });
+$("session-recap-open").onclick = () => void showRecap();
 addEventListener("pageshow", (event) => {
   if (event.persisted) {
     $("reset").click();

@@ -15,6 +15,7 @@ this checklist. Managed Agents is deferred; it must not block product work.
 | Interrupt, reset or change source/language | Whole-workspace revisions, request/body/audio timeouts, cancellation and local fallback | Human interruption-to-silence and real device evidence |
 | Use desktop/mobile with keyboard/captions | Integrated desktop and 390px viewport inspected; Spanish map controls/rehearsal/zero horizontal overflow observed | Actual mobile device, screen-reader, human captions and geographic alternative review |
 | Recover from missing evidence/network/provider failure | Finite abstention/expiry/failure contracts | Coherent product-level error and retry workflow without duplicate spend |
+| Leave with a source-linked recap | One app-owned recap combines checked current-language units and up to six explicitly saved source contexts. Candidate/retention/measure cards resolve current pinned records; withdrawal, removal, idle/Erase and failed/delayed reads exercised. Dated official lookup references use text only for the shared-terminal preview | New live-provider unit+source combined display, resident comprehension and human bilingual/AT acceptance. Deterministic user-chosen composition is not AI planning. |
 | Repeat a polished demonstration | Local artifacts and run instructions | End-to-end demonstration script, independent product/code review, human trial and explicit readiness decision |
 
 English contract tests do not validate Spanish civic meaning. Synthetic audio
@@ -134,3 +135,23 @@ Actual idle QA found and repaired a warning-layout scroll that renewed activity;
 real Chrome then erased at~120.719s and clean entry had no previous contest.
 Spanish warning keyboard focus/Continue/reading-focus recovery also passed.
 Independent review closed these narrow repairs; full acceptance remains open.
+
+October24 consolidated recap increment: source Add and global My recap are
+separate actions; merely browsing stores no recap history. Existing state/abort/
+expiry owner retained. Original English source content remains labeled in Spanish;
+generated excerpts have per-unit AI/not-quotation/human-pending labels. Candidate
+source cards keep every printed name in order with equal background gaps.
+The same recap supports exact measure text, judicial questions and source versions.
+Private voter lookup pages are dated plain-text references for a resident's own
+device; this shared preview opens no private lookup tab or imports its results.
+
+Actual browser proof: two-source KC/JCEB composition, source withdrawal, Spanish
+switch/removal, connected-opener focus recovery, explicit Erase and real120s idle
+erasure of saved choices. Isolated local503/delay responses exercised withheld
+content/removal, Stop/late response suppression, deliberate reopen and Erase
+while loading.390px in-app browser with version details expanded had scrollWidth375
+and retained full hashes/question qualifiers after a scoped wrapping repair.
+Chrome kept its actual1014px viewport despite a390px request; no Chrome-mobile or
+physical-device proof is claimed. Opus5.5High critique and closure reviews returned;
+independent code review found no remaining substantive issue within this scope.
+No new paid API trial, billing sign-in, human audio or deployment occurred.

@@ -55,6 +55,12 @@ export function draftPublicIntent(
   )
     return fixed("language", "language", "en");
   if (
+    /^(?:show (?:me )?my recap|my recap|recap|mostrar mi resumen|mi resumen)$/.test(
+      q,
+    )
+  )
+    return fixed("local", "recap");
+  if (
     /^(?:show (?:me )?(?:the |actual |official )?maps|compare (?:the |official )?maps|mostrar (?:los )?mapas(?: oficiales)?|muestrame los mapas)$/.test(
       q,
     )
@@ -99,7 +105,7 @@ export function draftPublicIntent(
       challenge:
         /^(?:that (?:seems|sounds|looks) wrong|this transcription may be wrong|eso (?:parece|esta) mal|esta transcripcion puede estar equivocada)$/,
       recap:
-        /^(?:recap|recap this source|show (?:me )?my recap|resumir esta fuente|mi resumen)$/,
+        /^(?:recap this source|add this source to my recap|resumir esta fuente|agregar esta fuente a mi resumen)$/,
     };
     const operation = Object.keys(patterns).find((op) => patterns[op].test(q));
     if (operation)
@@ -184,7 +190,10 @@ export function publicIntentLabel(draft, language = "en") {
         "Withdraw this transcription from the view",
         "Retirar esta transcripción de la vista",
       ],
-      recap: ["Recap this public source", "Resumir esta fuente pública"],
+      recap: [
+        "Add this public source to my recap",
+        "Agregar esta fuente pública a mi resumen",
+      ],
     };
     return labels[draft.operation]?.[language === "es" ? 1 : 0] ?? "";
   }
