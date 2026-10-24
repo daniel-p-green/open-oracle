@@ -1,0 +1,6 @@
+{
+  "upstream_file": "fixtures/official_combat.json",
+  "upstream_sha256": "a23c2529390153e36000109d5a5933981668ee368a171abb9f870398c820c809",
+  "fixture_sha256": "91514158b6d5323779ecf0cc3c487953d691b4453264d27af91145db4ddc3a25",
+  "reuse": "Exact reading-copy text and provenance reused; artifact SHA is the retained original, text SHA is computed separately. Public sample has no personal membership authority. Claim text is curated experiment copy, not model output."
+}
