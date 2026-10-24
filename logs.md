@@ -1780,3 +1780,22 @@ This is a backfill, not a contemporaneous event stream.
   and private-speech handling, device interruption, full browser interaction/
   recording, source/rights/coverage gaps and Opus5.5High native-code critique.
   No merge, deployment, Pi change or showcase-ready claim.
+
+### 2026-10-24 17:46 UTC — native increment pushed; exact code CI passed
+
+- **Completed:** commit8ca6697d0f79e6fb178ff5e3de20b00222ca1dca pushed to the
+  verified existing rebuild branch/draftPR6; no merge/deploy. Purpose and actual
+  trial/acceptance limits replaced stale PR claims, including correction that
+  fresh billing login is not technically required for the existing API credential.
+- **Remote verification on that exact code:** both offline-contracts succeeded:
+  https://github.com/daniel-p-green/open-oracle/actions/runs/40117562213 and
+  https://github.com/daniel-p-green/open-oracle/actions/runs/40117557762 .
+  CI is provider-off and does not establish live or human acceptance.
+- **Local artifact:** restarted providers-off http://127.0.0.1:8923/ with current
+  native voice-first modules and pinned map assets. HTTP read verified current
+  root/module bytes and disabled providers/fixture dispatch/mic/playback; browser
+  rendering remains unverified. No new screenshot or interaction recording.
+- **Outstanding blocked actions:** next synthetic diagnostic paid launch denied
+  before execution as recorded above; browser-control capability unavailable for
+  primary interaction QA and renewed existing Opus5.5High source-only review. No
+  alternate credential/login/review route, unapproved media or deployment used.
