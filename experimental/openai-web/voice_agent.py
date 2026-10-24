@@ -70,7 +70,7 @@ def map_navigation_text(language, focus):
     regions = {
         'en': {'statewide':'across Missouri','kansas_city':'around Kansas City',
                'st_louis':'around St. Louis','unchanged':'in the same view'},
-        'es': {'statewide':'de todo Missouri','kansas_city':'del área de Kansas City',
+        'es': {'statewide':'en todo Missouri','kansas_city':'del área de Kansas City',
                'st_louis':'del área de St. Louis','unchanged':'en la misma vista'},
     }
     if language not in regions or focus not in regions[language]: raise Held('voice_map_navigation')
@@ -279,6 +279,8 @@ class PublicSyntheticVoiceLoop:
                                     action=dict(action,view=last_checked['view'],map_focus=last_checked['map_focus'])
                                 # Repeating binds the prior verified view, rather
                                 # than inventing a new canvas for unchanged words.
+                            if action['view']=='maps' and action['map_focus']=='unchanged' and (last_checked is None or last_checked['view']!='maps'):
+                                action=dict(action,map_focus='statewide')
                             seen_decisions.add(delegation);decided_turns.add(active_turn);active_delegation=delegation
                             receipt['native_decisions']+=1
                             mark('decision_completed')

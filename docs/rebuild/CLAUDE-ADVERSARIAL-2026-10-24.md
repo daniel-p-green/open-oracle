@@ -73,3 +73,33 @@ fact or district assignment is generated. Actual map evidence remains the
 separately validated official geometry/PDF view. Substantive geographic analysis
 is unsupported; this does not close full conversational map interpretation.
 Offline protocol covers map→exact repeat; no live/browser parity claim.
+
+
+## Message40 returned on immutable21a5e55
+
+Opus5.5High visibly selected; source-only follow-up. Bundle84,466bytes,
+SHAbdc9d98eed9b16b39d525dd8e6b69009574d57c0469ccd4c9171d1096882fcbb.
+Verdict: repairs hold in substance; no unsafe release path found by inspection.
+This is not runtime or whole-product acceptance. Remaining findings:
+
+- **R1 Medium hypothesis:** St./Saint Louis ASR spelling could hold. Added one
+  closed proper-name equivalence to existing words normalization; exact alias
+  proof passes and unrelated place/negation distinctions remain. No native
+  St.Louis pronunciation/ASR success claim.
+- **R2 Medium–Low proven:** expired owner made cleanup impossible indefinitely.
+  Accept only authenticated local HTTP409 with exact owner_unavailable as already
+  expired/cleared; every other failure stays unconfirmed. Same shared lease test
+  covers expired owner versus busy/unexpected-origin; no generic409 bypass.
+- **R3 Low:** brief lexical backstop can find the legislature's approval rather
+  than voters'. Kept/documented as an omission backstop, never semantic proof.
+  Unchanged independent entailment/polarity/request-fit checks still required;
+  no new brittle voter-word constraint introduced.
+- **R4 Low:** first maps/unchanged said same view before one existed. Resolve
+  first/unmapped navigation to statewide, then exact speech/UI region binding;
+  offline protocol case passes. Existing map-repeat behavior preserved.
+- **R5 Low:** language-change button could look enabled during failed cleanup.
+  All availability assignments now consider retained cleanup; guarded startup
+  still requires successful revocation. Current DOM proof remains missing.
+- Spanish statewide navigation uses en todo Missouri; human bilingual civic/
+  acoustic review remains required. Current UI wiring/highlight/native choices,
+  input captions and latency still need actual permitted end-to-end evidence.

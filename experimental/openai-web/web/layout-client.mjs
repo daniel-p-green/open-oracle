@@ -42,7 +42,14 @@ export async function cancelProviderJob({ requestId, token, fetcher = fetch }) {
       signal: AbortSignal.timeout(3000),
       body: JSON.stringify({ request_id: requestId }),
     });
-    return response.ok;
+    if (response.ok) return true;
+    // The authenticated local server expires/clears owner-held rows before
+    // returning this exact error. Other conflicts/failures stay unconfirmed.
+    if (response.status === 409) {
+      const failure = await response.json();
+      return failure?.error === "owner_unavailable";
+    }
+    return false;
   } catch { return false; }
 }
 

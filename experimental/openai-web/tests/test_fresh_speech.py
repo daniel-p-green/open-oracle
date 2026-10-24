@@ -48,6 +48,8 @@ class FreshSpeechTests(unittest.TestCase):
         self.assertEqual(words('A.I House Bill No.1 (2025)'),words('AI House Bill number one (two thousand twenty-five)'))
         self.assertNotEqual(words('No one approves it'),words('number one approves it'))
         self.assertNotEqual(words('does not verify'),words('does verify'))
+        self.assertEqual(words('St. Louis'),words('Saint Louis'))
+        self.assertNotEqual(words('St. Joseph'),words('Saint Louis'))
 
     def test_same_owner_parent_revocation_and_audio_expiry_keep_budget_conservative(self):
         class Pipeline:

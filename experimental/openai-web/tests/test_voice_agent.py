@@ -45,8 +45,8 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
         expected='The complete official wording is available with its source on screen.'
         pcm=struct.pack('<h',1000)*1200
         fixture={'kind':'synthetic_public_question','pcm':pcm,'sha256':hashlib.sha256(pcm).hexdigest()}
-        for fault in ('none','during_asr','on_close','missing_usage','deadline','repeat','cancel','repeat_empty','maps','map_repeat'):
-            expected=(map_navigation_text('en','kansas_city') if fault in {'maps','map_repeat'} else 'Please name the public election question you want to understand.' if fault=='repeat_empty' else 'The question asks whether to approve the legislature’s act replacing the congressional plan.' if fault=='repeat' else 'The complete official wording is available with its source on screen.')
+        for fault in ('none','during_asr','on_close','missing_usage','deadline','repeat','cancel','repeat_empty','maps','map_repeat','maps_unchanged'):
+            expected=(map_navigation_text('en','statewide') if fault=='maps_unchanged' else map_navigation_text('en','kansas_city') if fault in {'maps','map_repeat'} else 'Please name the public election question you want to understand.' if fault=='repeat_empty' else 'The question asks whether to approve the legislature’s act replacing the congressional plan.' if fault=='repeat' else 'The complete official wording is available with its source on screen.')
             class Socket:
                 def __init__(self):self.queue=asyncio.Queue();self.routed=False;self.turn=1;self.commentaries=0
                 async def __aenter__(self):self.loop=asyncio.get_running_loop();self.operation=asyncio.current_task();return self
@@ -72,7 +72,7 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
                                 'delta':delta,**({'start_ms':start,'end_ms':start+200} if start is not None else {})})
                         await self.audio()  # Pre-approval energy is discarded, never admitted.
                         await self.queue.put({'type':'session.delegation.created','delegation':{'target':'decisions','id':'fixture_delegation_'+str(self.turn)}})
-                        answers=[{'type':'choice','name':name+'_turn_'+str(self.turn),'choice':value} for name,value in [('view','maps' if fault in {'maps','map_repeat'} else 'measure' if fault=='repeat' else 'source'),('map_focus','kansas_city' if fault in {'maps','map_repeat'} else 'unchanged'),('delivery','repeat' if self.turn==2 or fault=='repeat_empty' else 'brief')]]
+                        answers=[{'type':'choice','name':name+'_turn_'+str(self.turn),'choice':value} for name,value in [('view','maps' if fault in {'maps','map_repeat','maps_unchanged'} else 'measure' if fault=='repeat' else 'source'),('map_focus','kansas_city' if fault in {'maps','map_repeat'} else 'unchanged'),('delivery','repeat' if self.turn==2 or fault=='repeat_empty' else 'brief')]]
                         await self.queue.put({'type':'decision.event','delegation_id':'fixture_delegation_'+str(self.turn),'event':{'type':'decision.completed','decision':{'answers':answers}}})
                     elif kind=='session.commentary.append':
                         self.commentaries+=1
@@ -114,7 +114,7 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
                 return result
             with self.subTest(fault=fault):
                 result=asyncio.run(run())
-                self.assertEqual(result['all_turns_checked'],fault in {'none','repeat','repeat_empty','maps','map_repeat'})
+                self.assertEqual(result['all_turns_checked'],fault in {'none','repeat','repeat_empty','maps','map_repeat','maps_unchanged'})
                 if fault=='during_asr':self.assertIn('voice_audio_changed_during_asr',result['errors'])
                 if fault=='on_close':self.assertIn('voice_after_segment',result['errors'])
                 if fault=='missing_usage':self.assertIn('voice_usage_unconfirmed',result['errors'])

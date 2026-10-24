@@ -31,7 +31,7 @@ export function voiceControlText(view, language, focus = "unchanged") {
         };
   if (view === "maps") {
     const regions = language === "es"
-      ? {statewide:"de todo Missouri",kansas_city:"del área de Kansas City",st_louis:"del área de St. Louis",unchanged:"en la misma vista"}
+      ? {statewide:"en todo Missouri",kansas_city:"del área de Kansas City",st_louis:"del área de St. Louis",unchanged:"en la misma vista"}
       : {statewide:"across Missouri",kansas_city:"around Kansas City",st_louis:"around St. Louis",unchanged:"in the same view"};
     if (!Object.hasOwn(regions,focus)) return null;
     return language === "es"

@@ -107,13 +107,16 @@ sentence/approval/legislative-origin/attribution/polarity/language checks.
 Use the current code hash frozen before execution. No Live, microphone, speaker,
 input/audio files, tools, sandbox, new source, background job or model retry.
 
-Existing transport limits:12KB request bodies,512 output tokens per generation,
-15s per request, <=60s sequence, cancellation stops subsequent dispatch. Reserve
+This runner tightens requests to6KB (existing transport maximum12KB),512 output
+tokens per generation,15s HTTP timeout and45s dispatch deadline; cancellation
+stops subsequent dispatch. In-flight network outcome may remain uncertain. Reserve
 before starting; preserve full reservation and stop on uncertain usage, auth/new
 access request, missing source, response mismatch or any hold. No silent repeat.
-At current Luna pricing, even13k input tokens per request with the conservative
-0.125/M cache-write rate, two512-token outputs and four requests estimate below
-0.01. This is an estimate/reservation, not a vendor-side dollar hard cap.
+At current Luna pricing, a conservative6KB/tokenization-overhead allowance per
+request and0.25/M longer-cache-write rate plus two512-token outputs estimate
+below0.01. Offline request serialization measured4801byte generation and
+3934–3936byte review bodies for the positive EN/ES fixtures; future bodies above
+6000bytes stop before dispatch. This is an estimate/reservation, not a vendor-side dollar hard cap.
 
 Expected evidence: exact output source/operation/language, generated length and
 completeness, all independent scores, final token usage/cost and per-stage

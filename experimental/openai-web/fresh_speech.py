@@ -21,6 +21,7 @@ def words(text):
     # Closed pronunciation/typography equivalences for this admitted question.
     # Never normalize a free-standing negation "no" or arbitrary numbers.
     text=unicodedata.normalize('NFC',text)
+    text=re.sub(r'\b(?:St\.?|Saint)\s+Louis\b','Saint Louis',text,flags=re.I)
     text=re.sub(r'\bA\.\s*I\.?(?!\w)', 'AI',text,flags=re.I)
     text=re.sub(r'\bI\.\s*A\.?(?!\w)', 'IA',text,flags=re.I)
     text=re.sub(r'\bHouse Bill\s+(?:No\.?|number)\s*(?:1|one|uno)\b','House Bill number 1',text,flags=re.I)

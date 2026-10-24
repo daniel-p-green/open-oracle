@@ -1003,4 +1003,10 @@ test("Erase retains a completed owned request after failed cleanup and explicitl
   assert.equal(await first,false); assert.equal(lease.retained,true);
   failRevoke=false; assert.equal(await lease.revoke(),true); assert.equal(lease.retained,false);
   assert.deepEqual(calls.filter(call=>call.url.endsWith("/cancel")).map(call=>call.body.request_id),[originalId,originalId]);
+  for (const [error, expected] of [["owner_unavailable",true],["busy",false],["unexpected_origin",false]]) {
+    const expired = createProviderRevocation({token:"fixture-owner",isCurrent:()=>true,
+      fetcher:async()=>({ok:false,status:409,json:async()=>({error})})});
+    expired.onRequest("expired-public-request"); expired.onRequest(null);
+    assert.equal(await expired.revoke(),expected); assert.equal(expired.retained,!expected);
+  }
 });

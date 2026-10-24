@@ -521,7 +521,7 @@ $("start-talking").onclick = () =>
 $("language").onchange = () => {
   stop(true);
   language = $("language").value;
-  $("synthetic-run").disabled = !fixtureAvailable();
+  $("synthetic-run").disabled = !fixtureAvailable() || !!requestLease?.retained;
   document.documentElement.lang = language;
   $("skip-visual").textContent = es() ? "Ir a la explicación visual" : "Skip to the visual explanation";
   $("sample-label").textContent = es() ? "Voz IA · ejemplo público de Missouri" : "AI voice · Missouri public-source example";
@@ -629,7 +629,7 @@ try {
   });
   capability = await response.json();
   $("development").hidden = !capability.review_tools;
-  $("synthetic-run").disabled = !fixtureAvailable();
+  $("synthetic-run").disabled = !fixtureAvailable() || !!requestLease?.retained;
   developmentCopy();
   status(es() ? "Vista de desarrollo · conversación humana aún no habilitada" : "Development preview · human conversation not yet enabled");
 } catch {
