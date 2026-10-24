@@ -98,9 +98,30 @@ This is a backfill, not a contemporaneous event stream.
 - **Completed:** drafted [primary-source architecture and acceptance plan](docs/rebuild/PRIMARY-SOURCE-ARCHITECTURE.md),
   including retained Hack Midwest components, source classes, identity/rights,
   incremental ingestion, correction invalidation and bounded hybrid trial.
-- **Running:** one corrected, reserved integration check; outcome must be logged
-  before claiming a working real end-to-end result. Reservations before it total
-  $0.45, including the diagnostic. No invoices confirmed.
+- **Completed:** corrected integration run reached ready through all four real
+  stages. Actual browser showed exact source-bound rate, citation and sample
+  uncertainty; 925,440 PCM bytes, full matching transcript, final usage 19s.
+  No playback/mic. Successful-run usage estimate $0.0159354; all direct metered
+  estimates total $0.0243915 plus two unexposed Playground charges. Conservative
+  reservations $0.55. No invoices confirmed. Paid inference stopped here.
+- **Completed — new owner direction:** multilingual fact-based voice and
+  source-backed generative UI, including actual official current/proposed maps.
+  Added [integrated roadmap](docs/rebuild/PRODUCT-ROADMAP.md) with typed evidence
+  components, bilingual review/acceptance and accessible Pi-aware rendering.
+  Read-only SOS discovery identified HB1 reference 2026-R004 on a circulation
+  page; exact certification, map versions and legal operation remain unverified.
+  No map admission, drawing or district inference occurred.
+- **Completed — freshness follow-up:** independently read the Sept25 Supreme
+  Court opinion, Sept10 SOS statement and Census product notice supplied by the
+  parent. 2022 boundaries govern the 2026 election; latest Missouri cd120 GIS is
+  not yet regenerated. Roadmap now prohibits using file recency as map authority
+  or describing referendum effects as changing an already-used 2026 ballot.
+- **Completed — Agents API preflight:** documented read-only sessions request
+  returned HTTP200 in the existing scoped project. No inference/session created,
+  no new key or permissions. Read access alone does not establish write/model
+  eligibility. Quickstart/manage docs are available; linked reference pages
+  returned404. Exact bounded inference controls and source-bundle admission
+  remain prerequisites, not reasons to expand credentials or guess parameters.
 - **Planned:** push focused updates to PR6 and inspect actual CI; then perform
   the agreed bounded evidence-bundle trial only after account/rights preflight.
 - **Blocked by explicit scope:** human mic/speaker journey awaits device and

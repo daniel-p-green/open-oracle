@@ -17,7 +17,7 @@ The source and curated claim registry are pinned together by a digest. The PDF
 artifact digest and reading-copy text digest are distinct. See
 `fixtures/provenance.json` and [the decision brief](../../docs/rebuild/DECISION.md).
 
-Only six predefined English question forms are supported. Other wording holds
+In the default fixture mode, only six predefined English question forms are supported. Other wording holds
 with a visible gap. This intentionally narrow parser is a baseline, not natural
 language understanding or an AI quality evaluation. No generative text,
 Decisions review, GPT-Live, microphone, personal ballot import, candidate/office
@@ -40,9 +40,9 @@ and requires manual Play. Stop/reset, question or language changes invalidate
 pending work and dispose late handles. It generates no sound; preview text is
 explicitly not live captions. Live adapters are rejected by this build.
 
-The isolated authorized API smoke results are in
+The authorized API smoke and integrated results are in
 [the follow-up record](../../docs/rebuild/CONSENT-AND-API-CHECKPOINT.md). They do
-not enable providers in this application or establish a human-heard journey.
+not automatically enable providers or establish a human-heard journey.
 
 ## Explicit local provider pilot
 

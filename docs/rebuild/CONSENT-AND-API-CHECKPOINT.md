@@ -1,6 +1,6 @@
 # Consent, checked playback and API checkpoint — October 24, 2026
 
-The project lead selected **prechecked civic answers before audio output**. The experiment now has a runnable silent consent-to-reading-to-manual-playback flow, with provider-independent interfaces and real failure/cancellation tests. Actual service smoke tests ran separately after explicit testing authorization. The application itself still has no live credential/provider routes.
+The project lead selected **prechecked civic answers before audio output**. The experiment has a runnable silent consent-to-reading-to-manual-playback flow, plus an explicitly enabled server-owned real provider path. Default mode remains offline. No microphone, speaker or audio-download route is enabled.
 
 ## Implemented and exercised
 
@@ -41,3 +41,45 @@ The requested services and model names are real, and this account/project comple
 ## Next prerequisite, not a new spend request
 
 Testing budget authorization is already present. Before any human microphone trial, obtain explicit consent for the named device and a short fixed public utterance, disclose that raw audio goes to OpenAI and cannot be reliably redacted before streaming, and keep DOB/address/private voter records out of the trial. First integrate the prechecked buffer/transcript/currentness contract with manual Play using synthetic input, including timeout, mismatch and interruption cases; then prove one supervised Mac microphone → checked answer → matched buffered audio → deliberate human-heard Play journey. No Pi changes or deployment are authorized by this checkpoint.
+
+## Integrated provider checkpoint — October 24, 2026
+
+Commit `eb1b678` added server-owned routing, constrained text selection, support
+checking and fully buffered audio. The first actual run held at routing; one
+separate diagnostic confirmed the prompt blurred lookup classification with
+answering. `46298f0` clarified that contract without lowering confidence or
+source-release thresholds. The next single reserved run completed all four stages
+and the actual local browser displayed the source-bound reading and uncertainty.
+
+| Stage | Actual usage | Standard-price estimate |
+|---|---|---|
+| Decisions route | 232 input, 0 output tokens | $0.0000232 |
+| Responses strict admitted wording | 285 input, 30 output tokens | $0.0000435 |
+| Decisions support | 354 input, 0 output tokens | $0.0000354 |
+| Live synthetic-input preparation | Final usage 19s | $0.0158333 |
+
+Total successful run estimate **$0.0159354**. Live closed with final usage;
+925,440 nonzero PCM bytes passed exact full-transcript, source and currentness
+checks. Reading: “The printed rate is one-quarter of one cent. This is a retained
+public sample, not your personal ballot.” PCM remains only in volatile server
+memory and expires after two minutes. No human-heard/acoustic fidelity claim.
+There is no playback endpoint or media element. These are two integrated attempts,
+one held and one ready, not a measured success rate or latency distribution.
+
+Across all tests so far: directly metered usage estimate **$0.0243915**, excluding
+two Playground charges unavailable in the inspected UI; **$0.55 conservative
+reservations**, within the shared $200 ceiling. No invoice confirmation, retry
+loop, new key, billing change or recharge. Paid inference stops at this checkpoint.
+
+Current local checks: **38 Node and 29 Python tests pass**, covering exact
+citations, injection, abstention, mock failures/timeouts, cancellation/reset,
+cancel-before-start, source mutation, transcript mismatch, buffer limits/final
+usage, ownership and server/client expiry. HTTP tests require local loopback bind
+permission. Independent review verified the substantive concurrency/resource
+fixes. Remote CI is recorded separately once observed; local passes are not CI.
+
+The constrained enum response deliberately tests the complete controlled path.
+It is not a final choice against generative explanations. The revised
+[primary-source plan](PRIMARY-SOURCE-ARCHITECTURE.md) defines the broader candidate
+product; the [roadmap](PRODUCT-ROADMAP.md) adds multilingual voice and official
+map comparison. Neither is represented as implemented by this fixed-rate result.
