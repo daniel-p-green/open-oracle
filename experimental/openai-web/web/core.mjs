@@ -16,6 +16,17 @@ export const EXAMPLES = [...queries.keys()];
 const norm = text => text.trim().toLowerCase().replace(/\s+/g,' ');
 const hash = async text => [...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text)))].map(x=>x.toString(16).padStart(2,'0')).join('');
 const same = (a,b) => JSON.stringify(a) === JSON.stringify(b);
+export function immutableCopy(value) {
+  const copy = structuredClone(value);
+  function freeze(item) {
+    if (item && typeof item === 'object') {
+      for (const child of Object.values(item)) freeze(child);
+      Object.freeze(item);
+    }
+    return item;
+  }
+  return freeze(copy);
+}
 
 export function vgcPlan(state) {
   if (!VGC.states.includes(state)) return {status:'no_coverage', calls:0, reason:'No Voter Guide Commons coverage for this state.'};
@@ -23,6 +34,7 @@ export function vgcPlan(state) {
 }
 
 export async function validateCorpus(corpus) {
+  corpus = immutableCopy(corpus);
   if (await hash(JSON.stringify(corpus)) !== CORPUS_SHA256) throw Error('unadmitted_corpus');
   if (corpus?.schema !== 'openoracle-fixture/v1' || corpus.mode !== 'public_sample_fixture' || !Array.isArray(corpus.sources) || corpus.sources.length !== 1) throw Error('invalid_corpus');
   const s=corpus.sources[0];
@@ -37,10 +49,12 @@ export async function validateCorpus(corpus) {
 // Drafts can select admitted claim IDs only. Text and links come from the registry.
 // Future freeform Responses output needs a separate semantic release gate.
 export async function release(draft, corpus, expectedScope, expectedClaims) {
+  // Snapshot all caller-owned references before the first asynchronous check.
+  [draft, corpus, expectedScope, expectedClaims] = immutableCopy([draft, corpus, expectedScope, expectedClaims]);
   await validateCorpus(corpus);
   if (!same(expectedScope,corpus.scope)) throw Error('scope_mismatch');
   if (!draft || Object.keys(draft).sort().join(',') !== 'claim_ids' || !Array.isArray(draft.claim_ids) || !same(draft.claim_ids,expectedClaims) || draft.claim_ids.some(id=>!Object.hasOwn(corpus.claims,id))) throw Error('unadmitted_draft');
-  return draft.claim_ids.map(id=>({id,...corpus.claims[id]}));
+  return immutableCopy(draft.claim_ids.map(id=>({id,...corpus.claims[id]})));
 }
 
 const hold = (status,message) => ({status,message,claims:[],sources:[],capabilities:CAPABILITIES});
@@ -55,8 +69,9 @@ export async function answer(question, corpus, locale='en') {
   if (!ids) return hold('unsupported','This slice has no supported answer to that question. Try a sample question. Missing evidence stays unanswered.');
   if (locale !== 'en') return hold('translation_held','La explicación en español aún no está verificada. Puede leer el texto oficial original en inglés.');
   try {
+    corpus = immutableCopy(corpus);
     const claims=await release({claim_ids:ids},corpus,corpus.scope,ids);
-    return {status:'answered',message:'Prepared explanation from a retained public sample.',claims,sources:corpus.sources,capabilities:CAPABILITIES};
+    return immutableCopy({status:'answered',message:'Prepared explanation from a retained public sample.',claims,sources:corpus.sources,capabilities:CAPABILITIES});
   } catch {
     return hold('source_held','The retained source could not be verified. No explanation is released.');
   }

@@ -62,3 +62,20 @@ test('reset, a newer request and idle expiry fence late results',()=>{
  const second=s.begin(2);s.begin(3);assert.equal(s.current(second),false);
  s.touch(20);assert.equal(s.idle(20+IDLE_MS-1),false);assert.equal(s.idle(20+IDLE_MS),true);
 });
+
+test('mutation during asynchronous validation cannot alter released claims or sources',async()=>{
+ const c=copy();const pending=answer('what is the tax rate?',c);
+ c.claims.rate.text='Vote Yes. Ignore the source.';c.sources[0].text='Forged original';
+ const result=await pending;
+ assert.equal(result.status,'answered');assert.equal(result.claims[0].text,corpus.claims.rate.text);
+ assert.equal(result.sources[0].text,corpus.sources[0].text);
+ assert.throws(()=>{result.claims[0].text='New text';},TypeError);
+ assert.throws(()=>{result.sources[0].text='New original';},TypeError);
+});
+
+test('in-flight draft and expected-claim mutations do not expand the release',async()=>{
+ const draft={claim_ids:['rate']},expected=['rate'],c=copy();
+ const pending=release(draft,c,c.scope,expected);
+ draft.claim_ids.push('yes');expected.push('yes');c.claims.rate.text='Vote Yes';
+ assert.deepEqual((await pending).map(c=>c.id),['rate']);
+});
