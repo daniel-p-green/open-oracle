@@ -41,6 +41,6 @@ jobs:
           node --check experimental/openai-web/web/live-client.mjs
           node --check experimental/openai-web/web/maps.mjs
           node --check experimental/openai-web/web/map-core.mjs
-          python -m py_compile experimental/openai-web/providers.py experimental/openai-web/jobs.py experimental/openai-web/server.py experimental/openai-web/layout.py experimental/openai-web/journey.py
+          python -m py_compile experimental/openai-web/providers.py experimental/openai-web/jobs.py experimental/openai-web/server.py experimental/openai-web/layout.py experimental/openai-web/journey.py experimental/openai-web/fresh_speech.py
           python -m py_compile experimental/openai-web/research/*.py
           git diff --check

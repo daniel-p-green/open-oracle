@@ -18,6 +18,8 @@ import {
   recapUnits,
   QUESTION_VERSION,
   journeyHeading,
+  validateJourneySpeech,
+  journeyReading,
 } from "../web/journey-core.mjs";
 import { requestProviderJob } from "../web/layout-client.mjs";
 const corpus = JSON.parse(
@@ -28,6 +30,110 @@ const deferred = () => {
   const promise = new Promise((r) => (resolve = r));
   return { promise, resolve };
 };
+test("fresh cached speech requires current reading lease and server revalidation before any player starts", async () => {
+  const unit = {
+    operation: "simpler",
+    language: "en",
+    source_version: QUESTION_VERSION,
+    request_fit: "unconfirmed",
+    sections: [
+      {
+        source_id: "question",
+        text: "The question asks about a congressional plan.",
+      },
+    ],
+  };
+  const bytes = new Uint8Array(100).buffer,
+    hash = [...new Uint8Array(await crypto.subtle.digest("SHA-256", bytes))]
+      .map((n) => n.toString(16).padStart(2, "0"))
+      .join("");
+  const value = {
+    mode: "fresh_checked_speech",
+    source_version: QUESTION_VERSION,
+    language: "en",
+    reading: journeyReading(unit),
+    independent_asr_match: true,
+    finalized: true,
+    asr_model: "gpt-transcribe",
+    acoustic_human_review: false,
+    raw_visitor_input_sent: false,
+    playback_enabled: false,
+    sha256: hash,
+    bytes: 100,
+  };
+  const decoded = validateJourneySpeech(value, unit, {
+    requestId: "fresh_public_audio_01",
+    expiresInSeconds: 60,
+  });
+  assert.match(decoded.asset.text, /unconfirmed/);
+  assert.throws(() =>
+    validateJourneySpeech(
+      {
+        ...value,
+        reading: value.reading.replace("not a quotation", "a quotation"),
+      },
+      unit,
+      { requestId: "fresh_public_audio_01", expiresInSeconds: 60 },
+    ),
+  );
+  let players = 0,
+    checks = 0,
+    expireDuringCheck = false;
+  const session = createSession(),
+    ticket = session.begin();
+  const output = createSpeechOutput({
+    session,
+    allowReview: () => true,
+    canPlay: async () => {
+      checks++;
+      if (expireDuringCheck) {
+        await Promise.resolve();
+        Date.now = () => decoded.expiresAt + 1;
+        return true;
+      }
+      return false;
+    },
+    fetchAudio: async () => ({ ok: true, arrayBuffer: async () => bytes }),
+    audioFactory: () => {
+      players++;
+      throw Error("must not create player");
+    },
+  });
+  const binding = {
+    ticket,
+    locale: "en",
+    text: decoded.asset.text,
+    sourceVersion: QUESTION_VERSION,
+    expiresAt: decoded.expiresAt,
+    parentRequest: "checked_parent_0001",
+  };
+  assert.equal(await output.prepare(decoded.asset, binding), true);
+  output.setConsent(true);
+  assert.equal(await output.play(), false);
+  assert.equal(checks, 1);
+  assert.equal(players, 0);
+  assert.equal(await output.prepare(decoded.asset, binding), true);
+  const oldNow = Date.now;
+  try {
+    Date.now = () => decoded.expiresAt + 1;
+    assert.equal(await output.play(), false);
+    assert.equal(output.snapshot().stage, "off");
+  } finally {
+    Date.now = oldNow;
+    output.stop();
+  }
+  assert.equal(await output.prepare(decoded.asset, binding), true);
+  output.setConsent(true);
+  expireDuringCheck = true;
+  try {
+    assert.equal(await output.play(), false);
+    assert.equal(players, 0);
+    assert.equal(output.snapshot().stage, "off");
+  } finally {
+    Date.now = oldNow;
+    output.stop();
+  }
+});
 Object.defineProperty(globalThis, "crypto", {
   value: webcrypto,
   configurable: true,

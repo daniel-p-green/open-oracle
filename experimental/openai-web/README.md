@@ -43,6 +43,41 @@ Erase revokes its references. Missing/expired parent rejects before reservation,
 restores the client allowance only on a confirmed unstarted request, and needs a
 deliberate fresh action. No automatic retry or prerecorded-answer substitution.
 
+## Fresh per-answer speech — local review only
+
+After a checked fresh explanation, explicit review mode offers **Prepare fresh
+voice**. A separate bounded job retrieves that same-owner ready answer; the
+browser cannot supply speech prose. It preserves source attribution, quotation
+status, human-review uncertainty, unconfirmed delivery and nonpersonal scope.
+GPT-Live output is buffered until whole-session finalization. Its exact output
+transcript and an independent `gpt-transcribe` pass over the entire final WAV
+must agree with the canonical reading. ASR receives no expected-text prompt or
+language hint; detected language must match. Agreement is engineering evidence,
+not human pronunciation or acoustic approval.
+
+The existing job/budget/session/SpeechOutput owners manage this path. Each
+speech run reserves $0.10 and permits one Live session plus one ASR request,
+no retry. Reading≤1000 characters, generation window52s, Live transport timeout82s,
+accepted final usage≤75s, PCM≤60s and ASR HTTP timeout20s. Duration-based price
+arithmetic at those accepted bounds is $0.067; uncertain or failed work retains
+the whole reservation. These application bounds do not promise a provider-side
+spending cap or refund. The full buffering window is a **known latency
+limitation**, not the natural/low-latency release experience.
+
+WAV access requires the owner-token header and ready child+parent. Parent
+revocation/expiry clears dependent speech; audio expires120s from request.
+Cached browser media has the same lease, checks server readiness before manual
+Play and rechecks expiry after that asynchronous validation. Source/language/
+Stop/Erase navigation clears audio. There is no automatic sound or microphone.
+Fresh speech remains review-only pending human approval.
+
+**Verified:** local provider fakes, ownership/cancellation/expiry checks, server/
+browser EN/ES reading parity, and a visibly labeled zero-API browser preparation
+with unchecked speakers/disabled Play; challenge cleared its audio.
+**Not verified:** the new real Live+ASR flow, heard speech or human language/
+pronunciation. Starting its bounded real smoke and uploading renewed Claude
+review were rejected by automatic approval review; no alternate route used.
+
 **Not the completed multilingual voice/generative-UI product.** This is a working
 local evidence workspace with prepared synthetic narration, not a human voice
 trial or public-release approval. Python **3.12+**; no project Node dependency.

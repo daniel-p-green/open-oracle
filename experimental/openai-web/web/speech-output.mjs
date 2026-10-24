@@ -3,11 +3,14 @@ export function createSpeechOutput({
   session,
   fetchAudio = (url, signal) => fetch(url, { signal, cache: "no-store" }),
   audioFactory = () => new Audio(),
+  allowReview = () => false,
+  canPlay = async () => true,
   onChange = () => {},
 }) {
   let generation = 0,
     controller,
     preparationTimer,
+    leaseTimer,
     prepared,
     player,
     url,
@@ -25,6 +28,7 @@ export function createSpeechOutput({
     );
   function discard() {
     clearTimeout(preparationTimer);
+    clearTimeout(leaseTimer);
     controller?.abort();
     controller = null;
     if (player) {
@@ -62,10 +66,20 @@ export function createSpeechOutput({
       asset.locale !== binding.locale ||
       asset.text !== binding.text ||
       asset.source_version !== binding.sourceVersion ||
-      asset.kind !== "synthetic_prepared_voice" ||
-      !["ui_navigation", "admitted_en_measure"].includes(
-        asset.release_policy,
+      !["synthetic_prepared_voice", "fresh_checked_voice"].includes(
+        asset.kind,
       ) ||
+      !(asset.kind === "fresh_checked_voice"
+        ? allowReview() &&
+          asset.release_policy === "review_only" &&
+          asset.independent_asr_match === true &&
+          /^[a-zA-Z0-9_-]{16,64}$/.test(asset.id) &&
+          Number.isFinite(binding.expiresAt) &&
+          binding.expiresAt > Date.now() &&
+          binding.expiresAt <= Date.now() + 120000
+        : ["ui_navigation", "admitted_en_measure"].includes(
+            asset.release_policy,
+          )) ||
       (asset.release_policy === "admitted_en_measure" && asset.locale !== "en")
     ) {
       stage = "held";
@@ -92,7 +106,9 @@ export function createSpeechOutput({
       const bytes = await Promise.race([
         (async () => {
           const response = await fetchAudio(
-            "/experience/audio/" + asset.id + ".wav",
+            asset.kind === "fresh_checked_voice"
+              ? "/api/provider/audio/" + asset.id
+              : "/experience/audio/" + asset.id + ".wav",
             audioSignal,
           );
           if (!response.ok) throw Error("audio_unavailable");
@@ -111,7 +127,19 @@ export function createSpeechOutput({
       if (g !== generation || !session.current(ticket)) return false;
       if (hash !== asset.sha256 || bytes.byteLength !== asset.bytes)
         throw Error("audio_integrity");
+      if (
+        asset.kind === "fresh_checked_voice" &&
+        binding.expiresAt <= Date.now()
+      )
+        throw Error("audio_expired");
       prepared = { asset, binding, bytes };
+      if (asset.kind === "fresh_checked_voice")
+        leaseTimer = setTimeout(
+          () => {
+            if (g === generation) stop();
+          },
+          Math.max(0, binding.expiresAt - Date.now()),
+        );
       stage = "ready";
       emit();
       return true;
@@ -135,10 +163,42 @@ export function createSpeechOutput({
       return false;
     const g = generation,
       ticket = prepared.binding.ticket;
+    if (
+      prepared.asset.kind === "fresh_checked_voice" &&
+      prepared.binding.expiresAt <= Date.now()
+    ) {
+      stop();
+      return false;
+    }
     if (silent) {
       stage = "ready";
       emit();
       return true;
+    }
+    stage = "starting";
+    emit();
+    try {
+      if (
+        prepared.asset.kind === "fresh_checked_voice" &&
+        !(await canPlay(prepared.asset, prepared.binding))
+      )
+        throw Error("audio_revoked");
+      if (g !== generation || !prepared || !session.current(ticket) || !consent)
+        return false;
+      if (
+        prepared.asset.kind === "fresh_checked_voice" &&
+        prepared.binding.expiresAt <= Date.now()
+      ) {
+        stop();
+        return false;
+      }
+    } catch {
+      if (g === generation) {
+        discard();
+        stage = "held";
+        emit();
+      }
+      return false;
     }
     const current = prepared,
       ownURL = URL.createObjectURL(

@@ -111,3 +111,27 @@ the scores. It recommended atomic review over cited evidence only, preserving
 thresholds and evaluating distinct faithful/adverse controls. That interface is
 implemented; six engineering-labeled controls are recorded in logs.md. This is
 not independent editorial calibration or a human comprehension/acoustic pass.
+
+## Source-role proposal critique and fresh-speech gate
+
+An actual later Opus5.5High proposal critique required sentence-level attribution,
+an explanation/not-quotation label, critical request fit for limits, and delivery
+uncertainty propagated to answer/recap. All implemented without reducing factual
+thresholds. A real bounded EN overview → simpler → ES adaptation completed.
+This is not human civic/language approval.
+
+The next eleven-file fresh-speech source bundle was rendered locally with the
+installed Oracle bundler after its dry-run scope report (no API engine used).
+The intended existing Claude UI still visibly selected Opus5.5High. **Automatic
+approval review rejected the source upload**, citing absent external-payload
+authorization. A read-only outcome check found no attachment; the dialog was
+dismissed. No review response for this new bundle exists. No retry or alternate
+destination used; explicit approval question is pending.
+
+Independent local code review did find and verify fixes for server/browser
+reading parity and expiry during asynchronous Play revalidation; a later pass
+found map navigation needed the same pending-speech cancellation path as other
+source actions. The actual delayed zero-API browser run confirmed map navigation
+cancelled pending preparation, the late result stayed cleared, and Reset erased
+the journey. This does not substitute for the requested renewed Opus critique,
+real Live/ASR evidence, human acoustic review or whole-product acceptance.

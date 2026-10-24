@@ -133,3 +133,60 @@ export function recapUnits(units, language) {
       request_fit: u.request_fit,
     }));
 }
+
+export function journeyReading(unit) {
+  const es = unit.language === "es";
+  let prefix = es
+    ? "Explicación por IA, revisión humana pendiente. Explicación del texto de la pregunta, no es una cita."
+    : "AI explanation, human review pending. Explanation of the ballot wording, not a quotation.";
+  if (unit.request_fit === "unconfirmed")
+    prefix += es
+      ? " El nivel de sencillez o detalle solicitado no está confirmado."
+      : " The requested simplicity or detail is unconfirmed.";
+  return [
+    prefix,
+    ...unit.sections.map((p) => p.text),
+    es
+      ? "Esta muestra pública no verifica su boleta ni su distrito."
+      : "This public sample does not verify your ballot or district.",
+  ].join(" ");
+}
+
+export function validateJourneySpeech(value, unit, job) {
+  const text = journeyReading(unit);
+  if (
+    value?.mode !== "fresh_checked_speech" ||
+    value.source_version !== QUESTION_VERSION ||
+    value.language !== unit.language ||
+    value.reading !== text ||
+    value.independent_asr_match !== true ||
+    value.finalized !== true ||
+    value.asr_model !== "gpt-transcribe" ||
+    value.acoustic_human_review !== false ||
+    value.raw_visitor_input_sent !== false ||
+    value.playback_enabled !== false ||
+    !/^[a-f0-9]{64}$/.test(value.sha256) ||
+    !Number.isInteger(value.bytes) ||
+    value.bytes < 44 ||
+    value.bytes > 60 * 48000 + 44 ||
+    !Number.isFinite(job?.expiresInSeconds) ||
+    job.expiresInSeconds <= 0 ||
+    job.expiresInSeconds > 120 ||
+    !/^[a-zA-Z0-9_-]{16,64}$/.test(job.requestId)
+  )
+    throw Error("speech_binding");
+  return immutableCopy({
+    asset: {
+      id: job.requestId,
+      kind: "fresh_checked_voice",
+      release_policy: "review_only",
+      locale: unit.language,
+      text,
+      source_version: QUESTION_VERSION,
+      sha256: value.sha256,
+      bytes: value.bytes,
+      independent_asr_match: true,
+    },
+    expiresAt: Date.now() + job.expiresInSeconds * 1000,
+  });
+}

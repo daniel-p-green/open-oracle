@@ -709,3 +709,85 @@ This is a backfill, not a contemporaneous event stream.
 - **Running:** fresh per-answer checked speech, meaningful typed visual
   composition, candidate/variant coverage and actual human bilingual/accessibility
   validation remain open. This milestone does not meet full stretch acceptance.
+
+### 2026-10-24 07:06 UTC — fresh speech integration; external verification blocked
+
+- **Completed locally:** resident/source-role/reference increment committed as
+  `f0c3ef8` (not pushed). [Demo reference notes](docs/rebuild/DEMO-REFERENCES.md)
+  explain actual adaptations, considered ideas, versions not established,
+  affected files, licensing and verification limits.
+- **Implemented:** fresh per-answer speech job derives all prose from its
+  ready same-owner checked public parent. Reuses ProductPipeline, Jobs, Budget,
+  session and SpeechOutput; no second controller or substantive recording
+  library. Spoken reading preserves sentence attribution, paraphrase label,
+  unconfirmed delivery, pending human review and nonpersonal scope.
+- **Implemented:** complete GPT-Live session buffering/finalization, exact
+  co-transcript check, then independent whole-WAV `gpt-transcribe` without
+  expected text or language hints. Detected language and lexical comparison
+  preserve numbers/negation; mismatches hold. No unsupported per-answer done
+  event, transcript-only release or guessed pause-as-completion claim.
+- **Bounds:** each speech task reserves$0.10 for one Live session and one ASR
+  request, no retry. Canonical reading≤1000characters; Live generation52s,
+  transport timeout82s, accepted final usage≤75s; PCM≤60s, ASR HTTP20s. Accepted
+  duration arithmetic$0.067, not invoice, refund promise or vendor hard cap.
+  Uncertain costs retain the full reservation. Long buffering remains a known
+  release-latency defect; no natural-conversation performance claimed.
+- **Implemented/verified locally:** owner-authenticated memory-only WAV access,
+  parent cancellation/expiry cascade, ready-result revocation, browser lease
+  expiry, server revalidation before manual Play and post-await expiry check.
+  Source/office/teach-back/recap/map actions stop cached and pending speech while
+  preserving independent pending text. No keys/capabilities in URLs or browser.
+  Existing no-store/CSP/microphone restrictions preserved.
+- **Actual independent code review:** found server/browser EN-unconfirmed
+  reading-space mismatch and expiry-during-Play-revalidation race. Fixed; exact
+  cross-runtime EN/ES confirmed/unconfirmed parity and fake-player zero-creation
+  expiry probe passed. Later reading-action review found map navigation only
+  stopped cached speech; changed it to the existing pending-speech invalidation
+  path. No new agents, paid checks or test-count target.
+- **Actual zero-API browser proof:** visibly labeled mock completed fresh answer
+  → preparation → displayed full canonical reading, consent unchecked and Play
+  disabled. Challenge cleared audio/transcript and restored original. This is
+  mock integration evidence, not live waveform/acoustic validation. Found that
+  an empty old-clip library hid speaker consent; fresh preparation now reveals
+  that control without checking it or activating sound.
+- **Current official docs checked:** `speech-to-text` transcriptions guide and
+  `/v1/audio/transcriptions` spec; Live conversations/session close; data controls.
+  Added visible per-service data disclosure: Responses/Decisions/Live abuse logs
+  may retain content up to30days with exceptions; transcriptions table lists
+  no content state/abuse retention. Responses/Live explicit store:false, no
+  verified account ZDR claim; local Erase cannot unsend provider data.
+- **Completed Library delivery:** real earlier public-source ES adaptation/maps
+  image saved as `libfile_66e195abb528819198c8b40286f4ad19`, version0,
+  `openoracle-fresh-resident-journey.png`. Upload and local identity persistence
+  confirmed. It predates latest visual polish and proves no heard speech.
+- **Denied — Git push:** automatic approval review rejected pushing `f0c3ef8`
+  to existing draft PR6, citing initial repository-publication prohibition and
+  treating later delegated PR authorization as untrusted. Command did not
+  execute. No alternate route or retry; explicit approval question pending.
+  Therefore no remote CI result exists for this local commit.
+- **Denied — renewed Claude review:** automatic approval review rejected upload
+  of the scrubbed eleven-file source/review bundle to existing Opus5.5High chat,
+  citing absent external-message/payload authorization. Existing model setting
+  visibly verified. Read-only outcome check found no new attachment; dismissed
+  upload dialog. No retry/alternate route; explicit approval question pending.
+  Prior returned critiques remain actual evidence, not a new speech review.
+- **Denied — real OpenAI smoke:** automatic approval review rejected starting
+  loopback8912 with existing secure access for two runs/$0.20 reservations within
+  shared$200, citing absent paid API approval. Process did not start; no calls or
+  new charges. No old enabled server/alternate route used. Explicit specific
+  approval question pending. Ledger remains reservations$1.26 and recorded
+  estimate$0.0863188 plus prior unmetered Playground usage, not an invoice.
+- **Verification:** Node behavior suite, Python provider/source/jobs/loopback
+  suite, targeted client expiry/revocation and cross-runtime reading checks
+  passed after repaired private-method signature regression. Full required
+  checks run again only for the latest substantive UI repairs before commit;
+  remote CI cannot validate an unpushed commit.
+- **Still open:** actual new provider speech/latency, renewed Opus critique,
+  natural private-safe input, richer typed generative composition, complete
+  candidate/variant evidence, map access/rights and human bilingual/acoustic/
+  screen-reader/comprehension acceptance. No public-readiness claim.
+- **Final browser repair evidence:** delayed zero-API speech was cancelled by
+  selecting the St.Louis map view. After the delayed fake finished, voice stayed
+  off, transcript stayed cleared, consent remained false and Play disabled.
+  Reset removed the journey. This directly verifies the repaired sibling path;
+  no real waveform or device was involved.

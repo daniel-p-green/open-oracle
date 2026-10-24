@@ -40,7 +40,8 @@ class Budget:
                 if os.path.exists(name): os.unlink(name)
 
     def reserve(self, run, task=None):
-        amount = self.journey_reserve if task and task.startswith('journey:') else min(self.per_run, .01) if task else self.per_run
+        speech=bool(task and task.startswith('speech:'))
+        amount = .10 if speech else self.journey_reserve if task and task.startswith('journey:') else min(self.per_run, .01) if task else self.per_run
         with self.locked() as data:
             maximum = data.get('authorization_usd_max')
             runs = data.get('runs')
@@ -50,18 +51,20 @@ class Budget:
             if any(type(n) not in (int, float) or not math.isfinite(n) or n < 0 for n in amounts): raise Held('budget_invalid')
             if sum(amounts) + amount > maximum: raise Held('budget_exhausted')
             journey = bool(task and task.startswith('journey:'))
-            runs.append({'id': run, 'kind': 'fresh_public_journey' if journey else 'bounded_ui_composition' if task else 'integrated_public_rate', 'state': 'reserved',
-                         'reserved_usd': amount, 'retry': False, 'requests_max': 2 if journey else 1 if task else 4, 'stages': []})
+            runs.append({'id': run, 'kind': 'fresh_public_speech' if speech else 'fresh_public_journey' if journey else 'bounded_ui_composition' if task else 'integrated_public_rate', 'state': 'reserved',
+                         'reserved_usd': amount, 'retry': False, 'requests_max': 2 if journey or speech else 1 if task else 4, 'stages': []})
             data['conservative_reservations_usd'] = sum(amounts) + amount
             data['state'] = 'integrated public-provider test in flight'
 
     def record(self, run, stage, usage):
         if not isinstance(usage, dict): raise Held('usage_unconfirmed')
-        if stage == 'audio':
+        if stage in {'audio','fresh_audio','transcription'}:
             seconds = usage.get('seconds')
-            if type(seconds) not in (int, float) or not math.isfinite(seconds) or not 0 <= seconds <= 40: raise Held('usage_unconfirmed')
+            maximum=75 if stage=='fresh_audio' else 60 if stage=='transcription' else 40
+            if type(seconds) not in (int, float) or not math.isfinite(seconds) or not 0 <= seconds <= maximum: raise Held('usage_unconfirmed')
             safe = {'seconds': seconds}
-            estimate = seconds * .05 / 60
+            if stage=='transcription': safe['basis']='submitted_waveform_duration_not_invoice'
+            estimate = seconds * (.0045 if stage=='transcription' else .05) / 60
         else:
             incoming, outgoing = usage.get('input_tokens'), usage.get('output_tokens')
             details = usage.get('input_tokens_details', {})
@@ -112,6 +115,11 @@ class Jobs:
                 ready_public_context = row['state'] == 'ready' and str(row.get('task','')).startswith('journey:')
                 if (not ready_public_context and now - row['created'] >= JOB_TTL) or now - owner['created'] >= TOKEN_TTL:
                     row['cancel'].set(); row['result'] = row['audio'] = row['prior'] = None; row['state'] = 'expired'
+            for row in owner['jobs'].values():
+                if str(row.get('task','')).startswith('speech:'):
+                    parent=owner['jobs'].get(row.get('parent_request'))
+                    if not parent or parent['state']!='ready':
+                        row['cancel'].set();row['result']=row['audio']=row['prior']=None;row['state']='expired'
         self.owners = {token: value for token, value in self.owners.items()
                        if now - value['created'] < TOKEN_TTL or any(r.get('in_flight') for r in value['jobs'].values())}
 
@@ -144,10 +152,11 @@ class Jobs:
             prior = None
             if parent_request:
                 parent = owner['jobs'].get(parent_request)
-                if (not task or not task.startswith('journey:') or not parent or parent['state'] != 'ready'
+                if (not task or not task.startswith(('journey:','speech:')) or not parent or parent['state'] != 'ready'
                         or type(parent.get('result')) is not dict or not parent['result'].get('unit') or parent['result'].get('mode') != 'fresh_grounded_generation'):
                     raise Held('parent_unavailable')
                 prior = copy.deepcopy(parent['result'])
+            if task and task.startswith('speech:') and not prior: raise Held('parent_unavailable')
             if self.runs >= self.max_runs: raise Held('run_limit')
             if any(r.get('in_flight') for o in self.owners.values() for r in o['jobs'].values()):
                 raise Held('busy')
@@ -164,14 +173,16 @@ class Jobs:
     def _run(self, row):
         def progress(stage):
             with self.lock:
+                self._expire()
                 check_cancel(row['cancel']); row['state'] = stage
         def meter(stage, usage): self.budget.record(row['run'], stage, usage)
         try:
-            result, pcm = (self.pipeline.run_task(row['task'], row['cancel'], progress, meter, prior=row['prior']) if row['task'] and row['task'].startswith('journey:')
+            result, pcm = (self.pipeline.run_task(row['task'], row['cancel'], progress, meter, prior=row['prior']) if row['task'] and row['task'].startswith(('journey:','speech:'))
                            else self.pipeline.run_task(row['task'], row['cancel'], progress, meter) if row['task']
                            else self.pipeline.run(row['cancel'], progress, meter))
             check_cancel(row['cancel'])
             with self.lock:
+                self._expire()
                 check_cancel(row['cancel'])
                 if self.clock() - row['created'] >= JOB_TTL: raise Held('expired')
                 self.budget.finish(row['run'], 'ready')
@@ -210,7 +221,20 @@ class Jobs:
                 row['cancel'].set(); row['result'] = row['audio'] = None
                 row['prior'] = None
                 row['state'] = 'cancelled' if row['state'] in {'ready', 'held', 'cancelled', 'expired'} else 'cancel_requested'
+            # Revocation reaches dependent speech even after its WAV was prepared.
+            for child in owner['jobs'].values():
+                if child.get('parent_request')==request and str(child.get('task','')).startswith('speech:'):
+                    child['cancel'].set();child['result']=child['audio']=child['prior']=None;child['state']='cancel_requested'
             return {'request_id': request, 'state': 'cancel_requested', 'result': None, 'playback_enabled': False}
+
+    def audio(self, token, request):
+        with self.lock:
+            owner=self._owner(token);row=owner['jobs'].get(request)
+            parent=owner['jobs'].get(row.get('parent_request')) if row else None
+            if (not row or not str(row.get('task','')).startswith('speech:') or row['state']!='ready'
+                    or not parent or parent['state']!='ready' or type(row.get('audio')) is not bytes
+                    or not row['audio'] or row['cancel'].is_set()): raise Held('audio_unavailable')
+            return bytes(row['audio'])
 
     def close(self):
         self.stopping.set()

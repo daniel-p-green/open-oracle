@@ -12,6 +12,7 @@ from providers import Held, OpenAIProvider, Pipeline, admitted_corpus
 from jobs import Budget, Jobs
 from layout import ProductPipeline, RECIPES
 from journey import TASKS
+from fresh_speech import TASKS as SPEECH_TASKS
 
 ROOT = Path(__file__).resolve().parent
 FILES = {
@@ -93,6 +94,10 @@ class Handler(BaseHTTPRequestHandler):
                 request = self.path.removeprefix('/api/provider/job/')
                 if not REQUEST_ID.fullmatch(request): raise Held('request_invalid')
                 self.json_reply(200, self.server.jobs.public(self.headers.get('X-Session-Token'), request))
+            elif self.path.startswith('/api/provider/audio/') and self.server.jobs and self.server.review_tools:
+                request=self.path.removeprefix('/api/provider/audio/')
+                if not REQUEST_ID.fullmatch(request): raise Held('request_invalid')
+                self.reply(200,self.server.jobs.audio(self.headers.get('X-Session-Token'),request),'audio/wav')
             elif self.path in self.server.experience:
                 raw, mime = self.server.experience[self.path]
                 self.reply(200, raw, mime)
@@ -127,16 +132,17 @@ class Handler(BaseHTTPRequestHandler):
             keys = {'request_id', 'question_id'} if self.path.endswith('/start') else {'request_id'}
             if type(body) is dict and 'parent_request_id' in body and self.path.endswith('/start'):
                 keys.add('parent_request_id')
-                if type(body['parent_request_id']) is not str or not REQUEST_ID.fullmatch(body['parent_request_id']) or not str(body.get('question_id','')).startswith('journey:'): raise ValueError()
+                if type(body['parent_request_id']) is not str or not REQUEST_ID.fullmatch(body['parent_request_id']) or not str(body.get('question_id','')).startswith(('journey:','speech:')): raise ValueError()
             if type(body) is not dict or set(body) != keys or type(body['request_id']) is not str or not REQUEST_ID.fullmatch(body['request_id']):
                 raise ValueError()
-            if self.path.endswith('/start') and body['question_id'] not in {'rate', *('layout:' + key for key in RECIPES), *TASKS}: raise ValueError()
-            if self.path.endswith('/start') and body['question_id'].startswith('journey:') and body['question_id'].endswith(':es') and not self.server.review_tools: raise ValueError()
+            if self.path.endswith('/start') and body['question_id'] not in {'rate', *('layout:' + key for key in RECIPES), *TASKS,*SPEECH_TASKS}: raise ValueError()
+            if self.path.endswith('/start') and body['question_id'].startswith('speech:') and not self.server.review_tools: raise ValueError()
+            if self.path.endswith('/start') and body['question_id'].startswith(('journey:','speech:')) and body['question_id'].endswith(':es') and not self.server.review_tools: raise ValueError()
         except Exception:
             self.json_reply(400, {'error': 'request_invalid'}); return
         try:
             token = self.headers.get('X-Session-Token')
-            result = (self.server.jobs.start(token, body['request_id'], body['question_id'] if body['question_id'].startswith(('layout:', 'journey:')) else None, parent_request=body.get('parent_request_id')) if self.path.endswith('/start')
+            result = (self.server.jobs.start(token, body['request_id'], body['question_id'] if body['question_id'].startswith(('layout:', 'journey:','speech:')) else None, parent_request=body.get('parent_request_id')) if self.path.endswith('/start')
                       else self.server.jobs.cancel(token, body['request_id']))
             self.json_reply(202, result)
         except Held as error:

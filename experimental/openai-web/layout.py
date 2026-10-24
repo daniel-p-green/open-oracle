@@ -2,6 +2,7 @@
 import json
 from providers import Held, check_cancel
 from journey import JourneyPipeline, TASKS
+from fresh_speech import FreshSpeechPipeline, TASKS as SPEECH_TASKS
 
 RECIPES = {
     'effects': ['scope', 'effects', 'original'],
@@ -18,6 +19,7 @@ class ProductPipeline:
     def __init__(self, base, allow_spanish=False, text_model='gpt-6-luna'):
         self.base = base
         self.journey = JourneyPipeline(base.provider, allow_spanish, text_model)
+        self.speech = FreshSpeechPipeline(base.provider, allow_spanish)
 
     def run(self, cancel, stage, meter):
         return self.base.run(cancel, stage, meter)
@@ -26,6 +28,8 @@ class ProductPipeline:
         check_cancel(cancel)
         if task in TASKS:
             return self.journey.run_task(task, cancel, stage, meter, prior=prior)
+        if task in SPEECH_TASKS:
+            return self.speech.run_task(task,cancel,stage,meter,prior=prior)
         if not isinstance(task, str) or not task.startswith('layout:') or task[7:] not in RECIPES:
             raise Held('task_unadmitted')
         intent = task[7:]

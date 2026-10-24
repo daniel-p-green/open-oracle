@@ -14,6 +14,7 @@ import {
   validateJourney,
   recapUnits,
   journeyHeading,
+  validateJourneySpeech,
 } from "./journey-core.mjs";
 import { admittedReadings, bindReading } from "./readings.mjs";
 import { createSpeechOutput } from "./speech-output.mjs";
@@ -42,7 +43,8 @@ let ready = false,
 let journeyActive = false,
   journeyOperation = "overview",
   journeyUnits = [],
-  journeyPending = false;
+  journeyPending = false,
+  journeyPendingKind = null;
 let journeyCurrentUnit = null,
   journeyParentRequest = null,
   journeyRequestIds = [];
@@ -53,6 +55,41 @@ const el = (tag, text) => {
 };
 const speaker = createSpeechOutput({
   session,
+  allowReview: () => reviewTools,
+  fetchAudio: (url, signal) =>
+    fetch(url, {
+      signal,
+      cache: "no-store",
+      ...(url.startsWith("/api/provider/audio/")
+        ? { headers: { "X-Session-Token": providerToken } }
+        : {}),
+    }),
+  canPlay: async (asset, binding) => {
+    if (
+      !providerToken ||
+      !journeyActive ||
+      !journeyCurrentUnit ||
+      asset.locale !== locale ||
+      binding.parentRequest !== journeyParentRequest
+    )
+      return false;
+    const response = await fetch("/api/provider/job/" + asset.id, {
+      cache: "no-store",
+      signal: AbortSignal.timeout(3000),
+      headers: { "X-Session-Token": providerToken },
+    });
+    if (!response.ok) return false;
+    const job = await response.json();
+    return (
+      job.state === "ready" &&
+      job.request_id === asset.id &&
+      job.expires_in_seconds > 0 &&
+      job.result?.source_version === asset.source_version &&
+      job.result?.reading === asset.text &&
+      job.result?.sha256 === asset.sha256 &&
+      job.result?.independent_asr_match === true
+    );
+  },
   onChange: (state) => {
     const labels =
       locale === "es"
@@ -105,9 +142,10 @@ function invalidate({ revokeConsent = false, keepVisuals = false } = {}) {
     journeyPending = false;
     $("journey-status").textContent =
       locale === "es"
-        ? "Se canceló la explicación pendiente. Puede consultar el original."
-        : "Pending explanation cancelled. You can read the original.";
+        ? "Se canceló la actividad pendiente. Puede consultar el original."
+        : "Pending activity cancelled. You can read the original.";
   }
+  journeyPendingKind = null;
   if (!keepVisuals) {
     clearTimeout(legalExpiryTimer);
     renderComplete = false;
@@ -328,7 +366,7 @@ async function renderMaps(ticket) {
         locale,
         planLabels: mapMeasure.plan_labels,
         onChange() {
-          speaker.stop();
+          stopSpeechForReading();
           if (!journeyActive) {
             invalidate({ keepVisuals: true });
             currentTicket = session.begin();
@@ -670,6 +708,7 @@ function clearJourneyHistory() {
   $("journey-tools").replaceChildren();
 }
 function showEffects() {
+  stopSpeechForReading();
   const host = $("journey-tools");
   host.replaceChildren();
   if (!mapMeasure || (locale === "es" && !reviewTools)) {
@@ -687,6 +726,7 @@ function showEffects() {
   for (const id of ["yes", "no"]) journeySource(host, id);
 }
 async function showOffice(host = $("journey-tools")) {
+  stopSpeechForReading();
   const anchor = el("section"),
     language = locale;
   host.replaceChildren(anchor);
@@ -829,6 +869,7 @@ function drawJourney() {
   next.replaceChildren();
   next.dataset.language = locale;
   journeyButton(next, c.source, () => {
+    stopSpeechForReading();
     const host = $("journey-tools");
     host.replaceChildren();
     journeySource(host, "question");
@@ -908,6 +949,7 @@ async function generateJourney() {
   speaker.stop();
   remainingRuns--;
   journeyPending = true;
+  journeyPendingKind = "text";
   drawJourney();
   for (const b of $("journey-actions").querySelectorAll("button"))
     b.disabled = true;
@@ -941,6 +983,7 @@ async function generateJourney() {
   });
   if (!session.current(ticket) || !journeyActive || locale !== language) return;
   journeyPending = false;
+  journeyPendingKind = null;
   if (notStarted) {
     remainingRuns = notStarted === "run_limit" ? 0 : remainingRuns + 1;
     journeyParentRequest = null;
@@ -992,9 +1035,120 @@ async function generateJourney() {
     block.append(disclosure);
     $("journey-answer").append(block);
   }
+  if (reviewTools && providerToken && remainingRuns > 0) {
+    const button = journeyButton(
+      $("journey-answer"),
+      locale === "es"
+        ? "Preparar voz nueva · revisión local"
+        : "Prepare fresh voice · local review",
+      () => {
+        button.disabled = true;
+        void prepareJourneySpeech();
+      },
+    );
+    $("journey-answer").append(
+      el(
+        "p",
+        locale === "es"
+          ? "Genera audio desde esta explicación y comprueba la grabación completa. No activa altavoces ni micrófono. Revisión humana y de pronunciación pendientes."
+          : "Generates speech from this explanation and checks the whole recording. Microphone and speakers stay off. Human and pronunciation review remain pending.",
+      ),
+    );
+  }
   // The live status announces arrival; preserve the reader's chosen location.
 }
+async function prepareJourneySpeech() {
+  if (
+    !reviewTools ||
+    !providerToken ||
+    remainingRuns <= 0 ||
+    journeyPending ||
+    !journeyCurrentUnit ||
+    !journeyParentRequest
+  )
+    return;
+  const unit = journeyCurrentUnit,
+    parent = journeyParentRequest,
+    language = locale;
+  invalidate({ keepVisuals: true });
+  const ticket = session.begin();
+  currentTicket = ticket;
+  requestController = new AbortController();
+  journeyPending = true;
+  journeyPendingKind = "speech";
+  remainingRuns--;
+  drawJourney();
+  $("journey-status").textContent =
+    language === "es"
+      ? "Preparando y transcribiendo audio nuevo antes de permitir su reproducción…"
+      : "Preparing and independently transcribing fresh audio before making it playable…";
+  let notStarted;
+  const result = await requestProviderJob({
+    task: "speech:" + language,
+    parentRequest: parent,
+    ticket,
+    session,
+    token: providerToken,
+    signal: requestController.signal,
+    timeoutMs: 110000,
+    onRequest: (id) => {
+      if (session.current(ticket)) {
+        activeRequest = id;
+        if (id) journeyRequestIds.push(id);
+      }
+    },
+    onNotStarted: (reason) => {
+      notStarted = reason;
+    },
+    fallback: () => null,
+    decode: (value, job) => validateJourneySpeech(value, unit, job),
+  });
+  if (
+    !session.current(ticket) ||
+    !journeyActive ||
+    locale !== language ||
+    journeyCurrentUnit !== unit
+  )
+    return;
+  journeyPending = false;
+  journeyPendingKind = null;
+  if (notStarted)
+    remainingRuns = notStarted === "run_limit" ? 0 : remainingRuns + 1;
+  drawJourney();
+  if (!result) {
+    $("journey-status").textContent =
+      language === "es"
+        ? "Audio retenido. La explicación escrita sigue disponible; no se reintenta automáticamente."
+        : "Audio withheld. The written explanation remains available; there is no automatic retry.";
+    return;
+  }
+  const prepared = await speaker.prepare(result.asset, {
+    ticket,
+    locale: language,
+    text: result.asset.text,
+    sourceVersion: unit.source_version,
+    parentRequest: parent,
+    expiresAt: result.expiresAt,
+  });
+  if (!session.current(ticket)) return;
+  if(prepared) $("speaker-consent").closest("label").hidden=false;
+  $("voice-controls").open = true;
+  $("journey-status").textContent = prepared
+    ? language === "es"
+      ? "Audio preparado para revisión local; sin aprobación humana. Altavoces apagados."
+      : "Fresh audio prepared for local review; human approval pending. Speakers remain off."
+    : language === "es"
+      ? "Audio retenido; consulte la explicación escrita."
+      : "Audio withheld; the written explanation remains available.";
+}
+function stopSpeechForReading() {
+  if (journeyPendingKind === "speech") {
+    invalidate({ keepVisuals: true });
+    drawJourney();
+  } else speaker.stop();
+}
 function teachBack() {
+  stopSpeechForReading();
   const host = $("journey-tools");
   host.replaceChildren();
   if (locale === "es" && !reviewTools) {
@@ -1040,6 +1194,7 @@ function teachBack() {
   host.append(notice);
 }
 function showRecap() {
+  stopSpeechForReading();
   const host = $("journey-tools");
   host.replaceChildren();
   const units = recapUnits(journeyUnits, locale);
@@ -1095,6 +1250,10 @@ async function prepareReading(ticket, mapsVerified) {
 }
 function setCopy() {
   const t = COPY[locale];
+  $("provider-data-note").textContent =
+    locale === "es"
+      ? "Solo se envían preguntas y fuentes públicas seleccionadas. Las respuestas y sesiones Live usan store:false. OpenOracle conserva el audio nuevo solo en memoria durante la revisión (máximo dos minutos desde su solicitud). Los registros estándar de abuso de Responses, Decisions y Live pueden conservar contenido hasta 30 días, con excepciones legales o de seguridad. La documentación de transcripción indica que ese servicio no conserva contenido como estado ni registros de abuso. Borrar aquí no borra datos ya enviados al proveedor. No se ha verificado un acuerdo de retención cero para esta cuenta."
+      : "Only selected public questions and evidence are sent. Responses and Live use store:false. OpenOracle keeps fresh audio in memory only during review (at most two minutes from its request). Standard Responses, Decisions and Live abuse logs may retain content for up to 30 days, with legal or safety exceptions. Transcription documentation lists no content retention for application state or abuse logs. Local Erase cannot delete data already sent to the provider. A zero-retention agreement has not been verified for this account.";
   $("voice-controls-summary").textContent =
     locale === "es"
       ? "Controles de voz · micrófono apagado"
