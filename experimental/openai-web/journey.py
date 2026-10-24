@@ -123,7 +123,7 @@ def validate_unit(draft, operation, language, question):
         if operation in {'brief','overview','simpler','detail'} and not re.search(r'\bcongressional\b|\bcongreso\b|\bcongresional(?:es)?\b',part['text'],re.I):
             raise Held('journey_congressional_scope')
         if operation == 'brief':
-            if not re.search(r'\b(?:approv\w*|aprob\w*)', part['text'], re.I) or not re.search(r'\b(?:legislat\w*|General Assembly|Asamblea(?: General)?)\b', part['text'], re.I):
+            if not re.search(r'\b(?:approv\w*|aprob\w*|aprueb\w*)', part['text'], re.I) or not re.search(r'\b(?:legislat\w*|legislad\w*|lawmakers?|General Assembly|Asamblea(?: General)?)\b', part['text'], re.I):
                 raise Held('journey_brief_coverage')
             if len(part['text']) > 120: raise Held('journey_brief_bound')
             if not re.search(r'[.?!][\"’”]?$', part['text'].strip()) or re.search(r'\b(?:and|or|but|y|o|pero)[.?!]*$', part['text'].strip(), re.I):

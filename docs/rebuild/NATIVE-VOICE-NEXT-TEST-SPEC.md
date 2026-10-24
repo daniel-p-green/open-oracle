@@ -94,3 +94,43 @@ reasons, bounded cancellation evidence and reported token/duration cost estimate
 Use individual sample values; do not claim p50/p95 or human responsiveness from
 this small sequence. Public draft/predicate diagnostics are test-only, outside
 Git; operational receipts continue excluding transcripts and voter information.
+
+
+## Next proposed minimal paid check — not authorized or executed
+
+First isolate the corrected generation/review contract before paying for another
+voice session. One existing-key/account run, <=$0.01 reserved within shared200,
+**four requests maximum**: generate one EN brief and review it, then generate one
+ES brief and review it. Same immutable public Proposition A packet, no personal
+input, same gpt-6-luna Responses/Decisions and strict source/120char/complete
+sentence/approval/legislative-origin/attribution/polarity/language checks.
+Use the current code hash frozen before execution. No Live, microphone, speaker,
+input/audio files, tools, sandbox, new source, background job or model retry.
+
+Existing transport limits:12KB request bodies,512 output tokens per generation,
+15s per request, <=60s sequence, cancellation stops subsequent dispatch. Reserve
+before starting; preserve full reservation and stop on uncertain usage, auth/new
+access request, missing source, response mismatch or any hold. No silent repeat.
+At current Luna pricing, even13k input tokens per request with the conservative
+0.125/M cache-write rate, two512-token outputs and four requests estimate below
+0.01. This is an estimate/reservation, not a vendor-side dollar hard cap.
+
+Expected evidence: exact output source/operation/language, generated length and
+completeness, all independent scores, final token usage/cost and per-stage
+latency. Two accepted briefs would establish only this small text contract;
+then prepare a separate EN/ES native map/caption/recovery verification envelope.
+No claim of calibrated false-block rate or conversation readiness from two cases.
+No approval request has been submitted by this specification alone.
+
+Why the four prior runs held:
+
+| Purpose | Demonstrated reason | Classification / offline correction |
+| --- | --- | --- |
+| English diagnostic |172chars above120 | Correct length-contract hold, not proof of a factual error; user/developer limits conflicted. Aligned coverage/length and clean oversized hold. |
+| Repair verification | Sentence cut off with and; support0.60 | Real incomplete output; guard prevented release. Complete-sentence target/fragment check; schema200 avoids forcing120 mid-clause while acceptance stays120. |
+| Spanish | Conditional rhetorical question lacked explicit attribution | Correct under explicit-source style contract; not proven false civic meaning. Prompt now names language-appropriate attribution; no threshold lowered. Natural aprueban/legisladores forms admitted by corrected guard. |
+| Recovery purpose | request_fit0.74; factual/polarity/language checks passed | Mixed missing legislative-origin context and undefined brief rubric; not established as a false positive. Shared brief definition plus deterministic omission backstop, cancellation trigger never reached. |
+
+The older turn2 language hold predates draft/score capture and remains unknown.
+Do not invent its cause from newer runs. All latest corrections passed offline
+cases; their effect on real model outputs has not yet been measured.

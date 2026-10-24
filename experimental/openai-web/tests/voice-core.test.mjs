@@ -52,6 +52,10 @@ test("native voice view events require the current source, language, turn and ch
     () => voiceUpdate({ ...checked, view: "clarify" }, "en", 1, 1),
     /control_text/,
   );
+  const navigation = {...checked, view:"maps", map_focus:"kansas_city", text:voiceControlText("maps","en","kansas_city")};
+  assert.equal(voiceUpdate(navigation,"en",1,1).text,navigation.text);
+  assert.throws(()=>voiceUpdate({...navigation,text:"District boundaries moved north."},"en",1,1),/control_text/);
+  assert.throws(()=>voiceUpdate({...navigation,map_focus:"st_louis"},"en",1,1),/control_text/);
   const partial = {
     ...event,
     stage: "input_partial",

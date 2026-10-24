@@ -2083,3 +2083,43 @@ This is a backfill, not a contemporaneous event stream.
 - **Budget unchanged:** fourtrial0.40 reservation consumed; estimated0.025895.
   Shared reservations2.56/200, recorded direct estimate0.3013148 excluding old
   unmetered calls. No new paid inference, billing login, human media or deployment.
+
+### 2026-10-24 19:40:07 UTC — follow-up review defects repaired; map navigation aligned
+
+- **Returned actual Opus Message38:** mostly holds, new medium Spanish stem
+  defect and low cleanup/repeat/highlight/wording issues. It withdrew its earlier
+  held-draft-as-checked-text timing claim. Review remains source-only.
+- **Repairs:** natural aprueban/legisladores/lawmakers forms; shared opaque
+  revocation lease retains failed cleanup for deliberate Erase retry, coalesces
+  pending cleanup and blocks new session until confirmed; truthful local/server
+  cleanup labels. Empty repeat clarifies; matching validated map view stays
+  mounted. Repeat retains original checked map region to bind identical words.
+  Renamed amplitude-chunk metric, corrected fixture/text hash comment and
+  no-checked-audio status. Independent review caught Stop cleanup leaving Run
+  disabled; availability update now precedes retained-conversation branch.
+- **Speech/UI parity repair:** map-display action now uses exact region/language
+  navigation acknowledgment, not a new generic measure explanation. No generated
+  boundary/legal/personal-district assertion; substantive geographic answers
+  remain unsupported. Strict client text/region binding rejects forged map prose.
+  Actual provider/browser parity still unverified, acceptance row stays open.
+- **Offline evidence so far:** natural Spanish admission, actual shared lease
+  failed-then-explicit-retry/stale ownership, native protocol map→repeat and
+  first-repeat clarification pass, alongside changed/late audio/usage/deadline
+  gates. Final suites/re-review/commit next; no new paid inference.
+- **Paid scope:** four approved trials remain consumed/held. Added one proposed
+  minimal four-request EN/ES text-contract check <=0.01 in existing spec only,
+  with exact per-run limits/expected outputs/stop conditions. Not authorized,
+  queued or executed. Each historical hold classified without asserting every
+  guard caught false facts; older language hold still unknown.
+
+### 2026-10-24 19:41:42 UTC — final local repair checks passed
+
+- **Completed verification:** current complete provider-off Python/loopback and
+  Node suites pass; diff whitespace check clean. New Stop recovery wiring remains
+  source-inspected, not a current browser proof. No model/human media call.
+- **Remote prior increment:**104c7db pushed; exact-code CI succeeded
+  https://github.com/daniel-p-green/open-oracle/actions/runs/40125017596 and
+  https://github.com/daniel-p-green/open-oracle/actions/runs/40125014349 .
+- **Next:** focused current map-navigation/cleanup/Spanish repair commit,
+  immutable narrow source-only Opus follow-up, push/CI verification and report
+  the still-open end-to-end/caption/language/latency gates without lowering them.

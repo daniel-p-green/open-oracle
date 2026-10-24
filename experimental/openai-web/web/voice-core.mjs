@@ -11,7 +11,7 @@ const STAGES = [
   "complete",
 ];
 const VIEWS = ["measure", "maps", "limits", "source", "clarify", "abstain"];
-export function voiceControlText(view, language) {
+export function voiceControlText(view, language, focus = "unchanged") {
   const copy =
     language === "es"
       ? {
@@ -29,6 +29,15 @@ export function voiceControlText(view, language) {
           source:
             "The complete official wording is available with its source on screen.",
         };
+  if (view === "maps") {
+    const regions = language === "es"
+      ? {statewide:"de todo Missouri",kansas_city:"del área de Kansas City",st_louis:"del área de St. Louis",unchanged:"en la misma vista"}
+      : {statewide:"across Missouri",kansas_city:"around Kansas City",st_louis:"around St. Louis",unchanged:"in the same view"};
+    if (!Object.hasOwn(regions,focus)) return null;
+    return language === "es"
+      ? "Comparemos ambos planes "+regions[focus]+". Esto no determina su distrito."
+      : "Let’s compare both plans "+regions[focus]+". This does not determine your district.";
+  }
   return copy[view] ?? null;
 }
 export function voiceUpdate(value, language, revision, turn) {
@@ -100,13 +109,13 @@ export function voiceUpdate(value, language, revision, turn) {
   if (
     value.stage === "checked_text" &&
     !unit &&
-    !["source", "clarify", "abstain"].includes(value.view)
+    !["source", "clarify", "abstain", "maps"].includes(value.view)
   )
     throw Error("voice_text_without_review");
   if (
     value.stage === "checked_text" &&
     !unit &&
-    value.text !== voiceControlText(value.view, language)
+    value.text !== voiceControlText(value.view, language, value.map_focus)
   )
     throw Error("voice_control_text");
   return {

@@ -21,7 +21,7 @@ import {
   validateJourneySpeech,
   journeyReading,
 } from "../web/journey-core.mjs";
-import { requestProviderJob, cancelProviderJob } from "../web/layout-client.mjs";
+import { requestProviderJob, createProviderRevocation } from "../web/layout-client.mjs";
 const corpus = JSON.parse(
   await readFile(new URL("../fixtures/combat.json", import.meta.url), "utf8"),
 );
@@ -985,20 +985,22 @@ test("view timing is current-action numeric diagnostics, with stale writes rejec
 });
 
 
-test("Erase can revoke a completed provider job after transport cleanup", async () => {
+test("Erase retains a completed owned request after failed cleanup and explicitly retries", async () => {
   const session = createSession(), ticket = session.begin();
-  let retained = null, pending = false;
+  let failRevoke = true;
   const calls = [];
   const fetcher = async (url, options) => {
     const body = JSON.parse(options.body); calls.push({url, body});
-    return url.endsWith("/cancel") ? {ok:true} : {ok:true, json:async()=>({request_id:body.request_id,state:"ready",result:{public_fixture:true}})};
+    return url.endsWith("/cancel") ? {ok:!failRevoke} : {ok:true, json:async()=>({request_id:body.request_id,state:"ready",result:{public_fixture:true}})};
   };
+  const lease = createProviderRevocation({token:"fixture-owner",isCurrent:()=>session.current(ticket),fetcher});
   await requestProviderJob({task:"voice:synthetic:en",ticket,session,token:"fixture-owner",
-    signal:new AbortController().signal,fallback:()=>null,decode:value=>value,fetcher,
-    onRequest:id=>{ if(!session.current(ticket)) return; pending=id!==null;if(id)retained=id; }});
-  assert.equal(pending,false); assert.ok(retained);
-  session.reset();
-  assert.equal(await cancelProviderJob({requestId:retained,token:"fixture-owner",fetcher}),true);
-  assert.equal(calls.at(-1).url,"/api/provider/cancel");
-  assert.equal(calls.at(-1).body.request_id,retained);
+    signal:new AbortController().signal,fallback:()=>null,decode:value=>value,fetcher,onRequest:lease.onRequest});
+  assert.equal(lease.pending,false); assert.equal(lease.retained,true);
+  const originalId = calls[0].body.request_id;
+  session.reset(); lease.onRequest("stale-callback-cannot-replace-owner");
+  const first=lease.revoke(); assert.equal(lease.revoke(),first);
+  assert.equal(await first,false); assert.equal(lease.retained,true);
+  failRevoke=false; assert.equal(await lease.revoke(),true); assert.equal(lease.retained,false);
+  assert.deepEqual(calls.filter(call=>call.url.endsWith("/cancel")).map(call=>call.body.request_id),[originalId,originalId]);
 });

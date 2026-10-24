@@ -307,3 +307,14 @@ is marked incomplete/unavailable, not guessed. The API documents that echo as
 optional; newest actual runs yielded zero bindable input deltas. A separately
 reviewed public-input ASR fallback remains a next implementation option. No language threshold was lowered
 without the absent held draft/predicate evidence.
+
+
+Latest adversarial repairs: failed server cleanup keeps an opaque owned request
+for explicit Erase retry; the interface separates local clearing from unconfirmed
+server cleanup and blocks a new provider session until cleanup is confirmed.
+Completed captions remain final on Stop. Empty repeat asks for clarification;
+valid repeat uses the same session-owned checked words/view and a new audio gate.
+Maps use exact region/language navigation acknowledgment only, not unreviewed
+geographic analysis or a generic measure re-explanation. Matching validated map
+views preserve local selection. These changes are offline-verified, not current
+human/browser/native-model acceptance.

@@ -1,5 +1,5 @@
 import { createSession } from "./core.mjs";
-import { requestProviderJob, cancelProviderJob } from "./layout-client.mjs";
+import { requestProviderJob, createProviderRevocation } from "./layout-client.mjs";
 import { voiceUpdate, voiceFinalTurns } from "./voice-core.mjs";
 import {
   loadMapMeasure,
@@ -13,8 +13,7 @@ const $ = (id) => document.getElementById(id),
 let language = "en",
   capability = null,
   abort,
-  request,
-  inFlight = false,
+  requestLease,
   revision = 0,
   turn = 0,
   visualRevision = 0,
@@ -105,26 +104,24 @@ function holdPendingCaptions() {
     transcript("assistant", Number(item.dataset.turn), text, "held");
   }
   $("answer-state").textContent = es()
-    ? "Audio retenido · no se reproduce"
-    : "Audio held · not played";
+    ? "No hay audio verificado disponible · sin reproducción"
+    : "No checked audio available · not played";
 }
 function heldVisualNote() {
   if (!spokenHeld || (!visualComplete && !map) || $("visual").querySelector('[data-spoken-held]')) return;
   const note = make("p", es()
-    ? "La respuesta hablada de este turno quedó retenida. Las fuentes mostradas siguen disponibles."
-    : "This turn’s spoken answer was held. The displayed sources remain available.");
+    ? "Este turno no produjo una respuesta hablada verificada. Las fuentes mostradas siguen disponibles."
+    : "No checked spoken answer is available for this turn. The displayed sources remain available.");
   note.dataset.spokenHeld = "true";
   $("visual").append(note);
 }
 function stop(erase = false) {
-  const pendingAnswer = inFlight || !!$("conversation-turns").querySelector('[data-transcript-state="checked_text"]');
-  const retained = request;
+  const pendingAnswer = requestLease?.pending || !!$("conversation-turns").querySelector('[data-transcript-state="checked_text"]');
+  const retained = requestLease;
   session.reset();
   abort?.abort();
   abort = null;
-  request = null;
-  inFlight = false;
-  if (retained) void cancelProviderJob({ requestId: retained.id, token: retained.token });
+  const cleanup = retained?.revoke() ?? Promise.resolve(true);
   revision = 0;
   turn = 0;
   visualRevision++;
@@ -154,7 +151,9 @@ function stop(erase = false) {
       : "Conversation stopped. Current court status is not asserted; check the official docket.";
   }
   if (erase) {
-    $("caption").textContent = es() ? "Sesión borrada." : "Session erased.";
+    $("caption").textContent = retained?.retained
+      ? (es() ? "Sesión local borrada. Comprobando el borrado en el servidor…" : "Local session cleared. Checking server cleanup…")
+      : (es() ? "Sesión borrada." : "Session erased.");
     $("answer-state").textContent = "";
     $("visual").replaceChildren(welcome());
   }
@@ -163,7 +162,22 @@ function stop(erase = false) {
       ? "Detenido · micrófono y altavoces apagados"
       : "Stopped · microphone and speakers off",
   );
-  $("synthetic-run").disabled = !fixtureAvailable();
+  $("synthetic-run").disabled = !fixtureAvailable() || !!requestLease?.retained;
+  const cleanupRevision = visualRevision;
+  return cleanup.then(confirmed => {
+    if (confirmed && requestLease === retained) requestLease = null;
+    if (cleanupRevision !== visualRevision) return confirmed;
+    $("synthetic-run").disabled = !fixtureAvailable() || !!requestLease?.retained || !!requestLease?.pending;
+    if (hasConversation) {
+      if (!confirmed) status(es() ? "Detenido localmente · borrado del servidor no confirmado · pulse Borrar para reintentar" : "Stopped locally · server cleanup unconfirmed · choose Erase to retry");
+      return confirmed;
+    }
+    if (erase) $("caption").textContent = confirmed
+      ? (es() ? "Sesión local y del servidor borradas." : "Local and server session cleared.")
+      : (es() ? "Sesión local borrada. Borrado del servidor no confirmado; su sesión vence a los dos minutos. Vuelva a pulsar Borrar para reintentar." : "Local session cleared. Server cleanup unconfirmed; its session expires after two minutes. Choose Erase again to retry.");
+    $("synthetic-run").disabled = !fixtureAvailable() || !!requestLease?.retained;
+    return confirmed;
+  });
 }
 function original(host) {
   if (!measure) return;
@@ -196,6 +210,9 @@ function original(host) {
   host.append(details);
 }
 async function view(action, ticket) {
+  const requestedMapView = {statewide:"statewide",kansas_city:"kc",st_louis:"stl"}[action.mapFocus];
+  if (action.view === "maps" && map && visualComplete && session.current(ticket) &&
+      (action.mapFocus === "unchanged" || requestedMapView === lastMapView)) return;
   clearTimeout(legalExpiryTimer);
   const ownRevision = ++visualRevision;
   const current = () =>
@@ -443,7 +460,9 @@ function progress(values, ticket) {
 }
 async function synthetic() {
   if (!fixtureAvailable() || !capability.session_token) return;
-  stop(true);
+  const cleanup = stop(true), erasedRevision = visualRevision;
+  const cleared = await cleanup;
+  if (!cleared || erasedRevision !== visualRevision || requestLease?.retained) return;
   const ticket = session.begin();
   hasConversation = true;
   abort = new AbortController();
@@ -456,6 +475,7 @@ async function synthetic() {
       ? "Iniciando prueba pública sintética…"
       : "Starting public synthetic conversation…",
   );
+  requestLease = createProviderRevocation({token: capability.session_token, isCurrent: () => session.current(ticket)});
   const result = await requestProviderJob({
     task: "voice:synthetic:" + language,
     ticket,
@@ -463,13 +483,7 @@ async function synthetic() {
     token: capability.session_token,
     signal: abort.signal,
     timeoutMs: 105000,
-    onRequest: (id) => {
-      if (!session.current(ticket)) return;
-      inFlight = id !== null;
-      // Keep the completed owned ID for Stop/Erase; a stale finally cannot
-      // clear a new conversation's owner after reset or language change.
-      if (id) request = { id, token: capability.session_token };
-    },
+    onRequest: requestLease.onRequest,
     onProgress: (values) => progress(values, ticket),
     fallback: () => null,
     decode: (value) => {

@@ -43,3 +43,33 @@ real cancellation/recovery, private-safe human input, protected public entry,
 second individual ballot style/candidate admission, bilingual/assistive-device
 review and uninterrupted real demonstration evidence. No independent reviewer
 can establish these from source inspection. The finite matrix owns closure.
+
+
+## Targeted Message38 returned on immutable104c7db
+
+Opus5.5High visibly verified; source-only review, no execution. Bundle82,883bytes,
+SHA2569f9a18c012a813740866fc9dea0c33d6f3933328af6a9b321e862ff101b562e8.
+Reviewer explicitly withdrew its mislabeled checked-text latency claim.
+
+| Finding | Latest local disposition |
+| --- | --- |
+| N1 Medium: approval/legislature regex misses aprueban/legisladores/lawmakers | Corrected exact stems/terms; natural Spanish positive cases pass. This new post-trial regression was not the cause of historical Spanish trial5. Semantic review unchanged. |
+| L1 Low: failed revoke forgotten | Shared transport now owns an opaque revocation lease: failed cleanup retained, concurrent cleanup coalesced, deliberate Erase retries, no automatic retry. New run waits for confirmed prior cleanup. UI reports local versus unconfirmed server cleanup. Test exercises the exact helper wired into voice.mjs, including stale callback and failed-then-successful erase. |
+| L2 Low: first-turn repeat ends session | Route to bounded clarification when no session-owned checked answer exists. Offline protocol verifies clarification through existing audio gate, no fresh factual generation. |
+| L3 Low: map repeat resets highlight | Reuse already validated current map for unchanged/matching region; repeat carries the original checked region so exact navigation wording still binds. Existing map expiry/source controls stay owned by that view. Browser interaction remains unverified. |
+| L4 Low: overstatement | Counter renamed discarded_chunks_with_energy_bytes (whole chunk with any sample above64). Source comment says fixture pin/embedded text hash, not original PDF. Status now says no checked audio available rather than claiming a nonexistent answer was held. |
+| Missing UI wiring proof | Exact shared revocation helper is tested; current DOM Stop/failure-label/map highlight behavior still needs permitted browser QA. No static/helper test presented as that proof. |
+
+An independent read-only review found successful Stop cleanup left Run disabled
+because a preservation branch returned early. Fixed availability update before
+that branch; no caption/source deletion just to recover the button.
+
+D4 next local repair is intentionally narrow: show-maps receives an exact
+application-owned navigation acknowledgment keyed to requested region and
+language. It no longer generates an unrelated measure explanation. Client
+accepts only the exact matching navigation text with null substantive result;
+forged geographic claims or mismatched region text hold. No current-map/legal
+fact or district assignment is generated. Actual map evidence remains the
+separately validated official geometry/PDF view. Substantive geographic analysis
+is unsupported; this does not close full conversational map interpretation.
+Offline protocol covers map→exact repeat; no live/browser parity claim.

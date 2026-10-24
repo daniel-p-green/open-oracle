@@ -46,6 +46,32 @@ export async function cancelProviderJob({ requestId, token, fetcher = fetch }) {
   } catch { return false; }
 }
 
+// Opaque request ownership only: no visitor content, no automatic retry.
+// A failed explicit revoke remains available for the next deliberate Erase.
+export function createProviderRevocation({ token, isCurrent, fetcher = fetch }) {
+  let id = null, pending = false, revoking = null;
+  return {
+    get retained() { return id !== null; },
+    get pending() { return pending; },
+    onRequest(value) {
+      if (!isCurrent()) return;
+      pending = value !== null;
+      if (value) id = value;
+    },
+    revoke() {
+      pending = false;
+      if (!id) return Promise.resolve(true);
+      if (revoking) return revoking;
+      const owned = id;
+      revoking = cancelProviderJob({requestId: owned, token, fetcher}).then(ok => {
+        if (ok && id === owned) id = null;
+        return ok;
+      }).finally(() => { revoking = null; });
+      return revoking;
+    },
+  };
+}
+
 // Shared transport/ownership path for layout and fresh evidence answers.
 export async function requestProviderJob({
   task,
