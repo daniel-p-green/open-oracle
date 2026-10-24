@@ -264,3 +264,37 @@ This is a backfill, not a contemporaneous event stream.
   for518faf2 completed successfully. CI uses no credentials/providers; GIS and
   visual verification remain separately recorded local evidence. Working tree
   was clean after the push. No merge, deployment or new API usage occurred.
+
+## 2026-10-24 UTC — Library delivery and budget clarification
+
+- **Completed:** parent explicitly requested saving the finished map screenshot
+  to Library. Read the actual Library skill and current transfer helper; saved
+  `map-review-kc-final.png`, received a confirmed Library file identity and
+  verified its local identity metadata. Private receipt retains the ID for
+  main-chat delivery. Image SHA256 begins `74cb8537bc98fc5f`. No public sharing,
+  source-archive upload, inference or new credential occurred.
+- **Completed — clarified server controls:** rechecked Agents configuration,
+  create schema, errors, cancellation/recovery, model limits, pricing and Platform
+  spend limits. Important nuance: `session_budget_exceeded` documents an internal
+  server budget; no caller-set amount/units or $5 procedure was found. Platform
+  hard limits exist but can overshoot during propagation; no billing setting was
+  changed or actual current enforced limit re-inspected. Earlier per-session-cap
+  wording must not be read as claiming that no server budget controls exist.
+- **Completed — concrete financial analysis:** no-tools/no-sandbox/subagents-off
+  removes those cost sources, but the inspected contract does not bound managed
+  model work. The quickstart's Astra has 128k maximum output; at current Standard
+  $50/M that is $6.40 before input. A lower managed internal ceiling may exist
+  but was not verified; this is model-limit arithmetic, not a measured job bill.
+  A conditional 2k input/1k total-output scenario
+  is about $0.07 per invocation, not a measured managed job quote or $5 ceiling.
+- **Proposed, not run:** one-shot Luna Responses extraction, exact input count
+  capped at 8,192, server `max_output_tokens:1024`, no tools/history/background,
+  default tier, standard mode/effort none, no retry, and $0.01 reserved. Published
+  ordinary token estimate $0.0013312; conservative higher-input-rate estimate
+  $0.00256. This is a bounded alternative to the managed harness, not an Agents
+  recovery evaluation. Parent decision needed on the harness substitution or a
+  deliberate relaxation of the earlier managed hard-stop condition. Current
+  instruction forbids paid inference, so neither was executed.
+- **Completed:** wrote [exact controls, exposure and supported next step](docs/rebuild/AGENTS-BUDGET-REVIEW.md).
+  No new tests, SOS retries, deployment, microphone or speakers. Prior shared
+  reservations and usage estimates remain unchanged.

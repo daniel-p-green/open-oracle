@@ -34,3 +34,7 @@ The next bounded [evidence/map checkpoint](EVIDENCE-AND-MAP-CHECKPOINT.md) conta
 an actual deterministic local map review and offline primary-source bundle.
 Paid Agents inference remains blocked before creation by unverified hard cost/stop
 controls; the first map review is English-only and has no voice integration.
+
+The [managed trial budget review](AGENTS-BUDGET-REVIEW.md) distinguishes internal
+session budgets, Platform hard limits and cancellation from a verified per-run
+ceiling, and proposes a capped one-shot Responses alternative without running it.
