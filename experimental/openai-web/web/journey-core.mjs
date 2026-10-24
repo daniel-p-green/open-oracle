@@ -1,7 +1,7 @@
 import { immutableCopy } from "./core.mjs";
 import { QUESTION_VERSION } from "./measure-source.mjs";
 export { QUESTION_VERSION };
-export const OPERATIONS = ["overview", "simpler", "detail", "limits"];
+export const OPERATIONS = ["brief", "overview", "simpler", "detail", "limits"];
 
 // The current privacy contract permits explicit public categories only. Local
 // free text never becomes a model prompt merely because it passed a regex.
@@ -49,7 +49,9 @@ export function validateJourney(
     "no_additions",
     "polarity_safe",
     "language_match",
-    ...(["overview", "limits"].includes(operation) ? ["request_fit"] : []),
+    ...(["brief", "overview", "limits"].includes(operation)
+      ? ["request_fit"]
+      : []),
   ].sort();
   const advisory = [
     "attributed",
@@ -91,7 +93,7 @@ export function validateJourney(
       part.source_id !== ids[index] ||
       typeof part.text !== "string" ||
       !part.text.trim() ||
-      part.text.length > 700 ||
+      part.text.length > (operation === "brief" ? 260 : 700) ||
       /[<>]|https?:\/\/|www\./i.test(part.text)
     )
       throw Error("journey_section");

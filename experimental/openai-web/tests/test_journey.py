@@ -50,3 +50,13 @@ class JourneyTests(unittest.TestCase):
         cancel.set()
         with self.assertRaises(Held):pipeline.run_task('journey:overview:en',cancel,lambda _:None,lambda *_:None)
         self.assertEqual(len(provider.calls),calls)
+
+
+    def test_brief_start_preserves_numeric_attribution_and_a_hard_length_bound(self):
+        question=load_question()
+        text='The question asks whether to approve an act replacing the congressional plan.'
+        draft={'operation':'brief','language':'en','sections':[{'source_id':'question','text':text}]}
+        validate_unit(draft,'brief','en',question)
+        for bad in [text+' '+('extra '*40), 'The act replaces the congressional plan.', 'The question asks about nine congressional districts.', 'Vote Yes to replace the congressional plan.']:
+            draft['sections'][0]['text']=bad
+            with self.assertRaises(Held): validate_unit(draft,'brief','en',question)

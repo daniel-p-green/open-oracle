@@ -935,3 +935,56 @@ This is a backfill, not a contemporaneous event stream.
   this branch's tested OpenOracle implementation and related logs to existing
   PR6 only, no merge/deploy/secrets/private data. Question tool accepted it but
   returned no request ID. This is pending, not an uncertain push outcome.
+
+
+### 2026-10-24 08:43 UTC — local natural input, Whisper reuse and latency limits
+
+- **Completed implementation:** supported EN/ES paraphrases/contextual follow-ups
+  draft only fixed public operation/language/version fields, with explicit
+  confirmation. Typing retains the current checked parent/map; source/challenge
+  reuse current owner. Stop/Erase/language clear pending confirmation. First-load
+  map initialization defect found in actual browser and independent review,
+  fixed to application-owned version plus after-await session fencing. Existing
+  exact public queries preserved. Bounded grammar is not general conversation.
+- **Completed behavior verification:** provider-off browser natural first
+  question → map/journey; Yes/No → typed source follow-up retained original
+  explanation; Spanish switch/challenge displayed original and withdrawal;
+  Stop cleared pending draft with speakers off. Existing full local Node and
+  Python source/job/HTTP suites passed; focused input check rerun after exact
+  alias compatibility repair. No test quota, human media or API call.
+- **Completed implementation:** new brief generation operation <=260characters,
+  unchanged source/numeric/time/attribution/polarity/independent critical checks.
+  Request-fit remains critical at .95. Disclosures and whole final waveform ASR
+  unchanged. No paid brief result or latency improvement claimed.
+- **Completed local reuse:** hash-verified existing tiny/base/small weights and
+  installed Whisper20250625; network/download disabled public EN/ES benchmark.
+  Tiny/base inference roughly.3/.5s; small1.5–1.6s. All Spanish transcriptions
+  had an imperative-word error; tiny also mistranscribed English maps. Added
+  optional memory-only bounded local adapter, no capture route/cloud transport.
+  Actual base adapter public check.347s load/.569s inference; requires local
+  confirmation, rejects pre-cancelled input. No model/package install or private
+  speech. Mac result is not Pi memory/throughput or resident-quality evidence.
+- **Decision:**33.02s prior English ready time is unacceptable for conversation;
+ 26.82s reading dominates buffering. Try concise checked units; keep safe text/
+  maps immediate. Modern Realtime2.1Mini synthesis is only a possible explicit
+  comparison, not requested Live silently replaced or deprecated TTS introduced.
+  [Input/latency review](docs/rebuild/INPUT-AND-LATENCY-REVIEW.md) records data flow,
+  benchmark limits, official docs, alternatives and unimplemented queue work.
+- **Blocked/new — known not executed:** automatic approval review rejected
+  launching the specific <=$0.20 Spanish brief text/Live/ASR trial, stating no
+  user-authored approval for this run. No paid request/reservation started, no
+  retry/alternative. Exact scoped approval question accepted without request ID.
+  Shared ledger remains$1.96 conservative reserved/$0.2127044667 estimated usage
+  plus earlier unmetered Playground usage, not invoice.
+- **Blocked/new — known unattached:** actual Opus5.5High UI verified; eight scoped
+  source files/review prompt rendered via installed PeterSteipete Oracle skill,
+  dry-run/files report and credential/account scan. Automatic approval review
+  rejected external Claude source upload for asserted missing trusted disclosure
+  authorization. Attached count0, no send/retry/bypass. Exact scoped approval
+  question accepted without request ID. Earlier reviews are not this delta's
+  review; local independent review found no remaining consequential issue in its
+  bounded pass. Optional adapter was not in the denied bundle.
+- **Pending existing:** no retry of denied PR6 push; main-chat approval still
+  pending. Local changes will be committed together with these decisions. Remote
+  PR/CI remain atdd6c1ac, not evidence for current local work. Full stretch and
+  human/multilingual/accessibility/corpus acceptance remain open.

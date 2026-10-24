@@ -203,3 +203,22 @@ python3 experimental/openai-web/research/build_evidence.py --inputs ../evidence-
 It uses pinned official filing/attributed campaign excerpts for local review,
 not a nationwide connector or publication approval. Managed Agents is deferred;
 see [exact budget limitations](../../docs/rebuild/AGENTS-BUDGET-REVIEW.md).
+
+
+## Local input and brief-answer increment
+
+The form now drafts supported natural EN/ES phrases and contextual follow-ups
+into a fixed public action, then asks for confirmation. Raw text stays local;
+unknown wording remains unsupported rather than becoming a cloud prompt.
+Typing preserves the checked parent/map, while Stop/Erase/language clears the
+draft. `brief` requests <=260characters with the same source/attribution and
+critical independent checks. Paid latency verification of this change is blocked
+pending the exact trial approval; no faster result is claimed.
+
+`local_input.py` optionally reuses existing hash-verified Whisper tiny/base/small
+weights with the installed20250625 runtime. It accepts bounded in-memory PCM16
+and returns text only for local correction/confirmation; no microphone route,
+file retention, default load, download/install or cloud forwarding is enabled.
+Both fast models made Spanish mistakes in public synthetic benchmarks. A local
+transcript is not safe-by-default input to any model. See
+[input/latency evidence and current blockers](../../docs/rebuild/INPUT-AND-LATENCY-REVIEW.md).

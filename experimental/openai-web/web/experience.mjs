@@ -11,6 +11,7 @@ import { loadMapMeasure, loadMapStatus } from "./measure-source.mjs";
 import { requestLayout, requestProviderJob } from "./layout-client.mjs";
 import {
   publicJourneyAction,
+  QUESTION_VERSION,
   validateJourney,
   recapUnits,
   journeyHeading,
@@ -19,6 +20,7 @@ import {
 import { admittedReadings, bindReading } from "./readings.mjs";
 import { createSpeechOutput } from "./speech-output.mjs";
 import { loadHouseOffice, loadSampleHouseContest } from "./office-source.mjs";
+import { draftPublicIntent, publicIntentLabel } from "./input-intent.mjs";
 const $ = (id) => document.getElementById(id),
   session = createSession(),
   workspace = $("workspace");
@@ -49,6 +51,7 @@ let journeyActive = false,
 let journeyCurrentUnit = null,
   journeyParentRequest = null,
   journeyRequestIds = [];
+let pendingInput = null;
 const el = (tag, text) => {
   const n = document.createElement(tag);
   if (text !== undefined) n.textContent = text;
@@ -145,6 +148,7 @@ function revokePreparedAudio() {
   preparedAudioRequest = null;
 }
 function invalidate({ revokeConsent = false, keepVisuals = false } = {}) {
+  clearInputDraft();
   session.reset();
   $("reorder").hidden = true;
   $("reorder").disabled = true;
@@ -746,6 +750,7 @@ const journeyCopy = () =>
         title: "Proposición A · comprender y comprobar",
         context:
           "Muestra pública KCEB W1-P7 · 3 de noviembre de 2026. Su boleta y su distrito no están verificados.",
+        brief: "Explicación breve",
         overview: "Explique la pregunta",
         effects: "¿Qué significan Sí y No?",
         simpler: "Palabras más sencillas",
@@ -769,6 +774,7 @@ const journeyCopy = () =>
         title: "Proposition A · understand and check",
         context:
           "KCEB W1-P7 public sample · November 3, 2026. Your ballot and district are unverified.",
+        brief: "Brief explanation",
         overview: "Explain the question",
         effects: "What do Yes and No mean?",
         simpler: "Use simpler words",
@@ -966,7 +972,14 @@ function drawJourney() {
   }
   actions.replaceChildren();
   actions.dataset.language = locale;
-  for (const op of ["overview", "effects", "simpler", "detail", "limits"]) {
+  for (const op of [
+    "brief",
+    "overview",
+    "effects",
+    "simpler",
+    "detail",
+    "limits",
+  ]) {
     const button = journeyButton(
       actions,
       c[op],
@@ -981,14 +994,21 @@ function drawJourney() {
   }
   next.replaceChildren();
   next.dataset.language = locale;
-  journeyButton(next, c.source, () => {
+  journeyButton(next, c.source, () => performLocalJourney("source"));
+  journeyButton(next, c.challenge, () => performLocalJourney("challenge"));
+  journeyButton(next, c.teach, teachBack, locale === "es" && !reviewTools);
+  journeyButton(next, c.recap, showRecap);
+  journeyButton(next, c.office, () => void showOffice());
+}
+function performLocalJourney(operation) {
+  if (!journeyActive) return;
+  if (operation === "source") {
     stopSpeechForReading();
     const host = $("journey-tools");
     host.replaceChildren();
     journeySource(host, "question");
     host.focus();
-  });
-  journeyButton(next, c.challenge, () => {
+  } else if (operation === "challenge") {
     invalidate({ keepVisuals: true });
     if (journeyParentRequest && providerToken)
       fetch("/api/provider/cancel", {
@@ -1010,10 +1030,8 @@ function drawJourney() {
     journeyUnits = journeyUnits.filter((u) => u !== journeyCurrentUnit);
     journeyCurrentUnit = null;
     drawJourney();
-  });
-  journeyButton(next, c.teach, teachBack, locale === "es" && !reviewTools);
-  journeyButton(next, c.recap, showRecap);
-  journeyButton(next, c.office, () => void showOffice());
+  } else if (operation === "effects") showEffects();
+  else if (operation === "recap") showRecap();
 }
 async function showJourney(operation = "overview") {
   const focusOrigin = document.activeElement;
@@ -1043,6 +1061,7 @@ async function showJourney(operation = "overview") {
     document.activeElement === document.body
   )
     $("journey-answer").focus({ preventScroll: true });
+  return ticket;
 }
 async function generateJourney() {
   if (
@@ -1500,17 +1519,77 @@ $("reorder").onclick = async () => {
   } else $("reorder").disabled = false;
   await prepareReading(ticket, !!mapMount);
 };
+function clearInputDraft() {
+  pendingInput = null;
+  $("input-confirmation").hidden = true;
+  $("input-action").textContent = "";
+}
 $("question-form").onsubmit = (e) => {
   e.preventDefault();
-  void explore($("question").value);
+  clearInputDraft();
+  const text = $("question").value;
+  const draft = draftPublicIntent(text, { journeyActive, language: locale });
+  if (!draft) {
+    const route = routeQuestion(text);
+    $("status").textContent =
+      route === "advice"
+        ? COPY[locale].advice
+        : route === "membership"
+          ? COPY[locale].membership
+          : locale === "es"
+            ? "No se reconoció una acción admitida. El texto no se envió. Elija un botón o nombre la Proposición A."
+            : "No supported action recognized. Your text was not sent. Choose a button or name Proposition A.";
+    return;
+  }
+  pendingInput = draft;
+  $("input-action").textContent = publicIntentLabel(draft, locale);
+  $("input-note").textContent =
+    locale === "es"
+      ? "Compruebe la acción. Se envía solo la categoría pública y el idioma, nunca lo que escribió. Las acciones de lectura no usan IA."
+      : "Check this action. Only the public category and language can be sent, never your words. Reading actions do not use AI.";
+  $("confirm-input").textContent =
+    locale === "es" ? "Confirmar acción" : "Confirm action";
+  $("cancel-input").textContent =
+    locale === "es" ? "Seguir escribiendo" : "Keep editing";
+  $("input-confirmation").hidden = false;
+  $("confirm-input").focus();
 };
 $("question").oninput = () => {
-  invalidate();
-  journeyActive = false;
-  $("journey-panel").hidden = true;
+  clearInputDraft();
+  // Drafting is local. Retain the checked parent, sources and map so "simpler"
+  // can refer to the actual last answer. Stop any sound without starting work.
+  stopSpeechForReading();
   $("status").textContent = COPY[locale].choose;
-  workspace.replaceChildren();
-  $("plan-mode").textContent = "";
+};
+$("cancel-input").onclick = () => {
+  clearInputDraft();
+  $("question").focus();
+};
+$("confirm-input").onclick = async () => {
+  const draft = pendingInput;
+  clearInputDraft();
+  $("question").value = "";
+  if (!draft || draft.source_version !== QUESTION_VERSION) return;
+  if (draft.kind === "language") {
+    $("language").value = draft.language;
+    $("language").dispatchEvent(new Event("change"));
+  } else if (
+    draft.kind === "local" &&
+    ["maps", "candidates"].includes(draft.operation)
+  ) {
+    await explore(draft.operation);
+  } else {
+    if (!journeyActive) {
+      const ticket = await showJourney(draft.operation);
+      if (!ticket || !session.current(ticket)) return;
+    }
+    if (!journeyActive) return;
+    if (draft.kind === "local") performLocalJourney(draft.operation);
+    else {
+      journeyOperation = draft.operation;
+      await generateJourney();
+    }
+  }
 };
 $("language").onchange = () => {
   const wasJourney = journeyActive,

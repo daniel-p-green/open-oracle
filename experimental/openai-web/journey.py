@@ -12,6 +12,7 @@ from providers import Held, check_cancel
 
 QUESTION_PIN = '09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec'
 OPERATIONS = {
+    'brief': 'Give one brief starting explanation of what this congressional redistricting question asks. Use one or two short sentences, at most 260 characters. Leave further details for a follow-up; do not lose the conditional approval or attribution.',
     'overview': 'What is this official redistricting question asking?',
     'detail': 'Explain this same question in more detail, without adding unsupported facts.',
     'simpler': 'Explain this same question using simpler words, preserving its meaning.',
@@ -101,8 +102,9 @@ def validate_unit(draft, operation, language, question):
         words=set(re.findall(r'\b\w+\b',part['text'].lower()))
         permitted_words=set(re.findall(r'\b\w+\b',sources[expected]['text'].lower()))
         if (words & time_words)-permitted_words: raise Held('journey_time_drift')
-        if operation in {'overview','simpler','detail'} and not re.search(r'\bcongressional\b|\bcongreso\b|\bcongresionales\b',part['text'],re.I):
+        if operation in {'brief','overview','simpler','detail'} and not re.search(r'\bcongressional\b|\bcongreso\b|\bcongresionales\b',part['text'],re.I):
             raise Held('journey_congressional_scope')
+        if operation == 'brief' and len(part['text']) > 260: raise Held('journey_brief_bound')
         # Exact numeric admission is necessary, not semantic proof. The separate
         # Decisions request checks associations, omissions, neutrality and language.
         if not numeric_values(part['text']).issubset(numeric_values(sources[expected]['text'])):
@@ -155,7 +157,7 @@ class JourneyPipeline:
         answers = reviewed.get('answers', [])
         expected = CRITICAL | {'attributed','request_fit'}
         if len(answers) != len(expected) or {a.get('name') for a in answers} != expected: raise Held('journey_review_shape')
-        critical = CRITICAL | ({'request_fit'} if operation in {'overview','limits'} else set())
+        critical = CRITICAL | ({'request_fit'} if operation in {'brief','overview','limits'} else set())
         scores = {}
         for answer in answers:
             probability = answer.get('probability')

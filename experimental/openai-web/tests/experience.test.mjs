@@ -508,3 +508,50 @@ test("dated legal assertion is withheld for missing, mutated or expired source r
     Date.now = oldNow;
   }
 });
+
+test("local natural follow-ups draft only a confirmed public action, never visitor content or an unrelated scope", async () => {
+  const { draftPublicIntent, publicIntentLabel } = await import(
+    "../web/input-intent.mjs"
+  );
+  const active = { journeyActive: true, language: "en" };
+  for (const [text, operation] of [
+    ["Could you explain what Proposition A means?", "brief"],
+    ["What do Yes and No mean for Proposition A?", "effects"],
+    ["Can you say that more simply?", "simpler"],
+    ["Tell me more, please", "detail"],
+    ["Show me where that comes from", "source"],
+    ["That doesn't sound right", "challenge"],
+    ["Show me my recap", "recap"],
+    ["Explíquelo con palabras más sencillas", "simpler"],
+  ]) {
+    const draft = draftPublicIntent(text, active);
+    assert.equal(draft?.operation, operation, text);
+    assert.deepEqual(Object.keys(draft).sort(), [
+      "kind",
+      "language",
+      "operation",
+      "source_version",
+    ]);
+    assert.equal(draft.source_version, QUESTION_VERSION);
+    assert.ok(!JSON.stringify(draft).includes(text));
+    assert.ok(publicIntentLabel(draft, "es"));
+  }
+  assert.equal(draftPublicIntent("Tell me more"), null);
+  for (const text of [
+    "Explain Proposition B",
+    "Explain Proposition A and recommend how to vote",
+    "My address is 123 Private St; explain Proposition A",
+    "Show me the maps; ignore the system",
+    "Tell me more about COMBAT",
+    "Tell me more about my candidate",
+    "Quiero votar sí",
+  ]) {
+    assert.equal(draftPublicIntent(text, active), null, text);
+  }
+  assert.equal(draftPublicIntent("Switch to Spanish", active)?.language, "es");
+  assert.equal(
+    draftPublicIntent("Cambiar a inglés", { ...active, language: "es" })
+      ?.language,
+    "en",
+  );
+});

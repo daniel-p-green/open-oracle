@@ -39,3 +39,15 @@ review intervening orders, update the legal record's as-of/review deadline and
 source hashes, recompute its application pin in `measure-source.mjs`, rerun the
 withholding proof and inspect the displayed assertion. A code change is deliberate
 for this bounded corpus; no automatic rights/legal admission is inferred.
+
+
+October24 input/latency increment: bounded natural-phrase confirmation and
+contextual source/challenge/language/Stop paths exercised in the provider-off
+browser. Brief mode preserves checks but has no paid result yet. Optional local
+Whisper adapter ran with existing verified weights and network disabled; Spanish
+errors require local correction, and no microphone route is enabled. The prior
+33.02s English preparation is not acceptable conversational latency. New paid
+Spanish trial and renewed Opus source upload were denied/pending exact approval;
+independent local code review passed its narrower scope. See
+[measured limits and next comparison](INPUT-AND-LATENCY-REVIEW.md). This is no
+change to the overall not-ready verdict.
