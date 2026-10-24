@@ -14,8 +14,19 @@ The client sends an operation/language and optional parent request ID. The
 server retrieves only its own ready same-owner public answer, verifies its source
 version and uses that unit as adaptation context. Source and number/time/scope
 checks precede separate atomic Decisions judgments. These uncalibrated checks
-are not correctness certificates. **Current real stricter trials are held; the
-fresh generation/review interface is still being improved, not accepted.**
+are not correctness certificates. A real bounded Sol sequence completed English
+overview → simpler follow-up → Spanish adaptation from its server-owned prior.
+Earlier stricter trials held; separating deterministic sentence attribution,
+factual eligibility and requested delivery quality resolved those interface
+defects without reducing factual thresholds. Simpler/detail quality can remain
+explicitly unconfirmed. Human civic/bilingual acceptance is still pending.
+
+Official U.S. House office passages are independently readable with source/date
+and original-English labeling. They establish neither personal district nor
+complete candidate coverage. The responsive source/map workspace, optional
+teach-back and recap are usable while generation is pending; late results do
+not move focus from those activities. See the
+[reference/adaptation record](../../docs/rebuild/DEMO-REFERENCES.md).
 
 The existing operator `--max-runs` bound is 1–8 (default1), process-wide, with
 global ledger reservations and no automatic paid retries. `--text-model` permits
@@ -79,7 +90,7 @@ microphone path is enabled; camera/geolocation/microphone permissions are blocke
 Only an operator with already authorized API access may enable providers:
 Python environment with pinned `requirements-provider.txt`, existing process
 `OPENAI_API_KEY`, explicit organization/project scope, private existing authorized
-ledger and `--enable-openai --max-runs 1` (maximum2). Keep account values, keys,
+ledger and `--enable-openai --max-runs 1` (maximum8). Keep account values, keys,
 ledgers, audio and receipts outside Git. No credentials/access are created here.
 
 Baseline content is immediate and local. The optional button runs a single

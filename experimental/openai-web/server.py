@@ -24,6 +24,8 @@ FILES = {
     '/measure-source.mjs': (ROOT / 'web/measure-source.mjs', 'text/javascript; charset=utf-8'),
     '/layout-client.mjs': (ROOT / 'web/layout-client.mjs', 'text/javascript; charset=utf-8'),
     '/journey-core.mjs': (ROOT / 'web/journey-core.mjs', 'text/javascript; charset=utf-8'),
+    '/office-source.mjs': (ROOT / 'web/office-source.mjs', 'text/javascript; charset=utf-8'),
+    '/house-office.json': (ROOT / 'fixtures/house-office.json', 'application/json'),
     '/readings.mjs': (ROOT / 'web/readings.mjs', 'text/javascript; charset=utf-8'),
     '/speech-output.mjs': (ROOT / 'web/speech-output.mjs', 'text/javascript; charset=utf-8'),
     '/map-view.mjs': (ROOT / 'web/map-view.mjs', 'text/javascript; charset=utf-8'),

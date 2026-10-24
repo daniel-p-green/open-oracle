@@ -17,6 +17,7 @@ import {
   validateJourney,
   recapUnits,
   QUESTION_VERSION,
+  journeyHeading,
 } from "../web/journey-core.mjs";
 import { requestProviderJob } from "../web/layout-client.mjs";
 const corpus = JSON.parse(
@@ -46,6 +47,17 @@ test("resident journey keeps arbitrary text local, source-bound generated units 
     mode: "fresh_grounded_generation",
     raw_visitor_input_sent: false,
     playback_enabled: false,
+    request_fit: "confirmed",
+    review_contract: {
+      critical: [
+        "entailed",
+        "language_match",
+        "no_additions",
+        "polarity_safe",
+        "request_fit",
+      ],
+      advisory: ["attributed"],
+    },
     unit: {
       operation: "overview",
       language: "en",
@@ -60,6 +72,28 @@ test("resident journey keeps arbitrary text local, source-bound generated units 
   const unit = validateJourney(result, "overview", "en");
   assert.equal(recapUnits([unit], "es").length, 0);
   assert.equal(recapUnits([unit], "en")[0].sections[0].source_id, "question");
+  const unconfirmed = validateJourney(
+    {
+      ...result,
+      request_fit: "unconfirmed",
+      unit: { ...result.unit, operation: "simpler" },
+      review_contract: {
+        critical: [
+          "entailed",
+          "language_match",
+          "no_additions",
+          "polarity_safe",
+        ],
+        advisory: ["attributed", "request_fit"],
+      },
+    },
+    "simpler",
+    "en",
+  );
+  assert.match(
+    journeyHeading(recapUnits([unconfirmed], "en")[0], "en"),
+    /simpler wording not confirmed/,
+  );
   assert.throws(() =>
     validateJourney({ ...result, source_version: "other" }, "overview", "en"),
   );

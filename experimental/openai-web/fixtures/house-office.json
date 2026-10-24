@@ -1,0 +1,41 @@
+{
+  "schema": "openoracle-office-source/v1",
+  "office": "U.S. House of Representatives",
+  "source_class": "official_government_record",
+  "publisher": "U.S. House of Representatives",
+  "url": "https://www.house.gov/the-house-explained",
+  "retrieved_utc": "2026-10-24T05:58:07.441959+00:00",
+  "document_date": null,
+  "original_sha256": "2db1232424310e0844870902e01c976dcc52bf613d04798beb28203d345b7cdf",
+  "reading_sha256": "e899fe8f6060fd19fe68928bbdf4cfa50eb6b792d682caea17349945209d57ef",
+  "passages": [
+    {
+      "id": "role",
+      "role": "official_office_explanation",
+      "locator": "The House Explained / We the People",
+      "start": 0,
+      "end": 222,
+      "text": "As per the Constitution, the U.S. House of Representatives makes and passes federal laws. The House is one of Congress’s two chambers (the other is the U.S. Senate), and part of the federal government’s legislative branch.",
+      "sha256": "fe806ad0c61cf95e7fd1b13531e6d5678027bd65477f22cee943230b730b1d5a"
+    },
+    {
+      "id": "term-and-district",
+      "role": "official_office_explanation",
+      "locator": "Representatives / What is a Representative?",
+      "start": 224,
+      "end": 493,
+      "text": "Also referred to as a congressman or congresswoman, each representative is elected to a two-year term serving the people of a specific congressional district. Among other duties, representatives introduce bills and resolutions, offer amendments and serve on committees.",
+      "sha256": "3f21ac0e14dba66b331738d4612d589f8abbd5146fd179c5c3206a040cbea40d"
+    }
+  ],
+  "rights": {
+    "basis": "House Terms of Use states government-produced materials are not copyright protected; transferred copyrights can exist. This extraction uses the explanatory prose only, no images.",
+    "url": "https://www.house.gov/terms-of-use",
+    "reviewed_date": "2026-10-24"
+  },
+  "admission": "Technical exact-excerpt check against retained original; no personal applicability, candidate roster or human/public-pilot acceptance.",
+  "languages": {
+    "original": "en",
+    "reviewed_civic_translation": []
+  }
+}

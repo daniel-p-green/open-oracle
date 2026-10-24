@@ -13,9 +13,11 @@ import {
   publicJourneyAction,
   validateJourney,
   recapUnits,
+  journeyHeading,
 } from "./journey-core.mjs";
 import { admittedReadings, bindReading } from "./readings.mjs";
 import { createSpeechOutput } from "./speech-output.mjs";
+import { loadHouseOffice } from "./office-source.mjs";
 const $ = (id) => document.getElementById(id),
   session = createSession(),
   workspace = $("workspace");
@@ -289,6 +291,15 @@ function renderGap(status) {
           : "A campaign statement is an attributed assertion, not an independently established fact.",
       ),
     );
+    const officeHost = el("section");
+    journeyButton(
+      c,
+      locale === "es"
+        ? "Ejemplo de cargo: Cámara de Representantes de EE. UU."
+        : "Example office: U.S. House of Representatives",
+      () => void showOffice(officeHost),
+    );
+    c.append(officeHost);
   }
   return c;
 }
@@ -367,7 +378,15 @@ async function renderMaps(ticket) {
           "Texto oficial en inglés; explicación cívica en español pendiente de revisión.",
         ),
       );
-    c.append(question);
+    const originalDetails = el("details"),
+      originalSummary = el(
+        "summary",
+        locale === "es"
+          ? "Pregunta oficial · texto original en inglés"
+          : "Official question · original wording",
+      );
+    originalDetails.append(originalSummary, question);
+    c.append(originalDetails);
     try {
       const legal = await loadMapStatus(
         AbortSignal.any([requestController.signal, AbortSignal.timeout(5000)]),
@@ -392,8 +411,11 @@ async function renderMaps(ticket) {
           Math.max(0, Date.parse(legal.review_before_utc) - Date.now()),
         ),
       );
-      for (const source of legal.sources)
-        c.append(
+      const legalSources = el("ul");
+      legalSources.className = "legal-sources";
+      for (const source of legal.sources) {
+        const item = el("li");
+        item.append(
           link(
             source.url + (source.page ? "#page=" + source.page : ""),
             source.page
@@ -403,6 +425,9 @@ async function renderMaps(ticket) {
                   source.retrieved_utc.slice(0, 10),
           ),
         );
+        legalSources.append(item);
+      }
+      c.append(legalSources);
     } catch {
       if (session.current(ticket))
         c.append(
@@ -430,6 +455,15 @@ function renderMapSources() {
       : "Map sources and versions",
     true,
   );
+  const disclosure = el("details");
+  disclosure.append(
+    el(
+      "summary",
+      locale === "es"
+        ? "Consultar fuentes originales y versiones"
+        : "Inspect original sources and versions",
+    ),
+  );
   for (const source of manifest?.sources ?? []) {
     const p = el("p");
     p.append(
@@ -439,9 +473,9 @@ function renderMapSources() {
         ` · ${source.retrieved_utc.slice(0, 10)} · SHA256 ${source.sha256.slice(0, 16)}…`,
       ),
     );
-    c.append(p);
+    disclosure.append(p);
   }
-  c.append(
+  disclosure.append(
     el(
       "p",
       locale === "es"
@@ -449,6 +483,7 @@ function renderMapSources() {
         : "Matching numbers do not establish matching territory. Your district is not inferred.",
     ),
   );
+  c.append(disclosure);
   return c;
 }
 async function planFor(currentIntent, ticket) {
@@ -467,6 +502,7 @@ async function explore(question, { focus = true } = {}) {
   const action = publicJourneyAction(question);
   if (action) return showJourney(action);
   journeyActive = false;
+  $("experience-grid").classList.remove("journey-open");
   $("journey-panel").hidden = true;
   if (!ready) {
     $("status").textContent =
@@ -481,6 +517,7 @@ async function explore(question, { focus = true } = {}) {
   let mapsVerified = false;
   requestController = new AbortController();
   intent = routeQuestion(question);
+  document.body.classList.add("has-content");
   workspace.replaceChildren();
   $("status").textContent =
     locale === "es"
@@ -546,7 +583,8 @@ async function explore(question, { focus = true } = {}) {
   if (!session.current(ticket)) return;
   if (focus) workspace.focus({ preventScroll: true });
   renderComplete = true;
-  $("reorder").hidden = !providerToken || plan.layout.components.length < 3;
+  $("reorder").hidden =
+    !reviewTools || !providerToken || plan.layout.components.length < 3;
   $("reorder").disabled = remainingRuns <= 0;
   await prepareReading(ticket, mapsVerified);
   return session.current(ticket) ? ticket : null;
@@ -556,7 +594,7 @@ const journeyCopy = () =>
     ? {
         title: "Proposición A · comprender y comprobar",
         context:
-          "Muestra pública KCEB W1-P7 · 3 de noviembre de 2026. No verifica su boleta ni distrito. Explicación automática experimental; revisión bilingüe pendiente.",
+          "Muestra pública KCEB W1-P7 · 3 de noviembre de 2026. Su boleta y su distrito no están verificados.",
         overview: "Explique la pregunta",
         effects: "¿Qué significan Sí y No?",
         simpler: "Palabras más sencillas",
@@ -566,20 +604,20 @@ const journeyCopy = () =>
         challenge: "Esto no parece correcto",
         teach: "Comprobar mi comprensión · opcional",
         recap: "Mi resumen",
+        office: "Ejemplo de cargo: Cámara de Representantes de EE. UU.",
         generate: "Generar explicación nueva",
         offline:
-          "Generación desactivada. Puede consultar la pregunta original y los mapas. No se reproduce una respuesta grabada.",
+          "Puede leer el texto oficial y explorar los mapas. Las explicaciones nuevas por IA están desactivadas en esta vista.",
         pending: "Generando y comprobando una explicación nueva…",
-        held: "No se pudo comprobar una nueva explicación. Consulte el original; no se sustituyó por una respuesta grabada.",
-        checked:
-          "Explicación recién generada · revisión automática limitada, no aprobación humana",
+        held: "La explicación no pasó la revisión de fuentes. Puede consultar el original.",
+        checked: "Explicación por IA · revisión humana pendiente",
         unsupported:
           "El texto escrito permanece local. Confirme una pregunta pública con los botones; no se envía su texto.",
       }
     : {
         title: "Proposition A · understand and check",
         context:
-          "KCEB W1-P7 public sample · November 3, 2026. Your ballot and district are unverified. Fresh explanations are experimental; editorial and language review remain pending.",
+          "KCEB W1-P7 public sample · November 3, 2026. Your ballot and district are unverified.",
         overview: "Explain the question",
         effects: "What do Yes and No mean?",
         simpler: "Use simpler words",
@@ -589,13 +627,13 @@ const journeyCopy = () =>
         challenge: "That doesn't sound right",
         teach: "Check my understanding · optional",
         recap: "My recap",
+        office: "Example office: U.S. House of Representatives",
         generate: "Generate a fresh explanation",
         offline:
-          "Generation is off. Read the original question and explore the maps. No recorded answer substitutes for a fresh response.",
+          "Read the official wording and maps. Fresh AI explanations are off in this preview.",
         pending: "Generating and checking a fresh explanation…",
-        held: "A fresh explanation could not be checked. Read the original; no recorded answer was substituted.",
-        checked:
-          "Freshly generated explanation · finite model check, not human approval",
+        held: "The explanation could not pass its source checks. You can still read the original.",
+        checked: "AI explanation ready · human review pending",
         unsupported:
           "Your typed text stays local. Confirm a public question using the buttons; your text is not sent.",
       };
@@ -642,11 +680,60 @@ function showEffects() {
     el(
       "h3",
       locale === "es"
-        ? "Explicación del texto por la aplicación · no se ejecutó IA"
-        : "Application explanation of the wording · no AI run",
+        ? "Explicación de lo que significan Sí y No"
+        : "Explanation of what Yes and No mean",
     ),
   );
   for (const id of ["yes", "no"]) journeySource(host, id);
+}
+async function showOffice(host = $("journey-tools")) {
+  const anchor = el("section"),
+    language = locale;
+  host.replaceChildren(anchor);
+  anchor.append(
+    el(
+      "p",
+      language === "es"
+        ? "Consultando la fuente oficial…"
+        : "Checking the official source…",
+    ),
+  );
+  try {
+    const source = await loadHouseOffice(AbortSignal.timeout(5000));
+    if (!anchor.isConnected || locale !== language) return;
+    anchor.replaceChildren(
+      el(
+        "h3",
+        language === "es"
+          ? "Cámara de Representantes · fuente original en inglés"
+          : "U.S. House of Representatives · original official explanation",
+      ),
+    );
+    for (const passage of source.passages) {
+      const quote = el("blockquote", passage.text);
+      quote.lang = "en";
+      anchor.append(quote, el("p", passage.locator));
+    }
+    anchor.append(
+      link(source.url, source.publisher),
+      el(
+        "p",
+        `${language === "es" ? "Consultado" : "Retrieved"} ${source.retrieved_utc.slice(0, 10)} UTC`,
+      ),
+      el(
+        "p",
+        language === "es"
+          ? "No se determina su distrito ni qué candidatos aparecen en su boleta. Traducción cívica pendiente de revisión."
+          : "This explains the office. It does not establish your district or candidate roster.",
+      ),
+    );
+  } catch {
+    if (anchor.isConnected && locale === language)
+      anchor.textContent =
+        language === "es"
+          ? "Fuente de la función del cargo no disponible."
+          : "Official office explanation unavailable.";
+  }
 }
 function journeyButton(host, label, action, disabled = false) {
   const b = el("button", label);
@@ -707,13 +794,27 @@ function journeySource(host, sourceId) {
 function drawJourney() {
   const c = journeyCopy();
   $("journey-panel").hidden = false;
+  $("experience-grid").classList.add("journey-open");
   $("journey-title").textContent = c.title;
   $("journey-context").textContent = c.context;
   const actions = $("journey-actions");
-  actions.replaceChildren();
+  const next = $("journey-next");
   $("reorder").hidden = true;
-  for (const op of ["overview", "effects", "simpler", "detail", "limits"])
-    journeyButton(
+  $("plan-mode").textContent = "";
+  const locked = (op) =>
+    !mapMeasure ||
+    (locale === "es" && !reviewTools) ||
+    (op !== "effects" &&
+      (!providerToken || remainingRuns <= 0 || journeyPending));
+  if (actions.dataset.language === locale && next.dataset.language === locale) {
+    for (const button of actions.querySelectorAll("button"))
+      button.disabled = locked(button.dataset.operation);
+    return;
+  }
+  actions.replaceChildren();
+  actions.dataset.language = locale;
+  for (const op of ["overview", "effects", "simpler", "detail", "limits"]) {
+    const button = journeyButton(
       actions,
       c[op],
       () => {
@@ -721,13 +822,12 @@ function drawJourney() {
         if (op === "effects") showEffects();
         else void generateJourney();
       },
-      !mapMeasure ||
-        (locale === "es" && !reviewTools) ||
-        (op !== "effects" &&
-          (!providerToken || remainingRuns <= 0 || journeyPending)),
+      locked(op),
     );
-  const next = $("journey-next");
+    button.dataset.operation = op;
+  }
   next.replaceChildren();
+  next.dataset.language = locale;
   journeyButton(next, c.source, () => {
     const host = $("journey-tools");
     host.replaceChildren();
@@ -759,8 +859,10 @@ function drawJourney() {
   });
   journeyButton(next, c.teach, teachBack, locale === "es" && !reviewTools);
   journeyButton(next, c.recap, showRecap);
+  journeyButton(next, c.office, () => void showOffice());
 }
 async function showJourney(operation = "overview") {
+  const focusOrigin = document.activeElement;
   const ticket = await explore("maps", { focus: false });
   if (!ticket || !session.current(ticket) || intent !== "maps") return;
   journeyActive = true;
@@ -769,6 +871,7 @@ async function showJourney(operation = "overview") {
   drawJourney();
   $("journey-tools").replaceChildren();
   $("journey-answer").replaceChildren();
+  if (operation === "effects") showEffects();
   const c = journeyCopy();
   $("journey-status").textContent =
     locale === "es" && !reviewTools
@@ -781,7 +884,11 @@ async function showJourney(operation = "overview") {
             : "This session's limit for fresh explanations has been reached."
           : c.unsupported;
   $("journey-panel").scrollIntoView({ block: "start", behavior: "instant" });
-  $("journey-answer").focus({ preventScroll: true });
+  if (
+    document.activeElement === focusOrigin ||
+    document.activeElement === document.body
+  )
+    $("journey-answer").focus({ preventScroll: true });
 }
 async function generateJourney() {
   if (
@@ -863,8 +970,17 @@ async function generateJourney() {
           : "This session's limit for fresh explanations has been reached.",
       ),
     );
+  $("journey-answer").append(el("h3", journeyHeading(result, locale)));
   for (const part of result.sections) {
     const block = el("section");
+    block.append(
+      el(
+        "p",
+        locale === "es"
+          ? "Explicación del texto de la pregunta · no es una cita."
+          : "Explanation of the ballot question’s wording · not a quotation.",
+      ),
+    );
     block.append(el("p", part.text));
     const disclosure = el("details"),
       summary = el(
@@ -876,7 +992,7 @@ async function generateJourney() {
     block.append(disclosure);
     $("journey-answer").append(block);
   }
-  $("journey-answer").focus({ preventScroll: true });
+  // The live status announces arrival; preserve the reader's chosen location.
 }
 function teachBack() {
   const host = $("journey-tools");
@@ -912,11 +1028,16 @@ function teachBack() {
         ),
       );
       journeySource(host, "question");
+      host.focus({ preventScroll: true });
     });
-  $("journey-status").textContent =
+  const notice = el(
+    "p",
     locale === "es"
       ? "Actividad local opcional; no se guardan puntuaciones."
-      : "Optional local activity; no scores are stored.";
+      : "Optional local activity; no scores are stored.",
+  );
+  notice.setAttribute("role", "status");
+  host.append(notice);
 }
 function showRecap() {
   const host = $("journey-tools");
@@ -933,7 +1054,7 @@ function showRecap() {
       ),
     );
   for (const unit of units) {
-    host.append(el("h4", journeyCopy()[unit.operation]));
+    host.append(el("h4", journeyHeading(unit, locale)));
     for (const part of unit.sections) host.append(el("p", part.text));
   }
   host.append(
@@ -945,10 +1066,14 @@ function showRecap() {
     ),
   );
   journeySource(host, "question");
-  $("journey-status").textContent =
+  const notice = el(
+    "p",
     locale === "es"
       ? "Solo memoria local; sin cuenta ni exportación automática."
-      : "Local tab memory only; no account or automatic export.";
+      : "Local tab memory only; no account or automatic export.",
+  );
+  notice.setAttribute("role", "status");
+  host.append(notice);
 }
 async function prepareReading(ticket, mapsVerified) {
   const binding =
@@ -970,6 +1095,10 @@ async function prepareReading(ticket, mapsVerified) {
 }
 function setCopy() {
   const t = COPY[locale];
+  $("voice-controls-summary").textContent =
+    locale === "es"
+      ? "Controles de voz · micrófono apagado"
+      : "Voice controls · microphone off";
   document.documentElement.lang = locale;
   for (const [id, key] of Object.entries({
     title: "title",
@@ -1085,7 +1214,7 @@ $("reorder").onclick = async () => {
         ? "Se conserva el orden local; revisión de IA no completada"
         : "Local order retained; AI ordering check did not complete";
   if (remainingRuns <= 0) {
-    providerToken = null;
+    // Keep the owner capability for Erase/cancel; the allowance gates inference.
     $("reorder").textContent =
       locale === "es"
         ? "Límite de pruebas de IA utilizado"
@@ -1136,6 +1265,8 @@ $("language").onchange = () => {
 $("reset").onclick = () => {
   invalidate({ revokeConsent: true });
   intent = null;
+  document.body.classList.remove("has-content");
+  $("experience-grid").classList.remove("journey-open");
   journeyActive = false;
   clearJourneyHistory();
   $("journey-panel").hidden = true;
@@ -1161,7 +1292,10 @@ $("stop").onclick = () => {
       : "Pending activity stopped.";
 };
 for (const name of ["pointerdown", "keydown", "wheel", "scroll", "focusin"])
-  document.addEventListener(name, () => session.touch());
+  document.addEventListener(name, () => {
+    session.touch();
+    $("idle-warning").hidden = true;
+  });
 setInterval(() => {
   $("idle-warning").hidden = !intent || !session.idle(Date.now() + 20000);
   $("idle-warning").textContent =
@@ -1171,6 +1305,8 @@ setInterval(() => {
   if (intent && session.idle()) {
     invalidate({ revokeConsent: true });
     intent = null;
+    document.body.classList.remove("has-content");
+    $("experience-grid").classList.remove("journey-open");
     journeyActive = false;
     clearJourneyHistory();
     $("journey-panel").hidden = true;

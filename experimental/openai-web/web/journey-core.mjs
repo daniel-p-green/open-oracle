@@ -44,6 +44,17 @@ export function validateJourney(
   language,
   displayedVersion = QUESTION_VERSION,
 ) {
+  const critical = [
+    "entailed",
+    "no_additions",
+    "polarity_safe",
+    "language_match",
+    ...(["overview", "limits"].includes(operation) ? ["request_fit"] : []),
+  ].sort();
+  const advisory = [
+    "attributed",
+    ...(["simpler", "detail"].includes(operation) ? ["request_fit"] : []),
+  ].sort();
   if (
     !OPERATIONS.includes(operation) ||
     !["en", "es"].includes(language) ||
@@ -51,7 +62,12 @@ export function validateJourney(
     displayedVersion !== QUESTION_VERSION ||
     result?.mode !== "fresh_grounded_generation" ||
     result?.raw_visitor_input_sent !== false ||
-    result?.playback_enabled !== false
+    result?.playback_enabled !== false ||
+    !["confirmed", "unconfirmed"].includes(result?.request_fit) ||
+    JSON.stringify(result?.review_contract?.critical) !==
+      JSON.stringify(critical) ||
+    JSON.stringify(result?.review_contract?.advisory) !==
+      JSON.stringify(advisory)
   )
     throw Error("journey_envelope");
   const unit = result.unit,
@@ -81,7 +97,28 @@ export function validateJourney(
       throw Error("journey_section");
   }
   // Provider-returned sources/URLs never establish browser citation authority.
-  return immutableCopy({ ...unit, source_version: displayedVersion });
+  return immutableCopy({
+    ...unit,
+    source_version: displayedVersion,
+    request_fit: result.request_fit,
+  });
+}
+
+export function journeyHeading(unit, language) {
+  if (
+    unit.request_fit === "unconfirmed" &&
+    ["simpler", "detail"].includes(unit.operation)
+  )
+    return language === "es"
+      ? unit.operation === "simpler"
+        ? "Explicación · palabras más sencillas no confirmadas"
+        : "Explicación · nivel de detalle no confirmado"
+      : unit.operation === "simpler"
+        ? "Explanation · simpler wording not confirmed"
+        : "Explanation · requested detail not confirmed";
+  return language === "es"
+    ? "Explicación de la pregunta"
+    : "Explanation of the question";
 }
 
 export function recapUnits(units, language) {
@@ -90,5 +127,9 @@ export function recapUnits(units, language) {
       (u) => u.language === language && u.source_version === QUESTION_VERSION,
     )
     .slice(-4)
-    .map((u) => ({ operation: u.operation, sections: u.sections }));
+    .map((u) => ({
+      operation: u.operation,
+      sections: u.sections,
+      request_fit: u.request_fit,
+    }));
 }

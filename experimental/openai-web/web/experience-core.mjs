@@ -160,7 +160,7 @@ export const COPY = Object.freeze({
     ask: "What would you like to understand?",
     submit: "Explore",
     reset: "Start over",
-    stop: "Stop and clear speech",
+    stop: "Stop",
     source: "Original source",
     scope: "What these sources cover",
     scopeText:
@@ -204,7 +204,7 @@ export const COPY = Object.freeze({
     ask: "¿Qué desea entender?",
     submit: "Explorar",
     reset: "Empezar de nuevo",
-    stop: "Detener y borrar la voz",
+    stop: "Detener",
     source: "Fuente original",
     scope: "Alcance de estas fuentes",
     scopeText:

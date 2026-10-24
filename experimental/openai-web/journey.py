@@ -23,6 +23,15 @@ EFFECTS_ES = {'yes': 'Un voto Sí aprueba House Bill No. 1 (2025 Second Extraord
 NUMBER_WORDS = dict(zip(
     'zero one two three four five six seven eight nine ten eleven twelve twenty thirty forty fifty sixty hundred thousand million billion cero uno una dos tres cuatro cinco seis siete ocho nueve diez veinte treinta cuarenta cincuenta sesenta cien mil millon millones'.split(),
     '0 1 2 3 4 5 6 7 8 9 10 11 12 20 30 40 50 60 100 1000 1000000 1000000000 0 1 1 2 3 4 5 6 7 8 9 10 20 30 40 50 60 100 1000 1000000 1000000'.split()))
+CRITICAL = {'entailed','no_additions','polarity_safe','language_match'}
+EFFECT_TERMS = re.compile(r'\b(?:repeal\w*|replac\w*|remov\w*|keep\w*|intact|whole|counties|derog\w*|reemplaz\w*|elimin\w*|mantien\w*|manten\w*|conserv\w*|intact\w*|[ií]ntegr\w*|condados)\b',re.I)
+ATTRIBUTION = re.compile(r'\b(?:(?:the|this) (?:ballot )?question (?:asks|describes|says|states)|the ballot (?:asks|says|describes|states)|according to (?:the )?(?:ballot|question)|seg[uú]n (?:esta|la) (?:pregunta|boleta)|la (?:pregunta|boleta) (?:describe|dice|indica|pregunta))\b',re.I)
+
+
+def sentence_attribution(text):
+    normalized = re.sub(r'\bNo\.\s*(?=\d)','No ',text)
+    return all(not EFFECT_TERMS.search(sentence) or ATTRIBUTION.search(sentence)
+               for sentence in re.split(r'[.!?]+',normalized) if sentence.strip())
 
 
 def numeric_values(text):
@@ -40,6 +49,7 @@ def review_body(request, language, sources, draft, previous=None):
             {'type':'predicate','name':'no_additions','instructions':'Is the draft free of added facts, time references, geographic scope, enactment predictions, current legal-status claims, advice or personal-ballot/district inferences not established by the cited text? Faithful paraphrase is permitted; do not demand uncited facts or separate fields.'},
             {'type':'predicate','name':'attributed','instructions':'Are descriptions of the act and the county-intact claim explicitly attributed to the official question rather than asserted as independently established facts? If a limit-focused draft makes no such description, this condition is satisfied.'},
             {'type':'predicate','name':'request_fit','instructions':'Does the draft answer this public request in the requested language? For simpler, use familiar vocabulary and shorter structure, adapting the supplied previous public unit when present, while preserving necessary names and congressional scope; more detail must remain supported. For limits, bounded abstention is useful. Missing separate Yes/No fields is never a defect in these non-effects operations.'},
+            {'type':'predicate','name':'language_match','instructions':'Is the explanation in the requested language? Preserve official names/titles as needed; those proper names do not make an otherwise faithful Spanish explanation English. Evaluate language only, separately from simplicity or factual support.'},
             {'type':'predicate','name':'polarity_safe','instructions':'Is the draft free of any explicit or implied inverted vote outcome (Yes keeps the existing plan, or No adopts HB1)? A neutral explanation that the question asks whether to approve an act replacing the plan is safe without mentioning Yes or No. Free prose should not state vote outcomes. Return high probability for faithful question summaries with no vote-outcome claim; reject actual inversion or ambiguous outcome claims.'}]}
 
 
@@ -79,6 +89,7 @@ def validate_unit(draft, operation, language, question):
         if operation == 'effects' and part['text'] != (question['interpretation'][expected] if language == 'en' else EFFECTS_ES[expected]):
             raise Held('journey_polarity')
         if operation != 'effects':
+            if not sentence_attribution(part['text']): raise Held('journey_sentence_attribution')
             prose = re.sub(r'house bill no\.?\s*1', 'the act', part['text'], flags=re.I)
             # Choice meaning lives in its exact structured fields, never in a
             # free paraphrase slot where a false-positive reviewer could invert it.
@@ -142,15 +153,23 @@ class JourneyPipeline:
         reviewed = self.provider.post('decisions', review_body(request,language,sources,draft,previous), cancel)
         meter('review', reviewed.get('usage')); check_cancel(cancel)
         answers = reviewed.get('answers', [])
-        if len(answers) != 5 or {a.get('name') for a in answers} != {'entailed','no_additions','attributed','request_fit','polarity_safe'}: raise Held('journey_review_shape')
+        expected = CRITICAL | {'attributed','request_fit'}
+        if len(answers) != len(expected) or {a.get('name') for a in answers} != expected: raise Held('journey_review_shape')
+        critical = CRITICAL | ({'request_fit'} if operation in {'overview','limits'} else set())
+        scores = {}
         for answer in answers:
             probability = answer.get('probability')
-            if answer.get('type') != 'predicate' or type(probability) not in (int, float) or not math.isfinite(probability) or not .95 <= probability <= 1:
+            if answer.get('type') != 'predicate' or type(probability) not in (int, float) or not math.isfinite(probability) or not 0 <= probability <= 1:
+                raise Held('journey_review_shape')
+            scores[answer['name']] = probability
+            if answer['name'] in critical and probability < .95:
                 raise Held('journey_' + answer.get('name','review') + '_held')
         # Recheck the immutable application source before releasing the result.
         if load_question() != question: raise Held('question_changed')
         return {'unit': draft, 'source_version': QUESTION_PIN, 'sources': sources,
                 'text_model': self.text_model,
+                'request_fit': 'confirmed' if scores['request_fit'] >= .95 else 'unconfirmed',
+                'review_contract': {'critical':sorted(critical),'advisory':sorted(expected-critical),'deterministic':['source_version','numbers','time','congressional_scope','choice_slots','sentence_attribution']},
                 'mode': 'fresh_grounded_generation', 'review': 'uncalibrated_model_check',
                 'translation_review': 'pending' if language == 'es' else 'not_a_human_review',
                 'raw_visitor_input_sent': False, 'playback_enabled': False}, b''

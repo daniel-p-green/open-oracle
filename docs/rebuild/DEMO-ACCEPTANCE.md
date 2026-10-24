@@ -7,10 +7,10 @@ this checklist. Managed Agents is deferred; it must not block product work.
 
 | User workflow | Implementation / evidence now | Remaining release evidence |
 | --- | --- | --- |
-| Ask about exact public measure wording | Integrated source/claim cards, exact originals and finite scoped aliases; bounded provider harness | Broader source-backed generative response/UI and nonauthor comprehension/paraphrase review |
+| Ask about exact public measure wording and follow up | Actual fresh EN overview → simpler → ES adaptation from server-owned prior; exact original/local Yes–No effects, challenge, optional teach-back and ephemeral recap | Broader admitted evidence, generative component selection and nonauthor comprehension/paraphrase review |
 | Ask to see the actual redistricting plans | Integrated pinned pair, synchronized views/selection, exact KCEB Proposition A public sample, dated/expiring legal snapshot | Official accessible territorial equivalent, reuse rights and ongoing legal freshness |
-| Read factual candidate context | One private FEC/campaign bundle, attributed and versioned | Complete official roster, rights/identity/quote review, coverage-safe retrieval |
-| Switch English/Spanish | Integrated bilingual interface/map navigation; actual trimmed synthetic EN/ES clips and independent ASR matches | Actual spoken-input journey, civic translation and human pronunciation review |
+| Read factual candidate/office context | Source-pinned original U.S. House office passages; one private filing bundle, campaign held | Complete official roster, rights/identity/quote review, coverage-safe retrieval; office context is not candidate coverage |
+| Switch English/Spanish | Bilingual interface/map navigation; actual fresh ES text adaptation in review mode, existing synthetic EN/ES clips with ASR | Fresh checked speech of adapted answers, actual spoken input, civic translation and human pronunciation review |
 | Talk and hear a checked answer | Integrated prepared-output consent/currentness/replay; silent journey verified, no human mic/speaker use | Integrated public synthetic-input journey; explicit human mic/speaker consent and actual heard/device checks |
 | Interrupt, reset or change source/language | Whole-workspace revisions, request/body/audio timeouts, cancellation and local fallback | Human interruption-to-silence and real device evidence |
 | Use desktop/mobile with keyboard/captions | Integrated desktop and 390px viewport inspected; Spanish map controls/rehearsal/zero horizontal overflow observed | Actual mobile device, screen-reader, human captions and geographic alternative review |

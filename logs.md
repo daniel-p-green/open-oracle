@@ -650,3 +650,62 @@ This is a backfill, not a contemporaneous event stream.
 - **Completed before commit:** required Node/provider-off Python/loopback suites,
   updated-module syntax and whitespace checks passed after the final repairs.
   Remote CI is checked after pushing; no success is inferred from local output.
+
+### 2026-10-24 06:49 UTC — resident adaptation, source role and review workflow
+
+- **Completed:** `5ebe3c1b13ec0ac9f6dc4b4e564fa1bd75891756` pushed to draft
+  [PR6](https://github.com/daniel-p-green/open-oracle/pull/6); actual remote
+  [CI success](https://github.com/daniel-p-green/open-oracle/actions/runs/40068954427).
+- **Actual Opus5.5 High proposal critique:** visibly selected in the authorized
+  Claude UI, returned four concrete conditions: sentence-level source
+  attribution, paraphrase versus quotation labeling, critical request fit for
+  limits, and visible simplicity/detail uncertainty through recap. Implemented;
+  factual predicates retain0.95. Attribution is enforced sentence by sentence
+  by application rules; attribution/simpler-detail quality scores are advisory.
+  No score is a factual or bilingual certificate. Renewed substantive review
+  remains required before acceptance.
+- **Actual bounded quality result:** six engineering-labeled variants evaluated
+  with the revised source-role interface: two faithful variants eligible,
+  four adverse variants held. Time/scope/unattributed prose held deterministically;
+  indirect semantic inversion still depends on fallible model review. This
+  small development set is not calibration, statistical accuracy or a guarantee.
+- **Actual provider/browser result:** SolLow English overview → simpler English
+  follow-up → Spanish adaptation all completed, using actual server-owned prior
+  checked public units. Original, recap, language and map controls exercised;
+  no microphone, Play, speaker consent or heard audio. Private proof screenshot
+  `openoracle-fresh-resident-journey.png` predates subsequent visual polish.
+  Shared reservations now$1.26, direct usage/duration estimate$0.0863188, excluding
+  earlier unmetered Playground charges; not an invoice. Latest three estimated
+  costs$0.0020121/$0.002193/$0.0024544. No automatic paid retries.
+- **Implemented/observed:** official House office passages admitted from the
+  retained official original and limited government-material terms. Byte and
+  passage hashes checked; no images, leader names, addresses, district matching,
+  candidate roster or blanket reuse license. Source/UTC retrieval/original
+  English label visible; Spanish civic translation remains pending.
+- **Implemented/verified:** preserved same-language action nodes; late answer
+  no longer moves focus or replaces optional activity. A clearly labeled
+  delayed mock browser run (zero API calls) preserved teach-back and focus;
+  independent source re-review closed the exhausted-ordering cleanup-token bug.
+  Token remains for Erase/cancel even after inference allowance reaches zero.
+- **Visual evidence:** actual desktop two-column source/maps inspected; narrow
+ 390px effects and Spanish original-office states had390px document width.
+  Map originals/versions are progressive disclosures, original PDF links remain
+  direct, Stop remains available, legal links separated. These are rendered
+  viewport observations, not phone, screen-reader, acoustic or WCAG acceptance.
+- **User direction / references:** Daniel requested why/how notes. See
+  [the reference/adaptation record](docs/rebuild/DEMO-REFERENCES.md) for exact
+  URLs, considered versus applied patterns, files, evidence and licensing limits.
+  No demo source code imported, upstream commit fabricated or axe scan claimed.
+- **Actual skills:** consulted installed `oracle` (`@steipete/oracle`) review
+  guidance; Daniel's explicit Claude selection overrides its default reviewer.
+  No separately named Peter testing/software-engineering skill found in the
+  targeted catalogs/search. Existing test-audit guidance is OpenClaw-adapted,
+  not attributed to Peter. Ballot-accessibility-audit guides source/readability
+  barriers; no readability score or automated accessibility proof invented.
+- **Verification:** Node behavior suite passed; Python source/jobs/loopback
+  suite passed after loopback sandbox escalation (default bind was denied,
+  authorized escalation succeeded). No paid calls in these suites. Syntax and
+  whitespace checked before commit. No tests added solely for count.
+- **Running:** fresh per-answer checked speech, meaningful typed visual
+  composition, candidate/variant coverage and actual human bilingual/accessibility
+  validation remain open. This milestone does not meet full stretch acceptance.

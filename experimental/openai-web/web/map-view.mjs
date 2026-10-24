@@ -90,6 +90,20 @@ export function mountMapComparison(
             : "HB1 · MSDIS / Missouri OA",
         ),
       );
+      const original = data.sources.find(
+        (source) =>
+          source.name === (plan.id === "baseline" ? "baseline.pdf" : "hb1.pdf"),
+      );
+      if (original) {
+        const a = node(
+          "a",
+          es ? "Mapa oficial original" : "Original official map",
+        );
+        a.href = original.url;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        head.append(a);
+      }
       article.append(head);
       const svg = document.createElementNS(ns, "svg");
       svg.setAttribute("viewBox", view.bounds.join(" "));
@@ -116,7 +130,7 @@ export function mountMapComparison(
         t.setAttribute("y", label.y);
         t.setAttribute(
           "font-size",
-          Math.max(view.bounds[2], view.bounds[3]) / 30,
+          Math.max(view.bounds[2], view.bounds[3]) / 22,
         );
         t.setAttribute("class", "district-label");
         t.textContent = label.id;
