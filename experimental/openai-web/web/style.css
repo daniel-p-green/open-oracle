@@ -3,3 +3,5 @@
 #heading{white-space:pre-line}#claims details{font-size:14px;margin-top:-12px;margin-bottom:14px}#claims details blockquote{font-size:15px}
 
 [hidden]{display:none!important}
+
+.voice-fixture{margin-top:28px}.voice-fixture select{display:block;width:100%;max-width:620px;min-height:48px;margin:10px 0 18px}.voice-fixture input[type=checkbox]{width:24px;min-width:24px;height:24px;vertical-align:middle;margin-right:8px}.voice-fixture p{max-width:80ch}.mic-status{font-weight:bold}.voice-fixture .controls{margin-top:16px}

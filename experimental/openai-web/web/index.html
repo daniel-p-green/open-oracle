@@ -19,5 +19,22 @@
 <section class="source" aria-labelledby="source-title"><h2 id="source-title">Read the original</h2><p id="source-meta"></p><details id="original" tabindex="-1"><summary id="original-label">Show exact ballot wording</summary><blockquote id="original-text" dir="auto"></blockquote></details><a id="source-link" target="_blank" rel="noopener noreferrer">Open election board PDF (new tab)</a><p class="small" id="snapshot-note">Retained October 10, 2026. Current availability and election applicability have not been rechecked.</p><details><summary id="integrity-label">Source integrity</summary><p class="small">The text digest checks this retained reading copy. It does not prove currentness or personal eligibility.</p><code id="digest"></code></details>
 <div class="coverage"><h3 id="newsroom-title">Newsroom context</h3><p id="coverage-note">Voter Guide Commons does not currently cover Missouri. No newsroom result was used.</p></div>
 </section></div>
+<section id="voice-fixture" class="reading voice-fixture" lang="en" aria-labelledby="voice-title">
+<h2 id="voice-title">Preview the checked voice flow</h2>
+<p>This is a silent fixture. It does not request a real microphone, send data or play sound. Simulated consent does not authorize live services.</p>
+<p id="voice-mic" class="mic-status">Microphone off</p>
+<p id="voice-status" role="status">Loading fixture…</p>
+<button id="voice-start" type="button" disabled>Preview consent</button>
+<div id="voice-consent" hidden>
+<h3>Before cloud microphone capture</h3><p id="voice-disclosure"></p>
+<a id="voice-policy" target="_blank" rel="noopener noreferrer">OpenAI data controls (new tab)</a>
+<p>Do not say your address, birth date or private voter records. A future first trial will use a fixed public question only.</p>
+<label><input id="consent-check" type="checkbox"> For this silent preview, simulate agreeing to the disclosed data flow.</label>
+<div class="controls"><button id="voice-confirm" type="button" disabled>Simulate consent</button><button id="voice-decline" type="button">Decline</button></div>
+</div>
+<label for="voice-question">Public fixture question</label><select id="voice-question"></select>
+<div class="controls"><button id="voice-complete" type="button" disabled>Finish fixture question</button><button id="voice-play" type="button" disabled>Play fixture (silent)</button><button id="voice-stop" type="button">Stop fixture</button></div>
+<h3>Prepared fixture text</h3><p id="voice-reading"></p><p id="voice-hold"></p><p id="voice-preview" class="small"></p>
+</section>
 <footer><p id="neutrality">Nonpartisan comprehension only. No vote recommendations.</p><p id="provider-note">Fixture explanations · AI generation and review not run · voice off</p><p id="privacy-note">Questions stay in this tab’s memory. No microphone, tracking or saved history.</p></footer>
 </main></body></html>

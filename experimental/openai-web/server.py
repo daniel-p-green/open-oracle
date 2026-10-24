@@ -9,6 +9,7 @@ FILES = {
     '/': (ROOT / 'web/index.html', 'text/html; charset=utf-8'),
     '/app.mjs': (ROOT / 'web/app.mjs', 'text/javascript; charset=utf-8'),
     '/core.mjs': (ROOT / 'web/core.mjs', 'text/javascript; charset=utf-8'),
+    '/conversation.mjs': (ROOT / 'web/conversation.mjs', 'text/javascript; charset=utf-8'),
     '/style.css': (ROOT / 'web/style.css', 'text/css; charset=utf-8'),
     '/fixture.json': (ROOT / 'fixtures/combat.json', 'application/json'),
     '/logo.svg': (ROOT.parents[1] / 'brand/logos/open-oracle-vote.svg', 'image/svg+xml'),
