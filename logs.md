@@ -120,10 +120,35 @@ This is a backfill, not a contemporaneous event stream.
   returned HTTP200 in the existing scoped project. No inference/session created,
   no new key or permissions. Read access alone does not establish write/model
   eligibility. Quickstart/manage docs are available; linked reference pages
-  returned404. Exact bounded inference controls and source-bundle admission
-  remain prerequisites, not reasons to expand credentials or guess parameters.
-- **Planned:** push focused updates to PR6 and inspect actual CI; then perform
-  the agreed bounded evidence-bundle trial only after account/rights preflight.
+  returned404 through the docs fetcher; official HTML reference subsequently
+  loaded. No documented per-turn token/spend cap was found in the inspected
+  create-session schema. Bounded inference controls and source-bundle admission
+  remain prerequisites; no parameters or API permissions were invented.
+- **Completed — published milestone:** pushed `eb1b678`, `46298f0` and `f61102b`
+  to existing draft PR6 and rewrote its description around actual integrated
+  behavior, evidence and primary-source limits. No merge/deployment.
+- **Completed — remote verification:** GitHub Actions
+  [run 40058014545](https://github.com/daniel-p-green/open-oracle/actions/runs/40058014545)
+  for `f61102b` completed successfully; inspected job steps confirm JavaScript,
+  Python loopback/provider mocks and syntax/whitespace checks passed. No model
+  credentials or paid calls in CI.
+- **Completed — independent review at `f61102b`:** reviewer reran 38 Node and
+  29 Python tests plus syntax/diff checks, with no new substantive current-code
+  finding. Route classification retains .95/source/review gates. Current safe
+  reason codes do not expose provider payloads; the lexical UI filter is not an
+  enum and needs reassessment for future adapters. Review did not independently
+  inspect private receipts or court/map sources and made no paid calls.
+- **Planned:** agreed bounded candidate evidence-bundle trial follows source
+  identity/rights admission and a verified cost/cancellation envelope. Read access
+  is verified; write/model operation remains untested. No Agents session created.
+- **Completed — 2026-10-24T03:24:14 UTC map research downloads:** parent supplied
+  verified official baseline/proposed pair and OA distribution chain. Downloaded
+  four exact URLs under 16MiB/file, 20s/request bounds and pinned SHA256 hashes in
+  [research manifest](docs/rebuild/MAP-SOURCE-MANIFEST.json). Confirmed proposed
+  GeoJSON has eight IDs1–8/EPSG4326; baseline PRJ is NAD83 degrees. Originals stay
+  outside the public repository. No topology, rendered comparison or blanket
+  reuse license claimed. State-source rights, exact ballot/version admission and
+  final legal freshness remain gates; stay is not final resolution of all cases.
 - **Blocked by explicit scope:** human mic/speaker journey awaits device and
   utterance consent. No public deployment, Pi modifications, new credentials,
   bulk transcription, purchases or expanded access are authorized.

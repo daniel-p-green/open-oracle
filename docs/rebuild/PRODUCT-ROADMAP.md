@@ -57,8 +57,15 @@ regeneration, while the national block-equivalency file was corrected October 6.
 Do not treat a newer filename as proof of operative boundaries. Date wording on
 the Census narrative differs from the dated opinion: bind legal claims to the
 court document and data-freshness claims to the specific Census product notice.
-Official OA artifact tracing is ongoing under the parent lead; preserve this as
-a source-admission hold until both map bundles are verified.
+Parent research subsequently verified OA's official distribution chain and PDF
+pair. This worker downloaded the exact four supplied artifacts, pinned local
+hashes and verified eight proposed district IDs (1–8), GeoJSON EPSG:4326 and the
+baseline NAD83 degree-based PRJ. See the [research manifest](MAP-SOURCE-MANIFEST.json).
+Use the pinned CD118 baseline and proposed GeoJSON; the parent's HB1 shapefile
+inspection found conflicting embedded metadata (PRJ 26915 versus XML 3857).
+Do not copy stale distributor “not yet signed” prose as legal status. Geometry
+topology, reprojection, shared-view rendering and use-specific state-map rights
+remain admission checks. Downloads/hashes are not an implemented comparison.
 
 The preflight deliverable is a reviewed manifest for **both** compared versions:
 issuer, official URL, document/enactment/effective date, retrieval date, hash,

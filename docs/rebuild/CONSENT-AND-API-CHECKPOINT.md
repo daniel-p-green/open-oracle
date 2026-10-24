@@ -76,7 +76,9 @@ citations, injection, abstention, mock failures/timeouts, cancellation/reset,
 cancel-before-start, source mutation, transcript mismatch, buffer limits/final
 usage, ownership and server/client expiry. HTTP tests require local loopback bind
 permission. Independent review verified the substantive concurrency/resource
-fixes. Remote CI is recorded separately once observed; local passes are not CI.
+fixes. Remote [CI run 40058014545](https://github.com/daniel-p-green/open-oracle/actions/runs/40058014545)
+for `f61102b` completed successfully; inspected job steps confirm Node, Python
+loopback/mock and syntax checks. No credentials/model calls in this workflow.
 
 The constrained enum response deliberately tests the complete controlled path.
 It is not a final choice against generative explanations. The revised
