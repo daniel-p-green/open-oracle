@@ -1560,3 +1560,27 @@ This is a backfill, not a contemporaneous event stream.
   admission, second verified individual style, AI-planned composition, live
   bilingual latency and human civic/AT/device/release gates remain open. No
   showcase-ready claim or fabricated coverage fills those gaps.
+
+### 2026-10-24 16:30 UTC — recap push, remote CI and artifact receipt
+
+- **Completed:** pushed focused implementation `004e618e7e535421859ebb9b0ec97b7826b507f1`
+  to existing draft PR6. Both remote offline-contracts runs succeeded with that
+  exact head SHA: https://github.com/daniel-p-green/open-oracle/actions/runs/40111326672
+  and https://github.com/daniel-p-green/open-oracle/actions/runs/40111329385 .
+  No merge/deployment. Prior `b8f9009` and `dd2c76e` remain rollback checkpoints.
+- **Artifact completed:** verified unclipped in-app-browser full-page capture,
+  saved to Library as `openoracle-consolidated-recap-review.jpg`, ID
+  `libfile_9df65636d3f88191afca6247ec64dcb0`, version0; local identity metadata
+  applied successfully. Earlier Chrome full-page capture was clipped, so it is
+  not the delivered image. Actual returned Opus closure messages26/28 retained
+  outside Git. No private account/billing screenshot or voter record included.
+- **Cleanup:** owned temporary fault server8924 stopped using its valid handle.
+  Providers-off review8923 stays running. Dedicated app/billing tabs marked for
+  delivery/handoff; no sign-in/account selection retried and no API trial started.
+- **Remaining:** exact existing-account selection question remains pending in
+  main chat after automatic review denied that action; no request ID was returned.
+  Second JCEB individual style remains a source gap after public official page
+  inspection. Recap/local composition are demonstrated technical progress, not
+  full stretch or public-demo acceptance. Fresh checked bilingual latency,
+  AI-planned composition, candidate admission and human civic/AT/device/source-
+  release gates remain. Keep the existing ledger; no incremental paid usage.
