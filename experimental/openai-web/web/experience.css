@@ -469,6 +469,9 @@ body.has-content .product-intro .intro {
   padding: 1rem 0;
 }
 .original-wording {
+  max-width: 76ch;
+  font-size: 1.075rem;
+  line-height: 1.6;
   white-space: pre-line;
   margin-inline: 0;
   padding-inline-start: 1rem;

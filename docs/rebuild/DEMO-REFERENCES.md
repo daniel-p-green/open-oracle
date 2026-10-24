@@ -40,3 +40,9 @@ private renderer or reference code was copied. Native ChatGPT visualization
 behavior is observed, not an embeddable API promise; open-source alternatives
 remain considered, not installed/benchmarked. Existing MIT/Apache references
 confer no license on unreviewed generated or unrelated demo code.
+
+Native source-card comparison also exposed overly wide normalized original
+wording. `web/experience.css` now bounds `.original-wording` to76ch with larger
+text/line spacing. Fresh desktop and390px inspection retained exact qualifiers
+and no overflow, including expanded source metadata. This is a reading-layout
+adaptation, not copied ChatGPT code or a measured human-comprehension claim.

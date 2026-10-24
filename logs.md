@@ -1262,3 +1262,20 @@ This is a backfill, not a contemporaneous event stream.
   not be stopped through its expired tool handle (unknown process ID), no process
   enumeration/alternate kill attempted. Own diagnostic servers closed after QA.
   No public-ready claim, denied-source retry, human media, merge/deploy or Pi work.
+
+### 2026-10-24 14:16 UTC — native comparison reading-width repair
+
+- **Completed local milestone:**0f452ee records the measured latency/native UI
+  increment above. It remains unpushed, outside Daniel's exact two-commit grant.
+- **Observed/fixed:** current screenshots showed normalized official wording
+  stretching across the full inventory card. Applied a76ch maximum reading
+  width,1.075rem text and1.6line spacing to original-wording only, following the
+  native card's bounded reading-column concept. No source text, highlights,
+  interpretation, palette, controller or provider behavior changed; no code copied.
+- **Actual verification:** desktop quote width823px within1116px source area,
+  line height27.52px; full exact question/qualifiers retained.390px viewport with
+  version details expanded has no horizontal overflow and unchanged question
+  ending. Captured/inspected fresh screenshot. Proportionate browser inspection
+  and whitespace check; no redundant behavior tests added for CSS-only change.
+  Human reading/screen-reader/civic acceptance remains pending. No paid/media/
+  external action; original repository and immutable approval files unchanged.
