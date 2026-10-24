@@ -126,3 +126,11 @@ still not established. The current server is loopback-only; an existing safe
 deployment target and protected metered inference entry have not been established.
 No merge or deployment occurred in this increment. Fresh billing verification is
 blocked at an account-selection sign-in approval; neither trial started.
+
+Final verification: code commit `b8f9009` passed both remote offline-contracts
+runs [40107057655](https://github.com/daniel-p-green/open-oracle/actions/runs/40107057655)
+and [40107062980](https://github.com/daniel-p-green/open-oracle/actions/runs/40107062980).
+Actual idle QA found and repaired a warning-layout scroll that renewed activity;
+real Chrome then erased at~120.719s and clean entry had no previous contest.
+Spanish warning keyboard focus/Continue/reading-focus recovery also passed.
+Independent review closed these narrow repairs; full acceptance remains open.

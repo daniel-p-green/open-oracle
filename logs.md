@@ -1444,3 +1444,36 @@ This is a backfill, not a contemporaneous event stream.
   identified the warning-focus issue repaired above. Final Spanish warning/
   keyboard check began15:26:37Z; outcome pending. No new API reservations/costs,
   human media, credentials or public deployment. Focused privacy commit next.
+
+### 2026-10-24 15:30 UTC — pushed code, remote CI and final review artifact
+
+- **Completed:** fd34825 and b8f9009ac53456dd378e0b4e9a8773adfeb86277 plus the
+  earlier seven local source/input/latency commits pushed normally to existing
+  draft PR6 after fresh explicit approval. Remote branch was verified unchanged
+  at6d90b11 before push; no force, merge or deployment. PR description rewritten
+  around actual current behavior, evidence, costs and unmet stretch requirements.
+- **Remote verification:** both offline-contracts runs completed SUCCESS on
+  exact code SHA b8f9009ac53456dd378e0b4e9a8773adfeb86277:
+  https://github.com/daniel-p-green/open-oracle/actions/runs/40107057655 and
+  https://github.com/daniel-p-green/open-oracle/actions/runs/40107062980.
+  This is the latest CI-passed code checkpoint for rollback/reference, not an
+  assertion that the full product is accepted. Earlier6d90b11 remains in history.
+- **Actual Spanish warning proof:** after its real100s warning, keyboard focus
+  remained on visible idle-continue; Enter hid the warning, focused workspace
+  and retained the active JCEB Independence reading. Independent final review
+  closed warning focus/renewal and confirmed temporary logs absent. No human
+  screen-reader, acoustic or civic-language acceptance inferred.
+- **Deliverable:** current full-page KC source-flow image updated in Library
+  preserving its identity/version guard; local metadata application succeeded.
+  Dedicated Chrome local8922 tab retained, duplicate agent-created in-app tab
+  closed. Pending Platform existing-account sign-in tab retained for handoff.
+  No personal/payment screenshot was delivered or uploaded.
+- **Still blocked/pending:** exact billing account-selection approval remains
+  unanswered; automatic review denied that action and it was not retried. Both
+  newly approved bounded API trials remain unstarted/unreserved, with ledger
+  figures unchanged. Source admission still lacks a second individual JCEB style,
+  current certification/write-ins and candidate background; full semantic UI,
+  unified recap, fresh bilingual latency/heard quality, accessible map description
+  and human/device acceptance remain open. Hosting read found no matching repo
+  project in the available Vercel scope; no safe public metered endpoint/rights
+  release exists yet. Merge/deploy permission is present, readiness is not.
