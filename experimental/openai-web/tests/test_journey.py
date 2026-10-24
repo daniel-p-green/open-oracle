@@ -5,25 +5,44 @@ import sys
 import threading
 import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from journey import JourneyPipeline, load_question, validate_unit, QUESTION_PIN
+from journey import JourneyPipeline, load_question, validate_unit, validate_presentation, QUESTION_PIN
 from providers import Held
 
 
 class JourneyTests(unittest.TestCase):
+    def test_same_response_component_selection_rejects_unsupported_or_missing_evidence(self):
+        fixture=json.loads((Path(__file__).resolve().parents[1]/'fixtures/evidence-plans.json').read_text())
+        for row in fixture['cases']:
+            with self.subTest(row=row):
+                value={'components':row['components']}
+                if row['accepted']: self.assertEqual(validate_presentation(value,row['operation']),value)
+                else:
+                    with self.assertRaisesRegex(Held,'journey_presentation'): validate_presentation(value,row['operation'])
+        for value in [None, {'components':None}, {'components':['explanation','original','uncertainty'],'html':'<b>test</b>'}]:
+            with self.assertRaisesRegex(Held,'journey_presentation'): validate_presentation(value,'overview')
+
     def test_public_adaptation_keeps_source_and_polarity_when_review_falsely_accepts(self):
         question = load_question()
         draft = {'operation':'overview','language':'en','sections':[{'source_id':'question','text':'This question asks whether to approve House Bill No. 1 (2025 Second Extraordinary Session). The ballot describes the act as replacing Missouri’s existing congressional plan.'}]}
         class Provider:
-            def __init__(self): self.calls=[]; self.reject=False; self.low_delivery=False
+            def __init__(self): self.calls=[]; self.reject=False; self.low_delivery=False; self.components=['explanation','original','uncertainty']
             def post(self,path,body,cancel):
                 self.calls.append((path,body));usage={'input_tokens':400,'output_tokens':80 if path=='responses' else 0}
-                if path=='responses': return {'status':'completed','usage':usage,'output':[{'type':'message','content':[{'type':'output_text','text':json.dumps(draft)}]}]}
+                if path=='responses': return {'status':'completed','usage':usage,'output':[{'type':'message','content':[{'type':'output_text','text':json.dumps(dict(draft,components=self.components))}]}]}
                 return {'usage':usage,'answers':[{'type':'predicate','name':name,'probability':.1 if self.reject else .9 if self.low_delivery and name in {'attributed','request_fit'} else .99} for name in ['entailed','no_additions','attributed','request_fit','polarity_safe','language_match']]}
         provider=Provider();pipeline=JourneyPipeline(provider);cancel=threading.Event();metered=[]
         result,audio=pipeline.run_task('journey:overview:en',cancel,lambda _:None,lambda *args:metered.append(args))
         self.assertEqual(result['unit'],draft);self.assertEqual(audio,b'');self.assertFalse(result['raw_visitor_input_sent'])
         self.assertEqual([p for p,_ in provider.calls],['responses','decisions']);self.assertEqual([s for s,_ in metered],['journey_text','review'])
         self.assertFalse(provider.calls[0][1]['store']);self.assertEqual(provider.calls[0][1]['max_output_tokens'],512)
+        self.assertEqual(result['presentation'], {'components':['explanation','original','uncertainty']})
+        self.assertEqual(result['presentation_mode'], 'model_selected')
+        count=len(provider.calls)
+        provider.components=['explanation','original','uncertainty','candidate_ranking']
+        with self.assertRaisesRegex(Held,'journey_presentation'):
+            pipeline.run_task('journey:overview:en',cancel,lambda _:None,lambda *_:None)
+        self.assertEqual([p for p,_ in provider.calls[count:]],['responses'])
+        provider.components=['explanation','original','uncertainty']
         prior=copy.deepcopy(result);draft['operation']='simpler';draft['sections'][0]['text']='The ballot asks about accepting an act that replaces the congressional plan.'
         pipeline.run_task('journey:simpler:en',cancel,lambda _:None,lambda *_:None,prior=prior)
         sent=json.loads(provider.calls[-2][1]['input'][1]['content'])

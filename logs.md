@@ -1584,3 +1584,45 @@ This is a backfill, not a contemporaneous event stream.
   full stretch or public-demo acceptance. Fresh checked bilingual latency,
   AI-planned composition, candidate admission and human civic/AT/device/source-
   release gates remain. Keep the existing ledger; no incremental paid usage.
+
+### 2026-10-24 16:53 UTC — evidence contracts preserved; voice-first correction
+
+- **Implemented, not accepted product UX:** bounded Proposition A evidence
+  composition selects admitted component IDs in the existing Responses call;
+  no additional rendering call/factual props/HTML/URLs. Mandatory original and
+  uncertainty survive selection. Exact checked text remains the speech input.
+  Provider-off task-specific plans explicitly withhold fresh AI text. This is
+  supporting infrastructure, not a natural voice agent or completed stretch UX.
+- **Verification:** provider-off Node/Python suites passed after environment
+  recovery. Actual pre-disconnect browser checked full original/fiscal wording,
+  map-reference focus and source/limits compositions. Isolated, visibly labeled
+  synthetic provider harness exercised model-shaped selection, unsupported
+  candidate_ranking hold and Erase. It performed no API call or device media.
+  Independent review found cross-language retained-unit use and late answer
+  erasing independent reading activity. Fixed both; actual synthetic browser
+  proved local fallback after EN→ES and preservation of expanded source/focus
+  when delayed Spanish text arrived. No live model/latency claim.
+- **Failure/cleanup:** environment disconnected during390px inspection; outcome
+  and viewport reset remain unknown, so no new narrow-screen evidence claimed.
+  Executor recovered; old session handles cannot resume because executor key
+  changed. Bounded loopback checks confirmed both8923/8924 refuse connections;
+  no stale server assumed running. Browser/computer tools are currently absent.
+- **Denied/pending:** automatic review denied upload of the scrubbed seven-file
+  bundle to existing Claude Opus5.5High chat, saying trusted sharing authority
+  was absent. SHA25632a9ae0f3d259315c90c8a1b580835609bce6bd88550c1cd5f93989daec137bc,
+  112646bytes, ../openoracle-evidence-composition-review-20261024.md. No retry,
+  indirect route or successful review claimed. Existing billing-account
+  selection remains pending separately; no sign-in or credential creation.
+- **User correction accepted:** Daniel rejects the document/recap-led UX as an
+  interaction-model mismatch. Stop auxiliary expansion. Primary interaction must
+  be Start talking, EN/ES, actual connection/mic state, captions and focused
+  model-driven visual canvas, with evidence/recap/diagnostics progressively
+  disclosed. Original PRD connected adaptive live voice remains the target.
+- **Billing clarification:** boolean-only check confirms existing API key present;
+  no value extracted. Existing successful test scripts establish prior explicit
+  organization/project headers. A fresh browser billing login is not technically
+  required by the API; earlier balance1067.97 and shared200 cap/reservation1.96
+  exist. Reuse only the established server-side credential/scope under current
+  authority; do not bypass the denied login or call historical credit current.
+  Live loop still needs implementation and actual synthetic public input tests;
+  human microphone/speakers remain unapproved. No new paid run in this increment.

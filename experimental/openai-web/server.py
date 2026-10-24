@@ -27,6 +27,7 @@ FILES = {
     '/layout-client.mjs': (ROOT / 'web/layout-client.mjs', 'text/javascript; charset=utf-8'),
     '/input-intent.mjs': (ROOT / 'web/input-intent.mjs', 'text/javascript; charset=utf-8'),
     '/journey-core.mjs': (ROOT / 'web/journey-core.mjs', 'text/javascript; charset=utf-8'),
+    '/evidence-view.mjs': (ROOT / 'web/evidence-view.mjs', 'text/javascript; charset=utf-8'),
     '/reading-guide.mjs': (ROOT / 'web/reading-guide.mjs', 'text/javascript; charset=utf-8'),
     '/reading-guides.json': (ROOT / 'fixtures/reading-guides.json', 'application/json'),
     '/inventory-view.mjs': (ROOT / 'web/inventory-view.mjs', 'text/javascript; charset=utf-8'),

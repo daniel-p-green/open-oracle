@@ -18,7 +18,6 @@ import {
   QUESTION_VERSION,
   validateJourney,
   recapUnits,
-  journeyHeading,
   validateJourneySpeech,
 } from "./journey-core.mjs";
 import { admittedReadings, bindReading } from "./readings.mjs";
@@ -39,6 +38,10 @@ import {
 import { createViewTiming } from "./view-timing.mjs";
 import { mountContestInventory } from "./inventory-view.mjs";
 import { draftPublicIntent, publicIntentLabel } from "./input-intent.mjs";
+import {
+  composeEvidence,
+  mountEvidencePresentation,
+} from "./evidence-view.mjs";
 const $ = (id) => document.getElementById(id),
   session = createSession(),
   workspace = $("workspace");
@@ -862,22 +865,37 @@ function clearJourneyHistory() {
   $("journey-tools").replaceChildren();
 }
 function showEffects() {
+  showEvidence("effects");
+  $("journey-tools").focus({ preventScroll: true });
+}
+function showEvidence(operation, host = $("journey-tools"), unit = null) {
   stopSpeechForReading();
-  const host = $("journey-tools");
-  host.replaceChildren();
-  if (!mapMeasure || (locale === "es" && !reviewTools)) {
+  if (!mapMeasure) {
+    host.replaceChildren();
     journeySource(host, "question");
     return;
   }
-  host.append(
-    el(
-      "h3",
-      locale === "es"
-        ? "Explicación de lo que significan Sí y No"
-        : "Explanation of what Yes and No mean",
-    ),
-  );
-  for (const id of ["yes", "no"]) journeySource(host, id);
+  const plan = composeEvidence({
+    operation,
+    language: locale,
+    sourceVersion: mapMeasure.source_version,
+    unit,
+  });
+  mountEvidencePresentation(host, plan, {
+    unit,
+    renderSource: journeySource,
+    mapsAvailable: !!mapMount,
+    onMaps: () => {
+      stopSpeechForReading();
+      const target = [...workspace.children].find(
+        (n) => n.dataset.component === "maps",
+      );
+      if (!target || !mapMount) return;
+      target.tabIndex = -1;
+      target.focus({ preventScroll: true });
+      target.scrollIntoView({ block: "start", behavior: "instant" });
+    },
+  });
 }
 async function showOffice(host = $("journey-tools"), family = "us-house") {
   stopSpeechForReading();
@@ -1063,6 +1081,33 @@ function drawJourney() {
   next.replaceChildren();
   next.dataset.language = locale;
   journeyButton(next, c.source, () => performLocalJourney("source"));
+  journeyButton(
+    next,
+    locale === "es"
+      ? "Leer la evidencia en conjunto"
+      : "Read the evidence together",
+    () => {
+      // Prior text may remain server-bound for a deliberate language adaptation;
+      // it cannot become the current-language explanation in this view.
+      const unit =
+        journeyCurrentUnit?.language === locale &&
+        journeyCurrentUnit?.source_version === mapMeasure?.source_version
+          ? journeyCurrentUnit
+          : null;
+      showEvidence(unit?.operation ?? "overview", $("journey-tools"), unit);
+      $("journey-tools").focus({ preventScroll: true });
+    },
+  );
+  journeyButton(
+    next,
+    locale === "es"
+      ? "Leer los límites de la fuente"
+      : "Read the source limits",
+    () => {
+      showEvidence("limits");
+      $("journey-tools").focus({ preventScroll: true });
+    },
+  );
   journeyButton(next, c.challenge, () => performLocalJourney("challenge"));
   journeyButton(next, c.teach, teachBack, locale === "es" && !reviewTools);
   journeyButton(next, c.recap, showRecap);
@@ -1078,10 +1123,8 @@ function drawJourney() {
 function performLocalJourney(operation) {
   if (!journeyActive) return;
   if (operation === "source") {
-    stopSpeechForReading();
     const host = $("journey-tools");
-    host.replaceChildren();
-    journeySource(host, "question");
+    showEvidence("source", host);
     host.focus();
   } else if (operation === "challenge") {
     invalidate({ keepVisuals: true });
@@ -1118,7 +1161,7 @@ async function showJourney(operation = "overview") {
   drawJourney();
   $("journey-tools").replaceChildren();
   $("journey-answer").replaceChildren();
-  if (operation === "effects") showEffects();
+  showEvidence(operation);
   const c = journeyCopy();
   $("journey-status").textContent =
     locale === "es" && !reviewTools
@@ -1226,28 +1269,7 @@ async function generateJourney() {
           : "This session's limit for fresh explanations has been reached.",
       ),
     );
-  $("journey-answer").append(el("h3", journeyHeading(result, locale)));
-  for (const part of result.sections) {
-    const block = el("section");
-    block.append(
-      el(
-        "p",
-        locale === "es"
-          ? "Explicación del texto de la pregunta · no es una cita."
-          : "Explanation of the ballot question’s wording · not a quotation.",
-      ),
-    );
-    block.append(el("p", part.text));
-    const disclosure = el("details"),
-      summary = el(
-        "summary",
-        locale === "es" ? "Comprobar la fuente" : "Check this source",
-      );
-    disclosure.append(summary);
-    journeySource(disclosure, part.source_id);
-    block.append(disclosure);
-    $("journey-answer").append(block);
-  }
+  showEvidence(operation, $("journey-answer"), result);
   answerTiming.paint("first_useful_visual");
   if (reviewTools && providerToken && remainingRuns > 0) {
     const button = journeyButton(

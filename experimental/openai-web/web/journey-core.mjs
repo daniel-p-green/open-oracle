@@ -1,5 +1,6 @@
 import { immutableCopy } from "./core.mjs";
 import { QUESTION_VERSION } from "./measure-source.mjs";
+import { validateEvidencePlan } from "./evidence-view.mjs";
 export { QUESTION_VERSION };
 export const OPERATIONS = ["brief", "overview", "simpler", "detail", "limits"];
 
@@ -99,10 +100,24 @@ export function validateJourney(
       throw Error("journey_section");
   }
   // Provider-returned sources/URLs never establish browser citation authority.
+  if (
+    result.presentation !== undefined &&
+    result.presentation_mode !== "model_selected"
+  )
+    throw Error("journey_presentation_mode");
   return immutableCopy({
     ...unit,
     source_version: displayedVersion,
     request_fit: result.request_fit,
+    ...(result.presentation !== undefined
+      ? {
+          presentation: validateEvidencePlan(result.presentation, operation),
+          presentation_mode:
+            result.presentation_mode === "model_selected"
+              ? "model_selected"
+              : "local",
+        }
+      : {}),
   });
 }
 
