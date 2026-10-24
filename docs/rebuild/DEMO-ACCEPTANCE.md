@@ -5,20 +5,19 @@ public developer-profile demonstration. **Not complete or publicly ready.** No
 public deployment, microphone/speaker activation or new credentials follow from
 this checklist. Managed Agents is deferred; it must not block product work.
 
-**October24 product correction:** primary interaction means natural speech,
-contextual follow-up and a model-selected visual canvas. A document browser,
-recap collection or canned routing does not satisfy it. The new default preview
-centers Start talking, EN/ES, connection/media state, captions and canvas; human
-capture/playback remain disabled. Native Live→Decisions→grounded Responses is
-implemented for public synthetic audio. Two actual English sessions ran. The
-corrected second run checked its first generated speech at24.317s and native
-Decisions selected the contextual maps/kansas_city follow-up at28.322s. Its
-second answer was held by the language check; the complete conversation failed.
-No human heard audio and no integrated browser rendering was verified. See
-[recorded trial evidence](NATIVE-VOICE-TRIALS-2026-10-24.json). Supporting source
-review is review-only. A subsequent diagnostic run was denied before execution.
-No screenshot, mock or offline protocol receipt establishes the required real
-conversation, latency, interruption, multilingual or human acceptance.
+**Current native milestone, October24:** voice-first interaction remains the
+acceptance target, not a source dashboard. The default screen centers Start
+ talking, EN/ES, connection/media state, captions and a focused visual canvas;
+human capture/playback remain disabled. Six actual native synthetic sessions
+exist: the earlier corrected EN run accepted one audio segment and routed a KC
+map follow-up, then held. The newly approved four-purpose package is consumed:
+all four closed with usage, all held before accepted audio, and the recovery
+trigger was not reached. Estimated package cost0.025895, reservation0.40 within
+shared200. No full EN/ES native conversation, improved safe-audio latency or new
+browser integration success is claimed. See [actual trial evidence](NATIVE-VOICE-TRIALS-2026-10-24.json).
+The source-only Opus5.5High critique returned; [dispositions](CLAUDE-REVIEW-2026-10-24.md)
+remain distinct from runtime acceptance. Native paid web-fixture activation is
+closed so a review switch cannot start another session outside that package.
 
 Current transcript implementation separates timed provisional input, checked
 answer text awaiting speech validation and final checked-audio transcript state,
@@ -27,18 +26,44 @@ without an echoed owned command/timing binding are marked unavailable; they are 
 utterances. The input-language field is a preference, not language detection.
 This remains unverified through an actual full EN/ES voice/UI interaction.
 
-| User workflow | Implementation / evidence now | Remaining release evidence |
+Current API roles, checked against official documentation and actual local code:
+
+| Service | Actual role / endpoint | Evidence and limit |
 | --- | --- | --- |
-| Ask about exact public measure wording and follow up | Actual fresh EN overview → simpler → ES adaptation from server-owned prior; exact original/local Yes–No effects, challenge, optional teach-back and ephemeral recap | Broader admitted evidence, generative component selection and nonauthor comprehension/paraphrase review |
-| Ask to see the actual redistricting plans | Integrated pinned pair, synchronized views/selection, exact KCEB Proposition A public sample, dated/expiring legal snapshot | Official accessible territorial equivalent, reuse rights and ongoing legal freshness |
-| Read factual candidate/office context | All55 printed contests retained from KCEB/JCEB, equal candidate gaps, source-pinned U.S.House/Missouri House/Senate/Auditor context; campaign held | Individual styles/current certification/write-ins, county/judicial office context and candidate rights/identity/quote/background admission; notice union is not personal coverage |
-| Switch English/Spanish | Bilingual interface/map navigation; actual fresh ES text adaptation in review mode, existing synthetic EN/ES clips with ASR | Fresh checked speech of adapted answers, actual spoken input, civic translation and human pronunciation review |
-| Talk and hear a checked answer | Actual English adapter/web preparation passed whole-WAV ASR; other development runs held omissions/mismatch. Opus5.5High re-reviews returned. No human sound | Long buffering latency/reliability, Spanish fresh speech, natural private-safe input and human heard/device acceptance |
-| Interrupt, reset or change source/language | Whole-workspace revisions, request/body/audio timeouts, cancellation and local fallback | Human interruption-to-silence and real device evidence |
-| Use desktop/mobile with keyboard/captions | Integrated desktop and 390px viewport inspected; Spanish map controls/rehearsal/zero horizontal overflow observed | Actual mobile device, screen-reader, human captions and geographic alternative review |
-| Recover from missing evidence/network/provider failure | Finite abstention/expiry/failure contracts | Coherent product-level error and retry workflow without duplicate spend |
-| Leave with a source-linked recap | One app-owned recap combines checked current-language units and up to six explicitly saved source contexts. Candidate/retention/measure cards resolve current pinned records; withdrawal, removal, idle/Erase and failed/delayed reads exercised. Dated official lookup references use text only for the shared-terminal preview | New live-provider unit+source combined display, resident comprehension and human bilingual/AT acceptance. Deterministic user-chosen composition is not AI planning. |
-| Repeat a polished demonstration | Local artifacts and run instructions | End-to-end demonstration script, independent product/code review, human trial and explicit readiness decision |
+| GPT-Live `gpt-live-1` | Native audio session `wss://api.openai.com/v1/live/sessions` | Actual synthetic sessions/usage; human path off; [current migration contract](https://developers.openai.com/api/docs/guides/live-migration) does not guarantee verbatim commentary or pause all spontaneous speech. |
+| Decisions `gpt-6-luna` | Native voice view/focus/delivery choices; separate `/v1/decisions` review | Actual choices/checks; [native Decisions guide](https://developers.openai.com/api/docs/guides/decisions-voice). It is not the substantive answer generator. |
+| Responses `gpt-6-luna` | `/v1/responses` source-bound fresh explanation/component selection | Actual generated briefs and holds; deterministic constraints plus separate review, not blanket correctness. |
+| `gpt-transcribe` | Independent buffered waveform check `/v1/audio/transcriptions` | Earlier accepted EN segment; newest package never reached output-ASR. Whole-waveform gating limits first safe-audio latency. |
+| Managed Agents API | Documented `/v1/agents/sessions` for bounded background evidence jobs | [Managed Codex harness](https://developers.openai.com/api/docs/guides/agents-api/overview), distinct from SDK; no managed trial executed, eligibility/cost envelope not demonstrated. Canonical source library remains application-owned. |
+
+This is the finite requirement → implementation → evidence matrix. IDs stay
+stable as work closes; source or product changes require updating these rows,
+not adding disconnected features. D2 refers to the original stretch PRD;
+D3–D6 to its later adaptive-voice decisions, inventoried in the reconciliation.
+
+| ID / original requirement | Implemented | Verified evidence | Remaining acceptance |
+| --- | --- | --- | --- |
+| R01 D2§3/6A context | Election/authority/sample distinctions; administrator/public selection, no personal inference | Pinned KCEB W1P7 and separate JCEB notice; wrong-scope guards | Second JCEB individual style/current certification; final county variant reconciliation; no notice-as-ballot claim |
+| R02 D2§3/5 approachable voice-first entry | Primary Talk/EN–ES/state/transcript/canvas, support progressively disclosed | Prior provider-off desktop voice UI replay | Natural public question through primary live UI; current mobile/manual accessibility proof |
+| R03 D2§3/5 fresh voice loop | Native GPT-Live→Decisions choices→Responses→independent review→buffered Live→ASR gate | Earlier one EN accepted segment; contextual maps/KC native choice; newest four holds/usage documented | Successful full unanticipated question and follow-up with synchronized actual visuals/speech; acceptable measured latency |
+| R04 D2§4 comprehension/adaptation | Fresh brief/simpler/detail with server-owned checked parent; separate exact effects | Earlier real EN overview→simpler→ES text adaptation in review mode | Adapt based on explicit requests/demonstrated understanding, slower/repeat/clarification in real voice; no education/accent inference; brief contract live revalidation |
+| R05 D2§4 strongest language | EN/ES UI and generated text paths; original English retained; translation status | Earlier ES text adaptation; new native Spanish input routed but attribution held | Full fresh ES speech/captions and mid-conversation language switch; human civic meaning/pronunciation review |
+| R06 D2§4 captions/text alternative | Partial/input-gap/checked-text/final-audio transcript states bound to turn/language/revision | Offline lifecycle/replay; actual four runs had no usable command echo, marked unavailable | Reliable language-appropriate input captions; no guessed clock association; usable silent core journey |
+| R07 D2§5 controlled generative UI | Allowlisted shared evidence component selection, actual pinned maps with synchronized bounds/views | Prior native maps/KC routing and offline browser render; source/prop checks | Actual conversation-selected summary/comparison/map updates; map-specific speech parity; no arbitrary code or invented facts |
+| R08 D2§3/6C verify/challenge | Exact original, citations/version/uncertainty, held challenged parent, source access | Passage/hash/context guards; earlier browser source/challenge paths | First-class natural challenge/correction and visible correction history; conflicts/accessible originals/editorial admission |
+| R09 D2 candidate journey/6B coverage | Printed roster gaps, equal fields, official office records, held campaign excerpt | 55-contest notice union,62 printed candidate entries/11 judges; source-specific office context | Individual styles/current certification, complete county/judicial office coverage, candidate identity/rights/primary-evidence admission; no inferred positions |
+| R10 D2 optional teach-back/recap | Local optional checks, Skip, source-bound ephemeral recap | Earlier provider-off selected-source/withdrawal/Erase behaviors | Connected natural optional teach-back with gentle correction and same-language recap; actual comprehension evidence |
+| R11 D2§4/5 accessibility | Semantic controls, text paths, keyboard, reduced motion, idle warning/extension | Prior scoped desktop/390px source-review checks; native replay1002px | Actual primary voice keyboard/screen-reader/zoom/mobile and geographic text equivalent; no blanket WCAG/Pi claim |
+| R12 D2§4/6F privacy | Human media off, no private voter transport, ephemeral state/Erase; provider disclosure | Source/secret/client/reset checks, synthetic-only actual calls | Resolve private-safe natural input policy; local ASR alone cannot authorize private text downstream; human consent and retention verification |
+| R13 D2§6D failure/interruption | Cancel/reset/stale revisions, deadlines, fail-closed review, exact-source fallback | Offline protocol/job/client checks; real held sessions closed with usage | Live cancellation trigger actually reached, wrong-turn UI/audio recovery, measured human interruption-to-silence; newest recovery did not reach trigger |
+| R14 D2§6F/7 cost/operations | Shared ledger, bounded requests, unique four-purpose package/closure gate, rollback Git | Four package rows0.40 reserved/0.025895 estimate; exact prior CI; no new access | Public access/cost protection, source/editorial/language/on-call ownership and rollback rehearsal before deployment |
+| R15 D2§8/9 repeatable proof | Local run/review artifacts and retained original demo reference | Actual source-only Opus critiques; original video frames/transcript inspected | Uninterrupted real interaction recording/event trace, nonauthor and bilingual/AT review, no mock-as-success claim |
+| R16 D2 statewide/Pi ambition | Application-owned versioned source boundaries; web-first implementation | Local Mac contracts only | Jurisdiction adapters/source coverage and actual Pi memory/display/device tests; no current statewide/Pi readiness |
+
+D2's consented resident research, proposed numerical pilot outcomes and staffing
+are separate release-evidence requirements, not results or newly authorized
+research spending. The October11 video is an interaction reference, not a live
+acceptance recording: [exact asset and transferable patterns](PRIOR-DEMO-REVIEW.md).
 
 English contract tests do not validate Spanish civic meaning. Synthetic audio
 and model transcript matches do not establish pronunciation, acoustic fidelity or

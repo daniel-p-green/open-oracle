@@ -91,3 +91,12 @@ reset statewide. `tests/manual/replay_voice_ui.py` replays captured public route
 events without a model/provider and labels this explicitly; no showcase code
 was copied or new framework/license introduced. Browser replay demonstrates
 rendering/state behavior, not live generation, translation quality or speed.
+
+
+October24 original-film reconciliation: [exact local export review](PRIOR-DEMO-REVIEW.md)
+records hash, sampled timestamps, production-transcript scope and why the
+focused conversational canvas/progressive source disclosure/adaptive example
+are relevant. Current `web/voice.html`, `web/voice.mjs`, `voice_agent.py` and
+`journey.py` are the affected existing owners, not a new renderer/framework.
+This review imported no film code/assets/provider/license assumptions. Fresh
+voice-driven adaptation and spoken/visual parity remain acceptance gaps.

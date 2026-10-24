@@ -2036,3 +2036,18 @@ This is a backfill, not a contemporaneous event stream.
 - **Next:** focused core commit, then original-demo/matrix documentation commit;
   explicit new adversarial Opus request against immutable snapshot and actual
   held evidence. Earlier Message34 already complete, no duplicate in-flight send.
+
+### 2026-10-24 19:06:21 UTC — original-demo acceptance reconciliation
+
+- **Completed core commit:**64972f2 records actual held trials and tested local
+  fixes; no full voice success claimed. Original repositories/video unchanged.
+- **Prepared documentation increment:** existing acceptance matrix now has16
+  stable requirement IDs tracing original stretch/JTBD through implementation,
+  actual evidence and remaining gates. Added verified API roles and explicit
+  managed-Agents not-executed status. PRIOR-DEMO-REVIEW.md records the actual
+  final video SHAedd3497a…d7b69, production-transcript/frame-only review, design
+  patterns and simulated/prerecorded limitations; DEMO-REFERENCES.md links why/how.
+  No separate new feature scope, copied movie code or API demo license assumption.
+- **Next:** commit this bounded reconciliation, use the immutable combined
+  snapshot for the expressly requested adversarial Opus5.5High review, fix proven
+  findings and update existing PR6. No new paid trial under consumed package.
