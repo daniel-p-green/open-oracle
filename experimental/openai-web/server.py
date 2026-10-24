@@ -4,6 +4,7 @@ from pathlib import Path
 import argparse
 import json
 import re
+import hashlib
 import importlib.metadata
 from providers import Held, OpenAIProvider, Pipeline, admitted_corpus
 from jobs import Budget, Jobs
@@ -18,6 +19,12 @@ FILES = {
     '/style.css': (ROOT / 'web/style.css', 'text/css; charset=utf-8'),
     '/fixture.json': (ROOT / 'fixtures/combat.json', 'application/json'),
     '/logo.svg': (ROOT.parents[1] / 'brand/logos/open-oracle-vote.svg', 'image/svg+xml'),
+    '/maps': (ROOT / 'web/maps.html', 'text/html; charset=utf-8'),
+    '/maps.css': (ROOT / 'web/maps.css', 'text/css; charset=utf-8'),
+    '/maps.mjs': (ROOT / 'web/maps.mjs', 'text/javascript; charset=utf-8'),
+    '/map-core.mjs': (ROOT / 'web/map-core.mjs', 'text/javascript; charset=utf-8'),
+    '/map-review-pin.json': (ROOT.parents[1] / 'docs/rebuild/MAP-DERIVATIVE-PIN.json', 'application/json'),
+    '/map-manifest.json': (ROOT.parents[1] / 'docs/rebuild/MAP-SOURCE-MANIFEST.json', 'application/json'),
 }
 REQUEST_ID = re.compile(r'[a-zA-Z0-9_-]{16,64}\Z')
 
@@ -65,6 +72,8 @@ class Handler(BaseHTTPRequestHandler):
                 request = self.path.removeprefix('/api/provider/job/')
                 if not REQUEST_ID.fullmatch(request): raise Held('request_invalid')
                 self.json_reply(200, self.server.jobs.public(self.headers.get('X-Session-Token'), request))
+            elif self.path == '/maps.json' and self.server.maps is not None:
+                self.reply(200, self.server.maps)
             elif self.path in FILES:
                 path, mime = FILES[self.path]
                 self.reply(200, path.read_bytes(), mime)
@@ -104,10 +113,32 @@ class Handler(BaseHTTPRequestHandler):
             self.json_reply(409, {'error': str(error)})
 
 
-def make_server(port=8894, jobs=None):
+def load_maps(directory):
+    directory = Path(directory).resolve()
+    paths = [(directory / name).resolve() for name in ['maps.json', 'receipt.json']]
+    if any(p.parent != directory or not p.is_file() for p in paths): raise ValueError('map_paths')
+    if paths[0].stat().st_size > 8 * 1024 * 1024 or paths[1].stat().st_size > 16384: raise ValueError('map_bounds')
+    raw = paths[0].read_bytes()
+    receipt = json.loads(paths[1].read_text())
+    approved = json.loads((ROOT.parents[1] / 'docs/rebuild/MAP-DERIVATIVE-PIN.json').read_text())
+    actual = hashlib.sha256(raw).hexdigest()
+    if actual != approved['sha256'] or len(raw) != approved['bytes'] or actual != receipt.get('sha256'):
+        raise ValueError('map_integrity')
+    data = json.loads(raw)
+    registry = json.loads((ROOT.parents[1] / 'docs/rebuild/MAP-SOURCE-MANIFEST.json').read_text())
+    if (data.get('version') != 1 or data.get('projection') != 'EPSG:5070' or data.get('sources') != registry['sources']
+            or receipt.get('source_hashes_verified') != 4 or receipt.get('districts_per_plan') != [8, 8]
+            or receipt.get('original_and_projected_geometry_valid') is not True): raise ValueError('map_admission')
+    # Snapshot bytes once; a later file mutation cannot change this review server.
+    return raw
+
+
+def make_server(port=8894, jobs=None, map_review_dir=None):
+    maps = load_maps(map_review_dir) if map_review_dir else None
     server = ThreadingHTTPServer(('127.0.0.1', port), Handler)
     server.daemon_threads = True
     server.jobs = jobs
+    server.maps = maps
     return server
 
 
@@ -119,6 +150,7 @@ if __name__ == '__main__':
     parser.add_argument('--project')
     parser.add_argument('--ledger', type=Path)
     parser.add_argument('--max-runs', type=int, default=1)
+    parser.add_argument('--map-review-dir', type=Path)
     args = parser.parse_args()
     jobs = None
     if args.enable_openai:
@@ -131,7 +163,7 @@ if __name__ == '__main__':
         if ledger.is_relative_to(repository) and '.local' not in ledger.parts:
             parser.error('Keep the operational ledger outside Git or under ignored .local/.')
         jobs = Jobs(Pipeline(admitted_corpus(ROOT / 'fixtures/combat.json'), OpenAIProvider(args.organization, args.project)), Budget(ledger), args.max_runs)
-    server = make_server(args.port, jobs)
+    server = make_server(args.port, jobs, args.map_review_dir)
     print(f'OpenOracle local review: http://127.0.0.1:{server.server_port} ({"providers enabled; no capture/playback" if jobs else "fixtures only"})', flush=True)
     try: server.serve_forever()
     except KeyboardInterrupt: pass

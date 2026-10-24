@@ -152,3 +152,95 @@ This is a backfill, not a contemporaneous event stream.
 - **Blocked by explicit scope:** human mic/speaker journey awaits device and
   utterance consent. No public deployment, Pi modifications, new credentials,
   bulk transcription, purchases or expanded access are authorized.
+
+## 2026-10-24 UTC — bounded evidence and official-map review
+
+- **Direction:** parent authorized the next single primary-source evidence-bundle
+  trial, with at most $5 reserved within the shared $200 ceiling, only after
+  cancellation and hard stopping are verified. Separately authorized a local
+  deterministic side-by-side official map review. No mic/speaker or deployment.
+- **Completed — official API check:** reread Agents session/cancel/create schema
+  and official per-run spending-controller guidance. Managed turns are async;
+  closing a stream is not proof of stopping the server. No verified per-run hard
+  token/spend limit was found; cancellation can be unconfirmed if the initial
+  create outcome/session ID or cancel acknowledgement is lost. The documented
+  Responses spending controller explicitly excludes server-managed agent runs.
+- **Blocked before paid dispatch:** no Agents session/create/inference request
+  was sent. No new spend or reservation; prior conservative reservations remain
+  $0.55. The $5 ceiling is not treated as enforceable merely by reserving money
+  or using a local timeout. This is an unresolved capability guarantee, not an
+  API denial or a request for new credentials. Local preflight remains closed.
+- **Denied, not retried:** direct downloads of the SOS general-election
+  certification PDF and primary filing-register HTML each returned HTTP403.
+  Original bytes were not retained. Indexed discovery text is not admitted
+  evidence. No alternate retrieval, header trick or access expansion attempted.
+- **Completed — independent federal source:** followed FEC's candidate page to
+  current Form2 filing `FEC-1986179`, June21, 2026. Retained the exact PDF and
+  retrieval timestamp; SHA256 begins `82c0b49b0949eb68`. This distinct official
+  filing supports federal identity/filing fields, not Missouri ballot membership.
+  No donor records collected; original and full extraction remain outside Git.
+- **Completed — campaign source capture:** retained the exact campaign issues
+  and about HTML with retrieval times/hashes. Built a local-only bundle with one
+  short attributed campaign excerpt, FEC identifier span and campaign identity
+  span. Full name, filing ID/office/year/committee and campaign self-identification
+  inform the limited review; independent human approval remains pending. No
+  assertions promoted to established facts; no model or public release.
+- **Completed — offline bundle:** verified original/extraction hashes and exact
+  code-point spans for three source documents. Preserved document date or explicit
+  unknown, publisher, locator, claim role and local-only rights scope. Debate
+  transcript explicitly missing; no unauthorized captions or transcription.
+  Repeated logical prepare reuses the stored submission identity. The durable
+  effects ledger rejects changed-payload reuse and redispatch after uncertain
+  creation or Stop; cancel request and confirmed cancellation are distinct.
+  These are local behavior checks, not proof of remote exactly-once execution.
+- **Completed — deterministic map build:** four originals verified; both eight-
+  district coverages and projected geometry valid, with valid coverage edges.
+  EPSG5070, same bounds/scale/style for each paired view, no simplification;
+  display coordinates rounded to 0.1m. WGS84→NAD83 conversion reports 4m accuracy.
+  Derived local JSON is 2,788,006 bytes, SHA256
+  `68b3dec613d58653a64337001bd66b3fa33b18f2184845bd15ad4fdbacde4c25`.
+  No change-area/demographic/partisan inference; shoreline slivers not classified.
+- **Completed — local visual workflow:** served on loopback port8895 with
+  providers off. Actual browser showed paired official maps, source hashes and
+  legal/version/rights limitations. Statewide/KC views and district5 selection
+  synchronously changed both panels; DOM inspection confirmed identical SVG
+  viewBoxes, one selected district per panel, no media elements or desktop overflow.
+  Improved label size after visually inspecting the regional view. Narrow viewport,
+  keyboard and StLouis checks are the remaining visual acceptance checks.
+- **Direction/skills:** Daniel explicitly requested appropriate skills including
+  the Peter Steinberger one, with proportionate meaningful testing. Located/read
+  actual installed `test-audit/SKILL.md` and its provenance/writing-tests guidance:
+  locally adapted OpenClaw skill pinned at `3260cae2`, not an individually verified
+  Peter-authored file. Also read installed `oracle/SKILL.md` (`@steipete/oracle`);
+  it concerns review bundling, not an anti-testing rule. No external Oracle run or
+  bundle transmission. Searched installed skill/plugin roots; no separate named
+  Peter/software-engineering anti-test skill found. OpenAI Docs and codebase-design
+  remain consulted; Evals routing/evaluate-rag distinguishes source admission from
+  generation quality. No synthetic metric or authored fixture count is a quality claim.
+- **Test-audit application:** retain distinct version/source/role, lifecycle and
+  idempotence checks. Removed a new redundant assertion of the constant closed
+  preflight; the actual offline build receipt demonstrates zero provider calls.
+  Corrected a map negative control so source tampering and false geometry receipt
+  fail independently. No broad test-pruning or new model evaluation campaign.
+- **Completed — final visual checks:** StLouis view and Tab/Enter district1
+  selection worked in the actual browser. At a 320×700 viewport, document width
+  measured305px, both map panels279.4px and stacked with identical bounds; no
+  horizontal overflow. Restored desktop viewport, selected KC/district5 and saved
+  screenshots outside Git. Inspected browser console had no errors/warnings.
+  These are visual/keyboard checks, not screen-reader, bilingual or Pi proof.
+- **Completed — independent findings/fixes:** reviewer reproduced acceptance of
+  invented overlapping paths with a self-authored map receipt. Added an independent
+  application-owned derivative hash/byte pin checked by server and browser;
+  copied source metadata/true flags cannot authorize another map. Replaced the
+  synthetic positive receipt test with the forged-receipt regression and labeled
+  shape checks separately from actual GIS coverage proof. Reviewer also found that
+  Stop could discard a late successful session ID. Matching submission identity
+  now retains that ID in stop_requested for cancellation/reconciliation, never
+  resumes or redispatches, and rejects conflicting IDs. These future remote
+  lifecycle semantics do not claim a live cancellation guarantee.
+- **Completed — verification:** required offline JS/Python/loopback gates and
+  syntax/diff checks pass. Independent reviewer verified only the repaired cases:
+  actual pinned derivative accepted, invented derivative rejected, stopped job
+  retains late ID without resuming. No additional provider/GIS calls or blanket
+  suite repetition in that follow-up. Human map/legal/rights and remote-cancel
+  approval remain unproven.

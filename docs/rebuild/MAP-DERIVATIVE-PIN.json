@@ -1,0 +1,9 @@
+{
+  "status": "application-pinned local visual review; not human release approval or license",
+  "sha256": "68b3dec613d58653a64337001bd66b3fa33b18f2184845bd15ad4fdbacde4c25",
+  "bytes": 2788006,
+  "projection": "EPSG:5070",
+  "basis": "Four pinned originals, original/projected validity and coverage-edge checks, deterministic no-simplification build, actual local browser comparison reviewed 2026-10-24.",
+  "input_manifest": "MAP-SOURCE-MANIFEST.json",
+  "scope": "English deterministic local map review only; no personal district inference, public deployment or change statistics. New derivatives require review and explicit application pin update."
+}
