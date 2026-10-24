@@ -2142,3 +2142,37 @@ This is a backfill, not a contemporaneous event stream.
   yet. New normal denial would stop it; no alternate launcher/bypass.
 - **Remote:**21a5e55 pushed, both exact-head offline-contracts pass40126538052 and
  40126533700. No newly paid call beyond completed fourvoice package at this entry.
+
+### 2026-10-24 19:58:06 UTC — normal review rejected new text dispatch; no execution
+
+- **Denied:** .api-test-venv/bin/python text_contract_bounded_trial.py, four
+  fixed public EN/ES text requests/0.01 reservation under existing200 cap.
+  Automatic review: new paid external test outside specifically approved
+  fourtrialvoice package; broad200 cap alone does not authorize additional spend.
+  CreateProcess rejected, known not executed. No pending requestID returned.
+  Verified ledger: zero new text rows, reservations2.56, recorded estimate
+ 0.3013148 unchanged. No retry or alternate route attempted.
+- **Concrete next approval:** docs/rebuild/API-TEST-APPROVAL-BUNDLE.md proposes
+  one staged bundle covering text and subsequent voice/named repair/recovery,
+  maximum6runs/52attempts/0.42 reserved inside200, fixed public data/account,
+  prerequisites/stop conditions/no human media/no newaccess. Planning only; no
+  approval received or execution queued. Earlier0.01 request not re-launched.
+- **Independent work:**74635eb source fixes committed; push in progress/check
+  outcome before retry. Existing provider-off/normalization/lease/protocol checks
+  passed. Old Chrome8925 host-policy denial remains separate and unbypassed.
+
+### 2026-10-24 20:00:49 UTC — latest source push verified; paid scope remains blocked
+
+- **Completed:**74635eb pushed to existing draftPR6. Both exact-code checks
+  passed:40127513264 and40127508941. No merge/deployment. Existing original
+  HackMidwest/Pi repositories remain unchanged.
+- **Unchanged paid state:** all4 voice trials terminal, no accepted audio in
+  that package, recovery trigger not reached;0.025895 estimated/0.40 reserved.
+  New text launch denied before execution, zero text rows/reservations added.
+  Parent has exact one-bundle proposal in API-TEST-APPROVAL-BUNDLE.md; new
+  package must be separately authorized/enforced, never reopen/reset old rows.
+- **Still open:** true multi-turn EN/ES audio+captions+generative UI evidence,
+  per-turn language switching/context, safe useful audio latency, map geographic
+  interpretation, private-safe human capture and primary browser/human QA.
+  Host-policy-denied localhost8925 check remains un-retried. No credit-login
+  bypass, new credentials, human media, unbounded ingest or public readiness claim.
