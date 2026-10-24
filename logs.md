@@ -1055,3 +1055,45 @@ This is a backfill, not a contemporaneous event stream.
   operation was retried. New work has zero paid usage; existing ledger unchanged.
   No merge/deployment, credentials, private voter data or human media authority
   is sought. Main chat owns the consolidated question with Daniel.
+
+
+### 2026-10-24 09:32 UTC — late office-source repair and exact approval snapshot
+
+- **Completed commit:** `77a2041` implements the55-contest retained-notice browser,
+  compiler/provenance, typed presentation, source recap/withdrawal and validation
+  above. All writes stayed in the isolated rebuild/task workspace; old source
+  originals remain unchanged.
+- **Completed root finding/repair:** old showOffice could display a delayed
+  source after Stop. Added read-only snapshot() to the existing session owner,
+  shared abort/timeout and stale-revision rejection; browsing does not begin or
+  reset a second session. Deliberate source requests after Stop use a fresh
+  shared controller. No grounding/source threshold changed.
+- **Completed actual failure/recovery verification:** provider-off local HTTP
+  delayed the public office response. Pending read→Stop showed stopped; releasing
+  the late response did not display term text. A deliberate new read succeeded;
+  Erase removed the view and speaker consent stayed off. Temporary diagnostic
+  server/tab closed. Ordinary current-build browser repeated read-after-Stop
+  with all three District6 candidate rows retained. Node regression suite and
+  changed syntax/whitespace passed; independent narrow source review found no
+  consequential lifecycle regression. No additional test-count target.
+- **Completed review preparation only:** refreshed narrow Oracle-rendered bundle
+  `openoracle-current-source-review.md`,307129bytes, SHA256
+  `6955c310de8625f85336df1f5af268b8458d90e17da5080ff25463be3eee8f59`.
+  Contains16 explicitly enumerated relevant application/code/data files, including
+  source inventory and session repair; exact file hashes are in the adjacent
+  manifest outside Git. Credential/account-pattern scan passed. This replaces
+  the obsolete eight-file proposal for approval purposes, not an upload retry.
+  No attachment/submission/new Opus critique occurred.
+- **Pending consolidated approval:** task-workspace
+  `openoracle-pending-approval-bundle.md` names the final exact local commit set
+  for existing public draft PR6, the above16-file Claude payload/destination,
+  and one at-most$0.20 synthetic Spanish Responses/Decisions→gpt-live-1/
+  gpt-transcribe trial within shared$200. No merge/deploy, new access, private
+  voter data or human media. No denied action retried; no new usage/reservation.
+  Main chat owns the single question with Daniel. Proposed bundle is outside
+  Git so it can name the final committed snapshot without a self-reference.
+- **Still open:** complete individual ballot styles/current certification and
+  write-in eligibility; candidate identity/rights/background coverage; new-measure
+  interpretations; broader fresh multilingual input/voice/composition; human
+  civic/pronunciation/screen-reader/device and latency acceptance. The current
+ 55-contest source browser is useful implementation, not full stretch completion.

@@ -767,8 +767,10 @@ function showEffects() {
 }
 async function showOffice(host = $("journey-tools")) {
   stopSpeechForReading();
+  requestController ??= new AbortController();
   const anchor = el("section"),
-    language = locale;
+    language = locale,
+    ticket = session.snapshot();
   host.replaceChildren(anchor);
   anchor.append(
     el(
@@ -779,8 +781,20 @@ async function showOffice(host = $("journey-tools")) {
     ),
   );
   try {
-    const source = await loadHouseOffice(AbortSignal.timeout(5000));
+    const source = await loadHouseOffice(
+      AbortSignal.any([
+        AbortSignal.timeout(5000),
+        ...(requestController ? [requestController.signal] : []),
+      ]),
+    );
     if (!anchor.isConnected || locale !== language) return;
+    if (!session.current(ticket)) {
+      anchor.textContent =
+        language === "es"
+          ? "Se detuvo la carga de la fuente."
+          : "Source loading stopped.";
+      return;
+    }
     anchor.replaceChildren(
       el(
         "h3",
@@ -809,8 +823,11 @@ async function showOffice(host = $("journey-tools")) {
     );
   } catch {
     if (anchor.isConnected && locale === language)
-      anchor.textContent =
-        language === "es"
+      anchor.textContent = !session.current(ticket)
+        ? language === "es"
+          ? "Se detuvo la carga de la fuente."
+          : "Source loading stopped."
+        : language === "es"
           ? "Fuente de la función del cargo no disponible."
           : "Official office explanation unavailable.";
   }

@@ -83,6 +83,7 @@ export function createSession() {
   return {
     begin(now=Date.now()) { latestActivity=now; return ++revision; },
     current(ticket) { return revision===ticket; },
+    snapshot() { return revision; },
     reset(now=Date.now()) { latestActivity=now; ++revision; },
     touch(now=Date.now()) { latestActivity=now; },
     idle(now=Date.now()) { return now-latestActivity>=IDLE_MS; },

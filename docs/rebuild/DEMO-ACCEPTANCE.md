@@ -64,3 +64,9 @@ write-in, candidate-background, new-measure interpretation, human accessibility
 or provider/multilingual voice gates. KCEB bytes are still the explicitly dated
 October9 snapshot. A fresh Congress.gov read returned restricted URL and was
 stopped; no alternative access or new background admission followed.
+
+
+Late office-source Stop race repaired using a read-only revision snapshot from
+the existing owner. Actual delayed local HTTP response was withheld after Stop;
+a deliberate new read and Erase succeeded. Independent narrow review closed the
+repair. No human/media/provider acceptance is implied.
