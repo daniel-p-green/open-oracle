@@ -29,3 +29,8 @@ Typed questions remain in tab memory. Default mode has no active providers; expl
 3. Within the subsequently authorized bounded testing budget, compare Responses generation with the finite baseline, calibrate review behavior, and prove a complete human journey on Mac. Then assess actual Pi hardware, Spanish language review and physical controls.
 
 The initial fixture checkpoint made no paid API calls. Later authorized isolated and integrated tests are recorded in [the consent/API checkpoint](CONSENT-AND-API-CHECKPOINT.md). The integrated local path prepared source-checked text and fully transcript-matched buffered audio; playback remains disabled. No new credentials/access grants, VGC MCP queries, deployment or Pi changes occurred. The user separately authorized project commits/PRs; this branch contains the rebuild brief, isolated experiment, evidence and revised product plans.
+
+The next bounded [evidence/map checkpoint](EVIDENCE-AND-MAP-CHECKPOINT.md) contains
+an actual deterministic local map review and offline primary-source bundle.
+Paid Agents inference remains blocked before creation by unverified hard cost/stop
+controls; the first map review is English-only and has no voice integration.

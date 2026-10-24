@@ -70,3 +70,37 @@ to disk. Conservative reservations are retained for unknown billing outcomes.
 The public-repository CI workflow runs only fixture/mock/loopback tests with
 read-only permissions, pinned official Actions and no model credentials or paid
 services. Remote CI success must be checked separately from local passes.
+
+## Local official-map research review
+
+This uses retained, hash-pinned official files, with no tile service or inference.
+The source bytes and derived map JSON remain outside the repository. Supply the
+four exact filenames/versions in `docs/rebuild/MAP-SOURCE-MANIFEST.json`.
+
+```sh
+# From the repository root, using a separate build-time Python environment:
+python3.13 -m venv ../.map-venv
+../.map-venv/bin/python -m pip install -r experimental/openai-web/research/requirements-maps.txt
+../.map-venv/bin/python experimental/openai-web/research/build_maps.py --inputs ../map-research --output ../map-review
+python3 experimental/openai-web/server.py --port 8895 --map-review-dir ../map-review
+# Open http://127.0.0.1:8895/maps
+```
+
+A rebuilt derivative must match the independently reviewed application pin;
+changed tooling/input/output holds until reviewed and explicitly repinned. A
+self-authored receipt cannot grant admission. The builder validates the original
+and projected geometries/coverage edges but does not classify political changes,
+prove absence of holes or calculate population/partisan effects. State reuse
+rights and legal freshness remain explicit. No geometry/source archive is in Git.
+
+The offline candidate-bundle compiler uses retained originals in a separate
+private folder and never calls a model:
+
+```sh
+python3 experimental/openai-web/research/build_evidence.py --inputs ../evidence-research --output ../evidence-review
+```
+
+This one-candidate research harness admits exact pinned filing/campaign excerpts
+for local review; it is not a general ingestion connector or publication approval.
+The managed Agents paid trial remains closed: verified remote cost and hard-stop
+controls are missing. See [actual results and blockers](../../docs/rebuild/EVIDENCE-AND-MAP-CHECKPOINT.md).

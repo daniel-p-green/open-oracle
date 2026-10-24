@@ -244,3 +244,16 @@ This is a backfill, not a contemporaneous event stream.
   retains late ID without resuming. No additional provider/GIS calls or blanket
   suite repetition in that follow-up. Human map/legal/rights and remote-cancel
   approval remain unproven.
+- **Completed — commits/recovery evidence:** `bfd3fbf` records the official-map
+  review and its independent derivative pin. Re-running the actual offline
+  candidate compiler at03:46:13 UTC produced the same bundle hash
+  `26ff2a77361d873d6494c987461209ad732c2f5e02a3896f0e9faa38f010702b`,
+  reused the durable logical job identity and remained cancelled_locally, without
+  session creation or additional spend. Opened that local bundle for review.
+- **Completed — final browser admission:** after restarting only the owned map
+  server, the application-pinned derivative loaded in the actual browser and KC/
+  district5 highlighting worked. Final screenshot retained outside Git. Providers
+  remain disabled on this map-review server.
+- **Planned:** publish focused map/evidence commits to existing draft PR6 and
+  verify its actual remote CI. Keep managed inference, publication, bilingual
+  civic release, human voice and Pi gates held; no new approval is assumed.
