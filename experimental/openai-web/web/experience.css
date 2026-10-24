@@ -474,3 +474,11 @@ body.has-content .product-intro .intro {
   padding-inline-start: 1rem;
   border-inline-start: 3px solid #607d76;
 }
+
+.source-reading-guide {
+  margin-block: 1rem;
+}
+#inventory-detail mark {
+  background: #fff0a1;
+  color: #122b27;
+}

@@ -1,3 +1,4 @@
+import { INVENTORY_VERSION } from "./office-source.mjs";
 import { QUESTION_VERSION } from "./measure-source.mjs";
 import { publicJourneyAction } from "./journey-core.mjs";
 
@@ -6,7 +7,7 @@ import { publicJourneyAction } from "./journey-core.mjs";
 // confirmation selects this public operation; this is not a general chatbot.
 export function draftPublicIntent(
   text,
-  { journeyActive = false, language = "en" } = {},
+  { journeyActive = false, language = "en", sourceContext = null } = {},
 ) {
   if (
     !["en", "es"].includes(language) ||
@@ -82,6 +83,38 @@ export function draftPublicIntent(
       return fixed("journey", "simpler");
     return null;
   }
+  if (
+    sourceContext?.version === INVENTORY_VERSION &&
+    typeof sourceContext.id === "string" &&
+    Array.isArray(sourceContext.operations)
+  ) {
+    const patterns = {
+      office: /^(?:what does this office do|que hace este cargo)$/,
+      read_parts:
+        /^(?:read (?:this |it )?in parts|help me read this|leer por partes|ayudame a leer esto)$/,
+      source_check:
+        /^(?:check this source|check my understanding of this source|comprobar esta fuente)$/,
+      source:
+        /^(?:show (?:me )?(?:the )?(?:original|source|exact wording)|where does that come from|mostrar (?:la )?fuente|de donde viene eso)$/,
+      challenge:
+        /^(?:that (?:seems|sounds|looks) wrong|this transcription may be wrong|eso (?:parece|esta) mal|esta transcripcion puede estar equivocada)$/,
+      recap:
+        /^(?:recap|recap this source|show (?:me )?my recap|resumir esta fuente|mi resumen)$/,
+    };
+    const operation = Object.keys(patterns).find((op) => patterns[op].test(q));
+    if (operation)
+      return sourceContext.operations.includes(operation)
+        ? Object.freeze({
+            kind: "inventory",
+            operation,
+            language,
+            source_version: INVENTORY_VERSION,
+            context_id: sourceContext.id,
+          })
+        : null;
+    // A selected public notice must never inherit a different topic's "it".
+    return null;
+  }
   if (!journeyActive) return null; // Never resolve "it" to an unrelated measure.
   if (
     /^(?:say that (?:more simply|in simpler words)|explain (?:it|that) (?:more simply|in (?:plain|simple|simpler) (?:words|language))|make (?:it|that) simpler|use simpler words|expli(?:ca|que)(?:me|melo|lo)?(?: eso)? con palabras (?:mas )?sencillas)$/.test(
@@ -129,6 +162,32 @@ export function draftPublicIntent(
 }
 
 export function publicIntentLabel(draft, language = "en") {
+  if (draft?.kind === "inventory") {
+    const labels = {
+      office: [
+        "Office responsibilities · official source",
+        "Funciones del cargo · fuente oficial",
+      ],
+      read_parts: [
+        "Read original words in parts",
+        "Leer el texto original por partes",
+      ],
+      source_check: [
+        "Optional source comprehension check",
+        "Comprobación opcional de la fuente",
+      ],
+      source: [
+        "Focus the original source link",
+        "Ir al enlace de la fuente original",
+      ],
+      challenge: [
+        "Withdraw this transcription from the view",
+        "Retirar esta transcripción de la vista",
+      ],
+      recap: ["Recap this public source", "Resumir esta fuente pública"],
+    };
+    return labels[draft.operation]?.[language === "es" ? 1 : 0] ?? "";
+  }
   const labels = {
     en: {
       overview: "Proposition A · explanation of the question",

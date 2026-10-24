@@ -1,0 +1,165 @@
+{
+  "version": 1,
+  "inventory_sha256": "0eda572a493274e25e845a1276b8ec28c3321dc40a8c2f13b7d761ad95645773",
+  "purpose": "Exact original reading aids, not generated explanations or Yes/No interpretations",
+  "civic_interpretations_admitted": false,
+  "guides": [
+    {
+      "contest_id": "amendment-3",
+      "source_id": "jceb",
+      "wording_sha256": "9da56fb6e9b81af6c2e3cb89f1f23f43fe7e69a669012d6d3338b2b0467c62d4",
+      "normalized_wording_sha256": "ed613711cacfc5fcb94fff0c61b72371a3b12c3978b1c2a8fdbf7d711a049557",
+      "ranges": [
+        {
+          "role": "conditions",
+          "start": 178,
+          "end": 281,
+          "text": "Allow abortions for rape and incest (under twelve- weeks’ gestation), emergencies, and fetal anomalies;",
+          "sha256": "6baa25adce1e41e2d185248a2cac2552ce0168b216d1c574e21d9d2a731fa8c0"
+        }
+      ]
+    },
+    {
+      "contest_id": "amendment-6",
+      "source_id": "jceb",
+      "wording_sha256": "02872f357132b8547a3e0f732e35eb7a1f7b999dec370f9fa8322f8cded207b5",
+      "normalized_wording_sha256": "004bbf7ae00c134698adbe8ff5bd0556daa76471887f5eaaad4e89709e9db015",
+      "ranges": [
+        {
+          "role": "condition",
+          "start": 274,
+          "end": 480,
+          "text": "prohibit the legislature from changing or repealing laws enacted through the initiative process, or passing laws similar to those rejected by referendum, without approval from at least 80% of both chambers;",
+          "sha256": "5a351340d9334acc6c2c190f7ebc41fb2d1dc4f550d9a129e3431446d0f8ac7e"
+        }
+      ]
+    },
+    {
+      "contest_id": "amendment-7",
+      "source_id": "jceb",
+      "wording_sha256": "200275be4d7c5eaa8c9b36f1c88c8bb16be2e9e9e84723f717db164dba30fe63",
+      "normalized_wording_sha256": "58d6f8fcfe99a8ca65b25f73dd67eaca74d4d3f9140ea5342dbb6822ee6f912c",
+      "ranges": [
+        {
+          "role": "full_condition",
+          "start": 0,
+          "end": 321,
+          "text": "Shall the Missouri Constitution be amended to establish a permanent public endowment fund to support state government instead of taxing Missouri residents, prohibit the General Assembly from appropriating or diverting the fund, and eliminate state-imposed taxes once the fund generates sufficient revenue to replace them?",
+          "sha256": "708d82484e772ab30ce77359d2d8123474f1cdc45ac709415abebea54ec70f6d"
+        }
+      ]
+    },
+    {
+      "contest_id": "amendment-8",
+      "source_id": "jceb",
+      "wording_sha256": "bfeec8ff19a6f572a913339290720bebaeb0dd3646e6edb9badb1767650f49bf",
+      "normalized_wording_sha256": "061cd7b00cbf4cf9c96d35e166ec4c2fd3929ae3c6d3cd1eaa91cda93d16de6f",
+      "ranges": [
+        {
+          "role": "full_condition",
+          "start": 0,
+          "end": 290,
+          "text": "Shall the Missouri Constitution be amended to support law enforcement by preserving the right of citizens to elect a county sheriff, prohibiting the removal of a county sheriff except by a writ of quo warranto, and recognizing the office of sheriff as part of the administration of justice?",
+          "sha256": "dd96a28491c19d870a4b18dad90024a68c593e99e76b8a870c12889b32cbd156"
+        }
+      ]
+    },
+    {
+      "contest_id": "proposition-a",
+      "source_id": "jceb",
+      "wording_sha256": "85c0e06eeaa5900387b267d92e65808bc3c177708eeea220258bfbd4f009ed3b",
+      "normalized_wording_sha256": "d843fcca99877a1f497ba4b1eb5016e74197db6641b1bf96278e8dcdd3f4412d",
+      "ranges": [
+        {
+          "role": "full_question",
+          "start": 0,
+          "end": 279,
+          "text": "Do the people of the state of Missouri approve the act of the General Assembly entitled “House Bill No. 1 (2025 Second Extraordinary Session),” which repeals Missouri’s existing congressional plan, and replaces it with new congressional boundaries that keep more counties intact?",
+          "sha256": "9d3c1940cfa84e4bfeda9da6a353d9530f77b91298f07d71f94ac0bf45273fe3"
+        }
+      ]
+    },
+    {
+      "contest_id": "county-question-1",
+      "source_id": "jceb",
+      "wording_sha256": "11dc177970236e7ec3853cb1c7b585e07a7c39fd99e7b4f136e61271307c903f",
+      "normalized_wording_sha256": "ae547bb4af3eae3d6196cd6d0caaf2abdefd83de230372abbbb1ad1ca9127725",
+      "ranges": [
+        {
+          "role": "rate_and_duration",
+          "start": 82,
+          "end": 146,
+          "text": "at the rate of one-quarter of one cent for a period of ten years",
+          "sha256": "de84bee11f73855755414ff6b0699cf0660411711503dfeb23494a00a104246b"
+        },
+        {
+          "role": "separate_fund",
+          "start": 395,
+          "end": 557,
+          "text": "The proceeds of this tax shall be deposited in a special Jackson County Anti-Crime Sales Tax Trust Fund, separate from the general fund or any other county funds.",
+          "sha256": "3baaae379d34c0fb16b3ae9d0c4f61d4e6ef9488775032aa2bf54ca421a77186"
+        }
+      ]
+    },
+    {
+      "contest_id": "blue-springs-question",
+      "source_id": "jceb",
+      "wording_sha256": "11752e03819dcb1afbdaf2ccd58418a9c37adca0c5a9f32a6cd3a4291b6d58b6",
+      "normalized_wording_sha256": "791088292baefa1ba534b6d7e68a726b5d054e33d64c73fc1c1cc73d241f41d2",
+      "ranges": [
+        {
+          "role": "rate_and_condition",
+          "start": 0,
+          "end": 288,
+          "text": "Shall the City of Blue Springs, Missouri impose a local use tax at the same rate as the total local sales tax rate, currently 2.5%, provided that if the local sales tax rate is reduced or raised by voter approval, the local use tax rate shall also be reduced or raised by the same action?",
+          "sha256": "adc5c90096f20344882a8cf5a4a82f9eb9d0293a43420be80ae0fd940c1b79c5"
+        }
+      ]
+    },
+    {
+      "contest_id": "independence-bond-1",
+      "source_id": "jceb",
+      "wording_sha256": "c3eb4b116eb66734ca6cedf28480cfa57ceb914e0caa55311918f0d731d2a42c",
+      "normalized_wording_sha256": "1b505f658732fd7ff5b9f28f6ddc0121a264ad4ec75c3cfd3e09f7a255429c4e",
+      "ranges": [
+        {
+          "role": "amount_and_purpose",
+          "start": 0,
+          "end": 431,
+          "text": "Shall the City of Independence, Missouri issue its general obligation bonds in the amount of $19,900,000 for the purpose of renovating, improving and equipping historic buildings, facilities and grounds, and for the creation of a 20-year business plan for historic buildings, with priority given to the Bingham-Waggoner Estate, the Vaile Mansion, the Truman Memorial Building, the Old Fire Station One, and the 1827 Log Courthouse?",
+          "sha256": "1b505f658732fd7ff5b9f28f6ddc0121a264ad4ec75c3cfd3e09f7a255429c4e"
+        }
+      ]
+    },
+    {
+      "contest_id": "lees-summit-question",
+      "source_id": "jceb",
+      "wording_sha256": "25f74499bd9e3f80f74443260230848d7e82259b2c07d14b5506560a9ab82073",
+      "normalized_wording_sha256": "edd161612b055eebae9914b2ac64f1e44df00196af85d0a9ed49e89a12b6fe05",
+      "ranges": [
+        {
+          "role": "full_question",
+          "start": 0,
+          "end": 117,
+          "text": "Should the municipality of Lee's Summit, Missouri, provide for residential city-wide solid waste collection services?",
+          "sha256": "edd161612b055eebae9914b2ac64f1e44df00196af85d0a9ed49e89a12b6fe05"
+        }
+      ]
+    },
+    {
+      "contest_id": "sni-valley-question",
+      "source_id": "jceb",
+      "wording_sha256": "de2f12e4a1ccdf49b8c5d3a8ce54ebbb37ddeeb8d582bd084f68ca11be38a54d",
+      "normalized_wording_sha256": "2cd9f09de1f12d71631808e733df3f5180932353bd768bcdc888d5a4dc1661fe",
+      "ranges": [
+        {
+          "role": "full_condition",
+          "start": 0,
+          "end": 441,
+          "text": "Shall Sni Valley Fire Protection District impose a sales tax of one percent (1%) for the purpose of providing revenues for the operation of the Sni Valley Fire Protection District and the total property tax levy on properties in the Sni Valley Fire Protection District shall be reduced annually by an amount which reduces property tax revenues by an amount equal to fifty percent of the previous year's revenue collected from this sales tax?",
+          "sha256": "2cd9f09de1f12d71631808e733df3f5180932353bd768bcdc888d5a4dc1661fe"
+        }
+      ]
+    }
+  ]
+}

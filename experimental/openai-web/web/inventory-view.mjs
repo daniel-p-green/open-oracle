@@ -1,4 +1,9 @@
-import { loadContestInventory } from "./office-source.mjs";
+import {
+  loadContestInventory,
+  officeFamily,
+  INVENTORY_VERSION,
+} from "./office-source.mjs";
+import { mountReadingGuide, mountSourceCheck } from "./reading-guide.mjs";
 
 // Presentation state only. Session, cancellation, speech and evidence admission
 // remain owned by the application; this component cannot start paid work.
@@ -25,7 +30,17 @@ const button = (host, label, action) => {
 
 export async function mountContestInventory(
   host,
-  { language, signal, isCurrent, onRead, onOffice, onMeasure, translationNote },
+  {
+    language,
+    signal,
+    isCurrent,
+    onRead,
+    readContext,
+    onOffice,
+    onMeasure,
+    onActions,
+    translationNote,
+  },
 ) {
   const anchor = el("section");
   const text = (en, es) => (language === "es" ? es : en);
@@ -103,6 +118,7 @@ export async function mountContestInventory(
           c.occurrences.some((o) => o.source_id === authority.value),
       );
     function drawChoices() {
+      onActions(null);
       onRead();
       const placeholder = el(
         "option",
@@ -133,6 +149,7 @@ export async function mountContestInventory(
       }
     }
     function drawContest() {
+      onActions(null);
       onRead();
       const contest = available().find((c) => c.id === selection.value);
       detail.replaceChildren();
@@ -148,6 +165,7 @@ export async function mountContestInventory(
         ),
       );
       if (language === "es") detail.append(el("p", translationNote));
+      let readingButton = null;
       for (const occurrence of contest.occurrences.filter(
         (o) => authority.value === "all" || o.source_id === authority.value,
       )) {
@@ -232,6 +250,18 @@ export async function mountContestInventory(
               ),
               original,
             );
+            if (contest.kind === "measure" && occurrence.source_id === "jceb")
+              readingButton = mountReadingGuide(
+                section,
+                original,
+                contest,
+                occurrence,
+                {
+                  language,
+                  readContext,
+                  onRead,
+                },
+              );
           } else
             section.append(
               el(
@@ -307,55 +337,76 @@ export async function mountContestInventory(
         );
         detail.append(section);
       }
+      const sourceCheckButton = mountSourceCheck(detail, { language, onRead });
       const recap = el("section");
       recap.tabIndex = -1;
-      button(detail, text("Recap this source", "Resumir esta fuente"), () => {
-        onRead();
-        recap.replaceChildren(
-          el(
-            "h4",
-            text(
-              "Source recap · this tab only",
-              "Resumen de la fuente · solo en esta pestaña",
-            ),
-          ),
-        );
-        recap.append(
-          el("p", contest.label),
-          el(
-            "p",
-            text(
-              "This is a public-notice selection, not a verified personal ballot. Background explanations, individual applicability and eligible write-ins remain unresolved. No vote choice is saved.",
-              "Esta es una selección de un aviso público, no una boleta personal verificada. Siguen sin resolverse las fuentes de contexto, la aplicabilidad personal y los candidatos elegibles por escrito. No se guarda una elección de voto.",
-            ),
-          ),
-        );
-        for (const occurrence of contest.occurrences.filter(
-          (o) => authority.value === "all" || o.source_id === authority.value,
-        )) {
-          const source = value.sources[occurrence.source_id];
-          recap.append(
-            link(
-              source.url +
-                (occurrence.source_id === "jceb"
-                  ? "#page=" + occurrence.page
-                  : ""),
-              source.publisher +
-                " · " +
-                text("page ", "página ") +
-                occurrence.page,
+      const recapButton = button(
+        detail,
+        text("Recap this source", "Resumir esta fuente"),
+        () => {
+          onRead();
+          recap.replaceChildren(
+            el(
+              "h4",
+              text(
+                "Source recap · this tab only",
+                "Resumen de la fuente · solo en esta pestaña",
+              ),
             ),
           );
-        }
-        recap.focus();
-      });
-      button(
+          recap.append(
+            el("p", contest.label),
+            el(
+              "p",
+              text(
+                "This is a public-notice selection, not a verified personal ballot. Background explanations, individual applicability and eligible write-ins remain unresolved. No vote choice is saved.",
+                "Esta es una selección de un aviso público, no una boleta personal verificada. Siguen sin resolverse las fuentes de contexto, la aplicabilidad personal y los candidatos elegibles por escrito. No se guarda una elección de voto.",
+              ),
+            ),
+          );
+          const marked = detail.querySelector("mark");
+          if (marked) {
+            const quote = el("blockquote", marked.textContent);
+            quote.lang = "en";
+            recap.append(
+              el(
+                "p",
+                text(
+                  "Selected original passage · JCEB",
+                  "Pasaje original seleccionado · JCEB",
+                ),
+              ),
+              quote,
+            );
+          }
+          for (const occurrence of contest.occurrences.filter(
+            (o) => authority.value === "all" || o.source_id === authority.value,
+          )) {
+            const source = value.sources[occurrence.source_id];
+            recap.append(
+              link(
+                source.url +
+                  (occurrence.source_id === "jceb"
+                    ? "#page=" + occurrence.page
+                    : ""),
+                source.publisher +
+                  " · " +
+                  text("page ", "página ") +
+                  occurrence.page,
+              ),
+            );
+          }
+          recap.focus();
+        },
+      );
+      const challengeButton = button(
         detail,
         text(
           "This transcription may be wrong",
           "Esta transcripción puede estar equivocada",
         ),
         () => {
+          onActions(null);
           onRead();
           const originals = contest.occurrences.filter(
             (o) => authority.value === "all" || o.source_id === authority.value,
@@ -385,22 +436,39 @@ export async function mountContestInventory(
               ),
             );
           }
+          button(
+            detail,
+            text(
+              "Show saved transcription again",
+              "Mostrar de nuevo la transcripción guardada",
+            ),
+            drawContest,
+          );
           detail.focus();
         },
       );
       detail.append(recap);
-      if (contest.id.startsWith("us-house-")) {
+      let officeButton = null;
+      const family = officeFamily(contest);
+      if (family) {
         const officeHost = el("section");
-        button(
+        officeButton = button(
           detail,
-          text(
-            "What does the U.S. House do?",
-            "¿Qué hace la Cámara de Representantes de EE. UU.?",
-          ),
-          () => void onOffice(officeHost),
+          text("What does this office do?", "¿Qué hace este cargo?"),
+          () => void onOffice(officeHost, family),
         );
         detail.append(officeHost);
       }
+      if (contest.kind === "candidate_election" && !family)
+        detail.append(
+          el(
+            "p",
+            text(
+              "Verified office responsibilities and term information have not been loaded for this contest.",
+              "No se han cargado aquí fuentes verificadas sobre las funciones y el mandato de este cargo.",
+            ),
+          ),
+        );
       if (contest.id === "proposition-a")
         button(
           detail,
@@ -410,6 +478,25 @@ export async function mountContestInventory(
           ),
           () => void onMeasure(),
         );
+      const invoke = (control) => () => {
+        if (control.isConnected && !control.disabled) {
+          control.focus();
+          control.click();
+        }
+      };
+      onActions({
+        id: authority.value + ":" + contest.id,
+        title: contest.label,
+        source_version: INVENTORY_VERSION,
+        actions: {
+          source: () => detail.querySelector("a.source-link")?.focus(),
+          source_check: invoke(sourceCheckButton),
+          recap: invoke(recapButton),
+          challenge: invoke(challengeButton),
+          ...(readingButton ? { read_parts: invoke(readingButton) } : {}),
+          ...(officeButton ? { office: invoke(officeButton) } : {}),
+        },
+      });
     }
     authority.onchange = drawChoices;
     selection.onchange = drawContest;

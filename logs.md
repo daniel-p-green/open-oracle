@@ -1097,3 +1097,76 @@ This is a backfill, not a contemporaneous event stream.
   interpretations; broader fresh multilingual input/voice/composition; human
   civic/pronunciation/screen-reader/device and latency acceptance. The current
  55-contest source browser is useful implementation, not full stretch completion.
+
+
+### 2026-10-24 10:18 UTC — source-bound comprehension and admitted office contexts
+
+- **Decision/completed:** continued independent local implementation against the
+  original stretch office/explanation/challenge/optional-teach-back/recap jobs.
+  Reused the existing session/abort/audio owner; no new controller or framework.
+  Peter Steinberger's installed Oracle guidance remains the actual consulted
+  skill (`/Users/danielgreen/.codex/skills/oracle/SKILL.md`); narrow advisory
+  review, proportionate behavior checks, no test-count target. MP-codebase-design
+  small-interface guidance applied. No new Claude submission or paid inference.
+- **Completed source admission (retrieval09:40:54UTC, recorded here as backfill):**
+  retained original official https://auditor.mo.gov/aboutus and
+  https://documents.house.mo.gov/billtracking/info/howbill.htm HTML, final URLs,
+  retrieval/last-modified metadata and hashes outside Git. Deterministic compiler
+  retains exact text-node spans and normalized excerpt hashes. New office-context
+  fixture SHA319fe5d1a34d91ff3f6abf5ce0989abb5871f28673cb9ab752941821d48bd6b3.
+  Generic duties/terms now available for Missouri House/Senate, Auditor duties
+  and prior U.S.House context. Auditor source lacks term length: explicitly
+  missing. This is institutional context, never candidate performance/promises.
+- **Blocked source retention:** Jackson County charter landing/PDF requests
+  returned403; Missouri court original HTML download returned403 after readable
+  browser research. Stopped those sources; no alternate route/admission. Revisor
+  section links redirected home and its public browser endpoint returned a
+  server error; no snippets used as admitted term/court evidence. County10
+  candidate contests and11 judicial office contexts remain unadmitted. Existing
+  denied SOS and restricted Congress.gov requests were not retried.
+- **Completed:** all10 JCEB measure questions have exact source reading aids,
+  fixture SHAce86fc958df059fecf6969a4f856577051d5c963f830ca9af401d2d81c217a91.
+  Full conditions retained (both chambers, sufficient revenue, rate changes,
+  prior-year sales-tax revenue, quo-warranto proviso). Full original stays
+  visible; highlighted passages are quotations, not generated legal meanings.
+  New interpretation-evaluation cases are explicitly unapproved/untested and
+  not served by the application; the evaluation route returns404. No new civic
+  Yes/No/candidate claims promoted.
+- **Completed connected journey:** selected authority/contest/source version
+  binds confirmed local natural follow-ups: original, read parts, office,
+  optional source-comprehension check, view-only challenge and source recap.
+  No raw words transmitted or saved; no vote preference scored/stored. Changed
+  selections clear stale drafts. Challenge withdraws the transcription, links
+  originals and allows labeled return to the saved transcription without
+  pretending correction or staffed reporting occurred.
+- **Completed verification:** both compilers reproduced byte-identical fixtures;
+  source tampering and cross-item guide/context binding hold. Existing Node and
+  offline Python/loopback suites passed. Actual provider-off browser exercised
+  Senate four-year/House two-year duties, Auditor conditions/missing term, fresh
+  selected-notice confirmations, stale-selection clearing, exact Sni/Amendment7/
+  Blue Springs/Independence passages, gentle check feedback/Skip, source recap
+  and challenge/return. Controlled delayed guide after Stop remained held while
+  original stayed readable; deliberate retry succeeded.503 retained original;
+  Erase rejected the pending response and cleared workspace/input/consent. Own
+  diagnostic server/tab closed. No human capture/playback or provider request.
+- **Review finding fixed:** independent authorized local code reviewer caught
+  target-language confirmation comparing against current language. Fixed without
+  weakening source binding; actual EN→ES→EN confirmed in browser. Also repaired
+  retained old-language status and focus loss during async reading.390px Spanish
+  keyboard confirmation retains reading-button focus, Tab reaches condition,
+  Skip returns to the summary, original lang=en and zero horizontal overflow.
+  Screen-reader, real-device and human bilingual civic/pronunciation acceptance
+  remain open. New public screenshots retained in task workspace, not Git.
+- **Unchanged external gates:** immutable proposed push remains exactly six
+  commits dd6c1ac→8db5221 to existing draft PR6; this later work is excluded.
+  Approval bundle SHA5cd2c7ed28ef8c6c1c1ac0ce415d3eccd9444c34b531232fa41a69399b083434
+  and16-file Claude payload SHA6955c310de8625f85336df1f5af268b8458d90e17da5080ff25463be3eee8f59
+  rechecked unchanged. Denied push/upload/$0.20 Spanish trial not retried. No new
+  paid usage/reservation; ledger remains$1.96 reserved,~$0.2127044667 recorded
+  usage/duration estimate plus earlier unmetered Playground usage, not invoice.
+- **Remaining:**55 printed contests are not individual styles/current certified
+  roster or personal membership. Candidate background/source rights/identity,
+  county/judicial context, new interpretations, fresh broader conversation,
+  checked Spanish speech/acceptable latency, accessibility/human trial and
+  renewed actual Opus5.5High product review remain. No full-stretch/public-demo
+  acceptance, public deployment, merge, new credentials or Pi changes claimed.

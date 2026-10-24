@@ -44,7 +44,7 @@ class ServerTests(unittest.TestCase):
             self.assertFalse(result['visitor_persistence'])
 
     def test_no_file_or_secret_paths_are_served(self):
-        for path in ['/../README.md', '/.env.local', '/server.py', '/api/original/private', '/fixture.json?private=data']:
+        for path in ['/../README.md', '/.env.local', '/server.py', '/api/original/private', '/fixture.json?private=data', '/evaluation/interpretation-cases.json']:
             with self.assertRaises(HTTPError) as e:
                 urlopen(self.url + path)
             self.assertEqual(e.exception.code, 404)

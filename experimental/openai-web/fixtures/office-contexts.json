@@ -1,0 +1,133 @@
+{
+  "schema": "openoracle-office-context/v1",
+  "sources": {
+    "mo-auditor": {
+      "source_class": "official_office_explanation",
+      "publisher": "Missouri State Auditor's Office",
+      "url": "https://auditor.mo.gov/aboutus",
+      "retrieved_utc": "2026-10-24T09:40:54.131761+00:00",
+      "document_date": null,
+      "last_modified_header": null,
+      "original_sha256": "1d4af9d6efe0a2e50917e906115391611e251ea36947a4e24b25f008d0a79cdd",
+      "original_bytes": 35897,
+      "reading_sha256": "ead62b2142a8acfc441c5b7c69f2a8f89ad6db60d63541eb9d15455990b58458",
+      "extraction": "HTMLParser text nodes; scripts/styles/templates omitted; excerpts normalize whitespace only",
+      "rights": "Bounded factual excerpts for local source review; no blanket state-content reuse license claimed."
+    },
+    "mo-legislature": {
+      "source_class": "official_office_explanation",
+      "publisher": "Missouri House of Representatives",
+      "url": "https://documents.house.mo.gov/billtracking/info/howbill.htm",
+      "retrieved_utc": "2026-10-24T09:40:54.216595+00:00",
+      "document_date": null,
+      "last_modified_header": "Tue, 24 Jun 2025 18:19:34 GMT",
+      "original_sha256": "9bbca6772329f7da4d3a0cf663c8395ad8de53b8847b4c17486864be185517ec",
+      "original_bytes": 16156,
+      "reading_sha256": "ce110f3874eb03fb92f5df640b75f07a44f2673e37c725282ab0f7a13098152c",
+      "extraction": "HTMLParser text nodes; scripts/styles/templates omitted; excerpts normalize whitespace only",
+      "rights": "Bounded factual excerpts for local source review; no blanket state-content reuse license claimed."
+    }
+  },
+  "passages": {
+    "auditor-election": {
+      "id": "auditor-election",
+      "source_id": "mo-auditor",
+      "role": "institutional_office_description",
+      "locator": "State Auditor and Staff",
+      "reading_span": {
+        "start": 502,
+        "end": 566,
+        "text": "The Missouri State Auditor is elected by the people of Missouri."
+      },
+      "text": "The Missouri State Auditor is elected by the people of Missouri.",
+      "sha256": "c339c2f0c649ab260d49628a4419502872cbebc12c360e2925836e714bb4d4f2"
+    },
+    "auditor-role": {
+      "id": "auditor-role",
+      "source_id": "mo-auditor",
+      "role": "institutional_office_description",
+      "locator": "Responsibilities",
+      "reading_span": {
+        "start": 1128,
+        "end": 1468,
+        "text": "The office works to ensure the proper use of public funds and to improve the efficiency and effectiveness of Missouri government by performing audits of state agencies, boards and commissions, the circuit court system, the counties in Missouri that do not have a county auditor, and other political subdivisions upon petition by the voters."
+      },
+      "text": "The office works to ensure the proper use of public funds and to improve the efficiency and effectiveness of Missouri government by performing audits of state agencies, boards and commissions, the circuit court system, the counties in Missouri that do not have a county auditor, and other political subdivisions upon petition by the voters.",
+      "sha256": "b6b69471ccbc68001cbe58807711cfa634212327fe22f8eae7d4c4d9fc5cd4ce"
+    },
+    "assembly-role": {
+      "id": "assembly-role",
+      "source_id": "mo-legislature",
+      "role": "institutional_office_description",
+      "locator": "The General Assembly",
+      "reading_span": {
+        "start": 136,
+        "end": 348,
+        "text": "Legislative power is vested by Section 1, Article III of \r\n  the\nMissouri Constitution\nin the General Assembly, more commonly known as the Legislature, composed of \r\n  the Senate and the House of Representatives."
+      },
+      "text": "Legislative power is vested by Section 1, Article III of the Missouri Constitution in the General Assembly, more commonly known as the Legislature, composed of the Senate and the House of Representatives.",
+      "sha256": "f0063196a7174b633ec41ecbfb83e9e07c5cf1b4cf26c8261e607c0f8b7b4870"
+    },
+    "house-term": {
+      "id": "house-term",
+      "source_id": "mo-legislature",
+      "role": "institutional_office_description",
+      "locator": "The General Assembly",
+      "reading_span": {
+        "start": 921,
+        "end": 1031,
+        "text": "The House of Representatives consists of 163 members, elected \r\n  at each general election for two-year terms."
+      },
+      "text": "The House of Representatives consists of 163 members, elected at each general election for two-year terms.",
+      "sha256": "3274dfc045a929cc10a40543ba4f00c3181fbe94ceac112ed12489506e0cdd14"
+    },
+    "senate-term": {
+      "id": "senate-term",
+      "source_id": "mo-legislature",
+      "role": "institutional_office_description",
+      "locator": "The General Assembly",
+      "reading_span": {
+        "start": 349,
+        "end": 433,
+        "text": "The Senate consists of thirty-four members, who are elected \r\n  for four-year terms."
+      },
+      "text": "The Senate consists of thirty-four members, who are elected for four-year terms.",
+      "sha256": "49d75fbcc7f431fbf164cab7f5a230532f940ebf904ee5a788b5a9bf8bd2ea7f"
+    }
+  },
+  "offices": {
+    "mo-auditor": {
+      "title": "Missouri State Auditor",
+      "passage_ids": [
+        "auditor-election",
+        "auditor-role"
+      ],
+      "missing_fields": [
+        "term_not_in_admitted_excerpt"
+      ]
+    },
+    "mo-house": {
+      "title": "Missouri House of Representatives",
+      "passage_ids": [
+        "assembly-role",
+        "house-term"
+      ],
+      "missing_fields": []
+    },
+    "mo-senate": {
+      "title": "Missouri Senate",
+      "passage_ids": [
+        "assembly-role",
+        "senate-term"
+      ],
+      "missing_fields": []
+    }
+  },
+  "limits": {
+    "candidate_performance": false,
+    "personal_membership": false,
+    "human_acceptance": "pending",
+    "original_language": "en",
+    "reviewed_civic_translations": []
+  }
+}

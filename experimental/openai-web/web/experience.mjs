@@ -19,7 +19,7 @@ import {
 } from "./journey-core.mjs";
 import { admittedReadings, bindReading } from "./readings.mjs";
 import { createSpeechOutput } from "./speech-output.mjs";
-import { loadHouseOffice } from "./office-source.mjs";
+import { loadOfficeContext, INVENTORY_VERSION } from "./office-source.mjs";
 import { mountContestInventory } from "./inventory-view.mjs";
 import { draftPublicIntent, publicIntentLabel } from "./input-intent.mjs";
 const $ = (id) => document.getElementById(id),
@@ -52,7 +52,8 @@ let journeyActive = false,
 let journeyCurrentUnit = null,
   journeyParentRequest = null,
   journeyRequestIds = [];
-let pendingInput = null;
+let pendingInput = null,
+  inventoryActions = null;
 const el = (tag, text) => {
   const n = document.createElement(tag);
   if (text !== undefined) n.textContent = text;
@@ -177,6 +178,7 @@ function invalidate({ revokeConsent = false, keepVisuals = false } = {}) {
   }
   journeyPendingKind = null;
   if (!keepVisuals) {
+    inventoryActions = null;
     clearTimeout(legalExpiryTimer);
     renderComplete = false;
     mapMount?.dispose();
@@ -366,6 +368,15 @@ function renderGap(status) {
   }
   return c;
 }
+function sourceReadContext() {
+  requestController ??= new AbortController();
+  const ticket = session.snapshot(),
+    language = locale;
+  return {
+    signal: requestController.signal,
+    current: () => locale === language && session.current(ticket),
+  };
+}
 function showContestInventory(host) {
   const ticket = currentTicket,
     language = locale;
@@ -374,6 +385,11 @@ function showContestInventory(host) {
     signal: requestController.signal,
     isCurrent: () => locale === language && session.current(ticket),
     onRead: stopSpeechForReading,
+    readContext: sourceReadContext,
+    onActions: (context) => {
+      inventoryActions = context;
+      if (pendingInput?.kind === "inventory") clearInputDraft();
+    },
     onOffice: showOffice,
     onMeasure: () => showJourney("overview"),
     translationNote: COPY[language].translation,
@@ -765,7 +781,7 @@ function showEffects() {
   );
   for (const id of ["yes", "no"]) journeySource(host, id);
 }
-async function showOffice(host = $("journey-tools")) {
+async function showOffice(host = $("journey-tools"), family = "us-house") {
   stopSpeechForReading();
   requestController ??= new AbortController();
   const anchor = el("section"),
@@ -781,7 +797,8 @@ async function showOffice(host = $("journey-tools")) {
     ),
   );
   try {
-    const source = await loadHouseOffice(
+    const source = await loadOfficeContext(
+      family,
       AbortSignal.any([
         AbortSignal.timeout(5000),
         ...(requestController ? [requestController.signal] : []),
@@ -799,8 +816,8 @@ async function showOffice(host = $("journey-tools")) {
       el(
         "h3",
         language === "es"
-          ? "Cámara de Representantes · fuente original en inglés"
-          : "U.S. House of Representatives · original official explanation",
+          ? source.office + " · fuente original en inglés"
+          : source.office + " · original official explanation",
       ),
     );
     for (const passage of source.passages) {
@@ -808,17 +825,32 @@ async function showOffice(host = $("journey-tools")) {
       quote.lang = "en";
       anchor.append(quote, el("p", passage.locator));
     }
+    const sources = new Map(
+      source.passages.map((p) => [p.source.url, p.source]),
+    );
+    for (const record of sources.values())
+      anchor.append(
+        link(record.url, record.publisher),
+        el(
+          "p",
+          `${language === "es" ? "Consultado" : "Retrieved"} ${record.retrieved_utc.slice(0, 10)} UTC`,
+        ),
+      );
+    if (source.missing_fields?.includes("term_not_in_admitted_excerpt"))
+      anchor.append(
+        el(
+          "p",
+          language === "es"
+            ? "No se ha cargado aquí una fuente para la duración del mandato."
+            : "A source for the term length has not been loaded here.",
+        ),
+      );
     anchor.append(
-      link(source.url, source.publisher),
-      el(
-        "p",
-        `${language === "es" ? "Consultado" : "Retrieved"} ${source.retrieved_utc.slice(0, 10)} UTC`,
-      ),
       el(
         "p",
         language === "es"
-          ? "No se determina su distrito ni qué candidatos aparecen en su boleta. Traducción cívica pendiente de revisión."
-          : "This explains the office. It does not establish your district or candidate roster.",
+          ? "Esta fuente describe el cargo; no demuestra el desempeño ni las promesas de ningún candidato. No determina su distrito ni su boleta. Traducción cívica pendiente de revisión."
+          : "This source describes the office; it does not establish any candidate's performance or promises. It does not establish your district or ballot.",
       ),
     );
   } catch {
@@ -1335,6 +1367,11 @@ function setCopy() {
       ? "Controles de voz · micrófono apagado"
       : "Voice controls · microphone off";
   document.documentElement.lang = locale;
+  $("status").textContent = t.choose;
+  workspace.setAttribute(
+    "aria-label",
+    locale === "es" ? "Explicación y fuentes" : "Explanation and evidence",
+  );
   for (const [id, key] of Object.entries({
     title: "title",
     intro: "intro",
@@ -1466,7 +1503,17 @@ $("question-form").onsubmit = (e) => {
   e.preventDefault();
   clearInputDraft();
   const text = $("question").value;
-  const draft = draftPublicIntent(text, { journeyActive, language: locale });
+  const draft = draftPublicIntent(text, {
+    journeyActive,
+    language: locale,
+    sourceContext: inventoryActions
+      ? {
+          id: inventoryActions.id,
+          version: inventoryActions.source_version,
+          operations: Object.keys(inventoryActions.actions),
+        }
+      : null,
+  });
   if (!draft) {
     const route = routeQuestion(text);
     $("status").textContent =
@@ -1480,7 +1527,9 @@ $("question-form").onsubmit = (e) => {
     return;
   }
   pendingInput = draft;
-  $("input-action").textContent = publicIntentLabel(draft, locale);
+  $("input-action").textContent =
+    publicIntentLabel(draft, locale) +
+    (draft.kind === "inventory" ? " · " + inventoryActions.title : "");
   $("input-note").textContent =
     locale === "es"
       ? "Compruebe la acción. Se envía solo la categoría pública y el idioma, nunca lo que escribió. Las acciones de lectura no usan IA."
@@ -1507,10 +1556,24 @@ $("confirm-input").onclick = async () => {
   const draft = pendingInput;
   clearInputDraft();
   $("question").value = "";
-  if (!draft || draft.source_version !== QUESTION_VERSION) return;
+  if (!draft || (draft.kind !== "language" && draft.language !== locale))
+    return;
+  if (draft.kind === "inventory") {
+    if (
+      draft.source_version === INVENTORY_VERSION &&
+      inventoryActions?.id === draft.context_id &&
+      inventoryActions.source_version === draft.source_version
+    ) {
+      stopSpeechForReading();
+      inventoryActions.actions[draft.operation]?.();
+    }
+    return;
+  }
+  if (draft.source_version !== QUESTION_VERSION) return;
   if (draft.kind === "language") {
     $("language").value = draft.language;
     $("language").dispatchEvent(new Event("change"));
+    $("language").focus();
   } else if (
     draft.kind === "local" &&
     ["maps", "candidates"].includes(draft.operation)

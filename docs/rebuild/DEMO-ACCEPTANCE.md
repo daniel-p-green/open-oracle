@@ -9,7 +9,7 @@ this checklist. Managed Agents is deferred; it must not block product work.
 | --- | --- | --- |
 | Ask about exact public measure wording and follow up | Actual fresh EN overview → simpler → ES adaptation from server-owned prior; exact original/local Yes–No effects, challenge, optional teach-back and ephemeral recap | Broader admitted evidence, generative component selection and nonauthor comprehension/paraphrase review |
 | Ask to see the actual redistricting plans | Integrated pinned pair, synchronized views/selection, exact KCEB Proposition A public sample, dated/expiring legal snapshot | Official accessible territorial equivalent, reuse rights and ongoing legal freshness |
-| Read factual candidate/office context | All three printed U.S.House5 sample rows plus write-in with equal evidence gaps; source-pinned office passages; private filing, campaign held | Complete KCEB/JCEB inventory, rights/identity/quote review and background retrieval; one sample is not personal or countywide coverage |
+| Read factual candidate/office context | All55 printed contests retained from KCEB/JCEB, equal candidate gaps, source-pinned U.S.House/Missouri House/Senate/Auditor context; campaign held | Individual styles/current certification/write-ins, county/judicial office context and candidate rights/identity/quote/background admission; notice union is not personal coverage |
 | Switch English/Spanish | Bilingual interface/map navigation; actual fresh ES text adaptation in review mode, existing synthetic EN/ES clips with ASR | Fresh checked speech of adapted answers, actual spoken input, civic translation and human pronunciation review |
 | Talk and hear a checked answer | Actual English adapter/web preparation passed whole-WAV ASR; other development runs held omissions/mismatch. Opus5.5High re-reviews returned. No human sound | Long buffering latency/reliability, Spanish fresh speech, natural private-safe input and human heard/device acceptance |
 | Interrupt, reset or change source/language | Whole-workspace revisions, request/body/audio timeouts, cancellation and local fallback | Human interruption-to-silence and real device evidence |
@@ -70,3 +70,19 @@ Late office-source Stop race repaired using a read-only revision snapshot from
 the existing owner. Actual delayed local HTTP response was withheld after Stop;
 a deliberate new read and Erase succeeded. Independent narrow review closed the
 repair. No human/media/provider acceptance is implied.
+
+
+October24 source-reading increment: all10 JCEB measure questions have exact,
+hash-bound reading aids preserving complete conditions, not new interpretations.
+Selected-notice follow-ups confirm the authority/contest before reading parts,
+showing office duties, checking source comprehension, challenging or recapping.
+Changing selection clears stale confirmation; challenge withdraws only the view
+and offers an explicitly labeled saved-transcription return. Actual browser
+checks covered EN/ES language switching, keyboard focus, optional-check Skip,
+390px width, original lang=en and original links. Delayed guide response after
+Stop/Erase did not repopulate; a new deliberate read succeeded, and HTTP503 left
+the original readable. Source/evaluation mutation and scope checks passed.
+Independent code review found a language-confirmation regression, now repaired
+and verified in both directions. This later increment has **no renewed Claude
+review or paid Spanish trial**; it is excluded from the immutable pending
+8db5221 approval/payload. The full stretch target remains unmet.
