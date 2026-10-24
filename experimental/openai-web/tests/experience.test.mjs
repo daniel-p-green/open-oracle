@@ -463,7 +463,9 @@ test("layout deadline bounds stalled request and body, cancels once and falls ba
 });
 
 test("dated legal assertion is withheld for missing, mutated or expired source record", async () => {
-  const { loadMapStatus } = await import("../web/measure-source.mjs");
+  const { loadMapStatus, mapStatusCurrent } = await import(
+    "../web/measure-source.mjs"
+  );
   const raw = await readFile(
     new URL("../fixtures/map-status.json", import.meta.url),
   );
@@ -476,10 +478,9 @@ test("dated legal assertion is withheld for missing, mutated or expired source r
       ok: true,
       arrayBuffer: async () => Uint8Array.from(raw).buffer,
     });
-    assert.equal(
-      (await loadMapStatus(new AbortController().signal)).sources[0].page,
-      2,
-    );
+    const admitted = await loadMapStatus(new AbortController().signal);
+    assert.equal(admitted.sources[0].page, 2);
+    assert.equal(mapStatusCurrent(admitted), true);
     globalThis.fetch = async () => ({ ok: false });
     await assert.rejects(
       loadMapStatus(new AbortController().signal),
@@ -499,6 +500,7 @@ test("dated legal assertion is withheld for missing, mutated or expired source r
       arrayBuffer: async () => Uint8Array.from(raw).buffer,
     });
     Date.now = () => Date.parse(record.review_before_utc) + 1;
+    assert.equal(mapStatusCurrent(admitted), false); // A deferred renderer must recheck.
     await assert.rejects(
       loadMapStatus(new AbortController().signal),
       /status_stale/,
@@ -824,4 +826,42 @@ test("follow-ups bind the selected notice and cannot inherit a different measure
   const explicit = draftPublicIntent("Explain Proposition A", options);
   assert.equal(explicit.kind, "journey");
   assert.equal(explicit.operation, "brief");
+});
+
+test("view timing is current-action numeric diagnostics, with stale writes rejected", async () => {
+  const { createViewTiming } = await import("../web/view-timing.mjs");
+  const host = { dataset: {} },
+    clock = { at: 10 },
+    state = { current: true };
+  const timing = createViewTiming(
+    host,
+    "view",
+    () => state.current,
+    () => clock.at,
+  );
+  clock.at = 22;
+  timing.mark("first_source");
+  timing.backend({
+    basis: "server_monotonic_job_not_user_playback",
+    elapsed_ms: 8,
+    stages_ms: { retrieval: 2, validation: 6 },
+    secret: "must never copy",
+  });
+  const expected = JSON.stringify({
+    basis: "client_action_monotonic_not_human_playback",
+    marks_ms: { first_source: 12 },
+    server: { elapsed_ms: 8, stages_ms: { retrieval: 2, validation: 6 } },
+  });
+  assert.equal(host.dataset.viewTiming, expected);
+  timing.backend({
+    basis: "server_monotonic_job_not_user_playback",
+    elapsed_ms: 8,
+    stages_ms: { "raw visitor words": 8 },
+  });
+  assert.equal(host.dataset.viewTiming, expected);
+  state.current = false;
+  clock.at = 90;
+  timing.mark("maps_validated");
+  assert.equal(host.dataset.viewTiming, expected);
+  assert.throws(() => timing.mark("arbitrary text"), /timing_mark/);
 });

@@ -32,6 +32,24 @@ class JobsTests(unittest.TestCase):
             time.sleep(.005)
         self.fail('local fixture did not complete')
 
+    def test_latency_stages_are_numeric_frozen_and_do_not_retain_input(self):
+        from latency import StageTiming
+        now = [0.0]
+        timing = StageTiming(lambda: now[0])
+        for at, stage in [(0.1, 'routing'), (0.3, 'retrieval'), (0.35, 'text'),
+                          (1.55, 'validation'), (1.6, 'review'), (1.8, 'validation')]:
+            now[0] = at
+            timing.advance(stage)
+        now[0] = 1.85
+        timing.advance('ready', terminal=True)
+        measured = timing.snapshot()
+        self.assertEqual(measured['elapsed_ms'], 1850)
+        self.assertEqual(measured['stages_ms'], {'queued': 100, 'routing': 200,
+                         'retrieval': 50, 'text': 1200, 'validation': 100, 'review': 200})
+        now[0] = 50
+        timing.advance('private words cannot become a metric')
+        self.assertEqual(timing.snapshot(), measured)
+
     def test_idempotent_request_and_global_run_cap(self):
         self.jobs.start(self.token, self.request); self.assertEqual(self.wait_terminal()['state'], 'ready')
         self.jobs.start(self.token, self.request)

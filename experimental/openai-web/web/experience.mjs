@@ -7,7 +7,11 @@ import {
   validateLayout,
 } from "./experience-core.mjs";
 import { loadMapEvidence, mountMapComparison } from "./map-view.mjs";
-import { loadMapMeasure, loadMapStatus } from "./measure-source.mjs";
+import {
+  loadMapMeasure,
+  loadMapStatus,
+  mapStatusCurrent,
+} from "./measure-source.mjs";
 import { requestLayout, requestProviderJob } from "./layout-client.mjs";
 import {
   publicJourneyAction,
@@ -20,6 +24,7 @@ import {
 import { admittedReadings, bindReading } from "./readings.mjs";
 import { createSpeechOutput } from "./speech-output.mjs";
 import { loadOfficeContext, INVENTORY_VERSION } from "./office-source.mjs";
+import { createViewTiming } from "./view-timing.mjs";
 import { mountContestInventory } from "./inventory-view.mjs";
 import { draftPublicIntent, publicIntentLabel } from "./input-intent.mjs";
 const $ = (id) => document.getElementById(id),
@@ -178,6 +183,9 @@ function invalidate({ revokeConsent = false, keepVisuals = false } = {}) {
   }
   journeyPendingKind = null;
   if (!keepVisuals) {
+    delete workspace.dataset.viewTiming;
+    delete workspace.dataset.answerTiming;
+    delete workspace.dataset.audioTiming;
     inventoryActions = null;
     clearTimeout(legalExpiryTimer);
     renderComplete = false;
@@ -395,7 +403,7 @@ function showContestInventory(host) {
     translationNote: COPY[language].translation,
   });
 }
-async function renderMaps(ticket) {
+async function renderMaps(ticket, timing) {
   const c = card(
       locale === "es"
         ? "Compare los mapas oficiales"
@@ -403,6 +411,11 @@ async function renderMaps(ticket) {
       true,
     ),
     host = el("div");
+  host.className = "map-pending";
+  host.textContent =
+    locale === "es"
+      ? "Comprobando mapas oficiales…"
+      : "Checking official map artifacts…";
   c.append(host);
   workspace.append(c);
   try {
@@ -410,31 +423,22 @@ async function renderMaps(ticket) {
       requestController.signal,
       AbortSignal.timeout(5000),
     ]);
+    // Independent local sources begin together. Geometry is never mounted
+    // before the exact ballot question/labels are admitted. Legal status has
+    // its own freshness gate and cannot delay the original text's appearance.
+    const geometry = Promise.resolve(
+      mapData ?? loadMapEvidence(sourceSignal),
+    ).then(
+      (value) => ({ value }),
+      () => ({ error: true }),
+    );
+    const legalStatus = loadMapStatus(sourceSignal).then(
+      (value) => ({ value }),
+      () => ({ error: true }),
+    );
     mapMeasure = mapMeasure ?? (await loadMapMeasure(sourceSignal));
     if (!session.current(ticket)) return;
-    try {
-      if (!manifest) throw Error("map_manifest_unavailable");
-      mapData = mapData ?? (await loadMapEvidence(sourceSignal));
-      if (!session.current(ticket)) return;
-      mapMount = mountMapComparison(host, mapData, {
-        locale,
-        planLabels: mapMeasure.plan_labels,
-        onChange() {
-          stopSpeechForReading();
-          if (!journeyActive) {
-            invalidate({ keepVisuals: true });
-            currentTicket = session.begin();
-            void prepareReading(currentTicket, true);
-          }
-        },
-      });
-    } catch {
-      if (!session.current(ticket)) return;
-      host.textContent =
-        locale === "es"
-          ? "Mapas no disponibles; el texto original sigue disponible."
-          : "Map artifacts unavailable; the original wording remains readable.";
-    }
+
     if (locale === "es")
       c.append(
         el(
@@ -479,11 +483,42 @@ async function renderMaps(ticket) {
       );
     originalDetails.append(originalSummary, question);
     c.append(originalDetails);
+    timing?.mark("first_source");
+    timing?.paint("first_useful_visual");
     try {
-      const legal = await loadMapStatus(
-        AbortSignal.any([requestController.signal, AbortSignal.timeout(5000)]),
-      );
+      const loaded = await geometry;
       if (!session.current(ticket)) return;
+      if (loaded.error) throw Error("map_unavailable");
+      mapData = loaded.value;
+      host.replaceChildren();
+      host.classList.remove("map-pending");
+      mapMount = mountMapComparison(host, mapData, {
+        locale,
+        planLabels: mapMeasure.plan_labels,
+        onChange() {
+          stopSpeechForReading();
+          if (!journeyActive) {
+            invalidate({ keepVisuals: true });
+            currentTicket = session.begin();
+            void prepareReading(currentTicket, true);
+          }
+        },
+      });
+      timing?.mark("maps_validated");
+    } catch {
+      if (!session.current(ticket)) return;
+      host.classList.remove("map-pending");
+      host.textContent =
+        locale === "es"
+          ? "Mapas no disponibles; el texto original sigue disponible."
+          : "Map artifacts unavailable; the original wording remains readable.";
+    }
+    try {
+      const checkedStatus = await legalStatus;
+      if (checkedStatus.error) throw Error("status_unavailable");
+      const legal = checkedStatus.value;
+      if (!session.current(ticket)) return;
+      if (!mapStatusCurrent(legal)) throw Error("status_stale");
       const note = el(
         "p",
         `As of ${legal.as_of_utc.slice(0, 10)} UTC: ${legal.claim} ${legal.uncertainty}`,
@@ -606,9 +641,13 @@ async function explore(question, { focus = true } = {}) {
   invalidate();
   const ticket = session.begin();
   currentTicket = ticket;
+  const timing = createViewTiming(workspace, "view", () =>
+    session.current(ticket),
+  );
   let mapsVerified = false;
   requestController = new AbortController();
   intent = routeQuestion(question);
+  timing.mark("intent_routed");
   document.body.classList.add("has-content");
   workspace.replaceChildren();
   $("status").textContent =
@@ -622,6 +661,7 @@ async function explore(question, { focus = true } = {}) {
       mode: "local",
     };
   if (!session.current(ticket) || !plan) return;
+  timing.mark("evidence_checked");
   $("status").textContent =
     result.status === "answered"
       ? locale === "es"
@@ -656,25 +696,35 @@ async function explore(question, { focus = true } = {}) {
           : "Local composition · layout AI not run";
   $("reorder").hidden = true;
   $("reorder").disabled = true;
+  // Closed renderer catalog. Facts/props come from admitted app records;
+  // the model can select only the validated layout contract, never HTML/JS.
+  const renderers = {
+    scope: () => renderScope(),
+    original: () => renderOriginal(),
+    facts: () => renderFacts(result, false),
+    effects: () => renderFacts(result, true),
+    coverage: () => renderGap(result.status),
+    map_sources: () => renderMapSources(),
+    maps: async () => {
+      await renderMaps(ticket, timing);
+      mapsVerified = !!mapMount;
+      return null; // The map mounts inside its stable shell.
+    },
+  };
   for (const component of plan.layout.components) {
     if (!session.current(ticket)) return;
-    if (component === "scope") workspace.append(renderScope());
-    else if (component === "original") workspace.append(renderOriginal());
-    else if (component === "facts" || component === "effects")
-      workspace.append(renderFacts(result, component === "effects"));
-    else if (component === "coverage")
-      workspace.append(renderGap(result.status));
-    else if (component === "map_sources") workspace.append(renderMapSources());
-    else if (component === "maps") {
-      await renderMaps(ticket);
-      mapsVerified = !!mapMount;
-    }
+    if (!Object.hasOwn(renderers, component)) return;
+    const content = await renderers[component]();
+    if (!session.current(ticket)) return;
+    if (content) workspace.append(content);
     if (workspace.lastElementChild)
       workspace.lastElementChild.dataset.component = component;
   }
   if (!session.current(ticket)) return;
   if (focus) workspace.focus({ preventScroll: true });
   renderComplete = true;
+  timing.mark("stable_view");
+  timing.paint("first_useful_visual");
   $("reorder").hidden =
     !reviewTools || !providerToken || plan.layout.components.length < 3;
   $("reorder").disabled = remainingRuns <= 0;
@@ -1048,6 +1098,9 @@ async function generateJourney() {
   requestController = new AbortController();
   const language = locale,
     operation = journeyOperation;
+  const answerTiming = createViewTiming(workspace, "answer", () =>
+    session.current(ticket),
+  );
   speaker.stop();
   remainingRuns--;
   journeyPending = true;
@@ -1077,6 +1130,7 @@ async function generateJourney() {
       }
     },
     fallback: () => null,
+    onTiming: (value) => answerTiming.backend(value),
     onNotStarted: (reason) => {
       notStarted = reason;
     },
@@ -1104,6 +1158,7 @@ async function generateJourney() {
           : "No provider run started. Prior context expired or the run allowance is unavailable. Choose a fresh explanation deliberately; there is no automatic retry.";
     return;
   }
+  answerTiming.mark("checked_text");
   journeyUnits = [...journeyUnits, result].slice(-6);
   journeyCurrentUnit = result;
   journeyParentRequest = issuedRequest;
@@ -1138,6 +1193,7 @@ async function generateJourney() {
     block.append(disclosure);
     $("journey-answer").append(block);
   }
+  answerTiming.paint("first_useful_visual");
   if (reviewTools && providerToken && remainingRuns > 0) {
     const button = journeyButton(
       $("journey-answer"),
@@ -1176,6 +1232,9 @@ async function prepareJourneySpeech() {
   invalidate({ keepVisuals: true });
   const ticket = session.begin();
   currentTicket = ticket;
+  const audioTiming = createViewTiming(workspace, "audio", () =>
+    session.current(ticket),
+  );
   requestController = new AbortController();
   journeyPending = true;
   journeyPendingKind = "speech";
@@ -1204,6 +1263,7 @@ async function prepareJourneySpeech() {
       notStarted = reason;
     },
     fallback: () => null,
+    onTiming: (value) => audioTiming.backend(value),
     decode: (value, job) => validateJourneySpeech(value, unit, job),
   });
   if (
@@ -1240,7 +1300,10 @@ async function prepareJourneySpeech() {
     expiresAt: result.expiresAt,
   });
   if (!session.current(ticket)) return;
-  if (prepared) $("speaker-consent").closest("label").hidden = false;
+  if (prepared) {
+    audioTiming.mark("audio_ready");
+    $("speaker-consent").closest("label").hidden = false;
+  }
   $("voice-controls").open = true;
   $("journey-status").textContent = prepared
     ? language === "es"

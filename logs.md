@@ -1170,3 +1170,95 @@ This is a backfill, not a contemporaneous event stream.
   checked Spanish speech/acceptable latency, accessibility/human trial and
   renewed actual Opus5.5High product review remain. No full-stretch/public-demo
   acceptance, public deployment, merge, new credentials or Pi changes claimed.
+
+### 2026-10-24 14:12 UTC — approved exact push, measured UI latency and native Chrome comparison
+
+- **User approval/action completed (backfill from13:34UTC remote evidence):**
+  Daniel explicitly approved the previously asked push of65bad7a and6d90b11,
+  without merge/deployment. Checked remote stilldd6c1ac, then retried the denied
+  operation once on that new exact approval using an explicit6d90b11 ref, not
+  HEAD. Push succeeded; remote/PR6 head verified
+  6d90b11fc66de4294249bf4cb0e3d89efd3dbd76. Both existing CI runs completed
+  success:40098712545 and40098709152; push run created13:34:20Z/updated13:34:38Z.
+  Later59e8ee0/57c17db/77a2041/8db5221/b10c05b and this increment excluded.
+  No merge/deploy, PR publication beyond the approved range or new credentials.
+- **Completed local implementation:** memory-only numeric stages now separate
+  queue/routing/retrieval, generation, validation, Decisions, Live generation and
+  whole-WAV ASR. Live connection/start/instruction/delta/close/finalization marks
+  contain no content; an unsent instruction does not get a sent marker. Client
+  diagnostics distinguish source/map, checked text, paint opportunity and audio
+  readiness. They clear on Erase, reject stale writes, omit arbitrary fields and
+  are not persisted as analytics. Human playback/precise pixel visibility is not
+  measured or inferred from a delta. Existing waveform/ASR/disclosure gates kept.
+- **Completed optimization/evidence:** question, map geometry/pins and legal
+  snapshot load concurrently; original-source control no longer waits for
+  geometry. Geometry requires admitted question/labels, legal status remains
+  fresh/dated. Three cold provider-off browser samples on identical retained
+  assets with150/350/550ms controlled delays: original source526–539ms→156–163ms,
+  verified maps526–539ms→367–377ms, full view1089–1101ms→558–566ms. Paint proxy
+ 545–561ms→163–180ms. Warm sample/source0.4ms/map0.9ms/paint26.2ms still waited
+  for legal recheck; full567ms. Normal loopback source14.1ms/map30.3ms/DOM34.5ms,
+  paint42.8ms. Not API, internet, Pi, human or p95 evidence. Saved reproducible
+  provider-off benchmark driver and numeric report; no prerecorded answer cache.
+- **Independent review finding fixed:** parallel legal read could expire while
+  geometry waited. Shared mapStatusCurrent predicate now runs at fetch admission
+  AND immediately before constructing the displayed claim; existing expiry
+  replacement retained. Fake-clock boundary proof and independent re-review
+  closed finding. Catalog preserves existing mappings/validateLayout and checks
+  current revision after each await. Source/prompt-injection/whole-WAV/cancel
+  proofs still pass. Only meaningful owner clock/stale/privacy checks added;
+  installed test-audit guidance applied alongside prior Oracle/engineering skills.
+- **User direction/completed actual native comparison:** Daniel requested native
+  ChatGPT genUI on connected Chrome. Used two dedicated Temporary chats with
+  public map URLs and exact public Sni Valley wording only, visible Medium
+  setting; backing model not exposed. No private files, code upload, memory/
+  inbox request, account upgrade, credentials, microphone or sound. Applicable
+  OpenAI Docs/native-visualization guidance and supported CUA browser controls
+  used; Apps SDK/Atlas skills checked and not misrepresented as native-Chrome
+  testing tools. No new browser package/remote-debugging access installed.
+- **Native map result/failure/recovery:** first generated inline artifact visibly
+  failed at runtime. Native text admitted unavailable parsed geometry but called
+  artifact functional; client error disproved that claim. One repair produced
+  working EN/ES and region selectors plus official links, explicitly no geometry
+  or zoom. Clicked Spanish/KC; ArrowRight moved focus and Space selectedSt.Louis.
+  No map/synchronization was invented or inferred. UI-reported work1m4s/17s is
+  not independently measured full latency; polling interleaved with local work.
+- **Native source-card verified:** original full English with prior-year sales-
+  tax-revenue qualifiers; Spanish interface, full condition highlight, original
+  source details, optional membership-comprehension feedback, Skip and keyboard
+  Reset exercised. Reset restored English/no highlight/details/check/feedback.
+  Native showed an unreviewed Spanish translation; it was NOT imported/admitted.
+  UI work label18s, not independent TTFT. Screenshots retained outside Git; actual
+  controls were operated. No internal renderer/network/persistence or human
+  screen-reader quality is inferred from observed DOM/AX behavior.
+- **Applied reference patterns:** closed local renderer catalog (no arbitrary
+  generated HTML/JS, extra renderer inference or framework rewrite), stable
+  source-loading shell, progressive source version details. Original links and
+  critical freshness caveats remain visible; details opening halts speech through
+  the existing owner. Compared matching OpenOracle source/map interactions,
+  equal viewBoxes/KC maps, gentle check/Skip,390px Spanish open-version-details
+  without overflow and full reset clearing source/timings/input/consent. Native
+  code not copied. Exact prompts, why/how/files/licensing limits recorded in
+  GENERATIVE-UI-COMPARISON.md and DEMO-REFERENCES.md. Open-source alternatives
+  considered, not installed or performance-benchmarked; no private native API
+  inferred. No React/runtime migration or broader civic claims added.
+- **Costs/remaining approvals:** zero new app API calls/reservations. Shared
+  ledger unchanged$1.96 reserved/~$0.2127044667 recorded usage/duration estimate
+  plus earlier unmetered Playground usage, not invoice. Authorized native UI
+  interactions use existing ChatGPT account allocation; no API-price inference.
+  Previously denied Claude payload and Spanish paid trial were not retried.
+  Immutable approval files kept unchanged as historical exact targets; narrow
+  push approval does not approve their full six-commit range or later localwork.
+  A new minimal latency proposal is≤$0.11 reserved for one English Luna brief+
+  Decisions then conditional same-owner Live/full-WAV ASR (two jobs/fourrequests,
+  no retry/capture/Play). Requires applicable new approval and fresh price/account
+  checks; not a vendor hard-dollar guarantee. No paid test executed here.
+- **Next/open:** concise actual-provider timing, safe independently meaningful
+  speech units/queue and persistent-connection/model comparison remain unproven.
+  33.02s prior long-reading preparation remains unacceptable, not solved by UI
+  timings. Full candidate/styles/current certification/rights, broader semantic
+  genUI, natural multilingual speech and human civic/accessibility/device/latency
+  acceptance still open. Normal updated local review8917; old8914 process could
+  not be stopped through its expired tool handle (unknown process ID), no process
+  enumeration/alternate kill attempted. Own diagnostic servers closed after QA.
+  No public-ready claim, denied-source retry, human media, merge/deploy or Pi work.

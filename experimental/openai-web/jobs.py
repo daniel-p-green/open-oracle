@@ -12,6 +12,7 @@ from contextlib import contextmanager
 from pathlib import Path
 from providers import Held, check_cancel
 from fresh_speech import speech_preflight
+from latency import StageTiming
 
 TOKEN_TTL = 600
 JOB_TTL = 120
@@ -169,7 +170,7 @@ class Jobs:
             run = secrets.token_hex(12)
             self.budget.reserve(run, task) if task else self.budget.reserve(run)
             self.runs += 1
-            row = {'created': self.clock(), 'state': 'queued', 'cancel': threading.Event(),
+            row = {'created': self.clock(), 'timing': StageTiming(self.clock), 'state': 'queued', 'cancel': threading.Event(),
                    'result': None, 'audio': None, 'run': run, 'reason': None, 'task': task, 'in_flight': True, 'prior': prior, 'parent_request': parent_request}
             owner['jobs'][request] = row
             worker = threading.Thread(target=self._run, args=(row,), daemon=True, name='openoracle-public-run')
@@ -180,7 +181,7 @@ class Jobs:
         def progress(stage):
             with self.lock:
                 self._expire()
-                check_cancel(row['cancel']); row['state'] = stage
+                check_cancel(row['cancel']); row['timing'].advance(stage); row['state'] = stage
         def meter(stage, usage): self.budget.record(row['run'], stage, usage)
         try:
             result, pcm = (self.pipeline.run_task(row['task'], row['cancel'], progress, meter, prior=row['prior']) if row['task'] and row['task'].startswith(('journey:','speech:'))
@@ -193,6 +194,7 @@ class Jobs:
                 if self.clock() - row['created'] >= JOB_TTL: raise Held('expired')
                 self.budget.finish(row['run'], 'ready')
                 row.update(state='ready', result=copy.deepcopy(result), audio=bytes(pcm),ready_at=self.clock())
+                row['timing'].advance('ready', terminal=True)
         except Held as error:
             with self.lock:
                 row.update(state='expired' if row['state']=='expired' or str(error)=='expired' else 'cancelled' if row['cancel'].is_set() else 'held', reason=str(error), result=None, audio=None)
@@ -204,7 +206,9 @@ class Jobs:
             except Exception:
                 with self.lock: row.update(state='held', reason='ledger_unavailable', result=None, audio=None)
             finally:
-                with self.lock: row['in_flight']=False
+                with self.lock:
+                    row['timing'].advance(row['state'], terminal=True)
+                    row['in_flight']=False
 
     def public(self, token, request):
         with self.lock:
@@ -215,7 +219,7 @@ class Jobs:
                              else min(JOB_TTL-(self.clock()-row.get('ready_at',row['created'])),240-(self.clock()-row['created']),TOKEN_TTL-(self.clock()-owner['created'])) if row['state']=='ready' and str(row.get('task','')).startswith('speech:')
                              else JOB_TTL-(self.clock()-row['created']))
             return copy.deepcopy({'request_id': request, 'state': row['state'], 'reason': row['reason'],
-                                  'result': row['result'], 'playback_enabled': False,
+                                  'result': row['result'], 'playback_enabled': False, 'timing': row['timing'].snapshot(),
                                   'expires_in_seconds': max(0, lifetime_left)})
 
     def cancel(self, token, request):

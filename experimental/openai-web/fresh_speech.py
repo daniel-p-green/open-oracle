@@ -65,10 +65,12 @@ class FreshSpeechPipeline:
         if task not in TASKS: raise Held('task_unadmitted')
         language=task.split(':')[1]
         if language=='es' and not self.allow_spanish: raise Held('translation_review_required')
+        stage('retrieval')
         text=speech_preflight(prior,language)
         stage('audio')
         audio=self.provider.speak(text,cancel,language=language,reading_seconds=52,canonicalize=words)
         meter('fresh_audio',audio.get('usage'));check_cancel(cancel)
+        stage('validation')
         pcm=audio.get('pcm')
         if (audio.get('finalized') is not True or audio.get('reason')!='close_requested'
                 or audio.get('errors') or audio.get('backend_events')!=0
@@ -87,6 +89,7 @@ class FreshSpeechPipeline:
         # No supplied expected transcript, prompt, or language hint biases ASR.
         transcript=self.provider.transcribe(wav,cancel)
         meter('transcription',{'seconds':duration});check_cancel(cancel)
+        stage('validation')
         detected=transcript.get('languages')
         if type(detected) is not list or not detected or type(detected[0]) is not dict or detected[0].get('code')!=language:
             raise Held('independent_language_mismatch')
@@ -96,6 +99,9 @@ class FreshSpeechPipeline:
         return {'mode':'fresh_checked_speech','source_version':QUESTION_PIN,'language':language,
                 'reading':text,'bytes':len(wav),'sha256':hashlib.sha256(wav).hexdigest(),
                 'asr_model':'gpt-transcribe','independent_asr_match':True,'finalized':True,
+                'provider_timing_ms':{name:value for name,value in (audio.get('timing_ms') if type(audio.get('timing_ms')) is dict else {}).items()
+                    if name in {'connected','session_started','reading_sent','first_audio_delta','last_audio_delta','close_requested','finalized'}
+                    and type(value) in (int,float) and math.isfinite(value) and 0<=value<=90000},
                 'duration_seconds':duration,'live_close_trigger':audio.get('close_trigger','unknown'),
                 'acoustic_human_review':False,'translation_review':'pending' if language=='es' else 'not_a_human_review',
                 'raw_visitor_input_sent':False,'playback_enabled':False},wav

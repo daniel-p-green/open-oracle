@@ -130,12 +130,106 @@ report a faster result.
   Earlier actual Opus reviews remain valid for their earlier scope; none covers
   this new delta. The optional local adapter was not in the denied bundle and
   must be included in its own scope if later submitted for review.
-- **Existing PR6 push remains denied/pending Daniel's new approval.** No retry or
-  external PR update. Local implementation continues; no remote CI result is
-  claimed for unpushed work.
+- **Historical push block:** later resolved only for65bad7a/6d90b11 by exact new
+  user approval; see the resolution below. Newer local work remains unpushed.
 
 The next useful measurement is the specifically bounded Spanish brief test.
 Microphone input, human heard pronunciation/civic meaning, full generative
 composition, all KCEB/JCEB evidence and accessibility/device acceptance remain
 separate open gates. Neither a passed local check nor a smaller reading would
 make the stretch product ready to share publicly.
+
+## October24 measured optimization and push resolution
+
+Daniel explicitly approved pushing only65bad7a and6d90b11. The remote existing
+PR6 head is now exactly6d90b11fc66de4294249bf4cb0e3d89efd3dbd76; both existing
+[push](https://github.com/daniel-p-green/open-oracle/actions/runs/40098712545) and
+[PR](https://github.com/daniel-p-green/open-oracle/actions/runs/40098709152)
+workflows completed successfully. Later commits remain local. The earlier
+six-commit approval file is preserved as an immutable historical proposal;
+this narrow approval did not approve its full range, Claude upload or paid trial.
+
+Implemented volatile numeric instrumentation: server job queue/routing/retrieval,
+Responses generation, deterministic validation, Decisions review, Live audio and
+whole-WAV transcription; Live connection/start/instruction/first-last delta/close
+and finalization offsets; browser intent/evidence/source/map, checked text,
+paint-proxy and prepared-audio readiness. Numbers contain no visitor words,
+source history or account identifiers and are not analytics or persistent logs.
+Client DOM diagnostics clear on Erase and reject stale writes. Server timings
+start at queued job creation; client provider timing also covers admission and
+polling overhead. First audio delta is **not** approved/audible speech. Double
+requestAnimationFrame is a paint opportunity proxy, not proof that a person saw
+pixels. Manual Play/heard speech is not measured.
+
+Parallel local source retrieval was compared with b10c05b plus timing hooks,
+using the same retained official map artifacts and simulated150ms question,
+350ms geometry and550ms legal-source response delays. Three cold samples each:
+
+| Metric, click to milestone | Serial baseline range | Parallel range |
+| --- | ---: | ---: |
+| Exact original-source control available |526–539ms|156–163ms|
+| Verified maps mounted |526–539ms|367–377ms|
+| First useful source paint proxy |545–561ms|163–180ms|
+| Complete view, including legal status |1089–1101ms|558–566ms|
+
+One warm parallel sample used cached public question/geometry: source0.4ms,
+map mount0.9ms, paint proxy26.2ms; full completion567ms still rechecked legal
+status. One normal loopback sample without simulated delay: source14.1ms,
+map30.3ms, DOM completion34.5ms, paint proxy42.8ms. These are bounded desktop
+observations, not model/Pi/internet percentiles. No response/audio/prerecorded
+answer cache was introduced. Numbers and saved-driver verification are in
+[LATENCY-LOCAL-2026-10-24.json](LATENCY-LOCAL-2026-10-24.json).
+
+Reproduce source scheduling, with providers disabled:
+
+```sh
+python3 experimental/openai-web/research/benchmark_source_latency.py \
+  --map-review-dir ../map-review --report /tmp/openoracle-source-requests.json
+```
+
+Open8915 for the pinned serial baseline and8916 for current code; choose the same
+map example, inspect the current `#workspace` data-view-timing and repeat after
+reload. Driver binds loopback only and refuses unavailable ports. Baseline code
+is read from Git, instrumented only; no checkout/reset is performed. The saved
+driver was actually run. Stop it after comparison. Current ordinary review is
+http://127.0.0.1:8917/ with providers off;8914 is an older process/tab and should
+not be used as this increment's verification target.
+
+Architecture decision: show admitted source UI immediately; keep concise fresh
+Responses text separate from audio preparation. The critical audio dependency
+remains text→Decisions→Live finalization→whole-WAV ASR→checked readiness. Existing
+33.02s preparation is still the only cited accepted long-reading result; this
+increment does not establish faster live speech. The prior26.82s waveform and
+31.85s Live elapsed show why a sub3s whole-answer gate is incompatible with that
+specific long reading; polling optimization alone cannot remove it.
+
+Next controlled voice comparisons should use a concise complete unit first.
+An incremental alternative must compile independently meaningful units, preserving
+attribution/negation/conditions/scope, with per-unit source+language+turn+sequence
+binding and full actual-audio checks before queue release. A silent gap or a
+transcript fragment is not a complete semantic unit. No such streaming release
+is enabled now. Original source question/geometry fetches can run in parallel;
+review of generated text cannot logically finish before that text exists, and
+whole-WAV ASR cannot start before its final waveform exists. No speculative paid
+jobs were introduced.
+
+[Official latency guidance](https://developers.openai.com/api/docs/guides/latency-optimization)
+supports fewer output tokens, independent parallel work and UI reuse.
+[Live client delegation](https://developers.openai.com/api/docs/guides/live-delegation#reduce-backend-latency)
+documents persistent connections and coherent verified updates; these are future
+provider comparisons, not implemented warming here. Keep provider configuration
+stable for caching, inspect reported cache usage, and compare existing Luna
+none-effort versus Sol low-effort on the same quality corpus before selecting a
+faster model. No model, service tier, timeout, spoken disclosure or independent
+ASR gate changed. An explicitly disclosed Realtime2.1Mini synthesis comparison
+remains an alternative, not a silent replacement of requested GPT-Live.
+
+Minimal new paid measurement proposal, **not executed/approved**: one English
+brief with existing `gpt-6-luna` Responses and independent Decisions, then only if
+text passes, same-owner `gpt-live-1` plus finalized-WAV `gpt-transcribe`. Two app
+jobs/four requests maximum; reserve≤$0.11 within shared$200, no paid retry,
+existing token/duration/timeout/cancel gates and fresh price/account checks before
+execution. Record checked text, audio-ready, stage cost and holds; no microphone
+or Play. This is conservative application reservation, not vendor-guaranteed
+per-request billing. The older≤$0.20 Spanish proposal remains separately gated.
+No new trial is needed to reproduce the local rendering results above.

@@ -312,6 +312,10 @@ export async function mountContestInventory(
               " · " +
               text("original", "original"),
           ),
+        );
+        const sourceDetails = el("details");
+        sourceDetails.append(
+          el("summary", text("Source details", "Detalles de la fuente")),
           el(
             "p",
             text("Document date: ", "Fecha del documento: ") +
@@ -320,7 +324,18 @@ export async function mountContestInventory(
               text("Retrieved: ", "Obtenido: ") +
               source.retrieved_utc,
           ),
+          el(
+            "p",
+            text(
+              "Document version · SHA256 ",
+              "Versión del documento · SHA256 ",
+            ) + source.original_sha256,
+          ),
         );
+        sourceDetails.ontoggle = () => {
+          if (sourceDetails.open) onRead();
+        };
+        section.append(sourceDetails);
         section.append(
           el(
             "p",

@@ -23,6 +23,7 @@ FILES = {
     '/map-status.json': (ROOT / 'fixtures/map-status.json', 'application/json'),
     '/proposition-a.json': (ROOT / 'fixtures/proposition-a.json', 'application/json'),
     '/measure-source.mjs': (ROOT / 'web/measure-source.mjs', 'text/javascript; charset=utf-8'),
+    '/view-timing.mjs': (ROOT / 'web/view-timing.mjs', 'text/javascript; charset=utf-8'),
     '/layout-client.mjs': (ROOT / 'web/layout-client.mjs', 'text/javascript; charset=utf-8'),
     '/input-intent.mjs': (ROOT / 'web/input-intent.mjs', 'text/javascript; charset=utf-8'),
     '/journey-core.mjs': (ROOT / 'web/journey-core.mjs', 'text/javascript; charset=utf-8'),

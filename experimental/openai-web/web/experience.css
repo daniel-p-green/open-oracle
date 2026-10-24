@@ -482,3 +482,10 @@ body.has-content .product-intro .intro {
   background: #fff0a1;
   color: #122b27;
 }
+
+.map-pending {
+  min-height: 18rem;
+  display: grid;
+  place-items: center;
+  color: var(--muted, #52635e);
+}

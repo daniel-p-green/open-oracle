@@ -122,6 +122,7 @@ class JourneyPipeline:
         if task not in TASKS: raise Held('journey_task')
         _, operation, language = task.split(':')
         if language == 'es' and not self.allow_spanish: raise Held('translation_review_required')
+        stage('retrieval')
         question = load_question()
         sources = source_packet(question)
         request = OPERATIONS[operation]
@@ -146,6 +147,7 @@ class JourneyPipeline:
             'text': {'format': {'type': 'json_schema', 'name': 'grounded_resident_explanation', 'strict': True, 'schema': schema}}}, cancel)
         meter('sol_text' if sol else 'journey_text', generated.get('usage')); check_cancel(cancel)
         if generated.get('status') != 'completed': raise Held('journey_incomplete')
+        stage('validation')
         raw = ''.join(c.get('text', '') for o in generated.get('output', []) if o.get('type') == 'message'
                       for c in o.get('content', []) if c.get('type') == 'output_text')
         try: draft = json.loads(raw)
@@ -154,6 +156,7 @@ class JourneyPipeline:
         stage('review')
         reviewed = self.provider.post('decisions', review_body(request,language,sources,draft,previous), cancel)
         meter('review', reviewed.get('usage')); check_cancel(cancel)
+        stage('validation')
         answers = reviewed.get('answers', [])
         expected = CRITICAL | {'attributed','request_fit'}
         if len(answers) != len(expected) or {a.get('name') for a in answers} != expected: raise Held('journey_review_shape')

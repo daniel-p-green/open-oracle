@@ -28,3 +28,15 @@ inventory byte pin, while `research/build_inventory.py` owns deterministic sourc
 admission. This extends the adopted bounded-action/evidence separation pattern;
 it is deterministic application composition, not a new live-model result or copied
 demo source. No reference license assumptions changed and no demo code was imported.
+
+October24 native-UI comparison: Daniel authorized public Chrome prompts and
+actual interaction tests. [Comparison and exact adaptations](GENERATIVE-UI-COMPARISON.md)
+records the failed map artifact, repaired native document controls and working
+exact-source card. `experience.mjs` now uses a closed local renderer catalog and
+parallel admitted-source loading; `inventory-view.mjs` progressively discloses
+source version details while retaining visible originals/freshness limits.
+`view-timing.mjs` and `latency.py` add volatile numeric diagnostics. No native
+private renderer or reference code was copied. Native ChatGPT visualization
+behavior is observed, not an embeddable API promise; open-source alternatives
+remain considered, not installed/benchmarked. Existing MIT/Apache references
+confer no license on unreviewed generated or unrelated demo code.

@@ -86,3 +86,17 @@ Independent code review found a language-confirmation regression, now repaired
 and verified in both directions. This later increment has **no renewed Claude
 review or paid Spanish trial**; it is excluded from the immutable pending
 8db5221 approval/payload. The full stretch target remains unmet.
+
+October24 latency/native-UI increment: exact two-commit push65bad7a/6d90b11 is
+complete and CI passed at6d90b11. Later work stays local. Parallel retained-source
+reads reduce click-to-source/map/completion in a controlled fixed-delay browser
+comparison; numeric diagnostics separate UI, text/review, Live and ASR stages.
+Closed renderers and progressive source details require no generated HTML/JS or
+extra rendering inference. A display-time legal expiry race was found, repaired
+and independently closed. Native Chrome comparison exercised actual controls
+and one runtime repair; its first map artifact failed, repaired output had only
+document links, and its exact-source card worked through language/highlight/
+check/Skip/Reset. No native renderer/geometry or new translation was imported.
+See [the comparison](GENERATIVE-UI-COMPARISON.md). Actual live voice speed,
+heard bilingual quality, full semantic composition and remaining stretch gates
+are still open; no public-readiness claim follows.
