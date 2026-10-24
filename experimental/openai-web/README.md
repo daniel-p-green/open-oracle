@@ -49,34 +49,55 @@ After a checked fresh explanation, explicit review mode offers **Prepare fresh
 voice**. A separate bounded job retrieves that same-owner ready answer; the
 browser cannot supply speech prose. It preserves source attribution, quotation
 status, human-review uncertainty, unconfirmed delivery and nonpersonal scope.
-GPT-Live output is buffered until whole-session finalization. Its exact output
-transcript and an independent `gpt-transcribe` pass over the entire final WAV
-must agree with the canonical reading. ASR receives no expected-text prompt or
-language hint; detected language must match. Agreement is engineering evidence,
+GPT-Live receives an exact-reading instruction with content delimiters; commentary
+is not treated as an immutable approved transcript. Output is buffered until
+whole-session finalization. Its transcript and an independent `gpt-transcribe`
+pass over the entire final WAV must agree with the canonical reading under a
+closed set of pronunciation/typography aliases. Negation and other numbers are
+preserved. ASR receives no expected-text prompt or language hint; its primary
+detected language must match. Agreement is engineering evidence,
 not human pronunciation or acoustic approval.
 
 The existing job/budget/session/SpeechOutput owners manage this path. Each
 speech run reserves $0.10 and permits one Live session plus one ASR request,
-no retry. Reading≤1000 characters, generation window52s, Live transport timeout82s,
+no retry. The web job rejects a reading estimated over45s (12characters/sec)
+before reservation; that heuristic is not a duration guarantee. Live has a52s
+generation bound and90s transport timeout, client115s,
 accepted final usage≤75s, PCM≤60s and ASR HTTP timeout20s. Duration-based price
 arithmetic at those accepted bounds is $0.067; uncertain or failed work retains
 the whole reservation. These application bounds do not promise a provider-side
-spending cap or refund. The full buffering window is a **known latency
-limitation**, not the natural/low-latency release experience.
+spending cap or refund. A complete planned co-transcript plus a quiet interval
+can trigger session close; it never approves release. The full final waveform
+still goes to ASR, without trimming quiet words. Full-answer buffering is a
+**known latency limitation**, not the natural/low-latency release experience.
 
 WAV access requires the owner-token header and ready child+parent. Parent
-revocation/expiry clears dependent speech; audio expires120s from request.
+revocation/expiry clears dependent speech; audio expires120s from ready with a
+hard240s cap from request and the owner's expiry.
 Cached browser media has the same lease, checks server readiness before manual
-Play and rechecks expiry after that asynchronous validation. Source/language/
-Stop/Erase navigation clears audio. There is no automatic sound or microphone.
+Play and rechecks sufficient lease for the clip duration+2s after that asynchronous
+validation. Same-parent source/map browsing pauses playback and preserves
+preparation. Stop/Erase/Challenge/language/parent changes revoke it. Expired audio
+has an explicit state and never causes automatic regeneration. There is no
+automatic sound or microphone.
 Fresh speech remains review-only pending human approval.
 
 **Verified:** local provider fakes, ownership/cancellation/expiry checks, server/
-browser EN/ES reading parity, and a visibly labeled zero-API browser preparation
-with unchecked speakers/disabled Play; challenge cleared its audio.
-**Not verified:** the new real Live+ASR flow, heard speech or human language/
-pronunciation. Starting its bounded real smoke and uploading renewed Claude
-review were rejected by automatic approval review; no alternate route used.
+browser EN/ES reading parity, actual English Live+whole-WAV ASR adapter and web
+preparation. A real missing disclosure and a later ASR disagreement were held.
+The instrumented public-only web run prepared26.82s of audio in33.02s; no sound
+was played. These few development runs do not estimate reliability. Actual
+Opus5.5High critique/re-reviews returned. The earlier approval denials were
+resolved on newly supplied authority, with one permitted retry each.
+**Not verified:** human-heard sound, Spanish fresh speech, civic/bilingual/
+acoustic quality, natural private-safe spoken input, accessibility acceptance or
+whole-product readiness. See logs.md for actual costs and failure evidence.
+
+The candidate pane now includes all three printed U.S.House District5 candidates
+and write-in from the pinned KCEB W1-P7 public sample, with page/field provenance
+and equal background-evidence gaps. It is not a complete KCEB/JCEB inventory or
+personal ballot. Office context is sourced independently; names alone never
+merge records or establish a candidate's position.
 
 **Not the completed multilingual voice/generative-UI product.** This is a working
 local evidence workspace with prepared synthetic narration, not a human voice

@@ -18,3 +18,18 @@ export async function loadHouseOffice(signal) {
       throw Error("office_passage");
   return immutableCopy(source);
 }
+
+export async function loadSampleHouseContest(signal) {
+  const response = await fetch("/sample-house-contest.json", {
+    cache: "no-store",
+    signal,
+  });
+  if (!response.ok) throw Error("contest_unavailable");
+  const bytes = await response.arrayBuffer();
+  if (
+    (await sha(bytes)) !==
+    "2e32afe9e35c81640dc2208b57979f3ef8a3cb709564261d76a516dc38adedf1"
+  )
+    throw Error("contest_integrity");
+  return immutableCopy(JSON.parse(new TextDecoder().decode(bytes)));
+}

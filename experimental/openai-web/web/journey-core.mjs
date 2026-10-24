@@ -136,19 +136,28 @@ export function recapUnits(units, language) {
 
 export function journeyReading(unit) {
   const es = unit.language === "es";
-  let prefix = es
-    ? "Explicación por IA, revisión humana pendiente. Explicación del texto de la pregunta, no es una cita."
-    : "AI explanation, human review pending. Explanation of the ballot wording, not a quotation.";
-  if (unit.request_fit === "unconfirmed")
-    prefix += es
-      ? " El nivel de sencillez o detalle solicitado no está confirmado."
-      : " The requested simplicity or detail is unconfirmed.";
+  const notice = es
+    ? "Explicación por IA, revisión humana pendiente."
+    : "AI explanation, human review pending.";
+  const label = es
+    ? "Explicación del texto de la pregunta, no es una cita."
+    : "Explanation of the ballot wording, not a quotation.";
+  const quality =
+    unit.request_fit === "unconfirmed"
+      ? [
+          es
+            ? "El nivel de sencillez o detalle solicitado no está confirmado."
+            : "The requested simplicity or detail is unconfirmed.",
+        ]
+      : [];
   return [
-    prefix,
-    ...unit.sections.map((p) => p.text),
+    notice,
     es
       ? "Esta muestra pública no verifica su boleta ni su distrito."
       : "This public sample does not verify your ballot or district.",
+    label,
+    ...quality,
+    ...unit.sections.map((p) => p.text),
   ].join(" ");
 }
 
@@ -169,6 +178,10 @@ export function validateJourneySpeech(value, unit, job) {
     !Number.isInteger(value.bytes) ||
     value.bytes < 44 ||
     value.bytes > 60 * 48000 + 44 ||
+    !Number.isFinite(value.duration_seconds) ||
+    value.duration_seconds <= 0 ||
+    value.duration_seconds > 60 ||
+    Math.abs(value.duration_seconds - (value.bytes - 44) / 48000) > 0.000001 ||
     !Number.isFinite(job?.expiresInSeconds) ||
     job.expiresInSeconds <= 0 ||
     job.expiresInSeconds > 120 ||
@@ -186,6 +199,7 @@ export function validateJourneySpeech(value, unit, job) {
       sha256: value.sha256,
       bytes: value.bytes,
       independent_asr_match: true,
+      duration_seconds: value.duration_seconds,
     },
     expiresAt: Date.now() + job.expiresInSeconds * 1000,
   });

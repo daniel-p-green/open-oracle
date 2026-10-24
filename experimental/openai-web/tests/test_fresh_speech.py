@@ -9,7 +9,7 @@ import threading
 import unittest
 import wave
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from fresh_speech import FreshSpeechPipeline,reading_for
+from fresh_speech import FreshSpeechPipeline,reading_for,words
 from journey import QUESTION_PIN
 from jobs import Budget,Jobs
 from providers import Held
@@ -45,11 +45,15 @@ class FreshSpeechTests(unittest.TestCase):
         cancel.set();count=len(provider.calls)
         with self.assertRaises(Held):pipeline.run_task('speech:en',cancel,lambda _:None,lambda *_:None,prior=parent())
         self.assertEqual(len(provider.calls),count)
+        self.assertEqual(words('A.I House Bill No.1 (2025)'),words('AI House Bill number one (two thousand twenty-five)'))
+        self.assertNotEqual(words('No one approves it'),words('number one approves it'))
+        self.assertNotEqual(words('does not verify'),words('does verify'))
 
     def test_same_owner_parent_revocation_and_audio_expiry_keep_budget_conservative(self):
         class Pipeline:
             def run_task(self,task,cancel,stage,meter,prior=None):
                 stage('audio' if task.startswith('speech:') else 'text')
+                if prior:now[0]+=70
                 return ({'mode':'fresh_checked_speech'} if prior else parent()),b'public wave fixture'
         with tempfile.TemporaryDirectory() as folder:
             path=Path(folder)/'ledger.json';path.write_text(json.dumps({'authorization_usd_max':200,'runs':[]}))
@@ -60,13 +64,18 @@ class FreshSpeechTests(unittest.TestCase):
                 with self.assertRaisesRegex(Held,'parent_unavailable'):jobs.start(other,'public_audio_00001','speech:en',parent_request='public_parent_0001')
                 jobs.start(token,'public_audio_00001','speech:en',parent_request='public_parent_0001');jobs.workers[-1].join(1)
                 self.assertEqual(jobs.audio(token,'public_audio_00001'),b'public wave fixture')
+                now[0]=125
+                self.assertEqual(jobs.audio(token,'public_audio_00001'),b'public wave fixture')
                 with self.assertRaises(Held):jobs.audio(other,'public_audio_00001')
                 jobs.cancel(token,'public_parent_0001')
                 with self.assertRaises(Held):jobs.audio(token,'public_audio_00001')
                 self.assertIsNone(jobs.public(token,'public_audio_00001')['result'])
                 jobs.start(token,'public_parent_0002','journey:simpler:en');jobs.workers[-1].join(1)
                 jobs.start(token,'public_audio_00002','speech:en',parent_request='public_parent_0002');jobs.workers[-1].join(1)
-                now[0]=121
+                prior=jobs.owners[token]['jobs']['public_parent_0002']['result']
+                prior['unit']['sections'][0]['text']=('The question asks about a congressional plan. '*14).strip()
+                with self.assertRaisesRegex(Held,'speech_too_long'):jobs.start(token,'overlong_audio_001','speech:en',parent_request='public_parent_0002')
+                now[0]=316
                 with self.assertRaises(Held):jobs.audio(token,'public_audio_00002')
                 reservations=[row['reserved_usd'] for row in json.loads(path.read_text())['runs']]
                 self.assertEqual(reservations,[.01,.10,.01,.10])

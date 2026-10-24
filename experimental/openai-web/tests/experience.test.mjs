@@ -30,6 +30,45 @@ const deferred = () => {
   const promise = new Promise((r) => (resolve = r));
   return { promise, resolve };
 };
+test("public-sample roster preserves every printed choice without asserting personal or county coverage", async () => {
+  const { loadSampleHouseContest } = await import("../web/office-source.mjs");
+  const bytes = await readFile(
+    new URL("../fixtures/sample-house-contest.json", import.meta.url),
+  );
+  const oldFetch = globalThis.fetch;
+  try {
+    globalThis.fetch = async () => ({
+      ok: true,
+      arrayBuffer: async () => Uint8Array.from(bytes).buffer,
+    });
+    const sample = await loadSampleHouseContest(new AbortController().signal);
+    assert.equal(sample.personal_membership, false);
+    assert.equal(sample.county_inventory_complete, false);
+    assert.deepEqual(
+      sample.contest.candidate_rows.map((row) => row.printed_name),
+      ["RICK BRATTIN", "EMANUEL CLEAVER, II", "RANDALL (RANDY) LANGKRAEHR"],
+    );
+    assert.equal(sample.contest.write_in.named_candidate, false);
+    assert.ok(
+      sample.contest.candidate_rows.every(
+        (row) => row.background_evidence === "not_admitted",
+      ),
+    );
+    const changed = JSON.parse(bytes);
+    changed.contest.candidate_rows.pop();
+    globalThis.fetch = async () => ({
+      ok: true,
+      arrayBuffer: async () =>
+        new TextEncoder().encode(JSON.stringify(changed)).buffer,
+    });
+    await assert.rejects(
+      loadSampleHouseContest(new AbortController().signal),
+      /contest_integrity/,
+    );
+  } finally {
+    globalThis.fetch = oldFetch;
+  }
+});
 test("fresh cached speech requires current reading lease and server revalidation before any player starts", async () => {
   const unit = {
     operation: "simpler",
@@ -60,6 +99,7 @@ test("fresh cached speech requires current reading lease and server revalidation
     playback_enabled: false,
     sha256: hash,
     bytes: 100,
+    duration_seconds: (100 - 44) / 48000,
   };
   const decoded = validateJourneySpeech(value, unit, {
     requestId: "fresh_public_audio_01",
@@ -108,6 +148,9 @@ test("fresh cached speech requires current reading lease and server revalidation
     parentRequest: "checked_parent_0001",
   };
   assert.equal(await output.prepare(decoded.asset, binding), true);
+  output.halt();
+  assert.equal(output.snapshot().stage, "ready");
+  assert.equal(output.snapshot().reading, decoded.asset.text);
   output.setConsent(true);
   assert.equal(await output.play(), false);
   assert.equal(checks, 1);
@@ -117,7 +160,7 @@ test("fresh cached speech requires current reading lease and server revalidation
   try {
     Date.now = () => decoded.expiresAt + 1;
     assert.equal(await output.play(), false);
-    assert.equal(output.snapshot().stage, "off");
+    assert.equal(output.snapshot().stage, "expired");
   } finally {
     Date.now = oldNow;
     output.stop();
@@ -128,7 +171,7 @@ test("fresh cached speech requires current reading lease and server revalidation
   try {
     assert.equal(await output.play(), false);
     assert.equal(players, 0);
-    assert.equal(output.snapshot().stage, "off");
+    assert.equal(output.snapshot().stage, "expired");
   } finally {
     Date.now = oldNow;
     output.stop();

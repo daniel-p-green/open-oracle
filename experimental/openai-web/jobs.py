@@ -11,6 +11,7 @@ import time
 from contextlib import contextmanager
 from pathlib import Path
 from providers import Held, check_cancel
+from fresh_speech import speech_preflight
 
 TOKEN_TTL = 600
 JOB_TTL = 120
@@ -113,7 +114,10 @@ class Jobs:
         for owner in self.owners.values():
             for row in owner['jobs'].values():
                 ready_public_context = row['state'] == 'ready' and str(row.get('task','')).startswith('journey:')
-                if (not ready_public_context and now - row['created'] >= JOB_TTL) or now - owner['created'] >= TOKEN_TTL:
+                ready_speech=row['state']=='ready' and str(row.get('task','')).startswith('speech:')
+                expired=((now-row.get('ready_at',row['created'])>=JOB_TTL or now-row['created']>=240) if ready_speech
+                         else not ready_public_context and now-row['created']>=JOB_TTL)
+                if expired or now - owner['created'] >= TOKEN_TTL:
                     row['cancel'].set(); row['result'] = row['audio'] = row['prior'] = None; row['state'] = 'expired'
             for row in owner['jobs'].values():
                 if str(row.get('task','')).startswith('speech:'):
@@ -145,6 +149,7 @@ class Jobs:
     def start(self, token, request, task=None, parent_request=None):
         with self.lock:
             owner = self._owner(token)
+            if owner.get('blocked'):raise Held('owner_unavailable')
             if request in owner['cancelled']: raise Held('cancelled')
             if request in owner['jobs']:
                 if owner['jobs'][request].get('task') != task or owner['jobs'][request].get('parent_request') != parent_request: raise Held('request_conflict')
@@ -157,6 +162,7 @@ class Jobs:
                     raise Held('parent_unavailable')
                 prior = copy.deepcopy(parent['result'])
             if task and task.startswith('speech:') and not prior: raise Held('parent_unavailable')
+            if task and task.startswith('speech:'):speech_preflight(prior,task.split(':')[1])
             if self.runs >= self.max_runs: raise Held('run_limit')
             if any(r.get('in_flight') for o in self.owners.values() for r in o['jobs'].values()):
                 raise Held('busy')
@@ -186,7 +192,7 @@ class Jobs:
                 check_cancel(row['cancel'])
                 if self.clock() - row['created'] >= JOB_TTL: raise Held('expired')
                 self.budget.finish(row['run'], 'ready')
-                row.update(state='ready', result=copy.deepcopy(result), audio=bytes(pcm))
+                row.update(state='ready', result=copy.deepcopy(result), audio=bytes(pcm),ready_at=self.clock())
         except Held as error:
             with self.lock:
                 row.update(state='expired' if row['state']=='expired' or str(error)=='expired' else 'cancelled' if row['cancel'].is_set() else 'held', reason=str(error), result=None, audio=None)
@@ -206,6 +212,7 @@ class Jobs:
             row = owner['jobs'].get(request)
             if row is None: raise Held('job_unavailable')
             lifetime_left = (TOKEN_TTL - (self.clock()-owner['created']) if row['state']=='ready' and str(row.get('task','')).startswith('journey:')
+                             else min(JOB_TTL-(self.clock()-row.get('ready_at',row['created'])),240-(self.clock()-row['created']),TOKEN_TTL-(self.clock()-owner['created'])) if row['state']=='ready' and str(row.get('task','')).startswith('speech:')
                              else JOB_TTL-(self.clock()-row['created']))
             return copy.deepcopy({'request_id': request, 'state': row['state'], 'reason': row['reason'],
                                   'result': row['result'], 'playback_enabled': False,
@@ -214,8 +221,13 @@ class Jobs:
     def cancel(self, token, request):
         with self.lock:
             owner = self._owner(token)
-            if len(owner['cancelled']) >= 16 and request not in owner['cancelled']: raise Held('cancel_capacity')
-            owner['cancelled'].add(request)  # Tombstone rejects a delayed Start arriving after reset.
+            if len(owner['cancelled']) >= 16 and request not in owner['cancelled'] and request not in owner['jobs']:
+                # Saturation must never permit a delayed Start after Erase.
+                owner['blocked']=True
+                for pending in owner['jobs'].values():
+                    pending['cancel'].set();pending['result']=pending['audio']=pending['prior']=None;pending['state']='cancel_requested'
+            if len(owner['cancelled'])<16:owner['cancelled'].add(request)
+            # Existing job rows themselves prevent restarting cancelled work.
             row = owner['jobs'].get(request)
             if row:
                 row['cancel'].set(); row['result'] = row['audio'] = None

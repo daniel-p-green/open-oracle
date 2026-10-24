@@ -83,9 +83,14 @@ class JobsTests(unittest.TestCase):
         self.jobs.cancel(self.token, self.request)
         with self.assertRaises(Held): self.jobs.start(self.token, self.request)
         self.assertEqual(self.jobs.runs, 0)
+        for i in range(17):self.jobs.cancel(self.token,'unused_cancel_'+str(i))
+        with self.assertRaisesRegex(Held,'owner_unavailable'):self.jobs.start(self.token,'delayed_after_overflow')
+        self.assertEqual(self.jobs.runs,0)
 
     def test_cancelling_ready_result_discards_server_audio_and_citations(self):
-        self.jobs.start(self.token, self.request); self.wait_terminal(); self.jobs.cancel(self.token, self.request)
+        self.jobs.start(self.token, self.request); self.wait_terminal()
+        for i in range(16):self.jobs.cancel(self.token,'unused_cancel_'+str(i))
+        self.jobs.cancel(self.token, self.request)
         row = self.jobs.public(self.token, self.request)
         self.assertEqual(row['state'], 'cancelled'); self.assertIsNone(row['result'])
         self.assertIsNone(self.jobs.owners[self.token]['jobs'][self.request]['audio'])

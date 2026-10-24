@@ -135,3 +135,28 @@ source actions. The actual delayed zero-API browser run confirmed map navigation
 cancelled pending preparation, the late result stayed cleared, and Reset erased
 the journey. This does not substitute for the requested renewed Opus critique,
 real Live/ASR evidence, human acoustic review or whole-product acceptance.
+
+## Subsequent authorized speech review and measured outcomes
+
+Parent supplied the original user authorization again. The single permitted
+retry uploaded the scrubbed current source successfully; actual Opus5.5High
+critique and focused re-reviews returned in the same existing chat. Previous
+denial remains history, not a current approval blocker. No new access or charges
+outside existing account allocation were introduced.
+
+The critique identified padding, lease pressure, source-browsing cost, overlong
+readings, transcript formatting and timeout arithmetic. Repairs: ready-based
+bounded lease with full-clip start allowance; non-discarding halt for same-parent
+browsing; preflight before reservation; closed transcript aliases preserving
+negation; primary-language check; adjusted transport/client bounds. Review
+accepted the early-close trade instead of trimming: quiet only proposes close,
+while the entire finalized waveform still needs independent ASR.
+
+Actual first adapter held an omitted nonpersonal disclaimer. Following official
+Live exact-disclosure guidance, fresh readings now use instructions.append with
+content delimiters and place scope before the prose. Actual Opus re-review found
+no consequential blocker to the separately reserved bounded test. That adapter
+passed whole-WAV ASR; the later real web path had both a held ASR disagreement
+and a successful preparation. These are development observations, not measured
+reliability or whole-product approval. No human microphone/playback was used.
+Exact durations, costs and limitations are recorded in logs.md.

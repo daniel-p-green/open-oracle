@@ -93,6 +93,7 @@ export async function requestProviderJob({
             "budget_exhausted",
             "request_conflict",
             "cancelled",
+            "speech_too_long",
           ].includes(denial.error)
         )
           onNotStarted(denial.error);

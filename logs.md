@@ -791,3 +791,132 @@ This is a backfill, not a contemporaneous event stream.
   off, transcript stayed cleared, consent remained false and Play disabled.
   Reset removed the journey. This directly verifies the repaired sibling path;
   no real waveform or device was involved.
+
+### 2026-10-24 07:51 UTC — approvals reconciled; actual speech evidence and repairs
+
+- **Authorization reconciled:** parent supplied the original verbatim Daniel
+  directions for project commits/PRs, relevant Claude source review and OpenAI
+  testing within the shared$200 cap. Each previously denied action was retried
+  once on that new evidence, and all three were permitted. No alternate route
+  bypassed a denial. Earlier approval questions are superseded by this supplied
+  authority; no request identifier was exposed by those question tools.
+- **Completed:** pushed `f0c3ef8` and `dd6c1ac9cdde67179aeee87dd72d4543461aa9a1`
+  to existing draft PR6. Actual [remote CI success](https://github.com/daniel-p-green/open-oracle/actions/runs/40073255602)
+  fordd6c1ac. No merge/deployment. Later uncommitted repairs need their own CI.
+- **Actual requested review:** current scrubbed eleven-file source bundle
+  submitted to the existing Claude chat, UI visibly Opus5.5High. Actual critique
+  and focused patch re-review returned; full product remains not ready. Found
+  expected silence padding, lease pressure, wasteful source-navigation cancel,
+  overlong paid readings and typography false holds. Dispositions below follow
+  source review and measurements, not presumed reviewer correctness.
+- **Implemented/checked:** speech ready lease120s from ready, hard240s from
+  request/owner cap; before and after async server validation, Play needs clip
+  duration+2s remaining. Ready touches existing session. Same-parent source/map/
+  activity browsing now halts active playback while retaining pending/cached
+  preparation; explicit Stop/Erase/Challenge/language/parent change still revoke.
+  This supersedes the earlier cancel-on-map behavior recorded above.
+- **Implemented/checked:** before reservation, a conservative12characters/sec
+  heuristic rejects readings estimated over45s; a known no-start restores local
+  allowance without retry. Closed pronunciation aliases cover dotted AI/IA,
+  only House Bill No1/numberone, and2025 spoken forms. Standalone no/negation,
+  other numbers and qualifications are not silently removed. Primary detected
+  ASR language must match. Live transport90s/client115s; source/numeric/factual
+  thresholds unchanged.
+- **Actual initial smoke:** Sol/Decisions overview ready ($0.10 reserved,
+  $0.0019515 usage estimate). Stopped old server before speech to apply review
+  fixes. Remaining$0.10 tested the adapter against the exact observed public
+  checked text, explicitly not restored ownership/full web proof. Live omitted
+  the final personal-ballot limitation; held before ASR, no audio released.
+  Final Live usage52s, PCM51.52s, leading/trailing low-energy0.66/27.84s,
+  elapsed57.07s, window-bound close, estimated$0.0433333. Initial$0.20 allocation
+  exhausted conservatively; no automatic retry.
+- **Measured correction:** moved nonpersonal scope ahead of prose, keeping
+  explanation/not-quotation label adjacent to prose and identical EN/ES server/
+  browser reading builders. Fresh Live uses the officially documented
+  instructions.append exact-disclosure request with content markers; startup
+  waits for that instruction. Commentary remains only in the old diagnostic
+  path. A complete canonical co-transcript plus1s low-energy interval proposes
+  session close, never release. All final audio, including close-wait deltas,
+  still receives whole-WAV independent ASR. No quiet-word trimming introduced.
+- **Actual separately reserved development test:** $0.10, same public observed
+  input. Opus reviewed the correction and found no consequential blocker for
+  that bounded adapter experiment. Passed independent ASR with primary en,
+  all disclosures present. Prepared in34.85s; PCM28.96s; leading/trailing
+  low-energy1.06/1.08s; planned-text-and-quiet close. Pre-instruction PCM was
+  silent by the measured threshold, no voiced output detected. Estimated
+  $0.0263387. This is an English adapter pass, not human listening, Spanish
+  meaning, reliability statistics or the full real web path. Latency remains
+  unsuitable for the intended natural interaction.
+- **Actual subsequent web check:** separate two-run$0.20 allocation; Sol text
+  ready, source/map browsing stayed available during real speech preparation.
+  Speech held at independent_transcript_mismatch. Live29s and WAV29.08s metered;
+  estimated$0.0263477 for speech. Play remained disabled/consent false, focus
+  remained on original source. Ordinary app deliberately kept no raw provider
+  transcript. Instrumented public-only diagnostic is running under a separately
+  capped two-run$0.20 allowance to identify actual mismatches; this private test
+  wrapper is outside Git and never records human input. No automatic retries.
+- **Cost checkpoint before that new diagnostic starts calls:** shared reserved
+  $1.76; recorded aggregate estimate$0.1862414667 plus earlier unmetered
+  Playground usage, not invoice. Existing credentials only; no account/billing,
+  recharge, persistent access, public deployment or human media change.
+- **Independent code review:** confirmed revised lease/preflight/canonicalizer/
+  halt controls and focused local checks. Root also repaired ready-audio cleanup
+  on Stop and tombstone saturation: known jobs remain cancellable at capacity;
+  saturation blocks a delayed new Start instead of letting it evade Erase.
+  Existing meaningful cancellation proofs extended; no test-count target.
+- **Primary evidence increment:** used installed PDF skill/Poppler, visually
+  checked page1 of the retained hash-verified KCEB public sample. All three
+  U.S.House District5 rows plus write-in now visible, in ballot order, with
+  equal background-evidence gaps. Source fixture has exact field spans, page,
+  publisher, original/readout hashes and retrieval date. No person-record merge,
+  policy inference, full-county inventory or personal membership claim. Actual
+  provider-off browser verified all names/source. Missing/altered roster holds.
+- **Useful HackMidwest work recovered:** read JCEB contest inventory and retained
+  notice transcription: it reports48 printed contests outside KCMO, not an
+  individual's ballot. Original PDF exists locally. It is a reuse candidate,
+  not newly admitted/currentness-verified coverage; no complete denominator
+  asserted. No denied SOS retry, campaign admission or bulk ingestion.
+- **Official API freshness:** current text-to-speech guide says tts-1/tts-1-hd/
+  gpt-4o-mini-tts shut down January6,2027; recommended migration is the different
+  Realtime workflow. No deprecated TTS replacement silently introduced. A faster
+  checked-speech comparison remains an architecture/evaluation follow-up.
+- **Validation:** full local Node and Python/source/jobs/loopback suites passed,
+  current EN/ES confirmed/unconfirmed reading parity passed. These are behavior
+  proofs, not bilingual/acoustic/accessibility acceptance. No human sound used.
+
+### 2026-10-24 08:11 UTC — terminal public web proof and checkpoint
+
+- **Completed diagnostic:** real Sol/Decisions text → same-owner Live reading →
+  independent whole-WAV ASR → authenticated browser fetch/hash/preparation
+  reached ready. Instrumented test recorded26.82s PCM,33.02s preparation,
+  planned-text-and-quiet close,1.20/1.10s leading/trailing low energy, primary en
+  and complete canonical word agreement. No voiced output before instruction.
+  Source/map browsing did not cancel it; original retained focus. No human mic,
+  speaker consent or Play. After lease expiry the browser had cleared audio;
+  a stale prepared-status string was observed and repaired with an explicit
+  expired state/server cleanup. Focused expiry proof passes; this is no acoustic
+  or full-acceptance claim.
+- **Cost checkpoint:** shared conservative reservations$1.96; recorded aggregate
+  usage/duration estimate$0.2127044667 plus earlier unmetered Playground usage,
+  not invoice. Last text estimate$0.0019515; last speech$0.0245115. All provider
+  jobs terminal; no automatic paid retries, purchases or billing changes.
+- **JCEB reuse verified:** one permitted direct official download returned200 at
+  documented URL,109533bytes, retrieved2026-10-24T07:57:44.986988Z, SHA256
+  `032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2`.
+  Byte-identical to retained October9 original, two pages. This substantiates
+  reuse of HackMidwest source work; retained48-contest inventory is a candidate
+  for admission after original-layout/field reconciliation. It is not a newly
+  admitted personal or complete-county ballot. No SOS retry or bulk ingestion.
+- **Local voice feasibility check, not implementation:** existing whisper,
+  whisper-cli and ffmpeg executables found; existing cache includes multilingual
+  tiny/base/small/large-v3-turbo weights. Read installed help and file metadata
+  only; no model download/install, hash verification, local ASR benchmark,
+  private transcription or capture. This offers a concrete next test toward
+  local private-safe intent intake; local transcription alone would not permit
+  forwarding private text downstream.
+- **Current documentation:** README, acceptance and review dispositions now
+  distinguish actual English provider proof, held cases and remaining natural
+  input/Spanish/human/latency/corpus gates. Reference/adaptation notes remain
+  linked; no deprecated TTS API silently substituted. Full stretch product is
+  still not acceptance-ready. Parent checkpoint requested; terminal results
+  returned after final local verification/commit and remote CI inspection.

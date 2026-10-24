@@ -43,11 +43,41 @@ export function createSpeechOutput({
     }
     prepared = null;
   }
-  function stop({ revokeConsent = false } = {}) {
+  function stop({ revokeConsent = false, expired = false } = {}) {
     ++generation;
     discard();
     if (revokeConsent) consent = false;
-    stage = "off";
+    stage = expired ? "expired" : "off";
+    emit();
+  }
+  function halt() {
+    if (!prepared) return; // Same-source browsing leaves preparation independent.
+    ++generation;
+    if (player) {
+      player.pause();
+      player.removeAttribute?.("src");
+      player.load?.();
+      player = null;
+    }
+    if (url) {
+      URL.revokeObjectURL(url);
+      url = null;
+    }
+    clearTimeout(leaseTimer);
+    if (
+      !session.current(prepared.binding.ticket) ||
+      (prepared.asset.kind === "fresh_checked_voice" &&
+        prepared.binding.expiresAt <= Date.now())
+    ) {
+      stop({ expired: true });
+      return;
+    }
+    if (prepared.asset.kind === "fresh_checked_voice")
+      leaseTimer = setTimeout(
+        () => stop({ expired: true }),
+        Math.max(0, prepared.binding.expiresAt - Date.now()),
+      );
+    stage = "ready";
     emit();
   }
   async function prepare(asset, binding) {
@@ -75,6 +105,9 @@ export function createSpeechOutput({
           asset.independent_asr_match === true &&
           /^[a-zA-Z0-9_-]{16,64}$/.test(asset.id) &&
           Number.isFinite(binding.expiresAt) &&
+          Number.isFinite(asset.duration_seconds) &&
+          asset.duration_seconds > 0 &&
+          asset.duration_seconds <= 60 &&
           binding.expiresAt > Date.now() &&
           binding.expiresAt <= Date.now() + 120000
         : ["ui_navigation", "admitted_en_measure"].includes(
@@ -136,7 +169,7 @@ export function createSpeechOutput({
       if (asset.kind === "fresh_checked_voice")
         leaseTimer = setTimeout(
           () => {
-            if (g === generation) stop();
+            if (g === generation) stop({ expired: true });
           },
           Math.max(0, binding.expiresAt - Date.now()),
         );
@@ -165,9 +198,10 @@ export function createSpeechOutput({
       ticket = prepared.binding.ticket;
     if (
       prepared.asset.kind === "fresh_checked_voice" &&
-      prepared.binding.expiresAt <= Date.now()
+      prepared.binding.expiresAt - Date.now() <
+        (prepared.asset.duration_seconds + 2) * 1000
     ) {
-      stop();
+      stop({ expired: true });
       return false;
     }
     if (silent) {
@@ -187,9 +221,10 @@ export function createSpeechOutput({
         return false;
       if (
         prepared.asset.kind === "fresh_checked_voice" &&
-        prepared.binding.expiresAt <= Date.now()
+        prepared.binding.expiresAt - Date.now() <
+          (prepared.asset.duration_seconds + 2) * 1000
       ) {
-        stop();
+        stop({ expired: true });
         return false;
       }
     } catch {
@@ -252,6 +287,7 @@ export function createSpeechOutput({
   return {
     prepare,
     play,
+    halt,
     stop,
     setConsent(value) {
       consent = value === true;

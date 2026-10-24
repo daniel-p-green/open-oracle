@@ -18,8 +18,14 @@ MAX_PCM = 60 * 24000 * 2
 
 
 def words(text):
-    # Ignore case/punctuation, never drop negation, accents, words or numbers.
-    return re.findall(r'\w+', unicodedata.normalize('NFC', text).casefold())
+    # Closed pronunciation/typography equivalences for this admitted question.
+    # Never normalize a free-standing negation "no" or arbitrary numbers.
+    text=unicodedata.normalize('NFC',text)
+    text=re.sub(r'\bA\.\s*I\.?(?!\w)', 'AI',text,flags=re.I)
+    text=re.sub(r'\bI\.\s*A\.?(?!\w)', 'IA',text,flags=re.I)
+    text=re.sub(r'\bHouse Bill\s+(?:No\.?|number)\s*(?:1|one|uno)\b','House Bill number 1',text,flags=re.I)
+    text=re.sub(r'\b(?:two thousand(?: and)? twenty[- ]five|twenty twenty[- ]five|dos mil veinticinco)\b','2025',text,flags=re.I)
+    return re.findall(r'\w+',text.casefold())
 
 
 def reading_for(prior, language):
@@ -30,15 +36,23 @@ def reading_for(prior, language):
     unit=prior.get('unit',{})
     if unit.get('language') != language: raise Held('speech_language')
     validate_unit(unit,unit.get('operation'),language,load_question())
-    prefix = ('Explicación por IA, revisión humana pendiente. Explicación del texto de la pregunta, no es una cita.' if language=='es'
-              else 'AI explanation, human review pending. Explanation of the ballot wording, not a quotation.')
+    notice = ('Explicación por IA, revisión humana pendiente.' if language=='es' else 'AI explanation, human review pending.')
+    label = ('Explicación del texto de la pregunta, no es una cita.' if language=='es' else 'Explanation of the ballot wording, not a quotation.')
+    quality=[]
     if prior.get('request_fit') == 'unconfirmed':
-        prefix += (' El nivel de sencillez o detalle solicitado no está confirmado.' if language=='es'
-                   else ' The requested simplicity or detail is unconfirmed.')
+        quality.append('El nivel de sencillez o detalle solicitado no está confirmado.' if language=='es'
+                       else 'The requested simplicity or detail is unconfirmed.')
     scope = ('Esta muestra pública no verifica su boleta ni su distrito.' if language=='es'
              else 'This public sample does not verify your ballot or district.')
-    text=' '.join([prefix,*(p['text'] for p in unit['sections']),scope])
-    if not 1 <= len(text) <= 1000: raise Held('speech_reading_bound')
+    text=' '.join([notice,scope,label,*quality,*(p['text'] for p in unit['sections'])])
+    if not 1 <= len(text) <= 1000 or any(mark in text for mark in ('⟦','⟧')): raise Held('speech_reading_bound')
+    return text
+
+
+def speech_preflight(prior,language):
+    text=reading_for(prior,language)
+    # Conservative admission heuristic, not a measured duration guarantee.
+    if len(text)/12>45: raise Held('speech_too_long')
     return text
 
 
@@ -51,14 +65,14 @@ class FreshSpeechPipeline:
         if task not in TASKS: raise Held('task_unadmitted')
         language=task.split(':')[1]
         if language=='es' and not self.allow_spanish: raise Held('translation_review_required')
-        text=reading_for(prior,language)
+        text=speech_preflight(prior,language)
         stage('audio')
-        audio=self.provider.speak(text,cancel,language=language,reading_seconds=52)
+        audio=self.provider.speak(text,cancel,language=language,reading_seconds=52,canonicalize=words)
         meter('fresh_audio',audio.get('usage'));check_cancel(cancel)
         pcm=audio.get('pcm')
         if (audio.get('finalized') is not True or audio.get('reason')!='close_requested'
                 or audio.get('errors') or audio.get('backend_events')!=0
-                or audio.get('transcript')!=text or type(pcm) is not bytes
+                or type(audio.get('transcript')) is not str or words(audio['transcript'])!=words(text) or type(pcm) is not bytes
                 or not 24000<=len(pcm)<=MAX_PCM or len(pcm)%2
                 or not any(v[0] for v in struct.iter_unpack('<h',pcm))):
             raise Held('fresh_audio_withheld')
@@ -74,13 +88,14 @@ class FreshSpeechPipeline:
         transcript=self.provider.transcribe(wav,cancel)
         meter('transcription',{'seconds':duration});check_cancel(cancel)
         detected=transcript.get('languages')
-        if (type(transcript.get('text')) is not str or words(transcript['text'])!=words(text)
-                or type(detected) is not list or not detected
-                or any(type(entry) is not dict or entry.get('code')!=language for entry in detected)):
+        if type(detected) is not list or not detected or type(detected[0]) is not dict or detected[0].get('code')!=language:
+            raise Held('independent_language_mismatch')
+        if type(transcript.get('text')) is not str or words(transcript['text'])!=words(text):
             raise Held('independent_transcript_mismatch')
         if reading_for(prior,language)!=text: raise Held('parent_source_mismatch')
         return {'mode':'fresh_checked_speech','source_version':QUESTION_PIN,'language':language,
                 'reading':text,'bytes':len(wav),'sha256':hashlib.sha256(wav).hexdigest(),
                 'asr_model':'gpt-transcribe','independent_asr_match':True,'finalized':True,
+                'duration_seconds':duration,'live_close_trigger':audio.get('close_trigger','unknown'),
                 'acoustic_human_review':False,'translation_review':'pending' if language=='es' else 'not_a_human_review',
                 'raw_visitor_input_sent':False,'playback_enabled':False},wav

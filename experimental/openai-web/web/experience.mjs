@@ -18,7 +18,7 @@ import {
 } from "./journey-core.mjs";
 import { admittedReadings, bindReading } from "./readings.mjs";
 import { createSpeechOutput } from "./speech-output.mjs";
-import { loadHouseOffice } from "./office-source.mjs";
+import { loadHouseOffice, loadSampleHouseContest } from "./office-source.mjs";
 const $ = (id) => document.getElementById(id),
   session = createSession(),
   workspace = $("workspace");
@@ -39,7 +39,8 @@ let ready = false,
   mapMount,
   requestController,
   providerToken,
-  activeRequest;
+  activeRequest,
+  preparedAudioRequest;
 let journeyActive = false,
   journeyOperation = "overview",
   journeyUnits = [],
@@ -98,6 +99,7 @@ const speaker = createSpeechOutput({
             loading: "Verificando audio…",
             ready: "Lectura verificada y preparada",
             held: "Audio retenido",
+            expired: "El audio preparado ha caducado",
             starting: "Iniciando audio",
             playing: "Reproduciendo",
             complete: "Lectura terminada",
@@ -108,6 +110,7 @@ const speaker = createSpeechOutput({
             loading: "Checking audio…",
             ready: "Reading checked and prepared",
             held: "Audio withheld",
+            expired: "Prepared audio expired",
             starting: "Starting audio",
             playing: "Playing",
             complete: "Reading complete",
@@ -118,8 +121,29 @@ const speaker = createSpeechOutput({
       state.reading || COPY[locale].speechUnavailable;
     $("play").disabled = !state.playable;
     $("rehearse").disabled = state.stage !== "ready";
+    if (state.stage === "expired") {
+      revokePreparedAudio();
+      if (journeyActive && !journeyPending)
+        $("journey-status").textContent =
+          locale === "es"
+            ? "El audio preparado ha caducado. La explicación escrita sigue disponible; no se genera más audio automáticamente."
+            : "Prepared audio expired. The written explanation remains available; no new audio is generated automatically.";
+    }
   },
 });
+function revokePreparedAudio() {
+  if (preparedAudioRequest && providerToken)
+    fetch("/api/provider/cancel", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Session-Token": providerToken,
+      },
+      body: JSON.stringify({ request_id: preparedAudioRequest }),
+      keepalive: true,
+    }).catch(() => {});
+  preparedAudioRequest = null;
+}
 function invalidate({ revokeConsent = false, keepVisuals = false } = {}) {
   session.reset();
   $("reorder").hidden = true;
@@ -138,6 +162,7 @@ function invalidate({ revokeConsent = false, keepVisuals = false } = {}) {
       keepalive: true,
     }).catch(() => {});
   activeRequest = null;
+  revokePreparedAudio();
   if (journeyPending) {
     journeyPending = false;
     $("journey-status").textContent =
@@ -319,8 +344,8 @@ function renderGap(status) {
       el(
         "p",
         locale === "es"
-          ? "El registro oficial de candidatos no se ha incorporado. No se muestra una lista parcial como si estuviera completa."
-          : "The authoritative candidate roster has not been admitted. A partial evidence bundle is not presented as a complete candidate list.",
+          ? "El inventario completo de KCEB y JCEB sigue pendiente. El ejemplo siguiente corresponde solo a una muestra pública; no establece su boleta ni su distrito."
+          : "The complete KCEB/JCEB inventory remains pending. The example below is one public sample only; it does not establish your ballot or district.",
       ),
       el(
         "p",
@@ -329,6 +354,9 @@ function renderGap(status) {
           : "A campaign statement is an attributed assertion, not an independently established fact.",
       ),
     );
+    const contestHost = el("section");
+    c.append(contestHost);
+    void showSampleContest(contestHost);
     const officeHost = el("section");
     journeyButton(
       c,
@@ -340,6 +368,91 @@ function renderGap(status) {
     c.append(officeHost);
   }
   return c;
+}
+async function showSampleContest(host) {
+  const anchor = el("section"),
+    language = locale;
+  host.replaceChildren(anchor);
+  anchor.append(
+    el(
+      "p",
+      language === "es"
+        ? "Consultando la lista de la muestra oficial…"
+        : "Checking the official sample roster…",
+    ),
+  );
+  try {
+    const source = await loadSampleHouseContest(AbortSignal.timeout(5000));
+    if (!anchor.isConnected || locale !== language) return;
+    anchor.replaceChildren(
+      el(
+        "h3",
+        language === "es"
+          ? "Ejemplo de muestra pública · Cámara de Representantes de EE. UU., Distrito 5"
+          : "Public-sample example · U.S. House, District 5",
+      ),
+    );
+    anchor.append(
+      el(
+        "p",
+        `${source.sample_variant} · ${source.election_date} · ${source.source.publisher}`,
+      ),
+      el(
+        "p",
+        language === "es"
+          ? "Nombres y códigos de partido tal como aparecen en el original en inglés. El orden es el de la boleta, no una clasificación."
+          : "Names and party codes as printed in the original. Order follows the ballot, not a ranking.",
+      ),
+    );
+    const list = el("ul");
+    for (const row of source.contest.candidate_rows) {
+      const item = el("li");
+      item.append(
+        el("h4", row.printed_name),
+        el(
+          "p",
+          `${language === "es" ? "Código de partido impreso" : "Printed party code"}: ${row.printed_party_code}`,
+        ),
+        el(
+          "p",
+          language === "es"
+            ? "Información oficial de contexto aún no admitida. No se infieren posiciones a partir de la falta de fuentes."
+            : "Official background evidence not yet admitted. Missing sources do not establish a position.",
+        ),
+      );
+      list.append(item);
+    }
+    const writeIn = el("li");
+    writeIn.append(
+      el("h4", source.contest.write_in.printed_label),
+      el(
+        "p",
+        language === "es"
+          ? "Opción impresa, no el nombre de una persona."
+          : "Printed option, not a named candidate.",
+      ),
+    );
+    list.append(writeIn);
+    anchor.append(
+      list,
+      link(
+        source.source.url + "#page=1",
+        `${source.source.publisher} · ${language === "es" ? "página 1 · original en inglés" : "page 1 · original English"}`,
+      ),
+      el(
+        "p",
+        language === "es"
+          ? "Transcripción cotejada con la página renderizada; aceptación humana pendiente. No se han vinculado estas filas a otros registros de personas."
+          : "Transcription checked against the rendered page; human acceptance pending. These roster rows have not been merged with other person records.",
+      ),
+    );
+  } catch {
+    if (anchor.isConnected && locale === language)
+      anchor.textContent =
+        language === "es"
+          ? "La lista de la muestra no está disponible. No se inventan candidatos."
+          : "The sample roster is unavailable. No candidates are invented.";
+  }
 }
 async function renderMaps(ticket) {
   const c = card(
@@ -984,6 +1097,7 @@ async function generateJourney() {
   if (!session.current(ticket) || !journeyActive || locale !== language) return;
   journeyPending = false;
   journeyPendingKind = null;
+  session.touch();
   if (notStarted) {
     remainingRuns = notStarted === "run_limit" ? 0 : remainingRuns + 1;
     journeyParentRequest = null;
@@ -1090,7 +1204,7 @@ async function prepareJourneySpeech() {
     session,
     token: providerToken,
     signal: requestController.signal,
-    timeoutMs: 110000,
+    timeoutMs: 115000,
     onRequest: (id) => {
       if (session.current(ticket)) {
         activeRequest = id;
@@ -1112,16 +1226,22 @@ async function prepareJourneySpeech() {
     return;
   journeyPending = false;
   journeyPendingKind = null;
+  session.touch();
   if (notStarted)
     remainingRuns = notStarted === "run_limit" ? 0 : remainingRuns + 1;
   drawJourney();
   if (!result) {
     $("journey-status").textContent =
-      language === "es"
-        ? "Audio retenido. La explicación escrita sigue disponible; no se reintenta automáticamente."
-        : "Audio withheld. The written explanation remains available; there is no automatic retry.";
+      notStarted === "speech_too_long"
+        ? language === "es"
+          ? "No se inició audio: la explicación es demasiado larga para esta lectura limitada. Puede elegir una explicación más breve; no se reintenta automáticamente."
+          : "No audio run started: this explanation is too long for the bounded reading. Choose a shorter explanation deliberately; there is no automatic retry."
+        : language === "es"
+          ? "Audio retenido. La explicación escrita sigue disponible; no se reintenta automáticamente."
+          : "Audio withheld. The written explanation remains available; there is no automatic retry.";
     return;
   }
+  preparedAudioRequest = result.asset.id;
   const prepared = await speaker.prepare(result.asset, {
     ticket,
     locale: language,
@@ -1131,7 +1251,7 @@ async function prepareJourneySpeech() {
     expiresAt: result.expiresAt,
   });
   if (!session.current(ticket)) return;
-  if(prepared) $("speaker-consent").closest("label").hidden=false;
+  if (prepared) $("speaker-consent").closest("label").hidden = false;
   $("voice-controls").open = true;
   $("journey-status").textContent = prepared
     ? language === "es"
@@ -1142,10 +1262,9 @@ async function prepareJourneySpeech() {
       : "Audio withheld; the written explanation remains available.";
 }
 function stopSpeechForReading() {
-  if (journeyPendingKind === "speech") {
-    invalidate({ keepVisuals: true });
-    drawJourney();
-  } else speaker.stop();
+  // Same-parent source/map browsing never spends another preparation run.
+  // Stop/Erase/Challenge/language/parent changes still revoke it immediately.
+  speaker.halt();
 }
 function teachBack() {
   stopSpeechForReading();
@@ -1252,8 +1371,8 @@ function setCopy() {
   const t = COPY[locale];
   $("provider-data-note").textContent =
     locale === "es"
-      ? "Solo se envían preguntas y fuentes públicas seleccionadas. Las respuestas y sesiones Live usan store:false. OpenOracle conserva el audio nuevo solo en memoria durante la revisión (máximo dos minutos desde su solicitud). Los registros estándar de abuso de Responses, Decisions y Live pueden conservar contenido hasta 30 días, con excepciones legales o de seguridad. La documentación de transcripción indica que ese servicio no conserva contenido como estado ni registros de abuso. Borrar aquí no borra datos ya enviados al proveedor. No se ha verificado un acuerdo de retención cero para esta cuenta."
-      : "Only selected public questions and evidence are sent. Responses and Live use store:false. OpenOracle keeps fresh audio in memory only during review (at most two minutes from its request). Standard Responses, Decisions and Live abuse logs may retain content for up to 30 days, with legal or safety exceptions. Transcription documentation lists no content retention for application state or abuse logs. Local Erase cannot delete data already sent to the provider. A zero-retention agreement has not been verified for this account.";
+      ? "Solo se envían preguntas y fuentes públicas seleccionadas. Las respuestas y sesiones Live usan store:false. OpenOracle conserva el audio nuevo solo en memoria durante un máximo de dos minutos tras su preparación y cuatro minutos desde su solicitud. Los registros estándar de abuso de Responses, Decisions y Live pueden conservar contenido hasta 30 días, con excepciones legales o de seguridad. La documentación de transcripción indica que ese servicio no conserva contenido como estado ni registros de abuso. Borrar aquí no borra datos ya enviados al proveedor. No se ha verificado un acuerdo de retención cero para esta cuenta."
+      : "Only selected public questions and evidence are sent. Responses and Live use store:false. OpenOracle keeps fresh audio in memory for at most two minutes after preparation and four minutes from its request. Standard Responses, Decisions and Live abuse logs may retain content for up to 30 days, with legal or safety exceptions. Transcription documentation lists no content retention for application state or abuse logs. Local Erase cannot delete data already sent to the provider. A zero-retention agreement has not been verified for this account.";
   $("voice-controls-summary").textContent =
     locale === "es"
       ? "Controles de voz · micrófono apagado"
