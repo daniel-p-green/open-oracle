@@ -103,3 +103,17 @@ This is not runtime or whole-product acceptance. Remaining findings:
 - Spanish statewide navigation uses en todo Missouri; human bilingual civic/
   acoustic review remains required. Current UI wiring/highlight/native choices,
   input captions and latency still need actual permitted end-to-end evidence.
+
+
+## Caption/settlement increment —39c0a12, renewed review blocked
+
+A narrow source-only follow-up was prepared for39c0a12f86727511667e9da4c850a60edb9cb662:
+`openoracle-caption-settlement-39c0a12.md`,196842bytes,
+SHA256 `351bde4fdcd93e83bdd98614ba3ae81187766d00f79e66149f702cb00570c4bb`.
+Nine tracked source/test files and the exact diff, no ledger/account/secret/private
+voter or unrelated payload. Existing Claude chat/UI verified Opus5.5High.
+The supported attachment action was auto-review denied for missing trusted
+payload/destination authorization; attachment count0, empty composer and disabled
+Send verified afterward. No new submission/review or retry occurred. This is
+separate from the actual preceding M40 result and the latest independent local
+review. No Claude acceptance claim applies to39c0a12 yet.

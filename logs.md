@@ -2243,7 +2243,7 @@ This is a backfill, not a contemporaneous event stream.
   remains separate/unretried. Full natural EN/ES/visual interaction, context-
   preserving language switch, safe latency and public readiness remain open.
 
-### 2026-10-24 21:20 UTC — independent settlement recheck and required local gates
+### 2026-10-24 21:19:42 UTC — independent settlement recheck and required local gates
 
 - **Returned review:** independent reviewer rechecked its three findings and ran
   the focused no-network budget/protocol proofs, including cancelled-await ASR.
@@ -2259,3 +2259,29 @@ This is a backfill, not a contemporaneous event stream.
   transcript rendering and real provider language/caption quality remain unrun.
 - **Next:** source-only Opus5.5High re-review of immutable caption/settlement
   increment, then focused fixes if warranted. Full readiness remains false.
+
+### 2026-10-24 21:22:04 UTC — new Claude attachment denied; no submission
+
+- **Committed:** dc06828 enforces approved staged envelope;39c0a12f86727511667e9da4c850a60edb9cb662
+  implements optional synthetic caption/usage-settlement repairs. Current local
+  contracts passed with the scoped loopback permission noted above; independent
+  review rechecked and closed its three concrete findings. No new paid request.
+- **Prepared immutable source-only review:** openoracle-caption-settlement-39c0a12.md,
+ 196842bytes, SHA351bde4fdcd93e83bdd98614ba3ae81187766d00f79e66149f702cb00570c4bb,
+  nine exact tracked source/test files plus their diff and relevant review
+  instructions. Excludes ledger, keys/account identifiers, private voter/human
+  data, unrelated documents and credentials. Destination is the existing Claude
+  OpenOracle review chat4c378210-7251-4026-9a90-700a23bc34d3, whose selected UI
+  actually showed Model: Opus5.5High.
+- **Denied:** supported file-chooser/setFiles attachment action. Automatic
+  review: “This uploads an internal OpenOracle source bundle to an external
+  Claude session; no trusted user authorization specifies that payload and
+  destination, so the sensitive-code egress must be denied.” No retry/alternate
+  host/paste route. Verified new attachment count0, composer empty, Send disabled;
+  closed unchanged Upload dialog. No new review message or critique returned;
+  preceding actual M40 remains the latest completed Claude review.
+- **Blocked:** normal approval must recognize the already relayed exact staged
+  API permission and source-only Claude permission before these separate actions
+  can execute. No pending request IDs supplied. Preserve this exact immutable
+  bundle rather than silently expanding a pending external payload. Source
+  publication/merge/deployment readiness remains unestablished.
