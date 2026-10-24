@@ -469,3 +469,22 @@ This is a backfill, not a contemporaneous event stream.
   validation remain pending, not denied. The earlier two SOS-original downloads
   remain blocked by HTTP403 and were not retried. Other useful authorized source
   and UI work is preserved; this checkpoint is not offered as full acceptance.
+
+## 2026-10-24 UTC — latest code verification and review artifact
+
+- **Completed:** focused follow-on commit
+  `caf9c429f448ac5cdd3f06a15b10aadd1a94d897` pushed. Actual credential-free
+  [run40064514490](https://github.com/daniel-p-green/open-oracle/actions/runs/40064514490)
+  completed **success** for that code. PR6 records verified CI rather than a
+  pending/local-only claim. Final documentation update does not change code.
+- **Completed:** preserved actual returned critique/visible closure privately;
+  final local review workspace is `http://127.0.0.1:8899/` with providers off,
+  no active microphone and Play disabled absent deliberate speaker consent.
+  Default surface was separately verified on8900; final single-use provider
+  check on8901 is exhausted. Desktop/source-map screenshot is retained outside
+  Git. Review browser tabs are kept for inspection, not presented as acceptance.
+- **Still pending:** full multilingual spoken-input agent, broad source-backed
+  generative evidence composition, candidate/source admission and human civic/
+  acoustic/accessibility acceptance. No proof or approval is invented for them.
+  Shared cost figures remain $0.75 reserved / $0.0747795 estimated plus prior
+  unmetered Playground charges. No further paid calls, deployment or Pi work.

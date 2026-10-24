@@ -26,8 +26,9 @@ matrix with implemented, verified and remaining evidence.
 
 Actual Opus 5.5 critique returned **not ready**; High was verified in the client
 UI. Substantive fixes and review limits are recorded in
-[the disposition record](CLAUDE-REVIEW-2026-10-24.md). Re-review is pending and is
-not treated as acceptance. A public live demo still cannot be described as built.
+[the disposition record](CLAUDE-REVIEW-2026-10-24.md). Focused re-review and narrow closure returned; the latter explicitly relies on
+reported logic/browser proof. Independent code review inspected the key repairs.
+No such closure is treated as whole-product acceptance. A public live demo still cannot be described as built.
 
 Browser review target: current Chromium 120+ with `AbortSignal.any` and
 `AbortSignal.timeout`; startup feature-checks these requirements. Older Safari,

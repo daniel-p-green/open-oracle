@@ -71,8 +71,8 @@ Lower-severity follow-up items also addressed: fail-closed malformed expiry,
 minimum-browser feature gate, UTC label, metadata-driven plan/publisher/page
 labels, labeled application interpretation, no consent control when audio is
 unavailable and Stop/partial-render recovery. Both default and review surfaces
-were actually loaded. A final short Opus closure request is pending; it is not
-represented as returned approval. Whole-product status remains not ready.
+were actually loaded. The final short closure outcome is recorded below; it is not
+whole-product approval. Whole-product status remains not ready.
 
 The final short Opus response closed both medium findings **on the described
 logic and reported browser proof**, explicitly not a new reading of the complete
