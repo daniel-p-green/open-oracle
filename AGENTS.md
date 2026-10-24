@@ -12,8 +12,11 @@ County final-scope goal distinct from a bounded supported slice.
 Later direct user instructions supersede historical paragraphs below: use the
 OpenAI stack rather than mandatory Strands/AWS; shared API testing maximum is
 $200, with existing reservation/usage controls. Project commits/PRs are
-authorized; no merge, deployment, new credentials/access, human microphone or
-speaker activation, or Pi system modification is authorized. Campaign-source
+authorized. Daniel's October 24 live-call direction additionally authorizes
+merging and deployment after quality/security checks, with dated logs and
+known-good rollback points. Never expose an unprotected paid API or describe
+incomplete work as showcase-ready. New credentials/access, human microphone or
+speaker activation, and Pi system modification remain unauthorized. Campaign-source
 policy remains under reconciliation; do not publish the held campaign excerpt.
 Historical event deadlines and prior $100 limit below are not current authority.
 

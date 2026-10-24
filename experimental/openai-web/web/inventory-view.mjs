@@ -1,8 +1,4 @@
-import {
-  loadContestInventory,
-  officeFamily,
-  INVENTORY_VERSION,
-} from "./office-source.mjs";
+import { loadBrowseInventory, officeFamily } from "./office-source.mjs";
 import { mountReadingGuide, mountSourceCheck } from "./reading-guide.mjs";
 
 // Presentation state only. Session, cancellation, speech and evidence admission
@@ -20,6 +16,9 @@ const link = (url, label) => {
   node.className = "source-link";
   return node;
 };
+const originalUrl = (source, occurrence) =>
+  source.url +
+  (source.url.includes("drive.google.com") ? "" : "#page=" + occurrence.page);
 const button = (host, label, action) => {
   const node = el("button", label);
   node.type = "button";
@@ -40,6 +39,8 @@ export async function mountContestInventory(
     onMeasure,
     onActions,
     translationNote,
+    initialSelection = null,
+    onSelection = () => {},
   },
 ) {
   const anchor = el("section");
@@ -55,7 +56,7 @@ export async function mountContestInventory(
     ),
   );
   try {
-    const value = await loadContestInventory(
+    const value = await loadBrowseInventory(
       AbortSignal.any([AbortSignal.timeout(5000), signal]),
     );
     if (!anchor.isConnected) return;
@@ -67,14 +68,24 @@ export async function mountContestInventory(
       return;
     }
     anchor.replaceChildren(
-      el("h3", text("Browse public notices", "Explorar avisos públicos")),
+      el(
+        "h3",
+        text(
+          "Kansas City, then Jackson County",
+          "Kansas City, después Jackson County",
+        ),
+      ),
     );
+    const context = el("p");
+    context.id = "inventory-context";
+    context.setAttribute("role", "status");
     anchor.append(
+      context,
       el(
         "p",
         text(
-          "55 printed contests · 34 candidate elections · 11 judicial retentions · 10 measures. Counts describe these retained documents, not your ballot or final write-in eligibility.",
-          "55 concursos impresos · 34 elecciones de candidatos · 11 retenciones judiciales · 10 medidas. Son cifras de estos documentos guardados, no de su boleta ni de la elegibilidad final de candidatos por escrito.",
+          "Start with the actual W1-P7 public sample. The county comparison uses a broader JCEB notice: a second individual ballot style has not been verified. No personal ballot or final write-in eligibility is established.",
+          "Empiece por la muestra pública W1-P7. La comparación del condado usa un aviso más amplio de JCEB: no se ha verificado un segundo estilo individual de boleta. No se establece una boleta personal ni la elegibilidad final de candidatos por escrito.",
         ),
       ),
     );
@@ -85,12 +96,19 @@ export async function mountContestInventory(
     const authority = el("select");
     authority.id = "inventory-authority";
     for (const [id, label] of [
-      ["all", text("Both notices · union", "Ambos avisos · conjunto")],
-      ["kceb", "KCEB · Kansas City"],
+      [
+        "kc-sample",
+        text("Kansas City · W1-P7 sample", "Kansas City · muestra W1-P7"),
+      ],
       [
         "jceb",
-        text("JCEB · outside Kansas City", "JCEB · fuera de Kansas City"),
+        text(
+          "JCEB · notice outside Kansas City",
+          "JCEB · aviso fuera de Kansas City",
+        ),
       ],
+      ["kceb", text("KCEB · broader notice", "KCEB · aviso más amplio")],
+      ["all", text("Both notices · union", "Ambos avisos · conjunto")],
     ]) {
       const option = el("option", label);
       option.value = id;
@@ -100,8 +118,8 @@ export async function mountContestInventory(
     const contestLabel = el(
       "label",
       text(
-        "Choose a printed contest · original English title",
-        "Elija un concurso impreso · título original en inglés",
+        "Choose a printed contest · application label",
+        "Elija un concurso impreso · etiqueta de la aplicación",
       ),
     );
     const selection = el("select");
@@ -110,16 +128,65 @@ export async function mountContestInventory(
     const detail = el("section");
     detail.id = "inventory-detail";
     detail.tabIndex = -1;
-    anchor.append(authorityLabel, contestLabel, detail);
+    const examples = el("div");
+    examples.className = "question-examples";
+    button(
+      examples,
+      text(
+        "KC example · candidates for U.S. House",
+        "Ejemplo de KC · candidatos a la Cámara federal",
+      ),
+      () => selectExample("kc-sample", "us-house-5"),
+    );
+    button(
+      examples,
+      text(
+        "County comparison · Independence bond",
+        "Comparación del condado · bono de Independence",
+      ),
+      () => selectExample("jceb", "independence-bond-1"),
+    );
+    anchor.append(examples, authorityLabel, contestLabel, detail);
+    const inContext = (o) =>
+      authority.value === "all"
+        ? o.source_id !== "kc-sample"
+        : o.source_id === authority.value;
     const available = () =>
-      value.contests.filter(
-        (c) =>
-          authority.value === "all" ||
-          c.occurrences.some((o) => o.source_id === authority.value),
-      );
+      value.contests.filter((c) => c.occurrences.some(inContext));
+    function selectExample(source, contest) {
+      authority.value = source;
+      drawChoices();
+      selection.value = contest;
+      drawContest();
+      detail.focus();
+    }
     function drawChoices() {
       onActions(null);
       onRead();
+      onSelection({ source: authority.value, contest: "" });
+      const choices = available();
+      context.textContent =
+        (authority.value === "kc-sample"
+          ? text(
+              "W1-P7 · 2-page public sample",
+              "W1-P7 · muestra pública de 2 páginas",
+            )
+          : text(
+              "Public notice context · not one ballot style",
+              "Contexto de aviso público · no es un estilo individual de boleta",
+            )) +
+        " · " +
+        choices.length +
+        text(" printed contests", " concursos impresos") +
+        " · " +
+        choices.filter((c) => c.kind === "candidate_election").length +
+        text(" candidate elections", " elecciones de candidatos") +
+        " · " +
+        choices.filter((c) => c.kind === "judicial_retention").length +
+        text(" judicial retentions", " retenciones judiciales") +
+        " · " +
+        choices.filter((c) => c.kind === "measure").length +
+        text(" measures", " medidas");
       const placeholder = el(
         "option",
         text("Choose a contest", "Elija un concurso"),
@@ -152,6 +219,7 @@ export async function mountContestInventory(
       onActions(null);
       onRead();
       const contest = available().find((c) => c.id === selection.value);
+      onSelection({ source: authority.value, contest: contest?.id ?? "" });
       detail.replaceChildren();
       if (!contest) return;
       detail.append(
@@ -159,16 +227,24 @@ export async function mountContestInventory(
         el(
           "p",
           text(
-            "Public notice context only. No residential or personal ballot assignment is inferred.",
-            "Solo contexto del aviso público. No se infiere residencia ni asignación a una boleta personal.",
+            "Selected public-source context only. No residential or personal ballot assignment is inferred.",
+            "Solo contexto de la fuente pública seleccionada. No se infiere residencia ni asignación a una boleta personal.",
           ),
         ),
       );
       if (language === "es") detail.append(el("p", translationNote));
       let readingButton = null;
-      for (const occurrence of contest.occurrences.filter(
-        (o) => authority.value === "all" || o.source_id === authority.value,
-      )) {
+      if (authority.value === "jceb" && contest.id === "independence-bond-1")
+        detail.append(
+          el(
+            "p",
+            text(
+              "This municipal question appears in the JCEB notice and is absent from the W1-P7 sample. Its presence in the notice does not place it on every JCEB resident's ballot. No candidate contest is assigned alongside it.",
+              "Esta pregunta municipal aparece en el aviso de JCEB y no aparece en la muestra W1-P7. Su presencia en el aviso no significa que esté en la boleta de cada residente de JCEB. No se le asigna un concurso de candidatos junto a ella.",
+            ),
+          ),
+        );
+      for (const occurrence of contest.occurrences.filter(inContext)) {
         const source = value.sources[occurrence.source_id],
           section = el("section");
         section.append(
@@ -199,7 +275,7 @@ export async function mountContestInventory(
           for (const row of occurrence.candidate_rows) {
             const li = el("li");
             li.append(
-              el("h4", row.printed_name),
+              el("strong", row.printed_name),
               el(
                 "p",
                 text("Printed party code: ", "Código de partido impreso: ") +
@@ -288,7 +364,7 @@ export async function mountContestInventory(
                 ),
               ),
             );
-          else
+          else if (contest.id !== "proposition-a")
             section.append(
               el(
                 "p",
@@ -301,10 +377,7 @@ export async function mountContestInventory(
         }
         section.append(
           link(
-            source.url +
-              (source.url.includes("drive.google.com")
-                ? ""
-                : "#page=" + occurrence.page),
+            originalUrl(source, occurrence),
             source.publisher +
               " · " +
               text("page ", "página ") +
@@ -335,19 +408,24 @@ export async function mountContestInventory(
         sourceDetails.ontoggle = () => {
           if (sourceDetails.open) onRead();
         };
+        if (source.freshness) {
+          const freshness = el("p", source.freshness);
+          freshness.lang = "en";
+          sourceDetails.append(freshness);
+        }
         section.append(sourceDetails);
         section.append(
           el(
             "p",
-            occurrence.source_id === "kceb"
-              ? text(
-                  "Retained October 9 snapshot. Current authority link rechecked October 24; current PDF bytes not re-fetched. Subject to change.",
-                  "Copia guardada el 9 de octubre. Enlace de la autoridad comprobado el 24 de octubre; no se volvió a descargar el PDF. Puede cambiar.",
-                )
-              : text(
-                  "Re-fetched October 24; matches the retained version. Human acceptance remains pending.",
-                  "Descargado de nuevo el 24 de octubre; coincide con la versión guardada. Aceptación humana pendiente.",
-                ),
+            text(
+              "Retained public source · retrieved ",
+              "Fuente pública guardada · obtenida ",
+            ) +
+              source.retrieved_utc.slice(0, 10) +
+              text(
+                ". Current certification and human acceptance remain unverified. See version details for refresh limits.",
+                ". Certificación actual y aceptación humana sin verificar. Consulte los límites de actualización en los detalles de la versión.",
+              ),
           ),
         );
         detail.append(section);
@@ -374,8 +452,8 @@ export async function mountContestInventory(
             el(
               "p",
               text(
-                "This is a public-notice selection, not a verified personal ballot. Background explanations, individual applicability and eligible write-ins remain unresolved. No vote choice is saved.",
-                "Esta es una selección de un aviso público, no una boleta personal verificada. Siguen sin resolverse las fuentes de contexto, la aplicabilidad personal y los candidatos elegibles por escrito. No se guarda una elección de voto.",
+                "This is a public-source selection, not a verified personal ballot. Background explanations, individual applicability and eligible write-ins remain unresolved. No vote choice is saved.",
+                "Esta es una selección de una fuente pública, no una boleta personal verificada. Siguen sin resolverse las fuentes de contexto, la aplicabilidad personal y los candidatos elegibles por escrito. No se guarda una elección de voto.",
               ),
             ),
           );
@@ -387,23 +465,20 @@ export async function mountContestInventory(
               el(
                 "p",
                 text(
-                  "Selected original passage · JCEB",
-                  "Pasaje original seleccionado · JCEB",
-                ),
+                  "Selected original passage · ",
+                  "Pasaje original seleccionado · ",
+                ) +
+                  (value.sources[marked.dataset.sourceId]?.publisher ??
+                    text("source unavailable", "fuente no disponible")),
               ),
               quote,
             );
           }
-          for (const occurrence of contest.occurrences.filter(
-            (o) => authority.value === "all" || o.source_id === authority.value,
-          )) {
+          for (const occurrence of contest.occurrences.filter(inContext)) {
             const source = value.sources[occurrence.source_id];
             recap.append(
               link(
-                source.url +
-                  (occurrence.source_id === "jceb"
-                    ? "#page=" + occurrence.page
-                    : ""),
+                originalUrl(source, occurrence),
                 source.publisher +
                   " · " +
                   text("page ", "página ") +
@@ -423,9 +498,7 @@ export async function mountContestInventory(
         () => {
           onActions(null);
           onRead();
-          const originals = contest.occurrences.filter(
-            (o) => authority.value === "all" || o.source_id === authority.value,
-          );
+          const originals = contest.occurrences.filter(inContext);
           detail.replaceChildren(
             el("h3", contest.label),
             el(
@@ -440,10 +513,7 @@ export async function mountContestInventory(
             const source = value.sources[occurrence.source_id];
             detail.append(
               link(
-                source.url +
-                  (occurrence.source_id === "jceb"
-                    ? "#page=" + occurrence.page
-                    : ""),
+                originalUrl(source, occurrence),
                 source.publisher +
                   " · " +
                   text("page ", "página ") +
@@ -484,7 +554,16 @@ export async function mountContestInventory(
             ),
           ),
         );
-      if (contest.id === "proposition-a")
+      if (contest.id === "proposition-a") {
+        detail.append(
+          el(
+            "p",
+            text(
+              "Explore the Proposition A question and the application's Yes/No meanings with official maps. Complete printed wording is in the linked original; the W1-P7 context also transcribes its fiscal estimate.",
+              "Explore la pregunta de la Proposición A y las explicaciones de Sí y No de la aplicación con mapas oficiales. El texto impreso completo está en el original enlazado; el contexto W1-P7 también transcribe su estimación fiscal.",
+            ),
+          ),
+        );
         button(
           detail,
           text(
@@ -493,6 +572,7 @@ export async function mountContestInventory(
           ),
           () => void onMeasure(),
         );
+      }
       const invoke = (control) => () => {
         if (control.isConnected && !control.disabled) {
           control.focus();
@@ -502,7 +582,7 @@ export async function mountContestInventory(
       onActions({
         id: authority.value + ":" + contest.id,
         title: contest.label,
-        source_version: INVENTORY_VERSION,
+        source_version: value.browse_version,
         actions: {
           source: () => detail.querySelector("a.source-link")?.focus(),
           source_check: invoke(sourceCheckButton),
@@ -515,12 +595,29 @@ export async function mountContestInventory(
     }
     authority.onchange = drawChoices;
     selection.onchange = drawContest;
+    if (
+      initialSelection &&
+      [...authority.options].some((o) => o.value === initialSelection.source)
+    )
+      authority.value = initialSelection.source;
     drawChoices();
+    if (
+      initialSelection &&
+      available().some((c) => c.id === initialSelection.contest)
+    ) {
+      selection.value = initialSelection.contest;
+      drawContest();
+    }
   } catch {
     if (anchor.isConnected)
-      anchor.textContent = text(
-        "The official inventory could not be checked. No partial roster or invented candidates are shown. Choose the topic again deliberately.",
-        "No se pudo comprobar el inventario oficial. No se muestra una lista parcial ni se inventan candidatos. Elija el tema de nuevo si desea intentarlo.",
-      );
+      anchor.textContent = signal.aborted
+        ? text(
+            "Source loading stopped. Choose the topic again to reload.",
+            "Se detuvo la carga. Elija el tema de nuevo para cargarlo.",
+          )
+        : text(
+            "The official inventory could not be checked. No partial roster or invented candidates are shown. Choose the topic again deliberately.",
+            "No se pudo comprobar el inventario oficial. No se muestra una lista parcial ni se inventan candidatos. Elija el tema de nuevo si desea intentarlo.",
+          );
   }
 }

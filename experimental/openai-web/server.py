@@ -34,6 +34,7 @@ FILES = {
     '/office-contexts.json': (ROOT / 'fixtures/office-contexts.json', 'application/json'),
     '/house-office.json': (ROOT / 'fixtures/house-office.json', 'application/json'),
     '/contest-inventory.json': (ROOT / 'fixtures/contest-inventory.json', 'application/json'),
+    '/kc-public-sample.json': (ROOT / 'fixtures/kc-public-sample.json', 'application/json'),
     '/sample-house-contest.json': (ROOT / 'fixtures/sample-house-contest.json', 'application/json'),
     '/readings.mjs': (ROOT / 'web/readings.mjs', 'text/javascript; charset=utf-8'),
     '/speech-output.mjs': (ROOT / 'web/speech-output.mjs', 'text/javascript; charset=utf-8'),

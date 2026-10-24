@@ -46,3 +46,14 @@ wording. `web/experience.css` now bounds `.original-wording` to76ch with larger
 text/line spacing. Fresh desktop and390px inspection retained exact qualifiers
 and no overflow, including expanded source metadata. This is a reading-layout
 adaptation, not copied ChatGPT code or a measured human-comprehension claim.
+
+October24 KC/county increment extends those observed source-card patterns through
+the existing `inventory-view.mjs`/`office-source.mjs` owner: a stable source
+context, exact original beside application labels, progressive version details,
+explicit missing coverage and a reversible trip from selected source to maps.
+`measure-source.mjs` cross-checks full printed Proposition A wording against the
+journey's question sentence; no renderer inference or invented visual data is
+added. Source contexts and ephemeral return state are application-owned. Native
+source/code was not copied. Browser proof covered KC/JCEB switching, complete
+wording, source return and390px Spanish navigation; this is not evidence of full
+multilingual voice, human comprehension or native ChatGPT's internal architecture.

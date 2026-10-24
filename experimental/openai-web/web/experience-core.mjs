@@ -52,6 +52,8 @@ export function routeQuestion(text) {
       "mapas",
     ],
     candidates: [
+      "show the candidates",
+      "mostrar los candidatos",
       "what candidate evidence is available",
       "what candidate evidence is admitted",
       "que fuentes de candidatos estan admitidas",
@@ -172,7 +174,7 @@ export const COPY = Object.freeze({
       "Compare Missouri's congressional maps",
       "What candidate evidence is admitted?",
     ],
-    gap: "Official printed rosters are available. Candidate background evidence remains incomplete. Missing sources do not establish a position.",
+    gap: "Printed rosters from a public sample and public notices are available. Candidate background evidence remains incomplete. Missing sources do not establish a position.",
     membership:
       "Your personal ballot and district have not been verified. No location is requested or inferred.",
     advice:
@@ -216,7 +218,7 @@ export const COPY = Object.freeze({
       "Comparar los mapas del Congreso de Missouri",
       "¿Qué fuentes de candidatos están admitidas?",
     ],
-    gap: "Las listas oficiales impresas están disponibles. Las fuentes de contexto de los candidatos siguen incompletas. La falta de información no representa una postura.",
+    gap: "Están disponibles las listas impresas de una muestra pública y de avisos públicos. Las fuentes de contexto de los candidatos siguen incompletas. La falta de información no representa una postura.",
     membership:
       "No hemos verificado su boleta ni su distrito. No solicitamos ni inferimos su ubicación.",
     advice: "Puedo explicar fuentes y textos. No puedo recomendar cómo votar.",

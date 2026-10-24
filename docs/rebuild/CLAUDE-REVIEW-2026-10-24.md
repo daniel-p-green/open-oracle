@@ -160,3 +160,33 @@ passed whole-WAV ASR; the later real web path had both a held ASR disagreement
 and a successful preparation. These are development observations, not measured
 reliability or whole-product approval. No human microphone/playback was used.
 Exact durations, costs and limitations are recorded in logs.md.
+
+## Kansas City sample / county comparison review
+
+The existing Claude chat returned two new critiques with **Opus 5.5 High visibly
+selected**, using only scanned OpenOracle source and public sample transcription.
+Initial bundle SHA25618624d1b8a95197a7b805dc7bf0ec7fca5d2846cbd00e5c0037a60b40524b6c4;
+focused fixes bundle SHA2560ddb5894ec5ef4d65735ad8dcd2b11d39a733282bb674598b0f8be52697846f5.
+The second response said all eight original findings were closed in its attached
+scope. It did not establish product acceptance or independently execute tests.
+
+| Finding | Disposition and evidence |
+| --- | --- |
+| Sample completeness/printed order inferred from tables | Compiler bounds each candidate region, rejects unconsumed/extra/status text, derives names/order from source spans and accounts for instruction/question anchors. Reproduced pinned sample; owner negative controls pass. Unknown source versions remain held. |
+| Proposition A source view omitted printed fiscal note | Full sample wording now returned after question-prefix/artifact/page parity check; map/journey source views show complete wording. Generation remains scoped to question sentence. Actual browser checked fiscal note and same-source return. |
+| Contradictory Proposition A interpretation gap | One per-contest pointer now identifies available explanation/maps; it does not claim untranscribed notice text appears above. |
+| Browse version unrelated to loaded inputs | Runtime digest of the two admitted pins is checked and returned; follow-ups use that loaded version. |
+| Possible missing brief operation | Not a current defect: current Python/JS registries and request-fit/length guards include brief; reviewer acknowledged earlier server snapshot was stale. |
+| Hardcoded source dates/recap publisher/ambiguous roster labels | Retrieval/freshness from records, selected mark publisher, sample/notice label check; selector correctly says application label, not original printed title. |
+| Aborted load and lost source selection | Stopped copy distinguishes abort from unavailability; memory-only source/contest restored after maps; Erase/language clears it. Browser return exercised. |
+| Flat heading hierarchy | Candidate names are strong list text beneath the source heading. |
+
+The residual non-409 rejection observation is handled narrowly: exact local
+400/request_invalid,403/unexpected_origin and405/provider-disabled errors occur
+before dispatch and restore the local allowance. A5xx or transport failure stays
+uncertain and cannot be labeled no-start or refunded. This deliberately avoids
+the reviewer's broader “any non-202” suggestion, which could misstate dispatch
+after an upstream failure. Extended the existing transport owner proof with these
+protocol cases; no paid retry follows. Human acoustic/civic/Spanish/accessibility,
+candidate background, second individual JCEB style, current certification,
+semantic composition, consolidated recap and map-text-equivalent gates remain.

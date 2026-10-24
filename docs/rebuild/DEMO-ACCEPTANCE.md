@@ -100,3 +100,29 @@ check/Skip/Reset. No native renderer/geometry or new translation was imported.
 See [the comparison](GENERATIVE-UI-COMPARISON.md). Actual live voice speed,
 heard bilingual quality, full semantic composition and remaining stretch gates
 are still open; no public-readiness claim follows.
+
+### October 24, 15:00 UTC — Kansas City main journey and county comparison
+
+Daniel selected Kansas City as the main demo and a second Jackson County ballot
+to show real local differences. The implemented first context is the actual
+two-page W1-P7 public sample: 25 printed contests, including 8 candidate
+elections/15 printed candidate entries, 11 retentions and 6 measures. It is not
+a personal ballot. The second context currently uses the JCEB public notice's
+Independence bond question, explicitly **not a second individual ballot style**.
+The notice cannot assign municipal questions or a candidate contest to a person.
+JCEB's individual lookup requires private identifiers; none were entered.
+
+| Workflow | Actual verification | Remaining gate |
+| --- | --- | --- |
+| KC sample → complete selected roster → official office context | Both sample pages visually checked; pinned compiler reproduces source spans, rejects unconsumed roster text and accounts for instruction/question anchors; public House5 roster exercised in browser | Current certification, complete write-ins and candidate background admission |
+| KC → county-local example | Source selector switches to JCEB notice and exact Independence wording; amount, business-plan duration and courthouse name preserved; narrower membership warning visible | A second verified public individual JCEB style; no manufactured combination |
+| Proposition A → maps → full original → return | Original includes printed fiscal estimate; question/artifact/page parity checked; same KC source/contest restored on return | Fresh audio latency, public-source rights release and accessible territorial description |
+| English → Spanish navigation | Source-context controls and 390px layout exercised; original English retained, translation review notice visible | Human Spanish civic/pronunciation and screen-reader acceptance |
+| Stop / Erase / language | Existing owner retained; aborted load gets stopped copy; selections are memory-only and cleared on Erase/language | Human workflow/acoustic/device acceptance |
+
+Fresh direct approval now covers pushes, qualified merge/deploy and the two
+bounded API trials within the shared $200 maximum. Publication readiness is
+still not established. The current server is loopback-only; an existing safe
+deployment target and protected metered inference entry have not been established.
+No merge or deployment occurred in this increment. Fresh billing verification is
+blocked at an account-selection sign-in approval; neither trial started.

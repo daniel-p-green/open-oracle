@@ -1279,3 +1279,113 @@ This is a backfill, not a contemporaneous event stream.
   and whitespace check; no redundant behavior tests added for CSS-only change.
   Human reading/screen-reader/civic acceptance remains pending. No paid/media/
   external action; original repository and immutable approval files unchanged.
+
+### 2026-10-24 15:00 UTC — KC sample journey, source integrity and renewed review
+
+- **User direction/authority, backfilled from trusted task history:** Kansas
+  City is the polished main demo; a second verified Jackson County ballot must
+  demonstrate actual local/jurisdiction differences. Preserve the original full
+  stretch target. Daniel's later live-call approval authorizes the English
+  <=$0.11 and Spanish <=$0.20 trials within the shared $200 total, scrubbed
+  OpenOracle review in the existing Claude Opus5.5High chat, newer pushes and
+  merge/deploy after appropriate checks with rollback notes. Updated AGENTS.md
+  precedence. This supersedes earlier no-merge/deploy permission, not source,
+  privacy, credential, human-media or spending safeguards. Original approval
+  timestamps were not supplied here; this is a backfill, not invented chronology.
+- **Completed source work:** visually inspected both retained W1-P7 PDF pages;
+  original SHA256 d33d41b4c377e7d9d1bd63af0c2f1053bc4b63f608eb3167200a8385e576e0fc.
+  New reproducible compiler emits25 contests:8 candidate elections/15 printed
+  names,11 retentions,6 measures, with exact column/page spans and reading hashes.
+  Initial arithmetic sanity assertion used16 names and failed; corrected to15
+  after recounting all eight printed contests. No partial fixture was admitted.
+  Final fixture SHA256690a32a8df2b24ccec68fb6d725f469a9467a7ce8ba76cfc1c74244cbb39323e.
+  The eight-page KCEB notice remains distinct from this two-page sample.
+- **Completed integrated behavior:** main candidate shortcut opens the actual
+  KC context; a direct county comparison opens the JCEB Independence bond
+  original, including$19,900,000/20-year plan/1827 Log Courthouse. The UI explicitly
+  says the JCEB notice is not a second individual style and does not assign
+  another contest alongside it. All25 KC contests are selectable. The55-contest
+  notice union excludes sample occurrences; all source contexts preserve gaps,
+  originals, dates, no ranking and no personal membership. Existing one-owner
+  session/speech lifecycle reused, no second controller.
+- **Source blocker:** official JCEB public on-the-ballot page exposes the notice;
+  its individual sample lookup requires name and DOB. No private lookup was
+  submitted and no supported second individual public style was established.
+  A notice comparison is implemented without claiming the requested second
+  individual ballot is complete. No denied SOS/Congress/county/courts access retried.
+- **Actual browser findings/fixes:** the new plain candidate shortcut initially
+  failed the older exact router. Added bounded EN/ES aliases and regression cases;
+  both now reach the view. Exercised KC House5's complete three-name roster,
+  county source change, Spanish controls and390px no-overflow rendering. Language
+  remount clears selection; map journey now returns to the same public source/
+  contest. Original wording/challenge/check/recap use their matching source.
+  Idle reset was observed clearing the review while other work ran; deliberate
+  re-entry restored the demo. No microphone or Play was activated.
+- **Independent review:** existing review agent reproduced the pinned compiler,
+  checked source/context/tamper/routing bindings and reported no substantive
+  finding within its scoped code review; it did not claim human/currentness proof.
+  Installed Oracle (@steipete), test-audit, original planning, PDF and official
+  OpenAI docs guidance applied. No redundant test quota or framework migration.
+- **Actual Claude review:** existing chat displayed Opus5.5High. Uploaded a narrow
+  eight-file source/public-transcription bundle after Oracle files report/render
+  and sensitive-pattern scan, SHA25618624d1b8a95197a7b805dc7bf0ec7fca5d2846cbd00e5c0037a60b40524b6c4.
+  Returned critique found compiler omission/order assumptions, missing fiscal
+  text in the journey original, contradictory PropA gap copy, uncomputed browse
+  version and smaller source/Stop/navigation/accessibility problems. Fixed:
+  bounded heading/instruction/Write-in regions, all-row/anchor accounting,
+  source-derived order/names and rejection of unexpected/status rows; full PropA
+  wording plus artifact/page/prefix parity; returned runtime combined source
+  digest; actual record dates/mark publisher; strong candidate list text; stopped
+  load copy and same-source return. The speculative missing brief operation is
+  disproved by current Python/JS operation registries. Fresh generation remains
+  scoped to the question sentence; the source view now includes its fiscal note.
+  Seven-file focused fixes bundle SHA2560ddb5894ec5ef4d65735ad8dcd2b11d39a733282bb674598b0f8be52697846f5
+  submitted for re-review; result pending at this entry. Original frozen approval
+  bundles remain unchanged. Only relevant app code/instructions/public text sent.
+- **Verification completed:** provider-off Node/Python suites, new source-region
+  owner proof, served-route/privacy contracts, syntax and whitespace pass. Tests
+  show altered sample rejection, no foreign ballot/question leakage, actual
+  printed order and unknown-row holds. Browser confirmed PropA->official maps->
+  complete original with fiscal sentence->same-source return. These checks do
+  not establish heard speech, bilingual civic quality or public readiness.
+- **Costs / exact new blocker:** fresh official pricing checked. Existing API
+  credential presence checked as a boolean only, no secret extraction. Platform
+  billing redirected to sign-in; automatic approval review denied selecting the
+  intended existing Google account, stating the exact account/sign-in action
+  was not authorized. Known not executed; exact sign-in-only approval requested,
+  pending, with no request ID returned. No alternative account/route attempted.
+  Neither approved trial started or reserved. Shared ledger unchanged$1.96 in
+  conservative reservations/~$0.2127044667 recorded usage-duration estimate plus
+  two earlier unmetered Playground calls; no fresh balance/invoice assertion.
+  Claude used the existing account allocation; no subscription/purchase/new access.
+- **Artifacts / running / next:** local providers-off review8922. Saved current
+  full-page KC review image to Library and persisted its local identity; no
+  private browser/payment content included. Renewed review running; focused
+  commit/newly authorized push and remote CI verification next. Known remote
+  rollback checkpoint remains6d90b11fc66de4294249bf4cb0e3d89efd3dbd76 with previously
+  passed CI. Current source rights/current certification, second individual
+  style, candidate evidence, semantic composition, consolidated recap, accessible
+  map description and real bilingual/latency/human-device gates remain open.
+  Merge/deploy are authorized but not performed: current server is loopback-only;
+  safe hosting/protected metered inference and publication acceptance are not yet
+  established. Do not equate permission or passing mocks with showcase readiness.
+
+### 2026-10-24 15:05 UTC — review closure and idle privacy repair
+
+- **Completed returned critique:** actual Opus5.5High focused re-review marked all
+  eight initial findings closed in its attached scope, with full product gates
+  still open. Fixed residual application-label wording and a per-notice PropA
+  pointer that could falsely say missing transcription was above. Definite
+  pre-dispatch HTTP errors now restore only the local allowance;5xx/transport
+  uncertainty stays uncertain. Existing owner cases prove both outcomes.
+- **Found/fixed:** independent follow-up caught sourceSelection surviving idle
+  erase, which could reveal the previous public source selection to the next
+  visitor. Cleared it in idle erase and pagehide; explicit Erase/language already
+  clear it, and BFCache restoration resets. Same-session map return/Stop retain
+  it intentionally. Independent re-review closed the lifetime defect by code
+  inspection; real120s browser proof began15:05:17Z with JCEB Independence and
+  remains running at this entry. No fake clock, shortened production timeout,
+  test-only seam, visitor identity or paid inference introduced.
+- **Validation:** changed transport owner cases and syntax/whitespace pass after
+  residual fixes; full provider-off Node/Python checks had passed the integrated
+  source increment. Final remote CI will exercise all checks on the pushed code.

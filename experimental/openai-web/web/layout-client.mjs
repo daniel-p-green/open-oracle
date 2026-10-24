@@ -98,6 +98,17 @@ export async function requestProviderJob({
           ].includes(denial.error)
         )
           onNotStarted(denial.error);
+      } else if ([400, 403, 405].includes(response.status)) {
+        // These exact local-server errors precede Jobs.start. A 5xx/transport
+        // failure may have occurred after dispatch; never call that no-start.
+        const denial = await response.json();
+        const preDispatch = {
+          400: "request_invalid",
+          403: "unexpected_origin",
+          405: "provider_and_intake_routes_disabled",
+        };
+        if (denial.error === preDispatch[response.status])
+          onNotStarted(denial.error);
       }
       throw Error("provider_held");
     }

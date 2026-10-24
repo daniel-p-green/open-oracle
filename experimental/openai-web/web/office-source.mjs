@@ -1,6 +1,10 @@
 import { immutableCopy } from "./core.mjs";
 export const INVENTORY_VERSION =
+  "81b3a31203b7522b8489dadf4d5497490116ba08f8b0cc3d6320a091d04b39b2";
+const NOTICE_VERSION =
   "0eda572a493274e25e845a1276b8ec28c3321dc40a8c2f13b7d761ad95645773";
+const SAMPLE_VERSION =
+  "690a32a8df2b24ccec68fb6d725f469a9467a7ce8ba76cfc1c74244cbb39323e";
 const PIN = "fa7e83103a9b3aa6e7461fada14d33ad9ee8f484701df33c8d4804c63d720151";
 const sha = async (bytes) =>
   [...new Uint8Array(await crypto.subtle.digest("SHA-256", bytes))]
@@ -43,8 +47,7 @@ export async function loadContestInventory(signal) {
   });
   if (!response.ok) throw Error("inventory_unavailable");
   const bytes = await response.arrayBuffer();
-  if ((await sha(bytes)) !== INVENTORY_VERSION)
-    throw Error("inventory_integrity");
+  if ((await sha(bytes)) !== NOTICE_VERSION) throw Error("inventory_integrity");
   const value = JSON.parse(new TextDecoder().decode(bytes));
   if (
     value.election_date !== "2026-11-03" ||
@@ -75,6 +78,75 @@ export async function loadContestInventory(signal) {
     }
   }
   return immutableCopy(value);
+}
+
+export async function loadKcPublicSample(signal) {
+  const response = await fetch("/kc-public-sample.json", {
+    cache: "no-store",
+    signal,
+  });
+  if (!response.ok) throw Error("sample_unavailable");
+  const bytes = await response.arrayBuffer();
+  if ((await sha(bytes)) !== SAMPLE_VERSION) throw Error("sample_integrity");
+  const sample = JSON.parse(new TextDecoder().decode(bytes));
+  if (
+    sample.schema !== "openoracle-public-sample/v1" ||
+    sample.sample_variant !== "W1-P7" ||
+    sample.election_date !== "2026-11-03" ||
+    sample.scope.personal_membership !== false ||
+    sample.scope.county_inventory_complete !== false ||
+    sample.contests.length !== 25 ||
+    new Set(sample.contests.map((c) => c.id)).size !== 25
+  )
+    throw Error("sample_scope");
+  for (const contest of sample.contests) {
+    const occurrence = contest.occurrences[0];
+    if (
+      contest.occurrences.length !== 1 ||
+      occurrence.source_id !== "kc-sample" ||
+      occurrence.page < 1 ||
+      occurrence.page > 2
+    )
+      throw Error("sample_source");
+    if (
+      occurrence.wording &&
+      (await sha(new TextEncoder().encode(occurrence.wording))) !==
+        occurrence.wording_sha256
+    )
+      throw Error("sample_wording");
+  }
+  return immutableCopy(sample);
+}
+
+export async function loadBrowseInventory(signal) {
+  // Independently pinned contexts. Never label the notice union as W1-P7 or
+  // join notice-only municipal questions into the sample's ballot style.
+  const [notices, sample] = await Promise.all([
+    loadContestInventory(signal),
+    loadKcPublicSample(signal),
+  ]);
+  const browseVersion = await sha(
+    new TextEncoder().encode(NOTICE_VERSION + ":" + SAMPLE_VERSION),
+  );
+  if (browseVersion !== INVENTORY_VERSION) throw Error("browse_version");
+  const contests = structuredClone(notices.contests);
+  for (const contest of sample.contests) {
+    const target = contests.find((c) => c.id === contest.id);
+    if (
+      !target ||
+      target.kind !== contest.kind ||
+      target.label !== contest.label ||
+      contest.occurrences.length !== 1
+    )
+      throw Error("sample_contest");
+    target.occurrences.push(contest.occurrences[0]);
+  }
+  return immutableCopy({
+    ...notices,
+    browse_version: browseVersion,
+    sources: { ...notices.sources, "kc-sample": sample.source },
+    contests,
+  });
 }
 
 export function officeFamily(contest) {

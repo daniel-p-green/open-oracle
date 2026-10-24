@@ -58,7 +58,8 @@ let journeyCurrentUnit = null,
   journeyParentRequest = null,
   journeyRequestIds = [];
 let pendingInput = null,
-  inventoryActions = null;
+  inventoryActions = null,
+  sourceSelection = null;
 const el = (tag, text) => {
   const n = document.createElement(tag);
   if (text !== undefined) n.textContent = text;
@@ -366,8 +367,8 @@ function renderGap(status) {
       el(
         "p",
         locale === "es"
-          ? "Explore los concursos impresos en los avisos públicos de KCEB y JCEB. No hemos verificado todos los estilos de boleta, su boleta personal ni su distrito."
-          : "Browse the contests printed in KCEB and JCEB public notices. All ballot styles, your personal ballot and your district have not been verified.",
+          ? "Recorra la muestra pública de Kansas City W1-P7 y compare un asunto local del aviso de Jackson County. No hemos verificado todos los estilos de boleta, su boleta personal ni su distrito."
+          : "Walk through the Kansas City W1-P7 public sample, then compare a local issue in the Jackson County notice. All ballot styles, your personal ballot and your district have not been verified.",
       ),
     );
     const contestHost = el("section");
@@ -401,6 +402,10 @@ function showContestInventory(host) {
     onOffice: showOffice,
     onMeasure: () => showJourney("overview"),
     translationNote: COPY[language].translation,
+    initialSelection: sourceSelection,
+    onSelection: (selection) => {
+      sourceSelection = selection;
+    },
   });
 }
 async function renderMaps(ticket, timing) {
@@ -451,7 +456,7 @@ async function renderMaps(ticket, timing) {
     question.lang = "en";
     question.append(
       el("h3", mapMeasure.label + " · official public sample"),
-      el("blockquote", mapMeasure.text),
+      el("blockquote", mapMeasure.complete_wording),
       link(
         mapMeasure.url + "#page=" + mapMeasure.page,
         mapMeasure.publisher +
@@ -787,12 +792,12 @@ function publicExamples() {
     ? [
         "¿Qué pregunta la Proposición A?",
         "Mostrar los mapas oficiales",
-        "¿Qué fuentes de candidatos están admitidas?",
+        "Mostrar los candidatos",
       ]
     : [
         "What is Proposition A asking?",
         "Show the official maps",
-        "What candidate evidence is admitted?",
+        "Show the candidates",
       ];
 }
 function clearJourneyHistory() {
@@ -940,7 +945,7 @@ function journeySource(host, sourceId) {
       ? mapMeasure.interpretation.yes
       : sourceId === "no"
         ? mapMeasure.interpretation.no
-        : mapMeasure.text,
+        : mapMeasure.complete_wording,
   );
   q.lang = "en";
   q.className = "source-original";
@@ -1019,6 +1024,13 @@ function drawJourney() {
   journeyButton(next, c.teach, teachBack, locale === "es" && !reviewTools);
   journeyButton(next, c.recap, showRecap);
   journeyButton(next, c.office, () => void showOffice());
+  journeyButton(
+    next,
+    locale === "es"
+      ? "Volver a las fuentes públicas"
+      : "Return to public sources",
+    () => void explore("candidates"),
+  );
 }
 function performLocalJourney(operation) {
   if (!journeyActive) return;
@@ -1154,8 +1166,8 @@ async function generateJourney() {
     if (notStarted)
       $("journey-status").textContent =
         locale === "es"
-          ? "No se inició una llamada. El contexto anterior venció o el límite no está disponible. Elija una explicación nueva; no se reintenta automáticamente."
-          : "No provider run started. Prior context expired or the run allowance is unavailable. Choose a fresh explanation deliberately; there is no automatic retry.";
+          ? "No se inició una llamada. El servidor rechazó la solicitud o el contexto o límite no está disponible. Puede volver a elegir deliberadamente; no se reintenta automáticamente."
+          : "No provider run started. The server rejected the request or its context or allowance is unavailable. You can choose again deliberately; there is no automatic retry.";
     return;
   }
   answerTiming.mark("checked_text");
@@ -1656,6 +1668,7 @@ $("confirm-input").onclick = async () => {
   }
 };
 $("language").onchange = () => {
+  sourceSelection = null;
   const wasJourney = journeyActive,
     operation = journeyOperation;
   const old = intent;
@@ -1684,6 +1697,7 @@ $("language").onchange = () => {
   else workspace.replaceChildren();
 };
 $("reset").onclick = () => {
+  sourceSelection = null;
   invalidate({ revokeConsent: true });
   intent = null;
   document.body.classList.remove("has-content");
@@ -1724,6 +1738,7 @@ setInterval(() => {
       ? "La sesión se borrará pronto por inactividad. Desplácese, toque o pulse una tecla para continuar."
       : "This session will clear soon for inactivity. Scroll, tap or press a key to continue.";
   if (intent && session.idle()) {
+    sourceSelection = null;
     invalidate({ revokeConsent: true });
     intent = null;
     document.body.classList.remove("has-content");
@@ -1740,6 +1755,7 @@ setInterval(() => {
   }
 }, 1000);
 addEventListener("pagehide", () => {
+  sourceSelection = null;
   invalidate({ revokeConsent: true });
   clearJourneyHistory();
 });
