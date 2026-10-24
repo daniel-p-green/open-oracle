@@ -69,7 +69,7 @@ Pi: same small browser client; cloud inference remains remote. One lightweight s
 ## Bounded execution and acceptance
 
 1. Preserve original dirty checkout; branch from verified remote main. Record reused hashes and discovered constraints. Keep experiment isolated under `experimental/openai-web`; stable routes untouched.
-2. Deliver a public-source COMBAT reading slice with exact original, predefined grounded Yes/No/rate explanation, visible source/date/uncertainty, no personal membership claim, keyboard/button-ready input and idle reset. Include an explicitly synthetic ballot-membership fixture for guards only. Show all provider/review/voice states honestly.
+2. Deliver a public-source COMBAT reading slice with exact original, predefined grounded Yes/No/rate explanation, visible source/date/uncertainty, no personal membership claim, keyboard/button-ready input and idle reset. Reject synthetic injected membership records, including records claiming to be verified; no personalized-ballot importer exists yet. Show all provider/review/voice states honestly.
 3. Test tampered/forged citations, source-role/scope/hash mismatches, no membership inference, advice refusal, unsupported questions, source prompt injection, offline adapter coverage, reset/late results, keyboard/reflow and disabled external routes. No paid calls.
 4. After parent approves the architecture/capture policy and explicitly authorizes bounded spend/access: connect actual adapters, replay held/refusal/cancellation cases, compare structured generation with finite baseline, obtain bilingual review, then prove one complete supervised human journey on Mac before Pi. Commit/PR each coherent tested milestone. No public deployment or Pi changes.
 

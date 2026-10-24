@@ -22,13 +22,6 @@ export function vgcPlan(state) {
   return {status:'disabled', calls:0, reason:'Optional newsroom adapter is not connected. Official membership is required separately.'};
 }
 
-// Only an upstream application-owned official personalized record may bind membership.
-// This slice has none. A public sample/newsroom result must never satisfy this guard.
-export function ballotContains(ballot, contestId) {
-  if (ballot?.role !== 'official_personalized' || ballot?.admission !== 'verified_official' || !Array.isArray(ballot?.contest_ids)) return 'unknown';
-  return ballot.contest_ids.includes(contestId) ? 'included' : 'excluded';
-}
-
 export async function validateCorpus(corpus) {
   if (await hash(JSON.stringify(corpus)) !== CORPUS_SHA256) throw Error('unadmitted_corpus');
   if (corpus?.schema !== 'openoracle-fixture/v1' || corpus.mode !== 'public_sample_fixture' || !Array.isArray(corpus.sources) || corpus.sources.length !== 1) throw Error('invalid_corpus');
