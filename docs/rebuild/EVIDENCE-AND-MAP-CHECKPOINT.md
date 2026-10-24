@@ -49,8 +49,9 @@ Reuse permission is limited to the local short-excerpt review; no blanket licens
 or external-model permission is inferred. Publication is disabled.
 
 Two direct Missouri SOS downloads returned HTTP 403 and were not retried through
-another route: the general-election candidate certification PDF and primary
-filing-register page. Their indexed discovery text is not admitted as a retained
+another route: the [general-election candidate certification PDF](https://www.sos.mo.gov/CMSImages/ElectionCandidates/2026GeneralElectionCertifiedCandidates.pdf)
+and [primary filing-register page](https://s1.sos.mo.gov/candidatesonweb/DisplayCandidatesPlacement.aspx?ElectionCode=750006905).
+Their indexed discovery text is not admitted as a retained
 original. This independent federal filing does **not** establish Missouri ballot
 membership or replace the unavailable SOS versions. No rights-cleared debate
 transcript was supplied/admitted; that class is explicitly missing. No captions
@@ -90,6 +91,11 @@ and a self-matching receipt; real source/geometry build proof is recorded
 separately. Existing source/audio/privacy/currentness gates remain passing.
 Independent review found and verified repairs to derivative authority and late-ID
 recovery. Counts are execution bookkeeping, not model-quality statistics.
+
+The actual credential-free [remote CI run for `518faf2`](https://github.com/daniel-p-green/open-oracle/actions/runs/40059695820)
+completed successfully. GIS execution/visual checks were local; this workflow
+checks offline contracts and syntax, not map rights, actual remote cancellation
+or model quality.
 
 Used the installed `test-audit` guidance and its pinned OpenClaw provenance;
 inspected `@steipete/oracle`, which is a bundling skill rather than an anti-testing

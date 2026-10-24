@@ -257,3 +257,10 @@ This is a backfill, not a contemporaneous event stream.
 - **Planned:** publish focused map/evidence commits to existing draft PR6 and
   verify its actual remote CI. Keep managed inference, publication, bilingual
   civic release, human voice and Pi gates held; no new approval is assumed.
+- **Completed — published/CI:** pushed focused commits `bfd3fbf` (maps) and
+  `518faf2` (offline evidence/closed paid gate) to draft PR6, and updated its
+  description around actual artifacts, evidence and limitations. GitHub Actions
+  [run40059695820](https://github.com/daniel-p-green/open-oracle/actions/runs/40059695820)
+  for518faf2 completed successfully. CI uses no credentials/providers; GIS and
+  visual verification remain separately recorded local evidence. Working tree
+  was clean after the push. No merge, deployment or new API usage occurred.
