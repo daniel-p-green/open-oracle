@@ -15,7 +15,7 @@ all four closed with usage, all held before accepted audio, and the recovery
 trigger was not reached. Estimated package cost0.025895, reservation0.40 within
 shared200. No full EN/ES native conversation, improved safe-audio latency or new
 browser integration success is claimed. See [actual trial evidence](NATIVE-VOICE-TRIALS-2026-10-24.json).
-The source-only Opus5.5High critique returned; [dispositions](CLAUDE-REVIEW-2026-10-24.md)
+The source-only Opus5.5High critique and explicit adversarial Message36 returned; [dispositions](CLAUDE-REVIEW-2026-10-24.md)
 remain distinct from runtime acceptance. Native paid web-fixture activation is
 closed so a review switch cannot start another session outside that package.
 
@@ -46,7 +46,7 @@ D3–D6 to its later adaptive-voice decisions, inventoried in the reconciliation
 | R01 D2§3/6A context | Election/authority/sample distinctions; administrator/public selection, no personal inference | Pinned KCEB W1P7 and separate JCEB notice; wrong-scope guards | Second JCEB individual style/current certification; final county variant reconciliation; no notice-as-ballot claim |
 | R02 D2§3/5 approachable voice-first entry | Primary Talk/EN–ES/state/transcript/canvas, support progressively disclosed | Prior provider-off desktop voice UI replay | Natural public question through primary live UI; current mobile/manual accessibility proof |
 | R03 D2§3/5 fresh voice loop | Native GPT-Live→Decisions choices→Responses→independent review→buffered Live→ASR gate | Earlier one EN accepted segment; contextual maps/KC native choice; newest four holds/usage documented | Successful full unanticipated question and follow-up with synchronized actual visuals/speech; acceptable measured latency |
-| R04 D2§4 comprehension/adaptation | Fresh brief/simpler/detail with server-owned checked parent; separate exact effects | Earlier real EN overview→simpler→ES text adaptation in review mode | Adapt based on explicit requests/demonstrated understanding, slower/repeat/clarification in real voice; no education/accent inference; brief contract live revalidation |
+| R04 D2§4 comprehension/adaptation | Fresh brief/simpler/detail with server-owned checked parent; session-owned repeat; separate exact effects | Earlier real EN overview→simpler→ES text adaptation in review mode; offline two-turn fresh-generation→repeat proof | Adapt based on explicit requests/demonstrated understanding, slower/repeat/clarification in real voice; no education/accent inference; brief contract live revalidation |
 | R05 D2§4 strongest language | EN/ES UI and generated text paths; original English retained; translation status | Earlier ES text adaptation; new native Spanish input routed but attribution held | Full fresh ES speech/captions and mid-conversation language switch; human civic meaning/pronunciation review |
 | R06 D2§4 captions/text alternative | Partial/input-gap/checked-text/final-audio transcript states bound to turn/language/revision | Offline lifecycle/replay; actual four runs had no usable command echo, marked unavailable | Reliable language-appropriate input captions; no guessed clock association; usable silent core journey |
 | R07 D2§5 controlled generative UI | Allowlisted shared evidence component selection, actual pinned maps with synchronized bounds/views | Prior native maps/KC routing and offline browser render; source/prop checks | Actual conversation-selected summary/comparison/map updates; map-specific speech parity; no arbitrary code or invented facts |
@@ -238,3 +238,6 @@ Current requested Claude Opus5.5High was visibly available in the existing
 OpenOracle chat. The native-source file chooser timed out before setFiles; no
 attachment or review prompt was submitted. This is a specific attachment-tool
 blocker, not a claim that Claude or all browser tools are unavailable.
+
+
+Latest adversarial review/fixes: [severity, reproductions and dispositions](CLAUDE-ADVERSARIAL-2026-10-24.md). Completed-job Erase/Stop honesty and session-repeat repairs passed offline contracts and independent inspection. Current browser/human/provider verification remains open; no acceptance row is closed by code inspection alone.

@@ -78,13 +78,13 @@ class JourneyTests(unittest.TestCase):
 
     def test_brief_start_preserves_numeric_attribution_and_a_hard_length_bound(self):
         question=load_question()
-        text='The question asks whether to approve an act replacing the congressional plan.'
+        text='The question asks whether to approve the legislature’s act replacing the congressional plan.'
         draft={'operation':'brief','language':'en','sections':[{'source_id':'question','text':text}]}
         validate_unit(draft,'brief','en',question)
         spanish={'operation':'brief','language':'es','sections':[{'source_id':'question','text':'¿Aprueban las personas de Misuri el acto que reemplaza los límites congresionales existentes?'}]}
         with self.assertRaisesRegex(Held,'journey_sentence_attribution'): validate_unit(spanish,'brief','es',question)
-        spanish['sections'][0]['text']='La pregunta describe la aprobación de un acto que reemplaza el plan congresional.'
+        spanish['sections'][0]['text']='La pregunta describe la aprobación del acto legislativo que reemplaza el plan congresional.'
         validate_unit(spanish,'brief','es',question)
-        for bad in ['The question asks about replacing the congressional plan and', 'The question asks about replacing the congressional plan and.', text+' '+('extra '*40), 'The act replaces the congressional plan.', 'The question asks about nine congressional districts.', 'Vote Yes to replace the congressional plan.']:
+        for bad in ['The question asks whether people approve an act replacing Missouri’s congressional boundaries.', 'The question describes a legislature’s congressional plan.', 'The question asks about replacing the congressional plan and', 'The question asks about replacing the congressional plan and.', text+' '+('extra '*40), 'The act replaces the congressional plan.', 'The question asks about nine congressional districts.', 'Vote Yes to replace the congressional plan.']:
             draft['sections'][0]['text']=bad
             with self.assertRaises(Held): validate_unit(draft,'brief','en',question)

@@ -31,6 +31,21 @@ export async function requestLayout(options) {
   });
 }
 
+// Completed jobs still own server-held results until explicitly revoked.
+// Reuse this for Erase after polling/transport has already finished.
+export async function cancelProviderJob({ requestId, token, fetcher = fetch }) {
+  if (!requestId || !token) return false;
+  try {
+    const response = await fetcher("/api/provider/cancel", {
+      method: "POST", cache: "no-store", keepalive: true,
+      headers: { "Content-Type": "application/json", "X-Session-Token": token },
+      signal: AbortSignal.timeout(3000),
+      body: JSON.stringify({ request_id: requestId }),
+    });
+    return response.ok;
+  } catch { return false; }
+}
+
 // Shared transport/ownership path for layout and fresh evidence answers.
 export async function requestProviderJob({
   task,
@@ -65,14 +80,7 @@ export async function requestProviderJob({
     signal: operationSignal,
     cache: "no-store",
   };
-  const cancel = () =>
-    fetcher("/api/provider/cancel", {
-      ...opts,
-      method: "POST",
-      signal: AbortSignal.timeout(3000),
-      body: JSON.stringify({ request_id: id }),
-      keepalive: true,
-    }).catch(() => {});
+  const cancel = () => cancelProviderJob({ requestId: id, token, fetcher });
   const work = async () => {
     const response = await fetcher("/api/provider/start", {
       ...opts,

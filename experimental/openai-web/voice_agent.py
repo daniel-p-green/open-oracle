@@ -58,7 +58,7 @@ def admitted_action(answers, turn=None):
     values = {a['name']: a.get('choice') for a in answers}
     if values['view'] not in VIEWS or values['map_focus'] not in FOCUSES:
         raise Held('voice_action_unadmitted')
-    if values['delivery'] not in ('brief','simpler','detail'): raise Held('voice_delivery')
+    if values['delivery'] not in ('brief','simpler','detail','repeat'): raise Held('voice_delivery')
     if values['view'] != 'maps' and values['map_focus'] != 'unchanged':
         raise Held('voice_action_binding')
     return values
@@ -82,8 +82,8 @@ def live_configuration(language, turn=1):
             {'type': 'choice', 'name': 'map_focus',
              'instructions': 'Only for a maps view: choose statewide, kansas_city or st_louis when explicitly requested as a map view. This does NOT assign a personal district. For other views choose unchanged. Use unchanged when no new map focus was requested.',
              'choices': [{'value': value} for value in FOCUSES]},
-            {'type':'choice','name':'delivery','instructions':'Choose brief by default. Choose simpler only for an explicit request to simplify the prior explanation; detail only for a request for more detail. This controls delivery, never factual scope.',
-             'choices':[{'value':value} for value in ('brief','simpler','detail')]},
+            {'type':'choice','name':'delivery','instructions':'Choose brief by default. Choose simpler only for an explicit request to simplify the prior explanation; detail only for a request for more detail. Choose repeat only when explicitly asked to repeat the last checked answer without rewording. This controls delivery, never factual scope.',
+             'choices':[{'value':value} for value in ('brief','simpler','detail','repeat')]},
         ]}},
     }
     for question in config['delegation']['decisions']['questions']:
@@ -137,6 +137,7 @@ class PublicSyntheticVoiceLoop:
         configuration_ready=asyncio.Event()
         expected = None
         checked_payload = None
+        last_checked = None
         voiced_at = None
         active_turn = 0
         audio_clock_ms=0
@@ -153,7 +154,7 @@ class PublicSyntheticVoiceLoop:
             'human_capture':False, 'speaker_playback':False, 'audio_persisted':False,
             'source_version':QUESTION_PIN, 'language':self.language, 'turns':turns,
             'finalized':False, 'native_decisions':0, 'errors':errors}
-        diagnostics={'discarded_audio_bytes':0,'buffered_audio_bytes':0,'output_transcript_chars':0,
+        diagnostics={'discarded_audio_bytes':0,'discarded_voiced_audio_bytes':0,'buffered_audio_bytes':0,'output_transcript_chars':0,
             'expected_chars':0,'first_output_ms':None,'planned_text_match':False,
             'input_deltas':0,'timed_input_deltas':0,'input_timing':[],
             'sealed_segment_extra_bytes':0,'stages_ms':[]}
@@ -180,7 +181,12 @@ class PublicSyntheticVoiceLoop:
                 nonlocal expected, prior, output_allowed, voiced_at, checked_payload
                 try:
                     operation='limits' if action['view']=='limits' else action['delivery']
-                    if action['view'] in {'clarify','abstain','source'}:
+                    if action['delivery']=='repeat':
+                        if last_checked is None: raise Held('voice_repeat_unavailable')
+                        load_question()  # Repeat only this session's still-pinned evidence.
+                        text=last_checked['text']
+                        result=json.loads(json.dumps(last_checked['result']))
+                    elif action['view'] in {'clarify','abstain','source'}:
                         # These application-owned outcomes cannot fabricate a
                         # new fact or imply personal membership.
                         text = ('Please name the public election question you want to understand.' if action['view']=='clarify'
@@ -250,6 +256,11 @@ class PublicSyntheticVoiceLoop:
                                 raise Held('voice_delegation_binding')
                             if receipt['native_decisions']>=len(fixtures): raise Held('voice_native_run_bound')
                             action=admitted_action(event['event'].get('decision',{}).get('answers'),active_turn)
+                            if action['delivery']=='repeat':
+                                if last_checked is None: raise Held('voice_repeat_unavailable')
+                                # Repeating binds the prior verified view, rather
+                                # than inventing a new canvas for unchanged words.
+                                action=dict(action,view=last_checked['view'],map_focus='unchanged')
                             seen_decisions.add(delegation);decided_turns.add(active_turn);active_delegation=delegation
                             receipt['native_decisions']+=1
                             mark('decision_completed')
@@ -300,7 +311,10 @@ class PublicSyntheticVoiceLoop:
                                 mark('sealed_segment_extra_audio')
                                 raise Held('voice_after_segment')
                             if not output_allowed:
-                                diagnostics['discarded_audio_bytes']+=len(chunk);continue
+                                diagnostics['discarded_audio_bytes']+=len(chunk)
+                                if len(chunk)%2==0 and any(abs(v[0])>64 for v in struct.iter_unpack('<h',chunk)):
+                                    diagnostics['discarded_voiced_audio_bytes']+=len(chunk)
+                                continue
                             if len(chunk)%2 or len(pending_audio)+len(chunk)>60*48000:
                                 raise Held('voice_audio_bound')
                             pending_audio.extend(chunk)
@@ -389,7 +403,7 @@ class PublicSyntheticVoiceLoop:
                     if not languages or languages[0].get('code')!=self.language: raise Held('voice_asr_language')
                     if words(''.join(output_transcript))!=words(expected): raise Held('voice_late_speech')
                     if any(pending_audio[len(snapshot):]): raise Held('voice_audio_changed_during_asr')
-                    if load_question().get('text_sha256') is None: raise Held('voice_source_changed')
+                    load_question()  # Rechecks both immutable source/document hashes.
                     mark('asr_checked')
                     # A development receipt, never a human-heard claim. Original
                     # buffered PCM is not written to disk or sent to a player.
@@ -397,6 +411,7 @@ class PublicSyntheticVoiceLoop:
                         'independent_asr_match':True,'audio_sha256':hashlib.sha256(snapshot).hexdigest(),
                         'audio_seconds':round(len(snapshot)/48000,3),'ready_at_ms':offset(),
                         'checked':json.loads(json.dumps(checked_payload))})
+                    last_checked=json.loads(json.dumps(checked_payload))
                     update('speech_checked',text=expected)
                     segment_sealed=True;output_allowed=False;pending_audio.clear();output_transcript.clear()
                     sender.cancel();await asyncio.gather(sender,return_exceptions=True);sender=None

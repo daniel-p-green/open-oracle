@@ -2051,3 +2051,35 @@ This is a backfill, not a contemporaneous event stream.
 - **Next:** commit this bounded reconciliation, use the immutable combined
   snapshot for the expressly requested adversarial Opus5.5High review, fix proven
   findings and update existing PR6. No new paid trial under consumed package.
+
+### 2026-10-24 19:21:40 UTC — adversarial findings returned; local repairs verified
+
+- **Actual result:** explicit adversarial source bundle297774bytes/SHA911bd678…
+  b5ec38 of immutable57fd509 submitted once asMessage35, Opus5.5High visibly
+  selected. Message36 returned not-ready with severity/concrete references/repro
+  steps and proven-vs-hypothesis-vs-missing distinctions. Review artifact is
+  docs/rebuild/CLAUDE-ADVERSARIAL-2026-10-24.md; no reviewer execution claimed.
+- **Fixed locally:** retain completed job ID/token for server revocation on
+  Stop/Erase, ignore old callback cleanup; Stop doesn't turn finalized captions
+  into held captions; explicit repeat reuses only this session's last ASR-checked
+  payload/view and rechecks fresh buffered speech without a new text generation;
+  remove dead source-check branch; add narrow brief approval/legislative-origin
+  omission guard and pre-approval amplitude counter. No review threshold lowered.
+- **Verified:** offline transport-after-ready revoke, existing server caption
+  removal, protocol fresh explanation→exact repeat with one generation/review,
+  checked-text cancellation, late/changed audio, missing usage and deadline paths.
+  Final provider-off Python and Node suites pass; independent reviewer inspected
+  repairs and found no substantive fault. New browser/human/native-provider
+  behavior is unverified. An intermediate protocol test edit had indentation
+  error, corrected before final validation/commit.
+- **Not adopted:** phase-only caption arrival ownership (late old-turn risk) or
+  playback before independent ASR (weakens pre-hearing guarantee). Map speech
+  parity, per-turn language switching, reliable input captions and conversational
+  safe-audio latency remain open. Corrected review's claim that newest held
+  drafts were checked text; no such event occurred in those trials.
+- **Completed remote:**64972f2 and57fd509 pushed to existing draftPR6; exacthead
+  offline CI succeeded40123925101 and40123929659. PRbody updated actual holds,
+  costs, original-video/matrix and remaining gates. New local repair commit next.
+- **Budget unchanged:** fourtrial0.40 reservation consumed; estimated0.025895.
+  Shared reservations2.56/200, recorded direct estimate0.3013148 excluding old
+  unmetered calls. No new paid inference, billing login, human media or deployment.

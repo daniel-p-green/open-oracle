@@ -21,7 +21,7 @@ import {
   validateJourneySpeech,
   journeyReading,
 } from "../web/journey-core.mjs";
-import { requestProviderJob } from "../web/layout-client.mjs";
+import { requestProviderJob, cancelProviderJob } from "../web/layout-client.mjs";
 const corpus = JSON.parse(
   await readFile(new URL("../fixtures/combat.json", import.meta.url), "utf8"),
 );
@@ -982,4 +982,23 @@ test("view timing is current-action numeric diagnostics, with stale writes rejec
   timing.mark("maps_validated");
   assert.equal(host.dataset.viewTiming, expected);
   assert.throws(() => timing.mark("arbitrary text"), /timing_mark/);
+});
+
+
+test("Erase can revoke a completed provider job after transport cleanup", async () => {
+  const session = createSession(), ticket = session.begin();
+  let retained = null, pending = false;
+  const calls = [];
+  const fetcher = async (url, options) => {
+    const body = JSON.parse(options.body); calls.push({url, body});
+    return url.endsWith("/cancel") ? {ok:true} : {ok:true, json:async()=>({request_id:body.request_id,state:"ready",result:{public_fixture:true}})};
+  };
+  await requestProviderJob({task:"voice:synthetic:en",ticket,session,token:"fixture-owner",
+    signal:new AbortController().signal,fallback:()=>null,decode:value=>value,fetcher,
+    onRequest:id=>{ if(!session.current(ticket)) return; pending=id!==null;if(id)retained=id; }});
+  assert.equal(pending,false); assert.ok(retained);
+  session.reset();
+  assert.equal(await cancelProviderJob({requestId:retained,token:"fixture-owner",fetcher}),true);
+  assert.equal(calls.at(-1).url,"/api/provider/cancel");
+  assert.equal(calls.at(-1).body.request_id,retained);
 });

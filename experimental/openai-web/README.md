@@ -211,7 +211,7 @@ The form now drafts supported natural EN/ES phrases and contextual follow-ups
 into a fixed public action, then asks for confirmation. Raw text stays local;
 unknown wording remains unsupported rather than becoming a cloud prompt.
 Typing preserves the checked parent/map, while Stop/Erase/language clears the
-draft. `brief` requests <=260characters with the same source/attribution and
+draft. Historical `brief` requested260characters; current acceptance is120characters with the same source/attribution and
 critical independent checks. Paid latency verification of this change is blocked
 pending the exact trial approval; no faster result is claimed.
 
@@ -256,25 +256,31 @@ and does not need Poppler or the old repository.
 October24 primary-interaction correction: `/` and `/voice` now serve the
 voice-first development preview. It explicitly holds human microphone/playback;
 it is not a live conversation demo yet. `/source-review` retains supporting
-evidence work only with `--review-tools`. Native `voice:synthetic:en|es` is a
-separately enabled, bounded development path using an admitted local WAV manifest
-(`--voice-fixtures` together with existing provider/review flags). No audio upload
-or free visitor-transcript endpoint exists. Fixture language/format/hash checks
-precede dispatch. One native session allows at most two synthetic inputs, a45s
-operation window plus<=15s graceful close, with a0.10 shared-ledger reservation
-and no retry. After an initial rejection and direct authorization evidence, one
-actual English test selected a measure view and produced checked text, but held
-before checked speech. The corrected commentary-return test then checked its
-first speech and selected the Kansas City map for a contextual follow-up, but
-held the second grounded answer on language review. The whole conversation is
-not verified. A further diagnostic run was denied before launch; no automatic
-retry. See `docs/rebuild/NATIVE-VOICE-TRIALS-2026-10-24.json` for measured stages
-and costs. Native full-loop compatibility, latency, actual browser behavior and
-human EN/ES acceptance remain unverified. Timed provisional input, pending checked
-text and final checked-audio transcripts remain distinct. Canonical final turns
-recover checked captions after slow polling; partial native input is never called
-final. Offline checks establish neither natural spoken conversation nor human
-pronunciation/comprehension.
+evidence work only with `--review-tools`. Native paid web-fixture activation is
+now closed: `--voice-fixtures` and a ProductPipeline fixture manifest are rejected
+after consumption of the approved four-purpose package. Manual native harness
+code remains, but no further run under that package is allowed.
+
+All four newly approved trials finalized with usage/closure and held before any
+accepted audio; the recovery trigger was never reached. Direct package estimate
+$0.025895, full reservation$0.40 retained inside shared200. Earlier native EN
+accepted one segment and selected a KC-map follow-up before a held second turn.
+See `docs/rebuild/NATIVE-VOICE-TRIALS-2026-10-24.json` for exact evidence. No full
+EN/ES or improved safe-audio latency claim follows.
+
+Current brief acceptance is120characters with a common generator/reviewer civic
+coverage definition, schema200 for clean overlength holds, fragment/legislative
+origin/approval/attribution/congressional guards and unchanged independent review.
+Session-owned repeat reuses the last ASR-checked answer/view and checks freshly
+buffered speech again; it creates no replacement explanation or answer library.
+These latest changes are offline-verified, not provider-validated.
+
+Stop/Erase revoke the retained completed server request as well as pending work.
+A completed final caption is not relabeled held on Stop. Network failure can
+still prevent remote revocation confirmation; human content remains disabled.
+Captions distinguish provisional/unavailable input, checked text and final
+checked-audio state. Missing command echoes were observed in all newest trials;
+no phase/arrival guess or complete input-caption claim is used.
 
 Offline primary-UI replay (no OpenAI instance, credential, shared ledger, capture
 or player): with the already verified local map-review assets present, run:
@@ -298,6 +304,6 @@ The original native caption code incorrectly compared session-timeline ms with
 sent PCM offsets. Input appends now carry application-owned command IDs and
 provisional captions require their echoed client_event_id. Missing correlation
 is marked incomplete/unavailable, not guessed. The API documents that echo as
-optional, so actual coverage still requires a bounded live diagnostic or a
-separately reviewed public-input ASR fallback. No language threshold was lowered
+optional; newest actual runs yielded zero bindable input deltas. A separately
+reviewed public-input ASR fallback remains a next implementation option. No language threshold was lowered
 without the absent held draft/predicate evidence.

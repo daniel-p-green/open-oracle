@@ -1,5 +1,5 @@
 import { createSession } from "./core.mjs";
-import { requestProviderJob } from "./layout-client.mjs";
+import { requestProviderJob, cancelProviderJob } from "./layout-client.mjs";
 import { voiceUpdate, voiceFinalTurns } from "./voice-core.mjs";
 import {
   loadMapMeasure,
@@ -14,6 +14,7 @@ let language = "en",
   capability = null,
   abort,
   request,
+  inFlight = false,
   revision = 0,
   turn = 0,
   visualRevision = 0,
@@ -116,17 +117,20 @@ function heldVisualNote() {
   $("visual").append(note);
 }
 function stop(erase = false) {
+  const pendingAnswer = inFlight || !!$("conversation-turns").querySelector('[data-transcript-state="checked_text"]');
+  const retained = request;
   session.reset();
   abort?.abort();
   abort = null;
   request = null;
+  inFlight = false;
+  if (retained) void cancelProviderJob({ requestId: retained.id, token: retained.token });
   revision = 0;
   turn = 0;
   visualRevision++;
   clearTimeout(legalExpiryTimer);
   if (!erase && hasConversation) {
-    spokenHeld = true;
-    holdPendingCaptions();
+    if (pendingAnswer) { spokenHeld = true; holdPendingCaptions(); }
     if (!visualComplete && !map)
       $("visual").replaceChildren(make("p", es() ? "Vista detenida." : "Display stopped."));
     heldVisualNote();
@@ -460,7 +464,11 @@ async function synthetic() {
     signal: abort.signal,
     timeoutMs: 105000,
     onRequest: (id) => {
-      request = id;
+      if (!session.current(ticket)) return;
+      inFlight = id !== null;
+      // Keep the completed owned ID for Stop/Erase; a stale finally cannot
+      // clear a new conversation's owner after reset or language change.
+      if (id) request = { id, token: capability.session_token };
     },
     onProgress: (values) => progress(values, ticket),
     fallback: () => null,
@@ -609,7 +617,7 @@ try {
   $("development").hidden = !capability.review_tools;
   $("synthetic-run").disabled = !fixtureAvailable();
   developmentCopy();
-  status("Development preview · human conversation not yet enabled");
+  status(es() ? "Vista de desarrollo · conversación humana aún no habilitada" : "Development preview · human conversation not yet enabled");
 } catch {
-  status("Connection unavailable · microphone and speakers off");
+  status(es() ? "Conexión no disponible · micrófono y altavoces apagados" : "Connection unavailable · microphone and speakers off");
 }

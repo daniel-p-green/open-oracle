@@ -17,7 +17,7 @@ from public_diagnostics import PublicDiagnosticProvider
 class PublicDiagnosticsTests(unittest.TestCase):
     def test_language_hold_retains_public_draft_and_all_scores_only_in_explicit_test_provider(self):
         draft = {'operation': 'brief', 'language': 'en',
-                 'sections': [{'source_id': 'question', 'text': 'The question asks whether to approve an act replacing the congressional plan.'}],
+                 'sections': [{'source_id': 'question', 'text': 'The question asks whether to approve the legislature’s act replacing the congressional plan.'}],
                  'components': ['explanation', 'original', 'uncertainty']}
         names = ['entailed', 'no_additions', 'attributed', 'request_fit', 'language_match', 'polarity_safe']
         answers = [{'type': 'predicate', 'name': name, 'probability': .1 if name == 'language_match' else .99}

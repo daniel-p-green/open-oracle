@@ -45,9 +45,10 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
         expected='The complete official wording is available with its source on screen.'
         pcm=struct.pack('<h',1000)*1200
         fixture={'kind':'synthetic_public_question','pcm':pcm,'sha256':hashlib.sha256(pcm).hexdigest()}
-        for fault in ('none','during_asr','on_close','missing_usage','deadline'):
+        for fault in ('none','during_asr','on_close','missing_usage','deadline','repeat','cancel'):
+            expected=('The question asks whether to approve the legislature’s act replacing the congressional plan.' if fault=='repeat' else 'The complete official wording is available with its source on screen.')
             class Socket:
-                def __init__(self):self.queue=asyncio.Queue();self.routed=False
+                def __init__(self):self.queue=asyncio.Queue();self.routed=False;self.turn=1;self.commentaries=0
                 async def __aenter__(self):self.loop=asyncio.get_running_loop();self.operation=asyncio.current_task();return self
                 async def __aexit__(self,*_):pass
                 def __aiter__(self):return self
@@ -56,6 +57,9 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
                 async def send(self,raw):
                     event=json.loads(raw);kind=event['type']
                     if kind=='session.start':await self.queue.put({'type':'session.started'})
+                    elif kind=='session.update':
+                        self.turn=2;self.routed=False
+                        await self.queue.put({'type':'session.updated','session':event['session']})
                     elif kind=='session.input_audio.append' and not self.routed:
                         self.routed=True
                         # Same-session timing is not a sent-PCM byte offset.
@@ -66,10 +70,12 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
                         for command,delta,start in fragments:
                             await self.queue.put({'type':'session.input_transcript.delta','client_event_id':command,
                                 'delta':delta,**({'start_ms':start,'end_ms':start+200} if start is not None else {})})
-                        await self.queue.put({'type':'session.delegation.created','delegation':{'target':'decisions','id':'fixture_delegation'}})
-                        answers=[{'type':'choice','name':name+'_turn_1','choice':value} for name,value in [('view','source'),('map_focus','unchanged'),('delivery','brief')]]
-                        await self.queue.put({'type':'decision.event','delegation_id':'fixture_delegation','event':{'type':'decision.completed','decision':{'answers':answers}}})
+                        await self.audio()  # Pre-approval energy is discarded, never admitted.
+                        await self.queue.put({'type':'session.delegation.created','delegation':{'target':'decisions','id':'fixture_delegation_'+str(self.turn)}})
+                        answers=[{'type':'choice','name':name+'_turn_'+str(self.turn),'choice':value} for name,value in [('view','measure' if fault=='repeat' else 'source'),('map_focus','unchanged'),('delivery','repeat' if self.turn==2 else 'brief')]]
+                        await self.queue.put({'type':'decision.event','delegation_id':'fixture_delegation_'+str(self.turn),'event':{'type':'decision.completed','decision':{'answers':answers}}})
                     elif kind=='session.commentary.append':
+                        self.commentaries+=1
                         await self.queue.put({'type':'session.output_transcript.delta','delta':expected});await self.audio()
                         if fault=='deadline': self.loop.call_later(.01,self.operation.cancel)
                     elif kind=='session.close':
@@ -78,23 +84,40 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
             socket=Socket()
             class Provider:
                 _headers={}
+                def __init__(self):self.posts=[]
+                def post(self,path,body,cancel):
+                    self.posts.append(path)
+                    usage={'input_tokens':200,'output_tokens':80 if path=='responses' else 0}
+                    if path=='responses':
+                        draft={'operation':'brief','language':'en','sections':[{'source_id':'question','text':expected}],
+                               'components':['explanation','original','uncertainty']}
+                        return {'status':'completed','usage':usage,'output':[{'type':'message','content':[{'type':'output_text','text':json.dumps(draft)}]}]}
+                    return {'usage':usage,'answers':[{'name':name,'type':'predicate','probability':.99} for name in ['entailed','no_additions','attributed','request_fit','language_match','polarity_safe']]}
                 def transcribe(self,wav,cancel):
                     if fault=='during_asr':
                         asyncio.run_coroutine_threadsafe(socket.audio(),socket.loop).result(timeout=1);time.sleep(.03)
                     return {'text':expected,'languages':[{'code':'en'}]}
             async def run():
-                updates=[]
+                updates=[];cancel=threading.Event()
+                def notify(value):
+                    updates.append(value)
+                    if fault=='cancel' and value['stage']=='checked_text':cancel.set()
+                provider=Provider()
                 with patch.dict(sys.modules,{'websockets':SimpleNamespace(connect=lambda *a,**k:socket)}):
-                    result=await PublicSyntheticVoiceLoop(Provider(),seconds=15).run([fixture],threading.Event(),lambda *_:None,updates.append)
-                self.assertEqual([e['text'] for e in updates if e['stage']=='input_partial'],['public input'])
-                self.assertEqual(len([e for e in updates if e['stage']=='input_unavailable']),1)
+                    result=await PublicSyntheticVoiceLoop(provider,seconds=15).run([fixture,fixture] if fault=='repeat' else [fixture],cancel,lambda *_:None,notify)
+                self.assertEqual([e['text'] for e in updates if e['stage']=='input_partial'],['public input']*(2 if fault=='repeat' else 1))
+                self.assertEqual(len([e for e in updates if e['stage']=='input_unavailable']),2 if fault=='repeat' else 1)
                 self.assertEqual([e['stage'] for e in updates if e['stage'] in {'input_partial','input_unavailable'}],
-                                 ['input_partial','input_unavailable'] if fault=='none' else ['input_unavailable','input_partial'])
+                                 ['input_partial','input_unavailable'] if fault=='none' else ['input_unavailable','input_partial']*(2 if fault=='repeat' else 1))
+                self.assertGreaterEqual(result['diagnostics']['discarded_voiced_audio_bytes'],len(pcm))
+                self.assertEqual(provider.posts,['responses','decisions'] if fault=='repeat' else [])
                 return result
             with self.subTest(fault=fault):
                 result=asyncio.run(run())
-                self.assertEqual(result['all_turns_checked'],fault=='none')
+                self.assertEqual(result['all_turns_checked'],fault in {'none','repeat'})
                 if fault=='during_asr':self.assertIn('voice_audio_changed_during_asr',result['errors'])
                 if fault=='on_close':self.assertIn('voice_after_segment',result['errors'])
                 if fault=='missing_usage':self.assertIn('voice_usage_unconfirmed',result['errors'])
+                if fault=='repeat':self.assertEqual(socket.commentaries,2);self.assertEqual(len(result['turns']),2);self.assertEqual(result['turns'][1]['checked'],result['turns'][0]['checked'])
+                if fault=='cancel':self.assertIn('voice_cancelled',result['errors']);self.assertFalse(result['turns']);self.assertTrue(result['finalized'])
                 if fault=='deadline':self.assertIn('voice_deadline',result['errors']);self.assertTrue(result['finalized'])
