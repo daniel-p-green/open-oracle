@@ -33,3 +33,47 @@ export async function loadSampleHouseContest(signal) {
     throw Error("contest_integrity");
   return immutableCopy(JSON.parse(new TextDecoder().decode(bytes)));
 }
+
+export async function loadContestInventory(signal) {
+  const response = await fetch("/contest-inventory.json", {
+    cache: "no-store",
+    signal,
+  });
+  if (!response.ok) throw Error("inventory_unavailable");
+  const bytes = await response.arrayBuffer();
+  if (
+    (await sha(bytes)) !==
+    "0eda572a493274e25e845a1276b8ec28c3321dc40a8c2f13b7d761ad95645773"
+  )
+    throw Error("inventory_integrity");
+  const value = JSON.parse(new TextDecoder().decode(bytes));
+  if (
+    value.election_date !== "2026-11-03" ||
+    value.scope.personal_membership !== false ||
+    value.scope.individual_ballot_styles_enumerated !== false ||
+    value.contests.length !== 55 ||
+    new Set(value.contests.map((c) => c.id)).size !== 55
+  )
+    throw Error("inventory_scope");
+  for (const contest of value.contests) {
+    if (
+      !["candidate_election", "judicial_retention", "measure"].includes(
+        contest.kind,
+      ) ||
+      !contest.occurrences.length
+    )
+      throw Error("inventory_contest");
+    for (const occurrence of contest.occurrences) {
+      const source = value.sources[occurrence.source_id];
+      if (!source || occurrence.page < 1 || occurrence.page > source.pages)
+        throw Error("inventory_source");
+      if (
+        occurrence.wording &&
+        (await sha(new TextEncoder().encode(occurrence.wording))) !==
+          occurrence.wording_sha256
+      )
+        throw Error("inventory_wording");
+    }
+  }
+  return immutableCopy(value);
+}

@@ -19,3 +19,12 @@ Spanish civic meaning, acoustic quality or public readiness. Verification and
 costs belong in [logs.md](../../logs.md); remaining product gates are in
 [DEMO-ACCEPTANCE.md](DEMO-ACCEPTANCE.md). Future code reuse must add its exact
 upstream commit, files, license/notice handling and verification here.
+
+
+October24 implementation extension: `inventory-view.mjs` now selects a bounded
+source-backed roster, judicial-retention or exact-measure view from typed contest
+records, with explicit gaps and original access. `office-source.mjs` checks the
+inventory byte pin, while `research/build_inventory.py` owns deterministic source
+admission. This extends the adopted bounded-action/evidence separation pattern;
+it is deterministic application composition, not a new live-model result or copied
+demo source. No reference license assumptions changed and no demo code was imported.

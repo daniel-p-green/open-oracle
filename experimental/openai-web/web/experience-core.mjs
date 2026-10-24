@@ -172,7 +172,7 @@ export const COPY = Object.freeze({
       "Compare Missouri's congressional maps",
       "What candidate evidence is admitted?",
     ],
-    gap: "There is not enough admitted primary evidence for that answer. Missing coverage stays visible; it is not a candidate position.",
+    gap: "Official printed rosters are available. Candidate background evidence remains incomplete. Missing sources do not establish a position.",
     membership:
       "Your personal ballot and district have not been verified. No location is requested or inferred.",
     advice:
@@ -216,7 +216,7 @@ export const COPY = Object.freeze({
       "Comparar los mapas del Congreso de Missouri",
       "¿Qué fuentes de candidatos están admitidas?",
     ],
-    gap: "No hay suficientes fuentes primarias admitidas para responder. La falta de información no representa una postura de un candidato.",
+    gap: "Las listas oficiales impresas están disponibles. Las fuentes de contexto de los candidatos siguen incompletas. La falta de información no representa una postura.",
     membership:
       "No hemos verificado su boleta ni su distrito. No solicitamos ni inferimos su ubicación.",
     advice: "Puedo explicar fuentes y textos. No puedo recomendar cómo votar.",

@@ -1010,3 +1010,48 @@ This is a backfill, not a contemporaneous event stream.
   eight-file Claude upload and one <=$0.20 synthetic Spanish provider trial.
   No request ID was exposed for either new question. Denied actions were not
   retried; new upload attachment count0 and provider process never started.
+
+
+### 2026-10-24 09:17 UTC — broader official notice experience implemented locally
+
+- **Completed recovery/admission:** found the retained official eight-page KCEB
+  full sample in the original Hack Midwest archive (SHA92cda731…5dc62), beyond
+  the two-page W1-P7 harness. Current KCEB authority page still links it; current
+  PDF bytes were not re-fetched and remain labeled October9 snapshot. Fresh
+  JCEB original matches the earlier archive (SHA032814e6…64a2); visually reviewed
+  both rendered pages and KCEB candidate/judicial pages2–6. Originals/old repo
+  unchanged; no personal lookup or restricted SOS retry.
+- **Completed implementation:** deterministic compiler reads only pinned PDFs,
+  exact candidate/party/instruction spans and page/column-cropped questions. It
+  reproduces55 printed contests (34candidate,11retention,10measures),62 candidate
+  entries by contest and11 retention entries. These are retained-document union
+  counts, not merged person identities, all ballot styles, current certification,
+  personalized membership or eligible write-in completeness. NO CANDIDATE FILED
+  remains a source status; KCEB's visually absent Senate heading is excluded.
+- **Completed implementation:** integrated public-notice chooser with all source
+  rows/gaps; exact measure/retention wording and qualifiers; U.S.House context
+  retains roster; Proposition A opens official maps. New source-only recap is
+  local/optional; suspected-transcription action withdraws the whole selected
+  view and links originals, without sending a report or changing admission.
+  Extracted presentation uses existing app signal/currentness/hooks, no second
+  session/audio owner or paid route. Local composition is labeled honestly.
+- **Completed verification:** compiler/pinned fixture reproduced independently;
+  wrong two-page sample correctly rejected. Independent review found no
+  consequential issue, including component extraction/instruction spans. Full
+  existing Node/Python suites and changed syntax/whitespace passed. Browser
+  exercised complete District6 roster+office, source recap/withdrawal, county
+  filing-status distinction, exact Independence bond amount/terms, and390px
+  Spanish Sni Valley wording (50percent/previous-year conditions retained),
+  original lang=en and zero horizontal overflow. No human device/audio,
+  screen-reader or bilingual civic acceptance is claimed.
+- **Blocked source refresh:** one direct official Congress.gov member URL read
+  returned failed-to-fetch restricted URL. Stopped that access, no alternative
+  route/retry, and did not promote archived member material as new current
+  candidate background evidence. Candidate background remains visibly absent;
+  campaign excerpt and restricted-source boundaries unchanged.
+- **Approval consolidation running:** prepared one local bundle listing exact
+  pending PR commit range, refreshed narrow Claude source file scope/destination,
+  and at most$0.20 Spanish two-job reservation within shared$200. No denied
+  operation was retried. New work has zero paid usage; existing ledger unchanged.
+  No merge/deployment, credentials, private voter data or human media authority
+  is sought. Main chat owns the consolidated question with Daniel.

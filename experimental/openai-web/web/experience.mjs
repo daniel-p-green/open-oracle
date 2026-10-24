@@ -19,7 +19,8 @@ import {
 } from "./journey-core.mjs";
 import { admittedReadings, bindReading } from "./readings.mjs";
 import { createSpeechOutput } from "./speech-output.mjs";
-import { loadHouseOffice, loadSampleHouseContest } from "./office-source.mjs";
+import { loadHouseOffice } from "./office-source.mjs";
+import { mountContestInventory } from "./inventory-view.mjs";
 import { draftPublicIntent, publicIntentLabel } from "./input-intent.mjs";
 const $ = (id) => document.getElementById(id),
   session = createSession(),
@@ -308,23 +309,30 @@ function renderFacts(result, effects = false) {
 }
 function renderGap(status) {
   const c = card(
-    locale === "es" ? "Cobertura y límites" : "Coverage and limits",
+    intent === "candidates"
+      ? locale === "es"
+        ? "Explorar concursos oficiales"
+        : "Explore official contests"
+      : locale === "es"
+        ? "Cobertura y límites"
+        : "Coverage and limits",
     true,
   );
-  c.append(
-    el(
-      "p",
-      status === "advice_refused"
-        ? COPY[locale].advice
-        : status === "membership_unknown"
-          ? COPY[locale].membership
-          : status === "coverage_gap"
-            ? COPY[locale].gap
-            : locale === "es"
-              ? "Esta demostración aún no admite esa pregunta. Elija un ejemplo para confirmar el tema."
-              : "This demo does not support that question yet. Choose an example to confirm the topic.",
-    ),
-  );
+  if (intent !== "candidates")
+    c.append(
+      el(
+        "p",
+        status === "advice_refused"
+          ? COPY[locale].advice
+          : status === "membership_unknown"
+            ? COPY[locale].membership
+            : status === "coverage_gap"
+              ? COPY[locale].gap
+              : locale === "es"
+                ? "Esta demostración aún no admite esa pregunta. Elija un ejemplo para confirmar el tema."
+                : "This demo does not support that question yet. Choose an example to confirm the topic.",
+      ),
+    );
   if (intent === "unknown") {
     const label = el(
       "h3",
@@ -348,115 +356,28 @@ function renderGap(status) {
       el(
         "p",
         locale === "es"
-          ? "El inventario completo de KCEB y JCEB sigue pendiente. El ejemplo siguiente corresponde solo a una muestra pública; no establece su boleta ni su distrito."
-          : "The complete KCEB/JCEB inventory remains pending. The example below is one public sample only; it does not establish your ballot or district.",
-      ),
-      el(
-        "p",
-        locale === "es"
-          ? "Una declaración de campaña es una afirmación atribuida; no es un hecho verificado de forma independiente."
-          : "A campaign statement is an attributed assertion, not an independently established fact.",
+          ? "Explore los concursos impresos en los avisos públicos de KCEB y JCEB. No hemos verificado todos los estilos de boleta, su boleta personal ni su distrito."
+          : "Browse the contests printed in KCEB and JCEB public notices. All ballot styles, your personal ballot and your district have not been verified.",
       ),
     );
     const contestHost = el("section");
     c.append(contestHost);
-    void showSampleContest(contestHost);
-    const officeHost = el("section");
-    journeyButton(
-      c,
-      locale === "es"
-        ? "Ejemplo de cargo: Cámara de Representantes de EE. UU."
-        : "Example office: U.S. House of Representatives",
-      () => void showOffice(officeHost),
-    );
-    c.append(officeHost);
+    void showContestInventory(contestHost);
   }
   return c;
 }
-async function showSampleContest(host) {
-  const anchor = el("section"),
+function showContestInventory(host) {
+  const ticket = currentTicket,
     language = locale;
-  host.replaceChildren(anchor);
-  anchor.append(
-    el(
-      "p",
-      language === "es"
-        ? "Consultando la lista de la muestra oficial…"
-        : "Checking the official sample roster…",
-    ),
-  );
-  try {
-    const source = await loadSampleHouseContest(AbortSignal.timeout(5000));
-    if (!anchor.isConnected || locale !== language) return;
-    anchor.replaceChildren(
-      el(
-        "h3",
-        language === "es"
-          ? "Ejemplo de muestra pública · Cámara de Representantes de EE. UU., Distrito 5"
-          : "Public-sample example · U.S. House, District 5",
-      ),
-    );
-    anchor.append(
-      el(
-        "p",
-        `${source.sample_variant} · ${source.election_date} · ${source.source.publisher}`,
-      ),
-      el(
-        "p",
-        language === "es"
-          ? "Nombres y códigos de partido tal como aparecen en el original en inglés. El orden es el de la boleta, no una clasificación."
-          : "Names and party codes as printed in the original. Order follows the ballot, not a ranking.",
-      ),
-    );
-    const list = el("ul");
-    for (const row of source.contest.candidate_rows) {
-      const item = el("li");
-      item.append(
-        el("h4", row.printed_name),
-        el(
-          "p",
-          `${language === "es" ? "Código de partido impreso" : "Printed party code"}: ${row.printed_party_code}`,
-        ),
-        el(
-          "p",
-          language === "es"
-            ? "Información oficial de contexto aún no admitida. No se infieren posiciones a partir de la falta de fuentes."
-            : "Official background evidence not yet admitted. Missing sources do not establish a position.",
-        ),
-      );
-      list.append(item);
-    }
-    const writeIn = el("li");
-    writeIn.append(
-      el("h4", source.contest.write_in.printed_label),
-      el(
-        "p",
-        language === "es"
-          ? "Opción impresa, no el nombre de una persona."
-          : "Printed option, not a named candidate.",
-      ),
-    );
-    list.append(writeIn);
-    anchor.append(
-      list,
-      link(
-        source.source.url + "#page=1",
-        `${source.source.publisher} · ${language === "es" ? "página 1 · original en inglés" : "page 1 · original English"}`,
-      ),
-      el(
-        "p",
-        language === "es"
-          ? "Transcripción cotejada con la página renderizada; aceptación humana pendiente. No se han vinculado estas filas a otros registros de personas."
-          : "Transcription checked against the rendered page; human acceptance pending. These roster rows have not been merged with other person records.",
-      ),
-    );
-  } catch {
-    if (anchor.isConnected && locale === language)
-      anchor.textContent =
-        language === "es"
-          ? "La lista de la muestra no está disponible. No se inventan candidatos."
-          : "The sample roster is unavailable. No candidates are invented.";
-  }
+  return mountContestInventory(host, {
+    language,
+    signal: requestController.signal,
+    isCurrent: () => locale === language && session.current(ticket),
+    onRead: stopSpeechForReading,
+    onOffice: showOffice,
+    onMeasure: () => showJourney("overview"),
+    translationNote: COPY[language].translation,
+  });
 }
 async function renderMaps(ticket) {
   const c = card(

@@ -51,3 +51,16 @@ Spanish trial and renewed Opus source upload were denied/pending exact approval;
 independent local code review passed its narrower scope. See
 [measured limits and next comparison](INPUT-AND-LATENCY-REVIEW.md). This is no
 change to the overall not-ready verdict.
+
+
+October24 public-notice increment: both retained official notice inventories
+reconcile55 printed contests/62 candidate entries by contest and11 retention
+judges. Local browsing now displays every printed roster with gaps, exact JCEB
+measure and retention wording, source-specific dates/pages, office context,
+source-only recap and transcription withdrawal. Independent pinned rebuild and
+scoped code review passed; real provider-off desktop/390px Spanish navigation
+was exercised. This does not close individual-style/current certification/
+write-in, candidate-background, new-measure interpretation, human accessibility
+or provider/multilingual voice gates. KCEB bytes are still the explicitly dated
+October9 snapshot. A fresh Congress.gov read returned restricted URL and was
+stopped; no alternative access or new background admission followed.

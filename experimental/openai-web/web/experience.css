@@ -446,3 +446,31 @@ body.has-content .product-intro .intro {
     padding: 1.1rem;
   }
 }
+
+#inventory-authority,
+#inventory-contest {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-height: 44px;
+  margin: 0.5rem 0 1rem;
+  font: inherit;
+  color: inherit;
+  background: #fff;
+  border: 1px solid #647875;
+  border-radius: 4px;
+  padding: 0.65rem;
+}
+#inventory-detail {
+  overflow-wrap: anywhere;
+}
+#inventory-detail > section {
+  border-top: 1px solid #c6ceca;
+  padding: 1rem 0;
+}
+.original-wording {
+  white-space: pre-line;
+  margin-inline: 0;
+  padding-inline-start: 1rem;
+  border-inline-start: 3px solid #607d76;
+}

@@ -222,3 +222,33 @@ file retention, default load, download/install or cloud forwarding is enabled.
 Both fast models made Spanish mistakes in public synthetic benchmarks. A local
 transcript is not safe-by-default input to any model. See
 [input/latency evidence and current blockers](../../docs/rebuild/INPUT-AND-LATENCY-REVIEW.md).
+
+
+## Public notice inventory
+
+The candidate-evidence view now browses the retained KCEB eight-page full sample
+and the freshly re-fetched identical JCEB two-page notice:55 printed contests,
+34candidate elections,11judicial retentions and10measures, with62 printed
+candidate entries by contest. The source-specific roster/party/instruction spans
+and exact JCEB measure/retention wording are pinned in `contest-inventory.json`.
+No campaign/news material, personal ballot or address matching is added. KCEB's
+current authority page still links the source, but its PDF bytes were not
+re-fetched; this is an explicitly dated retained snapshot. Individual ballot
+styles, current county certification and complete eligible write-ins remain
+unverified. All background gaps stay visible for every candidate.
+
+Presentation is selected by the typed contest kind, with local source recap,
+view-only transcription withdrawal, U.S.House office context and Proposition A
+map navigation. It is deterministic source-backed composition; no new model
+composition or paid inference is claimed. The existing app owns Stop/Erase and
+session fencing. Original English is labeled in Spanish navigation; no new civic
+translation is represented as reviewed.
+
+`research/build_inventory.py` rebuilds from the two exact pinned original PDFs
+using existing Poppler `pdftotext` only (no OCR, network or model). Supply the
+KCEB full sample SHA92cda731…5dc62 and JCEB SHA032814e6…64a2; the separate W1-P7
+sample is deliberately rejected. It retains raw original text-layer spelling,
+source pages/column/crop coordinates, readout hashes and spans. The visually
+absent stray KCEB State Senator text-layer heading is excluded. Old research and
+source originals remain unchanged. Runtime browsing uses the bundled fixture
+and does not need Poppler or the old repository.

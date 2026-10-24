@@ -555,3 +555,77 @@ test("local natural follow-ups draft only a confirmed public action, never visit
     "en",
   );
 });
+
+test("county notice inventory keeps the complete printed union, original measure qualifiers and source gaps", async () => {
+  const { loadContestInventory } = await import("../web/office-source.mjs");
+  const bytes = await readFile(
+    new URL("../fixtures/contest-inventory.json", import.meta.url),
+  );
+  const oldFetch = globalThis.fetch;
+  try {
+    globalThis.fetch = async () => ({
+      ok: true,
+      arrayBuffer: async () => Uint8Array.from(bytes).buffer,
+    });
+    const data = await loadContestInventory(new AbortController().signal);
+    assert.deepEqual(data.counts, {
+      printed_contests: 55,
+      candidate_election: 34,
+      judicial_retention: 11,
+      measure: 10,
+      printed_candidate_slots: 62,
+      retention_slots: 11,
+    });
+    assert.equal(data.scope.personal_membership, false);
+    assert.equal(data.scope.individual_ballot_styles_enumerated, false);
+    assert.equal(data.scope.eligible_write_ins_complete, false);
+    assert.equal(
+      data.contests.filter((c) =>
+        c.occurrences.some((o) => o.source_id === "kceb"),
+      ).length,
+      39,
+    );
+    assert.equal(
+      data.contests.filter((c) =>
+        c.occurrences.some((o) => o.source_id === "jceb"),
+      ).length,
+      48,
+    );
+    assert.ok(!data.contests.some((c) => c.id === "state-senate-31"));
+    const house = data.contests.find((c) => c.id === "us-house-5");
+    assert.ok(
+      house.occurrences.every(
+        (o) =>
+          o.candidate_rows.length === 3 &&
+          o.candidate_rows.some((r) => r.printed_party.toUpperCase() === "LIB"),
+      ),
+    );
+    const status = data.contests
+      .find((c) => c.id === "county-at-large-3")
+      .occurrences.find((o) => o.source_id === "jceb");
+    assert.equal(status.candidate_rows.length, 1);
+    assert.equal(status.source_statuses[0].named_candidate, false);
+    const bond = data.contests.find((c) => c.id === "independence-bond-1")
+      .occurrences[0].wording;
+    assert.match(bond, /\$19,900,000/);
+    assert.match(bond, /20-year/);
+    assert.match(bond, /1827 Log Courthouse/);
+    const sni = data.contests.find((c) => c.id === "sni-valley-question")
+      .occurrences[0].wording;
+    assert.match(sni, /fifty percent/);
+    assert.match(sni, /previous year's revenue/);
+    const changed = JSON.parse(bytes);
+    changed.contests.pop();
+    globalThis.fetch = async () => ({
+      ok: true,
+      arrayBuffer: async () =>
+        new TextEncoder().encode(JSON.stringify(changed)).buffer,
+    });
+    await assert.rejects(
+      loadContestInventory(new AbortController().signal),
+      /inventory_integrity/,
+    );
+  } finally {
+    globalThis.fetch = oldFetch;
+  }
+});
