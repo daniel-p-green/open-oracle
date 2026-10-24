@@ -45,10 +45,10 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
         expected='The complete official wording is available with its source on screen.'
         pcm=struct.pack('<h',1000)*1200
         fixture={'kind':'synthetic_public_question','pcm':pcm,'sha256':hashlib.sha256(pcm).hexdigest()}
-        for fault in ('none','during_asr','on_close','missing_usage'):
+        for fault in ('none','during_asr','on_close','missing_usage','deadline'):
             class Socket:
                 def __init__(self):self.queue=asyncio.Queue();self.routed=False
-                async def __aenter__(self):self.loop=asyncio.get_running_loop();return self
+                async def __aenter__(self):self.loop=asyncio.get_running_loop();self.operation=asyncio.current_task();return self
                 async def __aexit__(self,*_):pass
                 def __aiter__(self):return self
                 async def __anext__(self):return json.dumps(await self.queue.get())
@@ -71,6 +71,7 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
                         await self.queue.put({'type':'decision.event','delegation_id':'fixture_delegation','event':{'type':'decision.completed','decision':{'answers':answers}}})
                     elif kind=='session.commentary.append':
                         await self.queue.put({'type':'session.output_transcript.delta','delta':expected});await self.audio()
+                        if fault=='deadline': self.loop.call_later(.01,self.operation.cancel)
                     elif kind=='session.close':
                         if fault=='on_close':await self.audio()
                         await self.queue.put({'type':'session.closed','reason':'close_requested',**({'usage':{'seconds':2}} if fault!='missing_usage' else {})})
@@ -96,3 +97,4 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
                 if fault=='during_asr':self.assertIn('voice_audio_changed_during_asr',result['errors'])
                 if fault=='on_close':self.assertIn('voice_after_segment',result['errors'])
                 if fault=='missing_usage':self.assertIn('voice_usage_unconfirmed',result['errors'])
+                if fault=='deadline':self.assertIn('voice_deadline',result['errors']);self.assertTrue(result['finalized'])

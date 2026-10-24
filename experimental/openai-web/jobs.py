@@ -16,6 +16,8 @@ from latency import StageTiming
 
 TOKEN_TTL = 600
 JOB_TTL = 120
+VOICE_TRIAL_PACKAGE = 'native_voice_four_trials_20261024'
+VOICE_TRIAL_PURPOSES = {'english_diagnostic', 'repair_verification', 'spanish', 'recovery'}
 
 
 class Budget:
@@ -41,7 +43,7 @@ class Budget:
             finally:
                 if os.path.exists(name): os.unlink(name)
 
-    def reserve(self, run, task=None):
+    def reserve(self, run, task=None, *, trial_package=None, trial_purpose=None):
         speech=bool(task and task.startswith('speech:'))
         voice=bool(task and task.startswith('voice:synthetic:'))
         amount = .10 if speech or voice else self.journey_reserve if task and task.startswith('journey:') else min(self.per_run, .01) if task else self.per_run
@@ -53,9 +55,20 @@ class Budget:
             amounts = [r.get('reserved_usd') for r in runs]
             if any(type(n) not in (int, float) or not math.isfinite(n) or n < 0 for n in amounts): raise Held('budget_invalid')
             if sum(amounts) + amount > maximum: raise Held('budget_exhausted')
+            if trial_package is not None or trial_purpose is not None:
+                if trial_package != VOICE_TRIAL_PACKAGE or trial_purpose not in VOICE_TRIAL_PURPOSES or not voice:
+                    raise Held('trial_package_invalid')
+                previous = [r for r in runs if r.get('trial_package') == trial_package]
+                if (len(previous) >= 4 or sum(r['reserved_usd'] for r in previous) + amount > .400001
+                        or any(r.get('trial_purpose') == trial_purpose for r in previous)):
+                    raise Held('trial_package_exhausted')
+                if any(r.get('state') == 'reserved' or r.get('trial_closure_confirmed') is not True or not any(s.get('stage') == 'fresh_audio' for s in r.get('stages',[])) for r in previous):
+                    raise Held('trial_package_outcome_unconfirmed')
             journey = bool(task and task.startswith('journey:'))
             runs.append({'id': run, 'kind': 'native_live_synthetic_loop' if voice else 'fresh_public_speech' if speech else 'fresh_public_journey' if journey else 'bounded_ui_composition' if task else 'integrated_public_rate', 'state': 'reserved',
                          'reserved_usd': amount, 'retry': False, 'requests_max': 9 if voice else 2 if journey or speech else 1 if task else 4, 'stages': []})
+            if trial_package:
+                runs[-1].update(trial_package=trial_package, trial_purpose=trial_purpose)
             data['conservative_reservations_usd'] = sum(amounts) + amount
             data['state'] = 'integrated public-provider test in flight'
 
@@ -86,10 +99,21 @@ class Budget:
             row['direct_usage_price_estimate_usd'] = sum(s['price_estimate_usd'] for s in row['stages'])
             row['invoice_confirmed'] = False
 
-    def finish(self, run, state, reason=None):
+    def finish(self, run, state, reason=None, *, voice_receipt=None):
         with self.locked() as data:
             row = next(r for r in data['runs'] if r['id'] == run)
             row['state'] = state
+            if row.get('trial_package') and voice_receipt is not None:
+                usage=voice_receipt.get('usage',{}) if type(voice_receipt) is dict else {}
+                seconds=usage.get('seconds') if type(usage) is dict else None
+                final_usage=[s['usage']['seconds'] for s in row['stages'] if s['stage']=='fresh_audio']
+                confirmed=(voice_receipt.get('finalized') is True and voice_receipt.get('close_reason')=='close_requested'
+                           and type(seconds) in (int,float) and 0<seconds<=75 and final_usage==[seconds]
+                           and not set(voice_receipt.get('errors',[])) & {'voice_usage_unconfirmed','voice_close_unconfirmed','voice_closure_unconfirmed'}) if type(voice_receipt) is dict else False
+                row['trial_closure_confirmed']=confirmed
+                row['voice_closure']={'finalized':voice_receipt.get('finalized') is True,
+                                      'close_reason':'close_requested' if voice_receipt.get('close_reason')=='close_requested' else 'unconfirmed',
+                                      'metered_usage_match':confirmed} if type(voice_receipt) is dict else {'finalized':False,'close_reason':'unconfirmed','metered_usage_match':False}
             if reason is not None: row['outcome_reason'] = reason
             data['state'] = 'latest integrated run ' + state
             data['direct_usage_price_estimate_usd'] = sum(r.get('price_estimate_usd', r.get('direct_usage_price_estimate_usd', 0)) for r in data['runs'])
@@ -210,7 +234,7 @@ class Jobs:
                 row['timing'].advance('ready', terminal=True)
         except Held as error:
             with self.lock:
-                row.update(state='expired' if row['state']=='expired' or str(error)=='expired' else 'cancelled' if row['cancel'].is_set() else 'held', reason=str(error), result=None, audio=None)
+                row.update(state='expired' if row['state']=='expired' or str(error)=='expired' else 'cancelled' if row['state']=='cancel_requested' or row['cancel'].is_set() and str(error)!='voice_deadline' else 'held', reason=str(error), result=None, audio=None)
         except Exception:
             with self.lock: row.update(state='held', reason='provider_failure', result=None, audio=None)
         finally:

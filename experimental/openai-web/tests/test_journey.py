@@ -35,6 +35,7 @@ class JourneyTests(unittest.TestCase):
         self.assertEqual(result['unit'],draft);self.assertEqual(audio,b'');self.assertFalse(result['raw_visitor_input_sent'])
         self.assertEqual([p for p,_ in provider.calls],['responses','decisions']);self.assertEqual([s for s,_ in metered],['journey_text','review'])
         self.assertFalse(provider.calls[0][1]['store']);self.assertEqual(provider.calls[0][1]['max_output_tokens'],512)
+        self.assertEqual(provider.calls[0][1]['text']['format']['schema']['properties']['sections']['items']['properties']['text']['maxLength'],700)
         self.assertEqual(result['presentation'], {'components':['explanation','original','uncertainty']})
         self.assertEqual(result['presentation_mode'], 'model_selected')
         provider.language_mismatch=True
@@ -80,6 +81,10 @@ class JourneyTests(unittest.TestCase):
         text='The question asks whether to approve an act replacing the congressional plan.'
         draft={'operation':'brief','language':'en','sections':[{'source_id':'question','text':text}]}
         validate_unit(draft,'brief','en',question)
-        for bad in [text+' '+('extra '*40), 'The act replaces the congressional plan.', 'The question asks about nine congressional districts.', 'Vote Yes to replace the congressional plan.']:
+        spanish={'operation':'brief','language':'es','sections':[{'source_id':'question','text':'¿Aprueban las personas de Misuri el acto que reemplaza los límites congresionales existentes?'}]}
+        with self.assertRaisesRegex(Held,'journey_sentence_attribution'): validate_unit(spanish,'brief','es',question)
+        spanish['sections'][0]['text']='La pregunta describe la aprobación de un acto que reemplaza el plan congresional.'
+        validate_unit(spanish,'brief','es',question)
+        for bad in ['The question asks about replacing the congressional plan and', 'The question asks about replacing the congressional plan and.', text+' '+('extra '*40), 'The act replaces the congressional plan.', 'The question asks about nine congressional districts.', 'Vote Yes to replace the congressional plan.']:
             draft['sections'][0]['text']=bad
             with self.assertRaises(Held): validate_unit(draft,'brief','en',question)

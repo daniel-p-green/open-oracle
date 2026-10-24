@@ -239,6 +239,7 @@ if __name__ == '__main__':
     parser.add_argument('--voice-fixtures', type=Path)
     args = parser.parse_args()
     jobs = None
+    if args.voice_fixtures: parser.error('Native synthetic trial package is closed; the web switch does not authorize additional voice sessions.')
     if args.enable_openai:
         try:
             if importlib.metadata.version('websockets') != '15.0.1': raise ValueError()

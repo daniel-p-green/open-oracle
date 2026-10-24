@@ -1,14 +1,16 @@
 # Pending bounded synthetic voice sequence
 
-**Planning only. Execution is paused after automatic review denied the next
-native diagnostic. This document is not authorization or an alternate launcher.**
-No run in this sequence has started. Do not retry the denied action until new
-applicable authorization is received through the normal review process.
+**Completed/consumed:** Daniel's exact parent-relayed approval authorized four
+unique synthetic trials. All four completed with final usage/closure and held
+before accepted audio; the recovery trigger was not reached. Estimated direct
+cost0.025895, full0.40 reservation retained within shared200. No package slot
+remains and no further dispatch is queued. See the actual trial evidence JSON.
+The plan below is preserved as the approved execution envelope, not new authority.
 
-Approval requested: up to **four distinct synthetic OpenAI voice trials**,
+Approved historical envelope: up to **four distinct synthetic OpenAI voice trials**,
 **$0.40 aggregate maximum reserved**, at most **$0.10 per trial**, all inside the
-existing shared **$200 total**. Current shared reservations are $2.16; this whole
-sequence would bring them to at most $2.56. Never treat the unused budget as a
+existing shared **$200 total**. At approval, shared reservations were $2.16; completed
+sequence reservations are $2.56. Never treat the unused budget as a
 spending target. Skip unnecessary stages rather than consume the allowance.
 
 ## Fixed scope

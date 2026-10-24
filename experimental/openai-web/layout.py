@@ -20,16 +20,11 @@ class ProductPipeline:
         self.base = base
         self.journey = JourneyPipeline(base.provider, allow_spanish, text_model)
         self.speech = FreshSpeechPipeline(base.provider, allow_spanish)
-        self.voice_fixtures=voice_fixtures
+        # The four-purpose manual trial package is consumed. A web review
+        # switch/max_runs cannot silently authorize another native session.
+        if voice_fixtures: raise Held('native_voice_package_closed')
+        self.voice_fixtures=None
         self.voice_languages=[]
-        if voice_fixtures:
-            from pathlib import Path
-            from voice_agent import load_synthetic_fixtures
-            record=json.loads(Path(voice_fixtures).read_text())
-            for language in record.get('languages',{}):
-                if language not in {'en','es'}: raise Held('synthetic_manifest_language')
-                load_synthetic_fixtures(voice_fixtures,language)
-                self.voice_languages.append(language)
 
     def run(self, cancel, stage, meter):
         return self.base.run(cancel, stage, meter)
@@ -45,7 +40,7 @@ class ProductPipeline:
             result=asyncio.run(PublicSyntheticVoiceLoop(self.base.provider,language=language,seconds=45).run(
                 fixtures,cancel,meter,lambda value:stage('audio',value)))
             if result.get('all_turns_checked') is not True:
-                raise Held('voice_session_held')
+                raise Held('voice_deadline' if 'voice_deadline' in result.get('errors',[]) else 'voice_session_held')
             return result,b''
         if task in TASKS:
             return self.journey.run_task(task, cancel, stage, meter, prior=prior)

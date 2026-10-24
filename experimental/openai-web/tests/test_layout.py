@@ -18,6 +18,7 @@ class LayoutTests(unittest.TestCase):
         provider = Provider()
         class Base: pass
         base = Base(); base.provider = provider
+        with self.assertRaisesRegex(Held,'native_voice_package_closed'): ProductPipeline(base,voice_fixtures='unused-no-access')
         pipeline = ProductPipeline(base); cancel = threading.Event(); calls = []
         provider.draft = {'intent': 'maps', 'components': ['scope', 'maps', 'map_sources']}
         result, pcm = pipeline.run_task('layout:maps', cancel, lambda _: None, lambda *args: calls.append(args))

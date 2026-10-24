@@ -24,6 +24,7 @@ let legalExpiryTimer;
 let hasConversation = false;
 let visualComplete = false;
 let lastMapView = "statewide";
+let spokenHeld = false;
 const inputGaps = new Set();
 function transcript(role, number, text, state) {
   const host = $("conversation-turns");
@@ -106,6 +107,14 @@ function holdPendingCaptions() {
     ? "Audio retenido · no se reproduce"
     : "Audio held · not played";
 }
+function heldVisualNote() {
+  if (!spokenHeld || (!visualComplete && !map) || $("visual").querySelector('[data-spoken-held]')) return;
+  const note = make("p", es()
+    ? "La respuesta hablada de este turno quedó retenida. Las fuentes mostradas siguen disponibles."
+    : "This turn’s spoken answer was held. The displayed sources remain available.");
+  note.dataset.spokenHeld = "true";
+  $("visual").append(note);
+}
 function stop(erase = false) {
   session.reset();
   abort?.abort();
@@ -116,9 +125,11 @@ function stop(erase = false) {
   visualRevision++;
   clearTimeout(legalExpiryTimer);
   if (!erase && hasConversation) {
+    spokenHeld = true;
     holdPendingCaptions();
     if (!visualComplete && !map)
       $("visual").replaceChildren(make("p", es() ? "Vista detenida." : "Display stopped."));
+    heldVisualNote();
   }
   if (erase) {
     hasConversation = false;
@@ -128,6 +139,7 @@ function stop(erase = false) {
     map = null;
     visualComplete = false;
     lastMapView = "statewide";
+    spokenHeld = false;
     inputGaps.clear();
   }
   const legalNote = document.querySelector("[data-legal-status]");
@@ -229,6 +241,7 @@ async function view(action, ticket) {
       // Optional legal-status IO cannot be the gate for those source controls.
       original(host);
       visualComplete = true;
+      heldVisualNote();
       const legal = await loadMapStatus(signal).catch(() => null);
       if (!current()) return;
       const note = make(
@@ -356,6 +369,7 @@ async function view(action, ticket) {
     if (current()) {
       if (action.view !== "maps") original(host);
       visualComplete = true;
+      heldVisualNote();
     }
   } catch {
     if (current())
@@ -456,7 +470,9 @@ async function synthetic() {
   });
   if (!session.current(ticket)) return;
   if (!result) {
+    spokenHeld = true;
     holdPendingCaptions();
+    heldVisualNote();
     status(
       es()
         ? "La interacción no completó todas las comprobaciones. No se reproduce audio ni se reintenta automáticamente."

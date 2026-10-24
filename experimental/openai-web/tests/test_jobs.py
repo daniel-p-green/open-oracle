@@ -169,6 +169,37 @@ class JobsTests(unittest.TestCase):
         with self.assertRaises(Held): self.jobs.start(self.token, self.request)
         self.assertEqual(self.jobs.runs, 0)
 
+    def test_four_trial_package_is_atomic_bounded_and_never_retries_a_purpose(self):
+        from jobs import VOICE_TRIAL_PACKAGE, VOICE_TRIAL_PURPOSES
+        budget=Budget(self.path)
+        for number,purpose in enumerate(sorted(VOICE_TRIAL_PURPOSES)):
+            budget.reserve('fixture_'+str(number),'voice:synthetic:en',
+                           trial_package=VOICE_TRIAL_PACKAGE,trial_purpose=purpose)
+            if number == 0:
+                with self.assertRaisesRegex(Held,'trial_package_outcome_unconfirmed'):
+                    budget.reserve('overlap','voice:synthetic:en',trial_package=VOICE_TRIAL_PACKAGE,trial_purpose='recovery')
+            budget.record('fixture_'+str(number),'fresh_audio',{'seconds':2})
+            budget.finish('fixture_'+str(number),'held')
+            if number == 0:
+                with self.assertRaisesRegex(Held,'trial_package_outcome_unconfirmed'):
+                    budget.reserve('unclosed','voice:synthetic:en',trial_package=VOICE_TRIAL_PACKAGE,trial_purpose='recovery')
+            budget.finish('fixture_'+str(number),'held',voice_receipt={'finalized':True,'close_reason':'close_requested','usage':{'seconds':2},'errors':[]})
+            budget.finish('fixture_'+str(number),'held')  # bookkeeping cannot erase established confirmation
+        with self.assertRaisesRegex(Held,'trial_package_exhausted'):
+            budget.reserve('extra','voice:synthetic:en',trial_package=VOICE_TRIAL_PACKAGE,trial_purpose='english_diagnostic')
+        rows=json.loads(self.path.read_text())['runs']
+        self.assertEqual(len(rows),4)
+        self.assertAlmostEqual(sum(row['reserved_usd'] for row in rows),.40)
+
+    def test_internal_voice_deadline_is_held_without_disguising_it_as_operator_cancel(self):
+        class Deadline:
+            def run(self,cancel,progress,meter):
+                cancel.set()  # Stops further provider dispatch after timeout.
+                raise Held('voice_deadline')
+        self.jobs.pipeline=Deadline();self.jobs.start(self.token,self.request)
+        row=self.wait_terminal()
+        self.assertEqual(row['state'],'held');self.assertEqual(row['reason'],'voice_deadline')
+
     def test_missing_usage_holds_and_retains_reservation(self):
         class MissingUsage:
             def run(self, cancel, progress, meter): meter('text', None)

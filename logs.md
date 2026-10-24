@@ -1881,3 +1881,158 @@ This is a backfill, not a contemporaneous event stream.
   scenario, native-source Opus attachment/review. No new spend, human media,
   access grant, merge/deploy or showcase-ready claim. Existing frozen external
   payloads and historical receipts remain unchanged.
+
+### 2026-10-24 18:49 UTC — actual native-source review returned; bounded sequence approved
+
+- **Completed review:** existing Claude conversation returned Opus 5.5 High
+  critiques in Messages30/32; selected model/High verified in UI. Source-only,
+  no reviewer execution. The custom attachment dialog required Upload from
+  computer before the supported chooser; earlier chooser timeouts had submitted
+  nothing. No permissions changed or duplicate submission. Source bundles SHA256
+  bee77e8c94008c6e488a9b692ece3d98070cc70aac8af1a9efa6ab740bb20cd4
+  and 50536b73c1a664fbc10704d263ad3171ed1e83bdfeb89ccefd494d999ad65a21.
+- **Disposition:** implemented fixture-only public draft/predicate diagnostics,
+  operation/language/prior tags, per-turn stage timings including input end and
+  first voiced buffer, distinct deadline/cancel outcomes, and a held-speech note
+  alongside retained evidence. Production operational payloads stay unchanged.
+  Runner serializes after asyncio.run returns, including finished worker calls.
+  Retained post-seal audio hold and 45s+15s close bound; did not adopt suggested
+  70s expansion or discard extra speech. First rejected extra chunk is a lower
+  bound, not total extra speech. Map speech/visual parity remains an open defect;
+  diagnostic keeps that path stable to identify the earlier language hold.
+- **Verified offline:** focused public diagnostic, native protocol, budget/jobs
+  checks pass, including no sensitive transport fields retained, package bounds,
+  uncertain prior usage stop, and internal deadline held versus operator cancel.
+  This does not verify live behavior or current browser rendering of the note.
+- **Approved, not yet running:** parent relayed Daniel's exact live approval of
+  four synthetic voice trials <=0.40 aggregate/<=0.10 each within shared200.
+  Existing credential/account, public EN/ES clips, no human capture/playback.
+  Atomic ledger now enforces purpose uniqueness, four rows, aggregate ceiling
+  and final usage before another reservation. Reverified official pricing:
+  Live0.05/min, Luna0.10/M input and0.50/M output, transcribe0.0045/min.
+  Reservations remain conservative estimates, not vendor dollar hard caps.
+- **Still held:** separate billing login, human media, local-browser scenario
+  denied earlier, product acceptance and deployment. Fresh login is not required
+  for established credential. Next: one normal approved EN diagnostic dispatch,
+  inspect real drafts/scores/stages/usage before any later package stage.
+
+### Backfill — 2026-10-24 18:50:50 UTC English diagnostic receipt; repair recorded later
+
+- **Completed:** approved package English diagnostic native_voice_9cd29d593732f2f7,
+  finalized close_requested,8s reported Live usage. Direct estimate0.0068188667,
+  reservation0.10 retained; no invoice or fresh balance claim. Native measure
+  selected7.502s, input completed6.613s, generation returned10.024s. Draft172
+  chars exceeded brief120, so deterministic hold before review/audio acceptance.
+  No output playback or persisted output PCM. Earlier language hold not reached.
+- **Caption finding:**13 native input deltas, zero command-bound fragments;
+  current provider run did not echo a usable client_event_id. Input marked
+  unavailable, no guessed timeline binding or complete caption claim.
+- **Repair:** user request already said120 but developer instruction said700.
+  Aligned instructions and added structured-output minLength/maxLength120 for
+  brief,700 for other operations. Official structured-output docs support these
+  constraints for the standard model; no reviewer threshold relaxed.
+- **Independent finding/fix:** terminal usage alone did not prove closure before
+  next package stage. Persist explicit trial_closure_confirmed, require it plus
+  final usage before next reservation, and test usage-only finished row blocks.
+  Existing EN row confirmation backfilled only from its actual final receipt.
+  Focused jobs/journey/public-diagnostic checks passed. No new paid dispatch yet.
+- **Next:** distinct repair_verification purpose, same EN pair and unchanged
+ 45s operation envelope. Any unconfirmed usage/closure stops the sequence.
+
+### Backfill — 2026-10-24 18:52:35 UTC repair receipt; subsequent local repair
+
+- **Completed:** repair_verification native_voice_2dbceff673d2a8c6 finalized with
+  orderly close and8s Live usage, direct estimate0.0069573667, reservation0.10.
+  Schema respected120 but draft ended in "and". Independent entailed0.60,
+  no_additions0.88, request_fit0.75; language0.97. Genuine incomplete explanation
+  held, no accepted segment. This does not diagnose the older turn2 language hold.
+  Generation2.014s, independent review1.289s; native decision0.128s after delegation.
+- **Repair before next distinct stage:** brief request now one complete sentence,
+  target90/hard120 characters, central attributed congressional approval question,
+  omit secondary clauses. Reject a missing sentence ending/trailing conjunction
+  deterministically rather than relaxing review or stretching accepted text.
+- **Closed review finding:** independent re-review confirms explicit final
+  closure package gate fixed. Two package slots consumed; no repeat English
+  verification authorized under the purpose-unique package. Spanish and recovery
+  remain distinct optional stages, pending offline repair proof and valid usage.
+
+### Backfill — 2026-10-24 18:54:11 UTC Spanish receipt; subsequent local repair
+
+- **Completed:** installed Paulina es_MX generated approved public question files
+  locally at24kHz mono16bit,5.131s and3.228s; verified bounds/hashes, no playback.
+  Spanish native_voice_84fd8388ce235c6b finalized orderly,7s Live usage, estimate
+ 0.0059872333. Native measure selected7.349s, generation1.522s. Fresh Spanish
+  rhetorical question lacked explicit source attribution; deterministic
+  journey_sentence_attribution held before independent review/audio acceptance.
+  No claim of bilingual completion or false-positive repair.
+- **Local repair:** prompt now explicitly requires naming the question as source
+  in the requested language, with Spanish attribution stems and preserved
+  conditional approval. Guard/threshold unchanged; existing regression includes
+  observed un-attributed Spanish form and an explicitly attributed form.
+- **Next:** recovery purpose remains the fourth/final package slot: cancel when
+  checked text is reported, verify no segment released and orderly usage close.
+  If grounding holds first, report recovery as not reached rather than success.
+
+### Backfill — 2026-10-24 18:55:25 UTC recovery receipt; package reconciliation
+
+- **Completed:** recovery native_voice_34c0cfe1215a90cd finalized orderly,7s Live
+  usage, direct estimate0.0061315333. Complete brief passed factual checks
+  (entailed0.98,no_additions0.95,polarity1.0,language1.0) but request_fit0.74
+  held. Checked-text cancellation trigger was never reached: requested=false,
+  no accepted segment. Do not report a recovery/cancellation pass.
+- **Package terminal:**4 distinct purposes consumed,0.40 reserved, measured
+  duration/token direct estimates0.025895 combined, no invoice confirmation.
+  Shared reservations2.56; cumulative recorded estimate0.3013148 excludes older
+  unmetered calls. All four orderly final usage/closure confirmed. No output ASR
+  request or accepted audio in this package; no repeat package slot/new paid run.
+- **Honest limitation:** no successful full EN/ES loop, second-turn map or input
+  caption proof from this package, no improved safe-audio latency measured.
+  Native routing succeeded; deterministic/independent holds prevented release.
+- **Execution error/fix:** the new Spanish offline positive fixture failed on
+  singular "congresional" but the sequential shell continued to a passing second
+  test; English recovery launched before that first result was inspected.
+  English test did not depend on the Spanish phrase, but validation sequencing
+  was wrong. Corrected guard to accept singular/plural congresional(es), without
+  accepting unrelated scope. Rerun complete offline checks before commit.
+- **Next local work:** preserve public evidence/metrics, review semantic-fit
+  contract and measured bottlenecks with actual Opus feedback; no threshold
+  lowering or fabricated live success. Current product remains not ready.
+
+### 2026-10-24 19:05:51 UTC — bounded trial findings reviewed and offline repair verified
+
+- **Timestamp clarification:** four preceding trial completion times are
+  backfilled from immutable receipt filesystem completion timestamps; repair/
+  reconciliation actions followed and are not assigned invented execution times.
+- **Actual Opus Message34 returned:** selected Opus5.5High verified. Finds brief
+  contract misalignment and omission of legislative origin, not proof a lower
+  reviewer threshold is safe. Shared BRIEF_REQUIREMENTS now define generation
+  and request-fit; actor/conditional/congressional meaning required; included
+  names exact, title/county/fiscal details explicitly left for follow-up.
+  Schema200 permits a clean overlength hold; accepted brief bound remains120.
+  Spanish source attribution also accepts plantea/consulta; congressional scope
+  accepts singular/plural. Live outcome of these latest fixes is unverified.
+- **Financial containment:** web ProductPipeline and CLI reject native fixture
+  activation after package consumption; provider-off replay remains separate.
+  Budget closure now derives from sanitized receipt finalized/close_requested
+  and exact matching metered usage, not caller boolean. Later finish bookkeeping
+  preserves prior evidence. Existing four rows updated only from their receipts.
+- **Verification:** final Python provider-off suite passed with scoped loopback
+  binding permission; initial sandbox invocation could not bind mock servers.
+  Node suite and diff whitespace check passed. Independent reviewer inspected
+  final contract/closure/web-route delta and found no substantive regression.
+  These are offline/code checks, not successful live voice or human acceptance.
+- **Original product direction:** reread all363lines of original stretch PRD
+  and voice-first brief; reviewed final October11 video production transcript
+  and12timestamped frames without audio playback. Hasheddeliverable/prerecorded
+  limitations recorded in PRIOR-DEMO-REVIEW.md. Latest user asks adaptation from
+  explicit requests/understanding, never education/accent inference. Finite
+  acceptance matrix prepared in existing DEMO-ACCEPTANCE.md, no new features.
+- **Official API roles rechecked:** managed Agents API is documented at
+  /v1/agents/sessions but no managed job run/account eligibility claim; background
+  trial deferred. GPT-Live native Decisions chooses bounded actions; Responses
+  generates grounded text; independent Decisions and waveform ASR gate release.
+  Actual newest calls prove access to used live/text/decision services, not
+  end-to-end readiness. No new credentials, billing login or human media.
+- **Next:** focused core commit, then original-demo/matrix documentation commit;
+  explicit new adversarial Opus request against immutable snapshot and actual
+  held evidence. Earlier Message34 already complete, no duplicate in-flight send.

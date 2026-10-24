@@ -261,3 +261,27 @@ credentials, account IDs, operational ledger, raw caller/audio and unrelated
 files. It supersedes the unuploaded native v1; v1 and the much earlier frozen
 seven-file evidence-composition payload remain unchanged. Neither is retroactively
 claimed reviewed. The native increment still needs an actual returned critique.
+
+
+## Native source reviews returned — Messages30,32,34
+
+Existing [OpenOracle review conversation](https://claude.ai/chat/4c378210-7251-4026-9a90-700a23bc34d3),
+Opus5.5High verified in UI; actual returned critiques, source-only/no execution.
+The earlier chooser failure was an incomplete custom attachment step, resolved
+through Upload from computer and the supported chooser; no new access granted.
+
+| Finding | Current disposition |
+| --- | --- |
+| Held draft/scores lost | Test-only PublicDiagnosticProvider captures public generated draft/all predicate scores before holds. Production jobs/errors/ledger retain no model prose. Tags operation/language/prior added; runner serializes after executor shutdown. |
+| Timing/deadline ambiguity | Per-turn input end, delegation, generation/review, first voiced buffer, ASR and close marks; deadline held distinct from operator cancel. Quiet is not an API response-complete event. |
+| Extra speech /45s timeout | Retain conservative hold, first rejected chunk lower-bound metric,45+15 close. Rejected suggested70s/extra-audio discard for this bounded diagnostic; no safety relaxation. |
+| Map turn re-explains measure | Open defect; do not substitute canned substantive answers or claim parity. |
+| Brief generation/review conflict | Shared explicit brief requirement: attributed approval question, legislature-passed act, existing congressional plan. Exact included names/dates; permitted brief omissions explicit in review. Bound remains120; schema200 permits clean overlength hold rather than forced cutoff. No threshold lowered. Live effect unverified. |
+| Spanish attribution / singular scope | Explicit language-appropriate attribution prompt; accept genuine plantea/consulta attribution and singular/plural congresional(es). Guard remains deterministic; bilingual civic review still pending. |
+| Package web route/closure | Native web-fixture activation closed after four slots, including constructor and CLI rejection; offline replay has no provider. Ledger closure derives from finalized/close_requested receipt matching metered seconds; later bookkeeping preserves it. No boolean assertion alone. |
+
+Latest bundle SHA256 b7460bff48b5292a55b67a607bd0d3ef815af947537df4acf1e9aa874dfbff65,
+60,087bytes/four app/test files plus relevant instructions; no credentials,
+account IDs, ledger, unrelated files or human recordings. Latest code follows
+its returned findings; independent focused review and offline verification remain
+scoped, not Opus execution. Product verdict remains **not ready**.
