@@ -29,3 +29,33 @@ browser/accessible/human media and percentile latency acceptance remain open.
 [Official graceful-close guidance](https://developers.openai.com/api/docs/guides/live-conversations#usage-and-graceful-close)
 requires draining pending events and separate backend usage. Final voice seconds
 alone are not proof of backend settlement.
+
+
+## Focused follow-up ofb295978
+
+Actual Message44 returned, Opus5.5High still visibly selected. It confirmed
+S1/S2/S4/S5 by inspection and raised generic-error drain, local counter-refusal
+ASR, welcome/held-note locale, and unexpected-delegation reason-label issues.
+These were fixed locally with focused owner checks; generic-drain regression
+failed before (lost receiver/close timeout) and passes after.
+
+Message46 explicitly withdrew its high-severity B1 after the exact public prompts
+were supplied: input clips correctly use EN/EN/ES while requested responses use
+EN/ES/EN. The existing code separates these two language contracts. No invalid
+manifest redesign was applied merely to satisfy that mistaken finding.
+
+Its suggested Spanish attempt increase remains declined: eleven covers all
+planned requests; unexpected autonomous work intentionally stops new work and
+an unreconciled counter remains fail-closed. No over-cap progression/ledger reset.
+The review accepted the official Decisions guide citation resolving output-token
+pricing: [output tokens are not charged](https://developers.openai.com/api/docs/guides/decisions#pricing-and-availability).
+No invoice or account-balance claim follows from the estimate.
+
+Added last voiced-audio and transcript-delta arrival offsets to measure the
+review's2s-lag hypothesis on a future permitted run. Early quiet mismatch remains
+only a hold, never a pause-as-completion rule. Actual Spanish meaning/selection,
+request-fit, browser rendering and live latency remain missing evidence.
+
+Live launch was rejected before execution by automatic approval review; the ledger
+still has zero rows for this batch. That denial is separate from the successful
+source-review route. No paid route/command retry or workaround was used.

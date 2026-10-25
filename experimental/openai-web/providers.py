@@ -121,7 +121,8 @@ class OpenAIProvider:
     def transcribe(self, wav, cancel):
         if cancel.is_set(): raise NotDispatched('cancelled')
         if type(wav) is not bytes or not 44<=len(wav)<=60*48000+44: raise Held('transcription_bound')
-        self.account_attempt()
+        try:self.account_attempt()
+        except Held as error:raise NotDispatched(str(error)) from None
         boundary='openoracle'+secrets.token_hex(16)
         payload=(f'--{boundary}\r\nContent-Disposition: form-data; name="model"\r\n\r\ngpt-transcribe\r\n'
                  f'--{boundary}\r\nContent-Disposition: form-data; name="file"; filename="public-reading.wav"\r\nContent-Type: audio/wav\r\n\r\n').encode()+wav+f'\r\n--{boundary}--\r\n'.encode()

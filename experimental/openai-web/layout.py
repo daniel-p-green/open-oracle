@@ -40,7 +40,7 @@ class ProductPipeline:
             result=asyncio.run(PublicSyntheticVoiceLoop(self.base.provider,language=language,seconds=45).run(
                 fixtures,cancel,meter,lambda value:stage('audio',value)))
             if result.get('all_turns_checked') is not True:
-                raise Held('voice_native_usage_unconfirmed' if 'voice_native_usage_unconfirmed' in result.get('errors',[]) else 'voice_deadline' if 'voice_deadline' in result.get('errors',[]) else 'voice_session_held')
+                raise Held('voice_native_usage_unconfirmed' if 'voice_native_usage_unconfirmed' in result.get('errors',[]) else 'voice_deadline' if 'voice_deadline' in result.get('errors',[]) else next((code for code in result.get('errors',[]) if code!='voice_cancelled'),'voice_cancelled'))
             return result,b''
         if task in TASKS:
             return self.journey.run_task(task, cancel, stage, meter, prior=prior)

@@ -2653,3 +2653,33 @@ This is a backfill, not a contemporaneous event stream.
   untouched; no retry or alternate route. Continued independent offline repairs
   and source-review record only. No paid batch is claimed started.
 - Verification completed: full existing Python suite including loopback passed under normal escalation; all existing Node contract/state suites passed. No provider calls or human media. Current fixes remain live-unverified.
+
+
+### 2026-10-25 03:22 UTC — follow-up review corrections; live launch denied
+
+- b295978 pushed to existing draftPR6. CI40157480028 succeeded; the paired run
+  is checked separately. No merge/deployment. Full offline suites had passed.
+- Actual focused Opus5.5High review returned Message44; Message46 withdrew its
+  incorrect high-severity B1 after reviewing exact public prompts. Input languages
+  EN/EN/ES are intentionally distinct from requested responses EN/ES/EN. No scope
+  or fixture rewrite based on the mistaken conflation. M44 confirmed prior
+  settlement/cancellation fixes by inspection, not live execution.
+- Completed remaining local F2/F3/U1/U2 corrections: pre-dispatch counter refusal
+  is typed NotDispatched; generic receive errors preserve bounded close drain;
+  welcome/held notes use appropriate canvas language; extra native delegation
+  has explicit internal-fence reason. Added last audio/transcript arrival times
+  for the actual-lag hypothesis. Generic-drain regression was red before/green
+  after; native-owner/budget/provider suites and UI syntax checks pass.
+- Rejected automatic zero-cost accounting or extra attempt headroom as remedies
+  for unknown autonomous usage. Existing conservative hold/reservation rules
+  remain. Official Decisions docs fetched: output tokens not charged; cache/read
+  pricing separately applies. No new account login or credential action.
+- **Denied, known not executed:** python3 bilingual_native_voice_trial.py
+  --purpose english, target existing OpenAI services/credential and two public
+  synthetic WAVs, at most11attempts/$0.10. Automatic approval review says trusted
+  context lacks required specific batch approval, despite parent-relayed user
+  instructions. No retry, alternate route, pending request ID or paid job.
+- Verified ledger after denial: maximum200, retained reservations2.88,
+  recorded cumulative estimate0.3695946916666667, no in-flight rows and zero new
+  bilingual-package rows. These are estimates/reservations, not invoice/balance;
+  historical native completeness limits remain disclosed. Human media stayed off.

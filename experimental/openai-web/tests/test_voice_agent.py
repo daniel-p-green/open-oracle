@@ -21,7 +21,7 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
         from jobs import Budget, STAGED_TRIAL_PACKAGE
         pcm=struct.pack('<h',1000)*1200
         fixture={'kind':'synthetic_public_question','pcm':pcm,'sha256':hashlib.sha256(pcm).hexdigest()}
-        for fault in ('second_delegation','after_cancel','error_drain','duplicate','conflicting_duplicate','missing_usage','attempt_limit','completion_burst','created_only','created_after_cancel','created_in_drain','malformed_completion'):
+        for fault in ('second_delegation','after_cancel','error_drain','duplicate','conflicting_duplicate','missing_usage','attempt_limit','completion_burst','created_only','created_after_cancel','created_in_drain','malformed_completion','transport_drain'):
             with self.subTest(fault=fault), tempfile.TemporaryDirectory() as directory:
                 path=Path(directory)/'ledger.json'
                 path.write_text(json.dumps({'authorization_usd_max':200,'runs':[{
@@ -47,7 +47,8 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
                             self.routed=True;await self.completion('d1')
                         elif kind=='session.commentary.append':
                             if fault in {'after_cancel','created_after_cancel'}:cancel.set()
-                            if fault in {'error_drain','completion_burst','created_in_drain'}:await self.queue.put({'type':'error'})
+                            if fault=='transport_drain':await self.queue.put({'type':'session.output_audio.delta','delta':'not-base64!'})
+                            elif fault in {'error_drain','completion_burst','created_in_drain'}:await self.queue.put({'type':'error'})
                             elif fault in {'created_only','created_after_cancel'}:
                                 await self.queue.put({'type':'session.delegation.created','delegation':{'target':'decisions','id':'d2'}})
                                 await self.queue.put({'type':'error'})
@@ -59,7 +60,7 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
                                 await self.queue.put({'type':'error'})
                             else:await self.completion('d2',usage=fault!='missing_usage')
                         elif kind=='session.close':
-                            if fault=='error_drain':await self.completion('d2')
+                            if fault in {'error_drain','transport_drain'}:await self.completion('d2')
                             if fault=='created_in_drain':await self.queue.put({'type':'session.delegation.created','delegation':{'target':'decisions','id':'d2'}})
                             if fault=='completion_burst':
                                 for number in range(2,25):await self.completion('d'+str(number))
@@ -79,7 +80,7 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
                 self.assertEqual(row['requests_attempted'],11 if fault=='completion_burst' else 2 if fault in {'duplicate','conflicting_duplicate','attempt_limit'} else 3)
                 # A rejected distinct delegation is charged, but still holds the
                 # workflow; missing/conflicting usage must never allow progression.
-                self.assertEqual(row['trial_closure_confirmed'],fault in {'second_delegation','after_cancel','error_drain','duplicate'})
+                self.assertEqual(row['trial_closure_confirmed'],fault in {'second_delegation','after_cancel','error_drain','transport_drain','duplicate'})
                 if fault in {'missing_usage','conflicting_duplicate','attempt_limit','completion_burst','created_only','created_after_cancel','created_in_drain','malformed_completion'}:
                     self.assertIn('voice_native_usage_unconfirmed',receipt['errors'])
                 if fault=='completion_burst':

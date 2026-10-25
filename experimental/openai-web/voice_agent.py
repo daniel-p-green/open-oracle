@@ -403,6 +403,7 @@ class PublicSyntheticVoiceLoop:
                                 raise Held('voice_output_bound')
                             output_transcript.append(delta)
                             diagnostics['output_transcript_chars']+=len(delta)
+                            diagnostics['last_output_transcript_ms']=offset()
                             observed=''.join(output_transcript)
                             observer=getattr(self.provider,'observe_public_voice',None)
                             if observer is not None: observer(active_turn,expected,observed,start_ms=event.get('start_ms'),end_ms=event.get('end_ms'))
@@ -430,22 +431,24 @@ class PublicSyntheticVoiceLoop:
                             if any(abs(v[0])>64 for v in struct.iter_unpack('<h',chunk)):
                                 mark('first_voiced_audio')
                                 voiced_at=time.monotonic()
+                                diagnostics['last_voiced_audio_ms']=offset()
                         elif kind=='session.closed':
                             receipt.update(finalized=True,usage=event.get('usage'),close_reason=event.get('reason'))
                             closed.set();finished.set();return
                         elif kind in {'error','response.event'}:
                             raise Held('voice_provider_error')
-                except Held as error:
-                    errors.append(str(error));finished.set()
+                except Exception as error:
+                    errors.append(str(error) if isinstance(error,Held) else 'voice_transport');finished.set();cancel.set()
+                    if isinstance(error,json.JSONDecodeError):settle_native(None)
                     # Keep a bounded drain alive so graceful session.close can
                     # still return usage after a local output-validation hold.
                     async for raw in connection:
-                        event=json.loads(raw)
+                        try:event=json.loads(raw)
+                        except (ValueError,TypeError):settle_native(None);continue
                         settle_native(event)
                         if type(event) is dict and event.get('type')=='session.closed':
                             receipt.update(finalized=True,usage=event.get('usage'),close_reason=event.get('reason'))
                             closed.set();return
-                except Exception: errors.append('voice_transport');finished.set()
 
             def settle_native(event):
                 # Financial settlement precedes admission, cancel filtering and
@@ -474,7 +477,7 @@ class PublicSyntheticVoiceLoop:
                     if len(native_known)>native_reserved:
                         # Autonomous work already started: count it and stop new
                         # work immediately, even if its eventual usage is valid.
-                        finished.set();cancel.set()
+                        errors.append('voice_native_extra_delegation');finished.set();cancel.set()
                         try:self.provider.account_attempt();native_reserved+=1
                         except Exception:uncertain()
                 if kind=='session.delegation.created':native_created.add(delegation);return

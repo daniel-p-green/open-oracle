@@ -81,6 +81,7 @@ const fixtureAvailable = () =>
   capability?.voice_fixture_enabled &&
   capability.voice_fixture_languages?.includes(language);
 function welcome() {
+  $("visual").lang = language;
   const box = make("div");
   box.className = "canvas-welcome";
   box.append(
@@ -113,7 +114,7 @@ function holdPendingCaptions() {
     ? "No hay audio verificado disponible · sin reproducción"
     : "No checked audio available · not played";
 }
-function heldVisualNote(locale = language) {
+function heldVisualNote(locale = $("visual").lang || language) {
   const es = () => locale === "es";
   if (!spokenHeld || (!visualComplete && !map) || $("visual").querySelector('[data-spoken-held]')) return;
   const note = make("p", es()

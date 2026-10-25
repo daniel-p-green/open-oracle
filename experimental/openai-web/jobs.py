@@ -344,7 +344,7 @@ class Jobs:
                 row['timing'].advance('ready', terminal=True)
         except Held as error:
             with self.lock:
-                row.update(state='expired' if row['state']=='expired' or str(error)=='expired' else 'cancelled' if row['state']=='cancel_requested' or row['cancel'].is_set() and str(error) not in {'voice_deadline','voice_native_usage_unconfirmed'} else 'held', reason=str(error), result=None, audio=None)
+                row.update(state='expired' if row['state']=='expired' or str(error)=='expired' else 'cancelled' if row['state']=='cancel_requested' or row['cancel'].is_set() and str(error) in {'cancelled','voice_cancelled'} else 'held', reason=str(error), result=None, audio=None)
         except Exception:
             with self.lock: row.update(state='held', reason='provider_failure', result=None, audio=None)
         finally:

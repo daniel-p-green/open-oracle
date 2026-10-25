@@ -122,6 +122,9 @@ class LiveDispatchTests(unittest.TestCase):
         cancel=threading.Event();cancel.set()
         with self.assertRaises(NotDispatched):provider.transcribe(b'public',cancel)
         provider.account_attempt.assert_not_called()
+        cancel.clear();provider.account_attempt.side_effect=Held('trial_attempt_limit')
+        with self.assertRaisesRegex(NotDispatched,'trial_attempt_limit'):provider.transcribe(bytes(44),cancel)
+        provider.account_attempt.assert_called_once()
 
     def test_precancelled_live_request_never_connects(self):
         cancel = threading.Event(); cancel.set()
