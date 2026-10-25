@@ -258,23 +258,132 @@
         "at_ms": 8661.268
       },
       "turns": []
+    },
+    {
+      "run": "native_staged_749fc627bb438cdb",
+      "purpose": "native_repair",
+      "code_commit": "9e28ff56a11b2b9f307fd3299447cf2a945e5070",
+      "artifact_sha256": "9bcb0e77430aa8bc2e713d8c154154a5a10df73e4995a0b1a5334e1835d5d967",
+      "outcome": "held",
+      "reason": "native_public_synthetic_held",
+      "attempts": 5,
+      "reserved_usd": 0.1,
+      "direct_usage_estimate_usd": 0.036521642708333336,
+      "closure_confirmed": true,
+      "all_turns_checked": false,
+      "errors": [
+        "voice_deadline"
+      ],
+      "native_decisions": 1,
+      "finalized": true,
+      "close_reason": "close_requested",
+      "live_seconds": 43.0,
+      "elapsed_ms": 47681.321,
+      "received_output_chars": 228,
+      "expected_chars": 120,
+      "planned_text_match": false,
+      "stages": [
+        {
+          "turn": 0,
+          "stage": "session_started",
+          "at_ms": 1370.201
+        },
+        {
+          "turn": 1,
+          "stage": "input_complete",
+          "at_ms": 6323.692
+        },
+        {
+          "turn": 1,
+          "stage": "input_asr_started",
+          "at_ms": 6323.75
+        },
+        {
+          "turn": 1,
+          "stage": "input_asr_returned",
+          "at_ms": 6921.765
+        },
+        {
+          "turn": 1,
+          "stage": "delegation_created",
+          "at_ms": 6932.546
+        },
+        {
+          "turn": 1,
+          "stage": "decision_completed",
+          "at_ms": 7080.532
+        },
+        {
+          "turn": 1,
+          "stage": "generation_started",
+          "at_ms": 7085.351
+        },
+        {
+          "turn": 1,
+          "stage": "generation_returned",
+          "at_ms": 8480.017
+        },
+        {
+          "turn": 1,
+          "stage": "review_started",
+          "at_ms": 8481.206
+        },
+        {
+          "turn": 1,
+          "stage": "review_returned",
+          "at_ms": 9311.151
+        },
+        {
+          "turn": 1,
+          "stage": "review_done",
+          "at_ms": 9311.527
+        },
+        {
+          "turn": 1,
+          "stage": "checked_text_ready",
+          "at_ms": 9311.535
+        },
+        {
+          "turn": 1,
+          "stage": "commentary_sent",
+          "at_ms": 9311.794
+        },
+        {
+          "turn": 1,
+          "stage": "first_audio",
+          "at_ms": 9344.015
+        },
+        {
+          "turn": 1,
+          "stage": "first_voiced_audio",
+          "at_ms": 10048.651
+        },
+        {
+          "turn": 1,
+          "stage": "close_requested",
+          "at_ms": 44998.695
+        }
+      ],
+      "accepted_audio_turns": 0,
+      "limitation": "Exact received output wording was not retained; no semantic cause inferred from counts."
     }
   ],
-  "actual_run_count": 4,
-  "actual_attempts": 20,
-  "package_reserved_usd": 0.22,
-  "package_direct_usage_estimate_usd": 0.03175824895833334,
-  "shared_conservative_reservations_usd": 2.78,
-  "shared_recorded_direct_estimate_usd": 0.33307304895833334,
+  "actual_run_count": 5,
+  "actual_attempts": 25,
+  "package_reserved_usd": 0.32,
+  "package_direct_usage_estimate_usd": 0.06827989166666668,
+  "shared_conservative_reservations_usd": 2.88,
+  "shared_recorded_direct_estimate_usd": 0.3695946916666667,
   "remaining_purposes": [
-    "spanish",
-    "native_repair"
+    "spanish"
   ],
   "limitations": [
     "Single samples, no percentiles or human-heard quality.",
     "Routing is a model-selected visual request, not current browser render proof.",
     "Spanish and context-preserving language switching remain unverified.",
     "Spanish generation length adjustment after these runs is offline-only; no text-purpose reset.",
-    "Historical unmetered Playground activity not included in cumulative direct estimate."
-  ]
+    "Historical unmetered Playground activity not included in cumulative direct estimate.",
+    "Four-choice native contract admitted once on9e28ff5, but speech reading diverged and deadline held; no complete pass on that newer code."
+  ],
+  "paid_sequence_state": "paused_after_native_repair_hold_no_retry"
 }

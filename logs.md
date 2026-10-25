@@ -2427,3 +2427,31 @@ This is a backfill, not a contemporaneous event stream.
   Spanish stage is not silently repurposed; both text purposes stay consumed.
   Claude UI upload stays queued during the parent's renewed Chrome coordination
   hold; no unsupported AppleScript/native/browsing route used.
+
+### 2026-10-25 02:09:18 UTC — named native repair held; paid sequence paused
+
+- **Actual terminal result:** native_staged_749fc627bb438cdb on9e28ff5 admitted
+  one four-choice native decision and a checked120character EN answer. Received
+  output transcript228characters never matched, no accepted audio/ASR, stopped
+  at45soperationdeadline. Finalized/close_requested43reportedLive seconds,
+ 5attempts allmetered,0.10reserved/0.036521642708333336estimated. Exact received
+  wording not retained: do not invent a quote, semantic error or claim that the
+  language feature caused this single failure. Reading contract held safely.
+- **Stop condition respected:** native_repair purpose consumed, no retry or
+  new paid dispatch. Spanish remains unconsumed but has no accepted independent
+  text result and the prior held-run condition remains; spare overall budget is
+  not another text/repair stage. New totals5runs/25attempts/0.32reserved/
+ 0.06827989166666668estimated; shared reservations2.88/recorded estimate
+ 0.3695946916666667. Not invoice/account balance. Prior EN pass remains valid for
+  its pinned09b02d3; do not relabel latest native code as a pass.
+- **Offline repair:** stable normalized output-prefix mismatch now holds early,
+  deferring8trailing tokens for partial words and closed spelling/year aliases.
+  No quiet-pause-as-completion assumption. Exact matching, whole-waveform ASR,
+  source and closure gates remain. Existing protocol proof catches divergence
+  without waiting fordeadline; literal char-fragment normalization proof passes.
+  Reviewer found no consequential issue byinspection; trailing mismatches may
+  still reach deadline, and no live re-verification claimed.
+- **Restart reconciliation:** after parent-reported Mac reconnect, confirmed
+  all5API rows terminal/closureconfirmed and offline runner completed. No
+  uncertain/in-flight paid run, no duplicate launch. Source work preserved.
+  Chrome still assigned to Ramp; no UI action or alternate native route.

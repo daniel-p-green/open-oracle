@@ -51,8 +51,9 @@ source-preserving fresh language adaptation, distinct session/input/response
 language metadata and correct caption language tags. Both switch directions pass
 the protocol owner with input/output ASR mocks, including preserved previous unit
 and sources. A reviewer caught provisional input using the response language;
-fixed to the owned clip language and rechecked. **This newer four-choice contract
-has no real-provider result yet.** The two-turn fixture bound and UI preference
+fixed to the owned clip language and rechecked. **The newer four-choice contract admitted one actual native decision on9e28ff5,
+but its speech never matched checked text and the run held at deadline. It has
+no complete native pass.** The two-turn fixture bound and UI preference
 selector's existing Erase behavior remain; no continuous3turn EN→ES→EN claim.
 Spanish brief engineering limit now150 rather than120characters (English stays
 120), in both server/browser, to avoid dropping supported meaning for translation
@@ -278,3 +279,16 @@ blocker, not a claim that Claude or all browser tools are unavailable.
 Latest adversarial review/fixes: [severity, reproductions and dispositions](CLAUDE-ADVERSARIAL-2026-10-24.md). Completed-job Erase/Stop honesty and session-repeat repairs passed offline contracts and independent inspection. Current browser/human/provider verification remains open; no acceptance row is closed by code inspection alone.
 
 Latest source review Message38 found Spanish word-stem and cleanup-retry defects; local fixes and exact shared-helper/protocol evidence are recorded in the adversarial disposition. Map navigation now has matching bounded speech intent, while substantive map interpretation and actual provider/browser parity remain open.
+
+
+October25 final bounded native-repair outcome: valid checked text returned at
+9.312s, but228received output characters did not match120expected characters;
+no accepted waveform,45soperation deadline and confirmed43sLive usage. Exact
+spoken wording was not retained, so no invented semantic cause or causal claim
+about the language feature. Paid sequence paused;5runs/25attempts/0.32reserved/
+0.06827989166666668estimated. Spanish is the only unconsumed purpose, but the
+hold/repair conditions do not authorize another text or native-repair run.
+An early stable-prefix divergence hold is implemented and protocol-tested
+separately; exact matching/independent whole-waveform ASR remain mandatory.
+It cannot detect every trailing mismatch early and has no paid verification.
+No continuous bilingual/browser/public-readiness result follows.

@@ -109,6 +109,15 @@ def live_configuration(language, turn=1):
     return config
 
 
+def reading_prefix_possible(observed, expected):
+    # Deltas can end midword or mid closed normalization (e.g. a spoken year).
+    # Defer eight trailing tokens, more than the longest normalization in words().
+    # An earlier mismatch cannot be repaired by appending more transcript text.
+    incoming, planned=words(observed), words(expected)
+    stable=incoming[:-8]
+    return len(stable)<=len(planned) and stable==planned[:len(stable)]
+
+
 def public_wave(pcm):
     if type(pcm) is not bytes or not 2400 <= len(pcm) <= 20*48000 or len(pcm) % 2:
         raise Held('synthetic_audio_bound')
@@ -383,7 +392,11 @@ class PublicSyntheticVoiceLoop:
                                 raise Held('voice_output_bound')
                             output_transcript.append(delta)
                             diagnostics['output_transcript_chars']+=len(delta)
-                            diagnostics['planned_text_match']=bool(expected) and words(''.join(output_transcript))==words(expected)
+                            observed=''.join(output_transcript)
+                            diagnostics['planned_text_match']=bool(expected) and words(observed)==words(expected)
+                            if expected and not reading_prefix_possible(observed,expected):
+                                mark('reading_prefix_diverged')
+                                raise Held('voice_output_diverged')
                         elif kind=='session.output_audio.delta':
                             chunk=base64.b64decode(event.get('delta',''),validate=True)
                             if segment_sealed and any(chunk):

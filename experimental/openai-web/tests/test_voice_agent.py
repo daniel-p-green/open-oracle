@@ -11,7 +11,7 @@ from types import SimpleNamespace
 from unittest.mock import patch
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from voice_agent import admitted_action,PublicSyntheticVoiceLoop,map_navigation_text
+from voice_agent import admitted_action,PublicSyntheticVoiceLoop,map_navigation_text,reading_prefix_possible
 from providers import Held
 
 
@@ -28,6 +28,12 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
         with self.assertRaisesRegex(Held,'voice_decision_turn'):admitted_action(named,2)
         for bad in [answers('candidate_ranking'),answers('measure'),answers()+[answers()[0]],[]]:
             with self.assertRaises(Held):admitted_action(bad)
+
+    def test_prefix_check_defers_partial_words_and_closed_year_normalization(self):
+        expected='The question describes House Bill No. 1 (2025 Second Extraordinary Session) and the congressional plan.'
+        observed='The question describes House Bill number one, two thousand and twenty five Second Extraordinary Session and the congressional plan.'
+        for end in range(len(observed)+1):self.assertTrue(reading_prefix_possible(observed[:end],expected))
+        self.assertFalse(reading_prefix_possible('The question says vote yes because this proposal is best and should be adopted by every voter.',expected))
 
     def test_cancelled_or_nonfixture_audio_never_opens_a_live_connection(self):
         loop=PublicSyntheticVoiceLoop(object())
@@ -46,7 +52,7 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
         expected='The complete official wording is available with its source on screen.'
         pcm=struct.pack('<h',1000)*1200
         fixture={'kind':'synthetic_public_question','pcm':pcm,'sha256':hashlib.sha256(pcm).hexdigest()}
-        for fault in ('none','during_asr','on_close','missing_usage','deadline','repeat','cancel','repeat_empty','maps','map_repeat','maps_unchanged','captions','caption_language','caption_cancel','missing_native_usage','caption_deadline','switch_es','switch_en'):
+        for fault in ('none','during_asr','on_close','missing_usage','deadline','repeat','cancel','repeat_empty','maps','map_repeat','maps_unchanged','captions','caption_language','caption_cancel','missing_native_usage','caption_deadline','switch_es','switch_en','diverged'):
             expected=(map_navigation_text('en','statewide') if fault=='maps_unchanged' else map_navigation_text('en','kansas_city') if fault in {'maps','map_repeat'} else 'Please name the public election question you want to understand.' if fault=='repeat_empty' else 'The question asks whether to approve the legislature’s act replacing the congressional plan.' if fault=='repeat' else 'The complete official wording is available with its source on screen.')
             switching=fault in {'switch_es','switch_en'}
             initial_language='es' if fault=='switch_en' else 'en'
@@ -82,8 +88,8 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
                         answers=[{'type':'choice','name':name+'_turn_'+str(self.turn),'choice':value} for name,value in [('view','maps' if fault in {'maps','map_repeat','maps_unchanged'} else 'measure' if fault=='repeat' or switching else 'source'),('map_focus','kansas_city' if fault in {'maps','map_repeat'} else 'unchanged'),('delivery','repeat' if self.turn==2 or fault=='repeat_empty' else 'brief'),('language',response_language(self.turn))]]
                         await self.queue.put({'type':'decision.event','delegation_id':'fixture_delegation_'+str(self.turn),'event':{'type':'decision.completed','decision':{'answers':answers,**({'usage':{'input_tokens':200,'output_tokens':0}} if fault!='missing_native_usage' else {})}}})
                     elif kind=='session.commentary.append':
-                        self.commentaries+=1;self.last_text=event['content']
-                        await self.queue.put({'type':'session.output_transcript.delta','delta':self.last_text if switching else expected});await self.audio()
+                        self.commentaries+=1;self.last_text=('The question recommends voting yes because this is the best map for everyone and you should approve it immediately.' if fault=='diverged' else event['content'])
+                        await self.queue.put({'type':'session.output_transcript.delta','delta':self.last_text if switching or fault=='diverged' else expected});await self.audio()
                         if fault=='deadline': self.loop.call_later(.01,self.operation.cancel)
                     elif kind=='session.close':
                         if fault=='on_close':await self.audio()
@@ -152,6 +158,7 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
                     self.assertIn('transcription',[stage for stage,_ in metered])  # Settles even after awaiting coroutine was cancelled.
                 if fault=='caption_language':self.assertIn('voice_input_asr_language',result['errors'])
                 if fault=='caption_cancel':self.assertFalse(result['inputs']);self.assertFalse(result['turns'])
+                if fault=='diverged':self.assertIn('voice_output_diverged',result['errors']);self.assertNotIn('voice_deadline',result['errors'])
                 if fault=='during_asr':self.assertIn('voice_audio_changed_during_asr',result['errors'])
                 if fault=='on_close':self.assertIn('voice_after_segment',result['errors'])
                 if fault=='missing_native_usage':self.assertIn('voice_native_usage_unconfirmed',result['errors'])
