@@ -2845,3 +2845,21 @@ This is a backfill, not a contemporaneous event stream.
   testing. No new architecture implementation, API charge, ledger history edit,
   human audio, merge or deployment. Existing200ceiling/2.98reserve/
  0.3819496677083334recorded estimate unchanged; no invoice or readiness claim.
+
+### 2026-10-25 — committed consultation; PR push denied before execution
+
+- **Completed locally:** f4d0679 records actual RAG trace, superseded narrator
+  proposal, full returned Opus initial/amended reviews and dispositions, and the
+  red-before/green-after unknown-pricing-stage repair. Focused job checks and
+  diff whitespace/explicit credential-pattern scan pass. Working tree was clean.
+- **Verified read-only:** origin is daniel-p-green/open-oracle; PR6 is open/draft
+  on rebuild/openai-web-slice-20261024. Network-restricted initial gh read failed;
+  normal escalated read succeeded. No account/access change.
+- **Denied, known not executed:** git push origin
+  HEAD:refs/heads/rebuild/openai-web-slice-20261024 for f4d0679. Automatic approval
+  review called the public-repository update an external publication commitment,
+  cited earlier repository-publishing prohibition and said no later push
+  authorization was present. This conflicts with later trusted project push
+  instructions; do not imply Daniel failed to authorize project work. No retry,
+  alternate route, merge, deployment or new remote CI result. Exact unresolved
+  action is pushing f4d0679 to existing draftPR6; local work/review is preserved.
