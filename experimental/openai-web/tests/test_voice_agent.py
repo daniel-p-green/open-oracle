@@ -52,9 +52,10 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
         expected='The complete official wording is available with its source on screen.'
         pcm=struct.pack('<h',1000)*1200
         fixture={'kind':'synthetic_public_question','pcm':pcm,'sha256':hashlib.sha256(pcm).hexdigest()}
-        for fault in ('none','during_asr','on_close','missing_usage','deadline','repeat','cancel','repeat_empty','maps','map_repeat','maps_unchanged','captions','caption_language','caption_cancel','missing_native_usage','caption_deadline','switch_es','switch_en','diverged'):
+        for fault in ('none','during_asr','on_close','missing_usage','deadline','repeat','cancel','repeat_empty','maps','map_repeat','maps_unchanged','captions','caption_language','caption_cancel','missing_native_usage','caption_deadline','switch_es','switch_en','diverged','switch_roundtrip'):
             expected=(map_navigation_text('en','statewide') if fault=='maps_unchanged' else map_navigation_text('en','kansas_city') if fault in {'maps','map_repeat'} else 'Please name the public election question you want to understand.' if fault=='repeat_empty' else 'The question asks whether to approve the legislature’s act replacing the congressional plan.' if fault=='repeat' else 'The complete official wording is available with its source on screen.')
-            switching=fault in {'switch_es','switch_en'}
+            switching=fault in {'switch_es','switch_en','switch_roundtrip'}
+            turn_count=3 if fault=='switch_roundtrip' else 2 if fault in {'repeat','map_repeat','switch_es','switch_en'} else 1
             initial_language='es' if fault=='switch_en' else 'en'
             def response_language(turn):
                 return ('es' if initial_language=='en' else 'en') if switching and turn==2 else initial_language
@@ -71,7 +72,7 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
                     event=json.loads(raw);kind=event['type']
                     if kind=='session.start':await self.queue.put({'type':'session.started'})
                     elif kind=='session.update':
-                        self.turn=2;self.routed=False
+                        self.turn+=1;self.routed=False
                         await self.queue.put({'type':'session.updated','session':event['session']})
                     elif kind=='session.input_audio.append' and not self.routed:
                         self.routed=True
@@ -128,31 +129,32 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
                     if fault=='cancel' and value['stage']=='checked_text':cancel.set()
                 provider=Provider()
                 with patch.dict(sys.modules,{'websockets':SimpleNamespace(connect=lambda *a,**k:socket)}):
-                    result=await PublicSyntheticVoiceLoop(provider,seconds=15,language=initial_language,input_captions=fault in {'captions','caption_language','caption_cancel','caption_deadline','switch_es','switch_en'}).run([fixture,fixture] if fault in {'repeat','map_repeat','switch_es','switch_en'} else [fixture],cancel,lambda stage,usage:metered.append((stage,usage)),notify)
-                self.assertEqual([e['text'] for e in updates if e['stage']=='input_partial'],['public input']*(2 if fault in {'repeat','map_repeat','switch_es','switch_en'} else 1))
-                self.assertEqual(len([e for e in updates if e['stage']=='input_unavailable']),2 if fault in {'repeat','map_repeat','switch_es','switch_en'} else 1)
+                    result=await PublicSyntheticVoiceLoop(provider,seconds=15,language=initial_language,input_captions=fault in {'captions','caption_language','caption_cancel','caption_deadline','switch_es','switch_en','switch_roundtrip'}).run([fixture]*turn_count,cancel,lambda stage,usage:metered.append((stage,usage)),notify)
+                self.assertEqual([e['text'] for e in updates if e['stage']=='input_partial'],['public input']*turn_count)
+                self.assertEqual(len([e for e in updates if e['stage']=='input_unavailable']),turn_count)
                 self.assertEqual([e['stage'] for e in updates if e['stage'] in {'input_partial','input_unavailable'}],
-                                 ['input_partial','input_unavailable'] if fault=='none' else ['input_unavailable','input_partial']*(2 if fault in {'repeat','map_repeat','switch_es','switch_en'} else 1))
+                                 ['input_partial','input_unavailable'] if fault=='none' else ['input_unavailable','input_partial']*turn_count)
                 finals=[e for e in updates if e['stage']=='input_final']
                 if fault=='captions':
                     self.assertEqual([(e['turn'],e['text'],e['input_audio_sha256']) for e in finals],[(1,'Could you show the official source?',fixture['sha256'])])
                     self.assertEqual(result['inputs'][0]['text'],finals[0]['text'])
                     self.assertEqual(provider.transcriptions,2)
                 elif switching:
-                    self.assertEqual([(e['turn'],e['language']) for e in finals],[(1,initial_language),(2,initial_language)])
+                    self.assertEqual([(e['turn'],e['language']) for e in finals],[(i,initial_language) for i in range(1,turn_count+1)])
                     self.assertTrue(all(e['language']==initial_language for e in updates if e['stage']=='input_partial'))
                 else:self.assertFalse(finals)
                 self.assertGreaterEqual(result['diagnostics']['discarded_chunks_with_energy_bytes'],len(pcm))
-                self.assertEqual(provider.posts,['responses','decisions']*2 if switching else ['responses','decisions'] if fault=='repeat' else [])
+                self.assertEqual(provider.posts,['responses','decisions']*turn_count if switching else ['responses','decisions'] if fault=='repeat' else [])
                 if switching:
                     self.assertEqual(provider.contexts[1]['previous_checked_public_unit']['language'],initial_language)
-                    self.assertEqual(provider.contexts[0]['sources'],provider.contexts[1]['sources'])
-                    self.assertEqual([t['language'] for t in result['turns']],[initial_language,response_language(2)])
+                    self.assertTrue(all(c['sources']==provider.contexts[0]['sources'] for c in provider.contexts))
+                    if turn_count==3:self.assertEqual(provider.contexts[2]['previous_checked_public_unit']['language'],'es')
+                    self.assertEqual([t['language'] for t in result['turns']],[response_language(i) for i in range(1,turn_count+1)])
                     self.assertTrue(all(e['session_language']==initial_language for e in updates))
                 return result
             with self.subTest(fault=fault):
                 result=asyncio.run(run())
-                self.assertEqual(result['all_turns_checked'],fault in {'none','repeat','repeat_empty','maps','map_repeat','maps_unchanged','captions','switch_es','switch_en'})
+                self.assertEqual(result['all_turns_checked'],fault in {'none','repeat','repeat_empty','maps','map_repeat','maps_unchanged','captions','switch_es','switch_en','switch_roundtrip'})
                 if fault=='caption_deadline':
                     self.assertIn('voice_asr_outcome_unconfirmed',result['errors'])
                     self.assertIn('transcription',[stage for stage,_ in metered])  # Settles even after awaiting coroutine was cancelled.

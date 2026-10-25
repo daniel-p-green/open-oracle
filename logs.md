@@ -2455,3 +2455,24 @@ This is a backfill, not a contemporaneous event stream.
   all5API rows terminal/closureconfirmed and offline runner completed. No
   uncertain/in-flight paid run, no duplicate launch. Source work preserved.
   Chrome still assigned to Ramp; no UI action or alternate native route.
+
+### 2026-10-25 02:18:13 UTC — bounded three-turn context proof; no paid expansion
+
+- **Implemented:** native engine, browser canonical receipt/turn bounds and
+  compact server event retention consistently support3turns. Actual Journey
+  pipeline/fake native transport proves EN→ES→EN, checked prior language ES on
+  the return to EN, identical evidence/source packet, independent input/output
+  ASR ownership and canonical mixed-language final transcript. Fourth turn held
+  by browser contract. Focused protocol and browser-core proofs pass.
+- **Scope preserved:** paid manifest loader still accepts only1–2clips;
+  staged runner remains original fixed pairs/max11attempts, production/native
+  server entry closed, no human capture/player. Three-turn fixture support is
+  implementation/protocol evidence, not a paid/browser/human acceptance pass.
+  Reviewer found no bound mismatch or accidental spending expansion byinspection.
+- **Current remote:** f887236 pushed; exact-head offline-contracts CI successful
+ 40153653064 and40153650766, Sourcery skipped. No merge/deployment. This later
+  three-turn increment will be pushed with updated evidence/approval-state notes.
+- **Current blocker:** paid hold condition pauses further dispatch; source-only
+  Claude browser review/primary browser QA still lack a supported executor in
+  this task and Chrome remains coordinated with Ramp. No new denial, alternate
+  browser/native route, purpose reuse or duplicate post-restart trial.

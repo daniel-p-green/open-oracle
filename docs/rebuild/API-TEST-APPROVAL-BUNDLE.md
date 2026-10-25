@@ -1,13 +1,22 @@
 # One staged API verification bundle — approved October 24, 2026
 
-**Current execution state:** the exact bundle is approved by Daniel, but the
-one normal retry of `.api-test-venv/bin/python text_contract_bounded_trial.py`
-was again rejected before process creation on October24 around21:09UTC. Review
-said no trusted user approval for the new staged bundle was present. No pending
-request ID was supplied. Zero new ledger rows/reservations/requests/artifacts;
-shared reservations2.56 and recorded direct estimate0.3013148 remain unchanged.
-No retry, alternate command, host or credential route. Approval propagation to
-normal tool review remains the concrete blocker, not billing login or API funds.
+**Current execution state, October25:** fresh continuation approval was recognized.
+The first text run and its allocated repair ran; each accepted English and held
+Spanish. The planned native English run completed both turns with final input
+captions and independent output-ASR; recovery cancelled at checked text and
+closed correctly. The named native-repair run admitted the new four-choice
+contract but speech did not match checked text and reached its deadline. Paid
+sequence is now **paused by its hold condition**, not a fresh tool denial.
+Actual5runs/25attempts/0.32reserved/0.06827989166666668estimated; shared reserved
+2.88, recorded cumulative estimate0.3695946916666667, not invoice/balance.
+Both text purposes and native_repair are consumed; Spanish is unconsumed but
+cannot be used to retry the held English repair or create another text stage.
+[Immutable actual results](STAGED-VOICE-RESULTS-2026-10-25.json).
+
+The intended commits are pushed to draftPR6; latest renewal source upload has
+not occurred because the supported browser executor is unavailable here and
+Chrome is coordinated separately with Ramp. No alternate host/native UI route.
+The original39c0a12 review attachment remains unchanged and unsubmitted.
 
 Historical earlier denial: the normal review rejected the four-request text
 check before process creation:
@@ -81,7 +90,8 @@ balance statement. No other worker may spend against this reserved bundle.
  2outputASR/2optional public-inputASR plus1Live connection =11attempts.
   Input-ASR fallback may run only if implemented/reviewed offline first. The
   optional exact-clip caption path is now implemented and offline-tested, off
-  by default and not live-verified; renewed review remains required before use. Each output-ASR waveform<=20s; no output
+  by default in the application; actual EN synthetic trials verified exact-clip
+  captions. No human-capture path is enabled. Each output-ASR waveform<=20s; no output
   PCM retained on disk. Hold until independent checks pass; no human playback.
 - Preserve current pricing check: Live0.05/min, Luna0.10/M input/0.50/M output,
   transcribe0.0045/min; cache-write uncertainty priced conservatively. Recheck
@@ -106,3 +116,12 @@ transcripts. Current four old trials remain terminal and are not rerun.
 The earlier local Chrome8925 check remains separately denied by host policy;
 this API bundle is not a browser permission grant or evidence of UI rendering.
 Human-media/private-input policy and public release acceptance remain separate.
+
+
+Later implementation bounds are distinct from this approved paid envelope:
+engine/browser fixtures now support3turn EN→ES→EN with mock-transport proof;
+paid manifest loader and launcher remain restricted to the original1–2clips,
+11attempt maximum. No three-input paid test is authorized by this document.
+Spanish prose engineering cap changed to150 (EN120) after an actual121character
+hold, with all factual/review/waveform gates retained; no Spanish acceptance or
+consumed text-stage reset follows from that local change.

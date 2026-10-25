@@ -73,7 +73,7 @@ export function voiceUpdate(value, language, revision, turn) {
     value.revision <= revision ||
     !Number.isInteger(value.turn) ||
     value.turn < turn ||
-    value.turn > 2 ||
+    value.turn > 3 ||
     value.turn < (value.stage === "connected" ? 0 : 1) ||
     !Number.isFinite(value.at_ms) ||
     value.at_ms < 0 ||
@@ -147,7 +147,7 @@ export function voiceUpdate(value, language, revision, turn) {
 export function voiceFinalTurns(receipt,language){
   if(receipt?.mode!=="native_live_public_synthetic"||receipt.source_version!==QUESTION_VERSION||receipt.language!==language||
     receipt.all_turns_checked!==true||receipt.finalized!==true||receipt.close_reason!=="close_requested"||
-    !Array.isArray(receipt.errors)||receipt.errors.length||!Array.isArray(receipt.turns)||receipt.turns.length<1||receipt.turns.length>2)
+    !Array.isArray(receipt.errors)||receipt.errors.length||!Array.isArray(receipt.turns)||receipt.turns.length<1||receipt.turns.length>3)
     throw Error("voice_final_receipt");
   const inputs = receipt.inputs ?? [];
   if (!Array.isArray(inputs) || inputs.length > receipt.turns.length ||

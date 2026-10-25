@@ -100,3 +100,17 @@ are relevant. Current `web/voice.html`, `web/voice.mjs`, `voice_agent.py` and
 `journey.py` are the affected existing owners, not a new renderer/framework.
 This review imported no film code/assets/provider/license assumptions. Fresh
 voice-driven adaptation and spoken/visual parity remain acceptance gaps.
+
+
+### Daniel's public Hack Midwest demo — considered experience benchmark
+
+https://youtu.be/02ixPAe77e0 — parent inspected public metadata/transcript on
+October25, not audiovisual playback. Three-minute two-turn English quarter-cent
+example with$100→$0.25/$20→$0.05; multilingual voice/Pi described as future work.
+Used to define the continuous source→clarify/example→language switch→original
+passage→safe abstention acceptance journey, not as proof of actual latency,
+voice quality, renderer internals or a license to copy media/code. No source
+code/media imported from this video. Related implementation: voice_agent.py
+per-turn language/source ownership and voice-core.mjs canonical mixed-language
+receipt validation. Current3turn evidence is fake-transport only; public demo
+readiness and live bilingual proof remain open in DEMO-ACCEPTANCE.md.

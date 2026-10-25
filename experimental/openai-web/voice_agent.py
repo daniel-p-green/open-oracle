@@ -147,7 +147,7 @@ class PublicSyntheticVoiceLoop:
         return await asyncio.wait_for(self._run(fixtures,cancel,meter,notify),self.seconds)
 
     async def _run(self, fixtures, cancel, meter, notify):
-        if (type(fixtures) is not list or not 1 <= len(fixtures) <= 2 or
+        if (type(fixtures) is not list or not 1 <= len(fixtures) <= 3 or
                 any(type(f) is not dict or set(f) not in ({'pcm','sha256','kind'},{'pcm','sha256','kind','language'}) or
                     f.get('language',self.language) not in {'en','es'} or
                     f['kind'] != 'synthetic_public_question' or

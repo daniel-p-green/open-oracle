@@ -53,8 +53,10 @@ the protocol owner with input/output ASR mocks, including preserved previous uni
 and sources. A reviewer caught provisional input using the response language;
 fixed to the owned clip language and rechecked. **The newer four-choice contract admitted one actual native decision on9e28ff5,
 but its speech never matched checked text and the run held at deadline. It has
-no complete native pass.** The two-turn fixture bound and UI preference
-selector's existing Erase behavior remain; no continuous3turn EN→ES→EN claim.
+no complete native pass.** The engine/browser now support a bounded3turn EN→ES→EN fixture, with actual
+Journey/fake-transport/input-and-output-ASR owner proof. The approved paid loader
+stays1–2clips and the UI preference selector still erases; no real continuous
+3turn EN→ES→EN or browser-language-switch pass is claimed.
 Spanish brief engineering limit now150 rather than120characters (English stays
 120), in both server/browser, to avoid dropping supported meaning for translation
 expansion. Current-status/polarity/source/numeric/independent review and20s output

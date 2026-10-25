@@ -18,7 +18,7 @@ test("native voice view events require the current source, language, turn and ch
   for (const mutation of [
     { revision: 1 },
     { turn: 0 },
-    { turn: 3 },
+    { turn: 4 },
     { language: "es" },
     { source_version: "foreign" },
     { view: "candidate_ranking" },
@@ -106,6 +106,11 @@ test("a slow poll recovers every final checked caption from the complete receipt
   switched.turns[1].checked.text=voiceControlText("source","es");
   assert.deepEqual(voiceFinalTurns(switched,"en").map(x=>x.language),["en","es"]);
   assert.equal(voiceFinalTurns(switched,"en")[0].inputLanguage,"en");
+  const back=structuredClone(receipt.turns[0]);back.turn=3;back.ready_at_ms=12000;
+  switched.turns.push(back);
+  assert.deepEqual(voiceFinalTurns(switched,"en").map(x=>x.language),["en","es","en"]);
+  const extra=structuredClone(back);extra.turn=4;switched.turns.push(extra);
+  assert.throws(()=>voiceFinalTurns(switched,"en"),/final_receipt/);
   for (const mutate of [
     value=>{value.inputs.push(value.inputs[0])},
     value=>{value.inputs[0].language="unknown"},

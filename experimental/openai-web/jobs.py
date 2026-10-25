@@ -295,7 +295,7 @@ class Jobs:
                     if update.get('stage') in {'input_partial','input_final'}:
                         updates[:]=[item for item in updates if not (item.get('stage') in ({'input_partial','input_unavailable'} if update['stage']=='input_final' else {'input_partial'}) and item.get('turn')==update.get('turn'))]
                     updates.append(copy.deepcopy(dict(update, revision=revision)))
-                    if len(updates)>16: raise Held('voice_update_bound')
+                    if len(updates)>24: raise Held('voice_update_bound')
         def meter(stage, usage): self.budget.record(row['run'], stage, usage)
         try:
             result, pcm = (self.pipeline.run_task(row['task'], row['cancel'], progress, meter, prior=row['prior']) if row['task'] and row['task'].startswith(('journey:','speech:'))
