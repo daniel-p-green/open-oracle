@@ -2499,3 +2499,40 @@ This is a backfill, not a contemporaneous event stream.
  15relevant source/test/evidence files, no ledger/credentials/accounts/private
   voter data. Original39c0a12 attachment untouched. Neither newly submitted;
   supported browser executor unavailable/Chrome coordinated with Ramp.
+
+### 2026-10-25 02:37:12 UTC — productive offline hold work and exact next proposal
+
+- **Instruction:** parent requested offline work only; diagnose latest speech
+  divergence, state invariants and one concrete next verification proposal.
+  No API dispatch occurred. Rechecked old package unchanged:5terminal runs,
+ 25attempts/0.32reserved/0.06827989166666668estimated, no in-flight ambiguity.
+- **Diagnosis:** equality never passed, so no candidate output-ASR/acceptance;
+  raw output wording is lost. Ranked paraphrase, repeated/combined utterance and
+  transcript aggregation/ownership hypotheses, with predictions, not invented
+  causal findings. Added bounded expected/observed/delta/window capture to the
+  explicit public-synthetic diagnostic provider only; manual launchers serialize
+  it outside Git. Production provider and operational receipts do not capture
+  raw model text. Fake key/scope/private transport metadata excluded in proof.
+- **Verified deterministic cases:** repeated approved speech and divergence held;
+  cancellation during ES transition retains prior EN without canceled ES audio;
+  stale English native decision cannot overwrite current Spanish turn; late
+  old-turn caption rejected. A test initially required the second input caption
+  after cancellation; corrected that assumption to require no post-cancel final
+  caption/ES audio, while allowing valid pre-cancel input text. Focused actual
+  protocol/diagnostic/client proofs pass. Independent reviewer found no concrete
+  privacy/bounds/state regression byinspection; did not claim executed review.
+- **Small connected-journey fix:** explicit source action now expands the exact
+  original passage; ordinary views keep collapsed disclosure. Syntax/source
+  checked, no new browser/human proof. This is core source-request behavior,
+  not a new source dashboard or auxiliary feature.
+- **Proposal only:** NEXT-BILINGUAL-VERIFICATION-PROPOSAL.md specifies distinct
+  five-run/70attempt/$0.65maximum inside200: EN11/.10, ES11/.10,3turnroundtrip
+ 16/.15, transitioncancel16/.15, globallyoneconditionalrepair16/.15. New request
+  approval/configuration/manifest/price checks required; no spare-budget inference
+  or consumed-purpose reuse. Old package stays paused. No new provider/model,
+  human media, credentials, billing/access or deployment in that proposal.
+- **Tool availability:** this delegate's current tool inventory exposes no
+  supported CUA/Node REPL/browser executor; ordinary Node CLIv26.12.0 runs tests.
+  Parent reports CUA in its task, not authority for an alternate technology here.
+  No Chrome UI action while Mocingbird owns it, no AppleScript/native workaround.
+  Existing Claude source-only approval preserved; review remains queued.

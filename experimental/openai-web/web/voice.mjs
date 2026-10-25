@@ -186,7 +186,7 @@ function stop(erase = false) {
     return confirmed;
   });
 }
-function original(host) {
+function original(host, expanded = false) {
   if (!measure) return;
   const details = make("details"),
     summary = make(
@@ -195,6 +195,7 @@ function original(host) {
         ? "Texto original y fuente · inglés"
         : "Original wording and source · English",
     );
+  details.open = expanded;
   const quote = make("blockquote", measure.complete_wording);
   quote.lang = "en";
   quote.className = "source-original";
@@ -395,7 +396,7 @@ async function view(action, ticket) {
         make("h2", es() ? "La pregunta oficial" : "The official question"),
       );
     if (current()) {
-      if (action.view !== "maps") original(host);
+      if (action.view !== "maps") original(host, action.view === "source");
       visualComplete = true;
       heldVisualNote();
     }

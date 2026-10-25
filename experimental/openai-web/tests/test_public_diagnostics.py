@@ -38,7 +38,17 @@ class PublicDiagnosticsTests(unittest.TestCase):
         self.assertEqual(provider.predicate_reviews, [{'operation': 'brief', 'language': 'en', 'has_previous': False, 'answers': answers}])
         self.assertEqual({k:provider.public_drafts[0][k] for k in ('operation','language','has_previous')},
                          {'operation': 'brief', 'language': 'en', 'has_previous': False})
-        diagnostic = json.dumps([provider.public_drafts, provider.predicate_reviews])
+        provider.observe_public_voice(1,'The question asks for approval.','The question')
+        provider.observe_public_voice(1,'The question asks for approval.','The question asks for approval. The question asks for approval.',start_ms=100,end_ms=200)
+        self.assertEqual(provider.public_voice_outputs,[{'turn':1,'expected':'The question asks for approval.',
+            'observed':'The question asks for approval. The question asks for approval.','fragments':2,
+            'delta_history_truncated':False,'deltas':[{'delta':'The question','start_ms':None,'end_ms':None},
+              {'delta':' asks for approval. The question asks for approval.','start_ms':100,'end_ms':200}]}])
+        for turn,text in [(4,'public'),(1,'x'*2001)]:
+            with self.assertRaisesRegex(Held,'public_voice_diagnostics_bound'):provider.observe_public_voice(turn,'expected',text)
+        with self.assertRaisesRegex(Held,'public_voice_diagnostics_binding'):provider.observe_public_voice(1,'changed','public')
+        with self.assertRaisesRegex(Held,'public_voice_diagnostics_binding'):provider.observe_public_voice(1,'The question asks for approval.','nonappend')
+        diagnostic = json.dumps([provider.public_drafts, provider.predicate_reviews,provider.public_voice_outputs])
         for excluded in ('fixture-only', 'fixture-scope', 'must-not-retain'):
             self.assertNotIn(excluded, diagnostic)
         self.assertEqual(str(held.exception), 'journey_language_match_held')

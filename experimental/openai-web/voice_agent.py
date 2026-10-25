@@ -393,6 +393,8 @@ class PublicSyntheticVoiceLoop:
                             output_transcript.append(delta)
                             diagnostics['output_transcript_chars']+=len(delta)
                             observed=''.join(output_transcript)
+                            observer=getattr(self.provider,'observe_public_voice',None)
+                            if observer is not None: observer(active_turn,expected,observed,start_ms=event.get('start_ms'),end_ms=event.get('end_ms'))
                             diagnostics['planned_text_match']=bool(expected) and words(observed)==words(expected)
                             if expected and not reading_prefix_possible(observed,expected):
                                 mark('reading_prefix_diverged')

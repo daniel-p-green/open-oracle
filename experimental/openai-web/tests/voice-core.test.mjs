@@ -30,6 +30,7 @@ test("native voice view events require the current source, language, turn and ch
   assert.equal(voiceUpdate(switched,"en",1,1).language,"es");
   assert.throws(()=>voiceUpdate({...switched,session_language:"es"},"en",1,1),/binding/);
   assert.throws(()=>voiceUpdate({...switched,language:"unknown"},"en",1,1),/binding/);
+  assert.throws(()=>voiceUpdate({...switched,turn:2,revision:99},"en",98,3),/binding/);
   const checked = {
     ...event,
     stage: "checked_text",

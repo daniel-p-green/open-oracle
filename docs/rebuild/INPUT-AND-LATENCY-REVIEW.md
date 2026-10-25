@@ -306,3 +306,49 @@ and complete utterances, separate text/first approved audio/full completion,
 verify actual access/pricing, and retain truthful failed runs. Current test bundle
 is paused after native_repair hold; spare money is not authorization for this
 new comparison. Claude source review remains queued before any readiness claim.
+
+## Offline diagnosis after the paused five-run package
+
+Certain failure mechanism: checked text was returned and the receiver collected
+228output characters for120expected characters; normalized equality never became
+true, so no candidate reached independent output-ASR and the operation deadline
+held. All usage/closure evidence is accounted for. This was a delivery-contract
+failure, not a failed grounding review: the actual public text's six review scores
+were1.0. Scores remain uncalibrated, not proof of truth. The lost output wording
+prevents exact semantic replay or attribution of the cause to the language change.
+
+Ranked explanations to distinguish on a future specifically approved run:
+
+1. **Paraphrase/acknowledgment:** documented commentary behavior changes the
+   planned normalized prefix. Predict nonprefix actual words despite valid text.
+2. **Repeated or combined utterance:** planned words occur more than once or
+   alongside another utterance. Predict repetition/extra text in retained deltas.
+3. **Transcript-event aggregation/ownership:** incremental data may be handled
+   incorrectly or stale output may interleave. Predict repeated/overlapping delta
+   histories/timing windows; inspect before blaming model semantics. Timing
+   alone does not prove audio alignment or turn ownership.
+
+Current data cannot choose among them. No fabricated replacement transcript or
+same-code paid redraw was used. Offline protocol cases now prove that both
+repeated approved speech and an unrelated/advice-bearing divergence are held
+before acceptance; partial-word/year normalization remains allowed. Cancellation
+during the Spanish transition preserves prior checked English, releases no
+canceled Spanish audio, and rejects late captions; stale English native decisions
+cannot overwrite the Spanish turn. These are structural fake-transport cases,
+not an exact reproduction of the lost wording or multilingual-quality scores.
+
+The explicit PublicDiagnosticProvider now keeps at most3turns/2000observed
+characters per turn/128delta records, including only bounded expected/observed
+public model text and valid numeric windows. Observation occurs before the early
+hold. Only the public-synthetic manual runner serializes it outside Git; ordinary
+provider/operational receipts have no raw-output observer. Missing/invalid timing
+is recorded as missing, not guessed. No new provider execution occurred.
+
+A source view requested by the model now expands the original passage rather
+than leaving it hidden in the default collapsed disclosure. Other views retain
+progressive disclosure. This small primary-journey repair has syntax/source
+inspection only; actual browser behavior remains unverified.
+
+The exact next proposal is NEXT-BILINGUAL-VERIFICATION-PROPOSAL.md:
+5runs/70attempts/$0.65reserved maximum, including one conditional repair. It is
+not authority, new configuration, queued inference or a reset of the old package.
