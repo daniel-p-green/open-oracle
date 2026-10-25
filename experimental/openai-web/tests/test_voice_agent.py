@@ -217,6 +217,9 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
                 with patch.dict(sys.modules,{'websockets':SimpleNamespace(connect=lambda *a,**k:socket)}):
                     result=await PublicSyntheticVoiceLoop(provider,seconds=15,language=initial_language,input_captions=fault in {'captions','caption_language','caption_cancel','caption_deadline','switch_es','switch_en','switch_roundtrip','cancel_switch','stale_language','caption_not_dispatched'}).run(clips,cancel,lambda stage,usage:metered.append((stage,usage)),notify)
                 routed_turns=1 if fault=='late_native_usage' else turn_count
+                self.assertEqual([entry['turn'] for entry in result['diagnostics']['speech_timing']],list(range(1,routed_turns+1)))
+                for entry in result['diagnostics']['speech_timing']:
+                    self.assertTrue(all(value is None or type(value) in (int,float) and value>=0 for key,value in entry.items() if key!='turn'))
                 self.assertEqual([e['text'] for e in updates if e['stage']=='input_partial'],['public input']*routed_turns)
                 self.assertEqual(len([e for e in updates if e['stage']=='input_unavailable']),routed_turns)
                 self.assertEqual([e['stage'] for e in updates if e['stage'] in {'input_partial','input_unavailable'}],
@@ -260,6 +263,7 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
                     self.assertIn('transcription',[stage for stage,_ in metered])  # Settles even after awaiting coroutine was cancelled.
                 if fault=='short_tail':
                     self.assertIn('voice_output_mismatch',result['errors']);self.assertNotIn('voice_deadline',result['errors'])
+                    self.assertTrue(any(e['stage']=='output_mismatch_held' for e in result['diagnostics']['stages_ms']))
                 if fault=='caption_not_dispatched':
                     self.assertTrue(result['asr_outcome_confirmed']);self.assertEqual(result['asr_attempted'],0);self.assertEqual(result['asr_not_dispatched'],1)
                     self.assertFalse(result['turns'])

@@ -199,7 +199,7 @@ class PublicSyntheticVoiceLoop:
         diagnostics={'discarded_audio_bytes':0,'discarded_chunks_with_energy_bytes':0,'buffered_audio_bytes':0,'output_transcript_chars':0,
             'expected_chars':0,'first_output_ms':None,'planned_text_match':False,
             'input_deltas':0,'timed_input_deltas':0,'input_timing':[],
-            'sealed_segment_extra_bytes':0,'stages_ms':[]}
+            'sealed_segment_extra_bytes':0,'stages_ms':[],'speech_timing':[]}
         receipt['diagnostics']=diagnostics
         origin=time.monotonic()
         def offset(): return round((time.monotonic()-origin)*1000,3)
@@ -403,7 +403,7 @@ class PublicSyntheticVoiceLoop:
                                 raise Held('voice_output_bound')
                             output_transcript.append(delta)
                             diagnostics['output_transcript_chars']+=len(delta)
-                            diagnostics['last_output_transcript_ms']=offset()
+                            diagnostics['speech_timing'][active_turn-1]['last_output_transcript_ms']=offset()
                             observed=''.join(output_transcript)
                             observer=getattr(self.provider,'observe_public_voice',None)
                             if observer is not None: observer(active_turn,expected,observed,start_ms=event.get('start_ms'),end_ms=event.get('end_ms'))
@@ -431,14 +431,16 @@ class PublicSyntheticVoiceLoop:
                             if any(abs(v[0])>64 for v in struct.iter_unpack('<h',chunk)):
                                 mark('first_voiced_audio')
                                 voiced_at=time.monotonic()
-                                diagnostics['last_voiced_audio_ms']=offset()
+                                diagnostics['speech_timing'][active_turn-1]['last_voiced_audio_ms']=offset()
                         elif kind=='session.closed':
                             receipt.update(finalized=True,usage=event.get('usage'),close_reason=event.get('reason'))
                             closed.set();finished.set();return
                         elif kind in {'error','response.event'}:
                             raise Held('voice_provider_error')
                 except Exception as error:
-                    errors.append(str(error) if isinstance(error,Held) else 'voice_transport');finished.set();cancel.set()
+                    code=('voice_cancelled' if str(error)=='cancelled' else str(error)) if isinstance(error,Held) else 'voice_transport'
+                    if code not in errors and (code!='voice_cancelled' or not any(e!='voice_cancelled' for e in errors)):errors.append(code)
+                    finished.set();cancel.set()
                     if isinstance(error,json.JSONDecodeError):settle_native(None)
                     # Keep a bounded drain alive so graceful session.close can
                     # still return usage after a local output-validation hold.
@@ -477,7 +479,8 @@ class PublicSyntheticVoiceLoop:
                     if len(native_known)>native_reserved:
                         # Autonomous work already started: count it and stop new
                         # work immediately, even if its eventual usage is valid.
-                        errors.append('voice_native_extra_delegation');finished.set();cancel.set()
+                        if 'voice_native_extra_delegation' not in errors:errors.append('voice_native_extra_delegation')
+                        finished.set();cancel.set()
                         try:self.provider.account_attempt();native_reserved+=1
                         except Exception:uncertain()
                 if kind=='session.delegation.created':native_created.add(delegation);return
@@ -526,6 +529,7 @@ class PublicSyntheticVoiceLoop:
                 for number, fixture in enumerate(fixtures,1):
                     check_cancel(cancel)
                     active_turn=number;active_delegation=None;expected=None;output_allowed=False
+                    diagnostics['speech_timing'].append({'turn':number,'last_voiced_audio_ms':None,'last_output_transcript_ms':None})
                     if number>1:
                         self.provider.account_attempt()  # Native turn config before it can run.
                         native_reserved+=1
@@ -558,6 +562,7 @@ class PublicSyntheticVoiceLoop:
                         if expected and voiced_at and time.monotonic()-voiced_at>=2 and words(''.join(output_transcript))!=words(expected):
                             # A pause never proves completion, but an already
                             # mismatched candidate can be safely held sooner.
+                            mark('output_mismatch_held')
                             raise Held('voice_output_mismatch')
                         if expected and words(''.join(output_transcript))==words(expected) and voiced_at and time.monotonic()-voiced_at>=1:
                             mark('candidate_quiet_reached')
@@ -596,7 +601,9 @@ class PublicSyntheticVoiceLoop:
             except asyncio.CancelledError:
                 errors.append('voice_cancelled' if cancel.is_set() else 'voice_deadline')
                 cancel.set()
-            except Held as error: errors.append('voice_cancelled' if str(error)=='cancelled' else str(error))
+            except Held as error:
+                code='voice_cancelled' if str(error)=='cancelled' else str(error)
+                if code not in errors and (code!='voice_cancelled' or not any(e!='voice_cancelled' for e in errors)):errors.append(code)
             except Exception: errors.append('voice_session_failure')
             finally:
                 closing=True

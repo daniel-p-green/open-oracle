@@ -137,7 +137,7 @@ function stop(erase = false) {
   if (!erase && hasConversation) {
     if (pendingAnswer) { spokenHeld = true; holdPendingCaptions(); }
     if (!visualComplete && !map)
-      $("visual").replaceChildren(make("p", es() ? "Vista detenida." : "Display stopped."));
+      $("visual").replaceChildren(make("p", $("visual").lang === "es" ? "Vista detenida." : "Display stopped."));
     heldVisualNote();
   }
   if (erase) {

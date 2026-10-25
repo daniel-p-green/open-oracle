@@ -2683,3 +2683,27 @@ This is a backfill, not a contemporaneous event stream.
   recorded cumulative estimate0.3695946916666667, no in-flight rows and zero new
   bilingual-package rows. These are estimates/reservations, not invoice/balance;
   historical native completeness limits remain disclosed. Human media stayed off.
+
+
+### 2026-10-25 03:28 UTC — final scoped review and handoff state
+
+- Actual Opus5.5High Message48 confirmed F2/F3/U1/U2 and closed proper-name alias
+  by source inspection, no consequential remaining defect in that scoped pass.
+  Original text/screenshot saved outside Git; no paid or browser-product pass.
+- Applied its minor measurement/label items: per-turn last-voiced/transcript
+  timestamps and output_mismatch_held mark prevent cross-turn lag misattribution;
+  internal cancellation/error labels deduplicate; stopped text uses canvas locale.
+  Native owner suite and UI syntax pass. This final small increment has not had
+  separate external re-review or provider execution.
+- Both bfe5dfa CI runs40157974915/40157971776 succeeded. PR6 description updated
+  with actual review, code/test evidence and live denial; no merge/deploy. Earlier
+  b295978 paired CI also passed40157483303/40157480028.
+- Current blocking action remains the known-unexecuted English paid launch,
+  $0.10/11attempts existing credential/two public synthetic clips. Automatic
+  review rejected missing specific approval evidence; no retry/alternate route.
+  No request ID was provided. The separately denied authorization-status edit
+  remains untouched. All independent scoped accounting/review fixes completed.
+- Shared ledger remains200maximum/2.88retained reservations/0.3695946916666667
+  recorded estimate, zero in-flight/new bilingual rows. Full EN/ES/contextual
+  speech/UI, current-browser, acceptable measured latency and original stretch
+  product acceptance remain open. No human microphone/speaker activity.

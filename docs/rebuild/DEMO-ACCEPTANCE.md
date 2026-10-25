@@ -1,5 +1,16 @@
 # OpenOracle demonstration acceptance
 
+**Latest verification, October25:** native accounting now separates content
+admission from financial settlement through cancellation and close drain. Created,
+missing, conflicting, malformed and excess completion paths have owner regression
+proof; source-only Opus5.5High reviews returned and substantive findings were
+repaired. Correct per-fixture input languages EN/EN/ES request responses EN/ES/EN.
+The new bounded runner is prepared; its first English launch was rejected before
+execution by automatic approval review. No new batch row/spend, no live current-
+code bilingual success, no new primary-browser or human-media acceptance. Earlier
+API successes below retain their original commit/sample limitations. See
+[latest review dispositions](CLAUDE-ADVERSARIAL-2026-10-25.md) and root logs.md.
+
 Target: a source-backed, nonpartisan English/Spanish web experience worthy of a
 public developer-profile demonstration. **Not complete or publicly ready.** No
 public deployment, microphone/speaker activation or new credentials follow from

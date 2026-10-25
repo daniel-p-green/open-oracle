@@ -59,3 +59,20 @@ request-fit, browser rendering and live latency remain missing evidence.
 Live launch was rejected before execution by automatic approval review; the ledger
 still has zero rows for this batch. That denial is separate from the successful
 source-review route. No paid route/command retry or workaround was used.
+
+
+## Final scoped recheck ofbfe5dfa
+
+Message48 returned with actual Opus5.5High UI selection: F2/F3/U1/U2 and the
+Missouri alias hold by inspection; no consequential remaining defect found in
+that scoped pass. It did not run code or providers. Four minor observations were
+then corrected: speech timing is now per turn with an explicit mismatch-hold
+mark; internal cancellation/error codes are deduplicated; stopped-display language
+matches the canvas; repeated extra-delegation labels are deduplicated. Native
+owner protocol checks pass after those changes. This small final increment has
+not itself had a new Claude re-review or live provider run.
+
+The2s lag hypothesis remains open until actual permitted output is captured.
+Review confirmation is not product acceptance. Public/demo readiness is still
+withheld for live bilingual, browser/accessibility, human voice quality and
+measured latency evidence.
