@@ -75,11 +75,16 @@ class Budget:
                 if any(r.get('state') == 'reserved' or r.get('trial_closure_confirmed') is not True for r in previous):
                     raise Held('trial_package_outcome_unconfirmed')
                 if trial_purpose != 'text_initial' and not previous: raise Held('trial_prerequisite')
-                if not text_trial and not any(r.get('trial_purpose') in {'text_initial','text_repair'} and r.get('state') == 'ready' for r in previous):
-                    raise Held('trial_prerequisite')
+                language=task.rsplit(':',1)[-1] if voice else None
+                text_ready=any(r.get('trial_purpose') in {'text_initial','text_repair'} and
+                               (r.get('state') == 'ready' or language in r.get('checked_text_languages',[])) for r in previous)
+                if not text_trial and not text_ready: raise Held('trial_prerequisite')
                 # A semantic hold requires diagnosis and its allocated repair,
                 # never another unchanged-language run merely to get a pass.
-                if previous and previous[-1].get('state') == 'held' and 'repair' not in trial_purpose:
+                independent_language=(not text_trial and previous and previous[-1].get('trial_purpose','').startswith('text_')
+                                      and previous[-1].get('held_language') in {'en','es'}
+                                      and previous[-1]['held_language'] != language and text_ready)
+                if previous and previous[-1].get('state') == 'held' and 'repair' not in trial_purpose and not independent_language:
                     raise Held('trial_repair_required')
             elif trial_package is not None or trial_purpose is not None:
                 if trial_package != VOICE_TRIAL_PACKAGE or trial_purpose not in VOICE_TRIAL_PURPOSES or not voice:
@@ -100,6 +105,34 @@ class Budget:
                     if repair_basis: runs[-1]['repair_basis'] = repair_basis
             data['conservative_reservations_usd'] = sum(amounts) + amount
             data['state'] = 'integrated public-provider test in flight'
+
+    def record_checked_text(self, run, result, *, held_language=None):
+        """Retain minimal proof of an actually accepted public test language.
+
+        Other-language holds do not erase this proof. Unknown usage/closure
+        still blocks the entire package; raw prose never enters the ledger.
+        """
+        import hashlib
+        from journey import QUESTION_PIN, load_question, validate_unit
+        if (type(result) is not dict or result.get('source_version') != QUESTION_PIN
+                or result.get('mode') != 'fresh_grounded_generation' or result.get('request_fit') != 'confirmed'
+                or result.get('review') != 'uncalibrated_model_check' or result.get('raw_visitor_input_sent') is not False):
+            raise Held('trial_text_evidence')
+        unit=result.get('unit',{})
+        language=unit.get('language')
+        if language not in {'en','es'} or unit.get('operation')!='brief': raise Held('trial_text_evidence')
+        validate_unit(unit,'brief',language,load_question())
+        digest=hashlib.sha256(json.dumps(result,sort_keys=True).encode()).hexdigest()
+        with self.locked() as data:
+            row=next(r for r in data['runs'] if r['id']==run)
+            if row.get('trial_package') != STAGED_TRIAL_PACKAGE or row.get('trial_purpose') not in {'text_initial','text_repair'}:
+                raise Held('trial_text_evidence')
+            if not any(s['stage']=='journey_text' for s in row['stages']) or not any(s['stage']=='review' for s in row['stages']):
+                raise Held('trial_text_evidence')
+            row.setdefault('checked_text_languages',[])
+            if language not in row['checked_text_languages']: row['checked_text_languages'].append(language)
+            row.setdefault('checked_text_receipt_hashes',{})[language]=digest
+            if held_language in {'en','es'}: row['held_language']=held_language
 
     def attempt(self, run):
         """Atomic pre-dispatch counter for the staged public test transport."""

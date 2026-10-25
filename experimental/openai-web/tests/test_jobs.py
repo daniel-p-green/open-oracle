@@ -234,6 +234,26 @@ class JobsTests(unittest.TestCase):
         self.assertAlmostEqual(sum(r['reserved_usd'] for r in rows),.42)
         self.assertEqual(sum(r['requests_max'] for r in rows),52)
 
+    def test_partial_text_language_proof_does_not_release_an_unverified_language(self):
+        from jobs import STAGED_TRIAL_PACKAGE as package
+        from journey import QUESTION_PIN
+        budget=Budget(self.path,per_run=.01)
+        budget.reserve('partial',trial_package=package,trial_purpose='text_initial')
+        for stage in ('journey_text','review','journey_text'):
+            budget.attempt('partial');budget.record('partial',stage,{'input_tokens':10,'output_tokens':10 if stage=='journey_text' else 0})
+        budget.finish('partial','held','journey_time_drift')
+        result={'source_version':QUESTION_PIN,'mode':'fresh_grounded_generation','request_fit':'confirmed',
+                'review':'uncalibrated_model_check','raw_visitor_input_sent':False,
+                'unit':{'operation':'brief','language':'en','sections':[{'source_id':'question','text':'The question asks whether to approve the legislature’s act replacing the congressional plan.'}]}}
+        budget.record_checked_text('partial',result,held_language='es')
+        with self.assertRaisesRegex(Held,'trial_prerequisite'):
+            budget.reserve('es','voice:synthetic:es',trial_package=package,trial_purpose='spanish')
+        budget.reserve('en','voice:synthetic:en',trial_package=package,trial_purpose='english')
+        with self.assertRaisesRegex(Held,'outcome_unconfirmed'):
+            budget.reserve('recovery','voice:synthetic:en',trial_package=package,trial_purpose='recovery')
+        row=json.loads(self.path.read_text())['runs'][0]
+        self.assertEqual(row['checked_text_languages'],['en']);self.assertNotIn('unit',row)
+
     def test_internal_voice_deadline_is_held_without_disguising_it_as_operator_cancel(self):
         class Deadline:
             def run(self,cancel,progress,meter):

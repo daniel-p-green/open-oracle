@@ -2340,3 +2340,32 @@ This is a backfill, not a contemporaneous event stream.
   retry is unavailable, not a new content rejection or reason to use a bypass.
 - **Reference:** parent is reviewing the newly supplied YouTube benchmark;
   no observations inferred and no duplicate video research performed here.
+
+### 2026-10-25 — text repair result; language-isolated native prerequisite
+
+- **Completed actual text_repair:** public_brief_contract_3eadf5cd8133fcf1,
+  code4ba6206,3requests/0.01reservation/0.0003904 estimated direct cost. English
+  independently accepted at2455.644ms; Spanish correctly removed vigente but was
+ 121characters, held at existing120 engineering limit before review. No Spanish
+  review or acceptance claimed. Both text-purpose slots are consumed; no text
+  purpose reset or implicit repeat. Combined new estimate0.0007725,0.02reserved.
+- **Repair to overbroad test gating:** accepted English was being discarded as
+  a native prerequisite merely because a separate Spanish generation held.
+  Budget now retains only checked-language/result hashes (no raw prose) from
+  actual immutable accepted results. A Spanish semantic hold still blocks
+  Spanish; it does not erase independently accepted English. Unknown usage/
+  closure remains a whole-package stop. Focused ledger boundary proof checks
+  EN admission, ES rejection and in-flight global stop. Old four-trial package
+  remains closed. No change to sources, thresholds,120limit or spending ceilings.
+- **Prepared next planned stage:** distinct staged native runner uses the
+  existing provider pre-dispatch counter for every HTTP/ASR/Live/native attempt,
+  exact same hash-verified EN pair, optional independently checked input captions,
+ 45soperation/15sclose/11attempts/0.10reservation. No mic/player. Existing old
+  launcher is unchanged and exhausted. Execute only planned English purpose;
+  Spanish stays paused. Later repair/recovery slots retain their conditions.
+- **Benchmark:** parent inspected Daniel's public3minute video transcript and
+  metadata, not audiovisual timing. It is the historical two-turn quarter-cent
+  example and describes multilingual/Pi as future work. Adopt continuous real
+  interaction as the proof standard; no inferred latency/visual quality or new
+  spend/source scope from that reference. Current fixed public redistricting
+  trial remains engineering verification, not a complete showcase recording.
