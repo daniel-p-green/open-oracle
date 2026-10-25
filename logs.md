@@ -2556,3 +2556,16 @@ This is a backfill, not a contemporaneous event stream.
  0.32reserved/0.06827989166666668estimated, all terminal. New plan5/70/0.65 is
   proposal only, not authorization, configuration or a queued continuation.
   Actual bilingual/browser/latency/public acceptance remains unfinished.
+
+### 2026-10-25 — Chrome hold released; executor availability still blocks review
+
+- Parent released Chrome coordination after the offline increment was delivered.
+  This does not restore a browser executor in this task: current tool discovery
+  still exposes no CUA/Node REPL. No Claude page, attachment or message action
+  was attempted in this turn, no new host denial and no alternate technology.
+  Ordinary Node CLI remains available for tests. Source-only review approval is
+  already sufficient; tool exposure/parent's supported executor is the missing
+  mechanism, not a generic new permission request.
+- Latest review payload remains immutable bdcc568 bundle/manifest, destination
+  existing OpenOracle Claude chat; verify Opus5.5High in UI before submission.
+  Paid history and proposed new package remain unchanged and unexecuted.
