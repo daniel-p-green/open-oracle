@@ -2369,3 +2369,61 @@ This is a backfill, not a contemporaneous event stream.
   interaction as the proof standard; no inferred latency/visual quality or new
   spend/source scope from that reference. Current fixed public redistricting
   trial remains engineering verification, not a complete showcase recording.
+
+### 2026-10-25 02:04:03 UTC — real English native pass and actual cancellation
+
+- **Completed:** native_staged_d95b4ac1f612d74d, code09b02d3: both public EN
+  turns independently checked, native measure→maps/kansas_city choices, two final
+  exact-clip input captions, no errors,27reportedLive seconds,9attempts all
+  metered, confirmedclose;0.10reserved/0.02448280625estimated. Full session
+ 32.187s. Input-end→checkedtext3.014/1.114s; input-end→independentchecked audio
+ 10.678/8.814s. Generated first-voice readiness is not audible release; no
+  playback/human/percentile/browser-render claims. Actual latency remains too high.
+- **Completed recovery:** native_staged_c6129abb5b44cda7, same code, cancellation
+  at checked_text8661.268ms, zero accepted audio, finalclose/usageconfirmed,
+ 5attempts,0.10reserved/0.006502942708333estimated. No automatic retry. This tests
+  cancellation of pending generation/output, not measured heard-speech silence.
+- **Aggregate new package:**4runs/20actualattempts/0.22reserved/
+ 0.03175824895833334estimated; shared reservations2.78, recorded estimate
+ 0.33307304895833334. Spanish/native_repair slots remain conditional; neither
+  text purpose may be repeated. Sanitized actual receipts/hashes/latencies now
+  in STAGED-VOICE-RESULTS-2026-10-25.json, no PCM/accounts/private data.
+- **Offline core work:** language-specific brief engineering cap EN120/ES150
+  in server/browser; source/time/neutrality/polarity/independent semantic review
+  unchanged,20s waveform cap retained. New native language choice preserves the
+  checked prior/source when switching; a different-language repeat generates a
+  fresh checked adaptation, rather than replaying untranslated words. Session
+  ownership language remains separate from input/response language; captions
+  carry correct language attributes. Same-language repeat remains exact.
+- **Independent finding/fix:** provisional input inherited response language,
+  wrong for English input requesting Spanish. Now bound to the known clip
+  language before listening. Both-direction protocol cases enable input ASR and
+  verify input-language preservation, output language switch and same evidence/
+  previous unit. Reviewer closed by inspection; focused Python/Node proofs pass.
+  These mocks do not establish a real switch, human Spanish quality or3turn loop.
+- **Next within existing stages:** named native_repair EN trial can verify the
+  new four-choice contract using the unchanged approved pair after code checks/
+  commit. It cannot prove an unasked language switch. Spanish remains without
+  an accepted independent text review; no reframed extra text run is authorized.
+  Whole-utterance audio gating remains the dominant latency issue; no unchecked
+  streaming introduced to manufacture a speed result. Chrome UI holds/releases
+  observed; supported browser tool absent here, no alternative native route.
+
+### 2026-10-25 02:06:39 UTC — core language-switch implementation checks complete
+
+- **Completed local verification:** required full provider-off Python/loopback
+  and Node contracts pass after the language/source changes. Syntax/whitespace
+  clean. Actual handler source keeps captions in per-turn language, session
+  ownership remains separate, prior/source survives fresh adaptation, unsupported
+  language/old-turn/unknown-component events still hold. No human/device/browser
+  verification is implied; current UI preference selector still erases context.
+- **Independent recheck:** reviewer closed the provisional-caption language
+  defect by inspection and found no further issue in that narrow repair. The
+  new fourth native choice still needs real API compatibility evidence. The
+  existing09b02d3 result remains pinned rather than relabeled as newer code.
+- **Next stage remains conditional/bounded:** native_repair on same EN pair
+  only, named API-contract/caption-language verification,0.10/11attempt ceiling.
+  This will not validate a language-switch utterance absent from those clips.
+  Spanish stage is not silently repurposed; both text purposes stay consumed.
+  Claude UI upload stays queued during the parent's renewed Chrome coordination
+  hold; no unsupported AppleScript/native/browsing route used.

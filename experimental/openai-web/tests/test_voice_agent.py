@@ -20,7 +20,8 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
         def answers(view='maps',focus='kansas_city'):
             return [{'type':'choice','name':'view','choice':view},
                 {'type':'choice','name':'map_focus','choice':focus},
-                {'type':'choice','name':'delivery','choice':'brief'}]
+                {'type':'choice','name':'delivery','choice':'brief'},
+                {'type':'choice','name':'language','choice':'en'}]
         self.assertEqual(admitted_action(answers())['map_focus'],'kansas_city')
         named=[dict(a,name=a['name']+'_turn_1') for a in answers()]
         self.assertEqual(admitted_action(named,1)['view'],'maps')
@@ -45,10 +46,16 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
         expected='The complete official wording is available with its source on screen.'
         pcm=struct.pack('<h',1000)*1200
         fixture={'kind':'synthetic_public_question','pcm':pcm,'sha256':hashlib.sha256(pcm).hexdigest()}
-        for fault in ('none','during_asr','on_close','missing_usage','deadline','repeat','cancel','repeat_empty','maps','map_repeat','maps_unchanged','captions','caption_language','caption_cancel','missing_native_usage','caption_deadline'):
+        for fault in ('none','during_asr','on_close','missing_usage','deadline','repeat','cancel','repeat_empty','maps','map_repeat','maps_unchanged','captions','caption_language','caption_cancel','missing_native_usage','caption_deadline','switch_es','switch_en'):
             expected=(map_navigation_text('en','statewide') if fault=='maps_unchanged' else map_navigation_text('en','kansas_city') if fault in {'maps','map_repeat'} else 'Please name the public election question you want to understand.' if fault=='repeat_empty' else 'The question asks whether to approve the legislature’s act replacing the congressional plan.' if fault=='repeat' else 'The complete official wording is available with its source on screen.')
+            switching=fault in {'switch_es','switch_en'}
+            initial_language='es' if fault=='switch_en' else 'en'
+            def response_language(turn):
+                return ('es' if initial_language=='en' else 'en') if switching and turn==2 else initial_language
+            switch_text={'en':'The question asks whether to approve the legislature’s act replacing the congressional plan.',
+                         'es':'La pregunta indica si los votantes aprueban la ley de la legislatura que reemplaza el plan congresional.'}
             class Socket:
-                def __init__(self):self.queue=asyncio.Queue();self.routed=False;self.turn=1;self.commentaries=0
+                def __init__(self):self.queue=asyncio.Queue();self.routed=False;self.turn=1;self.commentaries=0;self.last_text=''
                 async def __aenter__(self):self.loop=asyncio.get_running_loop();self.operation=asyncio.current_task();return self
                 async def __aexit__(self,*_):pass
                 def __aiter__(self):return self
@@ -72,11 +79,11 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
                                 'delta':delta,**({'start_ms':start,'end_ms':start+200} if start is not None else {})})
                         await self.audio()  # Pre-approval energy is discarded, never admitted.
                         await self.queue.put({'type':'session.delegation.created','delegation':{'target':'decisions','id':'fixture_delegation_'+str(self.turn)}})
-                        answers=[{'type':'choice','name':name+'_turn_'+str(self.turn),'choice':value} for name,value in [('view','maps' if fault in {'maps','map_repeat','maps_unchanged'} else 'measure' if fault=='repeat' else 'source'),('map_focus','kansas_city' if fault in {'maps','map_repeat'} else 'unchanged'),('delivery','repeat' if self.turn==2 or fault=='repeat_empty' else 'brief')]]
+                        answers=[{'type':'choice','name':name+'_turn_'+str(self.turn),'choice':value} for name,value in [('view','maps' if fault in {'maps','map_repeat','maps_unchanged'} else 'measure' if fault=='repeat' or switching else 'source'),('map_focus','kansas_city' if fault in {'maps','map_repeat'} else 'unchanged'),('delivery','repeat' if self.turn==2 or fault=='repeat_empty' else 'brief'),('language',response_language(self.turn))]]
                         await self.queue.put({'type':'decision.event','delegation_id':'fixture_delegation_'+str(self.turn),'event':{'type':'decision.completed','decision':{'answers':answers,**({'usage':{'input_tokens':200,'output_tokens':0}} if fault!='missing_native_usage' else {})}}})
                     elif kind=='session.commentary.append':
-                        self.commentaries+=1
-                        await self.queue.put({'type':'session.output_transcript.delta','delta':expected});await self.audio()
+                        self.commentaries+=1;self.last_text=event['content']
+                        await self.queue.put({'type':'session.output_transcript.delta','delta':self.last_text if switching else expected});await self.audio()
                         if fault=='deadline': self.loop.call_later(.01,self.operation.cancel)
                     elif kind=='session.close':
                         if fault=='on_close':await self.audio()
@@ -84,18 +91,21 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
             socket=Socket()
             class Provider:
                 _headers={}
-                def __init__(self):self.posts=[];self.transcriptions=0;self.attempts=0
+                def __init__(self):self.posts=[];self.transcriptions=0;self.attempts=0;self.contexts=[]
                 def account_attempt(self):self.attempts+=1
                 def post(self,path,body,cancel):
                     self.posts.append(path)
                     usage={'input_tokens':200,'output_tokens':80 if path=='responses' else 0}
                     if path=='responses':
-                        draft={'operation':'brief','language':'en','sections':[{'source_id':'question','text':expected}],
+                        context=json.loads(body['input'][1]['content']);self.contexts.append(context)
+                        draft={'operation':'brief','language':context['language'] if switching else 'en','sections':[{'source_id':'question','text':switch_text[context['language']] if switching else expected}],
                                'components':['explanation','original','uncertainty']}
                         return {'status':'completed','usage':usage,'output':[{'type':'message','content':[{'type':'output_text','text':json.dumps(draft)}]}]}
                     return {'usage':usage,'answers':[{'name':name,'type':'predicate','probability':.99} for name in ['entailed','no_additions','attributed','request_fit','language_match','polarity_safe']]}
                 def transcribe(self,wav,cancel):
                     self.transcriptions+=1
+                    if switching and self.transcriptions%2==1:
+                        return {'text':'public input','languages':[{'code':initial_language}]}
                     if fault in {'captions','caption_language','caption_cancel','caption_deadline'} and self.transcriptions==1:
                         if fault=='caption_cancel':cancel.set()
                         if fault=='caption_deadline':
@@ -103,7 +113,7 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
                         return {'text':'Could you show the official source?', 'languages':[{'code':'es' if fault=='caption_language' else 'en'}]}
                     if fault=='during_asr':
                         asyncio.run_coroutine_threadsafe(socket.audio(),socket.loop).result(timeout=1);time.sleep(.03)
-                    return {'text':expected,'languages':[{'code':'en'}]}
+                    return {'text':socket.last_text if switching else expected,'languages':[{'code':response_language(socket.turn)}]}
             metered=[]
             async def run():
                 updates=[];cancel=threading.Event()
@@ -112,23 +122,31 @@ class NativeVoiceAdmissionTests(unittest.TestCase):
                     if fault=='cancel' and value['stage']=='checked_text':cancel.set()
                 provider=Provider()
                 with patch.dict(sys.modules,{'websockets':SimpleNamespace(connect=lambda *a,**k:socket)}):
-                    result=await PublicSyntheticVoiceLoop(provider,seconds=15,input_captions=fault in {'captions','caption_language','caption_cancel','caption_deadline'}).run([fixture,fixture] if fault in {'repeat','map_repeat'} else [fixture],cancel,lambda stage,usage:metered.append((stage,usage)),notify)
-                self.assertEqual([e['text'] for e in updates if e['stage']=='input_partial'],['public input']*(2 if fault in {'repeat','map_repeat'} else 1))
-                self.assertEqual(len([e for e in updates if e['stage']=='input_unavailable']),2 if fault in {'repeat','map_repeat'} else 1)
+                    result=await PublicSyntheticVoiceLoop(provider,seconds=15,language=initial_language,input_captions=fault in {'captions','caption_language','caption_cancel','caption_deadline','switch_es','switch_en'}).run([fixture,fixture] if fault in {'repeat','map_repeat','switch_es','switch_en'} else [fixture],cancel,lambda stage,usage:metered.append((stage,usage)),notify)
+                self.assertEqual([e['text'] for e in updates if e['stage']=='input_partial'],['public input']*(2 if fault in {'repeat','map_repeat','switch_es','switch_en'} else 1))
+                self.assertEqual(len([e for e in updates if e['stage']=='input_unavailable']),2 if fault in {'repeat','map_repeat','switch_es','switch_en'} else 1)
                 self.assertEqual([e['stage'] for e in updates if e['stage'] in {'input_partial','input_unavailable'}],
-                                 ['input_partial','input_unavailable'] if fault=='none' else ['input_unavailable','input_partial']*(2 if fault in {'repeat','map_repeat'} else 1))
+                                 ['input_partial','input_unavailable'] if fault=='none' else ['input_unavailable','input_partial']*(2 if fault in {'repeat','map_repeat','switch_es','switch_en'} else 1))
                 finals=[e for e in updates if e['stage']=='input_final']
                 if fault=='captions':
                     self.assertEqual([(e['turn'],e['text'],e['input_audio_sha256']) for e in finals],[(1,'Could you show the official source?',fixture['sha256'])])
                     self.assertEqual(result['inputs'][0]['text'],finals[0]['text'])
                     self.assertEqual(provider.transcriptions,2)
+                elif switching:
+                    self.assertEqual([(e['turn'],e['language']) for e in finals],[(1,initial_language),(2,initial_language)])
+                    self.assertTrue(all(e['language']==initial_language for e in updates if e['stage']=='input_partial'))
                 else:self.assertFalse(finals)
                 self.assertGreaterEqual(result['diagnostics']['discarded_chunks_with_energy_bytes'],len(pcm))
-                self.assertEqual(provider.posts,['responses','decisions'] if fault=='repeat' else [])
+                self.assertEqual(provider.posts,['responses','decisions']*2 if switching else ['responses','decisions'] if fault=='repeat' else [])
+                if switching:
+                    self.assertEqual(provider.contexts[1]['previous_checked_public_unit']['language'],initial_language)
+                    self.assertEqual(provider.contexts[0]['sources'],provider.contexts[1]['sources'])
+                    self.assertEqual([t['language'] for t in result['turns']],[initial_language,response_language(2)])
+                    self.assertTrue(all(e['session_language']==initial_language for e in updates))
                 return result
             with self.subTest(fault=fault):
                 result=asyncio.run(run())
-                self.assertEqual(result['all_turns_checked'],fault in {'none','repeat','repeat_empty','maps','map_repeat','maps_unchanged','captions'})
+                self.assertEqual(result['all_turns_checked'],fault in {'none','repeat','repeat_empty','maps','map_repeat','maps_unchanged','captions','switch_es','switch_en'})
                 if fault=='caption_deadline':
                     self.assertIn('voice_asr_outcome_unconfirmed',result['errors'])
                     self.assertIn('transcription',[stage for stage,_ in metered])  # Settles even after awaiting coroutine was cancelled.

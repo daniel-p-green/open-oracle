@@ -51,6 +51,7 @@ export function voiceUpdate(value, language, revision, turn) {
           "turn",
           "source_version",
           "language",
+          "session_language",
           "at_ms",
           "view",
           "map_focus",
@@ -65,7 +66,8 @@ export function voiceUpdate(value, language, revision, turn) {
         ].includes(k),
     ) ||
     value.source_version !== QUESTION_VERSION ||
-    value.language !== language ||
+    (value.session_language === undefined ? value.language !== language :
+      value.session_language !== language || !["en","es"].includes(value.language)) ||
     !STAGES.includes(value.stage) ||
     !Number.isInteger(value.revision) ||
     value.revision <= revision ||
@@ -108,7 +110,7 @@ export function voiceUpdate(value, language, revision, turn) {
     unit = validateJourney(
       value.result,
       value.result?.unit?.operation,
-      language,
+      value.language,
     );
     if (value.text !== unit.sections.map((part) => part.text).join(" "))
       throw Error("voice_text_binding");
@@ -122,10 +124,11 @@ export function voiceUpdate(value, language, revision, turn) {
   if (
     value.stage === "checked_text" &&
     !unit &&
-    value.text !== voiceControlText(value.view, language, value.map_focus)
+    value.text !== voiceControlText(value.view, value.language, value.map_focus)
   )
     throw Error("voice_control_text");
   return {
+    language: value.language,
     stage: value.stage,
     turn: value.turn,
     revision: value.revision,
@@ -150,15 +153,15 @@ export function voiceFinalTurns(receipt,language){
   if (!Array.isArray(inputs) || inputs.length > receipt.turns.length ||
       new Set(inputs.map(item=>item?.turn)).size !== inputs.length || inputs.some(item=>
         !item || !Number.isInteger(item.turn) || item.turn < 1 || item.turn > receipt.turns.length ||
-        item.language !== language || item.transcript_origin !== "independent_bounded_input_asr" ||
+        !["en","es"].includes(item.language) || item.transcript_origin !== "independent_bounded_input_asr" ||
         !/^[a-f0-9]{64}$/.test(item.input_audio_sha256) || typeof item.text !== "string" ||
         !item.text.trim() || item.text.length > 500)) throw Error("voice_final_input");
   return receipt.turns.map((part,index)=>{
-    if(part.turn!==index+1||part.source_version!==QUESTION_VERSION||part.language!==language||part.independent_asr_match!==true||
+    if(part.turn!==index+1||part.source_version!==QUESTION_VERSION||!["en","es"].includes(part.language)||part.independent_asr_match!==true||
       !/^[a-f0-9]{64}$/.test(part.audio_sha256)||!Number.isFinite(part.audio_seconds)||part.audio_seconds<=0||part.audio_seconds>60||
       !part.checked||Object.keys(part.checked).sort().join()!=="map_focus,result,text,view")throw Error("voice_final_turn");
     const action = voiceUpdate({...part.checked,stage:"checked_text",turn:part.turn,revision:part.turn,source_version:QUESTION_VERSION,
-      language,at_ms:part.ready_at_ms},language,0,0);
-    return {...action, inputText: inputs.find(item=>item.turn===part.turn)?.text ?? null};
+      session_language:language,language:part.language,at_ms:part.ready_at_ms},language,0,0);
+    return {...action, inputText: inputs.find(item=>item.turn===part.turn)?.text ?? null, inputLanguage: inputs.find(item=>item.turn===part.turn)?.language ?? null};
   });
 }

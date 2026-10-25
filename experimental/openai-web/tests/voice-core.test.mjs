@@ -26,6 +26,10 @@ test("native voice view events require the current source, language, turn and ch
     { html: "<script>" },
   ])
     assert.throws(() => voiceUpdate({ ...event, ...mutation }, "en", 1, 1));
+  const switched={...event,session_language:"en",language:"es"};
+  assert.equal(voiceUpdate(switched,"en",1,1).language,"es");
+  assert.throws(()=>voiceUpdate({...switched,session_language:"es"},"en",1,1),/binding/);
+  assert.throws(()=>voiceUpdate({...switched,language:"unknown"},"en",1,1),/binding/);
   const checked = {
     ...event,
     stage: "checked_text",
@@ -97,9 +101,14 @@ test("a slow poll recovers every final checked caption from the complete receipt
   assert.deepEqual(voiceFinalTurns(receipt,"en").map(part=>part.turn),[1,2]);
   assert.equal(voiceFinalTurns(receipt,"en")[0].inputText,"Show the source.");
   assert.equal(voiceFinalTurns(receipt,"en")[1].inputText,null);
+  const switched=structuredClone(receipt);
+  switched.turns[1].language="es";
+  switched.turns[1].checked.text=voiceControlText("source","es");
+  assert.deepEqual(voiceFinalTurns(switched,"en").map(x=>x.language),["en","es"]);
+  assert.equal(voiceFinalTurns(switched,"en")[0].inputLanguage,"en");
   for (const mutate of [
     value=>{value.inputs.push(value.inputs[0])},
-    value=>{value.inputs[0].language="es"},
+    value=>{value.inputs[0].language="unknown"},
     value=>{value.errors=["late_audio"]},
     value=>{value.turns[1].turn=1},
     value=>{value.turns[1].source_version="foreign"},

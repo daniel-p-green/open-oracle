@@ -218,6 +218,11 @@ test("resident journey keeps arbitrary text local, source-bound generated units 
       ],
     },
   };
+  const spanishBrief={...result,unit:{operation:"brief",language:"es",sections:[{source_id:"question",
+    text:"La pregunta consulta si se aprueba el acto de la Asamblea General que reemplaza el plan congresional existente de Misuri."}]}};
+  assert.equal(validateJourney(spanishBrief,"brief","es").sections[0].text,spanishBrief.unit.sections[0].text);
+  const tooLong=structuredClone(spanishBrief);tooLong.unit.sections[0].text+=" "+"extra ".repeat(7);
+  assert.throws(()=>validateJourney(tooLong,"brief","es"),/journey_section/);
   const unit = validateJourney(result, "overview", "en");
   assert.equal(recapUnits([unit], "es").length, 0);
   assert.equal(recapUnits([unit], "en")[0].sections[0].source_id, "question");

@@ -27,7 +27,7 @@ let lastMapView = "statewide";
 let spokenHeld = false;
 const inputGaps = new Set();
 const finalInputs = new Set();
-function transcript(role, number, text, state) {
+function transcript(role, number, text, state, textLanguage = language) {
   const host = $("conversation-turns");
   let item = host.querySelector(
     `[data-turn="${number}"][data-speaker="${role}"]`,
@@ -67,7 +67,9 @@ function transcript(role, number, text, state) {
       labels[state],
   );
   label.className = "small";
-  item.replaceChildren(label, make("p", text));
+  label.lang = language;
+  const words = make("p", text); words.lang = textLanguage;
+  item.replaceChildren(label, words);
 }
 const make = (tag, text) => {
   const n = document.createElement(tag);
@@ -105,7 +107,7 @@ const status = (text) => {
 function holdPendingCaptions() {
   for (const item of $("conversation-turns").querySelectorAll('[data-transcript-state="checked_text"]')) {
     const text = item.lastElementChild.textContent;
-    transcript("assistant", Number(item.dataset.turn), text, "held");
+    transcript("assistant", Number(item.dataset.turn), text, "held", item.lastElementChild.lang || language);
   }
   $("answer-state").textContent = es()
     ? "No hay audio verificado disponible · sin reproducción"
@@ -418,12 +420,12 @@ function progress(values, ticket) {
     turn = action.turn;
     if (action.stage === "input_final") {
       finalInputs.add(action.turn); inputGaps.delete(action.turn);
-      transcript("user", action.turn, action.text, "input_final");
+      transcript("user", action.turn, action.text, "input_final", action.language);
       continue;
     }
     if (action.stage === "input_partial") {
       if (finalInputs.has(action.turn)) continue;
-      transcript("user", action.turn, action.text, inputGaps.has(action.turn) ? "unavailable" : "provisional");
+      transcript("user", action.turn, action.text, inputGaps.has(action.turn) ? "unavailable" : "provisional", action.language);
       continue;
     }
     if (action.stage === "input_unavailable") {
@@ -460,7 +462,7 @@ function progress(values, ticket) {
     status(labels[action.stage]);
     if (action.stage === "routing") void view(action, ticket);
     if (action.stage === "checked_text") {
-      transcript("assistant", action.turn, action.text, "checked_text");
+      transcript("assistant", action.turn, action.text, "checked_text", action.language);
       $("caption").textContent = es()
         ? "La respuesta está en la transcripción. El audio sigue retenido."
         : "The answer is in the transcript. Audio remains held.";
@@ -514,8 +516,8 @@ async function synthetic() {
     );
   } else {
     for (const action of result) {
-      if (action.inputText) transcript("user", action.turn, action.inputText, "input_final");
-      transcript("assistant", action.turn, action.text, "final");
+      if (action.inputText) transcript("user", action.turn, action.inputText, "input_final", action.inputLanguage);
+      transcript("assistant", action.turn, action.text, "final", action.language);
     }
     $("answer-state").textContent = es()
       ? "Transcripciones finales comprobadas · altavoces apagados · revisión humana pendiente"

@@ -36,6 +36,31 @@ current-browser evidence**. No human capture or privacy-policy expansion follows
 The exact new six-stage bundle is approved but its first text launch was again
 automatically denied before execution; [current blocker and limits](API-TEST-APPROVAL-BUNDLE.md).
 
+**October25 actual progress:** a complete two-turn native English synthetic
+session passed on09b02d3: fresh grounded explanation, native KC map selection,
+exact-clip input captions, independent complete-output ASR and final usage/closure.
+A separate recovery session reached checked text, cancelled and confirmed no
+accepted audio. [Immutable staged evidence](STAGED-VOICE-RESULTS-2026-10-25.json).
+This is CLI/API evidence, not current primary-browser rendering, human-heard or
+unanticipated human-conversation acceptance. From input completion, checked text
+was3.014s/1.114s and independently checked audio10.678s/8.814s; these are individual
+samples, not percentiles. Whole-utterance buffering remains a latency limitation.
+
+Later local implementation adds an owned per-turn EN/ES Decisions choice,
+source-preserving fresh language adaptation, distinct session/input/response
+language metadata and correct caption language tags. Both switch directions pass
+the protocol owner with input/output ASR mocks, including preserved previous unit
+and sources. A reviewer caught provisional input using the response language;
+fixed to the owned clip language and rechecked. **This newer four-choice contract
+has no real-provider result yet.** The two-turn fixture bound and UI preference
+selector's existing Erase behavior remain; no continuous3turn EN→ES→EN claim.
+Spanish brief engineering limit now150 rather than120characters (English stays
+120), in both server/browser, to avoid dropping supported meaning for translation
+expansion. Current-status/polarity/source/numeric/independent review and20s output
+waveform gates remain. This change does not retroactively accept Spanish trials:
+both text slots are consumed and Spanish independent review/live speech remain
+unverified. Do not reuse a consumed purpose or spare money as stage authority.
+
 Current API roles, checked against official documentation and actual local code:
 
 | Service | Actual role / endpoint | Evidence and limit |
