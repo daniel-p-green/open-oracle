@@ -234,6 +234,38 @@ class JobsTests(unittest.TestCase):
         self.assertAlmostEqual(sum(r['reserved_usd'] for r in rows),.42)
         self.assertEqual(sum(r['requests_max'] for r in rows),52)
 
+    def test_bilingual_batch_preserves_history_caps_repair_and_unknown_settlement(self):
+        from jobs import BILINGUAL_TRIAL_PACKAGE as package
+        budget=Budget(self.path)
+        def reserve(name,purpose,language='en',**kwargs):
+            budget.reserve(name,'voice:synthetic:'+language,trial_package=package,trial_purpose=purpose,**kwargs)
+        with self.assertRaisesRegex(Held,'trial_prerequisite'):reserve('skip','roundtrip')
+        reserve('en','english')
+        budget.attempt('en');budget.record('en','fresh_audio',{'seconds':2})
+        receipt={'finalized':True,'close_reason':'close_requested','usage':{'seconds':2},'errors':[],
+                 'asr_outcome_confirmed':True,'native_usage_confirmed':False}
+        budget.finish('en','held',voice_receipt=receipt)
+        with self.assertRaisesRegex(Held,'outcome_unconfirmed'):reserve('repair','conditional_repair',repair_basis='named offline accounting repair')
+        receipt['native_usage_confirmed']=True
+        budget.finish('en','held',voice_receipt=receipt)
+        with self.assertRaisesRegex(Held,'trial_repair_required'):reserve('es','spanish','es')
+        with self.assertRaisesRegex(Held,'trial_repair_scope'):
+            reserve('wrong','conditional_repair',repair_basis='named offline checked speech repair',trial_scenario='roundtrip',repair_of='en')
+        reserve('repair','conditional_repair',repair_basis='named offline checked speech repair',trial_scenario='english',repair_of='en')
+        for number in range(16):
+            budget.attempt('repair')
+            budget.record('repair','fresh_audio' if number==15 else 'review',{'seconds':2} if number==15 else {'input_tokens':10,'output_tokens':0})
+        with self.assertRaisesRegex(Held,'trial_attempt_limit'):budget.attempt('repair')
+        budget.finish('repair','ready',voice_receipt=receipt)
+        for purpose,language in [('spanish','es'),('roundtrip','en'),('cancellation','en')]:
+            reserve(purpose,purpose,language)
+            budget.attempt(purpose);budget.record(purpose,'fresh_audio',{'seconds':2})
+            budget.finish(purpose,'ready',voice_receipt=receipt)
+        with self.assertRaisesRegex(Held,'trial_package_exhausted'):reserve('retry','conditional_repair',repair_basis='second repair is forbidden')
+        rows=json.loads(self.path.read_text())['runs']
+        self.assertAlmostEqual(sum(r['reserved_usd'] for r in rows),.65)
+        self.assertEqual(sum(r['requests_max'] for r in rows),70)
+
     def test_partial_text_language_proof_does_not_release_an_unverified_language(self):
         from jobs import STAGED_TRIAL_PACKAGE as package
         from journey import QUESTION_PIN
@@ -262,6 +294,15 @@ class JobsTests(unittest.TestCase):
         self.jobs.pipeline=Deadline();self.jobs.start(self.token,self.request)
         row=self.wait_terminal()
         self.assertEqual(row['state'],'held');self.assertEqual(row['reason'],'voice_deadline')
+        class Uncertain:
+            def run(self,cancel,progress,meter):
+                cancel.set();raise Held('voice_native_usage_unconfirmed')
+        self.jobs.close();self.jobs=Jobs(Uncertain(),Budget(self.path))
+        self.token=self.jobs.capabilities()['session_token']
+        self.jobs.start(self.token,'native_uncertainty_0002')
+        self.jobs.workers[-1].join(1)
+        row=self.jobs.public(self.token,'native_uncertainty_0002')
+        self.assertEqual(row['state'],'held');self.assertEqual(row['reason'],'voice_native_usage_unconfirmed')
 
     def test_missing_usage_holds_and_retains_reservation(self):
         class MissingUsage:

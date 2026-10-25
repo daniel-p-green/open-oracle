@@ -22,6 +22,9 @@ STAGED_TRIAL_PACKAGE = 'native_voice_staged_six_20261024'
 STAGED_TRIAL_LIMITS = {'text_initial': (.01, 4), 'text_repair': (.01, 4),
                        'english': (.10, 11), 'spanish': (.10, 11),
                        'native_repair': (.10, 11), 'recovery': (.10, 11)}
+BILINGUAL_TRIAL_PACKAGE = 'native_voice_bilingual_five_20261025'
+BILINGUAL_TRIAL_LIMITS = {'english':(.10,11),'spanish':(.10,11),
+                         'roundtrip':(.15,16),'cancellation':(.15,16),'conditional_repair':(.15,16)}
 
 
 class Budget:
@@ -47,10 +50,12 @@ class Budget:
             finally:
                 if os.path.exists(name): os.unlink(name)
 
-    def reserve(self, run, task=None, *, trial_package=None, trial_purpose=None, repair_basis=None):
+    def reserve(self, run, task=None, *, trial_package=None, trial_purpose=None, repair_basis=None, trial_scenario=None, repair_of=None):
         speech=bool(task and task.startswith('speech:'))
         voice=bool(task and task.startswith('voice:synthetic:'))
         amount = .10 if speech or voice else self.journey_reserve if task and task.startswith('journey:') else min(self.per_run, .01) if task else self.per_run
+        if trial_package==BILINGUAL_TRIAL_PACKAGE and trial_purpose in BILINGUAL_TRIAL_LIMITS:
+            amount=BILINGUAL_TRIAL_LIMITS[trial_purpose][0]
         with self.locked() as data:
             maximum = data.get('authorization_usd_max')
             runs = data.get('runs')
@@ -86,6 +91,30 @@ class Budget:
                                       and previous[-1]['held_language'] != language and text_ready)
                 if previous and previous[-1].get('state') == 'held' and 'repair' not in trial_purpose and not independent_language:
                     raise Held('trial_repair_required')
+            elif trial_package == BILINGUAL_TRIAL_PACKAGE:
+                if not voice or trial_purpose not in BILINGUAL_TRIAL_LIMITS:raise Held('trial_package_invalid')
+                expected,attempts=BILINGUAL_TRIAL_LIMITS[trial_purpose]
+                language=task.rsplit(':',1)[-1]
+                if language not in {'en','es'} or (trial_purpose!='conditional_repair' and language!=('es' if trial_purpose=='spanish' else 'en')):
+                    raise Held('trial_package_invalid')
+                previous=[r for r in runs if r.get('trial_package')==trial_package]
+                if (len(previous)>=5 or sum(r['reserved_usd'] for r in previous)+amount>.650001
+                        or sum(r['requests_max'] for r in previous)+attempts>70
+                        or any(r.get('trial_purpose')==trial_purpose for r in previous)):
+                    raise Held('trial_package_exhausted')
+                if any(r.get('state')=='reserved' for r in runs) or any(r.get('trial_closure_confirmed') is not True for r in previous):
+                    raise Held('trial_package_outcome_unconfirmed')
+                if trial_purpose=='conditional_repair':
+                    if not previous or previous[-1].get('state')!='held' or type(repair_basis) is not str or not 10<=len(repair_basis)<=200:
+                        raise Held('trial_repair_basis_required')
+                    if repair_of!=previous[-1]['id'] or trial_scenario!=previous[-1].get('trial_scenario'):
+                        raise Held('trial_repair_scope')
+                else:
+                    if trial_scenario not in (None,trial_purpose) or repair_of is not None:raise Held('trial_package_invalid')
+                    trial_scenario=trial_purpose
+                    if previous and previous[-1].get('state')=='held':raise Held('trial_repair_required')
+                    completed=[r for r in previous if r.get('trial_purpose')!='conditional_repair']
+                    if trial_purpose!=('english','spanish','roundtrip','cancellation')[len(completed)]:raise Held('trial_prerequisite')
             elif trial_package is not None or trial_purpose is not None:
                 if trial_package != VOICE_TRIAL_PACKAGE or trial_purpose not in VOICE_TRIAL_PURPOSES or not voice:
                     raise Held('trial_package_invalid')
@@ -100,9 +129,12 @@ class Budget:
                          'reserved_usd': amount, 'retry': False, 'requests_max': 9 if voice else 2 if journey or speech else 1 if task else 4, 'stages': []})
             if trial_package:
                 runs[-1].update(trial_package=trial_package, trial_purpose=trial_purpose)
-                if trial_package == STAGED_TRIAL_PACKAGE:
+                if trial_package in {STAGED_TRIAL_PACKAGE,BILINGUAL_TRIAL_PACKAGE}:
                     runs[-1].update(requests_max=attempts, requests_attempted=0)
                     if repair_basis: runs[-1]['repair_basis'] = repair_basis
+                    if trial_package==BILINGUAL_TRIAL_PACKAGE:
+                        runs[-1]['trial_scenario']=trial_scenario
+                        if repair_of:runs[-1]['repair_of']=repair_of
             data['conservative_reservations_usd'] = sum(amounts) + amount
             data['state'] = 'integrated public-provider test in flight'
 
@@ -138,7 +170,7 @@ class Budget:
         """Atomic pre-dispatch counter for the staged public test transport."""
         with self.locked() as data:
             row = next(r for r in data['runs'] if r['id'] == run)
-            if row.get('trial_package') != STAGED_TRIAL_PACKAGE or row['state'] != 'reserved':
+            if row.get('trial_package') not in {STAGED_TRIAL_PACKAGE,BILINGUAL_TRIAL_PACKAGE} or row['state'] != 'reserved':
                 raise Held('trial_package_invalid')
             if row['requests_attempted'] >= row['requests_max']: raise Held('trial_attempt_limit')
             row['requests_attempted'] += 1
@@ -184,7 +216,7 @@ class Budget:
                 confirmed=(voice_receipt.get('finalized') is True and voice_receipt.get('close_reason')=='close_requested'
                            and type(seconds) in (int,float) and 0<seconds<=75 and final_usage==[seconds]
                            and not set(voice_receipt.get('errors',[])) & {'voice_usage_unconfirmed','voice_native_usage_unconfirmed','voice_asr_outcome_unconfirmed','usage_unconfirmed','usage_bound','voice_close_unconfirmed','voice_closure_unconfirmed'}) if type(voice_receipt) is dict else False
-                if row['trial_package'] == STAGED_TRIAL_PACKAGE:
+                if row['trial_package'] in {STAGED_TRIAL_PACKAGE,BILINGUAL_TRIAL_PACKAGE}:
                     confirmed = (confirmed and voice_receipt.get('asr_outcome_confirmed') is True
                                  and voice_receipt.get('native_usage_confirmed') is True
                                  and 0 < row.get('requests_attempted',0) == len(row['stages']) <= row['requests_max'])
@@ -312,7 +344,7 @@ class Jobs:
                 row['timing'].advance('ready', terminal=True)
         except Held as error:
             with self.lock:
-                row.update(state='expired' if row['state']=='expired' or str(error)=='expired' else 'cancelled' if row['state']=='cancel_requested' or row['cancel'].is_set() and str(error)!='voice_deadline' else 'held', reason=str(error), result=None, audio=None)
+                row.update(state='expired' if row['state']=='expired' or str(error)=='expired' else 'cancelled' if row['state']=='cancel_requested' or row['cancel'].is_set() and str(error) not in {'voice_deadline','voice_native_usage_unconfirmed'} else 'held', reason=str(error), result=None, audio=None)
         except Exception:
             with self.lock: row.update(state='held', reason='provider_failure', result=None, audio=None)
         finally:

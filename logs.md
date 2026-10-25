@@ -2622,3 +2622,34 @@ This is a backfill, not a contemporaneous event stream.
   $0.3695946916666667 recorded estimate, zero in-flight rows; existing environment
   credential present, value not inspected/displayed. User expressly authorized
   reuse previously; no credential creation/account login needed or attempted.
+
+
+### 2026-10-25 03:15 UTC — actual Opus review and additional local repairs
+
+- Completed source-only Opus5.5High review in existing Claude chat, Message41
+  submission/Message42 response. Selected model/effort visibly verified. Payload
+ 318924bytes/SHA5a66aba60d2f7a26e69bf9c656227746d0a9e6cde2cb8dcdaa51b7bded0942fc.
+  No unrelated/credential/private voter/human material; no duplicate submission.
+  Both664a4c4 CI runs40156675810/40156673054 passed. Verdict not ready; inspection
+  only. Detailed dispositions: CLAUDE-ADVERSARIAL-2026-10-25.md.
+- Confirmed/fixed created-but-uncompleted and malformed nested native events
+  falsely confirming settlement. Added red/green cases at real owner/Budget seam.
+  Retained conservative unknown status for configured-but-uncompleted native work;
+  absent event is not vendor evidence of zero backend charges.
+- Local repairs: typed pre-cancel transcription non-dispatch, held classification
+  of internal usage fences, earlier quiet-mismatch hold, closed Missouri/Misuri
+  alias, response-language canvas labels/map locale. Human/browser/live results
+  not inferred from syntax or fake-provider proof.
+- Distinct bilingual controls and runner prepared, with same-failed-run/scenario
+  repair binding and checked Spanish transition required for cancellation success.
+  No new API request executed. Existing historical rows/reservations unchanged.
+- Installed macOS voice generation wrote empty files inside default sandbox;
+  detected and regenerated public WAV fixtures through normal escalation. Valid
+ 24kHz monoPCM16/.05–8s, exact hashes, files only. No speakers/microphone/software
+  install/download or paid call.
+- Blocked action: combined documentation/test command was rejected by automatic
+  approval review before execution because it did not accept evidence for
+  recording the proposed batch as approved. Authorization-status document left
+  untouched; no retry or alternate route. Continued independent offline repairs
+  and source-review record only. No paid batch is claimed started.
+- Verification completed: full existing Python suite including loopback passed under normal escalation; all existing Node contract/state suites passed. No provider calls or human media. Current fixes remain live-unverified.

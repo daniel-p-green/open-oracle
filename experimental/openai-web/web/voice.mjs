@@ -113,7 +113,8 @@ function holdPendingCaptions() {
     ? "No hay audio verificado disponible · sin reproducción"
     : "No checked audio available · not played";
 }
-function heldVisualNote() {
+function heldVisualNote(locale = language) {
+  const es = () => locale === "es";
   if (!spokenHeld || (!visualComplete && !map) || $("visual").querySelector('[data-spoken-held]')) return;
   const note = make("p", es()
     ? "Este turno no produjo una respuesta hablada verificada. Las fuentes mostradas siguen disponibles."
@@ -186,7 +187,8 @@ function stop(erase = false) {
     return confirmed;
   });
 }
-function original(host, expanded = false) {
+function original(host, expanded = false, locale = language) {
+  const es = () => locale === "es";
   if (!measure) return;
   const details = make("details"),
     summary = make(
@@ -218,14 +220,16 @@ function original(host, expanded = false) {
   host.append(details);
 }
 async function view(action, ticket) {
+  const locale = action.language, es = () => locale === "es";
   const requestedMapView = {statewide:"statewide",kansas_city:"kc",st_louis:"stl"}[action.mapFocus];
-  if (action.view === "maps" && map && visualComplete && session.current(ticket) &&
+  if (action.view === "maps" && map && visualComplete && $("visual").lang === locale && session.current(ticket) &&
       (action.mapFocus === "unchanged" || requestedMapView === lastMapView)) return;
   clearTimeout(legalExpiryTimer);
   const ownRevision = ++visualRevision;
   const current = () =>
     session.current(ticket) && ownRevision === visualRevision;
   const host = $("visual");
+  host.lang = locale;
   visualComplete = false;
   map?.dispose();
   map = null;
@@ -248,7 +252,7 @@ async function view(action, ticket) {
       const maps = make("div");
       host.append(maps);
       map = mountMapComparison(maps, geometry, {
-        locale: language,
+        locale,
         planLabels: measure.plan_labels,
         onChange: (selection) => { lastMapView = selection.view; },
       });
@@ -268,9 +272,9 @@ async function view(action, ticket) {
       );
       // A retained map must already have its checked original/source context.
       // Optional legal-status IO cannot be the gate for those source controls.
-      original(host);
+      original(host, false, locale);
       visualComplete = true;
-      heldVisualNote();
+      heldVisualNote(locale);
       const legal = await loadMapStatus(signal).catch(() => null);
       if (!current()) return;
       const note = make(
@@ -286,14 +290,14 @@ async function view(action, ticket) {
             ? "Estado legal vigente no verificado."
             : "Current legal status is unverified.",
       );
-      note.lang = legal && mapStatusCurrent(legal) ? "en" : language;
+      note.lang = legal && mapStatusCurrent(legal) ? "en" : locale;
       note.dataset.legalStatus = "snapshot";
       host.append(note);
       if (legal && mapStatusCurrent(legal)) {
         legalExpiryTimer = setTimeout(
           () => {
             if (current() && note.isConnected) {
-              note.lang = language;
+              note.lang = locale;
               note.textContent = es()
                 ? "La revisión del estado legal ha vencido. Consulte el expediente oficial; no se afirma el estado vigente."
                 : "This legal-status snapshot has expired. Check the official docket; no current status is asserted.";
@@ -396,9 +400,9 @@ async function view(action, ticket) {
         make("h2", es() ? "La pregunta oficial" : "The official question"),
       );
     if (current()) {
-      if (action.view !== "maps") original(host, action.view === "source");
+      if (action.view !== "maps") original(host, action.view === "source", locale);
       visualComplete = true;
-      heldVisualNote();
+      heldVisualNote(locale);
     }
   } catch {
     if (current())

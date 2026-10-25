@@ -15,7 +15,7 @@ import wave
 from pathlib import Path
 from journey import JourneyPipeline, QUESTION_PIN, load_question
 from fresh_speech import words
-from providers import Held, check_cancel
+from providers import Held, NotDispatched, check_cancel
 
 VIEWS = ('measure', 'maps', 'limits', 'source', 'clarify', 'abstain')
 FOCUSES = ('statewide', 'kansas_city', 'st_louis', 'unchanged')
@@ -183,6 +183,8 @@ class PublicSyntheticVoiceLoop:
         active_delegation = None
         known_delegations, seen_decisions, decided_turns = {}, set(), set()
         native_usage={}
+        native_created=set()
+        native_known=set()
         native_reserved=0
         native_metered=0
         native_settled=True
@@ -279,7 +281,10 @@ class PublicSyntheticVoiceLoop:
                 work={'metered':False}
                 asr_work.append(work)
                 def request():
-                    result=self.provider.transcribe(public_wave(pcm),cancel)
+                    try:result=self.provider.transcribe(public_wave(pcm),cancel)
+                    except NotDispatched:
+                        work['not_dispatched']=True
+                        raise
                     meter('transcription',{'seconds':len(pcm)/48000})
                     work['metered']=True
                     return result
@@ -318,8 +323,10 @@ class PublicSyntheticVoiceLoop:
                 nonlocal active_delegation, task, voiced_at, turn_language
                 try:
                     async for raw in connection:
-                        event=json.loads(raw); kind=event.get('type')
+                        event=json.loads(raw)
                         settle_native(event)
+                        if type(event) is not dict:continue
+                        kind=event.get('type')
                         if cancel.is_set() and kind!='session.closed': continue
                         if kind=='session.started': mark('session_started');started.set()
                         elif kind=='session.updated':
@@ -435,30 +442,45 @@ class PublicSyntheticVoiceLoop:
                     async for raw in connection:
                         event=json.loads(raw)
                         settle_native(event)
-                        if event.get('type')=='session.closed':
+                        if type(event) is dict and event.get('type')=='session.closed':
                             receipt.update(finalized=True,usage=event.get('usage'),close_reason=event.get('reason'))
                             closed.set();return
                 except Exception: errors.append('voice_transport');finished.set()
 
             def settle_native(event):
-                # Financial settlement is independent of content/turn admission.
-                # Cancellation and error drains must still account for completed
-                # server work. A repeated ID cannot silently change its usage.
+                # Financial settlement precedes admission, cancel filtering and
+                # drain handling. Creation without a terminal usage stays unknown.
                 nonlocal native_reserved,native_metered,native_settled,native_overflow
-                if event.get('type')!='decision.event' or event.get('event',{}).get('type')!='decision.completed':return
-                delegation=event.get('delegation_id')
-                usage=event['event'].get('decision',{}).get('usage')
                 def uncertain():
                     nonlocal native_settled
-                    native_settled=False
-                    finished.set()
-                    cancel.set()  # Fence in-flight ASR/backend and next-turn dispatch too.
+                    native_settled=False;finished.set();cancel.set()
                     if 'voice_native_usage_unconfirmed' not in errors:errors.append('voice_native_usage_unconfirmed')
-                if type(delegation) is not str or not delegation or len(delegation)>200:
-                    uncertain();return
-                # Retain only bounded priced fields, never arbitrary provider
-                # metadata/raw nested structures. Overflow means unknown spend,
-                # not permission to keep growing memory or the durable ledger.
+                if type(event) is not dict:uncertain();return
+                kind=event.get('type')
+                if kind not in {'session.delegation.created','decision.event'}:return
+                if kind=='session.delegation.created':
+                    created=event.get('delegation')
+                    if type(created) is not dict or created.get('target')!='decisions':uncertain();return
+                    delegation=created.get('id')
+                else:
+                    nested=event.get('event')
+                    if type(nested) is not dict:uncertain();return
+                    if nested.get('type')!='decision.completed':return
+                    delegation=event.get('delegation_id')
+                if type(delegation) is not str or not delegation or len(delegation)>200:uncertain();return
+                if delegation not in native_known:
+                    if len(native_known)>=16:native_overflow=True;uncertain();return
+                    native_known.add(delegation)
+                    if len(native_known)>native_reserved:
+                        # Autonomous work already started: count it and stop new
+                        # work immediately, even if its eventual usage is valid.
+                        finished.set();cancel.set()
+                        try:self.provider.account_attempt();native_reserved+=1
+                        except Exception:uncertain()
+                if kind=='session.delegation.created':native_created.add(delegation);return
+                decision=nested.get('decision')
+                usage=decision.get('usage') if type(decision) is dict else None
+                # Only bounded priced fields survive. No arbitrary raw metadata.
                 safe=None
                 if type(usage) is dict:
                     details=usage.get('input_tokens_details',{})
@@ -472,15 +494,7 @@ class PublicSyntheticVoiceLoop:
                 if delegation in native_usage:
                     if native_usage[delegation]!=safe:uncertain()
                     return
-                if len(native_usage)>=16:
-                    native_overflow=True;uncertain();return
                 native_usage[delegation]=safe
-                if len(native_usage)>native_reserved:
-                    # Already incurred autonomous work cannot be prevented by a
-                    # client counter. Record it, and fail closed if the counter
-                    # cannot reconcile it within the reserved envelope.
-                    try:self.provider.account_attempt();native_reserved+=1
-                    except Exception:uncertain()
                 try:
                     if safe is None:raise Held('voice_native_usage_unconfirmed')
                     meter('review',safe);native_metered+=1
@@ -538,6 +552,10 @@ class PublicSyntheticVoiceLoop:
                     # segment. Independent whole-waveform ASR still gates it.
                     while not finished.is_set() and time.monotonic()<deadline:
                         check_cancel(cancel)
+                        if expected and voiced_at and time.monotonic()-voiced_at>=2 and words(''.join(output_transcript))!=words(expected):
+                            # A pause never proves completion, but an already
+                            # mismatched candidate can be safely held sooner.
+                            raise Held('voice_output_mismatch')
                         if expected and words(''.join(output_transcript))==words(expected) and voiced_at and time.monotonic()-voiced_at>=1:
                             mark('candidate_quiet_reached')
                             break
@@ -596,12 +614,13 @@ class PublicSyntheticVoiceLoop:
                 receiver.cancel();await asyncio.gather(receiver,return_exceptions=True)
                 cancellation_watcher.cancel();await asyncio.gather(cancellation_watcher,return_exceptions=True)
                 pending_audio.clear();input_transcript.clear();output_transcript.clear();input_parts.clear();input_windows.clear();input_commands.clear();input_languages.clear()
-        receipt['asr_outcome_confirmed']=all(work['metered'] for work in asr_work)
-        receipt.update(native_usage_confirmed=native_settled and len(native_usage)==native_metered==native_reserved,
-                       native_completions=len(native_usage),native_completion_overflow=native_overflow,native_usage_metered=native_metered,native_attempts_reserved=native_reserved)
+        receipt['asr_outcome_confirmed']=all(work['metered'] or work.get('not_dispatched') for work in asr_work)
+        receipt.update(native_usage_confirmed=native_settled and len(native_usage)==native_metered==native_reserved and native_created.issubset(native_usage),
+                       native_completions=len(native_usage),native_delegations_created=len(native_created),native_completion_overflow=native_overflow,native_usage_metered=native_metered,native_attempts_reserved=native_reserved)
         if not receipt['native_usage_confirmed'] and 'voice_native_usage_unconfirmed' not in errors:
             errors.append('voice_native_usage_unconfirmed')
-        receipt['asr_attempted']=len(asr_work)
+        receipt['asr_attempted']=sum(not work.get('not_dispatched',False) for work in asr_work)
+        receipt['asr_not_dispatched']=sum(work.get('not_dispatched',False) for work in asr_work)
         receipt['asr_metered']=sum(work['metered'] for work in asr_work)
         if not receipt['asr_outcome_confirmed']: errors.append('voice_asr_outcome_unconfirmed')
         usage_seconds=(receipt.get('usage') or {}).get('seconds')

@@ -49,6 +49,8 @@ class FreshSpeechTests(unittest.TestCase):
         self.assertNotEqual(words('No one approves it'),words('number one approves it'))
         self.assertNotEqual(words('does not verify'),words('does verify'))
         self.assertEqual(words('St. Louis'),words('Saint Louis'))
+        self.assertEqual(words('Missouri'),words('Misuri'))
+        self.assertNotEqual(words('Misuri'),words('Mississippi'))
         self.assertNotEqual(words('St. Joseph'),words('Saint Louis'))
 
     def test_same_owner_parent_revocation_and_audio_expiry_keep_budget_conservative(self):

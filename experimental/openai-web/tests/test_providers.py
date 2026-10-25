@@ -116,6 +116,13 @@ class PipelineTests(unittest.TestCase):
 
 
 class LiveDispatchTests(unittest.TestCase):
+    def test_precancelled_transcription_is_explicitly_not_dispatched(self):
+        from providers import NotDispatched
+        provider=object.__new__(OpenAIProvider);provider.account_attempt=mock.Mock()
+        cancel=threading.Event();cancel.set()
+        with self.assertRaises(NotDispatched):provider.transcribe(b'public',cancel)
+        provider.account_attempt.assert_not_called()
+
     def test_precancelled_live_request_never_connects(self):
         cancel = threading.Event(); cancel.set()
         provider = object.__new__(OpenAIProvider); provider._headers = {}
