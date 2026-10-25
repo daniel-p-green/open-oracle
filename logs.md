@@ -2569,3 +2569,56 @@ This is a backfill, not a contemporaneous event stream.
 - Latest review payload remains immutable bdcc568 bundle/manifest, destination
   existing OpenOracle Claude chat; verify Opus5.5High in UI before submission.
   Paid history and proposed new package remain unchanged and unexecuted.
+
+
+### 2026-10-25 02:57 UTC — reproduced native settlement defect; focused repair
+
+- Parent forwarded an independently reproduced missing-accounting defect at
+ 6165baa. Confirmed with the actual WebSocket owner and real temporary Budget
+  ledger: a second distinct completion, completion after cancellation and one
+  in error drain each omitted its native usage; conflicting duplicate usage
+  also falsely closed. The new owner regression failed before the fix in each
+  affected case (one command, no providers/network/media).
+- Completed: native completion usage now settles before content/turn admission,
+  cancellation filtering and in the bounded error drain. Distinct unexpected
+  work counts against the attempt envelope; duplicate IDs do not double charge;
+  conflicting/missing usage or an exhausted counter leaves settlement explicitly
+  unconfirmed. Budget requires the new native settlement proof before package
+  progression. Content/audio admission is unchanged; fully metered errors remain
+  held, not successful audio.
+- Corrected the round-trip proof: per-fixture EN/EN/ES input languages and distinct
+  PCM/hash ownership replace initial-language-only ASR mocks. Second-turn simpler
+  operation and confirmed request-fit are asserted while source/prior binding
+  remains checked. This is protocol evidence, not actual bilingual inference.
+- Validation: accounting regression red before/green after; full native owner
+  protocol suite, budget owner suite and Node voice state checks passed. Explicit
+  unknown-usage/counter-exhaustion cases remain closed to progression. Applied
+  installed MP-diagnosing-bugs and test-audit guidance; no count-driven tests.
+- New trusted user direction via parent approves the five-run/70-attempt/$0.65
+  batch and ongoing justified testing within the existing $200 project maximum.
+  Existing credential/scope only; preserve per-run reserves, stop/diagnose,
+  no human audio/new access/paid services. No paid request ran in this repair.
+- Historical receipts/ledger rows remain immutable. Their old closure flags did
+  not establish this newly added native completeness contract; recorded estimates
+  may omit previously unobserved autonomous completions. Full reservations stay
+  retained, and no retrospective exact-accounting claim is made.
+- Supported CUA browser executor is now available. Existing Claude chat inspected:
+  no later submission than Message40, composer empty, Send disabled, actual UI
+  model selection Opus5.5High. Latest source review still not sent yet; older
+  pending bundles preserved. No alternate host/access route used.
+
+- Independent follow-up identified an ASR race: setting finished alone did not
+  fence acceptance/next-turn config. Confirmed by reviewer with fake transport;
+  fixed by shared cancellation on uncertain native settlement. Protocol regression
+  now injects conflicting usage during output ASR with a next fixture queued:
+  no speech_checked/accepted turn or next configuration survives.
+- Settlement drain now retains at most16 compact priced usage records. A burst
+  beyond that sets explicit overflow/unknown settlement, retains full reserve,
+  and drains only for closure without unbounded memory or ledger growth.
+- Full default-sandbox Python run passed nonserver contracts but two server setup
+  classes could not bind loopback (PermissionError). The same existing server
+  suite passed under normal sandbox escalation; no external/provider calls.
+- Rechecked shared ledger safely: $200 maximum, $2.88 retained reservations,
+  $0.3695946916666667 recorded estimate, zero in-flight rows; existing environment
+  credential present, value not inspected/displayed. User expressly authorized
+  reuse previously; no credential creation/account login needed or attempted.

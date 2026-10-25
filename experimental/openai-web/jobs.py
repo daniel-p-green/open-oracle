@@ -186,6 +186,7 @@ class Budget:
                            and not set(voice_receipt.get('errors',[])) & {'voice_usage_unconfirmed','voice_native_usage_unconfirmed','voice_asr_outcome_unconfirmed','usage_unconfirmed','usage_bound','voice_close_unconfirmed','voice_closure_unconfirmed'}) if type(voice_receipt) is dict else False
                 if row['trial_package'] == STAGED_TRIAL_PACKAGE:
                     confirmed = (confirmed and voice_receipt.get('asr_outcome_confirmed') is True
+                                 and voice_receipt.get('native_usage_confirmed') is True
                                  and 0 < row.get('requests_attempted',0) == len(row['stages']) <= row['requests_max'])
                 row['trial_closure_confirmed']=confirmed
                 row['voice_closure']={'finalized':voice_receipt.get('finalized') is True,

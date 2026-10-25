@@ -182,6 +182,11 @@ class PublicSyntheticVoiceLoop:
         asr_work=[]
         active_delegation = None
         known_delegations, seen_decisions, decided_turns = {}, set(), set()
+        native_usage={}
+        native_reserved=0
+        native_metered=0
+        native_settled=True
+        native_overflow=False
         task = None
         prior = None
         turns, errors = [], []
@@ -314,6 +319,7 @@ class PublicSyntheticVoiceLoop:
                 try:
                     async for raw in connection:
                         event=json.loads(raw); kind=event.get('type')
+                        settle_native(event)
                         if cancel.is_set() and kind!='session.closed': continue
                         if kind=='session.started': mark('session_started');started.set()
                         elif kind=='session.updated':
@@ -352,9 +358,7 @@ class PublicSyntheticVoiceLoop:
                             seen_decisions.add(delegation);decided_turns.add(active_turn);active_delegation=delegation
                             receipt['native_decisions']+=1
                             mark('decision_completed')
-                            usage=event['event'].get('decision',{}).get('usage')
-                            if type(usage) is not dict: raise Held('voice_native_usage_unconfirmed')
-                            meter('review',usage)
+                            if not native_settled: raise Held('voice_native_usage_unconfirmed')
                             update('routing',view=action['view'],map_focus=action['map_focus'])
                             task=asyncio.create_task(answer(action,delegation,active_turn))
                         elif kind=='session.input_transcript.delta':
@@ -430,10 +434,57 @@ class PublicSyntheticVoiceLoop:
                     # still return usage after a local output-validation hold.
                     async for raw in connection:
                         event=json.loads(raw)
+                        settle_native(event)
                         if event.get('type')=='session.closed':
                             receipt.update(finalized=True,usage=event.get('usage'),close_reason=event.get('reason'))
                             closed.set();return
                 except Exception: errors.append('voice_transport');finished.set()
+
+            def settle_native(event):
+                # Financial settlement is independent of content/turn admission.
+                # Cancellation and error drains must still account for completed
+                # server work. A repeated ID cannot silently change its usage.
+                nonlocal native_reserved,native_metered,native_settled,native_overflow
+                if event.get('type')!='decision.event' or event.get('event',{}).get('type')!='decision.completed':return
+                delegation=event.get('delegation_id')
+                usage=event['event'].get('decision',{}).get('usage')
+                def uncertain():
+                    nonlocal native_settled
+                    native_settled=False
+                    finished.set()
+                    cancel.set()  # Fence in-flight ASR/backend and next-turn dispatch too.
+                    if 'voice_native_usage_unconfirmed' not in errors:errors.append('voice_native_usage_unconfirmed')
+                if type(delegation) is not str or not delegation or len(delegation)>200:
+                    uncertain();return
+                # Retain only bounded priced fields, never arbitrary provider
+                # metadata/raw nested structures. Overflow means unknown spend,
+                # not permission to keep growing memory or the durable ledger.
+                safe=None
+                if type(usage) is dict:
+                    details=usage.get('input_tokens_details',{})
+                    if type(details) is dict:
+                        incoming,outgoing=usage.get('input_tokens'),usage.get('output_tokens')
+                        cached,written=details.get('cached_tokens',0),details.get('cache_write_tokens',0)
+                        if (all(type(n) is int and 0<=n<=20000 for n in (incoming,outgoing,cached,written))
+                                and cached+written<=incoming):
+                            safe={'input_tokens':incoming,'output_tokens':outgoing,
+                                  'input_tokens_details':{'cached_tokens':cached,'cache_write_tokens':written}}
+                if delegation in native_usage:
+                    if native_usage[delegation]!=safe:uncertain()
+                    return
+                if len(native_usage)>=16:
+                    native_overflow=True;uncertain();return
+                native_usage[delegation]=safe
+                if len(native_usage)>native_reserved:
+                    # Already incurred autonomous work cannot be prevented by a
+                    # client counter. Record it, and fail closed if the counter
+                    # cannot reconcile it within the reserved envelope.
+                    try:self.provider.account_attempt();native_reserved+=1
+                    except Exception:uncertain()
+                try:
+                    if safe is None:raise Held('voice_native_usage_unconfirmed')
+                    meter('review',safe);native_metered+=1
+                except Exception:uncertain()
 
             receiver=asyncio.create_task(receive())
             async def watch_cancel():
@@ -450,6 +501,7 @@ class PublicSyntheticVoiceLoop:
                     await asyncio.sleep(.02)
             try:
                 self.provider.account_attempt()  # Reserve the first native Decisions attempt.
+                native_reserved+=1
                 await send({'type':'session.start','session':live_configuration(self.language)})
                 await asyncio.wait_for(started.wait(),10)
                 update('connected')
@@ -459,6 +511,7 @@ class PublicSyntheticVoiceLoop:
                     active_turn=number;active_delegation=None;expected=None;output_allowed=False
                     if number>1:
                         self.provider.account_attempt()  # Native turn config before it can run.
+                        native_reserved+=1
                         configuration_ready.clear()
                         await send({'type':'session.update','event_id':f'turn_config_{number}',
                             'session':{'delegation':live_configuration(turn_language,number)['delegation']}})
@@ -544,6 +597,10 @@ class PublicSyntheticVoiceLoop:
                 cancellation_watcher.cancel();await asyncio.gather(cancellation_watcher,return_exceptions=True)
                 pending_audio.clear();input_transcript.clear();output_transcript.clear();input_parts.clear();input_windows.clear();input_commands.clear();input_languages.clear()
         receipt['asr_outcome_confirmed']=all(work['metered'] for work in asr_work)
+        receipt.update(native_usage_confirmed=native_settled and len(native_usage)==native_metered==native_reserved,
+                       native_completions=len(native_usage),native_completion_overflow=native_overflow,native_usage_metered=native_metered,native_attempts_reserved=native_reserved)
+        if not receipt['native_usage_confirmed'] and 'voice_native_usage_unconfirmed' not in errors:
+            errors.append('voice_native_usage_unconfirmed')
         receipt['asr_attempted']=len(asr_work)
         receipt['asr_metered']=sum(work['metered'] for work in asr_work)
         if not receipt['asr_outcome_confirmed']: errors.append('voice_asr_outcome_unconfirmed')
