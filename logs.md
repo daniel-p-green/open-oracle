@@ -2476,3 +2476,26 @@ This is a backfill, not a contemporaneous event stream.
   Claude browser review/primary browser QA still lack a supported executor in
   this task and Chrome remains coordinated with Ramp. No new denial, alternate
   browser/native route, purpose reuse or duplicate post-restart trial.
+
+### 2026-10-25 — official audio-workflow reassessment, read only
+
+- **Verified current docs:** Live commentary paraphrases; pre-hearing controls
+  require application buffering/VAD/approval identity/cancellation. Whole-reading
+  exactness is our contract, not vendor guarantee. Observed accepted first-useful
+  audio still waits6–7s narration plus validation; early divergence hold reduces
+  failure waiting only, not proven safe-audio latency.
+- **Important current product finding:** text-to-speech guide deprecates tts-1,
+  tts-1-hd/gpt-4o-mini-tts for January6,2027; recommends Realtime2.1mini workflow,
+  not that model through/v1/audio/speech. Recorded documented alternative and
+  limitations in INPUT-AND-LATENCY-REVIEW.md. No inferred account availability,
+  guaranteed verbatim/faster-than-realtime performance, provider switch or new
+  model/service call. Any comparison must preserve actual speech/source checks
+  and needs a bounded stage amendment; current sequence stays paused.
+- **Remote verified:**0c4166b pushed and both exact-code CI checks passed
+ 40154084458/40154081734; Sourcery skipped. PR6 description updated to actual
+  outcomes, costs and limits, not a claim of completion. Worktree clean before
+  these notes. New separate source-review bundle0c4166b prepared outsideGit:
+ 325931bytes, SHAef958568f86d4872bc8bced7b5481a8c8e6e1dfba463714901bda9d3bb6b291b,
+ 15relevant source/test/evidence files, no ledger/credentials/accounts/private
+  voter data. Original39c0a12 attachment untouched. Neither newly submitted;
+  supported browser executor unavailable/Chrome coordinated with Ramp.

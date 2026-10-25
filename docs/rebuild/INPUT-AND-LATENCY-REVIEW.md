@@ -259,3 +259,50 @@ No whole-WAV ASR or grounding check was skipped. Browser replay of captured
 routes demonstrated measure→actual Kansas City paired maps, separate provisional
 input turns, Stop demotion and language erasure with providers disabled. This is
 UI behavior, not improved API/acoustic latency or bilingual acceptance.
+
+## October25 measured native result and next architecture comparison
+
+Actual09b02d3 EN session completed both turns. From input completion, checked
+text was3.014/1.114s and independently checked generated audio10.678/8.814s.
+Output waveforms lasted7.0/6.6s; buffering waits for narration plus quiet/ASR.
+These are single samples, not percentiles, audible playback or current-browser
+render metrics. Native routing requests arrived0.912/1.112s after input ended;
+that is not first rendered-card timing. New9e28ff5 admitted the four-choice
+contract but output never matched and reached deadline; no accepted audio.
+Early prefix rejection is a conservative failure-speed fix, not a demonstrated
+solution to first safe useful-audio latency or paraphrase fidelity.
+
+Current official docs reaffirm that commentary is trained to paraphrase:
+https://developers.openai.com/api/docs/guides/live-delegation . Treat exact
+reading as an application delivery contract with possible holds, not a vendor
+verbatim promise. Current playback guidance calls for application VAD/noise gate,
+buffered audio+transcript, correlated approval IDs and discarded stale approvals:
+https://developers.openai.com/api/docs/guides/voice-server-controls?api=live .
+It explicitly warns buffering adds latency. No unchecked prefix/quiet-pause
+completion shortcut was added; further work must retain actual speech/source
+validation and queue cancellation.
+
+A new legacy Speech API integration is a poor long-term baseline: official
+https://developers.openai.com/api/docs/guides/text-to-speech now says tts-1,
+tts-1-hd and gpt-4o-mini-tts shut down January6,2027, recommending
+**gpt-realtime-2.1-mini through Realtime**, not /v1/audio/speech. The current model
+page documents audio/text over WebRTC/WebSocket/SIP; conversations guide documents
+application-triggered response.create and response lifecycle events:
+https://developers.openai.com/api/docs/models/gpt-realtime-2.1-mini and
+https://developers.openai.com/api/docs/guides/realtime-conversations .
+No account eligibility, faster-than-real-time generation, exact wording or target
+latency is established by those pages. No new model/service was called.
+
+Next technical comparison, not an implemented substitution or paid stage: retain
+GPT-Live/Decisions routing and source-grounded Responses/UI, then compare controlled
+Live candidate-utterance validation against a discrete Realtime narration response.
+The latter adds/replaces the output provider and changes event/cancellation/cost
+contracts; explain that deviation and obtain the necessary bounded trial scope
+before calling it. Both must buffer, validate actual speech/claims/citations,
+clear canceled queues and label actual captions. Semantic paraphrase acceptance
+would also change the present exact-reading contract and needs independent review;
+never silently weaken it to make a demo pass. Benchmark the same public questions
+and complete utterances, separate text/first approved audio/full completion,
+verify actual access/pricing, and retain truthful failed runs. Current test bundle
+is paused after native_repair hold; spare money is not authorization for this
+new comparison. Claude source review remains queued before any readiness claim.
