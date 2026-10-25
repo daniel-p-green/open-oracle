@@ -90,7 +90,7 @@ class JourneyTests(unittest.TestCase):
             validate_unit(spanish,'brief','es',question)
         spanish['sections'][0]['text']='La pregunta indica si los votantes de Misuri aprueban un acto de la legislatura que reemplaza el plan congresional vigente.'
         with self.assertRaisesRegex(Held,'journey_time_drift'): validate_unit(spanish,'brief','es',question)
-        spanish['sections'][0]['text']=spanish['sections'][0]['text'].replace('vigente','existente').replace('los votantes','votantes')
+        spanish['sections'][0]['text']=spanish['sections'][0]['text'].replace('vigente','existente').replace('los votantes','votantes').replace('un acto','la ley')
         validate_unit(spanish,'brief','es',question)
         for bad in ['The question asks whether people approve an act replacing Missouri’s congressional boundaries.', 'The question describes a legislature’s congressional plan.', 'The question asks about replacing the congressional plan and', 'The question asks about replacing the congressional plan and.', text+' '+('extra '*40), 'The act replaces the congressional plan.', 'The question asks about nine congressional districts.', 'Vote Yes to replace the congressional plan.']:
             draft['sections'][0]['text']=bad

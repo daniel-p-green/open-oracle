@@ -2319,7 +2319,8 @@ This is a backfill, not a contemporaneous event stream.
   public_brief_contract_ae672bb4ad394621, code0ce1743,3requests, all3 metered,
  0.01 reserved, estimated0.0003821 (not invoice). English accepted after generation
   and independent review at3027.639ms from run start; no voice latency claim.
-  Spanish generated “vigente”, held as journey_time_drift before review because
+  Spanish generated123characters including “vigente”, held first as
+  journey_time_drift before review because
   ballot wording does not establish current legal status. Correct hold, not a
   false-positive excuse to loosen the guard. Shared reservations2.57, recorded
   cumulative estimate0.3016969. Sequence paused for the allocated named repair.
@@ -2327,7 +2328,10 @@ This is a backfill, not a contemporaneous event stream.
   “existing” from current legal force; use existente/anterior, never vigente/
   actual/actualmente. Deterministic time check unchanged. Existing brief-owner
   proof covers exact observed Spanish failure and shorter permissible wording.
-  Focused Journey checks pass. Conditional text_repair slot retains4requests/
+  The first new positive fixture was still121characters and failed the length
+  guard; corrected it to120 before any paid repair dispatch. The earlier commit
+  recorded a pass prematurely; the following correction records actual evidence.
+  Conditional text_repair slot retains4requests/
  0.01 reservation; no automatic repeat or exhausted-purpose reset.
 - **Completed remote:** prior four local commits pushed to existing draftPR6;
   remote exacthead0ce1743 with both offline-contracts checks successful. No merge
