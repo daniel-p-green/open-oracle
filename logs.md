@@ -2307,3 +2307,32 @@ This is a backfill, not a contemporaneous event stream.
   budget statement is missing; automatic review is not recognizing the relayed
   authorizations. Independent local review closed the material code findings;
   new actual Claude/live/browser acceptance evidence remains blocked/unrun.
+
+### 2026-10-25 01:47:37 UTC — continuation approval recognized for text and PR6
+
+- **New direct authority:** Daniel approved continuation after the parent named
+  the blocked staged test, immutable Claude source attachment and intended PR6
+  push. Retry each known-unexecuted action once normally; no scope/cost increase.
+  Rechecked clean worktree0ce1743, zero staged rows, unchanged immutable source
+  bundle351bde4f…c4bb. Official Luna/Live/Transcribe rates re-fetched unchanged.
+- **Completed:** exact fixed public text launcher ran normally. Run
+  public_brief_contract_ae672bb4ad394621, code0ce1743,3requests, all3 metered,
+ 0.01 reserved, estimated0.0003821 (not invoice). English accepted after generation
+  and independent review at3027.639ms from run start; no voice latency claim.
+  Spanish generated “vigente”, held as journey_time_drift before review because
+  ballot wording does not establish current legal status. Correct hold, not a
+  false-positive excuse to loosen the guard. Shared reservations2.57, recorded
+  cumulative estimate0.3016969. Sequence paused for the allocated named repair.
+- **Repair:** generation instruction now explicitly distinguishes source
+  “existing” from current legal force; use existente/anterior, never vigente/
+  actual/actualmente. Deterministic time check unchanged. Existing brief-owner
+  proof covers exact observed Spanish failure and shorter permissible wording.
+  Focused Journey checks pass. Conditional text_repair slot retains4requests/
+ 0.01 reservation; no automatic repeat or exhausted-purpose reset.
+- **Completed remote:** prior four local commits pushed to existing draftPR6;
+  remote exacthead0ce1743 with both offline-contracts checks successful. No merge
+  or deployment. The source-only Claude bundle remains unchanged/unsubmitted:
+  current tool inventory exposes no CUA/browser executor, so supported-route
+  retry is unavailable, not a new content rejection or reason to use a bypass.
+- **Reference:** parent is reviewing the newly supplied YouTube benchmark;
+  no observations inferred and no duplicate video research performed here.
