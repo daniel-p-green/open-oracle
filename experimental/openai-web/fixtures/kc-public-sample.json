@@ -1,0 +1,909 @@
+{
+  "schema": "openoracle-public-sample/v1",
+  "election_date": "2026-11-03",
+  "sample_variant": "W1-P7",
+  "reviewed_utc": "2026-10-24T14:41:04Z",
+  "scope": {
+    "personal_membership": false,
+    "county_inventory_complete": false,
+    "current_certification_verified": false,
+    "human_acceptance": "pending"
+  },
+  "source": {
+    "publisher": "Kansas City Election Board",
+    "url": "https://kceb.org/ballots/01-00006-01-NON.pdf",
+    "jurisdiction": "Kansas City within Jackson County · public sample W1-P7",
+    "original_sha256": "d33d41b4c377e7d9d1bd63af0c2f1053bc4b63f608eb3167200a8385e576e0fc",
+    "bytes": 703754,
+    "pages": 2,
+    "document_date": "not stated; election date 2026-11-03",
+    "retrieved_utc": "2026-10-24T04:32:39.042536Z",
+    "rights": "Factual roster and exact wording for local review. No ballot artwork or blanket reuse license claimed."
+  },
+  "contests": [
+    {
+      "id": "us-house-5",
+      "label": "U.S. House · District 5",
+      "kind": "candidate_election",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 1,
+          "column": 1,
+          "reading_sha256": "73c17913dc07c0e30faffb7078bb9ecc0df73fc8ae84c01c2e8bcfe5effab5a3",
+          "candidate_rows": [
+            {
+              "printed_name": "RICK BRATTIN",
+              "printed_party": "REP",
+              "field_span": {
+                "start": 211,
+                "end": 244,
+                "text": "RICK BRATTIN                  REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged",
+              "ballot_order": 1,
+              "entry_id": "kc-sample-us-house-5-211"
+            },
+            {
+              "printed_name": "EMANUEL CLEAVER, II",
+              "printed_party": "DEM",
+              "field_span": {
+                "start": 247,
+                "end": 279,
+                "text": "EMANUEL CLEAVER, II          DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged",
+              "ballot_order": 2,
+              "entry_id": "kc-sample-us-house-5-247"
+            },
+            {
+              "printed_name": "RANDALL (RANDY) LANGKRAEHR",
+              "printed_party": "LIB",
+              "field_span": {
+                "start": 282,
+                "end": 328,
+                "text": "RANDALL (RANDY)               LIB\n  LANGKRAEHR"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged",
+              "ballot_order": 3,
+              "entry_id": "kc-sample-us-house-5-282"
+            }
+          ],
+          "source_statuses": [],
+          "instruction": {
+            "text": "Vote for One",
+            "page": 1,
+            "reading_sha256": "73c17913dc07c0e30faffb7078bb9ecc0df73fc8ae84c01c2e8bcfe5effab5a3",
+            "span": {
+              "start": 195,
+              "end": 207,
+              "text": "Vote for One"
+            }
+          },
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          }
+        }
+      ]
+    },
+    {
+      "id": "auditor",
+      "label": "State Auditor",
+      "kind": "candidate_election",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 1,
+          "column": 1,
+          "reading_sha256": "73c17913dc07c0e30faffb7078bb9ecc0df73fc8ae84c01c2e8bcfe5effab5a3",
+          "candidate_rows": [
+            {
+              "printed_name": "SCOTT FITZPATRICK",
+              "printed_party": "REP",
+              "field_span": {
+                "start": 437,
+                "end": 470,
+                "text": "SCOTT FITZPATRICK             REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged",
+              "ballot_order": 1,
+              "entry_id": "kc-sample-auditor-437"
+            },
+            {
+              "printed_name": "QUENTIN WILSON",
+              "printed_party": "DEM",
+              "field_span": {
+                "start": 473,
+                "end": 505,
+                "text": "QUENTIN WILSON               DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged",
+              "ballot_order": 2,
+              "entry_id": "kc-sample-auditor-473"
+            },
+            {
+              "printed_name": "DUSTIN COFFELL",
+              "printed_party": "LIB",
+              "field_span": {
+                "start": 508,
+                "end": 541,
+                "text": "DUSTIN COFFELL                LIB"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged",
+              "ballot_order": 3,
+              "entry_id": "kc-sample-auditor-508"
+            }
+          ],
+          "source_statuses": [],
+          "instruction": {
+            "text": "Vote for One",
+            "page": 1,
+            "reading_sha256": "73c17913dc07c0e30faffb7078bb9ecc0df73fc8ae84c01c2e8bcfe5effab5a3",
+            "span": {
+              "start": 421,
+              "end": 433,
+              "text": "Vote for One"
+            }
+          },
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-house-24",
+      "label": "State House · District 24",
+      "kind": "candidate_election",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 1,
+          "column": 1,
+          "reading_sha256": "73c17913dc07c0e30faffb7078bb9ecc0df73fc8ae84c01c2e8bcfe5effab5a3",
+          "candidate_rows": [
+            {
+              "printed_name": "KEVIN GARNER",
+              "printed_party": "DEM",
+              "field_span": {
+                "start": 627,
+                "end": 659,
+                "text": "KEVIN GARNER                 DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged",
+              "ballot_order": 1,
+              "entry_id": "kc-sample-state-house-24-627"
+            }
+          ],
+          "source_statuses": [],
+          "instruction": {
+            "text": "Vote for One",
+            "page": 1,
+            "reading_sha256": "73c17913dc07c0e30faffb7078bb9ecc0df73fc8ae84c01c2e8bcfe5effab5a3",
+            "span": {
+              "start": 611,
+              "end": 623,
+              "text": "Vote for One"
+            }
+          },
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          }
+        }
+      ]
+    },
+    {
+      "id": "county-executive",
+      "label": "Jackson County Executive",
+      "kind": "candidate_election",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 1,
+          "column": 1,
+          "reading_sha256": "73c17913dc07c0e30faffb7078bb9ecc0df73fc8ae84c01c2e8bcfe5effab5a3",
+          "candidate_rows": [
+            {
+              "printed_name": "ALAN ROHLFING",
+              "printed_party": "REP",
+              "field_span": {
+                "start": 768,
+                "end": 801,
+                "text": "ALAN ROHLFING                 REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged",
+              "ballot_order": 1,
+              "entry_id": "kc-sample-county-executive-768"
+            },
+            {
+              "printed_name": "STACY LAKE",
+              "printed_party": "DEM",
+              "field_span": {
+                "start": 804,
+                "end": 836,
+                "text": "STACY LAKE                   DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged",
+              "ballot_order": 2,
+              "entry_id": "kc-sample-county-executive-804"
+            }
+          ],
+          "source_statuses": [],
+          "instruction": {
+            "text": "Vote for One",
+            "page": 1,
+            "reading_sha256": "73c17913dc07c0e30faffb7078bb9ecc0df73fc8ae84c01c2e8bcfe5effab5a3",
+            "span": {
+              "start": 752,
+              "end": 764,
+              "text": "Vote for One"
+            }
+          },
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          }
+        }
+      ]
+    },
+    {
+      "id": "county-at-large-1",
+      "label": "County Legislature · At-large 1",
+      "kind": "candidate_election",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 1,
+          "column": 1,
+          "reading_sha256": "73c17913dc07c0e30faffb7078bb9ecc0df73fc8ae84c01c2e8bcfe5effab5a3",
+          "candidate_rows": [
+            {
+              "printed_name": "LANCE POLLARD",
+              "printed_party": "REP",
+              "field_span": {
+                "start": 944,
+                "end": 977,
+                "text": "LANCE POLLARD                 REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged",
+              "ballot_order": 1,
+              "entry_id": "kc-sample-county-at-large-1-944"
+            },
+            {
+              "printed_name": "CARLA FIELDS",
+              "printed_party": "DEM",
+              "field_span": {
+                "start": 980,
+                "end": 1012,
+                "text": "CARLA FIELDS                 DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged",
+              "ballot_order": 2,
+              "entry_id": "kc-sample-county-at-large-1-980"
+            }
+          ],
+          "source_statuses": [],
+          "instruction": {
+            "text": "Vote for One",
+            "page": 1,
+            "reading_sha256": "73c17913dc07c0e30faffb7078bb9ecc0df73fc8ae84c01c2e8bcfe5effab5a3",
+            "span": {
+              "start": 929,
+              "end": 941,
+              "text": "Vote for One"
+            }
+          },
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          }
+        }
+      ]
+    },
+    {
+      "id": "county-at-large-2",
+      "label": "County Legislature · At-large 2",
+      "kind": "candidate_election",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 1,
+          "column": 1,
+          "reading_sha256": "73c17913dc07c0e30faffb7078bb9ecc0df73fc8ae84c01c2e8bcfe5effab5a3",
+          "candidate_rows": [
+            {
+              "printed_name": "GRESIA CABRERA",
+              "printed_party": "REP",
+              "field_span": {
+                "start": 1120,
+                "end": 1153,
+                "text": "GRESIA CABRERA                REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged",
+              "ballot_order": 1,
+              "entry_id": "kc-sample-county-at-large-2-1120"
+            },
+            {
+              "printed_name": "DONNA PEYTON",
+              "printed_party": "DEM",
+              "field_span": {
+                "start": 1156,
+                "end": 1188,
+                "text": "DONNA PEYTON                 DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged",
+              "ballot_order": 2,
+              "entry_id": "kc-sample-county-at-large-2-1156"
+            }
+          ],
+          "source_statuses": [],
+          "instruction": {
+            "text": "Vote for One",
+            "page": 1,
+            "reading_sha256": "73c17913dc07c0e30faffb7078bb9ecc0df73fc8ae84c01c2e8bcfe5effab5a3",
+            "span": {
+              "start": 1105,
+              "end": 1117,
+              "text": "Vote for One"
+            }
+          },
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          }
+        }
+      ]
+    },
+    {
+      "id": "county-at-large-3",
+      "label": "County Legislature · At-large 3",
+      "kind": "candidate_election",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 1,
+          "column": 1,
+          "reading_sha256": "73c17913dc07c0e30faffb7078bb9ecc0df73fc8ae84c01c2e8bcfe5effab5a3",
+          "candidate_rows": [
+            {
+              "printed_name": "SUSAN B. WILSON",
+              "printed_party": "DEM",
+              "field_span": {
+                "start": 1296,
+                "end": 1328,
+                "text": "SUSAN B. WILSON              DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged",
+              "ballot_order": 1,
+              "entry_id": "kc-sample-county-at-large-3-1296"
+            }
+          ],
+          "source_statuses": [],
+          "instruction": {
+            "text": "Vote for One",
+            "page": 1,
+            "reading_sha256": "73c17913dc07c0e30faffb7078bb9ecc0df73fc8ae84c01c2e8bcfe5effab5a3",
+            "span": {
+              "start": 1281,
+              "end": 1293,
+              "text": "Vote for One"
+            }
+          },
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          }
+        }
+      ]
+    },
+    {
+      "id": "county-district-1",
+      "label": "County Legislature · District 1",
+      "kind": "candidate_election",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 1,
+          "column": 2,
+          "reading_sha256": "094596ff0ae4138ee6afb46cabcc7d84294ad672b34b29e80ab4f40800b5b9ea",
+          "candidate_rows": [
+            {
+              "printed_name": "KELLY THOMPSON",
+              "printed_party": "DEM",
+              "field_span": {
+                "start": 300,
+                "end": 337,
+                "text": "KELLY THOMPSON                    DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged",
+              "ballot_order": 1,
+              "entry_id": "kc-sample-county-district-1-300"
+            }
+          ],
+          "source_statuses": [],
+          "instruction": {
+            "text": "Vote for One",
+            "page": 1,
+            "reading_sha256": "094596ff0ae4138ee6afb46cabcc7d84294ad672b34b29e80ab4f40800b5b9ea",
+            "span": {
+              "start": 280,
+              "end": 292,
+              "text": "Vote for One"
+            }
+          },
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          }
+        }
+      ]
+    },
+    {
+      "id": "retention-supreme-court",
+      "label": "Missouri Supreme Court",
+      "kind": "judicial_retention",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 1,
+          "column": 2,
+          "reading_sha256": "094596ff0ae4138ee6afb46cabcc7d84294ad672b34b29e80ab4f40800b5b9ea",
+          "printed_name": "PAUL C. WILSON",
+          "wording": "Shall Judge PAUL C. WILSON of the\n  Missouri Supreme Court be retained\n  in office?",
+          "wording_sha256": "85296a4aa5334df95393dbc1ef1dc3e5af4187b382adc731faecfcad1fe37c4e",
+          "wording_span": {
+            "start": 405,
+            "end": 488,
+            "text": "Shall Judge PAUL C. WILSON of the\n  Missouri Supreme Court be retained\n  in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "retention-appeals-western",
+      "label": "Court of Appeals · Western District",
+      "kind": "judicial_retention",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 1,
+          "column": 2,
+          "reading_sha256": "094596ff0ae4138ee6afb46cabcc7d84294ad672b34b29e80ab4f40800b5b9ea",
+          "printed_name": "LISA WHITE HARDWICK",
+          "wording": "Shall Judge LISA WHITE\n  HARDWICK of the Western District\n  Court of Appeals be retained in\n  office?",
+          "wording_sha256": "73c6ce7fedaa8b916550c319d9f0256e8b5327bcaa101b1a537216c55db10b49",
+          "wording_span": {
+            "start": 578,
+            "end": 679,
+            "text": "Shall Judge LISA WHITE\n  HARDWICK of the Western District\n  Court of Appeals be retained in\n  office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "retention-circuit-16-2",
+      "label": "Circuit 16 · Division 2",
+      "kind": "judicial_retention",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 1,
+          "column": 2,
+          "reading_sha256": "094596ff0ae4138ee6afb46cabcc7d84294ad672b34b29e80ab4f40800b5b9ea",
+          "printed_name": "KENNETH R. GARRETT, III",
+          "wording": "Shall Judge KENNETH R. GARRETT,\n  III, Circuit Judge of Judicial Circuit No.\n  16, be retained in office?",
+          "wording_sha256": "4f6fea1e5e5f2813c9e7944774fa4ac90771221adcddd2a8c02261a7b7374de9",
+          "wording_span": {
+            "start": 801,
+            "end": 906,
+            "text": "Shall Judge KENNETH R. GARRETT,\n  III, Circuit Judge of Judicial Circuit No.\n  16, be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "retention-circuit-16-4",
+      "label": "Circuit 16 · Division 4",
+      "kind": "judicial_retention",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 1,
+          "column": 2,
+          "reading_sha256": "094596ff0ae4138ee6afb46cabcc7d84294ad672b34b29e80ab4f40800b5b9ea",
+          "printed_name": "PATRICK C. EDWARDS",
+          "wording": "Shall Judge PATRICK C. EDWARDS,\n  Circuit Judge of Judicial Circuit No.\n  16, be retained in office?",
+          "wording_sha256": "4579d6f370e05dece61ce0939ddd3c40f8d3991f95b9b126086031087d98cd6c",
+          "wording_span": {
+            "start": 969,
+            "end": 1069,
+            "text": "Shall Judge PATRICK C. EDWARDS,\n  Circuit Judge of Judicial Circuit No.\n  16, be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "retention-circuit-16-14",
+      "label": "Circuit 16 · Division 14",
+      "kind": "judicial_retention",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 1,
+          "column": 2,
+          "reading_sha256": "094596ff0ae4138ee6afb46cabcc7d84294ad672b34b29e80ab4f40800b5b9ea",
+          "printed_name": "LAUREN D. BARRETT",
+          "wording": "Shall Judge LAUREN D. BARRETT,\n  Circuit Judge of Judicial Circuit No.\n  16, be retained in office?",
+          "wording_sha256": "58a21fa64187bd9e387187d4db66baf4d987afe4a7b3e279708e891a1f063871",
+          "wording_span": {
+            "start": 1133,
+            "end": 1232,
+            "text": "Shall Judge LAUREN D. BARRETT,\n  Circuit Judge of Judicial Circuit No.\n  16, be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "retention-circuit-16-17",
+      "label": "Circuit 16 · Division 17",
+      "kind": "judicial_retention",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 1,
+          "column": 2,
+          "reading_sha256": "094596ff0ae4138ee6afb46cabcc7d84294ad672b34b29e80ab4f40800b5b9ea",
+          "printed_name": "CORY L. ATKINS",
+          "wording": "Shall Judge CORY L. ATKINS, Circuit\n  Judge of Judicial Circuit No. 16, be\n  retained in office?",
+          "wording_sha256": "93689a60cb3ae7b465d5e97e2145bdd801362a95b2fca8b12a157eb036691800",
+          "wording_span": {
+            "start": 1296,
+            "end": 1392,
+            "text": "Shall Judge CORY L. ATKINS, Circuit\n  Judge of Judicial Circuit No. 16, be\n  retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "retention-circuit-16-18",
+      "label": "Circuit 16 · Division 18",
+      "kind": "judicial_retention",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 1,
+          "column": 2,
+          "reading_sha256": "094596ff0ae4138ee6afb46cabcc7d84294ad672b34b29e80ab4f40800b5b9ea",
+          "printed_name": "KEVIN D. HARRELL",
+          "wording": "Shall Judge KEVIN D. HARRELL,\n  Circuit Judge of Judicial Circuit No.\n  16, be retained in office?",
+          "wording_sha256": "7e554d9e016f56d86f723f1e1203c8e23f945207f14a88b0976bf1da3c7d46e9",
+          "wording_span": {
+            "start": 1456,
+            "end": 1554,
+            "text": "Shall Judge KEVIN D. HARRELL,\n  Circuit Judge of Judicial Circuit No.\n  16, be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "retention-associate-16-25",
+      "label": "Associate Circuit 16 · Division 25",
+      "kind": "judicial_retention",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 1,
+          "column": 3,
+          "reading_sha256": "85153d14161cb23314fcb29bc9f2d9a37723dc6e046af916c05ebc2588c7525d",
+          "printed_name": "ABBIE ROTHERMICH",
+          "wording": "Shall Judge ABBIE ROTHERMICH,\n  Associate Circuit Judge of Judicial\n  Circuit No. 16, be retained in office?",
+          "wording_sha256": "cf6055ae952e6f7ec84dc06129af4f48f1733bdf5769b36cd9be76e2a24855b2",
+          "wording_span": {
+            "start": 125,
+            "end": 233,
+            "text": "Shall Judge ABBIE ROTHERMICH,\n  Associate Circuit Judge of Judicial\n  Circuit No. 16, be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "retention-associate-16-26",
+      "label": "Associate Circuit 16 · Division 26",
+      "kind": "judicial_retention",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 1,
+          "column": 3,
+          "reading_sha256": "85153d14161cb23314fcb29bc9f2d9a37723dc6e046af916c05ebc2588c7525d",
+          "printed_name": "R. TRAVIS WILLINGHAM",
+          "wording": "Shall Judge R. TRAVIS\n  WILLINGHAM, Associate Circuit\n  Judge of Judicial Circuit No. 16, be\n  retained in office?",
+          "wording_sha256": "980546f2f3d17e09bfbae3e339c9d526d4878e94a5ee1394a880db97d1d7bb9c",
+          "wording_span": {
+            "start": 290,
+            "end": 404,
+            "text": "Shall Judge R. TRAVIS\n  WILLINGHAM, Associate Circuit\n  Judge of Judicial Circuit No. 16, be\n  retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "retention-associate-16-27",
+      "label": "Associate Circuit 16 · Division 27",
+      "kind": "judicial_retention",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 1,
+          "column": 3,
+          "reading_sha256": "85153d14161cb23314fcb29bc9f2d9a37723dc6e046af916c05ebc2588c7525d",
+          "printed_name": "KEA S. BIRD-RILEY",
+          "wording": "Shall Judge KEA S. BIRD-RILEY,\n  Associate Circuit Judge of Judicial\n  Circuit No. 16, be retained in office?",
+          "wording_sha256": "2ca56a89c8de1588863d9754edfb5c55489903411090453b28fdbe8407063742",
+          "wording_span": {
+            "start": 462,
+            "end": 571,
+            "text": "Shall Judge KEA S. BIRD-RILEY,\n  Associate Circuit Judge of Judicial\n  Circuit No. 16, be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "retention-associate-16-31",
+      "label": "Associate Circuit 16 · Division 31",
+      "kind": "judicial_retention",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 1,
+          "column": 3,
+          "reading_sha256": "85153d14161cb23314fcb29bc9f2d9a37723dc6e046af916c05ebc2588c7525d",
+          "printed_name": "MARY FRANCES WEIR",
+          "wording": "Shall Judge MARY FRANCES WEIR,\n  Associate Circuit Judge of Judicial\n  Circuit No. 16, be retained in office?",
+          "wording_sha256": "60637197ccb1981c89d1906e13d84e3cabb1241ed80178ee9cb5c5bc211b47b5",
+          "wording_span": {
+            "start": 628,
+            "end": 737,
+            "text": "Shall Judge MARY FRANCES WEIR,\n  Associate Circuit Judge of Judicial\n  Circuit No. 16, be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "amendment-3",
+      "label": "Constitutional Amendment No. 3",
+      "kind": "measure",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 2,
+          "column": 1,
+          "reading_sha256": "fa0708bc4b4d5e85a7ca47304e1897c14a3ab3c715f949bc39e8d469b7c7d07a",
+          "wording": "Shall the Missouri Constitution be amended to:\n • Repeal the 2024 voter-approved Amendment\n   providing reproductive healthcare rights, including\n   abortion through fetal viability;\n • Allow abortions for rape and incest (under\n   twelve-weeks' gestation), emergencies, and fetal\n   anomalies;\n • Allow legislation regulating abortion;\n • Ensure parental consent for minors' abortions;\n • Prohibit gender transition procedures for minors?\nState governmental entities estimate no costs or savings.\nGreene County estimates it may experience an unknown\nincrease in tax revenue. Other local governmental entities\nestimate no costs or savings.",
+          "wording_sha256": "d54278322662b1b3af02a9a8328ca7ef8085270b8b43a27b9732181abd270777",
+          "wording_span": {
+            "start": 316,
+            "end": 955,
+            "text": "Shall the Missouri Constitution be amended to:\n • Repeal the 2024 voter-approved Amendment\n   providing reproductive healthcare rights, including\n   abortion through fetal viability;\n • Allow abortions for rape and incest (under\n   twelve-weeks' gestation), emergencies, and fetal\n   anomalies;\n • Allow legislation regulating abortion;\n • Ensure parental consent for minors' abortions;\n • Prohibit gender transition procedures for minors?\nState governmental entities estimate no costs or savings.\nGreene County estimates it may experience an unknown\nincrease in tax revenue. Other local governmental entities\nestimate no costs or savings."
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "amendment-6",
+      "label": "Constitutional Amendment No. 6",
+      "kind": "measure",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 2,
+          "column": 1,
+          "reading_sha256": "fa0708bc4b4d5e85a7ca47304e1897c14a3ab3c715f949bc39e8d469b7c7d07a",
+          "wording": "Shall the Missouri Constitution be amended to :\n • expand the initiative and referendum petition process\n   by making it a fundamental right;\n • allow courts to revise ballot summaries through\n   lawsuits;\n • prohibit the legislature from weakening initiative or\n   referendum powers;\n • prohibit the legislature from changing or repealing laws\n   enacted through the initiative process, or passing laws\n   similar to those rejected by referendum, without\n   approval from at least 80% of both chambers; and\n • preserve existing majority vote and signature\n   requirements for initiative and referendum petitions?\n\nState and local governmental entities estimate no costs or\nsavings.",
+          "wording_sha256": "9a640dad85fb209d16759aa2a984a9f9cbda15697e2fb178ead05bc05db48e40",
+          "wording_span": {
+            "start": 1078,
+            "end": 1760,
+            "text": "Shall the Missouri Constitution be amended to :\n • expand the initiative and referendum petition process\n   by making it a fundamental right;\n • allow courts to revise ballot summaries through\n   lawsuits;\n • prohibit the legislature from weakening initiative or\n   referendum powers;\n • prohibit the legislature from changing or repealing laws\n   enacted through the initiative process, or passing laws\n   similar to those rejected by referendum, without\n   approval from at least 80% of both chambers; and\n • preserve existing majority vote and signature\n   requirements for initiative and referendum petitions?\n\nState and local governmental entities estimate no costs or\nsavings."
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "amendment-7",
+      "label": "Constitutional Amendment No. 7",
+      "kind": "measure",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 2,
+          "column": 1,
+          "reading_sha256": "fa0708bc4b4d5e85a7ca47304e1897c14a3ab3c715f949bc39e8d469b7c7d07a",
+          "wording": "Shall the Missouri Constitution be amended to establish\na permanent public endowment fund to support state\ngovernment instead of taxing Missouri residents, prohibit\nthe General Assembly from appropriating or diverting the\nfund, and eliminate state-imposed taxes once the fund\ngenerates sufficient revenue to replace them?\n   State and local governmental entities estimate no costs\nor savings.",
+          "wording_sha256": "011eee85a7f87fa55462bb500478beba6952f259752b39a98a87420e56bf6ec3",
+          "wording_span": {
+            "start": 1970,
+            "end": 2362,
+            "text": "Shall the Missouri Constitution be amended to establish\na permanent public endowment fund to support state\ngovernment instead of taxing Missouri residents, prohibit\nthe General Assembly from appropriating or diverting the\nfund, and eliminate state-imposed taxes once the fund\ngenerates sufficient revenue to replace them?\n   State and local governmental entities estimate no costs\nor savings."
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "amendment-8",
+      "label": "Constitutional Amendment No. 8",
+      "kind": "measure",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 2,
+          "column": 1,
+          "reading_sha256": "fa0708bc4b4d5e85a7ca47304e1897c14a3ab3c715f949bc39e8d469b7c7d07a",
+          "wording": "Shall the Missouri Constitution be amended to support\nlaw enforcement by preserving the right of citizens to elect\na county sheriff, prohibiting the removal of a county sheriff\nexcept by a writ of quo warranto, and recognizing the office\nof sheriff as part of the administration of justice?\n\n  State and local governmental entities estimate no costs\nor savings.",
+          "wording_sha256": "cc9495ada0d8bbea4e0e68c178113a8a8cea7781fccb0314ed02e514e868e438",
+          "wording_span": {
+            "start": 2579,
+            "end": 2940,
+            "text": "Shall the Missouri Constitution be amended to support\nlaw enforcement by preserving the right of citizens to elect\na county sheriff, prohibiting the removal of a county sheriff\nexcept by a writ of quo warranto, and recognizing the office\nof sheriff as part of the administration of justice?\n\n  State and local governmental entities estimate no costs\nor savings."
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "proposition-a",
+      "label": "Proposition A",
+      "kind": "measure",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 2,
+          "column": 2,
+          "reading_sha256": "09087928b17b36a25e333e76a85bb10d66c96ee2ef465c8eea6cbcb8420fd355",
+          "wording": "Do the people of the state of Missouri approve the act of\nthe General Assembly entitled \"House Bill No. 1 (2025\nSecond Extraordinary Session),\" which repeals Missouri's\nexisting congressional plan, and replaces it with new\ncongressional boundaries that keep more counties intact?\n  State and local governmental entities estimate no costs\nor savings.",
+          "wording_sha256": "dc2f4a164283e60878817b02f610446850bb64d051c9fdcfdf752c94b0179670",
+          "wording_span": {
+            "start": 138,
+            "end": 487,
+            "text": "Do the people of the state of Missouri approve the act of\nthe General Assembly entitled \"House Bill No. 1 (2025\nSecond Extraordinary Session),\" which repeals Missouri's\nexisting congressional plan, and replaces it with new\ncongressional boundaries that keep more counties intact?\n  State and local governmental entities estimate no costs\nor savings."
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "county-question-1",
+      "label": "Jackson County · Question 1",
+      "kind": "measure",
+      "occurrences": [
+        {
+          "source_id": "kc-sample",
+          "page": 2,
+          "column": 2,
+          "reading_sha256": "09087928b17b36a25e333e76a85bb10d66c96ee2ef465c8eea6cbcb8420fd355",
+          "wording": "Shall Jackson County continue its anti-crime sales tax,\ncommonly known as COMBAT, at the rate of one-quarter\nof one cent for a period of ten years for the purpose of\npromoting and providing public safety within Jackson\nCounty, including the prevention and treatment of drug\nabuse and addiction and the prevention, investigation,\nprosecution, and detention of violent criminals and drug\ndealers? The proceeds of this tax shall be deposited in a\nspecial Jackson County Anti-Crime Sales Tax Trust Fund,\nseparate from the general fund or any other county funds.",
+          "wording_sha256": "b6117a10fcfa8960f3cb4fdddeff266e47c5db41f52f16e7ecaf2a8982731a70",
+          "wording_span": {
+            "start": 589,
+            "end": 1146,
+            "text": "Shall Jackson County continue its anti-crime sales tax,\ncommonly known as COMBAT, at the rate of one-quarter\nof one cent for a period of ten years for the purpose of\npromoting and providing public safety within Jackson\nCounty, including the prevention and treatment of drug\nabuse and addiction and the prevention, investigation,\nprosecution, and detention of violent criminals and drug\ndealers? The proceeds of this tax shall be deposited in a\nspecial Jackson County Anti-Crime Sales Tax Trust Fund,\nseparate from the general fund or any other county funds."
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ]
+        }
+      ]
+    }
+  ]
+}

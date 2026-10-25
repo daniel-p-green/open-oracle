@@ -1,0 +1,845 @@
+{
+  "schema": "openoracle-native-voice-trials/v1",
+  "recorded_utc": "2026-10-24T19:02:07.775290+00:00",
+  "models_configured": [
+    "gpt-live-1",
+    "gpt-6-luna",
+    "gpt-transcribe"
+  ],
+  "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+  "limits": [
+    "test-origin offsets, not human heard or rendered UI latency",
+    "no EN/ES end-to-end acceptance",
+    "public synthetic receipt summaries only; no account identifiers or input transcripts",
+    "cost estimates use recorded duration/token usage and documented pricing; older unmetered Playground calls excluded"
+  ],
+  "trials": [
+    {
+      "trial": 1,
+      "input": "two existing public synthetic EN clips; second only sent if first segment checked",
+      "receipt_sha256": "087f97c6686e520412ac479ad7e8661065aea4ca00e7803d5f81de90ae6b0219",
+      "reservation_usd": 0.1,
+      "direct_usage_estimate_usd": 0.036128933333333335,
+      "invoice_confirmed": false,
+      "all_turns_checked": false,
+      "finalized": true,
+      "native_decisions": 1,
+      "errors": [
+        "voice_deadline_or_cancelled"
+      ],
+      "checked_audio_turns": 0,
+      "events": [
+        {
+          "stage": "connected",
+          "turn": 0,
+          "at_ms": 1568.561
+        },
+        {
+          "stage": "listening",
+          "turn": 1,
+          "at_ms": 1568.598
+        },
+        {
+          "stage": "routing",
+          "turn": 1,
+          "at_ms": 7531.189,
+          "view": "measure",
+          "map_focus": "unchanged"
+        },
+        {
+          "stage": "checked_text",
+          "turn": 1,
+          "at_ms": 11114.138,
+          "view": "measure",
+          "map_focus": "unchanged"
+        }
+      ],
+      "usage": [
+        {
+          "stage": "review",
+          "usage": {
+            "input_tokens": 497,
+            "output_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "price_estimate_usd": 4.97e-05
+        },
+        {
+          "stage": "journey_text",
+          "usage": {
+            "input_tokens": 650,
+            "output_tokens": 80,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "price_estimate_usd": 0.000105
+        },
+        {
+          "stage": "review",
+          "usage": {
+            "input_tokens": 1409,
+            "output_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "price_estimate_usd": 0.0001409
+        },
+        {
+          "stage": "fresh_audio",
+          "usage": {
+            "seconds": 43.0
+          },
+          "price_estimate_usd": 0.035833333333333335
+        }
+      ],
+      "diagnostics": null,
+      "human_microphone": false,
+      "device_playback": false,
+      "output_audio_persisted": false,
+      "code_snapshot": "uncommitted development version; per-run code hashes not recorded; current adapter includes subsequent fixes"
+    },
+    {
+      "trial": 2,
+      "input": "two existing public synthetic EN clips; second only sent if first segment checked",
+      "receipt_sha256": "f811e93b59dc7930f19b4cbe91bf973d762d0e15ca0a101b1517234311aca0d0",
+      "reservation_usd": 0.1,
+      "direct_usage_estimate_usd": 0.026586400000000003,
+      "invoice_confirmed": false,
+      "all_turns_checked": false,
+      "finalized": true,
+      "native_decisions": 2,
+      "errors": [
+        "journey_language_match_held",
+        "voice_segment_incomplete"
+      ],
+      "checked_audio_turns": 1,
+      "events": [
+        {
+          "stage": "connected",
+          "turn": 0,
+          "at_ms": 709.586
+        },
+        {
+          "stage": "listening",
+          "turn": 1,
+          "at_ms": 709.658
+        },
+        {
+          "stage": "routing",
+          "turn": 1,
+          "at_ms": 6738.327,
+          "view": "measure",
+          "map_focus": "unchanged"
+        },
+        {
+          "stage": "checked_text",
+          "turn": 1,
+          "at_ms": 9896.239,
+          "view": "measure",
+          "map_focus": "unchanged"
+        },
+        {
+          "stage": "checking_speech",
+          "turn": 1,
+          "at_ms": 22955.855
+        },
+        {
+          "stage": "speech_checked",
+          "turn": 1,
+          "at_ms": 24317.47
+        },
+        {
+          "stage": "listening",
+          "turn": 2,
+          "at_ms": 24363.681
+        },
+        {
+          "stage": "routing",
+          "turn": 2,
+          "at_ms": 28321.554,
+          "view": "maps",
+          "map_focus": "kansas_city"
+        }
+      ],
+      "usage": [
+        {
+          "stage": "review",
+          "usage": {
+            "input_tokens": 497,
+            "output_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "price_estimate_usd": 4.97e-05
+        },
+        {
+          "stage": "journey_text",
+          "usage": {
+            "input_tokens": 650,
+            "output_tokens": 81,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "price_estimate_usd": 0.0001055
+        },
+        {
+          "stage": "review",
+          "usage": {
+            "input_tokens": 1410,
+            "output_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "price_estimate_usd": 0.000141
+        },
+        {
+          "stage": "transcription",
+          "usage": {
+            "seconds": 12.9,
+            "basis": "submitted_waveform_duration_not_invoice"
+          },
+          "price_estimate_usd": 0.0009674999999999999
+        },
+        {
+          "stage": "review",
+          "usage": {
+            "input_tokens": 626,
+            "output_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "price_estimate_usd": 6.26e-05
+        },
+        {
+          "stage": "journey_text",
+          "usage": {
+            "input_tokens": 712,
+            "output_tokens": 83,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "price_estimate_usd": 0.0001127
+        },
+        {
+          "stage": "review",
+          "usage": {
+            "input_tokens": 1474,
+            "output_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "price_estimate_usd": 0.0001474
+        },
+        {
+          "stage": "fresh_audio",
+          "usage": {
+            "seconds": 30.0
+          },
+          "price_estimate_usd": 0.025
+        }
+      ],
+      "diagnostics": {
+        "discarded_audio_bytes": 672960,
+        "buffered_audio_bytes": 681600,
+        "output_transcript_chars": 196,
+        "expected_chars": 196,
+        "first_output_ms": 9931.188,
+        "planned_text_match": true,
+        "input_deltas": 23,
+        "timed_input_deltas": 16
+      },
+      "human_microphone": false,
+      "device_playback": false,
+      "output_audio_persisted": false,
+      "code_snapshot": "uncommitted development version; per-run code hashes not recorded; current adapter includes subsequent fixes"
+    },
+    {
+      "trial": 3,
+      "purpose": "english_diagnostic",
+      "language": "en",
+      "package": "native_voice_four_trials_20261024",
+      "input": "hash-verified public synthetic pair; follow-up sent only after accepted first segment",
+      "receipt_sha256": "fe3ce65bbf89513b269fde0ccc1bec8c37387cf0a90433da0ca669004c0a44e6",
+      "source_hashes": {
+        "experimental/openai-web/voice_agent.py": "8654b6ac0d7340a5095d3f4e7357a1079ba609f19b3a020e0c3e6f5e6d916cf1",
+        "experimental/openai-web/journey.py": "9d69218fc01be06c95a2c41c3f52936ca7b1d459199997f3079d0f1ac41c704d",
+        "experimental/openai-web/providers.py": "41228c182891c6f475e2033c99854ea6f1784cc119ad3e76d64a886406472fde",
+        "experimental/openai-web/jobs.py": "d68fba8b6ebaba9ec7516a7c3cfb937d1457c178224d51a71a28ee6be8cc619e",
+        "experimental/openai-web/tests/manual/public_diagnostics.py": "fe72d10267c58f796ee737968f1bfb5877806f1d108b9029dc6481f899a02e3d"
+      },
+      "fixture_manifest_sha256": "8f81cf343ac40b5eb80dbea4a9535865b1a915ef674f4a40505d2c58957b0dcb",
+      "reservation_usd": 0.1,
+      "direct_usage_estimate_usd": 0.006818866666666667,
+      "invoice_confirmed": false,
+      "all_turns_checked": false,
+      "finalized": true,
+      "close_reason": "close_requested",
+      "native_decisions": 1,
+      "errors": [
+        "journey_brief_bound",
+        "voice_segment_incomplete"
+      ],
+      "checked_audio_turns": 0,
+      "events": [
+        {
+          "stage": "connected",
+          "turn": 0,
+          "at_ms": 1461.623
+        },
+        {
+          "stage": "listening",
+          "turn": 1,
+          "at_ms": 1461.661
+        },
+        {
+          "stage": "input_unavailable",
+          "turn": 1,
+          "at_ms": 2676.745
+        },
+        {
+          "stage": "routing",
+          "turn": 1,
+          "at_ms": 7502.153,
+          "view": "measure",
+          "map_focus": "unchanged"
+        }
+      ],
+      "stages_ms": [
+        {
+          "turn": 0,
+          "stage": "session_started",
+          "at_ms": 1461.576
+        },
+        {
+          "turn": 1,
+          "stage": "input_complete",
+          "at_ms": 6613.179
+        },
+        {
+          "turn": 1,
+          "stage": "delegation_created",
+          "at_ms": 7229.049
+        },
+        {
+          "turn": 1,
+          "stage": "decision_completed",
+          "at_ms": 7498.324
+        },
+        {
+          "turn": 1,
+          "stage": "generation_started",
+          "at_ms": 7502.881
+        },
+        {
+          "turn": 1,
+          "stage": "generation_returned",
+          "at_ms": 10024.052
+        },
+        {
+          "turn": 1,
+          "stage": "close_requested",
+          "at_ms": 10059.009
+        }
+      ],
+      "diagnostics": {
+        "input_deltas": 13,
+        "timed_input_deltas": 0,
+        "buffered_audio_bytes": 0,
+        "discarded_audio_bytes": 365760,
+        "sealed_segment_extra_bytes": 0
+      },
+      "predicate_scores": [],
+      "cancellation_trigger_reached": false,
+      "usage": [
+        {
+          "stage": "review",
+          "usage": {
+            "input_tokens": 497,
+            "output_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "price_estimate_usd": 4.97e-05
+        },
+        {
+          "stage": "journey_text",
+          "usage": {
+            "input_tokens": 650,
+            "output_tokens": 75,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "price_estimate_usd": 0.0001025
+        },
+        {
+          "stage": "fresh_audio",
+          "usage": {
+            "seconds": 8.0
+          },
+          "price_estimate_usd": 0.006666666666666667
+        }
+      ],
+      "human_microphone": false,
+      "device_playback": false,
+      "output_audio_persisted": false
+    },
+    {
+      "trial": 4,
+      "purpose": "repair_verification",
+      "language": "en",
+      "package": "native_voice_four_trials_20261024",
+      "input": "hash-verified public synthetic pair; follow-up sent only after accepted first segment",
+      "receipt_sha256": "4506bdeacae0526c4deecf1bc11ace6433cabbf7800b44bcd10134098ee061f1",
+      "source_hashes": {
+        "experimental/openai-web/voice_agent.py": "8654b6ac0d7340a5095d3f4e7357a1079ba609f19b3a020e0c3e6f5e6d916cf1",
+        "experimental/openai-web/journey.py": "e32eccae5c8153c611043ed6a0c4653a0a33388902319f934d10900f0f38e35d",
+        "experimental/openai-web/providers.py": "41228c182891c6f475e2033c99854ea6f1784cc119ad3e76d64a886406472fde",
+        "experimental/openai-web/jobs.py": "3bf5504e07bdd8b8ac7e24b34f7d033f5331a041e01b818d3473b2e9302b8b67",
+        "experimental/openai-web/tests/manual/public_diagnostics.py": "fe72d10267c58f796ee737968f1bfb5877806f1d108b9029dc6481f899a02e3d"
+      },
+      "fixture_manifest_sha256": "8f81cf343ac40b5eb80dbea4a9535865b1a915ef674f4a40505d2c58957b0dcb",
+      "reservation_usd": 0.1,
+      "direct_usage_estimate_usd": 0.006957366666666667,
+      "invoice_confirmed": false,
+      "all_turns_checked": false,
+      "finalized": true,
+      "close_reason": "close_requested",
+      "native_decisions": 1,
+      "errors": [
+        "journey_entailed_held",
+        "voice_segment_incomplete"
+      ],
+      "checked_audio_turns": 0,
+      "events": [
+        {
+          "stage": "connected",
+          "turn": 0,
+          "at_ms": 552.004
+        },
+        {
+          "stage": "listening",
+          "turn": 1,
+          "at_ms": 552.072
+        },
+        {
+          "stage": "input_unavailable",
+          "turn": 1,
+          "at_ms": 1509.955
+        },
+        {
+          "stage": "routing",
+          "turn": 1,
+          "at_ms": 6444.14,
+          "view": "measure",
+          "map_focus": "unchanged"
+        }
+      ],
+      "stages_ms": [
+        {
+          "turn": 0,
+          "stage": "session_started",
+          "at_ms": 551.929
+        },
+        {
+          "turn": 1,
+          "stage": "input_complete",
+          "at_ms": 5682.75
+        },
+        {
+          "turn": 1,
+          "stage": "delegation_created",
+          "at_ms": 6313.974
+        },
+        {
+          "turn": 1,
+          "stage": "decision_completed",
+          "at_ms": 6442.4
+        },
+        {
+          "turn": 1,
+          "stage": "generation_started",
+          "at_ms": 6444.604
+        },
+        {
+          "turn": 1,
+          "stage": "generation_returned",
+          "at_ms": 8458.359
+        },
+        {
+          "turn": 1,
+          "stage": "review_started",
+          "at_ms": 8460.359
+        },
+        {
+          "turn": 1,
+          "stage": "review_returned",
+          "at_ms": 9749.061
+        },
+        {
+          "turn": 1,
+          "stage": "close_requested",
+          "at_ms": 9800.551
+        }
+      ],
+      "diagnostics": {
+        "input_deltas": 14,
+        "timed_input_deltas": 0,
+        "buffered_audio_bytes": 0,
+        "discarded_audio_bytes": 400320,
+        "sealed_segment_extra_bytes": 0
+      },
+      "predicate_scores": [
+        {
+          "entailed": 0.6,
+          "no_additions": 0.88,
+          "attributed": 0.9,
+          "request_fit": 0.75,
+          "language_match": 0.97,
+          "polarity_safe": 1.0
+        }
+      ],
+      "cancellation_trigger_reached": false,
+      "usage": [
+        {
+          "stage": "review",
+          "usage": {
+            "input_tokens": 497,
+            "output_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "price_estimate_usd": 4.97e-05
+        },
+        {
+          "stage": "journey_text",
+          "usage": {
+            "input_tokens": 685,
+            "output_tokens": 66,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "price_estimate_usd": 0.0001015
+        },
+        {
+          "stage": "review",
+          "usage": {
+            "input_tokens": 1395,
+            "output_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "price_estimate_usd": 0.0001395
+        },
+        {
+          "stage": "fresh_audio",
+          "usage": {
+            "seconds": 8.0
+          },
+          "price_estimate_usd": 0.006666666666666667
+        }
+      ],
+      "human_microphone": false,
+      "device_playback": false,
+      "output_audio_persisted": false
+    },
+    {
+      "trial": 5,
+      "purpose": "spanish",
+      "language": "es",
+      "package": "native_voice_four_trials_20261024",
+      "input": "hash-verified public synthetic pair; follow-up sent only after accepted first segment",
+      "receipt_sha256": "4573198f1b6f95e9a1218fd3efa11f9a296b865074311e2c5b5b12a0b40b916a",
+      "source_hashes": {
+        "experimental/openai-web/voice_agent.py": "8654b6ac0d7340a5095d3f4e7357a1079ba609f19b3a020e0c3e6f5e6d916cf1",
+        "experimental/openai-web/journey.py": "68163dacd6978170e5cb2d8735a0277495303f35673bfc75dd82d02d88866d6d",
+        "experimental/openai-web/providers.py": "41228c182891c6f475e2033c99854ea6f1784cc119ad3e76d64a886406472fde",
+        "experimental/openai-web/jobs.py": "3bf5504e07bdd8b8ac7e24b34f7d033f5331a041e01b818d3473b2e9302b8b67",
+        "experimental/openai-web/tests/manual/public_diagnostics.py": "fe72d10267c58f796ee737968f1bfb5877806f1d108b9029dc6481f899a02e3d"
+      },
+      "fixture_manifest_sha256": "767befdf1cf16abc8cfbf07ea00c7fff00c2d4d27a4c1e2e73b57a435d352cc4",
+      "reservation_usd": 0.1,
+      "direct_usage_estimate_usd": 0.005987233333333334,
+      "invoice_confirmed": false,
+      "all_turns_checked": false,
+      "finalized": true,
+      "close_reason": "close_requested",
+      "native_decisions": 1,
+      "errors": [
+        "journey_sentence_attribution",
+        "voice_segment_incomplete"
+      ],
+      "checked_audio_turns": 0,
+      "events": [
+        {
+          "stage": "connected",
+          "turn": 0,
+          "at_ms": 884.285
+        },
+        {
+          "stage": "listening",
+          "turn": 1,
+          "at_ms": 884.346
+        },
+        {
+          "stage": "input_unavailable",
+          "turn": 1,
+          "at_ms": 2273.121
+        },
+        {
+          "stage": "routing",
+          "turn": 1,
+          "at_ms": 7349.332,
+          "view": "measure",
+          "map_focus": "unchanged"
+        }
+      ],
+      "stages_ms": [
+        {
+          "turn": 0,
+          "stage": "session_started",
+          "at_ms": 884.233
+        },
+        {
+          "turn": 1,
+          "stage": "input_complete",
+          "at_ms": 6555.923
+        },
+        {
+          "turn": 1,
+          "stage": "delegation_created",
+          "at_ms": 7238.031
+        },
+        {
+          "turn": 1,
+          "stage": "decision_completed",
+          "at_ms": 7345.739
+        },
+        {
+          "turn": 1,
+          "stage": "generation_started",
+          "at_ms": 7350.055
+        },
+        {
+          "turn": 1,
+          "stage": "generation_returned",
+          "at_ms": 8872.53
+        },
+        {
+          "turn": 1,
+          "stage": "close_requested",
+          "at_ms": 8912.809
+        }
+      ],
+      "diagnostics": {
+        "input_deltas": 14,
+        "timed_input_deltas": 0,
+        "buffered_audio_bytes": 0,
+        "discarded_audio_bytes": 350400,
+        "sealed_segment_extra_bytes": 0
+      },
+      "predicate_scores": [],
+      "cancellation_trigger_reached": false,
+      "usage": [
+        {
+          "stage": "review",
+          "usage": {
+            "input_tokens": 499,
+            "output_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "price_estimate_usd": 4.990000000000001e-05
+        },
+        {
+          "stage": "journey_text",
+          "usage": {
+            "input_tokens": 715,
+            "output_tokens": 65,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "price_estimate_usd": 0.000104
+        },
+        {
+          "stage": "fresh_audio",
+          "usage": {
+            "seconds": 7.0
+          },
+          "price_estimate_usd": 0.005833333333333334
+        }
+      ],
+      "human_microphone": false,
+      "device_playback": false,
+      "output_audio_persisted": false
+    },
+    {
+      "trial": 6,
+      "purpose": "recovery",
+      "language": "en",
+      "package": "native_voice_four_trials_20261024",
+      "input": "hash-verified public synthetic pair; follow-up sent only after accepted first segment",
+      "receipt_sha256": "30dc6433eed1895baaae18dfb33b2f7e22174bd0101fb682a394303d5ef9f394",
+      "source_hashes": {
+        "experimental/openai-web/voice_agent.py": "8654b6ac0d7340a5095d3f4e7357a1079ba609f19b3a020e0c3e6f5e6d916cf1",
+        "experimental/openai-web/journey.py": "547bd609114fcf5024303dd5ee1ce657480d9c3ef4709eb4f12eb2cc0ea9b727",
+        "experimental/openai-web/providers.py": "41228c182891c6f475e2033c99854ea6f1784cc119ad3e76d64a886406472fde",
+        "experimental/openai-web/jobs.py": "3bf5504e07bdd8b8ac7e24b34f7d033f5331a041e01b818d3473b2e9302b8b67",
+        "experimental/openai-web/tests/manual/public_diagnostics.py": "fe72d10267c58f796ee737968f1bfb5877806f1d108b9029dc6481f899a02e3d"
+      },
+      "fixture_manifest_sha256": "767befdf1cf16abc8cfbf07ea00c7fff00c2d4d27a4c1e2e73b57a435d352cc4",
+      "reservation_usd": 0.1,
+      "direct_usage_estimate_usd": 0.006131533333333334,
+      "invoice_confirmed": false,
+      "all_turns_checked": false,
+      "finalized": true,
+      "close_reason": "close_requested",
+      "native_decisions": 1,
+      "errors": [
+        "journey_request_fit_held",
+        "voice_segment_incomplete"
+      ],
+      "checked_audio_turns": 0,
+      "events": [
+        {
+          "stage": "connected",
+          "turn": 0,
+          "at_ms": 954.686
+        },
+        {
+          "stage": "listening",
+          "turn": 1,
+          "at_ms": 954.792
+        },
+        {
+          "stage": "input_unavailable",
+          "turn": 1,
+          "at_ms": 2161.111
+        },
+        {
+          "stage": "routing",
+          "turn": 1,
+          "at_ms": 6875.353,
+          "view": "measure",
+          "map_focus": "unchanged"
+        }
+      ],
+      "stages_ms": [
+        {
+          "turn": 0,
+          "stage": "session_started",
+          "at_ms": 954.587
+        },
+        {
+          "turn": 1,
+          "stage": "input_complete",
+          "at_ms": 6007.918
+        },
+        {
+          "turn": 1,
+          "stage": "delegation_created",
+          "at_ms": 6724.906
+        },
+        {
+          "turn": 1,
+          "stage": "decision_completed",
+          "at_ms": 6871.451
+        },
+        {
+          "turn": 1,
+          "stage": "generation_started",
+          "at_ms": 6876.027
+        },
+        {
+          "turn": 1,
+          "stage": "generation_returned",
+          "at_ms": 8760.498
+        },
+        {
+          "turn": 1,
+          "stage": "review_started",
+          "at_ms": 8761.946
+        },
+        {
+          "turn": 1,
+          "stage": "review_returned",
+          "at_ms": 9127.748
+        },
+        {
+          "turn": 1,
+          "stage": "close_requested",
+          "at_ms": 9171.798
+        }
+      ],
+      "diagnostics": {
+        "input_deltas": 14,
+        "timed_input_deltas": 0,
+        "buffered_audio_bytes": 0,
+        "discarded_audio_bytes": 362880,
+        "sealed_segment_extra_bytes": 0
+      },
+      "predicate_scores": [
+        {
+          "entailed": 0.98,
+          "no_additions": 0.95,
+          "attributed": 1.0,
+          "request_fit": 0.74,
+          "language_match": 1.0,
+          "polarity_safe": 1.0
+        }
+      ],
+      "cancellation_trigger_reached": false,
+      "usage": [
+        {
+          "stage": "review",
+          "usage": {
+            "input_tokens": 497,
+            "output_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "price_estimate_usd": 4.97e-05
+        },
+        {
+          "stage": "journey_text",
+          "usage": {
+            "input_tokens": 769,
+            "output_tokens": 59,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "price_estimate_usd": 0.00010640000000000001
+        },
+        {
+          "stage": "review",
+          "usage": {
+            "input_tokens": 1421,
+            "output_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          },
+          "price_estimate_usd": 0.00014209999999999998
+        },
+        {
+          "stage": "fresh_audio",
+          "usage": {
+            "seconds": 7.0
+          },
+          "price_estimate_usd": 0.005833333333333334
+        }
+      ],
+      "human_microphone": false,
+      "device_playback": false,
+      "output_audio_persisted": false
+    }
+  ],
+  "shared_authorization_usd": 200,
+  "conservative_reservations_usd": 2.56,
+  "recorded_cumulative_estimate_usd": 0.3013148,
+  "four_trial_package": {
+    "completed_trials": 4,
+    "reserved_usd": 0.4,
+    "estimated_direct_usage_usd": 0.025895,
+    "status": "consumed; zero accepted audio; recovery trigger not reached"
+  }
+}

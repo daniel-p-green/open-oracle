@@ -1,0 +1,33 @@
+{
+  "schema": "openoracle-official-question/v1",
+  "id": "mo-2026-proposition-a",
+  "label": "Proposition A",
+  "source_class": "official_public_sample",
+  "membership_authority": false,
+  "election_date": "2026-11-03",
+  "ballot_style": "KCEB W1-P7 public sample; not personal applicability",
+  "publisher": "Kansas City Election Board",
+  "url": "https://kceb.org/ballots/01-00006-01-NON.pdf",
+  "page": 2,
+  "retrieved_utc": "2026-10-24T04:32:39.042536+00:00",
+  "artifact_sha256": "d33d41b4c377e7d9d1bd63af0c2f1053bc4b63f608eb3167200a8385e576e0fc",
+  "text": "Do the people of the state of Missouri approve the act of the General Assembly entitled \"House Bill No. 1 (2025 Second Extraordinary Session),\" which repeals Missouri's existing congressional plan, and replaces it with new congressional boundaries that keep more counties intact?",
+  "text_sha256": "957280dd6af2bcf841da7990676743e44188167a183651d1e5df9a59e43d7900",
+  "extraction": "Page 2 upper-right Statutory Measure; line wrapping normalized; visually checked against retained original.",
+  "interpretation": {
+    "yes": "A Yes vote approves House Bill No. 1 (2025 Second Extraordinary Session).",
+    "no": "A No vote rejects that act."
+  },
+  "rights": "Official ballot wording retained as the primary legal question for local review; no claim of broader reuse license.",
+  "plan_labels": {
+    "baseline": {
+      "en": "2022 HB2909 plan",
+      "es": "Plan HB2909 de 2022"
+    },
+    "proposed": {
+      "en": "2025 HB1 plan",
+      "es": "Plan HB1 de 2025"
+    }
+  },
+  "plan_label_basis": "Official OA HB2909.pdf and Statewide_US_Congressional_District_map_of_Missouri.pdf retained in MAP-SOURCE-MANIFEST.json; local source comparison, not personal district applicability."
+}

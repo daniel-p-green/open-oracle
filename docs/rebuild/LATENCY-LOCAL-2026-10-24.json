@@ -1,0 +1,122 @@
+{
+  "date": "2026-10-24",
+  "scope": "provider-off browser; actual official retained map assets; simulated source delays; not model/device/human latency",
+  "baseline": "b10c05b plus numeric instrumentation only",
+  "delays_ms": {
+    "measure": 150,
+    "geometry": 350,
+    "legal_status": 550
+  },
+  "cold_samples": {
+    "baseline": [
+      {
+        "basis": "client_action_monotonic_not_human_playback",
+        "marks_ms": {
+          "maps_validated": 538.6,
+          "first_source": 538.7,
+          "first_useful_visual": 561.1,
+          "stable_view": 1100.6
+        }
+      },
+      {
+        "basis": "client_action_monotonic_not_human_playback",
+        "marks_ms": {
+          "maps_validated": 529.8,
+          "first_source": 530,
+          "first_useful_visual": 545.3,
+          "stable_view": 1089.1
+        }
+      },
+      {
+        "basis": "client_action_monotonic_not_human_playback",
+        "marks_ms": {
+          "maps_validated": 526.4,
+          "first_source": 526.4,
+          "first_useful_visual": 545.1,
+          "stable_view": 1091.1
+        }
+      }
+    ],
+    "parallel": [
+      {
+        "basis": "client_action_monotonic_not_human_playback",
+        "marks_ms": {
+          "intent_routed": 0.1,
+          "evidence_checked": 0.2,
+          "first_source": 156.9,
+          "first_useful_visual": 162.8,
+          "maps_validated": 366.7,
+          "stable_view": 565.4
+        }
+      },
+      {
+        "basis": "client_action_monotonic_not_human_playback",
+        "marks_ms": {
+          "intent_routed": 0,
+          "evidence_checked": 0.1,
+          "first_source": 155.5,
+          "first_useful_visual": 163.1,
+          "maps_validated": 376.5,
+          "stable_view": 565
+        }
+      },
+      {
+        "basis": "client_action_monotonic_not_human_playback",
+        "marks_ms": {
+          "intent_routed": 0,
+          "evidence_checked": 0.1,
+          "first_source": 163,
+          "first_useful_visual": 180,
+          "maps_validated": 372.9,
+          "stable_view": 558
+        }
+      }
+    ]
+  },
+  "warm_sample": {
+    "basis": "client_action_monotonic_not_human_playback",
+    "marks_ms": {
+      "intent_routed": 0.2,
+      "evidence_checked": 0.2,
+      "first_source": 0.4,
+      "maps_validated": 0.9,
+      "first_useful_visual": 26.2,
+      "stable_view": 567.1
+    }
+  },
+  "voice_or_api_calls": 0,
+  "percentile_claim": false,
+  "saved_driver_verification": {
+    "baseline": {
+      "basis": "client_action_monotonic_not_human_playback",
+      "marks_ms": {
+        "maps_validated": 533.2,
+        "first_source": 533.3,
+        "first_useful_visual": 546.1,
+        "stable_view": 1096.2
+      }
+    },
+    "parallel": {
+      "basis": "client_action_monotonic_not_human_playback",
+      "marks_ms": {
+        "intent_routed": 0.2,
+        "evidence_checked": 0.2,
+        "first_source": 158.7,
+        "first_useful_visual": 163,
+        "maps_validated": 370.7,
+        "stable_view": 560
+      }
+    }
+  },
+  "normal_local_sample": {
+    "basis": "client_action_monotonic_not_human_playback",
+    "marks_ms": {
+      "intent_routed": 0.2,
+      "evidence_checked": 0.3,
+      "first_source": 14.1,
+      "maps_validated": 30.3,
+      "stable_view": 34.5,
+      "first_useful_visual": 42.8
+    }
+  }
+}

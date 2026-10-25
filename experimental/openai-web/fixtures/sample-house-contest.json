@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "election_date": "2026-11-03",
+  "sample_variant": "W1-P7",
+  "source_role": "official_public_sample_ballot_roster",
+  "personal_membership": false,
+  "county_inventory_complete": false,
+  "contest": {
+    "id": "kceb-w1p7-20261103-us-house5",
+    "office_original": "U.S. REPRESENTATIVE",
+    "district_original": "DISTRICT 5",
+    "instruction_original": "Vote for One",
+    "candidate_rows": [
+      {
+        "roster_entry_id": "kceb-w1p7-us-house5-row1",
+        "ballot_order": 1,
+        "printed_name": "RICK BRATTIN",
+        "printed_party_code": "REP",
+        "name_spans": [
+          {
+            "start": 1137,
+            "end": 1149,
+            "text": "RICK BRATTIN"
+          }
+        ],
+        "party_span": {
+          "start": 1168,
+          "end": 1171,
+          "text": "REP"
+        },
+        "background_evidence": "not_admitted",
+        "person_identity": "not_matched_to_other_records"
+      },
+      {
+        "roster_entry_id": "kceb-w1p7-us-house5-row2",
+        "ballot_order": 2,
+        "printed_name": "EMANUEL CLEAVER, II",
+        "printed_party_code": "DEM",
+        "name_spans": [
+          {
+            "start": 1311,
+            "end": 1330,
+            "text": "EMANUEL CLEAVER, II"
+          }
+        ],
+        "party_span": {
+          "start": 1341,
+          "end": 1344,
+          "text": "DEM"
+        },
+        "background_evidence": "not_admitted",
+        "person_identity": "not_matched_to_other_records"
+      },
+      {
+        "roster_entry_id": "kceb-w1p7-us-house5-row3",
+        "ballot_order": 3,
+        "printed_name": "RANDALL (RANDY) LANGKRAEHR",
+        "printed_party_code": "LIB",
+        "name_spans": [
+          {
+            "start": 1560,
+            "end": 1575,
+            "text": "RANDALL (RANDY)"
+          },
+          {
+            "start": 1622,
+            "end": 1632,
+            "text": "LANGKRAEHR"
+          }
+        ],
+        "party_span": {
+          "start": 1591,
+          "end": 1594,
+          "text": "LIB"
+        },
+        "background_evidence": "not_admitted",
+        "person_identity": "not_matched_to_other_records"
+      }
+    ],
+    "write_in": {
+      "printed_label": "Write-in",
+      "named_candidate": false
+    }
+  },
+  "source": {
+    "url": "https://kceb.org/ballots/01-00006-01-NON.pdf",
+    "publisher": "Kansas City Election Board",
+    "page": 1,
+    "locator": "Upper-left Federal Offices column, U.S. Representative District 5",
+    "retrieved_utc": "2026-10-24T04:32:39.042536Z",
+    "publication_date": null,
+    "original_pdf_sha256": "d33d41b4c377e7d9d1bd63af0c2f1053bc4b63f608eb3167200a8385e576e0fc",
+    "original_pdf_bytes": 703754,
+    "retained_reading_sha256": "03fdd18305428a4697284e04811317f3eaa5c2b489203ea52b932403703c5921",
+    "field_extraction": "Exact printed names and party codes; line wrap joined for the third name. Spans reference the retained PDF text extraction. Visually checked against page 1; human acceptance pending.",
+    "reuse_basis": "Factual roster transcription only; no ballot artwork or blanket license claim."
+  }
+}

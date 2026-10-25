@@ -1,0 +1,28 @@
+{
+  "schema": "openoracle-legal-snapshot/v1",
+  "as_of_utc": "2026-10-24T04:36:15.067535+00:00",
+  "review_before_utc": "2026-10-25T04:36:15Z",
+  "claim": "The Court’s September 25 order preserves the 2022 map for the 2026 Missouri congressional election, absent a further order lifting the stays.",
+  "uncertainty": "This is a dated review of docket 26A388, not a final resolution of every challenge. Recheck legal status before public release.",
+  "sources": [
+    {
+      "url": "https://www.supremecourt.gov/opinions/25pdf/26a388_q86b.pdf",
+      "final_url": "https://www.supremecourt.gov/opinions/25pdf/26a388_q86b.pdf",
+      "retrieved_utc": "2026-10-24T04:35:42.967553+00:00",
+      "bytes": 63361,
+      "sha256": "73ef64de152e4dc257baa83767b75eb19fe6aea473be8688b61644c0741afd2e",
+      "publisher": "Supreme Court of the United States",
+      "document_date": "2026-09-25",
+      "page": 2
+    },
+    {
+      "url": "https://www.supremecourt.gov/docket/docketfiles/html/public/26a388.html",
+      "retrieved_utc": "2026-10-24T04:36:15.067535+00:00",
+      "bytes": 29998,
+      "sha256": "e184ad387a37923ade5883b05c13df2a61aaf09183f165f6827b9be2b8c99139",
+      "publisher": "Supreme Court of the United States",
+      "locator": "Proceedings and Orders · September 25, 2026"
+    }
+  ],
+  "admission": "Opinion page 2 visually checked; official docket read through its latest listed proceeding on retrieval date."
+}

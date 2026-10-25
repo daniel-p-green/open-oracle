@@ -1,0 +1,389 @@
+{
+  "kind": "actual_public_synthetic_staged_api_results",
+  "human_capture": false,
+  "speaker_playback": false,
+  "audio_files_persisted": false,
+  "invoice_confirmed": false,
+  "package": "native_voice_staged_six_20261024",
+  "maxima": {
+    "runs": 6,
+    "attempts": 52,
+    "reserved_usd": 0.42,
+    "shared_project_usd": 200
+  },
+  "runs": [
+    {
+      "run": "public_brief_contract_ae672bb4ad394621",
+      "purpose": "text_initial",
+      "code_commit": "0ce1743d9bf5bc89f20d78225ac4fe461ec71b8e",
+      "artifact_sha256": "2816ffd8474916827b26f91f8936c30cb3371418e556cc1f51ee96b35037a4d3",
+      "outcome": "held",
+      "reason": "journey_time_drift",
+      "attempts": 3,
+      "reserved_usd": 0.01,
+      "direct_usage_estimate_usd": 0.0003821,
+      "closure_confirmed": true,
+      "accepted_languages": [
+        "en"
+      ],
+      "public_drafts": [
+        {
+          "language": "en",
+          "text": "The question asks whether Missouri voters approve a General Assembly act replacing the existing congressional plan.",
+          "characters": 115
+        },
+        {
+          "language": "es",
+          "text": "La pregunta indica si los votantes de Misuri aprueban un acto de la legislatura que reemplaza el plan congresional vigente.",
+          "characters": 123
+        }
+      ],
+      "stages": [
+        {
+          "language": "en",
+          "stage": "retrieval",
+          "at_ms": 4.17
+        },
+        {
+          "language": "en",
+          "stage": "text",
+          "at_ms": 4.532
+        },
+        {
+          "language": "en",
+          "stage": "validation",
+          "at_ms": 2085.243
+        },
+        {
+          "language": "en",
+          "stage": "review",
+          "at_ms": 2085.966
+        },
+        {
+          "language": "en",
+          "stage": "validation",
+          "at_ms": 3027.639
+        },
+        {
+          "language": "es",
+          "stage": "retrieval",
+          "at_ms": 3027.788
+        },
+        {
+          "language": "es",
+          "stage": "text",
+          "at_ms": 3027.834
+        },
+        {
+          "language": "es",
+          "stage": "validation",
+          "at_ms": 4865.293
+        }
+      ]
+    },
+    {
+      "run": "public_brief_contract_3eadf5cd8133fcf1",
+      "purpose": "text_repair",
+      "code_commit": "4ba6206046372b7f6a1f8ae844c9176af81dca66",
+      "artifact_sha256": "c8fafd9075e09753e7266a0d8e627d9600f6c9bb37c6ccaef0f204e39838f879",
+      "outcome": "held",
+      "reason": "journey_brief_bound",
+      "attempts": 3,
+      "reserved_usd": 0.01,
+      "direct_usage_estimate_usd": 0.0003904,
+      "closure_confirmed": true,
+      "accepted_languages": [
+        "en"
+      ],
+      "public_drafts": [
+        {
+          "language": "en",
+          "text": "The question asks whether Missouri voters approve a legislature-passed act replacing the existing congressional plan.",
+          "characters": 117
+        },
+        {
+          "language": "es",
+          "text": "La pregunta consulta si se aprueba el acto de la Asamblea General que reemplaza el plan congresional existente de Misuri.",
+          "characters": 121
+        }
+      ],
+      "stages": [
+        {
+          "language": "en",
+          "stage": "retrieval",
+          "at_ms": 4.892
+        },
+        {
+          "language": "en",
+          "stage": "text",
+          "at_ms": 5.293
+        },
+        {
+          "language": "en",
+          "stage": "validation",
+          "at_ms": 2035.209
+        },
+        {
+          "language": "en",
+          "stage": "review",
+          "at_ms": 2036.277
+        },
+        {
+          "language": "en",
+          "stage": "validation",
+          "at_ms": 2455.644
+        },
+        {
+          "language": "es",
+          "stage": "retrieval",
+          "at_ms": 2455.852
+        },
+        {
+          "language": "es",
+          "stage": "text",
+          "at_ms": 2455.909
+        },
+        {
+          "language": "es",
+          "stage": "validation",
+          "at_ms": 3824.415
+        }
+      ]
+    },
+    {
+      "run": "native_staged_d95b4ac1f612d74d",
+      "purpose": "english",
+      "code_commit": "09b02d37bdd4ac7b2cf9790b56f1d2dccf3ca171",
+      "artifact_sha256": "db9208c609b6eb304b4a2d71e77c5096bcdab8b3aacda2292cd20eba09be2907",
+      "outcome": "ready",
+      "reason": "native_public_synthetic_completed",
+      "attempts": 9,
+      "reserved_usd": 0.1,
+      "direct_usage_estimate_usd": 0.024482806250000003,
+      "closure_confirmed": true,
+      "all_turns_checked": true,
+      "errors": [],
+      "native_decisions": 2,
+      "finalized": true,
+      "close_reason": "close_requested",
+      "live_seconds": 27.0,
+      "elapsed_ms": 32187.356,
+      "input_captions": [
+        {
+          "turn": 1,
+          "language": "en",
+          "input_audio_sha256": "d9306d072d78ee24c91cdac56c9999911e62bb84007513f3e066cd7f3bac1613",
+          "transcript_origin": "independent_bounded_input_asr"
+        },
+        {
+          "turn": 2,
+          "language": "en",
+          "input_audio_sha256": "17c8c927c8e73c4ea697c7ac59ab218d7a59e4d4cf1396a9bdc65ce489d55601",
+          "transcript_origin": "independent_bounded_input_asr"
+        }
+      ],
+      "cancellation": {
+        "requested": false
+      },
+      "turns": [
+        {
+          "turn": 1,
+          "language": "en",
+          "view": "measure",
+          "map_focus": "unchanged",
+          "text": "The question asks whether Missouri voters approve a General Assembly act replacing the existing congressional plan.",
+          "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+          "audio_sha256": "7c661cdc9c7f2323c1e17c3218ad4f63466f1bca5c314cc824137e6afb287919",
+          "audio_seconds": 7.0,
+          "independent_asr_match": true,
+          "from_input_complete_ms": {
+            "decision_completed": 912.334,
+            "checked_text_ready": 3013.614,
+            "first_voiced_audio": 3792.226,
+            "asr_checked": 10678.266
+          }
+        },
+        {
+          "turn": 2,
+          "language": "en",
+          "view": "maps",
+          "map_focus": "kansas_city",
+          "text": "Let’s compare both plans around Kansas City. This does not determine your district.",
+          "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+          "audio_sha256": "75dbad4430818f9421af54f0cb0f25382a5dc8b6a691e66307f54beb0e5dd086",
+          "audio_seconds": 6.6,
+          "independent_asr_match": true,
+          "from_input_complete_ms": {
+            "decision_completed": 1112.256,
+            "checked_text_ready": 1114.226,
+            "first_voiced_audio": 1974.639,
+            "asr_checked": 8813.889
+          }
+        }
+      ]
+    },
+    {
+      "run": "native_staged_c6129abb5b44cda7",
+      "purpose": "recovery",
+      "code_commit": "09b02d37bdd4ac7b2cf9790b56f1d2dccf3ca171",
+      "artifact_sha256": "54218be8752f705c22f96f2ddbaf6aba11da2420928cc16a8c3c735acd65d39a",
+      "outcome": "expected_cancel",
+      "reason": "native_public_synthetic_expected_cancel",
+      "attempts": 5,
+      "reserved_usd": 0.1,
+      "direct_usage_estimate_usd": 0.006502942708333333,
+      "closure_confirmed": true,
+      "all_turns_checked": false,
+      "errors": [
+        "voice_cancelled",
+        "voice_cancelled"
+      ],
+      "native_decisions": 1,
+      "finalized": true,
+      "close_reason": "close_requested",
+      "live_seconds": 7.0,
+      "elapsed_ms": 11375.339,
+      "input_captions": [
+        {
+          "turn": 1,
+          "language": "en",
+          "input_audio_sha256": "d9306d072d78ee24c91cdac56c9999911e62bb84007513f3e066cd7f3bac1613",
+          "transcript_origin": "independent_bounded_input_asr"
+        }
+      ],
+      "cancellation": {
+        "requested": true,
+        "stage": "checked_text",
+        "turn": 1,
+        "at_ms": 8661.268
+      },
+      "turns": []
+    },
+    {
+      "run": "native_staged_749fc627bb438cdb",
+      "purpose": "native_repair",
+      "code_commit": "9e28ff56a11b2b9f307fd3299447cf2a945e5070",
+      "artifact_sha256": "9bcb0e77430aa8bc2e713d8c154154a5a10df73e4995a0b1a5334e1835d5d967",
+      "outcome": "held",
+      "reason": "native_public_synthetic_held",
+      "attempts": 5,
+      "reserved_usd": 0.1,
+      "direct_usage_estimate_usd": 0.036521642708333336,
+      "closure_confirmed": true,
+      "all_turns_checked": false,
+      "errors": [
+        "voice_deadline"
+      ],
+      "native_decisions": 1,
+      "finalized": true,
+      "close_reason": "close_requested",
+      "live_seconds": 43.0,
+      "elapsed_ms": 47681.321,
+      "received_output_chars": 228,
+      "expected_chars": 120,
+      "planned_text_match": false,
+      "stages": [
+        {
+          "turn": 0,
+          "stage": "session_started",
+          "at_ms": 1370.201
+        },
+        {
+          "turn": 1,
+          "stage": "input_complete",
+          "at_ms": 6323.692
+        },
+        {
+          "turn": 1,
+          "stage": "input_asr_started",
+          "at_ms": 6323.75
+        },
+        {
+          "turn": 1,
+          "stage": "input_asr_returned",
+          "at_ms": 6921.765
+        },
+        {
+          "turn": 1,
+          "stage": "delegation_created",
+          "at_ms": 6932.546
+        },
+        {
+          "turn": 1,
+          "stage": "decision_completed",
+          "at_ms": 7080.532
+        },
+        {
+          "turn": 1,
+          "stage": "generation_started",
+          "at_ms": 7085.351
+        },
+        {
+          "turn": 1,
+          "stage": "generation_returned",
+          "at_ms": 8480.017
+        },
+        {
+          "turn": 1,
+          "stage": "review_started",
+          "at_ms": 8481.206
+        },
+        {
+          "turn": 1,
+          "stage": "review_returned",
+          "at_ms": 9311.151
+        },
+        {
+          "turn": 1,
+          "stage": "review_done",
+          "at_ms": 9311.527
+        },
+        {
+          "turn": 1,
+          "stage": "checked_text_ready",
+          "at_ms": 9311.535
+        },
+        {
+          "turn": 1,
+          "stage": "commentary_sent",
+          "at_ms": 9311.794
+        },
+        {
+          "turn": 1,
+          "stage": "first_audio",
+          "at_ms": 9344.015
+        },
+        {
+          "turn": 1,
+          "stage": "first_voiced_audio",
+          "at_ms": 10048.651
+        },
+        {
+          "turn": 1,
+          "stage": "close_requested",
+          "at_ms": 44998.695
+        }
+      ],
+      "accepted_audio_turns": 0,
+      "limitation": "Exact received output wording was not retained; no semantic cause inferred from counts."
+    }
+  ],
+  "actual_run_count": 5,
+  "actual_attempts": 25,
+  "package_reserved_usd": 0.32,
+  "package_direct_usage_estimate_usd": 0.06827989166666668,
+  "shared_conservative_reservations_usd": 2.88,
+  "shared_recorded_direct_estimate_usd": 0.3695946916666667,
+  "remaining_purposes": [
+    "spanish"
+  ],
+  "limitations": [
+    "Single samples, no percentiles or human-heard quality.",
+    "Routing is a model-selected visual request, not current browser render proof.",
+    "Spanish and context-preserving language switching remain unverified.",
+    "Spanish generation length adjustment after these runs is offline-only; no text-purpose reset.",
+    "Historical unmetered Playground activity not included in cumulative direct estimate.",
+    "Four-choice native contract admitted once on9e28ff5, but speech reading diverged and deadline held; no complete pass on that newer code."
+  ],
+  "paid_sequence_state": "paused_after_native_repair_hold_no_retry"
+}

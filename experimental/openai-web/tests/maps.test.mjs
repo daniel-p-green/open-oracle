@@ -1,0 +1,8 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {validateMaps} from '../web/map-core.mjs';
+const registry={sources:[{name:'official-input',sha256:'pinned'}]};
+function fixture(){return {version:1,projection:'EPSG:5070',sources:structuredClone(registry.sources),plans:['baseline','proposed'].map(id=>({id,label:id,validation:{coverage_edges_valid:true},features:Array.from({length:8},(_,i)=>({id:i+1,path:'M0,0 L1,0 L1,-1 Z'}))})),views:['statewide','kc','stl'].map(id=>({id,label:id,bounds:[0,-1,1,1],labels:{baseline:[{id:1,x:.5,y:-.5}],proposed:[{id:1,x:.6,y:-.5}]}}))};}
+test('map shape contract requires both district sets and synchronized views; provenance is checked separately',()=>{const d=fixture(),result=validateMaps(d,registry);assert.equal(result.projection,'EPSG:5070');assert.equal(result.plans.length,2);d.plans[0].features[0].path='mutated';assert.notEqual(result.plans[0].features[0].path,'mutated');});
+test('changed source metadata, duplicate IDs, projection or missing coverage-check flag fail closed',()=>{for(const mutate of [d=>d.sources[0].sha256='forged',d=>d.plans[0].features[0].id=2,d=>d.projection='EPSG:3857',d=>d.plans[1].validation.coverage_edges_valid=false]){const d=fixture();mutate(d);assert.throws(()=>validateMaps(d,registry));}});
+test('active SVG content, nonfinite bounds and forged labels are rejected',()=>{for(const mutate of [d=>d.plans[0].features[0].path='<script>alert(1)</script>',d=>d.views[0].bounds[0]=NaN,d=>d.views[0].labels.baseline.push({id:9,x:0,y:0}),d=>d.views[0].labels.proposed[0].x=Infinity]){const d=fixture();mutate(d);assert.throws(()=>validateMaps(d,registry));}});

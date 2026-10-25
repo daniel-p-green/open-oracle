@@ -1,0 +1,66 @@
+{
+  "role": "synthetic_component_selection_cases_not_live_results",
+  "cases": [
+    {
+      "operation": "overview",
+      "components": [
+        "explanation",
+        "choice_comparison",
+        "original",
+        "uncertainty",
+        "map_reference"
+      ],
+      "accepted": true
+    },
+    {
+      "operation": "brief",
+      "components": ["explanation", "original", "uncertainty"],
+      "accepted": true
+    },
+    {
+      "operation": "limits",
+      "components": ["uncertainty", "original", "explanation"],
+      "accepted": true
+    },
+    {
+      "operation": "overview",
+      "components": ["explanation", "original", "map_reference"],
+      "accepted": false
+    },
+    {
+      "operation": "overview",
+      "components": ["explanation", "original", "uncertainty", "original"],
+      "accepted": false
+    },
+    {
+      "operation": "overview",
+      "components": [
+        "explanation",
+        "original",
+        "uncertainty",
+        "candidate_ranking"
+      ],
+      "accepted": false
+    },
+    {
+      "operation": "overview",
+      "components": ["explanation", "original", "uncertainty", "<script>"],
+      "accepted": false
+    },
+    {
+      "operation": "limits",
+      "components": ["explanation", "original", "uncertainty", "map_reference"],
+      "accepted": false
+    },
+    {
+      "operation": "simpler",
+      "components": [
+        "explanation",
+        "original",
+        "uncertainty",
+        "choice_comparison"
+      ],
+      "accepted": false
+    }
+  ]
+}

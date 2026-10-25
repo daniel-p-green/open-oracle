@@ -1,0 +1,3630 @@
+{
+  "version": 1,
+  "election_date": "2026-11-03",
+  "reviewed_utc": "2026-10-24T08:59:48Z",
+  "source_role": "official_public_notice_inventory",
+  "scope": {
+    "printed_union_reconciled": true,
+    "individual_ballot_styles_enumerated": false,
+    "personal_membership": false,
+    "eligible_write_ins_complete": false,
+    "current_county_inventory_certified": false,
+    "human_acceptance": "pending",
+    "rights": "factual roster and official wording for local review; no blanket republication license claimed"
+  },
+  "counts": {
+    "printed_contests": 55,
+    "candidate_election": 34,
+    "judicial_retention": 11,
+    "measure": 10,
+    "printed_candidate_slots": 62,
+    "retention_slots": 11
+  },
+  "sources": {
+    "kceb": {
+      "publisher": "Kansas City Election Board",
+      "url": "https://drive.google.com/file/d/1K9yPQmPpIB1g9qoErahvNjTGhrBRi9A2/view",
+      "authority_page": "https://kceb.org/elections/ballot/",
+      "jurisdiction": "Kansas City within Jackson County",
+      "original_sha256": "92cda731c864b5a84062322a32f743597bcace6f986af4c0e2bfe55c7405dc62",
+      "bytes": 457535,
+      "pages": 8,
+      "document_date": "2026-09-14",
+      "retrieved_utc": "2026-10-09",
+      "freshness": "retained_snapshot; current authority link rechecked 2026-10-24, current bytes not re-fetched"
+    },
+    "jceb": {
+      "publisher": "Jackson County Election Board",
+      "url": "https://jcebmo.org/wp-content/uploads/11.03.26-Notice-of-Election-Sample-Ballot-Poster.pdf",
+      "authority_page": "https://jcebmo.org/election-information/on-the-ballot/",
+      "jurisdiction": "Jackson County outside Kansas City corporate limits",
+      "original_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+      "bytes": 109533,
+      "pages": 2,
+      "document_date": "2026-08-25",
+      "retrieved_utc": "2026-10-24T07:57:44.986988Z",
+      "freshness": "bytes re-fetched; match retained October 9 version"
+    }
+  },
+  "contests": [
+    {
+      "id": "auditor",
+      "kind": "candidate_election",
+      "label": "State Auditor",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 2,
+          "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-2-426",
+              "printed_name": "Scott Fitzpatrick",
+              "printed_party": "Rep",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 426,
+                "end": 463,
+                "text": "Scott Fitzpatrick                 Rep"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "kceb-2-469",
+              "printed_name": "Quentin Wilson",
+              "printed_party": "Dem",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 469,
+                "end": 506,
+                "text": "Quentin Wilson                    Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "kceb-2-512",
+              "printed_name": "Dustin Coffell",
+              "printed_party": "Lib",
+              "ballot_order": 3,
+              "field_span": {
+                "start": 512,
+                "end": 549,
+                "text": "Dustin Coffell                    Lib"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        },
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-1-3987",
+              "printed_name": "SCOTT FITZPATRICK",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 3987,
+                "end": 4040,
+                "text": "SCOTT FITZPATRICK                                 REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-4207",
+              "printed_name": "QUENTIN WILSON",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 4207,
+                "end": 4260,
+                "text": "QUENTIN WILSON                                    DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-4372",
+              "printed_name": "DUSTIN COFFELL",
+              "printed_party": "LIB",
+              "ballot_order": 3,
+              "field_span": {
+                "start": 4372,
+                "end": 4425,
+                "text": "DUSTIN COFFELL                                    LIB"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for One)",
+            "page": 1,
+            "reading_sha256": "ecf009551a117b914c87954e3efb60f2d4ae68ecc474956f2dcc8c9af0f95cbf",
+            "span": {
+              "start": 947,
+              "end": 961,
+              "text": "(Vote for One)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "us-house-4",
+      "kind": "candidate_election",
+      "label": "U.S. House · District 4",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-1-5189",
+              "printed_name": "MARK ALFORD",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 5189,
+                "end": 5242,
+                "text": "MARK ALFORD                                       REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-5464",
+              "printed_name": "JORDAN HERRERA",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 5464,
+                "end": 5517,
+                "text": "JORDAN HERRERA                                    DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-5747",
+              "printed_name": "THOMAS HOLBROOK",
+              "printed_party": "LIB",
+              "ballot_order": 3,
+              "field_span": {
+                "start": 5747,
+                "end": 5800,
+                "text": "THOMAS HOLBROOK                                   LIB"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for One)",
+            "page": 1,
+            "reading_sha256": "ecf009551a117b914c87954e3efb60f2d4ae68ecc474956f2dcc8c9af0f95cbf",
+            "span": {
+              "start": 1210,
+              "end": 1224,
+              "text": "(Vote for One)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "us-house-5",
+      "kind": "candidate_election",
+      "label": "U.S. House · District 5",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 2,
+          "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-2-631",
+              "printed_name": "Rick Brattin",
+              "printed_party": "Rep",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 631,
+                "end": 668,
+                "text": "Rick Brattin                      Rep"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "kceb-2-674",
+              "printed_name": "Emanuel Cleaver, II",
+              "printed_party": "Dem",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 674,
+                "end": 711,
+                "text": "Emanuel Cleaver, II               Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "kceb-2-717",
+              "printed_name": "Randall (Randy) Langkraehr",
+              "printed_party": "Lib",
+              "ballot_order": 3,
+              "field_span": {
+                "start": 717,
+                "end": 754,
+                "text": "Randall (Randy) Langkraehr        Lib"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        },
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-1-6441",
+              "printed_name": "RICK BRATTIN",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 6441,
+                "end": 6494,
+                "text": "RICK BRATTIN                                      REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-6649",
+              "printed_name": "EMANUEL CLEAVER, II",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 6649,
+                "end": 6702,
+                "text": "EMANUEL CLEAVER, II                               DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-6850",
+              "printed_name": "RANDALL (RANDY) LANGKRAEHR",
+              "printed_party": "LIB",
+              "ballot_order": 3,
+              "field_span": {
+                "start": 6850,
+                "end": 6903,
+                "text": "RANDALL (RANDY) LANGKRAEHR                        LIB"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for One)",
+            "page": 1,
+            "reading_sha256": "ecf009551a117b914c87954e3efb60f2d4ae68ecc474956f2dcc8c9af0f95cbf",
+            "span": {
+              "start": 1442,
+              "end": 1456,
+              "text": "(Vote for One)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "us-house-6",
+      "kind": "candidate_election",
+      "label": "U.S. House · District 6",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-1-7440",
+              "printed_name": "CHRIS STIGALL",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 7440,
+                "end": 7493,
+                "text": "CHRIS STIGALL                                     REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-7610",
+              "printed_name": "JOSH SMEAD",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 7610,
+                "end": 7663,
+                "text": "JOSH SMEAD                                        DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-7762",
+              "printed_name": "ANDY MAIDMENT",
+              "printed_party": "LIB",
+              "ballot_order": 3,
+              "field_span": {
+                "start": 7762,
+                "end": 7815,
+                "text": "ANDY MAIDMENT                                     LIB"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for One)",
+            "page": 1,
+            "reading_sha256": "ecf009551a117b914c87954e3efb60f2d4ae68ecc474956f2dcc8c9af0f95cbf",
+            "span": {
+              "start": 1674,
+              "end": 1688,
+              "text": "(Vote for One)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-senate-8",
+      "kind": "candidate_election",
+      "label": "State Senate · District 8",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-1-8655",
+              "printed_name": "JON PATTERSON",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 8655,
+                "end": 8708,
+                "text": "JON PATTERSON                                     REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-8883",
+              "printed_name": "KERI INGLE",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 8883,
+                "end": 8936,
+                "text": "KERI INGLE                                        DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for One)",
+            "page": 1,
+            "reading_sha256": "ecf009551a117b914c87954e3efb60f2d4ae68ecc474956f2dcc8c9af0f95cbf",
+            "span": {
+              "start": 1935,
+              "end": 1949,
+              "text": "(Vote for One)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-house-19",
+      "kind": "candidate_election",
+      "label": "State House · District 19",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 2,
+          "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-2-871",
+              "printed_name": "Karen Irene Spalding",
+              "printed_party": "Rep",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 871,
+                "end": 898,
+                "text": "Karen Irene Spalding    Rep"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "kceb-2-931",
+              "printed_name": "Wick Thomas",
+              "printed_party": "Dem",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 931,
+                "end": 958,
+                "text": "Wick Thomas             Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        },
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-1-9666",
+              "printed_name": "KAREN IRENE SPALDING",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 9666,
+                "end": 9719,
+                "text": "KAREN IRENE SPALDING                              REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-9720",
+              "printed_name": "WICK THOMAS",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 9720,
+                "end": 9773,
+                "text": "WICK THOMAS                                       DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for One)",
+            "page": 1,
+            "reading_sha256": "ecf009551a117b914c87954e3efb60f2d4ae68ecc474956f2dcc8c9af0f95cbf",
+            "span": {
+              "start": 2146,
+              "end": 2160,
+              "text": "(Vote for One)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-house-20",
+      "kind": "candidate_election",
+      "label": "State House · District 20",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-1-10756",
+              "printed_name": "MIKE STEINMEYER",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 10756,
+                "end": 10809,
+                "text": "MIKE STEINMEYER                                   REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-10908",
+              "printed_name": "JEFF SPICER",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 10908,
+                "end": 10961,
+                "text": "JEFF SPICER                                       DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for One)",
+            "page": 1,
+            "reading_sha256": "ecf009551a117b914c87954e3efb60f2d4ae68ecc474956f2dcc8c9af0f95cbf",
+            "span": {
+              "start": 2357,
+              "end": 2371,
+              "text": "(Vote for One)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-house-21",
+      "kind": "candidate_election",
+      "label": "State House · District 21",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-1-11660",
+              "printed_name": "MICHAEL YOUNG",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 11660,
+                "end": 11713,
+                "text": "MICHAEL YOUNG                                     REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-11884",
+              "printed_name": "WILL JOBE",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 11884,
+                "end": 11937,
+                "text": "WILL JOBE                                         DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for One)",
+            "page": 1,
+            "reading_sha256": "ecf009551a117b914c87954e3efb60f2d4ae68ecc474956f2dcc8c9af0f95cbf",
+            "span": {
+              "start": 2536,
+              "end": 2550,
+              "text": "(Vote for One)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-house-22",
+      "kind": "candidate_election",
+      "label": "State House · District 22",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 2,
+          "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-2-1085",
+              "printed_name": "Yolanda Young",
+              "printed_party": "Dem",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 1085,
+                "end": 1112,
+                "text": "Yolanda Young           Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        },
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-1-12640",
+              "printed_name": "YOLANDA YOUNG",
+              "printed_party": "DEM",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 12640,
+                "end": 12693,
+                "text": "YOLANDA YOUNG                                     DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for One)",
+            "page": 1,
+            "reading_sha256": "ecf009551a117b914c87954e3efb60f2d4ae68ecc474956f2dcc8c9af0f95cbf",
+            "span": {
+              "start": 2715,
+              "end": 2729,
+              "text": "(Vote for One)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-house-28",
+      "kind": "candidate_election",
+      "label": "State House · District 28",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 3,
+          "reading_sha256": "f0ba2ddcc5df497fa01165a5f83e3484d1ba3aed388aad507be9769d1bbbed3f",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-3-483",
+              "printed_name": "Steven W Hinton",
+              "printed_party": "Rep",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 483,
+                "end": 512,
+                "text": "Steven W Hinton           Rep"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "kceb-3-541",
+              "printed_name": "Donna Barnes",
+              "printed_party": "Dem",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 541,
+                "end": 570,
+                "text": "Donna Barnes              Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        },
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-1-13202",
+              "printed_name": "STEVEN W. HINTON",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 13202,
+                "end": 13255,
+                "text": "STEVEN W. HINTON                                  REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-13394",
+              "printed_name": "DONNA BARNES",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 13394,
+                "end": 13447,
+                "text": "DONNA BARNES                                      DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for One)",
+            "page": 1,
+            "reading_sha256": "ecf009551a117b914c87954e3efb60f2d4ae68ecc474956f2dcc8c9af0f95cbf",
+            "span": {
+              "start": 2840,
+              "end": 2854,
+              "text": "(Vote for One)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-house-29",
+      "kind": "candidate_election",
+      "label": "State House · District 29",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-1-610",
+              "printed_name": "ROBERT BRUETTE",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 610,
+                "end": 659,
+                "text": "ROBERT BRUETTE                                REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-840",
+              "printed_name": "TEDI H. ROWLAND",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 840,
+                "end": 889,
+                "text": "TEDI H. ROWLAND                               DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for One)",
+            "page": 1,
+            "reading_sha256": "234bd411b7d76f17f91f9e4de4a577e175dc81643e0926e391dc78232663f1bc",
+            "span": {
+              "start": 106,
+              "end": 120,
+              "text": "(Vote for One)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-house-30",
+      "kind": "candidate_election",
+      "label": "State House · District 30",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-1-1389",
+              "printed_name": "JEFF MARTIN",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 1389,
+                "end": 1438,
+                "text": "JEFF MARTIN                                   REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-1553",
+              "printed_name": "KEVIN GROVER",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 1553,
+                "end": 1602,
+                "text": "KEVIN GROVER                                  DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for One)",
+            "page": 1,
+            "reading_sha256": "234bd411b7d76f17f91f9e4de4a577e175dc81643e0926e391dc78232663f1bc",
+            "span": {
+              "start": 282,
+              "end": 296,
+              "text": "(Vote for One)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-house-31",
+      "kind": "candidate_election",
+      "label": "State House · District 31",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-1-2187",
+              "printed_name": "RON FOWLER",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 2187,
+                "end": 2236,
+                "text": "RON FOWLER                                    REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-2297",
+              "printed_name": "JUSTIN GEISER",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 2297,
+                "end": 2346,
+                "text": "JUSTIN GEISER                                 DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for One)",
+            "page": 1,
+            "reading_sha256": "234bd411b7d76f17f91f9e4de4a577e175dc81643e0926e391dc78232663f1bc",
+            "span": {
+              "start": 458,
+              "end": 472,
+              "text": "(Vote for One)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-house-32",
+      "kind": "candidate_election",
+      "label": "State House · District 32",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-1-2877",
+              "printed_name": "MICHAEL TODD",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 2877,
+                "end": 2926,
+                "text": "MICHAEL TODD                                  REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-2997",
+              "printed_name": "JENNIFER CASSIDY",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 2997,
+                "end": 3046,
+                "text": "JENNIFER CASSIDY                              DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for One)",
+            "page": 1,
+            "reading_sha256": "234bd411b7d76f17f91f9e4de4a577e175dc81643e0926e391dc78232663f1bc",
+            "span": {
+              "start": 634,
+              "end": 648,
+              "text": "(Vote for One)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-house-33",
+      "kind": "candidate_election",
+      "label": "State House · District 33",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-1-3698",
+              "printed_name": "CAROLYN CATON",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 3698,
+                "end": 3747,
+                "text": "CAROLYN CATON                                 REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-3818",
+              "printed_name": "TROY LATTERELL",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 3818,
+                "end": 3867,
+                "text": "TROY LATTERELL                                DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for One)",
+            "page": 1,
+            "reading_sha256": "234bd411b7d76f17f91f9e4de4a577e175dc81643e0926e391dc78232663f1bc",
+            "span": {
+              "start": 810,
+              "end": 824,
+              "text": "(Vote for One)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-house-34",
+      "kind": "candidate_election",
+      "label": "State House · District 34",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-1-4524",
+              "printed_name": "SEAN SMITH",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 4524,
+                "end": 4573,
+                "text": "SEAN SMITH                                    REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-4706",
+              "printed_name": "KEMP STRICKLER",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 4706,
+                "end": 4755,
+                "text": "KEMP STRICKLER                                DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for One)",
+            "page": 1,
+            "reading_sha256": "234bd411b7d76f17f91f9e4de4a577e175dc81643e0926e391dc78232663f1bc",
+            "span": {
+              "start": 986,
+              "end": 1000,
+              "text": "(Vote for One)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-house-35",
+      "kind": "candidate_election",
+      "label": "State House · District 35",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 3,
+          "reading_sha256": "f0ba2ddcc5df497fa01165a5f83e3484d1ba3aed388aad507be9769d1bbbed3f",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-3-685",
+              "printed_name": "Jacquie Aziere Stenger",
+              "printed_party": "Rep",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 685,
+                "end": 714,
+                "text": "Jacquie Aziere Stenger    Rep"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "kceb-3-743",
+              "printed_name": "Michael Scott",
+              "printed_party": "Dem",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 743,
+                "end": 772,
+                "text": "Michael Scott             Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        },
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-1-5414",
+              "printed_name": "JACQUIE AZIERE STENGER",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 5414,
+                "end": 5463,
+                "text": "JACQUIE AZIERE STENGER                        REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-5697",
+              "printed_name": "MICHAEL SCOTT",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 5697,
+                "end": 5746,
+                "text": "MICHAEL SCOTT                                 DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for One)",
+            "page": 1,
+            "reading_sha256": "234bd411b7d76f17f91f9e4de4a577e175dc81643e0926e391dc78232663f1bc",
+            "span": {
+              "start": 1162,
+              "end": 1176,
+              "text": "(Vote for One)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-house-36",
+      "kind": "candidate_election",
+      "label": "State House · District 36",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 3,
+          "reading_sha256": "f0ba2ddcc5df497fa01165a5f83e3484d1ba3aed388aad507be9769d1bbbed3f",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-3-902",
+              "printed_name": "Dave Thomas",
+              "printed_party": "Rep",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 902,
+                "end": 931,
+                "text": "Dave Thomas               Rep"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "kceb-3-959",
+              "printed_name": "Anthony T. Ealy Jr.",
+              "printed_party": "Dem",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 959,
+                "end": 988,
+                "text": "Anthony T. Ealy Jr.       Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        },
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-1-6339",
+              "printed_name": "DAVE THOMAS",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 6339,
+                "end": 6388,
+                "text": "DAVE THOMAS                                   REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-1-6555",
+              "printed_name": "ANTHONY T. EALY, JR.",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 6555,
+                "end": 6604,
+                "text": "ANTHONY T. EALY, JR.                          DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for One)",
+            "page": 1,
+            "reading_sha256": "234bd411b7d76f17f91f9e4de4a577e175dc81643e0926e391dc78232663f1bc",
+            "span": {
+              "start": 1338,
+              "end": 1352,
+              "text": "(Vote for One)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "county-executive",
+      "kind": "candidate_election",
+      "label": "Jackson County Executive",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 3,
+          "reading_sha256": "f0ba2ddcc5df497fa01165a5f83e3484d1ba3aed388aad507be9769d1bbbed3f",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-3-1279",
+              "printed_name": "Alan Rohlfing",
+              "printed_party": "Rep",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 1279,
+                "end": 1308,
+                "text": "Alan Rohlfing             Rep"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "kceb-3-1336",
+              "printed_name": "Stacy Lake",
+              "printed_party": "Dem",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 1336,
+                "end": 1365,
+                "text": "Stacy Lake                Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        },
+        {
+          "source_id": "jceb",
+          "page": 2,
+          "reading_sha256": "4dea03062b876c084c9c57ec31b7893737bef6eac2388d582d2a568e9cb2fec5",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-2-9328",
+              "printed_name": "ALAN ROHLFING",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 9328,
+                "end": 9383,
+                "text": "ALAN ROHLFING                                       REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-2-9512",
+              "printed_name": "STACY LAKE",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 9512,
+                "end": 9567,
+                "text": "STACY LAKE                                          DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for ONE)",
+            "page": 2,
+            "reading_sha256": "b168bac1815b87b3227cb33444bbc2a90e571da8af609dc77f2b36020bc51a89",
+            "span": {
+              "start": 1623,
+              "end": 1637,
+              "text": "(Vote for ONE)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "county-at-large-1",
+      "kind": "candidate_election",
+      "label": "County Legislature · At-large 1",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 4,
+          "reading_sha256": "c7ff6c412670945d072388052f114c66dbf1b0ae12320e71c46d3e8451c55068",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-4-930",
+              "printed_name": "Lance Pollard",
+              "printed_party": "Rep",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 930,
+                "end": 954,
+                "text": "Lance Pollard        Rep"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "kceb-4-983",
+              "printed_name": "Carla Fields",
+              "printed_party": "Dem",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 983,
+                "end": 1007,
+                "text": "Carla Fields         Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        },
+        {
+          "source_id": "jceb",
+          "page": 2,
+          "reading_sha256": "4dea03062b876c084c9c57ec31b7893737bef6eac2388d582d2a568e9cb2fec5",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-2-10285",
+              "printed_name": "LANCE POLLARD",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 10285,
+                "end": 10340,
+                "text": "LANCE POLLARD                                       REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-2-10384",
+              "printed_name": "CARLA FIELDS",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 10384,
+                "end": 10439,
+                "text": "CARLA FIELDS                                        DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for ONE)",
+            "page": 2,
+            "reading_sha256": "b168bac1815b87b3227cb33444bbc2a90e571da8af609dc77f2b36020bc51a89",
+            "span": {
+              "start": 1842,
+              "end": 1856,
+              "text": "(Vote for ONE)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "county-at-large-2",
+      "kind": "candidate_election",
+      "label": "County Legislature · At-large 2",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 4,
+          "reading_sha256": "c7ff6c412670945d072388052f114c66dbf1b0ae12320e71c46d3e8451c55068",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-4-1167",
+              "printed_name": "Gresia Cabrera",
+              "printed_party": "Rep",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 1167,
+                "end": 1192,
+                "text": "Gresia Cabrera        Rep"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "kceb-4-1221",
+              "printed_name": "Donna Peyton",
+              "printed_party": "Dem",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 1221,
+                "end": 1246,
+                "text": "Donna Peyton          Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        },
+        {
+          "source_id": "jceb",
+          "page": 2,
+          "reading_sha256": "4dea03062b876c084c9c57ec31b7893737bef6eac2388d582d2a568e9cb2fec5",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-2-11053",
+              "printed_name": "GRESIA CABRERA",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 11053,
+                "end": 11108,
+                "text": "GRESIA CABRERA                                      REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-2-11171",
+              "printed_name": "DONNA PEYTON",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 11171,
+                "end": 11226,
+                "text": "DONNA PEYTON                                        DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for ONE)",
+            "page": 2,
+            "reading_sha256": "b168bac1815b87b3227cb33444bbc2a90e571da8af609dc77f2b36020bc51a89",
+            "span": {
+              "start": 2030,
+              "end": 2044,
+              "text": "(Vote for ONE)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "county-at-large-3",
+      "kind": "candidate_election",
+      "label": "County Legislature · At-large 3",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 4,
+          "reading_sha256": "c7ff6c412670945d072388052f114c66dbf1b0ae12320e71c46d3e8451c55068",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-4-1405",
+              "printed_name": "Susan B. Wilson",
+              "printed_party": "Dem",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 1405,
+                "end": 1430,
+                "text": "Susan B. Wilson       Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        },
+        {
+          "source_id": "jceb",
+          "page": 2,
+          "reading_sha256": "4dea03062b876c084c9c57ec31b7893737bef6eac2388d582d2a568e9cb2fec5",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-2-11744",
+              "printed_name": "SUSAN B. WILSON",
+              "printed_party": "DEM",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 11744,
+                "end": 11799,
+                "text": "SUSAN B. WILSON                                     DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [
+            {
+              "text": "NO CANDIDATE FILED",
+              "party": "REP",
+              "named_candidate": false,
+              "field_span": {
+                "start": 11640,
+                "end": 11695,
+                "text": "NO CANDIDATE FILED                                  REP"
+              }
+            }
+          ],
+          "instruction": {
+            "text": "(Vote for ONE)",
+            "page": 2,
+            "reading_sha256": "b168bac1815b87b3227cb33444bbc2a90e571da8af609dc77f2b36020bc51a89",
+            "span": {
+              "start": 2218,
+              "end": 2232,
+              "text": "(Vote for ONE)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "county-district-2",
+      "kind": "candidate_election",
+      "label": "County Legislature · District 2",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 4,
+          "reading_sha256": "c7ff6c412670945d072388052f114c66dbf1b0ae12320e71c46d3e8451c55068",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-4-65",
+              "printed_name": "Venessa Huskey",
+              "printed_party": "Dem",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 65,
+                "end": 90,
+                "text": "Venessa Huskey        Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        },
+        {
+          "source_id": "jceb",
+          "page": 2,
+          "reading_sha256": "4dea03062b876c084c9c57ec31b7893737bef6eac2388d582d2a568e9cb2fec5",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-2-12268",
+              "printed_name": "VENESSA HUSKEY",
+              "printed_party": "DEM",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 12268,
+                "end": 12323,
+                "text": "VENESSA HUSKEY                                      DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [
+            {
+              "text": "NO CANDIDATE FILED",
+              "party": "REP",
+              "named_candidate": false,
+              "field_span": {
+                "start": 12155,
+                "end": 12210,
+                "text": "NO CANDIDATE FILED                                  REP"
+              }
+            }
+          ],
+          "instruction": {
+            "text": "(Vote for ONE)",
+            "page": 2,
+            "reading_sha256": "b168bac1815b87b3227cb33444bbc2a90e571da8af609dc77f2b36020bc51a89",
+            "span": {
+              "start": 2434,
+              "end": 2448,
+              "text": "(Vote for ONE)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "county-district-3",
+      "kind": "candidate_election",
+      "label": "County Legislature · District 3",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 4,
+          "reading_sha256": "c7ff6c412670945d072388052f114c66dbf1b0ae12320e71c46d3e8451c55068",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-4-239",
+              "printed_name": "Scott Qualls",
+              "printed_party": "Rep",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 239,
+                "end": 264,
+                "text": "Scott Qualls          Rep"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "kceb-4-292",
+              "printed_name": "Phyllis Hernandez",
+              "printed_party": "Dem",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 292,
+                "end": 317,
+                "text": "Phyllis Hernandez     Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        },
+        {
+          "source_id": "jceb",
+          "page": 2,
+          "reading_sha256": "4dea03062b876c084c9c57ec31b7893737bef6eac2388d582d2a568e9cb2fec5",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-2-12919",
+              "printed_name": "SCOTT QUALLS",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 12919,
+                "end": 12974,
+                "text": "SCOTT QUALLS                                        REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-2-13081",
+              "printed_name": "PHYLLIS HERNANDEZ",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 13081,
+                "end": 13136,
+                "text": "PHYLLIS HERNANDEZ                                   DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for ONE)",
+            "page": 2,
+            "reading_sha256": "b168bac1815b87b3227cb33444bbc2a90e571da8af609dc77f2b36020bc51a89",
+            "span": {
+              "start": 2619,
+              "end": 2633,
+              "text": "(Vote for ONE)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "county-district-4",
+      "kind": "candidate_election",
+      "label": "County Legislature · District 4",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 4,
+          "reading_sha256": "c7ff6c412670945d072388052f114c66dbf1b0ae12320e71c46d3e8451c55068",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-4-466",
+              "printed_name": "Lon McDonald",
+              "printed_party": "Rep",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 466,
+                "end": 491,
+                "text": "Lon McDonald          Rep"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "kceb-4-519",
+              "printed_name": "Byron Townsend",
+              "printed_party": "Dem",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 519,
+                "end": 544,
+                "text": "Byron Townsend        Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        },
+        {
+          "source_id": "jceb",
+          "page": 2,
+          "reading_sha256": "4dea03062b876c084c9c57ec31b7893737bef6eac2388d582d2a568e9cb2fec5",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-2-613",
+              "printed_name": "LON MCDONALD",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 613,
+                "end": 668,
+                "text": "LON MCDONALD                                        REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-2-913",
+              "printed_name": "BYRON TOWNSEND",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 913,
+                "end": 968,
+                "text": "BYRON TOWNSEND                                      DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for ONE)",
+            "page": 2,
+            "reading_sha256": "161b8320524028215f4ec70879ea76394e435377bc3949be518d266103dc3d10",
+            "span": {
+              "start": 104,
+              "end": 118,
+              "text": "(Vote for ONE)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "county-district-5",
+      "kind": "candidate_election",
+      "label": "County Legislature · District 5",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 2,
+          "reading_sha256": "4dea03062b876c084c9c57ec31b7893737bef6eac2388d582d2a568e9cb2fec5",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-2-2005",
+              "printed_name": "DALE CARTER",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 2005,
+                "end": 2060,
+                "text": "DALE CARTER                                         REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-2-2295",
+              "printed_name": "ANTOINE D. JENNINGS",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 2295,
+                "end": 2350,
+                "text": "ANTOINE D. JENNINGS                                 DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for ONE)",
+            "page": 2,
+            "reading_sha256": "161b8320524028215f4ec70879ea76394e435377bc3949be518d266103dc3d10",
+            "span": {
+              "start": 291,
+              "end": 305,
+              "text": "(Vote for ONE)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "county-district-6",
+      "kind": "candidate_election",
+      "label": "County Legislature · District 6",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 4,
+          "reading_sha256": "c7ff6c412670945d072388052f114c66dbf1b0ae12320e71c46d3e8451c55068",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-4-693",
+              "printed_name": "Bill Haley",
+              "printed_party": "Rep",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 693,
+                "end": 717,
+                "text": "Bill Haley           Rep"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "kceb-4-746",
+              "printed_name": "Tony Lawson",
+              "printed_party": "Dem",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 746,
+                "end": 770,
+                "text": "Tony Lawson          Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        },
+        {
+          "source_id": "jceb",
+          "page": 2,
+          "reading_sha256": "4dea03062b876c084c9c57ec31b7893737bef6eac2388d582d2a568e9cb2fec5",
+          "candidate_rows": [
+            {
+              "entry_id": "jceb-2-3164",
+              "printed_name": "BILL HALEY",
+              "printed_party": "REP",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 3164,
+                "end": 3219,
+                "text": "BILL HALEY                                          REP"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            },
+            {
+              "entry_id": "jceb-2-3293",
+              "printed_name": "TONY LAWSON",
+              "printed_party": "DEM",
+              "ballot_order": 2,
+              "field_span": {
+                "start": 3293,
+                "end": 3348,
+                "text": "TONY LAWSON                                         DEM"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "(Vote for ONE)",
+            "page": 2,
+            "reading_sha256": "161b8320524028215f4ec70879ea76394e435377bc3949be518d266103dc3d10",
+            "span": {
+              "start": 478,
+              "end": 492,
+              "text": "(Vote for ONE)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-house-23",
+      "kind": "candidate_election",
+      "label": "State House · District 23",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 2,
+          "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-2-1239",
+              "printed_name": "Tony L. Van Trece",
+              "printed_party": "Dem",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 1239,
+                "end": 1266,
+                "text": "Tony L. Van Trece       Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-house-24",
+      "kind": "candidate_election",
+      "label": "State House · District 24",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 2,
+          "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-2-1393",
+              "printed_name": "Kevin Garner",
+              "printed_party": "Dem",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 1393,
+                "end": 1420,
+                "text": "Kevin Garner            Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-house-25",
+      "kind": "candidate_election",
+      "label": "State House · District 25",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 3,
+          "reading_sha256": "f0ba2ddcc5df497fa01165a5f83e3484d1ba3aed388aad507be9769d1bbbed3f",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-3-29",
+              "printed_name": "Pattie Mansur",
+              "printed_party": "Dem",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 29,
+                "end": 57,
+                "text": "Pattie Mansur            Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-house-26",
+      "kind": "candidate_election",
+      "label": "State House · District 26",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 3,
+          "reading_sha256": "f0ba2ddcc5df497fa01165a5f83e3484d1ba3aed388aad507be9769d1bbbed3f",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-3-175",
+              "printed_name": "Tiffany Price",
+              "printed_party": "Dem",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 175,
+                "end": 203,
+                "text": "Tiffany Price            Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-house-27",
+      "kind": "candidate_election",
+      "label": "State House · District 27",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 3,
+          "reading_sha256": "f0ba2ddcc5df497fa01165a5f83e3484d1ba3aed388aad507be9769d1bbbed3f",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-3-339",
+              "printed_name": "Melissa A Douglas",
+              "printed_party": "Dem",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 339,
+                "end": 367,
+                "text": "Melissa A Douglas        Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "state-house-37",
+      "kind": "candidate_election",
+      "label": "State House · District 37",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 3,
+          "reading_sha256": "f0ba2ddcc5df497fa01165a5f83e3484d1ba3aed388aad507be9769d1bbbed3f",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-3-1099",
+              "printed_name": "Karissa Marie Varga",
+              "printed_party": "Dem",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 1099,
+                "end": 1128,
+                "text": "Karissa Marie Varga       Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "county-district-1",
+      "kind": "candidate_election",
+      "label": "County Legislature · District 1",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 3,
+          "reading_sha256": "f0ba2ddcc5df497fa01165a5f83e3484d1ba3aed388aad507be9769d1bbbed3f",
+          "candidate_rows": [
+            {
+              "entry_id": "kceb-3-1513",
+              "printed_name": "Kelly Thompson",
+              "printed_party": "Dem",
+              "ballot_order": 1,
+              "field_span": {
+                "start": 1513,
+                "end": 1542,
+                "text": "Kelly Thompson            Dem"
+              },
+              "background_evidence": "not_admitted",
+              "person_identity": "not_merged"
+            }
+          ],
+          "write_in": {
+            "printed": true,
+            "named_candidate": false,
+            "eligible_write_in_list": "not_verified"
+          },
+          "source_statuses": [],
+          "instruction": {
+            "text": "VOTE FOR ONE",
+            "page": 2,
+            "reading_sha256": "e0d7844816f3ad65524d000121c615e453c98967046ec9d9e186429dd534cdb9",
+            "span": {
+              "start": 389,
+              "end": 401,
+              "text": "VOTE FOR ONE"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "retention-supreme-court",
+      "kind": "judicial_retention",
+      "label": "Missouri Supreme Court",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 5,
+          "reading_sha256": "54445a277ff6cb7f59aa7c52dbc071b0c046a2a0a53e76dbb77840c8016038b2",
+          "printed_name": "PAUL C. WILSON",
+          "name_span": {
+            "start": 531,
+            "end": 545,
+            "text": "PAUL C. WILSON"
+          },
+          "wording_column": null,
+          "wording": "Shall Judge PAUL C. WILSON of the Missouri Supreme Court be retained in office?",
+          "wording_sha256": "07ac9b61e4abc7df193044eb16e92a41c8ee880c7c013907e39dd3d26eec17d2",
+          "wording_reading_sha256": "54445a277ff6cb7f59aa7c52dbc071b0c046a2a0a53e76dbb77840c8016038b2",
+          "wording_span": {
+            "start": 519,
+            "end": 598,
+            "text": "Shall Judge PAUL C. WILSON of the Missouri Supreme Court be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        },
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "printed_name": "PAUL C. WILSON",
+          "name_span": {
+            "start": 8003,
+            "end": 8017,
+            "text": "PAUL C. WILSON"
+          },
+          "wording_column": 2,
+          "wording": "Shall Judge PAUL C. WILSON of the Missouri Supreme\n Court be retained in office?",
+          "wording_sha256": "03a6c7caf6553114c20e19773d0a76a769b645b8406ce639f0b75d7085c6b1fc",
+          "wording_reading_sha256": "234bd411b7d76f17f91f9e4de4a577e175dc81643e0926e391dc78232663f1bc",
+          "wording_span": {
+            "start": 1700,
+            "end": 1780,
+            "text": "Shall Judge PAUL C. WILSON of the Missouri Supreme\n Court be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "retention-appeals-western",
+      "kind": "judicial_retention",
+      "label": "Court of Appeals · Western District",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 5,
+          "reading_sha256": "54445a277ff6cb7f59aa7c52dbc071b0c046a2a0a53e76dbb77840c8016038b2",
+          "printed_name": "LISA WHITE HARDWICK",
+          "name_span": {
+            "start": 888,
+            "end": 907,
+            "text": "LISA WHITE HARDWICK"
+          },
+          "wording_column": null,
+          "wording": "Shall Judge LISA WHITE HARDWICK of the Western District Court of Appeals be retained in\noffice?",
+          "wording_sha256": "33c2a458c81a8877e6af3ef86e5bcb0f493db50b3f8a2ef284ece4fc2233e4a9",
+          "wording_reading_sha256": "54445a277ff6cb7f59aa7c52dbc071b0c046a2a0a53e76dbb77840c8016038b2",
+          "wording_span": {
+            "start": 876,
+            "end": 971,
+            "text": "Shall Judge LISA WHITE HARDWICK of the Western District Court of Appeals be retained in\noffice?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        },
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "printed_name": "LISA WHITE HARDWICK",
+          "name_span": {
+            "start": 9178,
+            "end": 9197,
+            "text": "LISA WHITE HARDWICK"
+          },
+          "wording_column": 2,
+          "wording": "Shall Judge LISA WHITE HARDWICK of the Western\n District Court of Appeals be retained in office?",
+          "wording_sha256": "b9237242247c97d5fc01943bcc609d8654fcbfb2fd788da5092a30ebec9fab0b",
+          "wording_reading_sha256": "234bd411b7d76f17f91f9e4de4a577e175dc81643e0926e391dc78232663f1bc",
+          "wording_span": {
+            "start": 1867,
+            "end": 1963,
+            "text": "Shall Judge LISA WHITE HARDWICK of the Western\n District Court of Appeals be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "retention-circuit-16-2",
+      "kind": "judicial_retention",
+      "label": "Circuit 16 · Division 2",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 5,
+          "reading_sha256": "54445a277ff6cb7f59aa7c52dbc071b0c046a2a0a53e76dbb77840c8016038b2",
+          "printed_name": "KENNETH R. GARRETT, III",
+          "name_span": {
+            "start": 1322,
+            "end": 1345,
+            "text": "KENNETH R. GARRETT, III"
+          },
+          "wording_column": null,
+          "wording": "Shall Judge KENNETH R. GARRETT, III, Circuit Judge of Judicial Circuit No. 16, be retained in\noffice?",
+          "wording_sha256": "6b52837d243fe5793fc019fcd94878e2cfda827b5cf840efcc0e56a0717f8b04",
+          "wording_reading_sha256": "54445a277ff6cb7f59aa7c52dbc071b0c046a2a0a53e76dbb77840c8016038b2",
+          "wording_span": {
+            "start": 1310,
+            "end": 1411,
+            "text": "Shall Judge KENNETH R. GARRETT, III, Circuit Judge of Judicial Circuit No. 16, be retained in\noffice?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        },
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "printed_name": "KENNETH R. GARRETT, III",
+          "name_span": {
+            "start": 10545,
+            "end": 10568,
+            "text": "KENNETH R. GARRETT, III"
+          },
+          "wording_column": 2,
+          "wording": "Shall Judge KENNETH R. GARRETT, III, Circuit Judge\n of Judicial Circuit No. 16, be retained in office?",
+          "wording_sha256": "409161d2de83eeb01a432eee8df412ebcd60b203b9cde9ea5b8918afd0d63857",
+          "wording_reading_sha256": "234bd411b7d76f17f91f9e4de4a577e175dc81643e0926e391dc78232663f1bc",
+          "wording_span": {
+            "start": 2081,
+            "end": 2183,
+            "text": "Shall Judge KENNETH R. GARRETT, III, Circuit Judge\n of Judicial Circuit No. 16, be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "retention-circuit-16-4",
+      "kind": "judicial_retention",
+      "label": "Circuit 16 · Division 4",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 5,
+          "reading_sha256": "54445a277ff6cb7f59aa7c52dbc071b0c046a2a0a53e76dbb77840c8016038b2",
+          "printed_name": "PATRICK C. EDWARDS",
+          "name_span": {
+            "start": 1639,
+            "end": 1657,
+            "text": "PATRICK C. EDWARDS"
+          },
+          "wording_column": null,
+          "wording": "Shall Judge PATRICK C. EDWARDS, Circuit Judge of Judicial Circuit No. 16, be retained in\noffice?",
+          "wording_sha256": "1d18361230c2b85cc795c553e70ac35bc711a69f4640d3bd03cadb2ec1976ed4",
+          "wording_reading_sha256": "54445a277ff6cb7f59aa7c52dbc071b0c046a2a0a53e76dbb77840c8016038b2",
+          "wording_span": {
+            "start": 1627,
+            "end": 1723,
+            "text": "Shall Judge PATRICK C. EDWARDS, Circuit Judge of Judicial Circuit No. 16, be retained in\noffice?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        },
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "printed_name": "PATRICK C. EDWARDS",
+          "name_span": {
+            "start": 11595,
+            "end": 11613,
+            "text": "PATRICK C. EDWARDS"
+          },
+          "wording_column": 2,
+          "wording": "Shall Judge PATRICK C. EDWARDS, Circuit Judge of\n Judicial Circuit No. 16, be retained in office?",
+          "wording_sha256": "6cfed2e0470844d7362b767c4855c5789bbf4cb17492bed3f1ce92c730b6c6fa",
+          "wording_reading_sha256": "234bd411b7d76f17f91f9e4de4a577e175dc81643e0926e391dc78232663f1bc",
+          "wording_span": {
+            "start": 2231,
+            "end": 2328,
+            "text": "Shall Judge PATRICK C. EDWARDS, Circuit Judge of\n Judicial Circuit No. 16, be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "retention-circuit-16-14",
+      "kind": "judicial_retention",
+      "label": "Circuit 16 · Division 14",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 5,
+          "reading_sha256": "54445a277ff6cb7f59aa7c52dbc071b0c046a2a0a53e76dbb77840c8016038b2",
+          "printed_name": "LAUREN D. BARRETT",
+          "name_span": {
+            "start": 1950,
+            "end": 1967,
+            "text": "LAUREN D. BARRETT"
+          },
+          "wording_column": null,
+          "wording": "Shall Judge LAUREN D. BARRETT, Circuit Judge of Judicial Circuit No. 16, be retained in\noffice?",
+          "wording_sha256": "b5f6b92d371a211788492d9aafd69b9954d220b88b2516701a8fac2d5e023e5f",
+          "wording_reading_sha256": "54445a277ff6cb7f59aa7c52dbc071b0c046a2a0a53e76dbb77840c8016038b2",
+          "wording_span": {
+            "start": 1938,
+            "end": 2033,
+            "text": "Shall Judge LAUREN D. BARRETT, Circuit Judge of Judicial Circuit No. 16, be retained in\noffice?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        },
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "printed_name": "LAUREN D. BARRETT",
+          "name_span": {
+            "start": 12766,
+            "end": 12783,
+            "text": "LAUREN D. BARRETT"
+          },
+          "wording_column": 2,
+          "wording": "Shall Judge LAUREN D. BARRETT, Circuit Judge of\n Judicial Circuit No. 16, be retained in office?",
+          "wording_sha256": "bb42414c2537f299734b51bbfe17bcf91a0a7ef275deb47457488f81d866dd82",
+          "wording_reading_sha256": "234bd411b7d76f17f91f9e4de4a577e175dc81643e0926e391dc78232663f1bc",
+          "wording_span": {
+            "start": 2377,
+            "end": 2473,
+            "text": "Shall Judge LAUREN D. BARRETT, Circuit Judge of\n Judicial Circuit No. 16, be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "retention-circuit-16-17",
+      "kind": "judicial_retention",
+      "label": "Circuit 16 · Division 17",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 6,
+          "reading_sha256": "960e0611435468ead54b56c3241c4208ac2bffcf970edad87120479a81d1138c",
+          "printed_name": "CORY L. ATKINS",
+          "name_span": {
+            "start": 77,
+            "end": 91,
+            "text": "CORY L. ATKINS"
+          },
+          "wording_column": null,
+          "wording": "Shall Judge CORY L. ATKINS, Circuit Judge of Judicial Circuit No. 16, be retained in office?",
+          "wording_sha256": "16ec39e22b5471311e84ec95fe4b3c5cf641cd00b4b39c862967321878c5b1bb",
+          "wording_reading_sha256": "960e0611435468ead54b56c3241c4208ac2bffcf970edad87120479a81d1138c",
+          "wording_span": {
+            "start": 65,
+            "end": 157,
+            "text": "Shall Judge CORY L. ATKINS, Circuit Judge of Judicial Circuit No. 16, be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        },
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "printed_name": "CORY L. ATKINS",
+          "name_span": {
+            "start": 353,
+            "end": 367,
+            "text": "CORY L. ATKINS"
+          },
+          "wording_column": 3,
+          "wording": "Shall Judge CORY L. ATKINS, Circuit Judge of Judicial\nCircuit No. 16, be retained in office?",
+          "wording_sha256": "3e6f38c47ff6a38dcf3126ec469d7d3f9b3b850b9de14168f544e082af7fdb47",
+          "wording_reading_sha256": "5aff6c5ebaadc51532f0ea02b5efe64980213d553bf270bf145e6cbdbce12d1e",
+          "wording_span": {
+            "start": 47,
+            "end": 139,
+            "text": "Shall Judge CORY L. ATKINS, Circuit Judge of Judicial\nCircuit No. 16, be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "retention-circuit-16-18",
+      "kind": "judicial_retention",
+      "label": "Circuit 16 · Division 18",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 6,
+          "reading_sha256": "960e0611435468ead54b56c3241c4208ac2bffcf970edad87120479a81d1138c",
+          "printed_name": "KEVIN D. HARRELL",
+          "name_span": {
+            "start": 371,
+            "end": 387,
+            "text": "KEVIN D. HARRELL"
+          },
+          "wording_column": null,
+          "wording": "Shall Judge KEVIN D. HARRELL, Circuit Judge of Judicial Circuit No. 16, be retained in office?",
+          "wording_sha256": "c83bd7db1a3f1f4912dc51cca525e3aea6dbfe64ddd0bae94105e4d8bb077b84",
+          "wording_reading_sha256": "960e0611435468ead54b56c3241c4208ac2bffcf970edad87120479a81d1138c",
+          "wording_span": {
+            "start": 359,
+            "end": 453,
+            "text": "Shall Judge KEVIN D. HARRELL, Circuit Judge of Judicial Circuit No. 16, be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        },
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "printed_name": "KEVIN D. HARRELL",
+          "name_span": {
+            "start": 1290,
+            "end": 1306,
+            "text": "KEVIN D. HARRELL"
+          },
+          "wording_column": 3,
+          "wording": "Shall Judge KEVIN D. HARRELL, Circuit Judge of the\nJudicial Circuit No. 16, be retained in office?",
+          "wording_sha256": "72b8c6e03c1ab84fba62ebc77c81c7703b666a169ca05f30e0533adbbd6b0b05",
+          "wording_reading_sha256": "5aff6c5ebaadc51532f0ea02b5efe64980213d553bf270bf145e6cbdbce12d1e",
+          "wording_span": {
+            "start": 184,
+            "end": 282,
+            "text": "Shall Judge KEVIN D. HARRELL, Circuit Judge of the\nJudicial Circuit No. 16, be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "retention-associate-16-25",
+      "kind": "judicial_retention",
+      "label": "Associate Circuit 16 · Division 25",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 6,
+          "reading_sha256": "960e0611435468ead54b56c3241c4208ac2bffcf970edad87120479a81d1138c",
+          "printed_name": "ABBIE ROTHERMICH",
+          "name_span": {
+            "start": 781,
+            "end": 797,
+            "text": "ABBIE ROTHERMICH"
+          },
+          "wording_column": null,
+          "wording": "Shall Judge ABBIE ROTHERMICH, Associate Circuit Judge of Judicial Circuit No. 16, be\nretained in office?",
+          "wording_sha256": "51820fbf55a3566f615fb1b1aa2fc1a9377fad314f95fdec7e91eb1c5bc31f4e",
+          "wording_reading_sha256": "960e0611435468ead54b56c3241c4208ac2bffcf970edad87120479a81d1138c",
+          "wording_span": {
+            "start": 769,
+            "end": 873,
+            "text": "Shall Judge ABBIE ROTHERMICH, Associate Circuit Judge of Judicial Circuit No. 16, be\nretained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        },
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "printed_name": "ABBIE ROTHERMICH",
+          "name_span": {
+            "start": 2516,
+            "end": 2532,
+            "text": "ABBIE ROTHERMICH"
+          },
+          "wording_column": 3,
+          "wording": "Shall Judge ABBIE ROTHERMICH, Associate Circuit\nJudge of Judicial Circuit No. 16, be retained in office?",
+          "wording_sha256": "5a47f7f0c2ca0108a357c2fd54426edd4b8d8678850267d438f0668458f2bf5f",
+          "wording_reading_sha256": "5aff6c5ebaadc51532f0ea02b5efe64980213d553bf270bf145e6cbdbce12d1e",
+          "wording_span": {
+            "start": 396,
+            "end": 500,
+            "text": "Shall Judge ABBIE ROTHERMICH, Associate Circuit\nJudge of Judicial Circuit No. 16, be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "retention-associate-16-26",
+      "kind": "judicial_retention",
+      "label": "Associate Circuit 16 · Division 26",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 6,
+          "reading_sha256": "960e0611435468ead54b56c3241c4208ac2bffcf970edad87120479a81d1138c",
+          "printed_name": "R. TRAVIS WILLINGHAM",
+          "name_span": {
+            "start": 1083,
+            "end": 1103,
+            "text": "R. TRAVIS WILLINGHAM"
+          },
+          "wording_column": null,
+          "wording": "Shall Judge R. TRAVIS WILLINGHAM, Associate Circuit Judge of Judicial Circuit No. 16, be\nretained in office?",
+          "wording_sha256": "50a00179e2843af9109dcbb92e34f0342b2684562d0db87d3e4c4090886e6ee6",
+          "wording_reading_sha256": "960e0611435468ead54b56c3241c4208ac2bffcf970edad87120479a81d1138c",
+          "wording_span": {
+            "start": 1071,
+            "end": 1179,
+            "text": "Shall Judge R. TRAVIS WILLINGHAM, Associate Circuit Judge of Judicial Circuit No. 16, be\nretained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        },
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "printed_name": "R. TRAVIS WILLINGHAM",
+          "name_span": {
+            "start": 3388,
+            "end": 3408,
+            "text": "R. TRAVIS WILLINGHAM"
+          },
+          "wording_column": 3,
+          "wording": "Shall Judge R. TRAVIS WILLINGHAM, Associate Circuit\nJudge of Judicial Circuit No. 16, be retained in office?",
+          "wording_sha256": "d19a95f38175792a6cfed926bd209ea60d3d83c8d8e3ead8e815e1b6e0291e52",
+          "wording_reading_sha256": "5aff6c5ebaadc51532f0ea02b5efe64980213d553bf270bf145e6cbdbce12d1e",
+          "wording_span": {
+            "start": 543,
+            "end": 651,
+            "text": "Shall Judge R. TRAVIS WILLINGHAM, Associate Circuit\nJudge of Judicial Circuit No. 16, be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "retention-associate-16-27",
+      "kind": "judicial_retention",
+      "label": "Associate Circuit 16 · Division 27",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 6,
+          "reading_sha256": "960e0611435468ead54b56c3241c4208ac2bffcf970edad87120479a81d1138c",
+          "printed_name": "KEA S. BIRD-RILEY",
+          "name_span": {
+            "start": 1390,
+            "end": 1407,
+            "text": "KEA S. BIRD-RILEY"
+          },
+          "wording_column": null,
+          "wording": "Shall Judge KEA S. BIRD-RILEY, Associate Circuit Judge of Judicial Circuit No. 16, be\nretained in office?",
+          "wording_sha256": "0da305b96facf13706f1a6580033aaa5822665eaf083c56b680efdd40cf1f698",
+          "wording_reading_sha256": "960e0611435468ead54b56c3241c4208ac2bffcf970edad87120479a81d1138c",
+          "wording_span": {
+            "start": 1378,
+            "end": 1483,
+            "text": "Shall Judge KEA S. BIRD-RILEY, Associate Circuit Judge of Judicial Circuit No. 16, be\nretained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        },
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "printed_name": "KEA S. BIRD-RILEY",
+          "name_span": {
+            "start": 4335,
+            "end": 4352,
+            "text": "KEA S. BIRD-RILEY"
+          },
+          "wording_column": 3,
+          "wording": "Shall Judge KEA S. BIRD-RILEY, Associate Circuit\nJudge of Judicial Circuit No. 16, be retained in office?",
+          "wording_sha256": "538c0088add87d83e802b6b61d282df46d99a7017a5147636551cf6f61807a6d",
+          "wording_reading_sha256": "5aff6c5ebaadc51532f0ea02b5efe64980213d553bf270bf145e6cbdbce12d1e",
+          "wording_span": {
+            "start": 694,
+            "end": 799,
+            "text": "Shall Judge KEA S. BIRD-RILEY, Associate Circuit\nJudge of Judicial Circuit No. 16, be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "retention-associate-16-31",
+      "kind": "judicial_retention",
+      "label": "Associate Circuit 16 · Division 31",
+      "occurrences": [
+        {
+          "source_id": "kceb",
+          "page": 6,
+          "reading_sha256": "960e0611435468ead54b56c3241c4208ac2bffcf970edad87120479a81d1138c",
+          "printed_name": "MARY FRANCES WEIR",
+          "name_span": {
+            "start": 1690,
+            "end": 1707,
+            "text": "MARY FRANCES WEIR"
+          },
+          "wording_column": null,
+          "wording": "Shall Judge MARY FRANCES WEIR, Associate Circuit Judge of Judicial Circuit No. 16, be\nretained in office?",
+          "wording_sha256": "6b757133fe000f85b56cfb1743e9ef5285db7562a67bcedae604a86c0a1b5544",
+          "wording_reading_sha256": "960e0611435468ead54b56c3241c4208ac2bffcf970edad87120479a81d1138c",
+          "wording_span": {
+            "start": 1678,
+            "end": 1783,
+            "text": "Shall Judge MARY FRANCES WEIR, Associate Circuit Judge of Judicial Circuit No. 16, be\nretained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        },
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "reading_sha256": "3356cfc61d18929ba3d0822b80dff315e4eccd7e592a17f09f5710d79a13dd2c",
+          "printed_name": "MARY FRANCES WEIR",
+          "name_span": {
+            "start": 5317,
+            "end": 5334,
+            "text": "MARY FRANCES WEIR"
+          },
+          "wording_column": 3,
+          "wording": "Shall Judge MARY FRANCES WEIR, Associate Circuit\nJudge of Judicial Circuit No. 16, be retained in office?",
+          "wording_sha256": "3886367202891b938b4b8209080d3cc325578fabdab4cbd27667f63221d4ad1a",
+          "wording_reading_sha256": "5aff6c5ebaadc51532f0ea02b5efe64980213d553bf270bf145e6cbdbce12d1e",
+          "wording_span": {
+            "start": 842,
+            "end": 947,
+            "text": "Shall Judge MARY FRANCES WEIR, Associate Circuit\nJudge of Judicial Circuit No. 16, be retained in office?"
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "background_evidence": "not_admitted",
+          "person_identity": "not_merged"
+        }
+      ]
+    },
+    {
+      "id": "amendment-3",
+      "kind": "measure",
+      "label": "Constitutional Amendment No. 3",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "column": 3,
+          "crop_points": {
+            "x": 533,
+            "y": 0,
+            "width": 250,
+            "height": 1224
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "wording": "Shall the Missouri Constitution be amended to:\n • Repeal the 2024 voter-approved Amendment\n   providing reproductive healthcare rights, including\n   abortion through fetal viability;\n • Allow abortions for rape and incest (under twelve-\n   weeks’ gestation), emergencies, and fetal anomalies;\n • Allow legislation regulating abortion;\n • Ensure parental consent for minors’ abortions;\n • Prohibit gender transition procedures for minors?\nState governmental entities estimate no costs or savings.\nGreene County estimates it may experience an unknown\nincrease in tax revenue. Other local governmental\nentities estimate no costs or savings.",
+          "wording_sha256": "9da56fb6e9b81af6c2e3cb89f1f23f43fe7e69a669012d6d3338b2b0467c62d4",
+          "wording_reading_sha256": "5aff6c5ebaadc51532f0ea02b5efe64980213d553bf270bf145e6cbdbce12d1e",
+          "wording_span": {
+            "start": 1108,
+            "end": 1745,
+            "text": "Shall the Missouri Constitution be amended to:\n • Repeal the 2024 voter-approved Amendment\n   providing reproductive healthcare rights, including\n   abortion through fetal viability;\n • Allow abortions for rape and incest (under twelve-\n   weeks’ gestation), emergencies, and fetal anomalies;\n • Allow legislation regulating abortion;\n • Ensure parental consent for minors’ abortions;\n • Prohibit gender transition procedures for minors?\nState governmental entities estimate no costs or savings.\nGreene County estimates it may experience an unknown\nincrease in tax revenue. Other local governmental\nentities estimate no costs or savings."
+          }
+        },
+        {
+          "source_id": "kceb",
+          "page": 7,
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "wording_admission": "original_link_only"
+        }
+      ]
+    },
+    {
+      "id": "amendment-6",
+      "kind": "measure",
+      "label": "Constitutional Amendment No. 6",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 1,
+          "column": 3,
+          "crop_points": {
+            "x": 533,
+            "y": 0,
+            "width": 250,
+            "height": 1224
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "wording": "Shall the Missouri Constitution be amended to:\n • expand the initiative and referendum petition process\n   by making it a fundamental right;\n • allow courts to revise ballot summaries through\n   lawsuits;\n • prohibit the legislature from weakening initiative or\n   referendum powers;\n • prohibit the legislature from changing or repealing\n   laws enacted through the initiative process, or\n   passing laws similar to those rejected by referendum,\n   without approval from at least 80% of both chambers;\n   and\n • preserve existing majority vote and signature\n   requirements for initiative and referendum petitions?\nState and local governmental entities estimate no costs\nor savings.",
+          "wording_sha256": "02872f357132b8547a3e0f732e35eb7a1f7b999dec370f9fa8322f8cded207b5",
+          "wording_reading_sha256": "5aff6c5ebaadc51532f0ea02b5efe64980213d553bf270bf145e6cbdbce12d1e",
+          "wording_span": {
+            "start": 1834,
+            "end": 2517,
+            "text": "Shall the Missouri Constitution be amended to:\n • expand the initiative and referendum petition process\n   by making it a fundamental right;\n • allow courts to revise ballot summaries through\n   lawsuits;\n • prohibit the legislature from weakening initiative or\n   referendum powers;\n • prohibit the legislature from changing or repealing\n   laws enacted through the initiative process, or\n   passing laws similar to those rejected by referendum,\n   without approval from at least 80% of both chambers;\n   and\n • preserve existing majority vote and signature\n   requirements for initiative and referendum petitions?\nState and local governmental entities estimate no costs\nor savings."
+          }
+        },
+        {
+          "source_id": "kceb",
+          "page": 7,
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "wording_admission": "original_link_only"
+        }
+      ]
+    },
+    {
+      "id": "amendment-7",
+      "kind": "measure",
+      "label": "Constitutional Amendment No. 7",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 2,
+          "column": 1,
+          "crop_points": {
+            "x": 10,
+            "y": 0,
+            "width": 254,
+            "height": 1224
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "wording": "Shall the Missouri Constitution be amended to establish\na permanent public endowment fund to support state\ngovernment instead of taxing Missouri residents, prohibit\nthe General Assembly from appropriating or diverting the\nfund, and eliminate state-imposed taxes once the fund\ngenerates sufficient revenue to replace them?\nState and local governmental entities estimate no costs\nor savings.",
+          "wording_sha256": "200275be4d7c5eaa8c9b36f1c88c8bb16be2e9e9e84723f717db164dba30fe63",
+          "wording_reading_sha256": "b168bac1815b87b3227cb33444bbc2a90e571da8af609dc77f2b36020bc51a89",
+          "wording_span": {
+            "start": 194,
+            "end": 583,
+            "text": "Shall the Missouri Constitution be amended to establish\na permanent public endowment fund to support state\ngovernment instead of taxing Missouri residents, prohibit\nthe General Assembly from appropriating or diverting the\nfund, and eliminate state-imposed taxes once the fund\ngenerates sufficient revenue to replace them?\nState and local governmental entities estimate no costs\nor savings."
+          }
+        },
+        {
+          "source_id": "kceb",
+          "page": 7,
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "wording_admission": "original_link_only"
+        }
+      ]
+    },
+    {
+      "id": "amendment-8",
+      "kind": "measure",
+      "label": "Constitutional Amendment No. 8",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 2,
+          "column": 1,
+          "crop_points": {
+            "x": 10,
+            "y": 0,
+            "width": 254,
+            "height": 1224
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "wording": "Shall the Missouri Constitution be amended to support\nlaw enforcement by preserving the right of citizens to\nelect a county sheriff, prohibiting the removal of a county\nsheriff except by a writ of quo warranto, and recognizing\nthe office of sheriff as part of the administration of\njustice?\nState and local governmental entities estimate no costs\nor savings.",
+          "wording_sha256": "bfeec8ff19a6f572a913339290720bebaeb0dd3646e6edb9badb1767650f49bf",
+          "wording_reading_sha256": "b168bac1815b87b3227cb33444bbc2a90e571da8af609dc77f2b36020bc51a89",
+          "wording_span": {
+            "start": 746,
+            "end": 1104,
+            "text": "Shall the Missouri Constitution be amended to support\nlaw enforcement by preserving the right of citizens to\nelect a county sheriff, prohibiting the removal of a county\nsheriff except by a writ of quo warranto, and recognizing\nthe office of sheriff as part of the administration of\njustice?\nState and local governmental entities estimate no costs\nor savings."
+          }
+        },
+        {
+          "source_id": "kceb",
+          "page": 8,
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "wording_admission": "original_link_only"
+        }
+      ]
+    },
+    {
+      "id": "proposition-a",
+      "kind": "measure",
+      "label": "Proposition A",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 2,
+          "column": 1,
+          "crop_points": {
+            "x": 10,
+            "y": 0,
+            "width": 254,
+            "height": 1224
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "wording": "Do the people of the state of Missouri approve the act of\nthe General Assembly entitled “House Bill No. 1 (2025\nSecond Extraordinary Session),” which repeals\nMissouri’s existing congressional plan, and replaces it\nwith new congressional boundaries that keep more\ncounties intact?\nState and local government entities estimate no costs or\nsavings.",
+          "wording_sha256": "85c0e06eeaa5900387b267d92e65808bc3c177708eeea220258bfbd4f009ed3b",
+          "wording_reading_sha256": "b168bac1815b87b3227cb33444bbc2a90e571da8af609dc77f2b36020bc51a89",
+          "wording_span": {
+            "start": 1187,
+            "end": 1532,
+            "text": "Do the people of the state of Missouri approve the act of\nthe General Assembly entitled “House Bill No. 1 (2025\nSecond Extraordinary Session),” which repeals\nMissouri’s existing congressional plan, and replaces it\nwith new congressional boundaries that keep more\ncounties intact?\nState and local government entities estimate no costs or\nsavings."
+          }
+        },
+        {
+          "source_id": "kceb",
+          "page": 8,
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "wording_admission": "original_link_only"
+        }
+      ]
+    },
+    {
+      "id": "county-question-1",
+      "kind": "measure",
+      "label": "Jackson County · Question 1",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 2,
+          "column": 2,
+          "crop_points": {
+            "x": 267,
+            "y": 0,
+            "width": 261,
+            "height": 1224
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "wording": "Shall Jackson County continue its anti-crime sales tax,\n commonly known as COMBAT, at the rate of one-quarter\n of one cent for a period of ten years for the purpose of\n promoting and providing public safety within Jackson\n County, including the prevention and treatment of drug\n abuse and addiction and the prevention, investigation,\n prosecution, and detention of violent criminals and drug\n dealers? The proceeds of this tax shall be deposited in a\n special Jackson County Anti-Crime Sales Tax Trust\n Fund, separate from the general fund or any other county\n funds.",
+          "wording_sha256": "11dc177970236e7ec3853cb1c7b585e07a7c39fd99e7b4f136e61271307c903f",
+          "wording_reading_sha256": "161b8320524028215f4ec70879ea76394e435377bc3949be518d266103dc3d10",
+          "wording_span": {
+            "start": 687,
+            "end": 1254,
+            "text": "Shall Jackson County continue its anti-crime sales tax,\n commonly known as COMBAT, at the rate of one-quarter\n of one cent for a period of ten years for the purpose of\n promoting and providing public safety within Jackson\n County, including the prevention and treatment of drug\n abuse and addiction and the prevention, investigation,\n prosecution, and detention of violent criminals and drug\n dealers? The proceeds of this tax shall be deposited in a\n special Jackson County Anti-Crime Sales Tax Trust\n Fund, separate from the general fund or any other county\n funds."
+          }
+        },
+        {
+          "source_id": "kceb",
+          "page": 8,
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "wording_admission": "original_link_only"
+        }
+      ]
+    },
+    {
+      "id": "blue-springs-question",
+      "kind": "measure",
+      "label": "Blue Springs · Question",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 2,
+          "column": 2,
+          "crop_points": {
+            "x": 267,
+            "y": 0,
+            "width": 261,
+            "height": 1224
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "wording": "Shall the City of Blue Springs, Missouri impose a local\n use tax at the same rate as the total local sales tax rate,\n currently 2.5%, provided that if the local sales tax rate is\n reduced or raised by voter approval, the local use tax rate\n shall also be reduced or raised by the same action?\n If this question is approved, the City of Blue Springs\n would begin collecting a use tax from sales made to Blue\n Springs buyers by online and out of state vendors that\n are not currently taxed. The funds derived from the use\n tax will fund streets and other capital improvements.",
+          "wording_sha256": "11752e03819dcb1afbdaf2ccd58418a9c37adca0c5a9f32a6cd3a4291b6d58b6",
+          "wording_reading_sha256": "161b8320524028215f4ec70879ea76394e435377bc3949be518d266103dc3d10",
+          "wording_span": {
+            "start": 1628,
+            "end": 2202,
+            "text": "Shall the City of Blue Springs, Missouri impose a local\n use tax at the same rate as the total local sales tax rate,\n currently 2.5%, provided that if the local sales tax rate is\n reduced or raised by voter approval, the local use tax rate\n shall also be reduced or raised by the same action?\n If this question is approved, the City of Blue Springs\n would begin collecting a use tax from sales made to Blue\n Springs buyers by online and out of state vendors that\n are not currently taxed. The funds derived from the use\n tax will fund streets and other capital improvements."
+          }
+        }
+      ]
+    },
+    {
+      "id": "independence-bond-1",
+      "kind": "measure",
+      "label": "Independence · General Obligation Bond Question 1",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 2,
+          "column": 2,
+          "crop_points": {
+            "x": 267,
+            "y": 0,
+            "width": 261,
+            "height": 1224
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "wording": "Shall the City of Independence, Missouri issue its general\n obligation bonds in the amount of $19,900,000 for the\n purpose of renovating, improving and equipping historic\n buildings, facilities and grounds, and for the creation of a\n 20-year business plan for historic buildings, with priority\n given to the Bingham-Waggoner Estate, the Vaile\n Mansion, the Truman Memorial Building, the Old Fire\n Station One, and the 1827 Log Courthouse?",
+          "wording_sha256": "c3eb4b116eb66734ca6cedf28480cfa57ceb914e0caa55311918f0d731d2a42c",
+          "wording_reading_sha256": "161b8320524028215f4ec70879ea76394e435377bc3949be518d266103dc3d10",
+          "wording_span": {
+            "start": 2325,
+            "end": 2763,
+            "text": "Shall the City of Independence, Missouri issue its general\n obligation bonds in the amount of $19,900,000 for the\n purpose of renovating, improving and equipping historic\n buildings, facilities and grounds, and for the creation of a\n 20-year business plan for historic buildings, with priority\n given to the Bingham-Waggoner Estate, the Vaile\n Mansion, the Truman Memorial Building, the Old Fire\n Station One, and the 1827 Log Courthouse?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "lees-summit-question",
+      "kind": "measure",
+      "label": "Lee’s Summit · Question",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 2,
+          "column": 2,
+          "crop_points": {
+            "x": 267,
+            "y": 0,
+            "width": 261,
+            "height": 1224
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "wording": "Should the municipality of Lee's Summit, Missouri,\n provide for residential city-wide solid waste collection\n services?",
+          "wording_sha256": "25f74499bd9e3f80f74443260230848d7e82259b2c07d14b5506560a9ab82073",
+          "wording_reading_sha256": "161b8320524028215f4ec70879ea76394e435377bc3949be518d266103dc3d10",
+          "wording_span": {
+            "start": 2845,
+            "end": 2964,
+            "text": "Should the municipality of Lee's Summit, Missouri,\n provide for residential city-wide solid waste collection\n services?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sni-valley-question",
+      "kind": "measure",
+      "label": "Sni Valley Fire Protection District · Question",
+      "occurrences": [
+        {
+          "source_id": "jceb",
+          "page": 2,
+          "column": 3,
+          "crop_points": {
+            "x": 533,
+            "y": 0,
+            "width": 250,
+            "height": 1224
+          },
+          "choices": [
+            "YES",
+            "NO"
+          ],
+          "wording": "Shall Sni Valley Fire Protection District impose a sales\ntax of one percent (1%) for the purpose of providing\nrevenues for the operation of the Sni Valley Fire\nProtection District and the total property tax levy on\nproperties in the Sni Valley Fire Protection District shall\nbe reduced annually by an amount which reduces\nproperty tax revenues by an amount equal to fifty percent\nof the previous year's revenue collected from this sales\ntax?",
+          "wording_sha256": "de2f12e4a1ccdf49b8c5d3a8ce54ebbb37ddeeb8d582bd084f68ca11be38a54d",
+          "wording_reading_sha256": "7d6c54c18c1eb51baaeedfbfd94267cf37cd3ccb8cac749219eb623df9c85ccd",
+          "wording_span": {
+            "start": 113,
+            "end": 554,
+            "text": "Shall Sni Valley Fire Protection District impose a sales\ntax of one percent (1%) for the purpose of providing\nrevenues for the operation of the Sni Valley Fire\nProtection District and the total property tax levy on\nproperties in the Sni Valley Fire Protection District shall\nbe reduced annually by an amount which reduces\nproperty tax revenues by an amount equal to fifty percent\nof the previous year's revenue collected from this sales\ntax?"
+          }
+        }
+      ]
+    }
+  ],
+  "extraction_notes": [
+    "KCEB text-layer State Senator heading has no visual contest; excluded after rendered-page check.",
+    "Source punctuation/case preserved per occurrence; shared contest keys do not merge people.",
+    "NO CANDIDATE FILED is a source status, not a candidate.",
+    "Both notices are public jurisdiction-wide unions, never a personal ballot."
+  ]
+}

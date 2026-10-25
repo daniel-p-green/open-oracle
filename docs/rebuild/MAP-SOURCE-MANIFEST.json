@@ -1,0 +1,66 @@
+{
+  "status": "research_downloads_not_admitted_for_serving",
+  "retrieval_date_utc": "2026-10-24",
+  "purpose": "Pin official comparison inputs before any derived rendering. Original bytes remain outside repository.",
+  "rights": "No explicit license established for state-distributed artifacts; attribution is not a blanket reuse license.",
+  "legal_status": "Sept25 Supreme Court stay preserves 2022 boundaries for November2026; not final disposition of all challenges. Recheck docket before release.",
+  "provenance_limit": "Parent verified OA-to-MSDIS distribution chain and visual PDFs; this worker verified exact downloaded bytes, GeoJSON district IDs/CRS and baseline PRJ. No topology/rendering/admission claim.",
+  "sources": [
+    {
+      "name": "baseline-cd118.zip",
+      "url": "https://www2.census.gov/geo/tiger/TIGER2023/CD/tl_2023_29_cd118.zip",
+      "retrieved_utc": "2026-10-24T03:24:14.554145+00:00",
+      "final_url": "https://www2.census.gov/geo/tiger/TIGER2023/CD/tl_2023_29_cd118.zip",
+      "bytes": 710517,
+      "sha256": "86f5c023b4e1f5bb844a4e38883cbd378d24ba0ab1e9b62111f4b3fb7930fccf",
+      "status": "downloaded_not_admitted",
+      "projection": {
+        "tl_2023_29_cd118.prj": "GEOGCS[\"GCS_North_American_1983\",DATUM[\"D_North_American_1983\",SPHEROID[\"GRS_1980\",6378137,298.257222101]],PRIMEM[\"Greenwich\",0],UNIT[\"Degree\",0.017453292519943295]]"
+      }
+    },
+    {
+      "name": "hb1.geojson",
+      "url": "https://www.arcgis.com/sharing/rest/content/items/c04d940b1adb4d97b9af24c7a49707d5/data",
+      "retrieved_utc": "2026-10-24T03:24:14.765807+00:00",
+      "final_url": "https://www.arcgis.com/sharing/rest/content/items/c04d940b1adb4d97b9af24c7a49707d5/data",
+      "bytes": 2370433,
+      "sha256": "b434b01d413aa3a95a8d7d859fa71eb352a403d191880bdda118ca33fead66d9",
+      "status": "downloaded_not_admitted",
+      "feature_count": 8,
+      "crs": {
+        "type": "name",
+        "properties": {
+          "name": "EPSG:4326"
+        }
+      },
+      "district_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "name": "baseline.pdf",
+      "url": "https://budplan.oa.mo.gov/sites/g/files/zuston231/files/media/pdf/2025/11/HB2909.pdf",
+      "retrieved_utc": "2026-10-24T03:24:14.957693+00:00",
+      "final_url": "https://budplan.oa.mo.gov/sites/g/files/zuston231/files/media/pdf/2025/11/HB2909.pdf",
+      "bytes": 4519997,
+      "sha256": "73bee227a539c172d983203e0b6424c1353ae4b942526348c6ac9fb470a44e2c",
+      "status": "downloaded_not_admitted"
+    },
+    {
+      "name": "hb1.pdf",
+      "url": "https://budplan.oa.mo.gov/sites/g/files/zuston231/files/media/pdf/2025/10/Statewide_US_Congressional_District_map_of_Missouri.pdf",
+      "retrieved_utc": "2026-10-24T03:24:14.617997+00:00",
+      "final_url": "https://budplan.oa.mo.gov/sites/g/files/zuston231/files/media/pdf/2025/10/Statewide_US_Congressional_District_map_of_Missouri.pdf",
+      "bytes": 2132434,
+      "sha256": "0dafe52fa40ae7ceb267ade0a13d60db7da0993973e563e2bf717a15dc23ce8c",
+      "status": "downloaded_not_admitted"
+    }
+  ]
+}

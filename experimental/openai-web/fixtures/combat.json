@@ -1,0 +1,72 @@
+{
+  "schema": "openoracle-fixture/v1",
+  "scope": {
+    "election_date": "2026-11-03",
+    "jurisdiction": "Jackson County, Missouri",
+    "contest_id": "combat"
+  },
+  "mode": "public_sample_fixture",
+  "sources": [
+    {
+      "id": "combat:jceb-sample",
+      "text": "QUESTION # 1  \nShall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers? The proceeds of this tax shall be deposited in a  \nspecial Jackson County Anti-Crime Sales Tax Trust  \nFund, separate from the general fund or any other county  \nfunds.  \nYES  \nNO",
+      "url": "https://jcebmo.org/wp-content/uploads/11.03.26-Notice-of-Election-Sample-Ballot-Poster.pdf",
+      "title": "JCEB November sample ballot",
+      "issuer": "Jackson County Election Board",
+      "election_date": "2026-11-03",
+      "retrieved_date": "2026-10-09",
+      "snapshot_date": "2026-10-10",
+      "page": 2,
+      "role": "official_sample",
+      "jurisdiction": "Jackson County, Missouri",
+      "text_sha256": "51ed68b219280af735c8168df9c94c53873b289f145072009ba43b0a0e7f14e4",
+      "artifact_sha256": "032814e650dbdbdb0064acb396ead6f51dcd087778240802eb6c30c7a5ef64a2",
+      "currency": "retained_snapshot_not_reverified",
+      "membership_authority": false
+    }
+  ],
+  "claims": {
+    "yes": {
+      "text": "A Yes vote would approve continuing the COMBAT tax at the printed rate for ten years.",
+      "source_id": "combat:jceb-sample",
+      "start": 15,
+      "end": 165,
+      "quote": "Shall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years"
+    },
+    "no": {
+      "text": "A No vote would not approve the continuation proposed by this question. This source alone does not establish what other funding or laws would apply.",
+      "source_id": "combat:jceb-sample",
+      "start": 15,
+      "end": 165,
+      "quote": "Shall Jackson County continue its anti-crime sales tax,  \ncommonly known as COMBAT, at the rate of one-quarter  \nof one cent for a period of ten years"
+    },
+    "rate": {
+      "text": "The printed rate is one-quarter of one cent.",
+      "source_id": "combat:jceb-sample",
+      "start": 99,
+      "end": 139,
+      "quote": "at the rate of one-quarter  \nof one cent"
+    },
+    "duration": {
+      "text": "The proposed continuation lasts ten years.",
+      "source_id": "combat:jceb-sample",
+      "start": 140,
+      "end": 165,
+      "quote": "for a period of ten years"
+    },
+    "purpose": {
+      "text": "The question names public safety, drug abuse prevention and treatment, and criminal justice purposes.",
+      "source_id": "combat:jceb-sample",
+      "start": 166,
+      "end": 423,
+      "quote": "for the purpose of  \npromoting and providing public safety within Jackson  \nCounty, including the prevention and treatment of drug  \nabuse and addiction and the prevention, investigation,  \nprosecution, and detention of violent criminals and drug  \ndealers?"
+    },
+    "fund": {
+      "text": "The question directs the proceeds to a separate Jackson County Anti-Crime Sales Tax Trust Fund.",
+      "source_id": "combat:jceb-sample",
+      "start": 424,
+      "end": 592,
+      "quote": "The proceeds of this tax shall be deposited in a  \nspecial Jackson County Anti-Crime Sales Tax Trust  \nFund, separate from the general fund or any other county  \nfunds."
+    }
+  }
+}
