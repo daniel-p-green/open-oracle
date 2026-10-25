@@ -2536,3 +2536,23 @@ This is a backfill, not a contemporaneous event stream.
   Parent reports CUA in its task, not authority for an alternate technology here.
   No Chrome UI action while Mocingbird owns it, no AppleScript/native workaround.
   Existing Claude source-only approval preserved; review remains queued.
+
+### 2026-10-25 02:41:20 UTC — offline increment delivered, latest review prepared
+
+- **Verified remote:** bdcc568 pushed to existing draftPR6 and both exact-code
+  offline-contracts CI runs40155280761/40155277507 passed; Sourcery skipped.
+  Local worktree clean before this note. No merge/deployment or paid inference.
+- **Prepared separate latest source-only review:**
+  openoracle-offline-review-bdcc568.md,352468bytes,
+  SHAf300dd043c3089733e2c3edb17cb6b13212b0a7042cec27abbcd9942c6af5209.
+ 19relevant tracked source/test/public-synthetic-evidence/instruction files,
+  no ledger/account IDs/credentials/private voter or human data/unrelated files.
+  Destination remains existing OpenOracle Claude review chat. Requested
+  Opus5.5High must be verified in the UI before sending. Not uploaded/submitted;
+  no new Claude response or selected-model verification claimed. Prior immutable
+  attachments left untouched. Parent can use its supported executor when Chrome
+  is released; this task still has none exposed and used no alternate route.
+- **Final scope reconciliation:** paid package still exactly5runs/25attempts/
+ 0.32reserved/0.06827989166666668estimated, all terminal. New plan5/70/0.65 is
+  proposal only, not authorization, configuration or a queued continuation.
+  Actual bilingual/browser/latency/public acceptance remains unfinished.
