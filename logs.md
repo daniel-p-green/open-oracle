@@ -2748,3 +2748,35 @@ This is a backfill, not a contemporaneous event stream.
 - Shared ledger after terminal run:200maximum/2.98retained reservations/
  0.3819496677083334recorded estimate, zero in-flight. Historical accounting
   limitations remain; no balance/invoice claim. No merge/deploy/new model/key.
+
+
+### 2026-10-25 — unpaid delivery-contract investigation
+
+- Official Live docs fetched: commentary explicitly paraphrases; instruction/ack
+  is not a verbatim/completion guarantee. Current speak() fallback is another
+  Live reader, so it cannot be presented as an independent text-to-speech fix.
+- Inspected later Pi server/voice.ts and src/playback.ts read-only: commentary has
+  same mismatch; turn/source/epoch and playing/ended/partial receipt concepts are
+  useful reuse. No old source/controller/permissions copied or repository changed.
+- Realtime docs/reference/model/pricing/data controls fetched. Proposed smallest
+  viable change keeps Live input/native Decisions and Responses/UI, isolates one
+  fresh checked-text Realtime Mini audio response, requires completed response
+  status/full buffer/exact independent ASR and existing source/turn fences. No
+  weakening of word/source gates or paid prompt repetition. Legacy Speech models
+  deprecated Jan6,2027, so not selected as long-term correction.
+- This is a material internal audio model/event/accounting change, not merely a
+  prompt bug fix; account eligibility and improved fidelity/latency unverified.
+  Detailed design/reuse/regression/authority limits in
+  CHECKED-SPEECH-DELIVERY-CORRECTION.md. No new production route/model wired.
+- Critical distinction: Realtime audio.done also fires when canceled/incomplete;
+  require response.done status. Its token usage/cancel/close differs from Live
+  duration/session.close. No fabricated zero native usage to fit old ledger.
+- Existing whole-waveform/independent-ASR/source/revocation and voice receipt
+  owner checks pass. No new adapter/runtime/browser/human pass claimed. Proposed
+  first comparison is at most2isolated English renderer/cancel runs,10counted
+  operations/$.20reserved within existing200, pending technical review before
+  inference; old bilingual package/history remains paused and unchanged.
+- No paid inference/account lookup, new credential/access/provider, human media,
+  merge or deployment during this investigation. Shared reservations/estimate
+  remain2.98/0.3819496677083334. User spending authority is not re-requested or
+  rewritten; scope-changing access/private data/media still separately gated.
