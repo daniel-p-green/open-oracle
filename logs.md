@@ -2780,3 +2780,68 @@ This is a backfill, not a contemporaneous event stream.
   merge or deployment during this investigation. Shared reservations/estimate
   remain2.98/0.3819496677083334. User spending authority is not re-requested or
   rewritten; scope-changing access/private data/media still separately gated.
+
+### 2026-10-25 03:49–04:02 UTC — product correction and actual RAG trace
+
+- **User direction:** at03:49–03:50 Daniel explicitly accepts paraphrase and clear
+  explanation, says exact repetition was never required, and asks how RAG works.
+  At03:57:03 he requests Opus5.5 architecture consultation because the current
+  build is incorrect; at03:57:45 says source grounded, flexible, with guardrails.
+  Preserve these as requirements, not optional relaxation. Pause architecture
+  implementation/voice experiments pending that consultation. No new paid run.
+- **Confirmed by actual code:** Journey loads one pinned PropositionA question,
+  generic operation template and previous checked draft; actual user question
+  does not reach Responses. Independent input ASR only captions. UI retains the
+  full wording/fiscal note but generation omits the note.55printed-contest union
+  and25KCEB sample are not searched by active Journey; SQLite research store is a
+  job ledger, not retrieval. Hashes establish retained integrity, not freshness.
+  Exact paths/lines and proposed coherent boundary correction are recorded in
+  [RAG-ACTUAL-STATE-2026-10-25.md](docs/rebuild/RAG-ACTUAL-STATE-2026-10-25.md).
+- **Superseded proposal:** marked CHECKED-SPEECH-DELIVERY-CORRECTION.md accordingly.
+  No separate Realtime narrator was implemented or tested. Existing equality
+  guards remain until a reviewed semantic speech/ownership contract replaces
+  them; no unsafe removal to manufacture a pass.
+- **Unpaid accounting repair:** before the architecture pause, reproduced unknown
+  usage stage falling through to Decisions pricing/zero output cost. New owner
+  regression failed because Held was not raised; added explicit admitted-stage
+  check before any ledger mutation. Relevant test_jobs checks now pass, including
+  unchanged-ledger assertion on unknown stage. No new renderer/pricing handler,
+  real ledger edit, paid request or deployment. This preserves financial safety
+  independently of the superseded narrator proposal.
+- **Consultation running:** existing Claude chat4c378210-7251-4026-9a90-700a23bc34d3,
+  visible Opus5.5High; message49 submitted scrubbed application/public-source and
+  relevant planning bundle.237160bytes/SHAe7018c530c8fe71694d4eb0b3b2ab22bafb9340312585c6d9160fe11f2c7cecf.
+ 12explicit files; no credentials/environment/private traces/unrelated payload.
+  Oracle used local dry-run/render only. First upload action opened file-source
+  dialog, not chooser; actual Upload-from-computer control succeeded via supported
+  browser. No denial/bypass/duplicate message. Returned critique still pending at
+  this entry; no model-review completion or product-readiness claim.
+
+### 2026-10-25 — Opus architecture consultation returned and challenged
+
+- **Completed:** actual Opus5.5High message50 returned the architecture critique,
+  confirming generic operation rather than actual-question flow, disconnected
+  fiscal note/inventory, PropositionA-specific restrictions and invented word
+  equality. Proposed retaining useful Live/Decisions/Responses/UI/ledger owners
+  while replacing request/evidence/semantic admission boundaries.
+- **Independent challenge:** rejected its initial speech-against-draft-only
+  recommendation, normalized-equality bypass and quiet-as-answer-completion
+  implication; distinguished estimated latency from actual single-run timings,
+  fallible ASR from exact truth, inventory from ballot membership, and premature
+  prior assignment from a live-held-next-turn repro. No code changed to satisfy
+  a reviewer assertion without checking it.
+- **Completed:** message52 explicitly withdrew those overstatements. Amended
+  speech check uses actual question+pinned primary passages independently of
+  draft; draft only narrows required claims/qualifiers. Quiet proposes a candidate
+  segment, not whole-answer completion. Ownership/cancel/transcript alignment
+  remain blockers before human playback, not evidence that unsafe audio may ship.
+- Full returned initial/amended review artifacts and local dispositions in
+  [OPUS-ARCHITECTURE-CONSULTATION-2026-10-25.md](docs/rebuild/OPUS-ARCHITECTURE-CONSULTATION-2026-10-25.md).
+  Model/High visibly reverified. Submission screenshot and completed-review
+  screenshot retained outside Git. No repeated submission or access denial.
+- **Next proposed, not running:** coherent actual-public-question→admitted fiscal/
+  wording passages→natural answer/claims→validated visual increment; offline
+  source/polarity/unknown/injection/binding checks, review before voice or paid
+  testing. No new architecture implementation, API charge, ledger history edit,
+  human audio, merge or deployment. Existing200ceiling/2.98reserve/
+ 0.3819496677083334recorded estimate unchanged; no invoice or readiness claim.

@@ -1,5 +1,11 @@
 # Checked-speech delivery correction — technical review draft
 
+**Superseded October 25, 2026, after Daniel's 03:49–03:50 UTC clarification:**
+faithful, clear paraphrase is acceptable; exact repetition was never a product
+requirement. Do not implement or run this separate verbatim-narrator proposal.
+It is retained as decision history, not the selected architecture. See
+[actual RAG trace and architecture consultation](RAG-ACTUAL-STATE-2026-10-25.md).
+
 October25,2026. Unpaid investigation only. No renderer implemented/enabled, model
 eligibility checked, new API run, credential/access change, merge or deployment.
 This document proposes a technical correction; it is not a paid job or a new

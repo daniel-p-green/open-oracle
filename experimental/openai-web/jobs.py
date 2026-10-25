@@ -176,6 +176,10 @@ class Budget:
             row['requests_attempted'] += 1
 
     def record(self, run, stage, usage):
+        # Pricing is a closed contract. A future renderer must define its own
+        # usage/rates before recording work; it cannot inherit Decisions rates.
+        if stage not in {'audio','fresh_audio','transcription','routing','review','text','journey_text','sol_text'}:
+            raise Held('usage_stage')
         if not isinstance(usage, dict): raise Held('usage_unconfirmed')
         if stage in {'audio','fresh_audio','transcription'}:
             seconds = usage.get('seconds')

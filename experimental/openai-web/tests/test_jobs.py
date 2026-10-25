@@ -24,6 +24,13 @@ class JobsTests(unittest.TestCase):
         self.token = self.jobs.capabilities()['session_token']
         self.request = 'public_request_0001'
     def tearDown(self): self.jobs.close(); self.temp.cleanup()
+
+    def test_unknown_usage_stage_cannot_fall_back_to_decisions_pricing(self):
+        budget=Budget(self.path);budget.reserve('pricing')
+        before=self.path.read_bytes()
+        with self.assertRaisesRegex(Held,'usage_stage'):
+            budget.record('pricing','unrecognized_audio_renderer',{'input_tokens':1000,'output_tokens':500})
+        self.assertEqual(self.path.read_bytes(),before)
     def wait_terminal(self):
         deadline = time.monotonic() + 2
         while time.monotonic() < deadline:

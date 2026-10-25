@@ -1,0 +1,72 @@
+Claude responded: Accepted, with one substantive change: spoken release is judged against the pinned passages and the actual question, independently of A.
+Compiling the final list of required versus optional fixes
+
+Compiling the final list of required versus optional fixes
+
+Accepted, with one substantive change: spoken release is judged against the pinned passages and the actual question, independently of A. I also withdraw three overstatements: that quiet closes an answer, that equality can stand in for a source check, and that my latency figures were measurements. Here is the amended recommendation.
+
+Model: Opus 5.5. The effort setting isn’t visible to me from inside the chat.
+
+Corrections to my previous answer
+Speech check. “S against A, not against sources” is withdrawn. Chaining release through A carries forward any false positive from the reviewer.
+Equality. Normalized equality between S and A skips no check against the primary sources. It is a diagnostic only.
+Quiet. Quiet and a stable transcript mark a candidate segment boundary. They don’t prove a whole response has ended, and Live has no per-response done event.
+Latency. The only figures you have measured come from one run, timed from input end: native decision at 1.324 s, checked text at 4.083 s, first voiced generated audio at 4.991 s, divergence hold at 9.539 s. The 1.324 s is one native decision, not UI render time. My “13–15 s” and my ASR and review durations were estimates.
+Terms.
+The scoped corpus is a fixed lookup, not general retrieval-augmented generation.
+ASR text is fallible evidence, not exact truth.
+The 55-contest notice union is inventory evidence, not an individual ballot and not proof of certification.
+Draft assigned as context. The premature prior=result at voice_agent.py line 266 is a real code defect. My claim that a held turn “becomes the parent of the next turn” was not shown live: a speech hold currently ends the session, so the defect is latent. It becomes live once turns continue after a hold, which the new design requires.
+Decisions. Neither of my two proposed decisions blocks the public synthetic request flow. The human-microphone and private-data boundary stays separately gated.
+Required changes
+The question goes into generation. The bounded input-ASR text for the turn’s synthetic clip becomes Q. It is labeled as an ASR transcript in the caption and is sent to Responses and to every check. If the transcript is empty, garbled or in an unexpected language, the turn becomes a clarify turn, not a guess.
+Scoped fixed passage lookup. Passages are built from the pinned sample: the question sentence, the printed fiscal note, bullets and conditions, the application’s effect texts (labeled as such), scope limits and the dated status record. Each passage carries its version, span, retrieved_utc and a review_before date. Contest binding stays deterministic application state.
+Written release of A. A is checked against Q and its cited passages:
+Deterministic: citations come from this request’s bundle; numbers and units per claim; polarity only from effect passages; currentness only from dated, unexpired passages; jurisdiction; no advice or links.
+Decisions predicates: entailed, no additions, responsive to Q (abstaining is allowed), neutral, attributed, language.
+A, once admitted, may be shown as text. It is also the plan and coverage constraint for speech.
+Spoken release of S, independently. S is the independent ASR of the buffered audio for the candidate segment. It gets the same deterministic checks and predicates run directly against Q and the pinned passages, with no A in the review input. A then constrains S only by narrowing it:
+S may not cite or imply passages outside A’s cited set;
+S must carry every qualifier A’s claims mark as required, such as conditions, “estimate”, polarity and attribution.
+Cross-check S against Live’s own output transcript on critical tokens: numbers, negations, Yes/No, and names of measures or jurisdictions. Any disagreement holds the segment. Agreement between two model outputs lowers the risk; it is not proof.
+Segment protocol, since Live has no end-of-response event.
+Release unit: one candidate segment, bounded by quiet and a stable transcript, released only if the segment passes item 4 on its own. That includes standalone coverage of what Q needs, so a cut-off prefix missing its qualifier fails.
+Continuation: voiced output after a released segment within the same turn is buffered as a new candidate and checked alone, or discarded. Segments are never concatenated after release.
+Outside the window: output not tied to the current commentary, or arriving after Stop, new input or the deadline, is discarded.
+Promise: nothing is played until that audio’s segment has passed. Nothing in the protocol proves the answer was complete, and already-heard audio cannot be retracted. Completeness is carried by A on screen.
+Context holds only released content. Replace line 266: the next turn’s context is the released segment texts S plus their passage IDs. A held turn contributes nothing.
+Remove the shape rules. Remove the brief character limits, the Proposition A word requirements, the bare “yes”/”sí” ban, reading_prefix_possible and the equality loops. Keep the numeric, polarity-by-citation, currentness, advice and link checks.
+Accounting. Add the closed stages input_transcription and speech_review with explicit pricing entries, and recompute package attempt limits for the per-turn calls.
+Optional
+Generate short, self-contained segments (one claim with its qualifiers each) to reduce time to first released audio. Measure the benefit before adopting it.
+Run the speech review on Live’s transcript in parallel with ASR, still requiring both before release.
+Start a fresh Live session per turn so session.close gives a documented end. The cost is reconnection time and the loss of native conversation state.
+Add SQLite full-text search when one scope outgrows the prompt.
+Broaden to the 25-contest sample and the JCEB notice context, labeled as inventory.
+Blockers to verify before any human playback
+
+These need answers from the documentation or the provider; until then, segment release stays confined to synthetic tests.
+
+Whether Live can stop or cancel an in-progress commentary rendering.
+Whether any event marks the end of a commentary’s rendering, or distinguishes commentary speech from spontaneous speech.
+How closely the output transcript tracks the audio. Segment boundaries currently depend on audio quiet.
+Whole-answer safety versus latency
+
+Guaranteed by design: unchecked audio never plays, and every played segment is checked against Q and the pinned passages.
+
+Not guaranteed:
+
+that the spoken answer is complete;
+that speech starts within any particular time;
+any latency figure, until measured. Time to first released audio is at least the segment’s speech duration plus the boundary wait, ASR and review.
+
+The written answer A carries the timely, complete version.
+
+Next action: implement required items 1–3 and 6 offline for Proposition A (fiscal-note bundle, Q into Responses, written admission, released-only context) with recorded-response tests for the fiscal follow-up, unknown status, injected instruction and Yes/No inversion, and send that for review before any spoken-release work or paid run.
+
+
+Create a doc
+
+
+
+1 minute ago
