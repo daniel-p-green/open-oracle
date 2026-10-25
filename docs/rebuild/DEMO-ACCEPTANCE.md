@@ -1,5 +1,13 @@
 # OpenOracle demonstration acceptance
 
+**Actual subsequent English trial:** native_bilingual_3541a97aff140392 ran on
+`dec4164` and finalized with accounted usage,5attempts/$0.01235498estimate
+($0.10reserve retained). First native reply paraphrased checked text and triggered
+`voice_output_diverged`; no output audio was approved, no output-ASR ran and the
+KC follow-up was not reached. Later bilingual batch stages are paused for
+speech-delivery contract review. This is a real safe hold, not usable live-voice
+acceptance or a latency pass. [Captured evidence](BILINGUAL-VOICE-RESULTS-2026-10-25.json).
+
 **Latest verification, October25:** native accounting now separates content
 admission from financial settlement through cancellation and close drain. Created,
 missing, conflicting, malformed and excess completion paths have owner regression

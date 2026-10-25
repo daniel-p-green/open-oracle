@@ -1,0 +1,279 @@
+{
+  "kind": "actual_public_synthetic_native_trial",
+  "code_commit": "dec416407e85d2c5471855d752765024516ef51d",
+  "run": "native_bilingual_3541a97aff140392",
+  "purpose": "english",
+  "outcome": "held",
+  "human_capture": false,
+  "speaker_playback": false,
+  "output_audio_approved": false,
+  "output_audio_asr_dispatched": false,
+  "turns_accepted": 0,
+  "second_question_reached": false,
+  "source_version": "09406d86232da1835b4258132ad8eb7c3f22e5098e390fb7b7dcc44f3cec68ec",
+  "source_hashes": {
+    "experimental/openai-web/voice_agent.py": "69091e45302c90c23d0b862e8d99727eb865c604efb5653e135a18b76ac9b516",
+    "experimental/openai-web/journey.py": "18699f4523ea405a560c9f3f8db0e9e9fcd1879d5329c2ccd14e419d05d6e1a2",
+    "experimental/openai-web/providers.py": "12e95865d88b7642de5edca350df3aa2ed921300967d7a44269beefaeb6b83e4",
+    "experimental/openai-web/jobs.py": "f362c4b6d14360edb5c8f7c6a3b1d1148609ecbda705547e15f1db5ad834cb30",
+    "experimental/openai-web/tests/manual/public_diagnostics.py": "f2b9ad976d62b202466f1282777e5a1f952b036efbb5658e735412ea88c8be69"
+  },
+  "fixture_manifest_sha256": "8f81cf343ac40b5eb80dbea4a9535865b1a915ef674f4a40505d2c58957b0dcb",
+  "requests_attempted": 5,
+  "requests_max": 11,
+  "reservation_usd": 0.1,
+  "recorded_price_estimate_usd": 0.012354976041666667,
+  "invoice_confirmed": false,
+  "settlement": {
+    "finalized": true,
+    "close_reason": "close_requested",
+    "usage": {
+      "seconds": 14.0
+    },
+    "native_usage_confirmed": true,
+    "native_completions": 1,
+    "native_delegations_created": 1,
+    "native_attempts_reserved": 1,
+    "asr_outcome_confirmed": true,
+    "asr_attempted": 1,
+    "asr_metered": 1
+  },
+  "trial_closure_confirmed": true,
+  "errors": [
+    "voice_output_diverged"
+  ],
+  "metered_stages": [
+    {
+      "stage": "review",
+      "usage": {
+        "input_tokens": 686,
+        "output_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0
+      },
+      "price_estimate_usd": 6.860000000000001e-05
+    },
+    {
+      "stage": "transcription",
+      "usage": {
+        "seconds": 4.640125,
+        "basis": "submitted_waveform_duration_not_invoice"
+      },
+      "price_estimate_usd": 0.00034800937499999995
+    },
+    {
+      "stage": "journey_text",
+      "usage": {
+        "input_tokens": 886,
+        "output_tokens": 64,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0
+      },
+      "price_estimate_usd": 0.0001206
+    },
+    {
+      "stage": "review",
+      "usage": {
+        "input_tokens": 1511,
+        "output_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0
+      },
+      "price_estimate_usd": 0.0001511
+    },
+    {
+      "stage": "fresh_audio",
+      "usage": {
+        "seconds": 14.0
+      },
+      "price_estimate_usd": 0.011666666666666667
+    }
+  ],
+  "public_output_before_guard_hold": [
+    {
+      "turn": 1,
+      "expected": "The question asks Missouri voters whether to approve a legislature-passed act replacing the existing congressional plan.",
+      "observed": "The question asks Missouri voters whether to accept a new congressional plan, passed by the legislature,",
+      "fragments": 13,
+      "deltas": [
+        {
+          "delta": "The question",
+          "start_ms": 9200,
+          "end_ms": 9400
+        },
+        {
+          "delta": " asks",
+          "start_ms": 9400,
+          "end_ms": 9600
+        },
+        {
+          "delta": " Missouri",
+          "start_ms": 9800,
+          "end_ms": 10000
+        },
+        {
+          "delta": " voters",
+          "start_ms": 10200,
+          "end_ms": 10400
+        },
+        {
+          "delta": " whether",
+          "start_ms": 10800,
+          "end_ms": 11000
+        },
+        {
+          "delta": " to",
+          "start_ms": 11000,
+          "end_ms": 11200
+        },
+        {
+          "delta": " accept",
+          "start_ms": 11200,
+          "end_ms": 11400
+        },
+        {
+          "delta": " a new",
+          "start_ms": 11600,
+          "end_ms": 11800
+        },
+        {
+          "delta": " congressional",
+          "start_ms": 12000,
+          "end_ms": 12200
+        },
+        {
+          "delta": " plan,",
+          "start_ms": 12600,
+          "end_ms": 12800
+        },
+        {
+          "delta": " passed",
+          "start_ms": 13400,
+          "end_ms": 13600
+        },
+        {
+          "delta": " by the",
+          "start_ms": 13800,
+          "end_ms": 14000
+        },
+        {
+          "delta": " legislature,",
+          "start_ms": 14000,
+          "end_ms": 14200
+        }
+      ],
+      "delta_history_truncated": false
+    }
+  ],
+  "output_capture_limit": "partial output captured through first stable-prefix divergence; not a completed utterance or approved paraphrase",
+  "speech_timing": [
+    {
+      "turn": 1,
+      "last_voiced_audio_ms": 15941.968,
+      "last_output_transcript_ms": 16017.962
+    }
+  ],
+  "stages_ms": [
+    {
+      "turn": 0,
+      "stage": "session_started",
+      "at_ms": 1368.902
+    },
+    {
+      "turn": 1,
+      "stage": "input_complete",
+      "at_ms": 6478.756
+    },
+    {
+      "turn": 1,
+      "stage": "input_asr_started",
+      "at_ms": 6478.809
+    },
+    {
+      "turn": 1,
+      "stage": "delegation_created",
+      "at_ms": 7529.255
+    },
+    {
+      "turn": 1,
+      "stage": "decision_completed",
+      "at_ms": 7802.417
+    },
+    {
+      "turn": 1,
+      "stage": "generation_started",
+      "at_ms": 7803.087
+    },
+    {
+      "turn": 1,
+      "stage": "input_asr_returned",
+      "at_ms": 7921.432
+    },
+    {
+      "turn": 1,
+      "stage": "generation_returned",
+      "at_ms": 9676.165
+    },
+    {
+      "turn": 1,
+      "stage": "review_started",
+      "at_ms": 9677.486
+    },
+    {
+      "turn": 1,
+      "stage": "review_returned",
+      "at_ms": 10561.023
+    },
+    {
+      "turn": 1,
+      "stage": "review_done",
+      "at_ms": 10561.424
+    },
+    {
+      "turn": 1,
+      "stage": "checked_text_ready",
+      "at_ms": 10561.451
+    },
+    {
+      "turn": 1,
+      "stage": "commentary_sent",
+      "at_ms": 10561.801
+    },
+    {
+      "turn": 1,
+      "stage": "first_audio",
+      "at_ms": 10625.489
+    },
+    {
+      "turn": 1,
+      "stage": "first_voiced_audio",
+      "at_ms": 11470.235
+    },
+    {
+      "turn": 1,
+      "stage": "reading_prefix_diverged",
+      "at_ms": 16018.062
+    },
+    {
+      "turn": 1,
+      "stage": "close_requested",
+      "at_ms": 16061.331
+    }
+  ],
+  "elapsed_ms": 18688.643,
+  "from_input_complete_ms": {
+    "decision_completed": 1323.661,
+    "checked_text_ready": 4082.695,
+    "first_voiced_audio": 4991.479,
+    "reading_prefix_diverged": 9539.306,
+    "close_requested": 9582.575
+  },
+  "private_diagnostic_artifact_sha256": "eef3138138c2dd87d2dcbd006ac7993a25dade97ac71a9919bb5052052f80fe8",
+  "shared_ledger_after": {
+    "authorization_max_usd": 200,
+    "retained_reservations_usd": 2.98,
+    "recorded_estimate_usd": 0.3819496677083334,
+    "in_flight": 0
+  },
+  "next_stage": "paused_for_delivery_contract_review; no unchanged retry or relaxed gate"
+}

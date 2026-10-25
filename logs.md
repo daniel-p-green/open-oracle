@@ -2707,3 +2707,44 @@ This is a backfill, not a contemporaneous event stream.
   recorded estimate, zero in-flight/new bilingual rows. Full EN/ES/contextual
   speech/UI, current-browser, acceptable measured latency and original stretch
   product acceptance remain open. No human microphone/speaker activity.
+
+
+### 2026-10-25 03:34 UTC — focused offline review and actual English result
+
+- Reviewed only dec4164 timing/label changes against Opus-reviewed bfe5dfa with
+  installed MP-code-review guidance. No verified new production defect found.
+  Offline audit wrapped the existing fake-transport protocol owner and checked
+  each non-null speech timestamp against its own turn's listening interval, no
+  timestamp inherited into a silent second turn, and preserved three-turn state.
+  Passed along with current voice receipt/client checks and UI syntax. No new
+  test count or live/bilingual/browser acceptance claim.
+- Previously denied English launch was admitted through normal review after new
+  action-specific user direction. The exact python3 command stopped before any
+  reservation/request: default interpreter lacked pinned websockets. Verified
+  existing .api-test-venv already has15.0.1; no install/access change. Reconciled
+  zero new rows, then ran same bounded trial through that existing environment
+  with normal approval review. Earlier denial text/history remains unchanged;
+  no authorization-status document rewritten or denial bypass.
+- **Actual run native_bilingual_3541a97aff140392 on dec4164:**5attempts/$0.10
+  retained reserve/$0.012354976041666667 recorded estimate, not invoice. Session
+  closed close_requested with14reported Live seconds;1native delegation created,
+ 1completed/metered,1input-ASR outcome settled; trial closure confirmed. No extra
+  or unknown usage, audio approval, output-ASR dispatch, playback or human media.
+- Outcome held voice_output_diverged. Grounded checked text requested approval of
+  a legislature-passed act replacing the existing congressional plan. Actual
+  partial output instead said accept a new congressional plan, passed by the
+  legislature. Captured public deltas now establish real paraphrasing in this
+  run; not an invented completion, input-language failure or inferred cause for
+  older lost traces. Prefix guard closed at16.018s; elapsed18.689s. KC follow-up
+  and Spanish/language-switch/cancellation stages were not reached.
+- From input complete: decision1.324s, checked text4.083s, first generated voiced
+  audio4.991s, divergence hold9.539s. No safe-audio latency exists for this run;
+  fail-sooner does not mean a faster useful spoken answer.
+- Official Live delegation docs fetched again: commentary is for speech that
+  paraphrases supplied text. Instruction appends/acks are not a verbatim-output
+  guarantee. Preserve strict gate; pause later stages for delivery-contract
+  review rather than consume conditional repair on unchanged prompt attempts.
+  Public sanitized evidence: BILINGUAL-VOICE-RESULTS-2026-10-25.json.
+- Shared ledger after terminal run:200maximum/2.98retained reservations/
+ 0.3819496677083334recorded estimate, zero in-flight. Historical accounting
+  limitations remain; no balance/invoice claim. No merge/deploy/new model/key.
